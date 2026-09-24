@@ -6,24 +6,24 @@
     {
       "round": 1,
       "questions": [
-        { "prompt": "Welke kleur krijg je als je blauw en geel mengt?", "category": "Kunst", "answers": [{ "text": "Groen" }] },
-        { "prompt": "In welke stad staat de Eiffeltoren?", "category": "Aardrijkskunde", "answers": [{ "text": "Parijs" }] },
+        { "prompt": "Wie schilderde Het laatste avondmaal?", "category": "Kunst", "answers": [{ "text": "Leonardo da Vinci", "aliases": ["Da Vinci"] }] },
+        { "prompt": "Tussen welke twee landen ligt het Kanaal?", "category": "Aardrijkskunde", "answers": [{ "text": "Engeland en Frankrijk", "aliases": ["Frankrijk en Engeland"] }] },
         { "prompt": "Hoeveel snaren heeft een gewone gitaar?", "category": "Muziek", "answers": [{ "text": "Zes", "aliases": ["6"] }] },
-        { "prompt": "Welk dier staat bekend als de koning van de jungle?", "category": "Natuur", "answers": [{ "text": "De leeuw", "aliases": ["Leeuw"] }] },
+        { "prompt": "Hoe heet de tak van de biologie die vogels studeert?", "category": "Natuur", "answers": [{ "text": "Ornithologie" }] },
         { "prompt": "Welke Nederlandse stad heeft de bijnaam Domstad?", "category": "Nederland", "answers": [{ "text": "Utrecht" }] },
-        { "prompt": "Welk gas ademen planten overdag uit?", "category": "Wetenschap", "answers": [{ "text": "Zuurstof" }] },
-        { "prompt": "Hoeveel ringen staan er in het olympisch logo?", "category": "Sport", "answers": [{ "text": "Vijf", "aliases": ["5"] }] },
+        { "prompt": "Wie bedacht de gloeilamp zoals wij die kennen?", "category": "Wetenschap", "answers": [{ "text": "Thomas Edison", "aliases": ["Edison"] }] },
+        { "prompt": "In welke sport wordt een scrum gevormd?", "category": "Sport", "answers": [{ "text": "Rugby" }] },
         { "prompt": "Welke Italiaanse stad is gebouwd op water en heeft grachten in plaats van straten?", "category": "Aardrijkskunde", "answers": [{ "text": "Venetie", "aliases": ["Venezia", "Venice"] }] },
         { "prompt": "Welke filmreeks gaat over een archeoloog met een zweep die Indiana heet?", "category": "Film", "answers": [{ "text": "Indiana Jones" }] },
         { "prompt": "Welk Nederlands gerecht bestaat uit aardappel, groente en worst door elkaar geprakt?", "category": "Eten", "answers": [{ "text": "Stamppot" }] },
-        { "prompt": "Wie was de eerste mens op de maan?", "category": "Geschiedenis", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong"] }] },
+        { "prompt": "Welke ontdekkingsreiziger kwam in 1492 in Amerika aan?", "category": "Geschiedenis", "answers": [{ "text": "Christoffel Columbus", "aliases": ["Columbus"] }] },
         { "prompt": "Hoe noem je een woord dat in de plaats komt van een zelfstandig naamwoord, zoals hij of zij?", "category": "Taal", "answers": [{ "text": "Een voornaamwoord", "aliases": ["Voornaamwoord", "Persoonlijk voornaamwoord"] }] },
         { "prompt": "Welk apparaat gebruik je om de tijd op te nemen bij een wedstrijd?", "category": "Techniek", "answers": [{ "text": "Stopwatch", "aliases": ["Chronometer"] }] },
         { "prompt": "Welke band maakte het album Dark Side of the Moon?", "category": "Muziek", "answers": [{ "text": "Pink Floyd" }] },
-        { "prompt": "Welke boom levert eikels?", "category": "Natuur", "answers": [{ "text": "De eik", "aliases": ["Eik", "Eikenboom"] }] },
-        { "prompt": "Welk land ligt direct ten oosten van Nederland?", "category": "Aardrijkskunde", "answers": [{ "text": "Duitsland" }] },
+        { "prompt": "Welke vogel is de grootste die niet kan vliegen?", "category": "Natuur", "answers": [{ "text": "De struisvogel", "aliases": ["Struisvogel"] }] },
+        { "prompt": "Wat is de munteenheid van Denemarken?", "category": "Aardrijkskunde", "answers": [{ "text": "De Deense kroon", "aliases": ["Deense kroon", "Kroon"] }] },
         { "prompt": "Welke Nederlandse schilder sneed een stuk van zijn oor af?", "category": "Kunst", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
-        { "prompt": "Hoe heet het hardste natuurlijke materiaal dat we kennen?", "category": "Wetenschap", "answers": [{ "text": "Diamant" }] },
+        { "prompt": "Hoe heet het sterrenstelsel waarin wij leven?", "category": "Wetenschap", "answers": [{ "text": "De Melkweg", "aliases": ["Melkweg"] }] },
         { "prompt": "Welk voetbalstadion is de thuisbasis van Feyenoord?", "category": "Sport", "answers": [{ "text": "De Kuip", "aliases": ["Kuip", "Stadion Feijenoord"] }] },
         { "prompt": "In welke eeuw leefde Willem van Oranje?", "category": "Geschiedenis", "answers": [{ "text": "De zestiende eeuw", "aliases": ["16e eeuw", "zestiende eeuw", "1500s"] }] }
       ]
@@ -107,10 +107,10 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel wielen heeft een fiets?", "difficulty": "easy", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
-        { "prompt": "Welke kleur heeft een klassieke Londense dubbeldekkerbus?", "difficulty": "easy", "answers": [{ "text": "Rood" }] },
+        { "prompt": "In welke Nederlandse stad staat de hoogste kerktoren van het land?", "difficulty": "easy", "answers": [{ "text": "Utrecht" }] },
+        { "prompt": "Van welk graan wordt de Japanse drank sake gemaakt?", "difficulty": "easy", "answers": [{ "text": "Rijst" }] },
         { "prompt": "Welk dier legt eieren en geeft toch melk?", "difficulty": "easy", "answers": [{ "text": "Het vogelbekdier", "aliases": ["Vogelbekdier"] }] },
-        { "prompt": "In welk werelddeel ligt Brazilie?", "difficulty": "easy", "answers": [{ "text": "Zuid-Amerika" }] },
+        { "prompt": "Welk land heeft Zagreb als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Kroatie" }] },
         { "prompt": "Welk zintuig gebruikt een vleermuis om in het donker te navigeren?", "difficulty": "easy", "answers": [{ "text": "Gehoor", "aliases": ["Echolocatie", "Het gehoor"] }] },
         { "prompt": "Welke Nederlandse natuurkundige ontdekte de supergeleiding?", "difficulty": "hard", "answers": [{ "text": "Heike Kamerlingh Onnes", "aliases": ["Kamerlingh Onnes"] }] },
         { "prompt": "Welke rivier mondt uit in de Zwarte Zee bij een grote delta in Roemenie?", "difficulty": "hard", "answers": [{ "text": "De Donau", "aliases": ["Donau"] }] },
@@ -123,12 +123,12 @@
       "round": 7,
       "questions": [
         { "prompt": "Welk land heeft de meeste inwoners van Europa?", "answers": [{ "text": "Rusland" }] },
-        { "prompt": "Welke Griekse god was de god van de zee?", "answers": [{ "text": "Poseidon" }] },
-        { "prompt": "Welk instrument heeft zwarte en witte toetsen en pedalen?", "answers": [{ "text": "De piano", "aliases": ["Piano", "Vleugel"] }] },
-        { "prompt": "Wie schreef het toneelstuk Romeo en Julia?", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
-        { "prompt": "Welk zuur zit er in azijn?", "answers": [{ "text": "Azijnzuur", "aliases": ["Ethaanzuur"] }] },
-        { "prompt": "Welke Nederlandse stad heeft de grootste haven van Europa?", "answers": [{ "text": "Rotterdam" }] },
-        { "prompt": "Welke vogel kan achteruit vliegen?", "answers": [{ "text": "De kolibrie", "aliases": ["Kolibrie"] }] }
+        { "prompt": "Welk Afrikaans land was tot 1993 deel van Ethiopie?", "answers": [{ "text": "Eritrea" }] },
+        { "prompt": "Welk rijk werd geregeerd vanaf de stad Tenochtitlan?", "answers": [{ "text": "Het Azteekse rijk", "aliases": ["Azteken"] }] },
+        { "prompt": "Welke Byzantijnse keizer liet de Hagia Sophia bouwen?", "answers": [{ "text": "Justinianus" }] },
+        { "prompt": "Welk insect heeft het sterkste gebit naar verhouding en kan bladeren snijden?", "answers": [{ "text": "De bladsnijdersmier", "aliases": ["Bladsnijdersmier"] }] },
+        { "prompt": "Welke plant ter wereld bloeit maar een keer in enkele tientallen jaren en sterft daarna?", "answers": [{ "text": "De agave", "aliases": ["Agave"] }] },
+        { "prompt": "Hoe heet de grootste vulkaan van het Europese vasteland?", "answers": [{ "text": "De Etna", "aliases": ["Etna"] }] }
       ]
     }
   ]

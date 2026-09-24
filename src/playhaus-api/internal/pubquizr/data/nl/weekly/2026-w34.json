@@ -8,24 +8,24 @@
       "questions": [
         { "prompt": "Wat is de hoofdstad van Australie?", "category": "Aardrijkskunde", "answers": [{ "text": "Canberra" }] },
         { "prompt": "Hoeveel provincies telt Nederland?", "category": "Nederland", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
-        { "prompt": "Welk dier is het grootste zoogdier ter wereld?", "category": "Natuur", "answers": [{ "text": "Blauwe vinvis", "aliases": ["blauwe walvis"] }] },
+        { "prompt": "Welke bij in een bijenkolonie legt de eieren?", "category": "Natuur", "answers": [{ "text": "De koningin", "aliases": ["Koningin"] }] },
         { "prompt": "Wie schilderde De Nachtwacht?", "category": "Kunst", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
-        { "prompt": "Hoeveel spelers staan er bij voetbal per team op het veld?", "category": "Sport", "answers": [{ "text": "Elf", "aliases": ["11"] }] },
+        { "prompt": "Welke stad organiseerde de Olympische Zomerspelen van 2016?", "category": "Sport", "answers": [{ "text": "Rio de Janeiro", "aliases": ["Rio"] }] },
         { "prompt": "Welk chemisch element heeft het symbool Au?", "category": "Wetenschap", "answers": [{ "text": "Goud" }] },
-        { "prompt": "In welk jaar viel de Berlijnse Muur?", "category": "Geschiedenis", "answers": [{ "text": "1989" }] },
+        { "prompt": "Hoe heette het schip dat in 1912 zonk op zijn eerste reis?", "category": "Geschiedenis", "answers": [{ "text": "De Titanic", "aliases": ["Titanic"] }] },
         { "prompt": "Wat is de langste rivier van Europa?", "category": "Aardrijkskunde", "answers": [{ "text": "Wolga", "aliases": ["Volga"] }] },
         { "prompt": "Hoe heet de grootste planeet van ons zonnestelsel?", "category": "Ruimte", "answers": [{ "text": "Jupiter" }] },
         { "prompt": "Welke Nederlandse stad staat bekend om de Cuypers-architectuur van het Centraal Station?", "category": "Nederland", "answers": [{ "text": "Amsterdam" }] },
-        { "prompt": "Hoeveel graden heeft een rechte hoek?", "category": "Wiskunde", "answers": [{ "text": "Negentig", "aliases": ["90"] }] },
+        { "prompt": "Welke maand heeft als enige minder dan dertig dagen?", "category": "Wiskunde", "answers": [{ "text": "Februari" }] },
         { "prompt": "Wie schreef het Achterhuis?", "category": "Literatuur", "answers": [{ "text": "Anne Frank" }] },
         { "prompt": "Welk land won het WK voetbal van 2010?", "category": "Sport", "answers": [{ "text": "Spanje" }] },
         { "prompt": "Wat is de kleinste zelfstandige staat ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "Vaticaanstad" }] },
-        { "prompt": "Hoeveel botten heeft een volwassen mens ongeveer?", "category": "Biologie", "answers": [{ "text": "206" }] },
+        { "prompt": "Welk orgaan maakt gal aan?", "category": "Biologie", "answers": [{ "text": "De lever", "aliases": ["Lever"] }] },
         { "prompt": "Welke zee ligt tussen Nederland en Engeland?", "category": "Aardrijkskunde", "answers": [{ "text": "Noordzee" }] },
         { "prompt": "Hoe heet de munteenheid van Japan?", "category": "Economie", "answers": [{ "text": "Yen" }] },
-        { "prompt": "Welk orgaan pompt bloed door het lichaam?", "category": "Biologie", "answers": [{ "text": "Hart" }] },
+        { "prompt": "Hoe heet het bot dat je hersenen beschermt?", "category": "Biologie", "answers": [{ "text": "De schedel", "aliases": ["Schedel"] }] },
         { "prompt": "In welk land staat Machu Picchu?", "category": "Aardrijkskunde", "answers": [{ "text": "Peru" }] },
-        { "prompt": "Hoeveel kleuren telt een regenboog volgens de klassieke indeling?", "category": "Natuur", "answers": [{ "text": "Zeven", "aliases": ["7"] }] }
+        { "prompt": "Welk scheikundig element heeft het symbool Zn?", "category": "Natuur", "answers": [{ "text": "Zink" }] }
       ]
     },
     {
@@ -112,10 +112,10 @@
         { "prompt": "Welke munteenheid wordt gebruikt in Zwitserland?", "difficulty": "easy", "answers": [{ "text": "De Zwitserse frank", "aliases": ["Zwitserse frank"] }] },
         { "prompt": "Hoeveel planeten telt ons zonnestelsel sinds Pluto in 2006 werd gedegradeerd?", "difficulty": "easy", "answers": [{ "text": "Acht" }] },
         { "prompt": "Welke stad wordt de Eeuwige Stad genoemd?", "difficulty": "easy", "answers": [{ "text": "Rome" }] },
-        { "prompt": "Welk instrument meet de luchtdruk?", "difficulty": "hard", "answers": [{ "text": "De barometer", "aliases": ["Barometer"] }] },
-        { "prompt": "Welke stad is de hoofdstad van Nieuw-Zeeland?", "difficulty": "hard", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "Welke Tsjechische schrijver schreef De gedaanteverwisseling over een man die een insect wordt?", "difficulty": "hard", "answers": [{ "text": "Franz Kafka", "aliases": ["Kafka"] }] },
+        { "prompt": "Hoe heet de grootste zoetwatervis van Europa?", "difficulty": "hard", "answers": [{ "text": "De meerval", "aliases": ["Meerval"] }] },
         { "prompt": "Welke zeevaarder maakte als eerste een reis rond de wereld af?", "difficulty": "hard", "answers": [{ "text": "Juan Sebastian Elcano", "aliases": ["Elcano", "Del Cano"] }] },
-        { "prompt": "Hoeveel graden heeft de som van de hoeken van een driehoek?", "difficulty": "hard", "answers": [{ "text": "Honderdtachtig", "aliases": ["180"] }] },
+        { "prompt": "Hoe heet de taal die in Zwitserland naast Duits, Frans en Italiaans officieel is?", "difficulty": "hard", "answers": [{ "text": "Reto-Romaans", "aliases": ["Retoromaans", "Romansh"] }] },
         { "prompt": "Welk orgel bespeelde Johann Sebastian Bach jarenlang in Leipzig?", "difficulty": "hard", "answers": [{ "text": "Het orgel van de Thomaskerk", "aliases": ["De Thomaskerk", "Thomaskerk"] }] }
       ]
     },

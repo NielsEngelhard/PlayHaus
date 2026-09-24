@@ -8,7 +8,7 @@
       "round": 1,
       "questions": [
         { "prompt": "How many provinces does the Netherlands have?", "category": "Provinces", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
-        { "prompt": "What is the capital of the Netherlands?", "category": "Cities", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "Which Dutch city is the capital of the province of Limburg?", "category": "Cities", "answers": [{ "text": "Maastricht" }] },
         { "prompt": "In which city does the Dutch government sit?", "category": "Government", "answers": [{ "text": "The Hague", "aliases": ["'s-Gravenhage"] }] },
         { "prompt": "Which dam closes the IJsselmeer off from the Wadden Sea?", "category": "Water", "answers": [{ "text": "The Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
         { "prompt": "Which Dutch painter made The Night Watch?", "category": "Art", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What is the capital city of the Netherlands?", "difficulty": "easy", "answers": [{ "text": "Amsterdam" }] },
+        { "prompt": "Which canal links the port of Amsterdam with the sea at IJmuiden?", "difficulty": "easy", "answers": [{ "text": "The North Sea Canal", "aliases": ["North Sea Canal"] }] },
         { "prompt": "Which Dutch city houses the national government and the King's official residence?", "difficulty": "easy", "answers": [{ "text": "The Hague", "aliases": ["Den Haag"] }] },
         { "prompt": "What is the name for low-lying reclaimed land protected by dykes in the Netherlands?", "difficulty": "easy", "answers": [{ "text": "A polder", "aliases": ["Polder"] }] },
         { "prompt": "Which Dutch cheese, named after a market town, is one of the country's most famous exports?", "difficulty": "easy", "answers": [{ "text": "Gouda" }] },

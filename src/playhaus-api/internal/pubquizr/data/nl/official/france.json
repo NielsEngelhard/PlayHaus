@@ -11,7 +11,7 @@
         { "prompt": "Welke rivier stroomt dwars door het centrum van Parijs?", "category": "Rivieren", "answers": [{ "text": "De Seine", "aliases": ["Seine"] }] },
         { "prompt": "Hoe heet het Franse volkslied?", "category": "Symbolen", "answers": [{ "text": "La Marseillaise", "aliases": ["Marseillaise"] }] },
         { "prompt": "Welke ijzeren toren is het symbool van Parijs?", "category": "Bezienswaardigheden", "answers": [{ "text": "De Eiffeltoren", "aliases": ["Eiffeltoren"] }] },
-        { "prompt": "Uit welke drie kleuren bestaat de Franse vlag?", "category": "Symbolen", "answers": [{ "text": "Blauw, wit en rood", "aliases": ["Rood, wit en blauw", "Blauw wit rood"] }] },
+        { "prompt": "Welk dier is het sportsymbool van Frankrijk en staat op de shirts van de nationale elftallen?", "category": "Symbolen", "answers": [{ "text": "De haan", "aliases": ["Haan"] }] },
         { "prompt": "In welk Parijs museum hangt de Mona Lisa?", "category": "Musea", "answers": [{ "text": "Het Louvre", "aliases": ["Louvre", "Musee du Louvre"] }] },
         { "prompt": "Wat is de driewoordige wapenspreuk van de Franse Republiek?", "category": "Symbolen", "answers": [{ "text": "Vrijheid, gelijkheid, broederschap", "aliases": ["Liberte, egalite, fraternite"] }] },
         { "prompt": "Welk gebergte vormt de grens tussen Frankrijk en Spanje?", "category": "Aardrijkskunde", "answers": [{ "text": "De Pyreneeen", "aliases": ["Pyreneeen"] }] },
@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Wat is het Franse woord voor ja?", "difficulty": "easy", "answers": [{ "text": "Oui" }] },
+        { "prompt": "Welke Franse stad staat bekend om haar mosterd?", "difficulty": "easy", "answers": [{ "text": "Dijon" }] },
         { "prompt": "Welke sport wordt gespeeld op Roland Garros in Parijs?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
         { "prompt": "Welke stad is de grootste haven van Frankrijk?", "difficulty": "easy", "answers": [{ "text": "Marseille" }] },
         { "prompt": "Onder welke bijnaam van een woord staat de Franse vlag bekend?", "difficulty": "easy", "answers": [{ "text": "De Tricolore", "aliases": ["Tricolore", "Driekleur"] }] },

@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What do you call a baby duck?", "difficulty": "easy", "answers": [{ "text": "A duckling", "aliases": ["duckling"] }] },
-        { "prompt": "How many minutes are there in half an hour?", "difficulty": "easy", "answers": [{ "text": "Thirty", "aliases": ["30"] }] },
-        { "prompt": "What do you call the main meal eaten in the evening?", "difficulty": "easy", "answers": [{ "text": "Dinner", "aliases": ["supper"] }] },
-        { "prompt": "Which sea creature has a shell, claws and walks sideways?", "difficulty": "easy", "answers": [{ "text": "The crab", "aliases": ["crab"] }] },
-        { "prompt": "What do you call a young pig?", "difficulty": "easy", "answers": [{ "text": "A piglet", "aliases": ["piglet"] }] },
+        { "prompt": "Which country is the biggest producer of olive oil?", "difficulty": "easy", "answers": [{ "text": "Spain" }] },
+        { "prompt": "Which country has Wellington as its capital?", "difficulty": "easy", "answers": [{ "text": "New Zealand" }] },
+        { "prompt": "What was the name of the Soviet satellite that first went into space in 1957?", "difficulty": "easy", "answers": [{ "text": "Sputnik", "aliases": ["Sputnik 1"] }] },
+        { "prompt": "In which country is Afrikaans spoken alongside English?", "difficulty": "easy", "answers": [{ "text": "South Africa" }] },
+        { "prompt": "What is the currency of Russia?", "difficulty": "easy", "answers": [{ "text": "The rouble", "aliases": ["Rouble", "Ruble"] }] },
         { "prompt": "What is the capital of Bulgaria?", "difficulty": "hard", "answers": [{ "text": "Sofia" }] },
         { "prompt": "Which American wrote the play A Streetcar Named Desire?", "difficulty": "hard", "answers": [{ "text": "Tennessee Williams", "aliases": ["Williams"] }] },
         { "prompt": "Which element is the fuel in most nuclear power stations?", "difficulty": "hard", "answers": [{ "text": "Uranium" }] },

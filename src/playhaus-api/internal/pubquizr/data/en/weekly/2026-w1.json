@@ -108,8 +108,8 @@
       "round": 6,
       "questions": [
         { "prompt": "How many days does a leap year have?", "difficulty": "easy", "answers": [{ "text": "Three hundred and sixty-six", "aliases": ["366"] }] },
-        { "prompt": "Which animal is traditionally called man's best friend?", "difficulty": "easy", "answers": [{ "text": "The dog", "aliases": ["dog"] }] },
-        { "prompt": "What do bees make in their hive?", "difficulty": "easy", "answers": [{ "text": "Honey" }] },
+        { "prompt": "Which art movement is Piet Mondriaan and his blocks and lines part of?", "difficulty": "easy", "answers": [{ "text": "De Stijl" }] },
+        { "prompt": "What is the tube that carries food from the mouth to the stomach called?", "difficulty": "easy", "answers": [{ "text": "The oesophagus", "aliases": ["Oesophagus"] }] },
         { "prompt": "Which sport is played at the Super Bowl?", "difficulty": "easy", "answers": [{ "text": "American football" }] },
         { "prompt": "What is the name of the fairy in Peter Pan?", "difficulty": "easy", "answers": [{ "text": "Tinker Bell", "aliases": ["Tinkerbell"] }] },
         { "prompt": "What is the currency of Poland?", "difficulty": "hard", "answers": [{ "text": "The zloty", "aliases": ["zloty"] }] },

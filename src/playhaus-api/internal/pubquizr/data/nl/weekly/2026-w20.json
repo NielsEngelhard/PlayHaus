@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke drank krijg je door sinaasappels uit te persen?", "difficulty": "easy", "answers": [{ "text": "Sinaasappelsap", "aliases": ["jus d'orange", "sap"] }] },
-        { "prompt": "Hoe noem je de persoon die in een restaurant kookt?", "difficulty": "easy", "answers": [{ "text": "Een kok", "aliases": ["kok", "chef"] }] },
-        { "prompt": "Welke zure gele vrucht pers je uit voor limonade?", "difficulty": "easy", "answers": [{ "text": "De citroen", "aliases": ["citroen"] }] },
-        { "prompt": "Hoe noem je een gebouw vol winkels onder een dak?", "difficulty": "easy", "answers": [{ "text": "Een winkelcentrum", "aliases": ["winkelcentrum"] }] },
-        { "prompt": "Hoeveel minuten zitten er in een kwartier?", "difficulty": "easy", "answers": [{ "text": "Vijftien", "aliases": ["15"] }] },
+        { "prompt": "Welk land heeft Bangkok als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Thailand" }] },
+        { "prompt": "Wat is de munteenheid van Vietnam?", "difficulty": "easy", "answers": [{ "text": "De dong", "aliases": ["Dong"] }] },
+        { "prompt": "Hoe heet degene die een orkest leidt?", "difficulty": "easy", "answers": [{ "text": "De dirigent", "aliases": ["Dirigent"] }] },
+        { "prompt": "Welke Nederlandse provincie heeft Zwolle als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Overijssel" }] },
+        { "prompt": "Hoeveel ogen heeft een dobbelsteen bij elkaar opgeteld?", "difficulty": "easy", "answers": [{ "text": "Eenentwintig", "aliases": ["21"] }] },
         { "prompt": "Wat is de hoofdstad van Cyprus?", "difficulty": "hard", "answers": [{ "text": "Nicosia" }] },
         { "prompt": "Welke Engelse dichter schreef Ozymandias?", "difficulty": "hard", "answers": [{ "text": "Percy Bysshe Shelley", "aliases": ["Shelley"] }] },
         { "prompt": "Wat is de grootste zoutvlakte ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Salar de Uyuni", "aliases": ["Uyuni", "Salar de Uyuni"] }] },

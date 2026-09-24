@@ -6,23 +6,23 @@
     {
       "round": 1,
       "questions": [
-        { "prompt": "Welke kleur heeft de bovenste baan van de Nederlandse vlag?", "category": "Nederland", "answers": [{ "text": "Rood" }] },
-        { "prompt": "Hoeveel minuten duurt een helft bij voetbal?", "category": "Sport", "answers": [{ "text": "Vijfenveertig", "aliases": ["45"] }] },
+        { "prompt": "Welke Nederlandse provincie heeft Leeuwarden als hoofdstad?", "category": "Nederland", "answers": [{ "text": "Friesland" }] },
+        { "prompt": "Welke Amerikaanse zwemmer won de meeste olympische medailles ooit?", "category": "Sport", "answers": [{ "text": "Michael Phelps", "aliases": ["Phelps"] }] },
         { "prompt": "Welk dier legt het grootste ei ter wereld?", "category": "Natuur", "answers": [{ "text": "De struisvogel", "aliases": ["Struisvogel"] }] },
-        { "prompt": "In welk land werd de pizza uitgevonden?", "category": "Eten", "answers": [{ "text": "Italie" }] },
+        { "prompt": "Uit welk land komt goulash?", "category": "Eten", "answers": [{ "text": "Hongarije" }] },
         { "prompt": "Welk gebergte scheidt Spanje van Frankrijk?", "category": "Aardrijkskunde", "answers": [{ "text": "De Pyreneeen", "aliases": ["Pyreneeen"] }] },
-        { "prompt": "Welk zintuig gebruik je om te ruiken?", "category": "Wetenschap", "answers": [{ "text": "De reuk", "aliases": ["Reuk", "Neus"] }] },
+        { "prompt": "Hoe heet het proces waarbij water in damp verandert?", "category": "Wetenschap", "answers": [{ "text": "Verdampen", "aliases": ["Verdamping"] }] },
         { "prompt": "Welke film speelt zich af op een schip dat op een ijsberg vaart in 1912?", "category": "Film", "answers": [{ "text": "Titanic" }] },
         { "prompt": "Hoeveel toetsen heeft een octaaf op de piano, wit en zwart samen?", "category": "Muziek", "answers": [{ "text": "Twaalf", "aliases": ["12"] }] },
         { "prompt": "Wie was de eerste koning van Nederland?", "category": "Geschiedenis", "answers": [{ "text": "Willem I", "aliases": ["Willem de Eerste", "Koning Willem I"] }] },
-        { "prompt": "Wat is het meervoud van het woord kind?", "category": "Taal", "answers": [{ "text": "Kinderen" }] },
+        { "prompt": "Wat betekent het Franse woord merci?", "category": "Taal", "answers": [{ "text": "Dank je", "aliases": ["Bedankt"] }] },
         { "prompt": "Welke schilder maakte de Zonnebloemen-serie?", "category": "Kunst", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
-        { "prompt": "Welk onderdeel van de fiets zorgt ervoor dat je stopt?", "category": "Techniek", "answers": [{ "text": "De rem", "aliases": ["Rem", "Remmen"] }] },
-        { "prompt": "Welk werelddeel is het grootst in oppervlakte?", "category": "Aardrijkskunde", "answers": [{ "text": "Azie" }] },
-        { "prompt": "Welke vogel staat symbool voor vrede?", "category": "Natuur", "answers": [{ "text": "De duif", "aliases": ["Duif", "Witte duif"] }] },
+        { "prompt": "Uit welk land komt het automerk Volvo?", "category": "Techniek", "answers": [{ "text": "Zweden" }] },
+        { "prompt": "Hoe heet het grootste meer van Noord-Amerika?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Bovenmeer", "aliases": ["Bovenmeer", "Lake Superior"] }] },
+        { "prompt": "Welk dier bouwt een dam in een beek?", "category": "Natuur", "answers": [{ "text": "De bever", "aliases": ["Bever"] }] },
         { "prompt": "Welke Nederlandse wielrenner won in 1980 de Tour de France?", "category": "Sport", "answers": [{ "text": "Joop Zoetemelk", "aliases": ["Zoetemelk"] }] },
         { "prompt": "Welke oorlog eindigde met de Vrede van Munster in 1648?", "category": "Geschiedenis", "answers": [{ "text": "De Tachtigjarige Oorlog", "aliases": ["Tachtigjarige Oorlog", "De Tachtigjarige oorlog"] }] },
-        { "prompt": "Welke drank wordt gemaakt door druiven te laten gisten?", "category": "Eten", "answers": [{ "text": "Wijn" }] },
+        { "prompt": "Van welke plant wordt tequila gemaakt?", "category": "Eten", "answers": [{ "text": "De agave", "aliases": ["Agave"] }] },
         { "prompt": "Hoeveel chromosomen heeft een mens normaal gesproken?", "category": "Wetenschap", "answers": [{ "text": "Zesenveertig", "aliases": ["46", "23 paar"] }] },
         { "prompt": "Welke Nederlandse stad wordt doorsneden door de Maas en heeft een Sint-Servaasbrug?", "category": "Nederland", "answers": [{ "text": "Maastricht" }] },
         { "prompt": "Welke zanger stond bekend als de King of Pop?", "category": "Muziek", "answers": [{ "text": "Michael Jackson", "aliases": ["Jackson"] }] }
@@ -107,27 +107,27 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel wielen heeft een gewone fiets?", "difficulty": "easy", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
-        { "prompt": "Welk dier blaft?", "difficulty": "easy", "answers": [{ "text": "De hond", "aliases": ["Hond"] }] },
-        { "prompt": "In welke maand valt Koningsdag?", "difficulty": "easy", "answers": [{ "text": "April" }] },
-        { "prompt": "Welke kleur ontstaat er als je rood en wit mengt?", "difficulty": "easy", "answers": [{ "text": "Roze" }] },
-        { "prompt": "Welk continent ligt ten zuiden van Europa?", "difficulty": "easy", "answers": [{ "text": "Afrika" }] },
+        { "prompt": "Hoeveel stenen heeft een dominospel tot dubbel zes?", "difficulty": "easy", "answers": [{ "text": "Achtentwintig", "aliases": ["28"] }] },
+        { "prompt": "Welk land heeft Rabat als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Marokko" }] },
+        { "prompt": "Welk land heeft Accra als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Ghana" }] },
+        { "prompt": "Welk land heeft Abuja als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Nigeria" }] },
+        { "prompt": "Welk land heeft Addis Abeba als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Ethiopie" }] },
         { "prompt": "Welk bot van de menselijke schedel is het enige dat kan bewegen?", "difficulty": "hard", "answers": [{ "text": "De onderkaak", "aliases": ["Onderkaak", "Kaak"] }] },
         { "prompt": "Welke Nederlandse filosoof schreef de Ethica?", "difficulty": "hard", "answers": [{ "text": "Spinoza", "aliases": ["Baruch Spinoza", "Benedictus de Spinoza"] }] },
         { "prompt": "Welk land heeft de meeste actieve vulkanen?", "difficulty": "hard", "answers": [{ "text": "Indonesie" }] },
-        { "prompt": "Wie ontdekte penicilline?", "difficulty": "hard", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "Welke veldslag bracht Willem de Veroveraar in 1066 op de Engelse troon?", "difficulty": "hard", "answers": [{ "text": "Hastings", "aliases": ["De slag bij Hastings"] }] },
         { "prompt": "Welke zeeengte scheidt Spanje van Marokko?", "difficulty": "hard", "answers": [{ "text": "De Straat van Gibraltar", "aliases": ["Straat van Gibraltar", "Gibraltar"] }] }
       ]
     },
     {
       "round": 7,
       "questions": [
-        { "prompt": "Hoe heet de hoofdstad van Noorwegen?", "answers": [{ "text": "Oslo" }] },
-        { "prompt": "Welk element heeft atoomnummer 1?", "answers": [{ "text": "Waterstof" }] },
+        { "prompt": "Welke planeet draait zo langzaam om zijn as dat een dag er langer duurt dan een jaar?", "answers": [{ "text": "Venus" }] },
+        { "prompt": "Wat is de eenheid van lichtsterkte in het internationale stelsel?", "answers": [{ "text": "De candela", "aliases": ["Candela"] }] },
         { "prompt": "Wie schreef het sprookje De kleine zeemeermin?", "answers": [{ "text": "Hans Christian Andersen", "aliases": ["Andersen"] }] },
-        { "prompt": "Welk dier heeft de langste nek?", "answers": [{ "text": "De giraffe", "aliases": ["Giraffe", "Giraf"] }] },
-        { "prompt": "Welke Nederlandse stad heeft de oudste universiteit van het land?", "answers": [{ "text": "Leiden" }] },
-        { "prompt": "Welke stof heeft de scheikundige formule NaCl?", "answers": [{ "text": "Keukenzout", "aliases": ["Zout", "Natriumchloride"] }] },
+        { "prompt": "Welk element ontdekte het echtpaar Curie in 1898 als eerste?", "answers": [{ "text": "Polonium" }] },
+        { "prompt": "Welk metaal heeft het hoogste smeltpunt van alle metalen?", "answers": [{ "text": "Wolfraam", "aliases": ["Wolfram"] }] },
+        { "prompt": "Welke Russische scheikundige ordende de elementen in een tabel naar hun eigenschappen?", "answers": [{ "text": "Dmitri Mendelejev", "aliases": ["Mendelejev"] }] },
         { "prompt": "Welke schilder bedacht samen met Georges Braque het kubisme?", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] }
       ]
     }

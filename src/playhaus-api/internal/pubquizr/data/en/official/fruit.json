@@ -108,11 +108,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What is the sweet spread made by boiling fruit with sugar called?", "difficulty": "easy", "answers": [{ "text": "Jam", "aliases": ["Preserve"] }] },
-        { "prompt": "What is the hard part in the middle of a peach called?", "difficulty": "easy", "answers": [{ "text": "The stone", "aliases": ["Stone", "Pit", "Kernel"] }] },
+        { "prompt": "Which fruit is a peach with smooth skin and no fuzz?", "difficulty": "easy", "answers": [{ "text": "The nectarine", "aliases": ["Nectarine"] }] },
+        { "prompt": "Which part of rhubarb is poisonous and gets thrown away?", "difficulty": "easy", "answers": [{ "text": "The leaves", "aliases": ["Leaves"] }] },
         { "prompt": "Which vitamin is citrus fruit best known for?", "difficulty": "easy", "answers": [{ "text": "Vitamin C", "aliases": ["C"] }] },
-        { "prompt": "What is the liquid squeezed out of a fruit called?", "difficulty": "easy", "answers": [{ "text": "Juice" }] },
-        { "prompt": "What colour is the flesh of a ripe kiwi?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
+        { "prompt": "What is the clear liquid inside a fresh coconut called?", "difficulty": "easy", "answers": [{ "text": "Coconut water" }] },
+        { "prompt": "Which fruit with pink skin and white flesh dotted with black seeds grows on a cactus?", "difficulty": "easy", "answers": [{ "text": "The dragon fruit", "aliases": ["Dragon fruit"] }] },
         { "prompt": "What is the study and cultivation of fruit trees called?", "difficulty": "hard", "answers": [{ "text": "Pomology" }] },
         { "prompt": "Which gas do ripening fruits give off that makes the fruit around them ripen faster?", "difficulty": "hard", "answers": [{ "text": "Ethylene", "aliases": ["Ethene"] }] },
         { "prompt": "What is the botanical term for a fruit such as the raspberry, made up of many tiny drupes?", "difficulty": "hard", "answers": [{ "text": "An aggregate fruit", "aliases": ["Aggregate fruit"] }] },

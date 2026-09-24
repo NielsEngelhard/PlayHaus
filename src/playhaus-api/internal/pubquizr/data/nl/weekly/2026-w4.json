@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur heeft de middelste baan van de Nederlandse vlag?", "difficulty": "easy", "answers": [{ "text": "Wit" }] },
-        { "prompt": "Welk boerderijdier zegt boe?", "difficulty": "easy", "answers": [{ "text": "De koe", "aliases": ["koe"] }] },
-        { "prompt": "Welke maaltijd eet je in de ochtend?", "difficulty": "easy", "answers": [{ "text": "Het ontbijt", "aliases": ["ontbijt"] }] },
-        { "prompt": "Waarmee knip je papier?", "difficulty": "easy", "answers": [{ "text": "Een schaar", "aliases": ["schaar"] }] },
-        { "prompt": "Hoe noem je de persoon die een vliegtuig vliegt?", "difficulty": "easy", "answers": [{ "text": "Een piloot", "aliases": ["piloot"] }] },
+        { "prompt": "Wie schreef de roman Moby Dick?", "difficulty": "easy", "answers": [{ "text": "Herman Melville", "aliases": ["Melville"] }] },
+        { "prompt": "Welk Zweeds bedrijf verkoopt meubels die je zelf in elkaar zet?", "difficulty": "easy", "answers": [{ "text": "IKEA" }] },
+        { "prompt": "Hoe heet de kroeg waar Homer Simpson zijn bier drinkt?", "difficulty": "easy", "answers": [{ "text": "Moe's", "aliases": ["Bij Moe", "Moes Tavern"] }] },
+        { "prompt": "Van welk dier komt prosciutto?", "difficulty": "easy", "answers": [{ "text": "Het varken", "aliases": ["Varken"] }] },
+        { "prompt": "Welk land wordt na Vaticaanstad volledig omsloten door Italie?", "difficulty": "easy", "answers": [{ "text": "San Marino" }] },
         { "prompt": "Welke taal wordt door de meeste mensen in Oost-Afrika gesproken?", "difficulty": "hard", "answers": [{ "text": "Swahili" }] },
         { "prompt": "Wie schreef samen met Friedrich Engels het Communistisch Manifest?", "difficulty": "hard", "answers": [{ "text": "Karl Marx", "aliases": ["Marx"] }] },
         { "prompt": "Welk zuur gebruikt de maag om voedsel te verteren?", "difficulty": "hard", "answers": [{ "text": "Zoutzuur" }] },

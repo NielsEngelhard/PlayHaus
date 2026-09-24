@@ -108,9 +108,9 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What is the capital of the United Kingdom?", "difficulty": "easy", "answers": [{ "text": "London" }] },
-        { "prompt": "Which three colours appear on the Union Jack?", "difficulty": "easy", "answers": [{ "text": "Red, white and blue", "aliases": ["Red white blue"] }] },
-        { "prompt": "On which side of the road do the British drive?", "difficulty": "easy", "answers": [{ "text": "The left", "aliases": ["Left", "Left-hand side"] }] },
+        { "prompt": "At which address does the British prime minister live and work in London?", "difficulty": "easy", "answers": [{ "text": "10 Downing Street", "aliases": ["Ten Downing Street"] }] },
+        { "prompt": "Which British city is known for its hot springs from Roman times?", "difficulty": "easy", "answers": [{ "text": "Bath" }] },
+        { "prompt": "What is the famous luxury department store in the Knightsbridge district of London called?", "difficulty": "easy", "answers": [{ "text": "Harrods" }] },
         { "prompt": "Which sport is played at Lord's in London?", "difficulty": "easy", "answers": [{ "text": "Cricket" }] },
         { "prompt": "Which bear from Peru comes to live with the Brown family in London?", "difficulty": "easy", "answers": [{ "text": "Paddington", "aliases": ["Paddington Bear"] }] },
         { "prompt": "Which is the largest island of Scotland?", "difficulty": "hard", "answers": [{ "text": "Lewis and Harris", "aliases": ["Lewis", "Harris"] }] },

@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many toes does a person have altogether?", "difficulty": "easy", "answers": [{ "text": "Ten", "aliases": ["10"] }] },
-        { "prompt": "What colour is coal?", "difficulty": "easy", "answers": [{ "text": "Black" }] },
-        { "prompt": "How many days are there in January?", "difficulty": "easy", "answers": [{ "text": "Thirty-one", "aliases": ["31"] }] },
-        { "prompt": "What do you call somebody who paints pictures for a living?", "difficulty": "easy", "answers": [{ "text": "An artist", "aliases": ["artist", "painter"] }] },
-        { "prompt": "What do you call a bundle of printed pages you read from cover to cover?", "difficulty": "easy", "answers": [{ "text": "A book", "aliases": ["book"] }] },
+        { "prompt": "Which country has Seoul as its capital?", "difficulty": "easy", "answers": [{ "text": "South Korea" }] },
+        { "prompt": "What is the currency of South Korea?", "difficulty": "easy", "answers": [{ "text": "The won", "aliases": ["Won"] }] },
+        { "prompt": "Which band released the song Smells Like Teen Spirit?", "difficulty": "easy", "answers": [{ "text": "Nirvana" }] },
+        { "prompt": "Which Dutch water project protects Zeeland from the sea?", "difficulty": "easy", "answers": [{ "text": "The Delta Works", "aliases": ["Delta Works"] }] },
+        { "prompt": "How many squares does a chessboard have?", "difficulty": "easy", "answers": [{ "text": "Sixty-four", "aliases": ["64"] }] },
         { "prompt": "What is the capital of Slovakia?", "difficulty": "hard", "answers": [{ "text": "Bratislava" }] },
         { "prompt": "Which American author wrote the novel Catch-22?", "difficulty": "hard", "answers": [{ "text": "Joseph Heller", "aliases": ["Heller"] }] },
         { "prompt": "Which star is the largest known in the galaxy by volume?", "difficulty": "hard", "answers": [{ "text": "UY Scuti" }] },

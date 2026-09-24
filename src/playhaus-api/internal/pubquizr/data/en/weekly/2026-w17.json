@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which season of the year has the most daylight?", "difficulty": "easy", "answers": [{ "text": "Summer" }] },
-        { "prompt": "Which small creature with eight legs spins a web?", "difficulty": "easy", "answers": [{ "text": "The spider", "aliases": ["spider"] }] },
-        { "prompt": "Which hot drink is made from roasted beans?", "difficulty": "easy", "answers": [{ "text": "Coffee" }] },
-        { "prompt": "What is the piece of furniture you sleep in called?", "difficulty": "easy", "answers": [{ "text": "A bed", "aliases": ["bed"] }] },
-        { "prompt": "Which hand do most people write with?", "difficulty": "easy", "answers": [{ "text": "The right hand", "aliases": ["right", "right hand"] }] },
+        { "prompt": "Which country has Havana as its capital?", "difficulty": "easy", "answers": [{ "text": "Cuba" }] },
+        { "prompt": "Which Italian traveller journeyed to China in the thirteenth century?", "difficulty": "easy", "answers": [{ "text": "Marco Polo" }] },
+        { "prompt": "What is the currency of Israel?", "difficulty": "easy", "answers": [{ "text": "The shekel", "aliases": ["Shekel"] }] },
+        { "prompt": "Which British singer wrote Your Song and Rocket Man?", "difficulty": "easy", "answers": [{ "text": "Elton John", "aliases": ["John"] }] },
+        { "prompt": "Which creature is half human and half horse in Greek mythology?", "difficulty": "easy", "answers": [{ "text": "The centaur", "aliases": ["Centaur"] }] },
         { "prompt": "What is the capital of Madagascar?", "difficulty": "hard", "answers": [{ "text": "Antananarivo" }] },
         { "prompt": "Which German-Swiss author wrote the novel Steppenwolf?", "difficulty": "hard", "answers": [{ "text": "Hermann Hesse", "aliases": ["Hesse"] }] },
         { "prompt": "What is the largest moon of Neptune called?", "difficulty": "hard", "answers": [{ "text": "Triton" }] },

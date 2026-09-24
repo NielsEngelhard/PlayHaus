@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many days does February have in an ordinary year?", "difficulty": "easy", "answers": [{ "text": "Twenty-eight", "aliases": ["28"] }] },
-        { "prompt": "What do you call a young dog?", "difficulty": "easy", "answers": [{ "text": "A puppy", "aliases": ["puppy"] }] },
-        { "prompt": "Which shape has four sides of equal length and four right angles?", "difficulty": "easy", "answers": [{ "text": "A square", "aliases": ["square"] }] },
-        { "prompt": "Which toy goes up and down on a string?", "difficulty": "easy", "answers": [{ "text": "A yo-yo", "aliases": ["yo-yo", "yoyo"] }] },
-        { "prompt": "Which drink is made from crushed grapes?", "difficulty": "easy", "answers": [{ "text": "Wine" }] },
+        { "prompt": "Who wrote the children's books about Pippi Longstocking?", "difficulty": "easy", "answers": [{ "text": "Astrid Lindgren", "aliases": ["Lindgren"] }] },
+        { "prompt": "Which coffee company has a mermaid in its logo?", "difficulty": "easy", "answers": [{ "text": "Starbucks" }] },
+        { "prompt": "In which city is the series Peaky Blinders set?", "difficulty": "easy", "answers": [{ "text": "Birmingham" }] },
+        { "prompt": "Which spice gives curry its yellow colour?", "difficulty": "easy", "answers": [{ "text": "Turmeric" }] },
+        { "prompt": "Which country is the largest island state in the world?", "difficulty": "easy", "answers": [{ "text": "Indonesia" }] },
         { "prompt": "By what name was Thailand known until 1939?", "difficulty": "hard", "answers": [{ "text": "Siam" }] },
         { "prompt": "Who painted The Birth of Venus?", "difficulty": "hard", "answers": [{ "text": "Sandro Botticelli", "aliases": ["Botticelli"] }] },
         { "prompt": "What is the capital of Iraq?", "difficulty": "hard", "answers": [{ "text": "Baghdad" }] },

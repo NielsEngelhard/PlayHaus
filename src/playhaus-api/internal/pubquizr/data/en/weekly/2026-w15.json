@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which month comes after March?", "difficulty": "easy", "answers": [{ "text": "April" }] },
-        { "prompt": "Which white drink do we get from cows?", "difficulty": "easy", "answers": [{ "text": "Milk" }] },
-        { "prompt": "What do you call a doctor who treats animals?", "difficulty": "easy", "answers": [{ "text": "A vet", "aliases": ["vet", "veterinarian"] }] },
-        { "prompt": "Which day is the first day of the weekend?", "difficulty": "easy", "answers": [{ "text": "Saturday" }] },
-        { "prompt": "What do you wear on your wrist to tell the time?", "difficulty": "easy", "answers": [{ "text": "A watch", "aliases": ["watch"] }] },
+        { "prompt": "Which country has Buenos Aires as its capital?", "difficulty": "easy", "answers": [{ "text": "Argentina" }] },
+        { "prompt": "Which American civil rights leader gave the I Have a Dream speech?", "difficulty": "easy", "answers": [{ "text": "Martin Luther King", "aliases": ["King"] }] },
+        { "prompt": "What is the mark between two parts of a compound, as in e-mail, called?", "difficulty": "easy", "answers": [{ "text": "The hyphen", "aliases": ["Hyphen"] }] },
+        { "prompt": "What is the currency of South Africa?", "difficulty": "easy", "answers": [{ "text": "The rand", "aliases": ["Rand"] }] },
+        { "prompt": "Who composed the St Matthew Passion?", "difficulty": "easy", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
         { "prompt": "What is the capital of Lithuania?", "difficulty": "hard", "answers": [{ "text": "Vilnius" }] },
         { "prompt": "Which Russian wrote the play The Cherry Orchard?", "difficulty": "hard", "answers": [{ "text": "Anton Chekhov", "aliases": ["Chekhov"] }] },
         { "prompt": "Which vitamin is also known as thiamine?", "difficulty": "hard", "answers": [{ "text": "Vitamin B1", "aliases": ["B1"] }] },

@@ -107,8 +107,8 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which planet do we live on?", "difficulty": "easy", "answers": [{ "text": "Earth" }] },
-        { "prompt": "What is frozen water called?", "difficulty": "easy", "answers": [{ "text": "Ice" }] },
+        { "prompt": "Which artist made the screen prints of Campbell soup cans?", "difficulty": "easy", "answers": [{ "text": "Andy Warhol", "aliases": ["Warhol"] }] },
+        { "prompt": "Which part of the tooth is the hardest material in the body?", "difficulty": "easy", "answers": [{ "text": "The tooth enamel", "aliases": ["Enamel"] }] },
         { "prompt": "What is the name of Mickey Mouse's dog?", "difficulty": "easy", "answers": [{ "text": "Pluto" }] },
         { "prompt": "Which ground-up grain is the main ingredient of bread?", "difficulty": "easy", "answers": [{ "text": "Flour" }] },
         { "prompt": "What is the great bell of the clock tower at Westminster called?", "difficulty": "easy", "answers": [{ "text": "Big Ben" }] },

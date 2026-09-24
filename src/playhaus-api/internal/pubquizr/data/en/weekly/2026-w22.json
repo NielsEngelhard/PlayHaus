@@ -109,9 +109,9 @@
       "questions": [
         { "prompt": "What do you call a very young tree?", "difficulty": "easy", "answers": [{ "text": "A sapling", "aliases": ["sapling"] }] },
         { "prompt": "Which insect flutters around a lamp at night?", "difficulty": "easy", "answers": [{ "text": "The moth", "aliases": ["moth"] }] },
-        { "prompt": "What is the opposite of wet?", "difficulty": "easy", "answers": [{ "text": "Dry" }] },
-        { "prompt": "What do you call the person who brings your food in a restaurant?", "difficulty": "easy", "answers": [{ "text": "A waiter", "aliases": ["waiter", "waitress"] }] },
-        { "prompt": "Which month has the fewest days?", "difficulty": "easy", "answers": [{ "text": "February" }] },
+        { "prompt": "Which country has Tehran as its capital?", "difficulty": "easy", "answers": [{ "text": "Iran" }] },
+        { "prompt": "In which Dutch city is Saint Johns, the largest cathedral in the country?", "difficulty": "easy", "answers": [{ "text": "Den Bosch", "aliases": ["'s-Hertogenbosch"] }] },
+        { "prompt": "What is the square root of one hundred and forty-four?", "difficulty": "easy", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
         { "prompt": "What is the capital of Turkmenistan?", "difficulty": "hard", "answers": [{ "text": "Ashgabat" }] },
         { "prompt": "Which Russian novelist wrote Fathers and Sons?", "difficulty": "hard", "answers": [{ "text": "Ivan Turgenev", "aliases": ["Turgenev"] }] },
         { "prompt": "Which theory describes gravity as a bending of space and time?", "difficulty": "hard", "answers": [{ "text": "General relativity", "aliases": ["relativity"] }] },

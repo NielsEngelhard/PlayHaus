@@ -7,7 +7,7 @@
       "round": 1,
       "questions": [
         { "prompt": "What is the capital of Greece?", "category": "Geography", "answers": [{ "text": "Athens" }] },
-        { "prompt": "Which star is closest to the earth?", "category": "Science", "answers": [{ "text": "The sun", "aliases": ["sun"] }] },
+        { "prompt": "Which chemical element has the symbol Cu?", "category": "Science", "answers": [{ "text": "Copper" }] },
         { "prompt": "Which English king had six wives?", "category": "History", "answers": [{ "text": "Henry VIII", "aliases": ["Henry the Eighth"] }] },
         { "prompt": "How many pieces does each side start with in chess?", "category": "Sport", "answers": [{ "text": "Sixteen", "aliases": ["16"] }] },
         { "prompt": "Which instrument has black and white keys and pedals?", "category": "Music", "answers": [{ "text": "The piano", "aliases": ["piano", "grand piano"] }] },
@@ -21,7 +21,7 @@
         { "prompt": "Which French emperor lost the battle of Waterloo in 1815?", "category": "History", "answers": [{ "text": "Napoleon", "aliases": ["Napoleon Bonaparte"] }] },
         { "prompt": "Which dairy product is made by curdling and pressing milk?", "category": "Food", "answers": [{ "text": "Cheese" }] },
         { "prompt": "How many points is a touchdown worth in American football?", "category": "Sport", "answers": [{ "text": "Six", "aliases": ["6"] }] },
-        { "prompt": "Which striped animal lives on the African savannah?", "category": "Nature", "answers": [{ "text": "The zebra", "aliases": ["zebra"] }] },
+        { "prompt": "What are the yearly rings in a tree trunk called?", "category": "Nature", "answers": [{ "text": "Growth rings", "aliases": ["Tree rings", "Annual rings"] }] },
         { "prompt": "Which Dutch structure closes the Zuiderzee off from the Wadden Sea?", "category": "The Netherlands", "answers": [{ "text": "The Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
         { "prompt": "Which instrument measures air pressure?", "category": "Science", "answers": [{ "text": "The barometer", "aliases": ["barometer"] }] },
         { "prompt": "Which actor played Vito Corleone in the 1972 film The Godfather?", "category": "Film", "answers": [{ "text": "Marlon Brando", "aliases": ["Brando"] }] },
@@ -108,15 +108,15 @@
       "round": 6,
       "questions": [
         { "prompt": "Which is the only mammal capable of true flight?", "difficulty": "easy", "answers": [{ "text": "The bat", "aliases": ["Bat"] }] },
-        { "prompt": "What is the tallest land animal in the world?", "difficulty": "easy", "answers": [{ "text": "The giraffe", "aliases": ["Giraffe"] }] },
+        { "prompt": "Which country has Bucharest as its capital?", "difficulty": "easy", "answers": [{ "text": "Romania" }] },
         { "prompt": "Which planet has the most moons in our solar system?", "difficulty": "easy", "answers": [{ "text": "Saturn" }] },
         { "prompt": "What is the name for a baby kangaroo?", "difficulty": "easy", "answers": [{ "text": "A joey", "aliases": ["Joey"] }] },
         { "prompt": "Which country consumes the most coffee per capita in the world?", "difficulty": "easy", "answers": [{ "text": "Finland" }] },
-        { "prompt": "Which sea is the saltiest body of water people can swim in?", "difficulty": "hard", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
-        { "prompt": "Who wrote the play Hamlet?", "difficulty": "hard", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
+        { "prompt": "Which Flemish painter made The Peasant Wedding?", "difficulty": "hard", "answers": [{ "text": "Pieter Bruegel the Elder", "aliases": ["Bruegel"] }] },
+        { "prompt": "In which suburb of Berlin did the Allies divide Germany in 1945?", "difficulty": "hard", "answers": [{ "text": "Potsdam" }] },
         { "prompt": "Which gas makes up about seventy-eight per cent of the air?", "difficulty": "hard", "answers": [{ "text": "Nitrogen" }] },
         { "prompt": "Which empire was ruled from Constantinople until 1453?", "difficulty": "hard", "answers": [{ "text": "The Byzantine Empire", "aliases": ["Byzantine Empire", "Byzantium"] }] },
-        { "prompt": "Which tennis tournament is played on grass?", "difficulty": "hard", "answers": [{ "text": "Wimbledon" }] }
+        { "prompt": "Which language in the Pyrenees is related to no other language in Europe?", "difficulty": "hard", "answers": [{ "text": "Basque" }] }
       ]
     },
     {

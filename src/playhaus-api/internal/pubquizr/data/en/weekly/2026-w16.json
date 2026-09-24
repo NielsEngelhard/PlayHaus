@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Which farm animal says oink?", "difficulty": "easy", "answers": [{ "text": "The pig", "aliases": ["pig"] }] },
-        { "prompt": "What is the opposite of big?", "difficulty": "easy", "answers": [{ "text": "Small", "aliases": ["little"] }] },
-        { "prompt": "Which part of your face do you see with?", "difficulty": "easy", "answers": [{ "text": "The eyes", "aliases": ["eyes"] }] },
-        { "prompt": "Which vehicle comes racing when a house is on fire?", "difficulty": "easy", "answers": [{ "text": "A fire engine", "aliases": ["fire engine", "fire truck"] }] },
-        { "prompt": "What do you eat soup with?", "difficulty": "easy", "answers": [{ "text": "A spoon", "aliases": ["spoon"] }] },
+        { "prompt": "Which country has Lima as its capital?", "difficulty": "easy", "answers": [{ "text": "Peru" }] },
+        { "prompt": "What is the age of art and science that began in Italy in the fifteenth century called?", "difficulty": "easy", "answers": [{ "text": "The Renaissance", "aliases": ["Renaissance"] }] },
+        { "prompt": "What is the currency of Thailand?", "difficulty": "easy", "answers": [{ "text": "The baht", "aliases": ["Baht"] }] },
+        { "prompt": "Which singer sang I Will Always Love You in the film The Bodyguard?", "difficulty": "easy", "answers": [{ "text": "Whitney Houston", "aliases": ["Houston"] }] },
+        { "prompt": "Who is the Norse god of thunder?", "difficulty": "easy", "answers": [{ "text": "Thor" }] },
         { "prompt": "What is the capital of Costa Rica?", "difficulty": "hard", "answers": [{ "text": "San Jose" }] },
         { "prompt": "Which English poet wrote The Rime of the Ancient Mariner?", "difficulty": "hard", "answers": [{ "text": "Samuel Taylor Coleridge", "aliases": ["Coleridge"] }] },
         { "prompt": "Which German scientist first proposed that the continents drift?", "difficulty": "hard", "answers": [{ "text": "Alfred Wegener", "aliases": ["Wegener"] }] },

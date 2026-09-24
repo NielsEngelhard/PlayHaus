@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke maand komt na maart?", "difficulty": "easy", "answers": [{ "text": "April" }] },
-        { "prompt": "Welke witte drank krijgen we van koeien?", "difficulty": "easy", "answers": [{ "text": "Melk" }] },
-        { "prompt": "Hoe noem je een dokter die dieren behandelt?", "difficulty": "easy", "answers": [{ "text": "Een dierenarts", "aliases": ["dierenarts"] }] },
-        { "prompt": "Welke dag is de eerste dag van het weekend?", "difficulty": "easy", "answers": [{ "text": "Zaterdag" }] },
-        { "prompt": "Wat draag je om je pols om de tijd te zien?", "difficulty": "easy", "answers": [{ "text": "Een horloge", "aliases": ["horloge"] }] },
+        { "prompt": "Welk land heeft Buenos Aires als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Argentinie" }] },
+        { "prompt": "Welke Amerikaanse burgerrechtenleider hield de toespraak I Have a Dream?", "difficulty": "easy", "answers": [{ "text": "Martin Luther King", "aliases": ["King"] }] },
+        { "prompt": "Hoe heet het teken tussen twee delen van een samenstelling, zoals in e-mail?", "difficulty": "easy", "answers": [{ "text": "Het koppelteken", "aliases": ["Streepje"] }] },
+        { "prompt": "Wat is de munteenheid van Zuid-Afrika?", "difficulty": "easy", "answers": [{ "text": "De rand", "aliases": ["Rand"] }] },
+        { "prompt": "Wie componeerde de Matthauspassion?", "difficulty": "easy", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
         { "prompt": "Wat is de hoofdstad van Litouwen?", "difficulty": "hard", "answers": [{ "text": "Vilnius" }] },
         { "prompt": "Welke Rus schreef het toneelstuk De kersentuin?", "difficulty": "hard", "answers": [{ "text": "Anton Tsjechov", "aliases": ["Tsjechov", "Chekhov"] }] },
         { "prompt": "Welke vitamine staat ook bekend als thiamine?", "difficulty": "hard", "answers": [{ "text": "Vitamine B1", "aliases": ["B1"] }] },

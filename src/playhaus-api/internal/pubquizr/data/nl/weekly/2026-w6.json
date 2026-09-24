@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Van welke groente moet je huilen als je hem snijdt?", "difficulty": "easy", "answers": [{ "text": "De ui", "aliases": ["ui"] }] },
-        { "prompt": "Hoeveel dagen zitten er in twee weken?", "difficulty": "easy", "answers": [{ "text": "Veertien", "aliases": ["14"] }] },
+        { "prompt": "Wie schreef het gedicht van de Ilias en de Odyssee?", "difficulty": "easy", "answers": [{ "text": "Homerus", "aliases": ["Homeros"] }] },
+        { "prompt": "Welk Nederlands bedrijf uit Eindhoven maakt lampen en scheerapparaten?", "difficulty": "easy", "answers": [{ "text": "Philips" }] },
         { "prompt": "Wat is de hoofdstad van Belgie?", "difficulty": "easy", "answers": [{ "text": "Brussel" }] },
-        { "prompt": "Hoe noem je een jong schaap?", "difficulty": "easy", "answers": [{ "text": "Een lam", "aliases": ["lam"] }] },
-        { "prompt": "Welke sport speel je met kleine batjes en een netje over een tafel?", "difficulty": "easy", "answers": [{ "text": "Tafeltennis", "aliases": ["pingpong"] }] },
+        { "prompt": "Welke actrice speelde Katniss Everdeen in de films?", "difficulty": "easy", "answers": [{ "text": "Jennifer Lawrence", "aliases": ["Lawrence"] }] },
+        { "prompt": "Welk gerecht van rauwe biefstuk is naar een Italiaanse schilder genoemd?", "difficulty": "easy", "answers": [{ "text": "Carpaccio" }] },
         { "prompt": "Welke Italiaanse reiziger diende de Mongoolse keizer Koeblai Khan?", "difficulty": "hard", "answers": [{ "text": "Marco Polo" }] },
         { "prompt": "Hoe heet een groep uilen in het Engels?", "difficulty": "hard", "answers": [{ "text": "A parliament", "aliases": ["parliament"] }] },
         { "prompt": "Welk land van het Verenigd Koninkrijk heeft naar verhouding de meeste kastelen?", "difficulty": "hard", "answers": [{ "text": "Wales" }] },

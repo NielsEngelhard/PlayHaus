@@ -108,11 +108,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welk springend dier is het bekendste symbool van Australie?", "difficulty": "easy", "answers": [{ "text": "De kangoeroe", "aliases": ["kangoeroe"] }] },
+        { "prompt": "Welke sport spelen Australie en Engeland tegen elkaar om de Ashes?", "difficulty": "easy", "answers": [{ "text": "Cricket" }] },
         { "prompt": "Welke twee kleuren dragen de Australische nationale sportploegen?", "difficulty": "easy", "answers": [{ "text": "Groen en goud", "aliases": ["Groen en geel", "Goud en groen"] }] },
         { "prompt": "Welke oceaan ligt voor de oostkust van Australie?", "difficulty": "easy", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan", "Grote Oceaan"] }] },
         { "prompt": "De vlag van welk land staat in de hoek van de Australische vlag?", "difficulty": "easy", "answers": [{ "text": "Het Verenigd Koninkrijk", "aliases": ["Groot-Brittannie", "Engeland", "De Union Jack"] }] },
-        { "prompt": "Op welk halfrond ligt Australie?", "difficulty": "easy", "answers": [{ "text": "Het zuidelijk halfrond", "aliases": ["zuidelijk halfrond", "zuiden"] }] },
+        { "prompt": "Hoe heet het grandslamtoernooi in tennis dat in januari in Melbourne wordt gespeeld?", "difficulty": "easy", "answers": [{ "text": "De Australian Open", "aliases": ["Australian Open"] }] },
         { "prompt": "Hoe heet de spirituele scheppingswereld uit de verhalen van de Aboriginals?", "difficulty": "hard", "answers": [{ "text": "De Droomtijd", "aliases": ["Droomtijd", "Dreamtime", "The Dreaming"] }] },
         { "prompt": "Welke boomloze vlakte, waarvan de naam geen bomen betekent, wordt doorkruist door het langste rechte stuk spoor ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Nullarborvlakte", "aliases": ["Nullarbor", "Nullarborvlakte"] }] },
         { "prompt": "Welke Australische premier verdween in 1967 tijdens het zwemmen in zee?", "difficulty": "hard", "answers": [{ "text": "Harold Holt", "aliases": ["Holt"] }] },

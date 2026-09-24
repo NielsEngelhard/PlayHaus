@@ -155,7 +155,7 @@ longer matches `words.go` or the files on disk.
 round at a time, and never touches a database. `specs.go` holds one strict tool schema per round;
 `prompt.go` the system and per-round prompts; `corpus.go` the dedupe that reads the shipped files
 back through `pubquizr.ShippedFiles()`; `writer.go` an encoder that reproduces the corpus's
-one-question-to-a-line shape byte for byte (`writer_test.go` proves it against all 99 files).
+one-question-to-a-line shape byte for byte (`writer_test.go` proves it against all 172 files).
 `pubquizr.QuestionsIn` is the single definition of the exact per-round counts,
 `docs/WEEKLY_QUIZ_FALLBACK.md` is the runbook for doing a week by hand when the schedule misses
 one, and `docs/QUIZZER_QUIZ_PROMPT.md` now covers only hand-written **official** quizzes. `nl` is generated

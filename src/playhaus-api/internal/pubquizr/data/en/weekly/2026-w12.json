@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What do you call a young cow?", "difficulty": "easy", "answers": [{ "text": "A calf", "aliases": ["calf"] }] },
-        { "prompt": "Which colour do you get when you mix red and blue?", "difficulty": "easy", "answers": [{ "text": "Purple" }] },
-        { "prompt": "What do you call the middle of an apple where the pips are?", "difficulty": "easy", "answers": [{ "text": "The core", "aliases": ["core"] }] },
-        { "prompt": "What do you call the day after today?", "difficulty": "easy", "answers": [{ "text": "Tomorrow" }] },
-        { "prompt": "Which shape is a football?", "difficulty": "easy", "answers": [{ "text": "A sphere", "aliases": ["sphere", "round"] }] },
+        { "prompt": "What is the ship flown by Han Solo in Star Wars called?", "difficulty": "easy", "answers": [{ "text": "The Millennium Falcon", "aliases": ["Millennium Falcon"] }] },
+        { "prompt": "What is the Italian coffee with plenty of foamed milk called?", "difficulty": "easy", "answers": [{ "text": "The cappuccino", "aliases": ["Cappuccino"] }] },
+        { "prompt": "Which country has Nairobi as its capital?", "difficulty": "easy", "answers": [{ "text": "Kenya" }] },
+        { "prompt": "Who came up with the theory of evolution?", "difficulty": "easy", "answers": [{ "text": "Charles Darwin", "aliases": ["Darwin"] }] },
+        { "prompt": "Which language does the word tsunami come from?", "difficulty": "easy", "answers": [{ "text": "Japanese" }] },
         { "prompt": "Which African country has Kampala as its capital?", "difficulty": "hard", "answers": [{ "text": "Uganda" }] },
         { "prompt": "Which English painter made The Hay Wain?", "difficulty": "hard", "answers": [{ "text": "John Constable", "aliases": ["Constable"] }] },
         { "prompt": "Which Danish astronomer first showed that light has a finite speed?", "difficulty": "hard", "answers": [{ "text": "Ole Romer", "aliases": ["Romer"] }] },

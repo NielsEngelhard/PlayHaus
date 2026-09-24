@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "In welk seizoen is het het langst licht?", "difficulty": "easy", "answers": [{ "text": "De zomer", "aliases": ["zomer"] }] },
-        { "prompt": "Welk diertje met acht poten spint een web?", "difficulty": "easy", "answers": [{ "text": "De spin", "aliases": ["spin"] }] },
-        { "prompt": "Welke warme drank wordt van gebrande bonen gemaakt?", "difficulty": "easy", "answers": [{ "text": "Koffie" }] },
-        { "prompt": "Hoe heet het meubelstuk waarin je slaapt?", "difficulty": "easy", "answers": [{ "text": "Een bed", "aliases": ["bed"] }] },
-        { "prompt": "Met welke hand schrijven de meeste mensen?", "difficulty": "easy", "answers": [{ "text": "De rechterhand", "aliases": ["rechts", "rechterhand"] }] },
+        { "prompt": "Welk land heeft Havana als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Cuba" }] },
+        { "prompt": "Welke Italiaanse reiziger trok in de dertiende eeuw naar China?", "difficulty": "easy", "answers": [{ "text": "Marco Polo" }] },
+        { "prompt": "Wat is de munteenheid van Israel?", "difficulty": "easy", "answers": [{ "text": "De sjekel", "aliases": ["Sjekel", "Shekel"] }] },
+        { "prompt": "Welke Britse zanger schreef Your Song en Rocket Man?", "difficulty": "easy", "answers": [{ "text": "Elton John", "aliases": ["John"] }] },
+        { "prompt": "Welk wezen is half mens en half paard in de Griekse mythologie?", "difficulty": "easy", "answers": [{ "text": "De centaur", "aliases": ["Centaur"] }] },
         { "prompt": "Wat is de hoofdstad van Madagaskar?", "difficulty": "hard", "answers": [{ "text": "Antananarivo" }] },
         { "prompt": "Welke Duits-Zwitserse schrijver schreef de roman De steppewolf?", "difficulty": "hard", "answers": [{ "text": "Hermann Hesse", "aliases": ["Hesse"] }] },
         { "prompt": "Hoe heet de grootste maan van Neptunus?", "difficulty": "hard", "answers": [{ "text": "Triton" }] },

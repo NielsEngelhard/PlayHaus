@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What do you call water falling out of the clouds?", "difficulty": "easy", "answers": [{ "text": "Rain" }] },
-        { "prompt": "What do you call a baby horse?", "difficulty": "easy", "answers": [{ "text": "A foal", "aliases": ["foal"] }] },
-        { "prompt": "Which sea animal carries its house on its back and walks slowly?", "difficulty": "easy", "answers": [{ "text": "The turtle", "aliases": ["turtle", "tortoise"] }] },
-        { "prompt": "Which is the coldest season of the year?", "difficulty": "easy", "answers": [{ "text": "Winter" }] },
-        { "prompt": "What is the opposite of day?", "difficulty": "easy", "answers": [{ "text": "Night" }] },
+        { "prompt": "Who wrote the Dutch childrens classic Crusade in Jeans?", "difficulty": "easy", "answers": [{ "text": "Thea Beckman", "aliases": ["Beckman"] }] },
+        { "prompt": "In which series do the characters work at a paper company in Scranton?", "difficulty": "easy", "answers": [{ "text": "The Office" }] },
+        { "prompt": "Which French cheese is blue veined and named after a village?", "difficulty": "easy", "answers": [{ "text": "Roquefort" }] },
+        { "prompt": "Which country has Prague as its capital?", "difficulty": "easy", "answers": [{ "text": "Czechia", "aliases": ["The Czech Republic"] }] },
+        { "prompt": "Which Indian leader campaigned for independence through non-violent protest?", "difficulty": "easy", "answers": [{ "text": "Mahatma Gandhi", "aliases": ["Gandhi"] }] },
         { "prompt": "What is the currency of Sweden?", "difficulty": "hard", "answers": [{ "text": "The krona", "aliases": ["krona", "Swedish krona"] }] },
         { "prompt": "Which Greek doctor is called the father of medicine?", "difficulty": "hard", "answers": [{ "text": "Hippocrates" }] },
         { "prompt": "In which country are the Angel Falls?", "difficulty": "hard", "answers": [{ "text": "Venezuela" }] },

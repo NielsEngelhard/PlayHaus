@@ -108,11 +108,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Wat drinkt een vampier?", "difficulty": "easy", "answers": [{ "text": "Bloed" }] },
-        { "prompt": "In wat voor kist slaapt een vampier traditioneel?", "difficulty": "easy", "answers": [{ "text": "Een doodskist", "aliases": ["Doodskist", "Kist"] }] },
-        { "prompt": "Wat vernietigt een vampier zodra het 's ochtends boven de horizon komt?", "difficulty": "easy", "answers": [{ "text": "Zonlicht", "aliases": ["De zon", "Daglicht"] }] },
+        { "prompt": "Hoe heet het waterdier dat zich vastzuigt om bloed te drinken en in de geneeskunde wordt gebruikt?", "difficulty": "easy", "answers": [{ "text": "De bloedzuiger", "aliases": ["Bloedzuiger"] }] },
+        { "prompt": "In welk Roemeens kasteel zou Dracula hebben gewoond?", "difficulty": "easy", "answers": [{ "text": "Kasteel Bran", "aliases": ["Bran"] }] },
+        { "prompt": "Welke vleermuissoort in Midden- en Zuid-Amerika drinkt echt bloed?", "difficulty": "easy", "answers": [{ "text": "De vampiervleermuis", "aliases": ["Vampiervleermuis"] }] },
         { "prompt": "In welk land ligt de streek Transsylvanie?", "difficulty": "easy", "answers": [{ "text": "Roemenie" }] },
-        { "prompt": "Welk religieus symbool houd je omhoog om een vampier terug te drijven?", "difficulty": "easy", "answers": [{ "text": "Een kruis", "aliases": ["Kruis", "Een crucifix", "Crucifix"] }] },
+        { "prompt": "Op welke avond in oktober verkleden kinderen zich en gaan ze langs de deuren?", "difficulty": "easy", "answers": [{ "text": "Halloween" }] },
         { "prompt": "Door welke pas in de Karpaten reist Jonathan Harker naar het kasteel van Dracula?", "difficulty": "hard", "answers": [{ "text": "De Borgopas", "aliases": ["Borgopas", "Borgo Pass", "Borgo"] }] },
         { "prompt": "Wat is de achternaam van Lucy, het eerste Engelse slachtoffer van Dracula?", "difficulty": "hard", "answers": [{ "text": "Westenra" }] },
         { "prompt": "Hoe heet in Buffy the Vampire Slayer de vampier met een ziel die gespeeld wordt door David Boreanaz?", "difficulty": "hard", "answers": [{ "text": "Angel" }] },

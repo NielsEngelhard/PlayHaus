@@ -18,7 +18,7 @@
         { "prompt": "Welke architect ontwierp zowel het Rijksmuseum als station Amsterdam Centraal?", "category": "Architectuur", "answers": [{ "text": "Pierre Cuypers", "aliases": ["Cuypers", "P.J.H. Cuypers"] }] },
         { "prompt": "Hoe heet het terrein waar treinen 's nachts staan en onderhouden worden?", "category": "Bedrijfsvoering", "answers": [{ "text": "Het depot", "aliases": ["Depot", "Opstelterrein", "Remise"] }] },
         { "prompt": "In welke hoofdstad kom je aan op het station Termini?", "category": "Stations", "answers": [{ "text": "Rome" }] },
-        { "prompt": "Welke twee kleuren dragen de intercity's van de Nederlandse Spoorwegen?", "category": "Nederland", "answers": [{ "text": "Geel en blauw", "aliases": ["Blauw en geel"] }] },
+        { "prompt": "Welk Nederlands treinstation is het drukste van het land?", "category": "Nederland", "answers": [{ "text": "Utrecht Centraal" }] },
         { "prompt": "Wat betekent een rood sein voor een machinist?", "category": "Seinen", "answers": [{ "text": "Stoppen", "aliases": ["Stop", "Halt houden"] }] },
         { "prompt": "Hoe heet een trein die goederen vervoert in plaats van reizigers?", "category": "Goederenvervoer", "answers": [{ "text": "Een goederentrein", "aliases": ["Goederentrein"] }] },
         { "prompt": "Wat is de langste spoortunnel ter wereld, in 2016 geopend in Zwitserland?", "category": "Records", "answers": [{ "text": "De Gotthard-basistunnel", "aliases": ["Gotthard-basistunnel", "Gotthardtunnel", "Gotthard"] }] },
@@ -108,10 +108,10 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel spoorstaven heeft een gewoon spoor?", "difficulty": "easy", "answers": [{ "text": "Twee", "aliases": ["2"] }] },
+        { "prompt": "Hoe heet het museum in Utrecht dat helemaal aan treinen is gewijd?", "difficulty": "easy", "answers": [{ "text": "Het Spoorwegmuseum", "aliases": ["Spoorwegmuseum"] }] },
         { "prompt": "Hoe heet de treindienst tussen Londen en Parijs door de Kanaaltunnel?", "difficulty": "easy", "answers": [{ "text": "Eurostar" }] },
-        { "prompt": "Welke kleur sein zegt tegen een trein dat hij mag rijden?", "difficulty": "easy", "answers": [{ "text": "Groen" }] },
-        { "prompt": "Wat moet je kopen voordat je in de trein mag stappen?", "difficulty": "easy", "answers": [{ "text": "Een kaartje", "aliases": ["Kaartje", "Treinkaartje", "Vervoerbewijs"] }] },
+        { "prompt": "Hoe heet de bergtrein die met een tandwiel tussen de rails steile hellingen op klimt?", "difficulty": "easy", "answers": [{ "text": "De tandradbaan", "aliases": ["Tandradbaan"] }] },
+        { "prompt": "Hoe heet het beweegbare stuk spoor waarmee een trein van het ene spoor naar het andere gaat?", "difficulty": "easy", "answers": [{ "text": "De wissel", "aliases": ["Wissel"] }] },
         { "prompt": "Welk dier trok de wagens op de vroegste spoorwegen, voor de stoom?", "difficulty": "easy", "answers": [{ "text": "Het paard", "aliases": ["Paard", "Paarden"] }] },
         { "prompt": "Hoe heet de beugel op het dak van een elektrische trein die stroom van de bovenleiding haalt?", "difficulty": "hard", "answers": [{ "text": "De stroomafnemer", "aliases": ["Stroomafnemer", "Pantograaf"] }] },
         { "prompt": "Hoe heet de Nederlandse hogesnelheidslijn tussen Amsterdam en de Belgische grens?", "difficulty": "hard", "answers": [{ "text": "HSL-Zuid", "aliases": ["HSL Zuid", "Hogesnelheidslijn Zuid"] }] },

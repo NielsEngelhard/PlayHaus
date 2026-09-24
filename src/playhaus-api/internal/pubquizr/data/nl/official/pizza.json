@@ -110,9 +110,9 @@
       "questions": [
         { "prompt": "Welke pizza met tomaat, mozzarella en basilicum is de bekendste van allemaal?", "difficulty": "easy", "answers": [{ "text": "De margherita", "aliases": ["Margherita"] }] },
         { "prompt": "Op welke pizza liggen ham en ananas?", "difficulty": "easy", "answers": [{ "text": "De hawai", "aliases": ["Hawai", "Hawaii", "Pizza hawai"] }] },
-        { "prompt": "Welke vorm heeft een pizza van oudsher?", "difficulty": "easy", "answers": [{ "text": "Rond" }] },
-        { "prompt": "Hoe noem je een stuk dat uit een hele pizza is gesneden?", "difficulty": "easy", "answers": [{ "text": "Een punt", "aliases": ["Punt", "Een stuk"] }] },
-        { "prompt": "Hoe heet het gekneede mengsel van bloem en water waarop een pizza wordt gebouwd?", "difficulty": "easy", "answers": [{ "text": "Deeg", "aliases": ["Het deeg", "Pizzadeeg"] }] },
+        { "prompt": "Hoe heet de Turkse platte pizza met gehakt die in Nederland veel wordt gegeten?", "difficulty": "easy", "answers": [{ "text": "Lahmacun" }] },
+        { "prompt": "Hoe heet de Italiaanse gefrituurde rijstbal met een vulling?", "difficulty": "easy", "answers": [{ "text": "Arancini" }] },
+        { "prompt": "Hoe heet het ovengerecht met pastaplaten, gehakt en bechamelsaus?", "difficulty": "easy", "answers": [{ "text": "De lasagne", "aliases": ["Lasagne"] }] },
         { "prompt": "Hoe heet de platte schep waarmee je een pizza in en uit de oven schuift?", "difficulty": "hard", "answers": [{ "text": "Een pizzaschep", "aliases": ["Pizzaschep", "Ovenschep", "Pizzaspatel"] }] },
         { "prompt": "Hoe heet het plastic tafeltje met drie pootjes dat midden op een bezorgde pizza staat?", "difficulty": "hard", "answers": [{ "text": "Een pizzatafeltje", "aliases": ["Pizzatafeltje", "Pizza saver"] }] },
         { "prompt": "Welke Napolitaanse vereniging stelt de regels vast voor een echte Napolitaanse pizza?", "difficulty": "hard", "answers": [{ "text": "Associazione Verace Pizza Napoletana", "aliases": ["AVPN"] }] },

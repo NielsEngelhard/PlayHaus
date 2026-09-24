@@ -54,8 +54,9 @@ Nothing in the pipeline checks whether an answer is *true*. Validation checks sh
 
 - **Round 3** is eight numbers. A wrong one is the most visible failure in the game, because the
   scoring is "nearest wins" and the table argues about it.
-- **Round 6** must be five `easy` and five `hard`, and the hard five pay triple. Check the easy
-  ones are actually easy.
+- **Round 6** must be five `easy` and five `hard`, and the hard five pay four points against the
+  easy one. Check no easy one is a fact everybody knows without thinking -- most of the table should
+  get it and one or two miss it.
 - Spot-check a handful of round 1 answers, preferring anything that sounds like a record, a total
   or a "first".
 

@@ -19,9 +19,9 @@
         { "prompt": "Hoeveel graden telt een volledige cirkel?", "category": "Wetenschap", "answers": [{ "text": "Driehonderdzestig", "aliases": ["360"] }] },
         { "prompt": "Welke staat wordt volledig omsloten door de stad Rome?", "category": "Aardrijkskunde", "answers": [{ "text": "Vaticaanstad", "aliases": ["het Vaticaan"] }] },
         { "prompt": "In welk jaar begon de Tweede Wereldoorlog in Europa?", "category": "Geschiedenis", "answers": [{ "text": "1939" }] },
-        { "prompt": "Welk Italiaans gerecht bestaat uit deeg met tomatensaus en kaas in de oven?", "category": "Eten", "answers": [{ "text": "Pizza" }] },
+        { "prompt": "Uit welk land komt de kaas feta?", "category": "Eten", "answers": [{ "text": "Griekenland" }] },
         { "prompt": "In welk land werd het spel judo bedacht?", "category": "Sport", "answers": [{ "text": "Japan" }] },
-        { "prompt": "Welke diersoort verandert van rups in vlinder?", "category": "Natuur", "answers": [{ "text": "De vlinder", "aliases": ["vlinder"] }] },
+        { "prompt": "Welk dier verandert van kleur om op te gaan in zijn omgeving?", "category": "Natuur", "answers": [{ "text": "De kameleon", "aliases": ["Kameleon"] }] },
         { "prompt": "Hoe heet het hoogste punt van Nederland in Limburg?", "category": "Nederland", "answers": [{ "text": "De Vaalserberg", "aliases": ["Vaalserberg"] }] },
         { "prompt": "Welke kracht houdt de planeten in hun baan om de zon?", "category": "Wetenschap", "answers": [{ "text": "De zwaartekracht", "aliases": ["zwaartekracht", "gravitatie"] }] },
         { "prompt": "Welke acteur speelde de hoofdrol in Forrest Gump?", "category": "Film", "answers": [{ "text": "Tom Hanks", "aliases": ["Hanks"] }] },
@@ -116,7 +116,7 @@
         { "prompt": "Wat meet de schaal van Richter?", "difficulty": "hard", "answers": [{ "text": "De kracht van aardbevingen", "aliases": ["Aardbevingen", "Kracht van aardbevingen"] }] },
         { "prompt": "Welke Russische schrijver schreef Oorlog en vrede?", "difficulty": "hard", "answers": [{ "text": "Leo Tolstoj", "aliases": ["Tolstoj", "Tolstoy"] }] },
         { "prompt": "Welke zeestraat scheidt Europa op het smalste punt van Afrika?", "difficulty": "hard", "answers": [{ "text": "De Straat van Gibraltar", "aliases": ["Straat van Gibraltar", "Gibraltar"] }] },
-        { "prompt": "Welke vitamine maakt het lichaam aan uit zonlicht?", "difficulty": "hard", "answers": [{ "text": "Vitamine D" }] }
+        { "prompt": "Welke Nederlandse schrijver schreef De donkere kamer van Damokles?", "difficulty": "hard", "answers": [{ "text": "Willem Frederik Hermans", "aliases": ["Hermans"] }] }
       ]
     },
     {

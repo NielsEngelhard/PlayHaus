@@ -6,24 +6,24 @@
     {
       "round": 1,
       "questions": [
-        { "prompt": "What colour do you get when you mix blue and yellow?", "category": "Art", "answers": [{ "text": "Green" }] },
-        { "prompt": "In which city does the Eiffel Tower stand?", "category": "Geography", "answers": [{ "text": "Paris" }] },
+        { "prompt": "Who painted The Last Supper?", "category": "Art", "answers": [{ "text": "Leonardo da Vinci", "aliases": ["Da Vinci"] }] },
+        { "prompt": "The Channel lies between which two countries?", "category": "Geography", "answers": [{ "text": "England and France", "aliases": ["France and England"] }] },
         { "prompt": "How many strings does an ordinary guitar have?", "category": "Music", "answers": [{ "text": "Six", "aliases": ["6"] }] },
-        { "prompt": "Which animal is known as the king of the jungle?", "category": "Nature", "answers": [{ "text": "The lion", "aliases": ["Lion"] }] },
+        { "prompt": "What is the branch of biology that studies birds called?", "category": "Nature", "answers": [{ "text": "Ornithology" }] },
         { "prompt": "Which Dutch city is nicknamed Domstad?", "category": "The Netherlands", "answers": [{ "text": "Utrecht" }] },
-        { "prompt": "Which gas do plants breathe out during the day?", "category": "Science", "answers": [{ "text": "Oxygen" }] },
-        { "prompt": "How many rings are there in the Olympic logo?", "category": "Sport", "answers": [{ "text": "Five", "aliases": ["5"] }] },
+        { "prompt": "Who devised the light bulb as we know it?", "category": "Science", "answers": [{ "text": "Thomas Edison", "aliases": ["Edison"] }] },
+        { "prompt": "In which sport is a scrum formed?", "category": "Sport", "answers": [{ "text": "Rugby" }] },
         { "prompt": "Which Italian city is built on water and has canals instead of streets?", "category": "Geography", "answers": [{ "text": "Venice", "aliases": ["Venezia"] }] },
         { "prompt": "Which film series is about an archaeologist with a whip called Indiana?", "category": "Film", "answers": [{ "text": "Indiana Jones" }] },
         { "prompt": "Which Dutch dish is potato, vegetables and sausage mashed together?", "category": "Food", "answers": [{ "text": "Stamppot", "aliases": ["Mashed pot"] }] },
-        { "prompt": "Who was the first person on the moon?", "category": "History", "answers": [{ "text": "Neil Armstrong", "aliases": ["Armstrong"] }] },
+        { "prompt": "Which explorer arrived in America in 1492?", "category": "History", "answers": [{ "text": "Christopher Columbus", "aliases": ["Columbus"] }] },
         { "prompt": "What do you call a word that stands in for a noun, like he or she?", "category": "Language", "answers": [{ "text": "A pronoun", "aliases": ["Pronoun", "Personal pronoun"] }] },
         { "prompt": "Which device do you use to time a race?", "category": "Technology", "answers": [{ "text": "A stopwatch", "aliases": ["Stopwatch", "Chronometer"] }] },
         { "prompt": "Which band made the album Dark Side of the Moon?", "category": "Music", "answers": [{ "text": "Pink Floyd" }] },
-        { "prompt": "Which tree gives us acorns?", "category": "Nature", "answers": [{ "text": "The oak", "aliases": ["Oak", "Oak tree"] }] },
-        { "prompt": "Which country lies directly east of the Netherlands?", "category": "Geography", "answers": [{ "text": "Germany" }] },
+        { "prompt": "Which is the largest bird that cannot fly?", "category": "Nature", "answers": [{ "text": "The ostrich", "aliases": ["Ostrich"] }] },
+        { "prompt": "What is the currency of Denmark?", "category": "Geography", "answers": [{ "text": "The Danish krone", "aliases": ["Danish krone", "Krone"] }] },
         { "prompt": "Which Dutch painter cut off a piece of his own ear?", "category": "Art", "answers": [{ "text": "Vincent van Gogh", "aliases": ["Van Gogh"] }] },
-        { "prompt": "What is the hardest natural material we know?", "category": "Science", "answers": [{ "text": "Diamond" }] },
+        { "prompt": "What is the name of the galaxy we live in?", "category": "Science", "answers": [{ "text": "The Milky Way", "aliases": ["Milky Way"] }] },
         { "prompt": "Which football stadium is the home of Feyenoord?", "category": "Sport", "answers": [{ "text": "De Kuip", "aliases": ["Kuip", "Stadion Feijenoord"] }] },
         { "prompt": "In which century did William of Orange live?", "category": "History", "answers": [{ "text": "The sixteenth century", "aliases": ["16th century", "sixteenth century", "1500s"] }] }
       ]
@@ -107,10 +107,10 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many wheels does a bicycle have?", "difficulty": "easy", "answers": [{ "text": "Two", "aliases": ["2"] }] },
-        { "prompt": "What colour is a classic London double-decker bus?", "difficulty": "easy", "answers": [{ "text": "Red" }] },
+        { "prompt": "In which Dutch city stands the tallest church tower in the country?", "difficulty": "easy", "answers": [{ "text": "Utrecht" }] },
+        { "prompt": "Which grain is the Japanese drink sake made from?", "difficulty": "easy", "answers": [{ "text": "Rice" }] },
         { "prompt": "Which animal lays eggs and still gives milk?", "difficulty": "easy", "answers": [{ "text": "The platypus", "aliases": ["Platypus"] }] },
-        { "prompt": "On which continent is Brazil?", "difficulty": "easy", "answers": [{ "text": "South America" }] },
+        { "prompt": "Which country has Zagreb as its capital?", "difficulty": "easy", "answers": [{ "text": "Croatia" }] },
         { "prompt": "Which sense does a bat use to navigate in the dark?", "difficulty": "easy", "answers": [{ "text": "Hearing", "aliases": ["Echolocation", "Its hearing"] }] },
         { "prompt": "Which Dutch physicist discovered superconductivity?", "difficulty": "hard", "answers": [{ "text": "Heike Kamerlingh Onnes", "aliases": ["Kamerlingh Onnes"] }] },
         { "prompt": "Which river empties into the Black Sea through a large delta in Romania?", "difficulty": "hard", "answers": [{ "text": "The Danube", "aliases": ["Danube"] }] },
@@ -123,12 +123,12 @@
       "round": 7,
       "questions": [
         { "prompt": "Which country has the most inhabitants in Europe?", "answers": [{ "text": "Russia" }] },
-        { "prompt": "Which Greek god was the god of the sea?", "answers": [{ "text": "Poseidon" }] },
-        { "prompt": "Which instrument has black and white keys and pedals?", "answers": [{ "text": "The piano", "aliases": ["Piano", "Grand piano"] }] },
-        { "prompt": "Who wrote the play Romeo and Juliet?", "answers": [{ "text": "William Shakespeare", "aliases": ["Shakespeare"] }] },
-        { "prompt": "Which acid is in vinegar?", "answers": [{ "text": "Acetic acid", "aliases": ["Ethanoic acid"] }] },
-        { "prompt": "Which Dutch city has the largest port in Europe?", "answers": [{ "text": "Rotterdam" }] },
-        { "prompt": "Which bird can fly backwards?", "answers": [{ "text": "The hummingbird", "aliases": ["Hummingbird"] }] }
+        { "prompt": "Which African country was part of Ethiopia until 1993?", "answers": [{ "text": "Eritrea" }] },
+        { "prompt": "Which empire was ruled from the city of Tenochtitlan?", "answers": [{ "text": "The Aztec empire", "aliases": ["The Aztecs"] }] },
+        { "prompt": "Which Byzantine emperor had the Hagia Sophia built?", "answers": [{ "text": "Justinian" }] },
+        { "prompt": "Which insect has the strongest jaws for its size and cuts leaves?", "answers": [{ "text": "The leafcutter ant", "aliases": ["Leafcutter ant"] }] },
+        { "prompt": "Which plant flowers only once in several decades and then dies?", "answers": [{ "text": "The agave", "aliases": ["Agave"] }] },
+        { "prompt": "Which is the largest volcano on mainland Europe?", "answers": [{ "text": "Mount Etna", "aliases": ["Etna"] }] }
       ]
     }
   ]

@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welk boerderijdier zegt knor?", "difficulty": "easy", "answers": [{ "text": "Het varken", "aliases": ["varken"] }] },
-        { "prompt": "Wat is het tegenovergestelde van groot?", "difficulty": "easy", "answers": [{ "text": "Klein" }] },
-        { "prompt": "Met welk deel van je gezicht kijk je?", "difficulty": "easy", "answers": [{ "text": "De ogen", "aliases": ["ogen"] }] },
-        { "prompt": "Welk voertuig komt aanrijden als een huis in brand staat?", "difficulty": "easy", "answers": [{ "text": "Een brandweerauto", "aliases": ["brandweerauto", "brandweerwagen"] }] },
-        { "prompt": "Waarmee eet je soep?", "difficulty": "easy", "answers": [{ "text": "Een lepel", "aliases": ["lepel"] }] },
+        { "prompt": "Welk land heeft Lima als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Peru" }] },
+        { "prompt": "Hoe heet het tijdperk van kunst en wetenschap dat in Italie begon in de vijftiende eeuw?", "difficulty": "easy", "answers": [{ "text": "De renaissance", "aliases": ["Renaissance"] }] },
+        { "prompt": "Wat is de munteenheid van Thailand?", "difficulty": "easy", "answers": [{ "text": "De baht", "aliases": ["Baht"] }] },
+        { "prompt": "Welke zangeres zong I Will Always Love You in de film The Bodyguard?", "difficulty": "easy", "answers": [{ "text": "Whitney Houston", "aliases": ["Houston"] }] },
+        { "prompt": "Wie is de Noorse god van de donder?", "difficulty": "easy", "answers": [{ "text": "Thor" }] },
         { "prompt": "Wat is de hoofdstad van Costa Rica?", "difficulty": "hard", "answers": [{ "text": "San Jose" }] },
         { "prompt": "Welke Engelse dichter schreef The Rime of the Ancient Mariner?", "difficulty": "hard", "answers": [{ "text": "Samuel Taylor Coleridge", "aliases": ["Coleridge"] }] },
         { "prompt": "Welke Duitse wetenschapper bedacht als eerste dat de continenten bewegen?", "difficulty": "hard", "answers": [{ "text": "Alfred Wegener", "aliases": ["Wegener"] }] },

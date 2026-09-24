@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoe heet gesmolten gesteente zodra het aan de oppervlakte naar buiten stroomt?", "difficulty": "easy", "answers": [{ "text": "Lava" }] },
+        { "prompt": "Op welke eilandengroep in de Stille Oceaan liggen de vulkanen Mauna Loa en Kilauea?", "difficulty": "easy", "answers": [{ "text": "Hawai", "aliases": ["Hawaii"] }] },
         { "prompt": "Welke Italiaanse stad ligt aan de voet van de Vesuvius?", "difficulty": "easy", "answers": [{ "text": "Napels", "aliases": ["Napoli"] }] },
         { "prompt": "Welke oceaan wordt omringd door de Ring van Vuur?", "difficulty": "easy", "answers": [{ "text": "De Stille Oceaan", "aliases": ["Stille Oceaan", "Grote Oceaan", "Pacific"] }] },
         { "prompt": "Welk woord beschrijft een vulkaan die nooit meer zal uitbarsten?", "difficulty": "easy", "answers": [{ "text": "Uitgedoofd", "aliases": ["Dood", "Extinct"] }] },

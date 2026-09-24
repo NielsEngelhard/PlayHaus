@@ -23,7 +23,7 @@
         { "prompt": "How many teeth does an adult with wisdom teeth have?", "category": "Teeth", "answers": [{ "text": "Thirty-two", "aliases": ["32"] }] },
         { "prompt": "Which coloured part of the eye controls the size of the pupil?", "category": "Senses", "answers": [{ "text": "The iris", "aliases": ["iris"] }] },
         { "prompt": "How many chromosomes does a human body cell have?", "category": "Cells", "answers": [{ "text": "Forty-six", "aliases": ["46"] }] },
-        { "prompt": "How many chambers does the human heart have?", "category": "Blood", "answers": [{ "text": "Four", "aliases": ["4"] }] },
+        { "prompt": "What are the cells in the blood that make a wound stop bleeding called?", "category": "Blood", "answers": [{ "text": "Platelets", "aliases": ["Blood platelets"] }] },
         { "prompt": "What is the cord of nerves running through the spine called?", "category": "Nervous system", "answers": [{ "text": "The spinal cord", "aliases": ["spinal cord"] }] },
         { "prompt": "Which gland in the neck regulates the metabolism?", "category": "Glands", "answers": [{ "text": "The thyroid", "aliases": ["thyroid", "thyroid gland"] }] },
         { "prompt": "Which organ produces insulin?", "category": "Digestion", "answers": [{ "text": "The pancreas", "aliases": ["pancreas"] }] }

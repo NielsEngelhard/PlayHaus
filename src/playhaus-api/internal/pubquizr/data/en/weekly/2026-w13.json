@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What do you call the sweet course at the end of a meal?", "difficulty": "easy", "answers": [{ "text": "Dessert", "aliases": ["pudding"] }] },
-        { "prompt": "What falls out of the sky in winter and covers everything in white?", "difficulty": "easy", "answers": [{ "text": "Snow" }] },
-        { "prompt": "What do you call a bird that has just come out of the egg?", "difficulty": "easy", "answers": [{ "text": "A chick", "aliases": ["chick"] }] },
-        { "prompt": "What do you dry yourself with after a shower?", "difficulty": "easy", "answers": [{ "text": "A towel", "aliases": ["towel"] }] },
-        { "prompt": "Which part of your face do you smell with?", "difficulty": "easy", "answers": [{ "text": "The nose", "aliases": ["nose"] }] },
+        { "prompt": "In which film does a park of cloned dinosaurs open on an island?", "difficulty": "easy", "answers": [{ "text": "Jurassic Park" }] },
+        { "prompt": "Which fish do the Dutch traditionally eat raw with onions?", "difficulty": "easy", "answers": [{ "text": "Herring" }] },
+        { "prompt": "Which country has Ottawa as its capital?", "difficulty": "easy", "answers": [{ "text": "Canada" }] },
+        { "prompt": "Which 1992 treaty named the European Union after a Dutch city?", "difficulty": "easy", "answers": [{ "text": "The Treaty of Maastricht", "aliases": ["Maastricht Treaty"] }] },
+        { "prompt": "What does the Dutch abbreviation o.a. stand for?", "difficulty": "easy", "answers": [{ "text": "Among other things", "aliases": ["Onder andere"] }] },
         { "prompt": "Which country has Vientiane as its capital?", "difficulty": "hard", "answers": [{ "text": "Laos" }] },
         { "prompt": "Which Austrian physicist is remembered for a thought experiment with a cat?", "difficulty": "hard", "answers": [{ "text": "Erwin Schrodinger", "aliases": ["Schrodinger"] }] },
         { "prompt": "Which green gemstone is a variety of beryl?", "difficulty": "hard", "answers": [{ "text": "The emerald", "aliases": ["emerald"] }] },

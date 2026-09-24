@@ -108,8 +108,8 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur heeft de cape van Superman?", "difficulty": "easy", "answers": [{ "text": "Rood" }] },
-        { "prompt": "Welk dier staat er in het embleem op de borst van Batman?", "difficulty": "easy", "answers": [{ "text": "Een vleermuis", "aliases": ["Vleermuis"] }] },
+        { "prompt": "Hoe heet de jonge partner van Batman in het rood met groene kostuum?", "difficulty": "easy", "answers": [{ "text": "Robin" }] },
+        { "prompt": "Welke DC-held komt uit Atlantis en praat met zeedieren?", "difficulty": "easy", "answers": [{ "text": "Aquaman" }] },
         { "prompt": "Welke vijand van Batman lijkt op een vogel en loopt met een paraplu?", "difficulty": "easy", "answers": [{ "text": "The Penguin", "aliases": ["Penguin", "De Pinguin", "Pinguin"] }] },
         { "prompt": "Welk bedrijf is eigendom van Bruce Wayne?", "difficulty": "easy", "answers": [{ "text": "Wayne Enterprises", "aliases": ["Wayne Industries"] }] },
         { "prompt": "Welke DC-heldin is de nicht van Superman en komt ook van Krypton?", "difficulty": "easy", "answers": [{ "text": "Supergirl" }] },

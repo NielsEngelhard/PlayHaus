@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel weken telt een jaar?", "difficulty": "easy", "answers": [{ "text": "Tweeenvijftig", "aliases": ["52"] }] },
-        { "prompt": "Welk bevroren toetje eet je op een warme dag uit een hoorntje?", "difficulty": "easy", "answers": [{ "text": "Een ijsje", "aliases": ["ijsje", "roomijs"] }] },
-        { "prompt": "Welk huisdier wordt vaak in een kom gehouden?", "difficulty": "easy", "answers": [{ "text": "Een goudvis", "aliases": ["goudvis"] }] },
-        { "prompt": "Hoeveel uur zitten er in twee dagen?", "difficulty": "easy", "answers": [{ "text": "Achtenveertig", "aliases": ["48"] }] },
-        { "prompt": "Hoe noem je het haar dat op de kin van een man groeit?", "difficulty": "easy", "answers": [{ "text": "Een baard", "aliases": ["baard"] }] },
+        { "prompt": "Welk land heeft Ankara als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Turkije" }] },
+        { "prompt": "Wie was de moeder van koning Willem-Alexander?", "difficulty": "easy", "answers": [{ "text": "Beatrix", "aliases": ["Koningin Beatrix"] }] },
+        { "prompt": "Hoeveel strepen heeft de vlag van de Verenigde Staten?", "difficulty": "easy", "answers": [{ "text": "Dertien", "aliases": ["13"] }] },
+        { "prompt": "Welk element heeft het symbool U?", "difficulty": "easy", "answers": [{ "text": "Uranium" }] },
+        { "prompt": "Hoe heet de gordel van ijs en steen tussen Mars en Jupiter?", "difficulty": "easy", "answers": [{ "text": "De planetoidengordel", "aliases": ["Asteroidengordel"] }] },
         { "prompt": "Wat is de hoofdstad van Tanzania?", "difficulty": "hard", "answers": [{ "text": "Dodoma" }] },
         { "prompt": "Welke Chileense dichter won in 1971 de Nobelprijs voor Literatuur?", "difficulty": "hard", "answers": [{ "text": "Pablo Neruda", "aliases": ["Neruda"] }] },
         { "prompt": "Wat is qua lengte het kleinste zoogdier ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Etruskische spitsmuis", "aliases": ["Etruskische spitsmuis"] }] },

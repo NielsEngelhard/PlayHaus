@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What do you call twelve o'clock in the middle of the day?", "difficulty": "easy", "answers": [{ "text": "Noon", "aliases": ["midday"] }] },
-        { "prompt": "Which cake do you eat with candles on it once a year?", "difficulty": "easy", "answers": [{ "text": "A birthday cake", "aliases": ["birthday cake"] }] },
-        { "prompt": "What do you call a small river?", "difficulty": "easy", "answers": [{ "text": "A stream", "aliases": ["stream", "brook"] }] },
-        { "prompt": "Which large vehicle carries many passengers along a road?", "difficulty": "easy", "answers": [{ "text": "A bus", "aliases": ["bus"] }] },
-        { "prompt": "Which part of the day comes straight after the morning?", "difficulty": "easy", "answers": [{ "text": "The afternoon", "aliases": ["afternoon"] }] },
+        { "prompt": "Which country has Jakarta as its capital?", "difficulty": "easy", "answers": [{ "text": "Indonesia" }] },
+        { "prompt": "How many keys does a full piano have?", "difficulty": "easy", "answers": [{ "text": "Eighty-eight", "aliases": ["88"] }] },
+        { "prompt": "Which Dutch province has Haarlem as its capital?", "difficulty": "easy", "answers": [{ "text": "North Holland", "aliases": ["Noord-Holland"] }] },
+        { "prompt": "What is pi rounded to two decimal places?", "difficulty": "easy", "answers": [{ "text": "Three point one four", "aliases": ["3.14"] }] },
+        { "prompt": "Which element has the symbol Pt?", "difficulty": "easy", "answers": [{ "text": "Platinum" }] },
         { "prompt": "What is the capital of Azerbaijan?", "difficulty": "hard", "answers": [{ "text": "Baku" }] },
         { "prompt": "Which Italian writer wrote the Decameron?", "difficulty": "hard", "answers": [{ "text": "Giovanni Boccaccio", "aliases": ["Boccaccio"] }] },
         { "prompt": "Which snake has the most toxic venom of any in the world?", "difficulty": "hard", "answers": [{ "text": "The inland taipan", "aliases": ["inland taipan", "taipan"] }] },

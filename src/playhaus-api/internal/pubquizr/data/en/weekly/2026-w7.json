@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What do you call baby frogs before they grow legs?", "difficulty": "easy", "answers": [{ "text": "Tadpoles", "aliases": ["tadpole"] }] },
-        { "prompt": "Which yellow fruit grows in a bunch and is peeled before eating?", "difficulty": "easy", "answers": [{ "text": "The banana", "aliases": ["banana"] }] },
-        { "prompt": "Which is the first month of the year?", "difficulty": "easy", "answers": [{ "text": "January" }] },
-        { "prompt": "What kind of animal is Winnie the Pooh?", "difficulty": "easy", "answers": [{ "text": "A bear", "aliases": ["bear"] }] },
-        { "prompt": "What do you call the sound a dog makes?", "difficulty": "easy", "answers": [{ "text": "A bark", "aliases": ["bark", "barking"] }] },
+        { "prompt": "Which Dutch writer created Jip and Janneke?", "difficulty": "easy", "answers": [{ "text": "Annie M.G. Schmidt", "aliases": ["Annie Schmidt"] }] },
+        { "prompt": "Which German car brand has a three-pointed star in a circle as its logo?", "difficulty": "easy", "answers": [{ "text": "Mercedes-Benz", "aliases": ["Mercedes"] }] },
+        { "prompt": "Which director made both Avatar and Aliens?", "difficulty": "easy", "answers": [{ "text": "James Cameron", "aliases": ["Cameron"] }] },
+        { "prompt": "Which country does the dish moussaka come from?", "difficulty": "easy", "answers": [{ "text": "Greece" }] },
+        { "prompt": "Which country has Budapest as its capital?", "difficulty": "easy", "answers": [{ "text": "Hungary" }] },
         { "prompt": "Which country has more islands than any other in the world?", "difficulty": "hard", "answers": [{ "text": "Sweden" }] },
         { "prompt": "Which Norse god carries a hammer called Mjolnir?", "difficulty": "hard", "answers": [{ "text": "Thor" }] },
         { "prompt": "Which country's parliament is called the Knesset?", "difficulty": "hard", "answers": [{ "text": "Israel" }] },

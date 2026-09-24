@@ -107,11 +107,11 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoe noem je een jonge eend?", "difficulty": "easy", "answers": [{ "text": "Een eendenkuiken", "aliases": ["eendenkuiken", "kuiken"] }] },
-        { "prompt": "Hoeveel minuten zitten er in een half uur?", "difficulty": "easy", "answers": [{ "text": "Dertig", "aliases": ["30"] }] },
-        { "prompt": "Hoe noem je de warme maaltijd die je 's avonds eet?", "difficulty": "easy", "answers": [{ "text": "Het avondeten", "aliases": ["avondeten", "diner"] }] },
-        { "prompt": "Welk zeedier heeft een schild, scharen en loopt zijwaarts?", "difficulty": "easy", "answers": [{ "text": "De krab", "aliases": ["krab"] }] },
-        { "prompt": "Hoe noem je een jong varken?", "difficulty": "easy", "answers": [{ "text": "Een big", "aliases": ["big", "biggetje"] }] },
+        { "prompt": "Welk land is de grootste producent van olijfolie?", "difficulty": "easy", "answers": [{ "text": "Spanje" }] },
+        { "prompt": "Welk land heeft Wellington als hoofdstad?", "difficulty": "easy", "answers": [{ "text": "Nieuw-Zeeland" }] },
+        { "prompt": "Hoe heette de Sovjetsatelliet die in 1957 als eerste de ruimte in ging?", "difficulty": "easy", "answers": [{ "text": "Spoetnik", "aliases": ["Spoetnik 1"] }] },
+        { "prompt": "In welk land wordt Afrikaans naast Engels gesproken?", "difficulty": "easy", "answers": [{ "text": "Zuid-Afrika" }] },
+        { "prompt": "Wat is de munteenheid van Rusland?", "difficulty": "easy", "answers": [{ "text": "De roebel", "aliases": ["Roebel"] }] },
         { "prompt": "Wat is de hoofdstad van Bulgarije?", "difficulty": "hard", "answers": [{ "text": "Sofia" }] },
         { "prompt": "Welke Amerikaan schreef het toneelstuk A Streetcar Named Desire?", "difficulty": "hard", "answers": [{ "text": "Tennessee Williams", "aliases": ["Williams"] }] },
         { "prompt": "Welk element is de brandstof in de meeste kerncentrales?", "difficulty": "hard", "answers": [{ "text": "Uranium" }] },

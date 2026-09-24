@@ -10,12 +10,12 @@
         { "prompt": "Which river flows through Rome?", "category": "Geography", "answers": [{ "text": "The Tiber", "aliases": ["Tiber"] }] },
         { "prompt": "Which vegetable is sauerkraut made from?", "category": "Food", "answers": [{ "text": "White cabbage", "aliases": ["Cabbage"] }] },
         { "prompt": "Which Dutch province has Middelburg as its capital?", "category": "The Netherlands", "answers": [{ "text": "Zeeland" }] },
-        { "prompt": "Which element has the symbol O?", "category": "Science", "answers": [{ "text": "Oxygen" }] },
+        { "prompt": "Which physicist set out the laws of motion after seeing a falling apple?", "category": "Science", "answers": [{ "text": "Isaac Newton", "aliases": ["Newton"] }] },
         { "prompt": "How many players from each team are on court in volleyball?", "category": "Sport", "answers": [{ "text": "Six", "aliases": ["6"] }] },
         { "prompt": "Which film is about a toy cowboy called Woody?", "category": "Film", "answers": [{ "text": "Toy Story" }] },
         { "prompt": "Who composed Eine kleine Nachtmusik?", "category": "Music", "answers": [{ "text": "Mozart", "aliases": ["Wolfgang Amadeus Mozart"] }] },
         { "prompt": "In which year did the Second World War end in Europe?", "category": "History", "answers": [{ "text": "1945" }] },
-        { "prompt": "Which word is the opposite of width?", "category": "Language", "answers": [{ "text": "Length" }] },
+        { "prompt": "What does the Latin word terra mean?", "category": "Language", "answers": [{ "text": "Earth", "aliases": ["Land"] }] },
         { "prompt": "Which building in Paris houses the Mona Lisa?", "category": "Art", "answers": [{ "text": "The Louvre", "aliases": ["Louvre"] }] },
         { "prompt": "Which device turns sound into an electrical signal?", "category": "Technology", "answers": [{ "text": "The microphone", "aliases": ["Microphone"] }] },
         { "prompt": "Which sea lies between Italy and Croatia?", "category": "Geography", "answers": [{ "text": "The Adriatic Sea", "aliases": ["Adriatic Sea", "Adriatic"] }] },
@@ -23,7 +23,7 @@
         { "prompt": "Which Dutch football club plays in the Johan Cruijff Arena?", "category": "Sport", "answers": [{ "text": "Ajax" }] },
         { "prompt": "Which emperor is said to have set Rome on fire?", "category": "History", "answers": [{ "text": "Nero" }] },
         { "prompt": "Which sauce is made from basil, pine nuts and olive oil?", "category": "Food", "answers": [{ "text": "Pesto" }] },
-        { "prompt": "How many degrees Celsius is the boiling point of water at sea level?", "category": "Science", "answers": [{ "text": "A hundred", "aliases": ["100", "One hundred"] }] },
+        { "prompt": "Which planet lies between the earth and Jupiter?", "category": "Science", "answers": [{ "text": "Mars" }] },
         { "prompt": "Which Dutch city is known for the Martinitoren?", "category": "The Netherlands", "answers": [{ "text": "Groningen" }] },
         { "prompt": "Which band sang Bohemian Rhapsody?", "category": "Music", "answers": [{ "text": "Queen" }] }
       ]
@@ -107,12 +107,12 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "What colour is a banana when it is ripe?", "difficulty": "easy", "answers": [{ "text": "Yellow" }] },
-        { "prompt": "How many months does a year have?", "difficulty": "easy", "answers": [{ "text": "Twelve", "aliases": ["12"] }] },
-        { "prompt": "In which country is the leaning tower of Pisa?", "difficulty": "easy", "answers": [{ "text": "Italy" }] },
+        { "prompt": "Which country has Riga as its capital?", "difficulty": "easy", "answers": [{ "text": "Latvia" }] },
+        { "prompt": "What is the dyke connecting North Holland to Friesland called?", "difficulty": "easy", "answers": [{ "text": "The Afsluitdijk", "aliases": ["Afsluitdijk"] }] },
+        { "prompt": "How many zeros are there in a billion?", "difficulty": "easy", "answers": [{ "text": "Nine", "aliases": ["9"] }] },
         { "prompt": "Which animal is known as the ship of the desert?", "difficulty": "easy", "answers": [{ "text": "The camel", "aliases": ["Camel", "Dromedary"] }] },
         { "prompt": "Which sport is played at Wimbledon?", "difficulty": "easy", "answers": [{ "text": "Tennis" }] },
-        { "prompt": "Which mathematical constant starts with 3.14?", "difficulty": "hard", "answers": [{ "text": "Pi" }] },
+        { "prompt": "Which Dutch painter made The Merry Drinker and many laughing portraits?", "difficulty": "hard", "answers": [{ "text": "Frans Hals", "aliases": ["Hals"] }] },
         { "prompt": "Which Dutch poet wrote the poem Herinnering aan Holland with the line about broad rivers?", "difficulty": "hard", "answers": [{ "text": "Hendrik Marsman", "aliases": ["Marsman"] }] },
         { "prompt": "What is the largest moon of Saturn called?", "difficulty": "hard", "answers": [{ "text": "Titan" }] },
         { "prompt": "Which treaty divided the new world between Spain and Portugal in 1494?", "difficulty": "hard", "answers": [{ "text": "The Treaty of Tordesillas", "aliases": ["Treaty of Tordesillas", "Tordesillas"] }] },
@@ -122,13 +122,13 @@
     {
       "round": 7,
       "questions": [
-        { "prompt": "Which animal is the fastest land animal in the world?", "answers": [{ "text": "The cheetah", "aliases": ["Cheetah"] }] },
-        { "prompt": "What is the capital of Portugal?", "answers": [{ "text": "Lisbon" }] },
-        { "prompt": "Which planet is closest to the sun?", "answers": [{ "text": "Mercury" }] },
+        { "prompt": "Which tree species holds the oldest known living specimen in the world?", "answers": [{ "text": "The bristlecone pine", "aliases": ["Bristlecone pine"] }] },
+        { "prompt": "Which Dutch club was the first to win the European Cup, in 1970?", "answers": [{ "text": "Feyenoord" }] },
+        { "prompt": "Which unit measures the radioactive activity of a substance?", "answers": [{ "text": "The becquerel", "aliases": ["Becquerel"] }] },
         { "prompt": "Who wrote the book War and Peace?", "answers": [{ "text": "Leo Tolstoy", "aliases": ["Tolstoy", "Tolstoj"] }] },
-        { "prompt": "Which organ filters the blood and makes urine?", "answers": [{ "text": "The kidney", "aliases": ["Kidney", "Kidneys", "The kidneys"] }] },
+        { "prompt": "Which particle carries the strong nuclear force?", "answers": [{ "text": "The gluon", "aliases": ["Gluon"] }] },
         { "prompt": "Which Dutch footballer captained the team that became European champions in 1988?", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
-        { "prompt": "Which substance gives leaves their green colour?", "answers": [{ "text": "Chlorophyll" }] }
+        { "prompt": "Which British physicist predicted the particle confirmed near Geneva in 2012?", "answers": [{ "text": "Peter Higgs", "aliases": ["Higgs"] }] }
       ]
     }
   ]

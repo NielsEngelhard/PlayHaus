@@ -7,7 +7,7 @@
       "round": 1,
       "questions": [
         { "prompt": "Wat is de hoofdstad van Noorwegen?", "category": "Aardrijkskunde", "answers": [{ "text": "Oslo" }] },
-        { "prompt": "Welk orgaan gebruikt de mens om te ademen?", "category": "Wetenschap", "answers": [{ "text": "De longen", "aliases": ["longen"] }] },
+        { "prompt": "Welk scheikundig element heeft het symbool He?", "category": "Wetenschap", "answers": [{ "text": "Helium" }] },
         { "prompt": "Welke muur verdeelde Berlijn van 1961 tot 1989?", "category": "Geschiedenis", "answers": [{ "text": "De Berlijnse Muur", "aliases": ["Berlijnse Muur"] }] },
         { "prompt": "Welke wielerronde eindigt traditioneel in Parijs?", "category": "Sport", "answers": [{ "text": "De Tour de France", "aliases": ["Tour de France"] }] },
         { "prompt": "Welke Amerikaanse zanger wordt de King of Rock and Roll genoemd?", "category": "Muziek", "answers": [{ "text": "Elvis Presley", "aliases": ["Elvis", "Presley"] }] },
@@ -19,8 +19,8 @@
         { "prompt": "Wat is het lichtste element in het periodiek systeem?", "category": "Wetenschap", "answers": [{ "text": "Waterstof", "aliases": ["H"] }] },
         { "prompt": "Welke woestijn ligt in Zuid-Amerika en is de droogste ter wereld?", "category": "Aardrijkskunde", "answers": [{ "text": "De Atacama", "aliases": ["Atacama"] }] },
         { "prompt": "Welke Griekse veldheer veroverde het Perzische Rijk?", "category": "Geschiedenis", "answers": [{ "text": "Alexander de Grote", "aliases": ["Alexander"] }] },
-        { "prompt": "Van welke plant komt rijst?", "category": "Eten", "answers": [{ "text": "De rijstplant", "aliases": ["rijst", "Oryza sativa"] }] },
-        { "prompt": "Hoeveel minuten duurt een reguliere voetbalwedstrijd?", "category": "Sport", "answers": [{ "text": "Negentig", "aliases": ["90"] }] },
+        { "prompt": "Van welke plant wordt suiker in Nederland vooral gemaakt?", "category": "Eten", "answers": [{ "text": "De suikerbiet", "aliases": ["Suikerbiet", "Biet"] }] },
+        { "prompt": "In welke stad staat het stadion Camp Nou?", "category": "Sport", "answers": [{ "text": "Barcelona" }] },
         { "prompt": "Welke boom wordt in Nederland vaak langs de dijk geplant en heeft hangende takken?", "category": "Natuur", "answers": [{ "text": "De wilg", "aliases": ["wilg", "treurwilg"] }] },
         { "prompt": "Welk Nederlands dorp is beroemd om zijn tuinen met tulpen in het voorjaar?", "category": "Nederland", "answers": [{ "text": "Lisse", "aliases": ["Keukenhof"] }] },
         { "prompt": "Hoeveel tanden heeft een volwassen mens meestal?", "category": "Wetenschap", "answers": [{ "text": "Tweeendertig", "aliases": ["32"] }] },
@@ -112,10 +112,10 @@
         { "prompt": "Hoe wordt de stand nul genoemd bij tennis?", "difficulty": "easy", "answers": [{ "text": "Love" }] },
         { "prompt": "Hoeveel ringen staan er op de Olympische vlag?", "difficulty": "easy", "answers": [{ "text": "Vijf" }] },
         { "prompt": "In welke stad werden de eerste moderne Olympische Spelen gehouden, in 1896?", "difficulty": "easy", "answers": [{ "text": "Athene" }] },
-        { "prompt": "Welke woestijn is de grootste warme woestijn ter wereld?", "difficulty": "hard", "answers": [{ "text": "De Sahara", "aliases": ["Sahara"] }] },
-        { "prompt": "Wie ontwikkelde de algemene relativiteitstheorie?", "difficulty": "hard", "answers": [{ "text": "Albert Einstein", "aliases": ["Einstein"] }] },
+        { "prompt": "Welke Colombiaanse kunstenaar beeldhouwt opzettelijk dikke, ronde figuren?", "difficulty": "hard", "answers": [{ "text": "Fernando Botero", "aliases": ["Botero"] }] },
+        { "prompt": "Welke stad ligt het verst van welke zee ook vandaan?", "difficulty": "hard", "answers": [{ "text": "Urumqi" }] },
         { "prompt": "Welke stad hield in 1896 de eerste moderne Olympische Spelen?", "difficulty": "hard", "answers": [{ "text": "Athene" }] },
-        { "prompt": "Wat is het chemische symbool van goud?", "difficulty": "hard", "answers": [{ "text": "Au" }] },
+        { "prompt": "Welk koninkrijk ging in 1707 met Engeland samen op in Groot-Brittannie?", "difficulty": "hard", "answers": [{ "text": "Schotland" }] },
         { "prompt": "In welke Nederlandse stad zit het Internationaal Gerechtshof?", "difficulty": "hard", "answers": [{ "text": "Den Haag", "aliases": ["'s-Gravenhage"] }] }
       ]
     },

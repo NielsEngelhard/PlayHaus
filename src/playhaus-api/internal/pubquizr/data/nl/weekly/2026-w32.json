@@ -7,7 +7,7 @@
       "round": 1,
       "questions": [
         { "prompt": "Wat is de hoofdstad van Zweden?", "category": "Aardrijkskunde", "answers": [{ "text": "Stockholm" }] },
-        { "prompt": "Hoeveel graden Celsius is het smeltpunt van ijs?", "category": "Wetenschap", "answers": [{ "text": "Nul", "aliases": ["0"] }] },
+        { "prompt": "Welk scheikundig element heeft het symbool N?", "category": "Wetenschap", "answers": [{ "text": "Stikstof" }] },
         { "prompt": "Welke stad werd in het jaar 79 bedolven door de Vesuvius?", "category": "Geschiedenis", "answers": [{ "text": "Pompeii", "aliases": ["Pompeji"] }] },
         { "prompt": "Hoeveel spelers heeft een cricketteam in het veld?", "category": "Sport", "answers": [{ "text": "Elf", "aliases": ["11"] }] },
         { "prompt": "Welke Amerikaanse zanger stond bekend als de King of Pop?", "category": "Muziek", "answers": [{ "text": "Michael Jackson", "aliases": ["Jackson"] }] },
@@ -19,7 +19,7 @@
         { "prompt": "Wat is de eenheid van kracht in het internationale stelsel?", "category": "Wetenschap", "answers": [{ "text": "De newton", "aliases": ["newton", "N"] }] },
         { "prompt": "Welk land heeft Wenen als hoofdstad?", "category": "Aardrijkskunde", "answers": [{ "text": "Oostenrijk" }] },
         { "prompt": "Welke Zuid-Afrikaanse president zat zevenentwintig jaar in de gevangenis?", "category": "Geschiedenis", "answers": [{ "text": "Nelson Mandela", "aliases": ["Mandela"] }] },
-        { "prompt": "Welke plant levert de bladeren voor thee?", "category": "Eten", "answers": [{ "text": "De theeplant", "aliases": ["thee", "Camellia sinensis"] }] },
+        { "prompt": "Welke noot zit in een klassieke pesto?", "category": "Eten", "answers": [{ "text": "De pijnboomnoot", "aliases": ["Pijnboomnoot"] }] },
         { "prompt": "Hoeveel kilometer lang is een marathon?", "category": "Sport", "answers": [{ "text": "Ruim tweeenveertig kilometer", "aliases": ["42", "42,195"] }] },
         { "prompt": "Welk dier is het traagste zoogdier ter wereld?", "category": "Natuur", "answers": [{ "text": "De luiaard", "aliases": ["luiaard"] }] },
         { "prompt": "Welk Nederlands museum is gewijd aan het werk van Vincent van Gogh?", "category": "Nederland", "answers": [{ "text": "Het Van Gogh Museum", "aliases": ["Van Gogh Museum"] }] },
@@ -112,11 +112,11 @@
         { "prompt": "Hoeveel snaren heeft een standaardviool?", "difficulty": "easy", "answers": [{ "text": "Vier" }] },
         { "prompt": "Welke planeet staat bekend om zijn opvallende ringen?", "difficulty": "easy", "answers": [{ "text": "Saturnus" }] },
         { "prompt": "Wat is de grootste woestijn ter wereld, inclusief koude woestijnen?", "difficulty": "easy", "answers": [{ "text": "Antarctica" }] },
-        { "prompt": "Welk land heette vroeger Perzie?", "difficulty": "hard", "answers": [{ "text": "Iran" }] },
+        { "prompt": "Welke Poolse schrijver schreef in het Engels de roman Hart der duisternis?", "difficulty": "hard", "answers": [{ "text": "Joseph Conrad", "aliases": ["Conrad"] }] },
         { "prompt": "Hoeveel botten zitten er in een menselijke hand?", "difficulty": "hard", "answers": [{ "text": "27" }] },
         { "prompt": "Welke slag maakte in 1815 een einde aan de macht van Napoleon?", "difficulty": "hard", "answers": [{ "text": "Waterloo", "aliases": ["De slag bij Waterloo"] }] },
-        { "prompt": "Welke band nam het album Abbey Road op?", "difficulty": "hard", "answers": [{ "text": "The Beatles", "aliases": ["Beatles"] }] },
-        { "prompt": "Welk zoogdier is het enige dat echt kan vliegen?", "difficulty": "hard", "answers": [{ "text": "De vleermuis", "aliases": ["Vleermuis", "Vleermuizen"] }] }
+        { "prompt": "Hoe heet de grootste zoetwaterplas van Afrika die bijna is opgedroogd?", "difficulty": "hard", "answers": [{ "text": "Het Tsjaadmeer", "aliases": ["Tsjaadmeer"] }] },
+        { "prompt": "Welk volk plunderde Rome in 455 en gaf zijn naam aan zinloze vernieling?", "difficulty": "hard", "answers": [{ "text": "De Vandalen", "aliases": ["Vandalen"] }] }
       ]
     },
     {

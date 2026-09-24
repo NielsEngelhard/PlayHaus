@@ -110,9 +110,9 @@
       "questions": [
         { "prompt": "Which pizza with tomato, mozzarella and basil is the best known of all?", "difficulty": "easy", "answers": [{ "text": "The margherita", "aliases": ["Margherita"] }] },
         { "prompt": "Which pizza carries ham and pineapple?", "difficulty": "easy", "answers": [{ "text": "The Hawaii", "aliases": ["Hawaii", "Hawaiian"] }] },
-        { "prompt": "What shape is a pizza traditionally?", "difficulty": "easy", "answers": [{ "text": "Round" }] },
-        { "prompt": "What do you call one piece cut out of a whole pizza?", "difficulty": "easy", "answers": [{ "text": "A slice", "aliases": ["Slice", "A wedge"] }] },
-        { "prompt": "What is the kneaded mixture of flour and water that a pizza is built on called?", "difficulty": "easy", "answers": [{ "text": "Dough", "aliases": ["The dough", "Pizza dough"] }] },
+        { "prompt": "What is the Turkish flatbread pizza with minced meat, widely eaten in the Netherlands, called?", "difficulty": "easy", "answers": [{ "text": "Lahmacun" }] },
+        { "prompt": "What is the Italian deep-fried rice ball with a filling called?", "difficulty": "easy", "answers": [{ "text": "Arancini" }] },
+        { "prompt": "What is the oven dish with pasta sheets, minced meat and bechamel sauce called?", "difficulty": "easy", "answers": [{ "text": "Lasagne" }] },
         { "prompt": "What is the flat shovel used to slide a pizza into and out of the oven called?", "difficulty": "hard", "answers": [{ "text": "A peel", "aliases": ["Peel", "Pizza peel", "Pizza shovel"] }] },
         { "prompt": "What is the little three legged plastic table in the middle of a delivered pizza called?", "difficulty": "hard", "answers": [{ "text": "A pizza saver", "aliases": ["Pizza saver", "Pizza table"] }] },
         { "prompt": "Which Naples association lays down the rules for a true Neapolitan pizza?", "difficulty": "hard", "answers": [{ "text": "Associazione Verace Pizza Napoletana", "aliases": ["AVPN", "True Neapolitan Pizza Association"] }] },

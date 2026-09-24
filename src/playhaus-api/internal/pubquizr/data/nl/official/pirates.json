@@ -108,9 +108,9 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Welke kleur heeft de klassieke piratenvlag?", "difficulty": "easy", "answers": [{ "text": "Zwart" }] },
+        { "prompt": "Welke piraat wordt in de Pirates of the Caribbean-films door Johnny Depp gespeeld?", "difficulty": "easy", "answers": [{ "text": "Jack Sparrow" }] },
         { "prompt": "Welke zee geeft de Pirates of the Caribbean-films hun naam?", "difficulty": "easy", "answers": [{ "text": "De Caribische Zee", "aliases": ["Caribische Zee", "De Caraiben", "Het Caribisch gebied"] }] },
-        { "prompt": "Welk edelmetaal wilden piraten het liefst van alles buitmaken?", "difficulty": "easy", "answers": [{ "text": "Goud" }] },
+        { "prompt": "Hoe heet het reglement waarin een bemanning afspraken over buit en straffen vastlegde?", "difficulty": "easy", "answers": [{ "text": "De piratencode", "aliases": ["Piratencode"] }] },
         { "prompt": "Welke groet roepen piraten in de verhalen als ze een ander schip praaien?", "difficulty": "easy", "answers": [{ "text": "Ahoy" }] },
         { "prompt": "Wat heeft de krokodil in Peter Pan ingeslikt, waardoor hij tikt?", "difficulty": "easy", "answers": [{ "text": "Een klok", "aliases": ["Klok", "Wekker", "Een wekker"] }] },
         { "prompt": "Welke zeestraat tussen Maleisie en Indonesie is de drukste plek voor moderne piraterij?", "difficulty": "hard", "answers": [{ "text": "Straat Malakka", "aliases": ["De Straat Malakka", "Malakka"] }] },

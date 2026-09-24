@@ -109,10 +109,10 @@
       "round": 6,
       "questions": [
         { "prompt": "How many lives is a cat said to have in the English saying?", "difficulty": "easy", "answers": [{ "text": "Nine", "aliases": ["9"] }] },
-        { "prompt": "What is the usual English word for the sound a cat makes?", "difficulty": "easy", "answers": [{ "text": "Meow", "aliases": ["Miaow", "Mew"] }] },
-        { "prompt": "A cat of which colour is superstitiously said to bring bad luck when it crosses your path?", "difficulty": "easy", "answers": [{ "text": "Black" }] },
+        { "prompt": "What colour are the eyes of almost every kitten when it is born?", "difficulty": "easy", "answers": [{ "text": "Blue" }] },
+        { "prompt": "Which feline is the largest of the whole cat family?", "difficulty": "easy", "answers": [{ "text": "The tiger", "aliases": ["Tiger"] }] },
         { "prompt": "Which cartoon mouse is forever chased by the cat Tom?", "difficulty": "easy", "answers": [{ "text": "Jerry" }] },
-        { "prompt": "What does a cat use to wash its own coat?", "difficulty": "easy", "answers": [{ "text": "Its tongue", "aliases": ["Tongue"] }] },
+        { "prompt": "Which popular bouquet flower is poisonous to cats?", "difficulty": "easy", "answers": [{ "text": "The lily", "aliases": ["Lily"] }] },
         { "prompt": "What is the term for a cat born with more toes than usual?", "difficulty": "hard", "answers": [{ "text": "Polydactyl", "aliases": ["Polydactyly", "Polydactyl cat"] }] },
         { "prompt": "What is the reflective layer behind a cat's retina that makes its eyes glow in the dark called?", "difficulty": "hard", "answers": [{ "text": "The tapetum lucidum", "aliases": ["Tapetum lucidum", "Tapetum"] }] },
         { "prompt": "Which compound in catnip sets off the reaction in cats?", "difficulty": "hard", "answers": [{ "text": "Nepetalactone" }] },

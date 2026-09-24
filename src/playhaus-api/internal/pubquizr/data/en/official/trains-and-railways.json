@@ -18,7 +18,7 @@
         { "prompt": "Which architect designed both the Rijksmuseum and Amsterdam Centraal station?", "category": "Architecture", "answers": [{ "text": "Pierre Cuypers", "aliases": ["Cuypers", "P.J.H. Cuypers"] }] },
         { "prompt": "What is the yard called where trains are parked and maintained overnight?", "category": "Operations", "answers": [{ "text": "The depot", "aliases": ["Depot", "Train depot"] }] },
         { "prompt": "In which capital city would you arrive at the station called Termini?", "category": "Stations", "answers": [{ "text": "Rome" }] },
-        { "prompt": "Which two colours do the intercity trains of the Dutch railways carry?", "category": "Netherlands", "answers": [{ "text": "Yellow and blue", "aliases": ["Blue and yellow"] }] },
+        { "prompt": "Which Dutch railway station is the busiest in the country?", "category": "Netherlands", "answers": [{ "text": "Utrecht Centraal" }] },
         { "prompt": "What does a red railway signal tell a driver to do?", "category": "Signals", "answers": [{ "text": "Stop", "aliases": ["Halt"] }] },
         { "prompt": "What is a train that carries goods rather than passengers called?", "category": "Freight", "answers": [{ "text": "A freight train", "aliases": ["Freight train", "Goods train"] }] },
         { "prompt": "Which is the longest railway tunnel in the world, opened in Switzerland in 2016?", "category": "Records", "answers": [{ "text": "The Gotthard Base Tunnel", "aliases": ["Gotthard Base Tunnel", "Gotthard"] }] },
@@ -108,10 +108,10 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "How many rails does an ordinary railway track have?", "difficulty": "easy", "answers": [{ "text": "Two", "aliases": ["2"] }] },
+        { "prompt": "What is the museum in Utrecht devoted entirely to trains called?", "difficulty": "easy", "answers": [{ "text": "The Dutch Railway Museum", "aliases": ["Railway Museum"] }] },
         { "prompt": "What is the train service between London and Paris through the Channel Tunnel called?", "difficulty": "easy", "answers": [{ "text": "Eurostar" }] },
-        { "prompt": "Which colour signal tells a train it may go?", "difficulty": "easy", "answers": [{ "text": "Green" }] },
-        { "prompt": "What must you buy before you are allowed to board a train?", "difficulty": "easy", "answers": [{ "text": "A ticket", "aliases": ["Ticket"] }] },
+        { "prompt": "What is the mountain railway that climbs steep slopes with a cogwheel between the rails called?", "difficulty": "easy", "answers": [{ "text": "A rack railway", "aliases": ["Cog railway"] }] },
+        { "prompt": "What is the movable piece of track that takes a train from one track to another called?", "difficulty": "easy", "answers": [{ "text": "The points", "aliases": ["Switch"] }] },
         { "prompt": "Which animal pulled the wagons on the earliest railways, before steam?", "difficulty": "easy", "answers": [{ "text": "The horse", "aliases": ["Horse", "Horses"] }] },
         { "prompt": "What is the arm on the roof of an electric train that collects power from the overhead wire called?", "difficulty": "hard", "answers": [{ "text": "The pantograph", "aliases": ["Pantograph"] }] },
         { "prompt": "What is the name of the Dutch high-speed line between Amsterdam and the Belgian border?", "difficulty": "hard", "answers": [{ "text": "HSL-Zuid", "aliases": ["HSL Zuid", "High Speed Line South"] }] },

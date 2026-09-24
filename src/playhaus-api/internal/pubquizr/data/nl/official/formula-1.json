@@ -108,7 +108,7 @@
     {
       "round": 6,
       "questions": [
-        { "prompt": "Hoeveel wielen heeft een Formule 1-auto?", "difficulty": "easy", "answers": [{ "text": "Vier", "aliases": ["4"] }] },
+        { "prompt": "In welk vorstendom rijdt de Formule 1 door de straten van Monte Carlo?", "difficulty": "easy", "answers": [{ "text": "Monaco" }] },
         { "prompt": "Hoe heet de vlag die bij de winnaar van een Grand Prix wordt gezwaaid?", "difficulty": "easy", "answers": [{ "text": "De zwart-witgeblokte vlag", "aliases": ["Zwart-wit geblokte vlag", "Finishvlag"] }] },
         { "prompt": "Uit welk land komt het team Ferrari?", "difficulty": "easy", "answers": [{ "text": "Italie" }] },
         { "prompt": "Waarmee sproeien de coureurs elkaar traditioneel nat op het podium?", "difficulty": "easy", "answers": [{ "text": "Champagne" }] },
