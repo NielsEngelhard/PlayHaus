@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import CrossFade from "@/components/ui/CrossFade";
 import PopPressable from "@/components/ui/PopPressable";
 import { Brand } from "@/constants/theme";
@@ -7,7 +8,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import type { ReactNode } from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     aliases: string[]
@@ -72,7 +73,7 @@ export default function QuestionStack({
                 </View>
 
                 {/* Scrolls inside the card rather than spilling over the seat row when four options will not fit a short phone. */}
-                <ScrollView
+                <BleedScrollView
                     style={styles.body}
                     contentContainerStyle={[styles.bodyContent, hasOptions && styles.bodyContentTop]}
                     showsVerticalScrollIndicator={false}
@@ -82,7 +83,7 @@ export default function QuestionStack({
                     </AppText>
 
                     {hasOptions && <View style={styles.options}>{children}</View>}
-                </ScrollView>
+                </BleedScrollView>
 
                 {/* Kept on screen once revealed when there is no answer row to take its place, so the card does not jump. */}
                 <CrossFade

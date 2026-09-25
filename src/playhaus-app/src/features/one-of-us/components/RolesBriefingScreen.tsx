@@ -1,11 +1,12 @@
 import ActionButton from "@/components/ui/ActionButton";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import InGameHeader from "@/components/ui/InGameHeader";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import RoleCard from "@/features/one-of-us/components/RoleCard";
 import { faceOf, ROLES } from "@/features/one-of-us/roles";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     onDone: () => void
@@ -26,7 +27,7 @@ export default function RolesBriefingScreen({ onDone, onLeave }: Props) {
             />
 
             <View style={styles.screen}>
-                <ScrollView
+                <BleedScrollView
                     style={styles.list}
                     contentContainerStyle={styles.listContent}
                     showsVerticalScrollIndicator={false}
@@ -39,7 +40,7 @@ export default function RolesBriefingScreen({ onDone, onLeave }: Props) {
                             explanation={t(faceOf(role).briefing)}
                         />
                     ))}
-                </ScrollView>
+                </BleedScrollView>
 
                 <ActionButton
                     size="large"

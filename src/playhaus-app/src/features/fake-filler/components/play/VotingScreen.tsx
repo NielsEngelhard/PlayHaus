@@ -1,5 +1,6 @@
 import { TRUTH_AUTHOR_ID, type FFGame, type FFOption, type FFRound } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import Card from "@/components/ui/Card";
 import FlipOver from "@/components/ui/FlipOver";
 import InlineNotification from "@/components/ui/InlineNotification";
@@ -16,7 +17,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { Fragment, useState, type ReactNode } from "react";
-import { Animated, Easing, Platform, ScrollView, useWindowDimensions, View } from "react-native";
+import { Animated, Easing, Platform, useWindowDimensions, View } from "react-native";
 
 interface Props {
     game: FFGame,
@@ -96,7 +97,7 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
     };
 
     return (
-        <ScrollView
+        <BleedScrollView
             style={styles.scroll}
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
@@ -213,7 +214,7 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
                     ))}
                 </View>
             )}
-        </ScrollView>
+        </BleedScrollView>
     )
 }
 

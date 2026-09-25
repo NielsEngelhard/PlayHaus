@@ -2,15 +2,16 @@ import AppText from "@/components/text/AppText";
 import SimpleTextHero from "@/components/text/SimpleTextHero";
 import TextHint from "@/components/text/TextHint";
 import ActionButton from "@/components/ui/ActionButton";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { useEntrance } from "@/components/ui/useEntrance";
-import { Brand, ShadowReach, Spacing } from "@/constants/theme";
+import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { offBy, type ClosestResult } from "@/features/pubquizr/round-three";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { Animated, Easing, ScrollView, View } from "react-native";
+import { Animated, Easing, View } from "react-native";
 
 const ROW_STAGGER_MS = 45;
 
@@ -96,11 +97,11 @@ export default function ClosestResultScreen({ result, onContinue, waitingNote }:
             </View>
 
             {/* The one scroller on the screen. */}
-            <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+            <BleedScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                 {rows.map((row, index) => (
                     <ResultRow key={row.seat.seat} answer={result.answer} index={index} row={row} />
                 ))}
-            </ScrollView>
+            </BleedScrollView>
 
             <View style={styles.footer}>
                 {onContinue !== undefined ? (
@@ -276,8 +277,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     rowsInner: {
-        gap: 9,
-        paddingRight: ShadowReach.hardSmall,
+        gap: 9,
         paddingBottom: 2
     },
 

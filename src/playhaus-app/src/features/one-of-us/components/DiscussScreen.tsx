@@ -1,3 +1,4 @@
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -5,7 +6,7 @@ import PinButton from "@/features/one-of-us/components/PinButton";
 import SeatRing from "@/features/one-of-us/components/SeatRing";
 import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 
 interface Props {
     // Who settles a tie, or null on a table dealt before the office existed.
@@ -20,7 +21,7 @@ export default function DiscussScreen({ mayor, onVote, seats }: Props) {
     const styles = useStyles();
 
     return (
-        <ScrollView style={styles.screen}>
+        <BleedScrollView style={styles.screen}>
             <SeatRing
                 seats={seats}
                 headline={t('oneOfUs.play.discuss.ring')}
@@ -40,7 +41,7 @@ export default function DiscussScreen({ mayor, onVote, seats }: Props) {
                     onPress={onVote}
                 />
             </View>
-        </ScrollView>
+        </BleedScrollView>
     )
 }
 

@@ -2,9 +2,10 @@ import AppText from "@/components/text/AppText";
 import TextHint from "@/components/text/TextHint";
 import ActionButton from "@/components/ui/ActionButton";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { usePressPop } from "@/components/ui/usePressPop";
-import { FontSizes, ShadowReach } from "@/constants/theme";
+import { FontSizes } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { ListAward } from "@/features/pubquizr/pubquizr-sessions";
@@ -21,7 +22,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import BonusRoundScreen from "./BonusRoundScreen";
 import PickRow, { AwardRow } from "@/components/ui/PickRow";
 import ScriptCard from "./ScriptCard";
@@ -181,7 +182,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
     // A beat between the rules and the clock, for a timed turn only.
     if (stage === 'preTimer') {
         return (
-            <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
+            <BleedScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
                 {strip}
 
                 <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} size={25} />
@@ -196,7 +197,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     text={t('pubquizr.play.list.startTimer')}
                     onPress={() => setStage('running')}
                 />
-            </ScrollView>
+            </BleedScrollView>
         )
     }
 
@@ -220,7 +221,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
         // Zen mode still gets a page of its own rather than sharing the timed layout below it.
         if (turn.guesses !== null) {
             return (
-                <ScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
+                <BleedScrollView style={styles.page} contentContainerStyle={styles.pageInner}>
                     {strip}
 
                     <ScriptCard prompt={turn.question.prompt} cue={null} fills={false} size={25} />
@@ -244,7 +245,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                         disabled={busy}
                         onPress={() => setStage('inTime')}
                     />
-                </ScrollView>
+                </BleedScrollView>
             )
         }
 
@@ -259,9 +260,9 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
 
                 <ListTimerSlot key={turn.dealt.id} onDone={() => setStage('inTime')} />
 
-                <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+                <BleedScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                     {rows}
-                </ScrollView>
+                </BleedScrollView>
 
                 {reminder}
             </View>
@@ -281,7 +282,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                     {t('pubquizr.play.list.inTimeHint', { guesser: turn.guesser.name })}
                 </AppText>
 
-                <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+                <BleedScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                     {turn.answers.map(answer => (
                         <PickRow
                             key={answer.id}
@@ -291,7 +292,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                             onPress={() => toggleInTime(answer.id)}
                         />
                     ))}
-                </ScrollView>
+                </BleedScrollView>
 
                 <ActionButton
                     size="large"
@@ -338,7 +339,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                 {t('pubquizr.play.list.scoringTitle')}
             </AppText>
 
-            <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+            <BleedScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                 {turn.answers.map(answer => {
                     const credited = awards[answer.id] ?? null;
                     const winner = credited === null
@@ -355,7 +356,7 @@ export default function ListBoard({ turn, round, lead, busy, error, onSettle }: 
                         />
                     )
                 })}
-            </ScrollView>
+            </BleedScrollView>
 
             {/* What the question is about to be worth to the person who was asked it. */}
             {standing.size > 0 && (
@@ -460,7 +461,6 @@ const useStyles = createThemedStyles(theme => ({
     pageInner: {
         flexGrow: 1,
         gap: 12,
-        paddingRight: ShadowReach.hardSmall,
         paddingVertical: 4
     },
 
@@ -471,8 +471,6 @@ const useStyles = createThemedStyles(theme => ({
 
     rowsInner: {
         gap: 10,
-        // Room on the right for the hard shadow each pick row throws.
-        paddingRight: ShadowReach.hardSmall,
         paddingVertical: 4
     },
 

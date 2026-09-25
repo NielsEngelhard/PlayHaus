@@ -1,5 +1,6 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -8,7 +9,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
 import type { ReactNode } from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 
 /** One line of the rules card: an icon and the sentence beside it. */
 export interface TurnRule {
@@ -41,7 +42,7 @@ export default function TurnRulesScreen({ strip, quizmaster, guesser, rules, act
         <View style={styles.turn}>
             {strip}
 
-            <ScrollView contentContainerStyle={styles.centre}>
+            <BleedScrollView contentContainerStyle={styles.centre}>
                 {/* The round's whole shape in one line. */}
                 <View style={styles.pairing}>
                     <View style={styles.party}>
@@ -86,7 +87,7 @@ export default function TurnRulesScreen({ strip, quizmaster, guesser, rules, act
                         </View>
                     ))}
                 </View>
-            </ScrollView>
+            </BleedScrollView>
 
             {holdBack !== null && (
                 <View style={styles.holdBack}>

@@ -3,6 +3,7 @@ import GameMark from "@/components/layout/GameMark";
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import { usePressPop } from "@/components/ui/usePressPop";
 import { accentOf, type Game } from "@/constants/games";
 import { accentInkColor, Brand, FontSizes, Radii, ShadowReach, Spacing, withAlpha } from "@/constants/theme";
@@ -12,7 +13,7 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import type { AvatarColor } from "@/utils/color-utils";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 
 // One finisher, in whatever ids the game deals in.
 export interface ScoreBoardPlayer {
@@ -183,7 +184,7 @@ export default function ScoreBoardScreen({ action, error, game, onClose, players
                 )}
             </AccentBand>
 
-            <ScrollView
+            <BleedScrollView
                 style={styles.scroller}
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
@@ -209,7 +210,7 @@ export default function ScoreBoardScreen({ action, error, game, onClose, players
                         ))}
                     </View>
                 )}
-            </ScrollView>
+            </BleedScrollView>
 
             {action !== undefined ? (
                 <View style={styles.footer}>
@@ -439,7 +440,6 @@ const useStyles = createThemedStyles(theme => ({
     // Room on the right and bottom for the card's hard shadow.
     content: {
         paddingTop: Spacing.three,
-        paddingRight: ShadowReach.hard,
         paddingBottom: ShadowReach.hard
     },
     list: {

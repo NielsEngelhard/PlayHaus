@@ -1,9 +1,10 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import InlineNotification from "@/components/ui/InlineNotification";
 import { usePressPop } from "@/components/ui/usePressPop";
-import { Brand, FontSizes, ShadowReach } from "@/constants/theme";
+import { Brand, FontSizes } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { WordAward } from "@/features/pubquizr/pubquizr-sessions";
@@ -20,7 +21,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { playTimeUp } from "@/utils/time-up-sound";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import BonusRoundScreen from "./BonusRoundScreen";
 import PickRow, { AwardRow } from "@/components/ui/PickRow";
 import TurnTimer from "./TurnTimer";
@@ -184,7 +185,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
 
                 <TurnTimerSlot onDone={() => setStage('inTime')} />
 
-                <ScrollView contentContainerStyle={styles.words}>
+                <BleedScrollView contentContainerStyle={styles.words}>
                     {turn.words.map(word => {
                         const guessed = (awards[word.dealt.id] ?? null) !== null;
 
@@ -199,7 +200,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                             />
                         )
                     })}
-                </ScrollView>
+                </BleedScrollView>
 
                 <AppText style={styles.hint}>
                     {t('pubquizr.play.describe.dontSayIt')}
@@ -226,7 +227,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                     {t('pubquizr.play.describe.inTimeHint', { guesser: turn.guesser.name })}
                 </AppText>
 
-                <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+                <BleedScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                     {turn.words.map(word => (
                         <PickRow
                             key={word.dealt.id}
@@ -236,7 +237,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                             onPress={() => toggleInTime(word.dealt.id)}
                         />
                     ))}
-                </ScrollView>
+                </BleedScrollView>
 
                 <ActionButton
                     size="large"
@@ -284,7 +285,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                 {t('pubquizr.play.describe.scoringTitle')}
             </AppText>
 
-            <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+            <BleedScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                 {turn.words.map(word => {
                     const credited = awards[word.dealt.id] ?? null;
                     const winner = credited === null
@@ -301,7 +302,7 @@ export default function DescribeBoard({ turn, round, lead, busy, error, onSettle
                         />
                     )
                 })}
-            </ScrollView>
+            </BleedScrollView>
 
             {/* What the turn is about to be worth, while it can still be changed. */}
             {standing.size > 0 && (
@@ -439,7 +440,6 @@ const useStyles = createThemedStyles(theme => ({
 
     words: {
         gap: 10,
-        paddingRight: ShadowReach.hardSmall,
         paddingVertical: 4
     },
 
@@ -487,7 +487,6 @@ const useStyles = createThemedStyles(theme => ({
 
     rowsInner: {
         gap: 10,
-        paddingRight: ShadowReach.hardSmall,
         paddingBottom: 2
     },
 

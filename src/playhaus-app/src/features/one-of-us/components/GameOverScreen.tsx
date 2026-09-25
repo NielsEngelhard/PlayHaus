@@ -1,10 +1,11 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import Confetti from "@/components/ui/Confetti";
 import InGameHeader from "@/components/ui/InGameHeader";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import TextButton from "@/components/ui/TextButton";
-import { Brand, FontSizes, Gradients, linearGradient, Radii, ShadowReach, Spacing, withAlpha, type Accent } from "@/constants/theme";
+import { Brand, FontSizes, Gradients, linearGradient, Radii, Spacing, withAlpha, type Accent } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { OneOfUsRole, withCivilians } from "@/features/one-of-us/models";
 import { faceOf } from "@/features/one-of-us/roles";
@@ -13,7 +14,7 @@ import { AccentProvider } from "@/features/theme/AccentContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 
 const AVATAR = 40;
 const TILE_WIDTH = 54;
@@ -73,7 +74,7 @@ export default function GameOverScreen({
             {/* Both sides get it. */}
             <Confetti active />
 
-            <ScrollView
+            <BleedScrollView
                 style={styles.scroller}
                 contentContainerStyle={styles.content}
                 showsVerticalScrollIndicator={false}
@@ -113,7 +114,7 @@ export default function GameOverScreen({
                     winner={!civiliansWon}
                     tint={Brand.primary}
                 />
-            </ScrollView>
+            </BleedScrollView>
 
             <View style={styles.footer}>
                 {onAgain !== null && (
@@ -218,8 +219,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     content: {
-        paddingTop: Spacing.three,
-        paddingRight: ShadowReach.hard,
+        paddingTop: Spacing.three,
         paddingBottom: Spacing.three,
         gap: Spacing.two
     },

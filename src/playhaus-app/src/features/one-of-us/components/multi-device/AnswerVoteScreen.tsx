@@ -1,5 +1,6 @@
 import type { OOURound } from '@/api/calls/one-of-us-multi-device';
 import AppText from '@/components/text/AppText';
+import BleedScrollView from '@/components/ui/BleedScrollView';
 import { Brand, Spacing } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
 import { noteInkOf } from '@/features/one-of-us/board-notes';
@@ -10,7 +11,7 @@ import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
 import Feather from '@expo/vector-icons/Feather';
 import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 
 interface Props {
     busy: boolean
@@ -45,7 +46,7 @@ export default function AnswerVoteScreen({
     const marked = voted ? myVoteSlot : picked;
 
     return (
-        <ScrollView
+        <BleedScrollView
             style={styles.scroll}
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
@@ -117,7 +118,7 @@ export default function AnswerVoteScreen({
                     />
                 )}
             </View>
-        </ScrollView>
+        </BleedScrollView>
     )
 }
 

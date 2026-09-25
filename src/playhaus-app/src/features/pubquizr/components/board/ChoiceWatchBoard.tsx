@@ -1,4 +1,5 @@
 import AppText from "@/components/text/AppText";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -9,7 +10,7 @@ import type { HotSeatTurn, PreviousRuling } from "@/features/pubquizr/hot-seat";
 import type { PQPick } from "@/features/pubquizr/multi-device/control";
 import { seatAt, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 
 const LETTER_TILE = 30;
 const PICKER_AVATAR = 22;
@@ -44,7 +45,7 @@ export default function ChoiceWatchBoard({ answering, mySeat, picks, previous, s
 
             <BoardNote seat={answering} text={t('pubquizr.board.picksOnOwnPhone', { name: answering.name })} />
 
-            <ScrollView style={styles.options} contentContainerStyle={styles.optionsInner}>
+            <BleedScrollView style={styles.options} contentContainerStyle={styles.optionsInner}>
                 {turn.options.map(option => {
                     const by = spentBy.get(option.id);
                     const picker = by === undefined ? null : seatAt(seats, by);
@@ -65,7 +66,7 @@ export default function ChoiceWatchBoard({ answering, mySeat, picks, previous, s
                         </View>
                     )
                 })}
-            </ScrollView>
+            </BleedScrollView>
 
             {previous !== null && <PreviousQuestion mySeat={mySeat} previous={previous} />}
         </View>

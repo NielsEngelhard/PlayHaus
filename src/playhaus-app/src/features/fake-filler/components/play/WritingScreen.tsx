@@ -1,5 +1,6 @@
 import type { FFGame, FFRound } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
+import BleedScrollView from "@/components/ui/BleedScrollView";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import WaitingStage from "@/components/ui/WaitingStage";
 import { FAKE_FILLER } from "@/constants/games";
@@ -11,7 +12,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { avatarColorById } from "@/utils/color-utils";
 import { useState } from "react";
-import { ScrollView, useWindowDimensions, View } from "react-native";
+import { useWindowDimensions, View } from "react-native";
 
 interface Props {
     game: FFGame,
@@ -29,7 +30,7 @@ export default function WritingScreen({ game, rounds, busy, onSubmit }: Props) {
     const round = rounds[at];
 
     return (
-        <ScrollView
+        <BleedScrollView
             style={styles.scroll}
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
@@ -48,7 +49,7 @@ export default function WritingScreen({ game, rounds, busy, onSubmit }: Props) {
                     onSubmit={onSubmit}
                 />
             )}
-        </ScrollView>
+        </BleedScrollView>
     )
 }
 

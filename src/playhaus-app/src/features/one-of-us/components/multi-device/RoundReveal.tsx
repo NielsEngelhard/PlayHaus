@@ -1,5 +1,6 @@
 import type { OOUAnswer, OOUGamePlayer, OOUReveal } from '@/api/calls/one-of-us-multi-device';
 import AppText from '@/components/text/AppText';
+import BleedScrollView from '@/components/ui/BleedScrollView';
 import SeatAvatar from '@/components/ui/SeatAvatar';
 import { useEntrance } from '@/components/ui/useEntrance';
 import { Brand, Spacing } from '@/constants/theme';
@@ -13,7 +14,7 @@ import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
 import type { Seat } from '@/features/table/seats';
 import Feather from '@expo/vector-icons/Feather';
-import { Animated, ScrollView, View } from 'react-native';
+import { Animated, View } from 'react-native';
 
 interface Props {
     busy: boolean
@@ -56,7 +57,7 @@ export default function RoundReveal({
     ));
 
     return (
-        <ScrollView
+        <BleedScrollView
             style={styles.scroll}
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
@@ -99,7 +100,7 @@ export default function RoundReveal({
                 disabled={busy}
                 onPress={gameOver ? onFinish : onContinue}
             />
-        </ScrollView>
+        </BleedScrollView>
     )
 }
 
