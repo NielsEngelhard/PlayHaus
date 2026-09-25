@@ -8,13 +8,6 @@ import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { Link } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
-// The three tones the card's contents wear on blush, in either scheme.
-const ON_BLUSH = {
-    text: Brand.ink,
-    muted: 'rgba(15, 13, 18, 0.7)',
-    eyebrow: 'rgba(15, 13, 18, 0.55)'
-};
-
 // The bracket: four seeds, two winners, one champion.
 const FIRST_ROUND = 4;
 const SECOND_ROUND = 2;
@@ -97,7 +90,7 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900,
         letterSpacing: 1.4,
         textTransform: 'uppercase',
-        color: ON_BLUSH.eyebrow
+        color: theme.colors.textFaint
     },
 
     title: {
@@ -106,7 +99,7 @@ const useStyles = createThemedStyles(theme => ({
         lineHeight: 24 * 1.05,
         fontWeight: 900,
         letterSpacing: -0.9,
-        color: ON_BLUSH.text
+        color: theme.colors.text
     },
 
     description: {
@@ -114,7 +107,7 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 12,
         lineHeight: 12 * 1.4,
         fontWeight: 700,
-        color: ON_BLUSH.muted
+        color: theme.colors.textSecondary
     },
 
     bracket: {

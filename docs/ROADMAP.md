@@ -18,6 +18,7 @@
 - League of letters tournament mode testen
 - quizer multi device afronden
 - quizer op tv testen
+- alle NL labels nagaan en dingen als lobby renamen en echte AI teksten moeten beter
 
 # Double checks voordat echt app
 - inzicht in load. Als er veel load is . Waar zie je problemen qua performance als er bijv. 100 mensen tegelijk spelen? Waar zit de load in de app? Valt denk ik wel mee door client
