@@ -1409,10 +1409,15 @@ export const nl: Catalog = {
     },
     fakeFiller: {
         index: {
-            description: 'Een zin met een gat erin. Een paar spelers verzinnen stiekem een invulling; de rest moet raden welke echt is.',
-            multiplayer: {
-                title: 'Multi device',
-                description: 'Iedereen op zijn eigen telefoon. Eén pseroon maak de lobby, de rest joined met de code.',
+            description: 'Verzin een nep-antwoord dat echt klinkt. De rest moet raden welke waar is. Iedereen speelt op zijn eigen telefoon.',
+            facts: {
+                title: 'Nepfeiten',
+                description: 'Een echt feit met een gat erin. Vul het gat met iets geloofwaardigs.',
+                action: 'Open een kamer'
+            },
+            definitions: {
+                title: 'Nepbetekenissen',
+                description: 'Een zeldzaam woord dat niemand kent. Verzin wat het betekent en misleid de rest.',
                 action: 'Open een kamer'
             }
         },
@@ -1450,9 +1455,9 @@ export const nl: Catalog = {
             settingsTitle: 'Instellingen',
             mode: 'Vragen',
             modeFacts: 'Echte feiten',
-            modeCreative: 'Grappigste',
+            modeDefinitions: 'Woordbetekenissen',
             modeFactsHint: 'Elke vraag heeft een echt antwoord tussen de verzinsels. Vind hem en je scoort.',
-            modeCreativeHint: 'Wie verzint het grappigste antwoord?.',
+            modeDefinitionsHint: 'Elke vraag is een zeldzaam woord. De echte betekenis zit tussen de verzinsels. Vind hem en je scoort.',
             answersPerPlayer: 'Vragen per speler',
             answersPerPlayerHint: 'Hoeveel zinnen iedere speler aan het begin invult. Meer vragen, langer spel.',
             answersSummary: '{{amount}} vragen p.p.'
@@ -1470,19 +1475,20 @@ export const nl: Catalog = {
                 promptOf: 'Vraag {{index}} van {{total}}',
                 blank: 'Gat {{index}}',
                 blankPlaceholder: 'Jouw antwoord',
+                definitionPlaceholder: 'Wat het betekent',
                 submit: 'Vastzetten',
                 locked: 'Vastgezet',
                 edit: 'Aanpassen',
                 incomplete: 'Vul eerst elk gat in.',
+                titleDefinitions: 'Wat betekent het?',
+                introDefinitions: 'Verzin een geloofwaardige betekenis voor het woord. Je scoort elke keer dat iemand hem kiest.',
                 waitingTitle: 'Wachten op de rest',
                 waitingMessage: 'Jouw antwoorden staan erin. Het stemmen begint zodra iedereen de zijne heeft ingeleverd.',
                 progress: '{{done}} van {{total}} antwoorden binnen'
             },
             voting: {
                 title: 'Welke is echt?',
-                titleCreative: 'Welke vind jij de beste?',
                 hint: 'Tik de zin die volgens jou echt is.',
-                hintCreative: 'Tik de zin die jij het beste vindt.',
                 tapToPick: 'Tik om te kiezen',
                 yourPick: 'Jouw keuze',
                 option: 'Optie {{letter}}',

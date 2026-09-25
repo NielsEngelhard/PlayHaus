@@ -87,8 +87,6 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
     // Slot order in both phases, so no card moves when the round is told.
     const options = [...(round.options ?? [])].sort((left, right) => left.slot - right.slot);
     const chosen = voted ? round.myVoteSlot : picked;
-    // Fun mode has no real answer to tint, so mint goes to whatever the table picked most instead.
-    const topVotes = Math.max(0, ...options.map(option => option.voters?.length ?? 0));
 
     const nameOf = (id: string) => {
         if (id === userId) return t('common.you');
@@ -141,7 +139,6 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
                                     back={(
                                         <RevealedOption
                                             index={index}
-                                            topVotes={topVotes}
                                             letter={letter}
                                             line={round.line}
                                             option={option}
@@ -337,8 +334,6 @@ function Option({ letter, line, option, active, voted, faded, disabled, onPress 
 interface RevealedOptionProps {
     // Which way the stamp leans.
     index: number,
-    /** The best vote count on the round, which is what wins where no answer is the real one. */
-    topVotes: number,
     letter: string,
     line: string,
     option: FFOption,
@@ -349,24 +344,18 @@ interface RevealedOptionProps {
 }
 
 // The same card once the round is told: the fill says what the answer was, the stamp says who wrote it.
-function RevealedOption({ index, topVotes, letter, line, option, game, userId, mine, nameOf }: RevealedOptionProps) {
+function RevealedOption({ index, letter, line, option, game, userId, mine, nameOf }: RevealedOptionProps) {
     const t = useT();
     const styles = useStyles();
     const size = useLineSize();
 
-    const facts = game.gameMode === 'facts';
     const truth = option.isTruth === true;
     const voters = option.voters ?? [];
 
     const authors = truth ? [] : authorsOf(option, nameOf);
     const shared = authors.length > 1;
 
-    // Nothing is true in fun mode, so the card the table liked best is what comes out on top there.
-    const won = facts ? truth : voters.length > 0 && voters.length === topVotes;
-    const fill = won ? styles.optionWinner : facts ? styles.optionFake : styles.optionNeutral;
-
-    // A brand fill rather than a themed one, which is what decides whether the ink on it may follow the scheme.
-    const onBrand = facts || won;
+    const fill = truth ? styles.optionWinner : styles.optionFake;
 
     const stamp = truth
         ? t('fakeFiller.play.reveal.stamp.real')
@@ -428,14 +417,14 @@ function RevealedOption({ index, topVotes, letter, line, option, game, userId, m
                 size={size}
                 leading={1.55}
                 pill
-                color={onBrand ? Brand.ink : undefined}
+                color={Brand.ink}
             />
 
             <VoterBubbles
                 voters={voters}
                 players={game.players}
                 userId={userId}
-                onBrand={onBrand}
+                onBrand
                 delayMs={VOTERS_DELAY_MS}
             />
         </View>
@@ -485,7 +474,7 @@ const useStyles = createThemedStyles(theme => ({
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint
     },
-    // The card that came out on top: the real answer where there is one, the most-picked where there is not.
+    // The real answer.
     optionWinner: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.mint
@@ -494,10 +483,6 @@ const useStyles = createThemedStyles(theme => ({
     optionFake: {
         borderColor: Brand.ink,
         backgroundColor: theme.colors.blush
-    },
-    // No truth exists in this mode, so no card has anything to be tinted for.
-    optionNeutral: {
-        backgroundColor: theme.colors.backgroundElement
     },
     faded: {
         opacity: 0.5

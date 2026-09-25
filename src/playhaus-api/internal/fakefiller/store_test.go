@@ -707,7 +707,7 @@ func TestTheSweepLeavesGamesYoungerThanTheCutoff(t *testing.T) {
 // pretending to be a string is most likely to trip over.
 func TestFillsSurviveTheDatabase(t *testing.T) {
 	store, _ := newTestStore(t)
-	seeded := seedGame(t, store, GameModeCreative, time.Now().UTC())
+	seeded := seedGame(t, store, retiredMode, time.Now().UTC())
 	round := seeded.game.Rounds[0]
 
 	want := Fills{`a "quoted" thing`, "and a plain one"}
@@ -745,20 +745,20 @@ func TestFillsSurviveTheDatabase(t *testing.T) {
 	}
 }
 
-// A creative game has no truth row, which is what makes its rounds two options rather than
-// three.
-func TestACreativeGameHasNoTruthRow(t *testing.T) {
+// A game on the retired mode has no truth row, which is what makes its rounds two options
+// rather than three.
+func TestARetiredModeGameHasNoTruthRow(t *testing.T) {
 	store, _ := newTestStore(t)
-	seeded := seedGame(t, store, GameModeCreative, time.Now().UTC())
+	seeded := seedGame(t, store, retiredMode, time.Now().UTC())
 	game := writeEverything(t, store, seeded)
 
 	for _, round := range game.Rounds {
-		want := OptionsPerRound(GameModeCreative, len(game.Players))
+		want := OptionsPerRound(retiredMode, len(game.Players))
 		if got := len(round.Options); got != want {
 			t.Errorf("round %d has %d options, want %d", round.Number, got, want)
 		}
 		if round.Option(TruthAuthorID) != nil {
-			t.Errorf("round %d carries a truth in creative mode", round.Number)
+			t.Errorf("round %d carries a truth in the retired mode", round.Number)
 		}
 	}
 }

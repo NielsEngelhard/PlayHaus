@@ -70,30 +70,53 @@ func GetContentLines(locale i18n.Locale, mode FFGameMode, amount int) ([]GameInp
 }
 
 func parseLine(line string, mode FFGameMode) (GameInputLine, error) {
-	if mode == GameModeCreative {
-		return parseCreativeLine(line)
+	if mode == GameModeDefinitions {
+		return parseDefinitionLine(line)
 	}
 
 	return parseAnswerLine(line)
 }
 
-// parseCreativeLine reads a prompt that has no truth: blanks, and nothing after them.
-func parseCreativeLine(line string) (GameInputLine, error) {
-	blanks := strings.Count(line, Placeholder)
+// parseDefinitionLine reads a word and its real meaning, and turns it into a prompt whose one blank is the meaning.
+func parseDefinitionLine(line string) (GameInputLine, error) {
+	parts := strings.Split(line, ContentDivider)
 
-	if blanks == 0 {
+	if len(parts) != 2 {
 		return GameInputLine{}, fmt.Errorf(
-			"creative line must contain at least one %q placeholder: %s",
+			"definition line must be a word and a meaning split by one %q: %s",
+			ContentDivider,
+			line,
+		)
+	}
+
+	word := strings.TrimSpace(parts[0])
+	meaning := strings.TrimSpace(parts[1])
+
+	if word == "" || meaning == "" {
+		return GameInputLine{}, fmt.Errorf(
+			"definition line has an empty word or meaning: %s",
+			line,
+		)
+	}
+
+	if strings.Contains(word, Placeholder) || strings.Contains(meaning, Placeholder) {
+		return GameInputLine{}, fmt.Errorf(
+			"definition line must not contain %q: %s",
 			Placeholder,
 			line,
 		)
 	}
 
 	return GameInputLine{
-		Line:    line,
-		Answers: []string{},
-		Blanks:  blanks,
+		Line:    DefinitionPrompt(word),
+		Answers: []string{meaning},
+		Blanks:  1,
 	}, nil
+}
+
+// DefinitionPrompt is the prompt a word is dealt as: the word, and a blank for what it means.
+func DefinitionPrompt(word string) string {
+	return word + ": " + Placeholder
 }
 
 // parseAnswerLine reads a prompt that carries its real answer, one value per blank.

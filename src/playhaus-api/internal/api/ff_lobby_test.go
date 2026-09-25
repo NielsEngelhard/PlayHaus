@@ -278,7 +278,7 @@ func TestFFOnlyTheHostMovesTheSettings(t *testing.T) {
 		t.Fatalf("join: %d", rec.Code)
 	}
 
-	body := `{"gameMode":"creative"}`
+	body := `{"gameMode":"definitions"}`
 
 	rec := do(t, srv, http.MethodPatch, ffLobbyPathFor(lobby.Code), body, guest.Token)
 	if rec.Code != http.StatusForbidden {
@@ -292,8 +292,8 @@ func TestFFOnlyTheHostMovesTheSettings(t *testing.T) {
 	if rec.Code != http.StatusOK {
 		t.Fatalf("host: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
 	}
-	if got := decodeBody[ffLobbyResponse](t, rec); got.Settings.GameMode != "creative" {
-		t.Errorf("gameMode = %q, want creative", got.Settings.GameMode)
+	if got := decodeBody[ffLobbyResponse](t, rec); got.Settings.GameMode != "definitions" {
+		t.Errorf("gameMode = %q, want definitions", got.Settings.GameMode)
 	}
 }
 
@@ -304,7 +304,7 @@ func TestFFPatchingOneSettingLeavesTheOtherAlone(t *testing.T) {
 	host := newGuestSession(t, srv)
 	lobby := createFFLobby(t, srv, host.Token)
 
-	rec := do(t, srv, http.MethodPatch, ffLobbyPathFor(lobby.Code), `{"gameMode":"creative"}`, host.Token)
+	rec := do(t, srv, http.MethodPatch, ffLobbyPathFor(lobby.Code), `{"gameMode":"definitions"}`, host.Token)
 	if rec.Code != http.StatusOK {
 		t.Fatalf("set mode: status = %d (body: %s)", rec.Code, rec.Body)
 	}
@@ -315,8 +315,8 @@ func TestFFPatchingOneSettingLeavesTheOtherAlone(t *testing.T) {
 	}
 
 	got := decodeBody[ffLobbyResponse](t, rec)
-	if got.Settings.GameMode != "creative" {
-		t.Errorf("gameMode = %q, want creative -- a language-only patch reset the mode", got.Settings.GameMode)
+	if got.Settings.GameMode != "definitions" {
+		t.Errorf("gameMode = %q, want definitions -- a language-only patch reset the mode", got.Settings.GameMode)
 	}
 	if got.Settings.Locale != "en" {
 		t.Errorf("locale = %q, want en", got.Settings.Locale)
@@ -340,7 +340,7 @@ func TestFFSettingsCannotMoveOnceTheGameHasStarted(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	game := threeHandedFFGame(t, srv)
 
-	rec := do(t, srv, http.MethodPatch, ffLobbyPathFor(game.lobbyCode), `{"gameMode":"creative"}`, game.host.Token)
+	rec := do(t, srv, http.MethodPatch, ffLobbyPathFor(game.lobbyCode), `{"gameMode":"definitions"}`, game.host.Token)
 	if rec.Code != http.StatusConflict {
 		t.Fatalf("status = %d, want %d (body: %s)", rec.Code, http.StatusConflict, rec.Body)
 	}
@@ -384,46 +384,62 @@ func TestFFStartingNeedsTwoPlayersAndTheHost(t *testing.T) {
 	}
 }
 
-// creative has no truth to put in the line-up, so the one fake a table of two writes would
-// be the only thing on offer. The floor the room carries moves with the mode, and the start
-// is refused on it.
-func TestFFATableOfTwoCannotPlayTheModeWithNoTruth(t *testing.T) {
+func TestFFARoomCanOpenOnTheDefinitionsMode(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	host := newGuestSession(t, srv)
+
+	rec := do(t, srv, http.MethodPost, ffLobbyPath, `{"gameMode":"definitions"}`, host.Token)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("create: status = %d (body: %s)", rec.Code, rec.Body)
+	}
+	if got := decodeBody[ffLobbyResponse](t, rec); got.Settings.GameMode != "definitions" {
+		t.Errorf("gameMode = %q, want definitions", got.Settings.GameMode)
+	}
+}
+
+func TestFFARoomCannotOpenOnAnUnknownMode(t *testing.T) {
+	srv, _ := newTestServerWithDB(t)
+	host := newGuestSession(t, srv)
+
+	for _, mode := range []string{"nonsense", "creative"} {
+		rec := do(t, srv, http.MethodPost, ffLobbyPath, `{"gameMode":"`+mode+`"}`, host.Token)
+		if rec.Code != http.StatusUnprocessableEntity {
+			t.Errorf("%s: status = %d, want %d (body: %s)", mode, rec.Code, http.StatusUnprocessableEntity, rec.Body)
+		}
+	}
+}
+
+// A definitions round is a word with one blank for its meaning, and a table of two can play it.
+func TestFFADefinitionsGameDealsAWordAndItsMeaning(t *testing.T) {
 	srv, _ := newTestServerWithDB(t)
 	host := newGuestSession(t, srv)
 	guest := newGuestSession(t, srv)
 
-	lobby := createFFLobby(t, srv, host.Token)
-	if lobby.MinPlayers != fakefiller.MinLobbyPlayers {
-		t.Fatalf("a facts room asks for %d players, want %d", lobby.MinPlayers, fakefiller.MinLobbyPlayers)
+	rec := do(t, srv, http.MethodPost, ffLobbyPath, `{"gameMode":"definitions"}`, host.Token)
+	if rec.Code != http.StatusCreated {
+		t.Fatalf("create: status = %d (body: %s)", rec.Code, rec.Body)
 	}
-
+	lobby := decodeBody[ffLobbyResponse](t, rec)
+	if lobby.MinPlayers != fakefiller.MinLobbyPlayers {
+		t.Errorf("a definitions room asks for %d players, want %d", lobby.MinPlayers, fakefiller.MinLobbyPlayers)
+	}
 	if rec := joinFFLobby(t, srv, guest.Token, lobby.Code); rec.Code != http.StatusOK {
 		t.Fatalf("join: %d", rec.Code)
 	}
 
-	rec := do(t, srv, http.MethodPatch, ffLobbyPathFor(lobby.Code), `{"gameMode":"creative"}`, host.Token)
+	rec = do(t, srv, http.MethodPost, ffLobbyPathFor(lobby.Code)+"/start", "", host.Token)
 	if rec.Code != http.StatusOK {
-		t.Fatalf("set creative: status = %d (body: %s)", rec.Code, rec.Body)
-	}
-	if got := decodeBody[ffLobbyResponse](t, rec); got.MinPlayers != fakefiller.MinPlayersWithoutTruth {
-		t.Errorf("a creative room asks for %d players, want %d", got.MinPlayers, fakefiller.MinPlayersWithoutTruth)
+		t.Fatalf("start: status = %d (body: %s)", rec.Code, rec.Body)
 	}
 
-	startPath := ffLobbyPathFor(lobby.Code) + "/start"
-	rec = do(t, srv, http.MethodPost, startPath, "", host.Token)
-	if rec.Code != http.StatusConflict {
-		t.Fatalf("two players on creative: status = %d, want %d (body: %s)", rec.Code, http.StatusConflict, rec.Body)
+	game := getFFGame(t, srv, host.Token, decodeBody[ffLobbyResponse](t, rec).GameID)
+	if game.GameMode != "definitions" {
+		t.Errorf("gameMode = %q, want definitions", game.GameMode)
 	}
-	if code := errorCode(t, rec); code != "not_enough_players" {
-		t.Errorf("code = %q, want not_enough_players", code)
-	}
-
-	third := newGuestSession(t, srv)
-	if rec := joinFFLobby(t, srv, third.Token, lobby.Code); rec.Code != http.StatusOK {
-		t.Fatalf("join: %d", rec.Code)
-	}
-	if rec := do(t, srv, http.MethodPost, startPath, "", host.Token); rec.Code != http.StatusOK {
-		t.Fatalf("three players on creative: status = %d, want %d (body: %s)", rec.Code, http.StatusOK, rec.Body)
+	for _, round := range game.Rounds {
+		if round.Blanks != 1 || !strings.HasSuffix(round.Line, ": "+fakefiller.Placeholder) {
+			t.Errorf("round %d is %q with %d blanks, want a word and one blank", round.Number, round.Line, round.Blanks)
+		}
 	}
 }
 

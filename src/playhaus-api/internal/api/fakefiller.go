@@ -3,6 +3,7 @@ package api
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
 	"slices"
 
@@ -16,10 +17,17 @@ import (
 
 // ffNewLobbyRequest is what opens a room.
 type ffNewLobbyRequest struct {
-	Locale *string `json:"locale"`
+	Locale   *string `json:"locale"`
+	GameMode *string `json:"gameMode"`
 }
 
-func (ffNewLobbyRequest) Validate() map[string]string { return nil }
+func (req ffNewLobbyRequest) Validate() map[string]string {
+	problems := map[string]string{}
+	if req.GameMode != nil && !fakefiller.FFGameMode(*req.GameMode).Valid() {
+		problems["gameMode"] = fmt.Sprintf("must be %q or %q", fakefiller.GameModeFacts, fakefiller.GameModeDefinitions)
+	}
+	return problems
+}
 
 // ffLobbySettingsRequest is what the host gets to decide, on the way in.
 type ffLobbySettingsRequest struct {
@@ -283,7 +291,7 @@ func (s *Server) newFFLobbyResponse(ctx context.Context, lobby *fakefiller.FFLob
 			AnswersPerPlayer: lobby.AnswersPerPlayer,
 		},
 		Players: players,
-		// Carried rather than hardcoded in the app, and it moves with the mode: creative has no truth to pad a two-player line-up with.
+		// Carried rather than hardcoded in the app, because it moves with the mode.
 		MinPlayers:          fakefiller.MinPlayersFor(lobby.GameMode),
 		MaxPlayers:          fakefiller.MaxLobbyPlayers,
 		MinAnswersPerPlayer: fakefiller.MinAnswersPerPlayer,
@@ -563,13 +571,17 @@ func (s *Server) handleCreateFFLobby(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	req, _, err := decode[ffNewLobbyRequest](r)
+	req, problems, err := decode[ffNewLobbyRequest](r)
 	if err != nil {
 		writeError(w, http.StatusBadRequest, "invalid JSON body")
 		return
 	}
+	if len(problems) > 0 {
+		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
+		return
+	}
 
-	lobby, err := s.fakeFiller.CreateLobby(r.Context(), userID, localeFrom(Deref(req.Locale, ""), r))
+	lobby, err := s.fakeFiller.CreateLobby(r.Context(), userID, localeFrom(Deref(req.Locale, ""), r), fakefiller.FFGameMode(Deref(req.GameMode, "")))
 	if err != nil {
 		s.writeFFLobbyError(w, "create fake filler lobby", err)
 		return

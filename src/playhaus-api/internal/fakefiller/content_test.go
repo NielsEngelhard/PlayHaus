@@ -15,7 +15,7 @@ import (
 // and a template is wrong for all of its inputs at once.
 func TestEveryLocaleAndModeNamesAFileThatExists(t *testing.T) {
 	for _, locale := range i18n.Locales {
-		for _, mode := range []FFGameMode{GameModeFacts, GameModeCreative} {
+		for _, mode := range allModes {
 			lines, err := GetContentLines(locale, mode, 1)
 			if err != nil {
 				t.Errorf("GetContentLines(%s, %s): %v", locale, mode, err)
@@ -69,23 +69,52 @@ func TestFactsPromptsCarryOneAnswerPerBlank(t *testing.T) {
 	}
 }
 
-// Creative prompts have no truth to carry, which is the whole of what makes that mode two
-// options instead of three.
-func TestCreativePromptsHaveNoAnswers(t *testing.T) {
+// A definition is dealt as the word and one blank, with the real meaning as the only answer.
+func TestDefinitionPromptsAreAWordAndOneMeaning(t *testing.T) {
 	for _, locale := range i18n.Locales {
-		lines, err := GetContentLines(locale, GameModeCreative, RoundsFor(GameModeCreative, MaxLobbyPlayers, DefaultAnswersPerPlayer))
+		lines, err := GetContentLines(locale, GameModeDefinitions, RoundsFor(GameModeDefinitions, MaxLobbyPlayers, DefaultAnswersPerPlayer))
 		if err != nil {
-			t.Fatalf("GetContentLines(%s, creative): %v", locale, err)
+			t.Fatalf("GetContentLines(%s, definitions): %v", locale, err)
 		}
 
 		for _, line := range lines {
-			if line.Blanks == 0 {
-				t.Errorf("%s: %q has no blanks", locale, line.Line)
+			if line.Blanks != 1 || strings.Count(line.Line, Placeholder) != 1 {
+				t.Errorf("%s: %q should have exactly one blank", locale, line.Line)
 			}
-			if len(line.Answers) != 0 {
-				t.Errorf("%s: %q carries answers %v, want none", locale, line.Line, line.Answers)
+			if !strings.HasSuffix(line.Line, ": "+Placeholder) {
+				t.Errorf("%s: %q does not end on its blank", locale, line.Line)
+			}
+			if len(line.Answers) != 1 || line.Answers[0] == "" {
+				t.Errorf("%s: %q carries answers %v, want one meaning", locale, line.Line, line.Answers)
 			}
 		}
+	}
+}
+
+func TestAMalformedDefinitionLineIsRejected(t *testing.T) {
+	for _, line := range []string{
+		"no divider at all",
+		"word ---",
+		"--- a meaning with no word",
+		"word --- one meaning --- and another",
+		"word --- a meaning with a " + Placeholder,
+	} {
+		if _, err := parseDefinitionLine(line); err == nil {
+			t.Errorf("parseDefinitionLine(%q) was accepted", line)
+		}
+	}
+}
+
+func TestADefinitionLineBecomesTheWordAndABlank(t *testing.T) {
+	got, err := parseDefinitionLine("  snollygoster  ---  a clever person with no morals ")
+	if err != nil {
+		t.Fatalf("parseDefinitionLine: %v", err)
+	}
+	if got.Line != "snollygoster: "+Placeholder {
+		t.Errorf("Line = %q", got.Line)
+	}
+	if len(got.Answers) != 1 || got.Answers[0] != "a clever person with no morals" {
+		t.Errorf("Answers = %v", got.Answers)
 	}
 }
 
@@ -110,12 +139,8 @@ func TestAskingForNoPromptsIsNotAnError(t *testing.T) {
 }
 
 // The parser reads the constant, so a file that spells the blank some other way has no
-// blanks at all as far as this package is concerned -- which is what the old "[]" spelling
-// in en-creative.txt amounted to.
+// blanks at all as far as this package is concerned.
 func TestALineWithNoPlaceholderIsRejected(t *testing.T) {
-	if _, err := parseCreativeLine("nothing to fill in here"); err == nil {
-		t.Error("a creative line with no placeholder was accepted")
-	}
 	if _, err := parseAnswerLine("nothing to fill in here --- something"); err == nil {
 		t.Error("an answer line with no placeholder was accepted")
 	}
@@ -134,7 +159,7 @@ func TestAnAnswerLineWhoseAnswersDoNotMatchItsBlanksIsRejected(t *testing.T) {
 // holding one line ten times.
 func TestNoPromptAppearsTwice(t *testing.T) {
 	for _, locale := range i18n.Locales {
-		for _, mode := range []FFGameMode{GameModeFacts, GameModeCreative} {
+		for _, mode := range allModes {
 			data, err := contentFiles.ReadFile(buildDataFilePath(locale, mode))
 			if err != nil {
 				t.Fatalf("read %s %s: %v", locale, mode, err)

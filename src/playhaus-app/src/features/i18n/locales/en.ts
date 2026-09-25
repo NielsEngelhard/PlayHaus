@@ -1539,10 +1539,15 @@ export const en = {
     },
     fakeFiller: {
         index: {
-            description: 'A sentence with a hole in it. Some of you secretly invent a filling; everyone else has to spot which one is real.',
-            multiplayer: {
-                title: 'Play together',
-                description: 'Everyone on their own phone. One opens the room, the rest come in with the code.',
+            description: 'Invent a fake answer that sounds real. Everyone else has to spot which one is true. Everyone plays on their own phone.',
+            facts: {
+                title: 'Fake facts',
+                description: 'A true fact with a hole in it. Fill the gap with something believable.',
+                action: 'Open a room'
+            },
+            definitions: {
+                title: 'Fake definitions',
+                description: 'A rare word nobody knows. Make up what it means and fool the others.',
                 action: 'Open a room'
             }
         },
@@ -1581,9 +1586,9 @@ export const en = {
             settingsTitle: 'Settings',
             mode: 'Prompts',
             modeFacts: 'True facts',
-            modeCreative: 'Funniest',
+            modeDefinitions: 'Word definitions',
             modeFactsHint: 'Every prompt has a real answer hidden among the fakes. Find it and you score.',
-            modeCreativeHint: 'Who comes up with the funniest answers?',
+            modeDefinitionsHint: 'Every prompt is a rare word. Its real meaning is hidden among the made-up ones. Find it and you score.',
             answersPerPlayer: 'Prompts each',
             answersPerPlayerHint: 'How many sentences every player fills in at the start. More prompts, longer game.',
             answersSummary: '{{amount}} prompts each'
@@ -1602,19 +1607,20 @@ export const en = {
                 promptOf: 'Prompt {{index}} of {{total}}',
                 blank: 'Blank {{index}}',
                 blankPlaceholder: 'Your answer',
+                definitionPlaceholder: 'What it means',
                 submit: 'Lock it in',
                 locked: 'Locked in',
                 edit: 'Change it',
                 incomplete: 'Fill in every blank first.',
+                titleDefinitions: 'What does it mean?',
+                introDefinitions: 'Invent a believable meaning for the word — you score every time somebody picks it.',
                 waitingTitle: 'Waiting for the others',
                 waitingMessage: 'Your answers are in. Voting starts once everyone has submitted theirs.',
                 progress: '{{done}} of {{total}} answers in'
             },
             voting: {
                 title: 'Which one is real?',
-                titleCreative: 'Which one do you like best?',
                 hint: 'Tap the one you think is real.',
-                hintCreative: 'Tap the one you like best.',
                 tapToPick: 'Tap to pick',
                 yourPick: 'Your pick',
                 option: 'Option {{letter}}',

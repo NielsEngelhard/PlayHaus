@@ -56,7 +56,7 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
     };
 
     const prompt = openPrompt(myRounds);
-    const facts = game.gameMode === 'facts';
+    const definitions = game.gameMode === 'definitions';
 
     // The reveal is drawn on the voting round's own cards, so both phases show the same round.
     const round = reveal !== null ? ffRoundOf(game, reveal.roundNumber) ?? null : votingRound;
@@ -77,16 +77,16 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
             total: myRounds.length,
             spoken: t('fakeFiller.play.writing.promptOf', { index: prompt.at + 1, total: myRounds.length })
         },
-        title: t('fakeFiller.play.writing.title'),
+        title: definitions ? t('fakeFiller.play.writing.titleDefinitions') : t('fakeFiller.play.writing.title'),
         // Only until the player has written once.
-        subtitle: prompt.at === 0 && !prompt.done ? t('fakeFiller.play.writing.intro') : undefined
+        subtitle: prompt.at === 0 && !prompt.done
+            ? (definitions ? t('fakeFiller.play.writing.introDefinitions') : t('fakeFiller.play.writing.intro'))
+            : undefined
     } : {
         label: t('fakeFiller.play.band.round'),
         count: roundCount,
-        title: facts ? t('fakeFiller.play.voting.title') : t('fakeFiller.play.voting.titleCreative'),
-        subtitle: votingRound?.canVote === true
-            ? (facts ? t('fakeFiller.play.voting.hint') : t('fakeFiller.play.voting.hintCreative'))
-            : undefined
+        title: t('fakeFiller.play.voting.title'),
+        subtitle: votingRound?.canVote === true ? t('fakeFiller.play.voting.hint') : undefined
     };
 
     return (

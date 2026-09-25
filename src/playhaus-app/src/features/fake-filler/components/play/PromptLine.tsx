@@ -18,7 +18,9 @@ interface Props {
     blankLabel?: (position: number) => string,
     disabled?: boolean,
     /** The sentence's type size. Everything else is scaled off it. */
-    size?: number
+    size?: number,
+    // Give each blank a row of its own that wraps, for an answer that is a whole sentence.
+    wide?: boolean
 }
 
 // One prompt, with something in its gaps — written in, or waiting to be.
@@ -30,7 +32,8 @@ export default function PromptLine({
     placeholder,
     blankLabel,
     disabled = false,
-    size = 19
+    size = 19,
+    wide = false
 }: Props) {
     const theme = useTheme();
     const styles = useStyles();
@@ -56,7 +59,7 @@ export default function PromptLine({
                     return (
                         <View
                             key={`blank-${part.index}`}
-                            style={[styles.blank, filled ? styles.blankFilled : styles.blankEmpty]}
+                            style={[styles.blank, wide && styles.wide, filled ? styles.blankFilled : styles.blankEmpty]}
                         >
                             <AppText style={[styles.text, type, filled ? styles.written : styles.waiting]}>
                                 {filled ? value : '…'}
@@ -72,6 +75,7 @@ export default function PromptLine({
                             styles.text,
                             type,
                             styles.blank,
+                            wide && styles.wide,
                             styles.field,
                             filled ? styles.blankFilled : styles.blankEmpty,
                             filled ? styles.written : styles.typing
@@ -86,6 +90,8 @@ export default function PromptLine({
                         autoCapitalize='none'
                         autoCorrect={false}
                         returnKeyType='done'
+                        multiline={wide}
+                        submitBehavior={wide ? 'blurAndSubmit' : undefined}
                     />
                 )
             })}
@@ -122,6 +128,9 @@ const useStyles = createThemedStyles(theme => ({
     },
     blankEmpty: {
         borderBottomColor: theme.colors.borderDashed
+    },
+    wide: {
+        flexBasis: '100%'
     },
     // A field is laid out by its own text, so it needs the height a wrapping view gets for free.
     field: {
