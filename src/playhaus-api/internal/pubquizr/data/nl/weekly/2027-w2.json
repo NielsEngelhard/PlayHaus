@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w2",
+  "title": "Weekquiz 2 2027",
+  "description": "De wekelijkse quiz van woensdag 13 januari 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Hoe heet de brede riviermonding tussen Buenos Aires en Montevideo?", "category": "Aardrijkskunde", "answers": [{ "text": "De Rio de la Plata", "aliases": ["Rio de la Plata", "Zilverrivier"] }] },
+        { "prompt": "Met welke organen halen vissen zuurstof uit het water?", "category": "Wetenschap", "answers": [{ "text": "Kieuwen", "aliases": ["De kieuwen"] }] },
+        { "prompt": "Hoe heette de man die Willem van Oranje in 1584 in Delft doodschoot?", "category": "Geschiedenis", "answers": [{ "text": "Balthasar Gerards", "aliases": ["Gerards"] }] },
+        { "prompt": "Welke Nederlandse keeper viel op het WK van 2014 speciaal in voor de strafschoppen tegen Costa Rica?", "category": "Sport", "answers": [{ "text": "Tim Krul", "aliases": ["Krul"] }] },
+        { "prompt": "In welke filmreeks speelt Tom Cruise de geheim agent Ethan Hunt?", "category": "Film", "answers": [{ "text": "Mission: Impossible", "aliases": ["Mission Impossible"] }] },
+        { "prompt": "Welke Nederlandse zangeres en cabaretier zong Mag ik dan bij jou?", "category": "Muziek", "answers": [{ "text": "Claudia de Breij", "aliases": ["De Breij"] }] },
+        { "prompt": "In welke Zuid-Hollandse stad wordt in de zomer op donderdag een kaasmarkt gehouden bij het stadhuis?", "category": "Nederland", "answers": [{ "text": "Gouda" }] },
+        { "prompt": "Welke Franse modeontwerper maakte in 1965 een jurk naar de schilderijen van Mondriaan?", "category": "Kunst", "answers": [{ "text": "Yves Saint Laurent", "aliases": ["Saint Laurent", "YSL"] }] },
+        { "prompt": "Wat betekent het Italiaanse arrivederci?", "category": "Taal", "answers": [{ "text": "Tot ziens", "aliases": ["Dag", "Doei", "Tot weerziens"] }] },
+        { "prompt": "Hoe heet de Griekse yoghurtsaus met komkommer en knoflook?", "category": "Eten", "answers": [{ "text": "Tzatziki" }] },
+        { "prompt": "Welk programma van Microsoft om te videobellen stopte in 2025?", "category": "Techniek", "answers": [{ "text": "Skype" }] },
+        { "prompt": "Aan welke boom groeien eikels?", "category": "Natuur", "answers": [{ "text": "De eik", "aliases": ["Eik", "Eikenboom"] }] },
+        { "prompt": "Wat is de op een na grootste stad van Denemarken?", "category": "Aardrijkskunde", "answers": [{ "text": "Aarhus", "aliases": ["Arhus"] }] },
+        { "prompt": "Welke Nederlandse admiraal sneuvelde in 1653 in de zeeslag bij Terheide?", "category": "Geschiedenis", "answers": [{ "text": "Maarten Tromp", "aliases": ["Tromp", "Maarten Harpertsz Tromp"] }] },
+        { "prompt": "Hoe heet een hoek van precies negentig graden?", "category": "Wetenschap", "answers": [{ "text": "Een rechte hoek", "aliases": ["Rechte hoek"] }] },
+        { "prompt": "Welke Amerikaanse zanger scoorde met Mark Ronson de hit Uptown Funk?", "category": "Muziek", "answers": [{ "text": "Bruno Mars", "aliases": ["Mars"] }] },
+        { "prompt": "In welke film uit 1979 jaagt een buitenaards wezen op de bemanning van het ruimteschip Nostromo?", "category": "Film", "answers": [{ "text": "Alien" }] },
+        { "prompt": "Van welke vrucht wordt echte Engelse marmelade gemaakt?", "category": "Eten", "answers": [{ "text": "De sinaasappel", "aliases": ["Sinaasappel", "Sinaasappels", "Bittere sinaasappel"] }] },
+        { "prompt": "Hoe heet het Nederlandse systeem waarmee je in webwinkels direct via je bank betaalt?", "category": "Techniek", "answers": [{ "text": "iDEAL", "aliases": ["Ideal"] }] },
+        { "prompt": "Welk leesteken zet je achter een uitroep?", "category": "Taal", "answers": [{ "text": "Een uitroepteken", "aliases": ["Uitroepteken"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt het dichtst bij de evenaar?", "options": [{ "text": "Nairobi", "correct": true }, { "text": "Cairo" }, { "text": "Johannesburg" }, { "text": "Casablanca" }] },
+        { "prompt": "Welke vis kan stroomstoten uitdelen?", "options": [{ "text": "De sidderaal", "correct": true }, { "text": "De piranha" }, { "text": "De meerval" }, { "text": "De karper" }] },
+        { "prompt": "Welke schrijver schreef de Kameleon-boeken?", "options": [{ "text": "Hotze de Roos", "correct": true }, { "text": "Paul Biegel" }, { "text": "Annie M.G. Schmidt" }, { "text": "Carry Slee" }] },
+        { "prompt": "Welk van deze landen ligt in Midden-Amerika?", "options": [{ "text": "Costa Rica", "correct": true }, { "text": "Colombia" }, { "text": "Venezuela" }, { "text": "Ecuador" }] },
+        { "prompt": "Welke van deze ziekten tast vooral de longen aan?", "options": [{ "text": "Tuberculose", "correct": true }, { "text": "Hepatitis" }, { "text": "Meningitis" }, { "text": "Artrose" }] },
+        { "prompt": "Welke Nederlandse premier kreeg de bijnaam Teflon Mark?", "options": [{ "text": "Mark Rutte", "correct": true }, { "text": "Jan Peter Balkenende" }, { "text": "Wim Kok" }, { "text": "Ruud Lubbers" }] },
+        { "prompt": "Welke van deze rivieren stroomt naar de Noordelijke IJszee?", "options": [{ "text": "De Ob", "correct": true }, { "text": "De Wolga" }, { "text": "De Donau" }, { "text": "De Dnjepr" }] },
+        { "prompt": "Welke van deze vogels legt blauwe eieren?", "options": [{ "text": "De zanglijster", "correct": true }, { "text": "De kip" }, { "text": "De meeuw" }, { "text": "De eend" }] },
+        { "prompt": "In welke film speelt Meryl Streep de gevreesde hoofdredacteur van een modeblad?", "options": [{ "text": "The Devil Wears Prada", "correct": true }, { "text": "Mamma Mia" }, { "text": "The Iron Lady" }, { "text": "Sophie's Choice" }] },
+        { "prompt": "Welke Nederlandse wielrenner won in 2017 de Giro d'Italia?", "options": [{ "text": "Tom Dumoulin", "correct": true }, { "text": "Steven Kruijswijk" }, { "text": "Bauke Mollema" }, { "text": "Wout Poels" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Dom van Milaan?", "answer": 108, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Mississippi?", "answer": 3730, "unit": "kilometer" },
+        { "prompt": "Hoeveel landen telt Azie ongeveer?", "answer": 48, "unit": "landen" },
+        { "prompt": "Hoe oud werd Vincent van Gogh?", "answer": 37, "unit": "jaar" },
+        { "prompt": "Hoeveel procent van een watermeloen is water?", "answer": 92, "unit": "procent" },
+        { "prompt": "Hoeveel olympische gouden medailles won Ireen Wust?", "answer": 6, "unit": "medailles" },
+        { "prompt": "Hoeveel gram weegt een tennisbal ongeveer?", "answer": 58, "unit": "gram" },
+        { "prompt": "In welk jaar werd de Zeelandbrug geopend?", "answer": 1965 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Eland",
+        "Cameraman",
+        "Luciferdoosje",
+        "Erewacht",
+        "Darts",
+        "Piet Hein",
+        "Deeg kneden",
+        "Dakdekker",
+        "Barista",
+        "Aansteker",
+        "Schoolbord",
+        "Domino",
+        "Handbal",
+        "Homer Simpson",
+        "Donald Duck",
+        "Slaapmasker",
+        "Scheve toren van Pisa",
+        "Graanschuur",
+        "Stoelendans",
+        "Parkiet",
+        "Jungle Book",
+        "Rebus",
+        "Wokpan",
+        "Barack Obama",
+        "Veganist",
+        "Knikker",
+        "Matilda",
+        "Dode Zee",
+        "Wijnboer",
+        "Ijszeilen",
+        "Screenshot",
+        "Vergiet",
+        "Gekookt ei",
+        "Dammen",
+        "Minibar",
+        "Pilates",
+        "Agatha Christie",
+        "Burrito",
+        "Belastingdienst",
+        "Grutto"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Denemarken?", "answers": [{ "text": "Kopenhagen", "aliases": ["De hoofdstad Kopenhagen"] }, { "text": "Lego", "aliases": ["Legoland"] }, { "text": "De Kleine Zeemeermin", "aliases": ["Zeemeermin", "Hans Christian Andersen"] }, { "text": "Vikingen", "aliases": ["Deens gebak", "Fietsen"] }] },
+        { "prompt": "Wat weet je over Tom Cruise?", "answers": [{ "text": "Top Gun", "aliases": ["Maverick"] }, { "text": "Mission: Impossible", "aliases": ["Mission Impossible", "Ethan Hunt"] }, { "text": "Scientology", "aliases": ["Scientologykerk"] }, { "text": "Stunts", "aliases": ["Eigen stunts", "Vliegtuigen"] }] },
+        { "prompt": "Wat weet je over paddenstoelen?", "answers": [{ "text": "Herfst", "aliases": ["In het bos"] }, { "text": "Vliegenzwam", "aliases": ["Rood met witte stippen"] }, { "text": "Giftig", "aliases": ["Gif", "Niet allemaal eetbaar"] }, { "text": "Schimmels", "aliases": ["Schimmel", "Sporen"] }] },
+        { "prompt": "Wat weet je over de Verenigde Naties?", "answers": [{ "text": "New York", "aliases": ["Hoofdkwartier in New York"] }, { "text": "Blauwhelmen", "aliases": ["Vredesmacht"] }, { "text": "Secretaris-generaal", "aliases": ["Antonio Guterres", "Kofi Annan"] }, { "text": "Bijna alle landen", "aliases": ["193 landen", "Lidstaten"] }] },
+        { "prompt": "Wat weet je over Harry Houdini?", "answers": [{ "text": "Ontsnappingen", "aliases": ["Ontsnappingskunstenaar"] }, { "text": "Goochelaar", "aliases": ["Illusionist"] }, { "text": "Handboeien", "aliases": ["Kettingen", "Waterbak"] }, { "text": "Amerika", "aliases": ["Hongarije", "Boedapest"] }] },
+        { "prompt": "Wat weet je over walvissen?", "answers": [{ "text": "Zoogdieren", "aliases": ["Zoogdier", "Geen vis"] }, { "text": "Blauwe vinvis", "aliases": ["Grootste dier"] }, { "text": "Spuiten", "aliases": ["Waterfontein", "Blaasgat"] }, { "text": "Zingen", "aliases": ["Walvisgezang", "Geluiden"] }] },
+        { "prompt": "Wat weet je over Tokio?", "answers": [{ "text": "Japan", "aliases": ["Hoofdstad van Japan"] }, { "text": "Heel veel inwoners", "aliases": ["Grootste stad", "Druk"] }, { "text": "Metro", "aliases": ["Treinen", "Shinkansen"] }, { "text": "Olympische Spelen", "aliases": ["Spelen van 2021"] }] },
+        { "prompt": "Wat weet je over het Songfestival?", "answers": [{ "text": "Eurovisie", "aliases": ["Europa"] }, { "text": "Douze points", "aliases": ["Twaalf punten", "Punten"] }, { "text": "ABBA", "aliases": ["Waterloo"] }, { "text": "Duncan Laurence", "aliases": ["Arcade", "Teach-In"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het jong van een schaap?", "difficulty": "easy", "answers": [{ "text": "Een lam", "aliases": ["Lam", "Lammetje"] }] },
+        { "prompt": "Wat drinkt een pasgeboren baby?", "difficulty": "easy", "answers": [{ "text": "Melk", "aliases": ["Moedermelk"] }] },
+        { "prompt": "Welke zwarte zangvogel met een oranje snavel zingt vaak 's avonds in de tuin?", "difficulty": "easy", "answers": [{ "text": "De merel", "aliases": ["Merel"] }] },
+        { "prompt": "Wat is het symbool van de Olympische Spelen?", "difficulty": "easy", "answers": [{ "text": "De olympische ringen", "aliases": ["Ringen", "Vijf ringen"] }] },
+        { "prompt": "Hoe heet de jongen in het sprookje die een reusachtige bonenstaak beklimt?", "difficulty": "easy", "answers": [{ "text": "Jack", "aliases": ["Sjaak", "Jack en de bonenstaak"] }] },
+        { "prompt": "Welke Duitse schilder maakte De wandelaar boven de nevelzee?", "difficulty": "hard", "answers": [{ "text": "Caspar David Friedrich", "aliases": ["Friedrich"] }] },
+        { "prompt": "Welke Russische componist en pianist schreef het beroemde tweede pianoconcert in c klein?", "difficulty": "hard", "answers": [{ "text": "Sergej Rachmaninov", "aliases": ["Rachmaninov", "Rachmaninoff"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Ge?", "difficulty": "hard", "answers": [{ "text": "Germanium" }] },
+        { "prompt": "Welke rivier stroomt door Sevilla?", "difficulty": "hard", "answers": [{ "text": "De Guadalquivir", "aliases": ["Guadalquivir"] }] },
+        { "prompt": "Welke Engelse koningin was de dochter van Hendrik VIII en Catharina van Aragon?", "difficulty": "hard", "answers": [{ "text": "Maria I", "aliases": ["Mary I", "Bloody Mary", "Maria Tudor"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet het kleine roze varkentje dat bevriend is met Winnie de Poeh?", "answers": [{ "text": "Knorretje", "aliases": ["Piglet"] }] },
+        { "prompt": "Welke Franse stad is wereldberoemd om haar mosterd?", "answers": [{ "text": "Dijon" }] },
+        { "prompt": "Welke Ierse dichter kreeg in 1923 de Nobelprijs voor de Literatuur?", "answers": [{ "text": "W.B. Yeats", "aliases": ["Yeats", "William Butler Yeats"] }] },
+        { "prompt": "Wat voor dier is Timon uit The Lion King?", "answers": [{ "text": "Een stokstaartje", "aliases": ["Stokstaartje"] }] },
+        { "prompt": "Welke Amerikaanse staat heeft Austin als hoofdstad?", "answers": [{ "text": "Texas" }] },
+        { "prompt": "Welke Franse natuurkundige ontdekte in 1896 dat uranium straling uitzendt?", "answers": [{ "text": "Henri Becquerel", "aliases": ["Becquerel"] }] },
+        { "prompt": "Welke vorm heeft een voetbalveld?", "answers": [{ "text": "Een rechthoek", "aliases": ["Rechthoek", "Rechthoekig"] }] },
+        { "prompt": "Welke Canadese zangeres brak in 2002 door met Complicated?", "answers": [{ "text": "Avril Lavigne", "aliases": ["Lavigne"] }] },
+        { "prompt": "Welke Schotse filosoof schreef A Treatise of Human Nature?", "answers": [{ "text": "David Hume", "aliases": ["Hume"] }] }
+      ]
+    }
+  ]
+}
