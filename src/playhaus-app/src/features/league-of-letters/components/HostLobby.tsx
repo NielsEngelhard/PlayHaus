@@ -2,7 +2,7 @@ import { minPlayersFor, type Lobby } from "@/api/calls/league-of-letters-lobby";
 import LobbyPageBase from "@/components/layout/LobbyPageBase";
 import AppText from "@/components/text/AppText";
 import InlineNotification from "@/components/ui/InlineNotification";
-import LobbySeatGrid from "@/components/ui/LobbySeatGrid";
+import LobbyPlayersCard from "@/components/ui/LobbyPlayersCard";
 import StartGameButton from "@/components/ui/StartGameButton";
 import { LEAGUE_OF_LETTERS } from "@/constants/games";
 import { useAuth } from "@/features/auth/useAuth";
@@ -68,13 +68,13 @@ export default function HostLobby({ state, lobby, onBack, onStart }: Props) {
                 </View>
             }
         >
-            <LobbySeatGrid
+            <LobbyPlayersCard
                 players={lobby.players}
                 maxPlayers={lobby.maxPlayers}
+                minPlayers={minPlayersFor(lobby.kind)}
                 hostId={lobby.hostId}
                 userId={user?.id}
                 online={state.online}
-                accent={LEAGUE_OF_LETTERS.color}
                 onInvite={() => setInviting(true)}
             />
 

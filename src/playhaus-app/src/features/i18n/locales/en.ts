@@ -275,22 +275,22 @@ export const en = {
         playerCount: '{{taken}} of {{max}}',
         minPlayers: 'Min {{min}}',
         inLobby: 'In the lobby',
-        hostYou: 'HOST · YOU',
-        hostTag: 'HOST',
-        ready: 'Ready',
-        away: 'Away',
-        freeSeat: 'Free seat',
+        hostYou: 'Host · you',
+        hostTag: 'Host',
+        away: 'Away for a moment',
+        freeSeat: 'Seat free',
+        invite: 'Invite',
         // Two wordings rather than one key with a count.
-        moreSeatsOne: '+ 1 more free seat',
-        moreSeatsMany: '+ {{seats}} more free seats',
-        waiting: 'Waiting…',
+        seatsLeftOne: '1 seat left',
+        seatsLeftMany: '{{seats}} seats left',
+        needPlayersOne: '1 more player needed',
+        needPlayersMany: '{{count}} more players needed',
+        tapToInvite: 'Tap to invite a friend',
         // The guest's whole screen and the dead-room notice.
         waitingForHost: 'Waiting for the host',
         waitingForHostMessage: '{{name}} is setting up the game. Stay on this screen and it starts right here.',
         waitingLabel: 'Waiting',
-        closedTitle: 'Lobby closed',
-        // The free seat, on the host's screen only.
-        inviteFriend: 'Invite a friend'
+        closedTitle: 'Lobby closed'
     },
     // The end-of-game podium every scored game shares.
     scoreboard: {
@@ -453,7 +453,7 @@ export const en = {
             startNote: 'Once you start, nobody else can join.',
             needPlayers: 'You need at least one other player.',
             hostFallback: 'The host',
-            settingsTitle: 'Game settings',
+            settingsTitle: 'Settings',
             timePerTurn: 'Time per turn',
             timePerTurnOption: '{{seconds}} seconds'
         },
@@ -678,6 +678,7 @@ export const en = {
         },
         // The multi device room: one screen the table looks at, and a phone each.
         lobby: {
+            settingsTitle: 'Settings',
             loading: 'Looking for your room…',
             opening: 'Opening the room…',
             noLobby: 'No room',
@@ -1298,7 +1299,7 @@ export const en = {
                 // Interpolated rather than fixed at three: the floor is the server's, and it arrives on every lobby as `minPlayers`.
                 needPlayers: 'You need at least {{min}} players.',
                 hostFallback: 'The host',
-                settingsTitle: 'Game settings'
+                settingsTitle: 'Settings'
             },
             play: {
                 loading: 'Dealing the roles…',
@@ -1577,7 +1578,7 @@ export const en = {
             // Interpolated rather than fixed at three: the floor is the server's, and it arrives on every lobby as `minPlayers`.
             needPlayers: 'You need at least {{min}} players.',
             hostFallback: 'The host',
-            settingsTitle: 'Game settings',
+            settingsTitle: 'Settings',
             mode: 'Prompts',
             modeFacts: 'True facts',
             modeCreative: 'Funniest',

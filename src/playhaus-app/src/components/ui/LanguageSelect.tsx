@@ -11,7 +11,7 @@ interface Props {
     label?: string,
     disabled?: boolean,
     /** Passed straight through. See `SelectInput` for what `inline` and `row` drop. */
-    variant?: 'card' | 'inline' | 'row'
+    variant?: 'card' | 'inline' | 'row' | 'pill'
 }
 
 // The language picker, wherever a language is picked: a game's settings, a multiplayer room, the profile.

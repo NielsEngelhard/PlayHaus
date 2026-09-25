@@ -4,7 +4,7 @@ import InlineNotification from "@/components/ui/InlineNotification";
 import { LEAGUE_OF_LETTERS } from "@/constants/games";
 import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
-import LobbyRoster from "@/components/ui/LobbyRoster";
+import LobbyPlayersCard from "@/components/ui/LobbyPlayersCard";
 import RoomCodeFooter from "@/components/ui/RoomCodeFooter";
 import WaitingForHost from "@/components/ui/WaitingForHost";
 import type { LobbyState } from "@/features/league-of-letters/useLobby";
@@ -45,11 +45,13 @@ export default function GuestLobby({ state, lobby, onBack }: Props) {
                 hostName={host?.name ?? t('lol.lobby.hostFallback')}
             />
 
-            <LobbyRoster
+            <LobbyPlayersCard
                 players={lobby.players}
                 maxPlayers={lobby.maxPlayers}
+                minPlayers={minPlayersFor(lobby.kind)}
                 hostId={lobby.hostId}
                 userId={user?.id}
+                online={state.online}
             />
 
             {state.actionError !== null && (

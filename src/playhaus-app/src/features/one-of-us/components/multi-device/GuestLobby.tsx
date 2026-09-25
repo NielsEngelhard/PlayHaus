@@ -1,7 +1,7 @@
 import type { OOULobby } from '@/api/calls/one-of-us-lobby';
 import LobbyPageBase from '@/components/layout/LobbyPageBase';
 import InlineNotification from '@/components/ui/InlineNotification';
-import LobbyRoster from '@/components/ui/LobbyRoster';
+import LobbyPlayersCard from '@/components/ui/LobbyPlayersCard';
 import RoomCodeFooter from '@/components/ui/RoomCodeFooter';
 import WaitingForHost from '@/components/ui/WaitingForHost';
 import { ONE_OF_US } from '@/constants/games';
@@ -45,11 +45,13 @@ export default function GuestLobby({ lobby, onBack, state }: Props) {
                 hostName={host?.name ?? t('oneOfUs.multiDevice.lobby.hostFallback')}
             />
 
-            <LobbyRoster
+            <LobbyPlayersCard
                 players={lobby.players}
                 maxPlayers={lobby.maxPlayers}
+                minPlayers={lobby.minPlayers}
                 hostId={lobby.hostId}
                 userId={user?.id}
+                online={state.online}
             />
 
             {state.actionError !== null && (

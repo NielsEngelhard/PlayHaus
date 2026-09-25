@@ -2,14 +2,14 @@ import type { PQLobby } from "@/api/calls/pubquizr-lobby";
 import LobbyPageBase from "@/components/layout/LobbyPageBase";
 import AppText from "@/components/text/AppText";
 import InlineNotification from "@/components/ui/InlineNotification";
-import LobbySeatGrid from "@/components/ui/LobbySeatGrid";
+import LobbyPlayersCard from "@/components/ui/LobbyPlayersCard";
 import StartGameButton from "@/components/ui/StartGameButton";
-import ToggleRow from "@/components/ui/ToggleRow";
 import { PUBQUIZR } from "@/constants/games";
 import { useAuth } from "@/features/auth/useAuth";
 import InviteFriendModal from "@/features/friends/components/InviteFriendModal";
 import { useT } from "@/features/i18n/LanguageContext";
 import QuizPicker from "@/features/pubquizr/components/QuizPicker";
+import LobbySettingsCard from "@/features/pubquizr/components/room/LobbySettingsCard";
 import type { PQLobbyState } from "@/features/pubquizr/multi-device/useQuizLobby";
 import { useSelectedQuiz } from "@/features/pubquizr/useSelectedQuiz";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -84,13 +84,13 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
                 />
             )}
 
-            <LobbySeatGrid
+            <LobbyPlayersCard
                 players={lobby.players}
                 maxPlayers={lobby.maxPlayers}
+                minPlayers={lobby.minPlayers}
                 hostId={lobby.hostId}
                 userId={user?.id}
                 online={state.online}
-                accent={PUBQUIZR.color}
                 onInvite={() => setInviting(true)}
             />
 
@@ -103,27 +103,7 @@ export default function HostRoom({ state, lobby, onBack, onStart }: Props) {
                 }}
             />
 
-            {/* Trivia first, because it is the bigger cut of the two. */}
-            <ToggleRow
-                flush
-                value={lobby.setup.triviaMode}
-                onChange={trivia => state.updateSetup(
-                    // The two cuts cannot both be on, and trivia is the one that wins.
-                    trivia ? { triviaMode: true, zenMode: false } : { triviaMode: false }
-                )}
-                label={t('pubquizr.oneDevice.triviaMode.label')}
-                description={t('pubquizr.oneDevice.triviaMode.description')}
-            />
-
-            {!lobby.setup.triviaMode && (
-                <ToggleRow
-                    flush
-                    value={lobby.setup.zenMode}
-                    onChange={zen => state.updateSetup({ zenMode: zen })}
-                    label={t('pubquizr.oneDevice.zenMode.label')}
-                    description={t('pubquizr.oneDevice.zenMode.description')}
-                />
-            )}
+            <LobbySettingsCard setup={lobby.setup} onChange={state.updateSetup} />
 
             {state.actionError !== null && (
                 <InlineNotification

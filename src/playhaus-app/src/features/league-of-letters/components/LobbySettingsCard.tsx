@@ -1,53 +1,46 @@
-import type { LobbySettings } from "@/api/calls/league-of-letters-lobby";
-import CollapsibleCard from "@/components/ui/CollapsibleCard";
+import type { LobbySettings as LoLLobbySettings } from "@/api/calls/league-of-letters-lobby";
 import LanguageSelect from "@/components/ui/LanguageSelect";
-import { languageByCode } from "@/constants/languages";
+import LobbySettings, { LobbySettingSegment } from "@/components/ui/LobbySettings";
 import { useT } from "@/features/i18n/LanguageContext";
-import TimerPerRoundSelect from "@/features/league-of-letters/components/TimePerRoundSelect";
-import WordLengthInput from "@/features/league-of-letters/components/WordLengthInput";
+import { TIME_PER_ROUND_OPTIONS } from "@/features/league-of-letters/components/TimePerRoundSelect";
+import { WORD_LENGTHS } from "@/features/league-of-letters/solo-settings";
 
 interface Props {
-    settings: LobbySettings,
-    onChange: (settings: LobbySettings) => void
+    settings: LoLLobbySettings,
+    onChange: (settings: LoLLobbySettings) => void
 }
 
-// What the host is about to start a game on, folded away until they want it.
+// What the host is about to start a game on.
 export default function LobbySettingsCard({ settings, onChange }: Props) {
     const t = useT();
 
     return (
-        <CollapsibleCard
-            title={t('lol.lobby.settingsTitle')}
-            summary={summaryOf(settings, t)}
-        >
-            {/* One child per ruled section, the same shape `SettingsPageBase` uses. */}
-            <WordLengthInput
-                variant='inline'
+        <LobbySettings title={t('lol.lobby.settingsTitle')}>
+            <LobbySettingSegment
+                label={t('lol.settings.wordLength')}
+                options={WORD_LENGTHS}
                 value={settings.wordLength}
+                getLabel={length => String(length)}
+                getAccessibilityLabel={length => t('lol.settings.wordLengthOption', { letters: length })}
+                valueLabel={t('lol.settings.wordLengthOption', { letters: settings.wordLength })}
                 onChange={wordLength => onChange({ ...settings, wordLength })}
             />
 
-            <TimerPerRoundSelect
-                variant='inline'
+            <LobbySettingSegment
+                label={t('lol.lobby.timePerTurn')}
+                options={TIME_PER_ROUND_OPTIONS}
                 value={settings.secondsPerTurn}
-                onChange={secondsPerGuess => onChange({ ...settings, secondsPerTurn: secondsPerGuess })}
+                getLabel={seconds => `${seconds}s`}
+                getAccessibilityLabel={seconds => t('lol.lobby.timePerTurnOption', { seconds })}
+                onChange={secondsPerTurn => onChange({ ...settings, secondsPerTurn })}
             />
 
             {/* No hard mode here, unlike the solo settings page. */}
             <LanguageSelect
-                variant='row'
+                variant='pill'
                 value={settings.locale}
                 onChange={locale => onChange({ ...settings, locale })}
             />
-        </CollapsibleCard>
+        </LobbySettings>
     )
-}
-
-// The three settings as one line — "5 letters · 30s · Nederlands".
-function summaryOf(settings: LobbySettings, t: ReturnType<typeof useT>): string {
-    return [
-        t('lol.settings.wordLengthOption', { letters: settings.wordLength }),
-        t('lol.settings.summary.seconds', { seconds: settings.secondsPerTurn }),
-        languageByCode(settings.locale).label
-    ].join(' · ');
 }

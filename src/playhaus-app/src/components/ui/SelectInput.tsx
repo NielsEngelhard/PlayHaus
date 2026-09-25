@@ -2,7 +2,7 @@ import AppText from "@/components/text/AppText";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import Card from "@/components/ui/Card";
 import { usePressPop } from "@/components/ui/usePressPop";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -37,7 +37,8 @@ interface Props<T extends string> {
     /** Greyed out and unopenable — for a field whose save is still in the air. */
     disabled?: boolean,
     // `card` (the default) is the standing shape: a `Card` of its own, its label above the field.
-    variant?: 'card' | 'inline' | 'row'
+    // `pill` puts the label on the left of the line and the value in a small well on the right.
+    variant?: 'card' | 'inline' | 'row' | 'pill'
 }
 
 /** Where the field is on screen, so the list can be put under it. */
@@ -132,11 +133,12 @@ export default function SelectInput<T extends string>({
     const dropUp = below < MIN_ROOM && above > below;
 
     const row = variant === 'row';
+    const pill = variant === 'pill';
 
     const body = (
         <View>
             {/* The row carries its own label, inside the line rather than above it. */}
-            {label && !row && (
+            {label && !row && !pill && (
                 <Label label={label} />
             )}
 
@@ -153,18 +155,32 @@ export default function SelectInput<T extends string>({
                 // `aria-expanded` rather than `accessibilityState={{ expanded }}`.
                 aria-expanded={open}
                 style={[
-                    row ? styles.fieldRow : styles.field,
-                    disabled && !row && styles.fieldDisabled,
-                    disabled && row && styles.dimmed,
+                    row || pill ? styles.fieldRow : styles.field,
+                    disabled && !row && !pill && styles.fieldDisabled,
+                    disabled && (row || pill) && styles.dimmed,
                     pop.animatedStyle
                 ]}
             >
-                {withIcons && (
+                {pill && (
+                    <>
+                        <AppText style={styles.pillLabel} numberOfLines={1}>{label}</AppText>
+
+                        <View style={styles.pill}>
+                            {selected?.icon}
+
+                            <AppText style={styles.pillValue} numberOfLines={1}>{selected?.label ?? '—'}</AppText>
+
+                            <Feather name='chevron-down' size={FontSizes.sm} color={theme.colors.textSecondary} />
+                        </View>
+                    </>
+                )}
+
+                {!pill && withIcons && (
                     <View style={styles.fieldIcon}>{selected?.icon}</View>
                 )}
 
                 {/* A value with no matching option means the caller and the list are out of step. */}
-                {row ? (
+                {!pill && (row ? (
                     <>
                         <AppText style={styles.fieldRowLabel} numberOfLines={1}>{label}</AppText>
 
@@ -176,10 +192,10 @@ export default function SelectInput<T extends string>({
                     <AppText style={[styles.fieldText, disabled && styles.dimmed]} numberOfLines={1}>
                         {selected?.label ?? '—'}
                     </AppText>
-                )}
+                ))}
 
                 {/* The row's chevron points into the list it opens rather than tracking open/closed. */}
-                <Feather
+                {!pill && <Feather
                     name={row ? 'chevron-right' : open ? 'chevron-up' : 'chevron-down'}
                     size={row ? 17 : 20}
                     color={
@@ -187,7 +203,7 @@ export default function SelectInput<T extends string>({
                             : row ? theme.colors.textMuted
                                 : theme.colors.text
                     }
-                />
+                />}
             </AnimatedPressable>
 
             {present && anchor !== null && (
@@ -354,6 +370,29 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 15,
         fontWeight: 700,
         color: theme.colors.textSecondary
+    },
+    pillLabel: {
+        flex: 1,
+        minWidth: 0,
+        fontSize: FontSizes.md,
+        fontWeight: 700,
+        color: theme.colors.text
+    },
+    pill: {
+        flexShrink: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.two,
+        paddingVertical: Spacing.one,
+        paddingHorizontal: Spacing.two,
+        borderRadius: Radii.md,
+        backgroundColor: theme.colors.backgroundInput
+    },
+    pillValue: {
+        flexShrink: 1,
+        fontSize: FontSizes.sm,
+        fontWeight: 900,
+        color: theme.colors.text
     },
     dimmed: {
         opacity: 0.5

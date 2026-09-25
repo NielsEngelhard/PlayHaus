@@ -266,19 +266,20 @@ export const nl: Catalog = {
         playerCount: '{{taken}} van {{max}}',
         minPlayers: 'Min. {{min}}',
         inLobby: 'In de lobby',
-        hostYou: 'HOST · JIJ',
-        hostTag: 'HOST',
-        ready: 'Klaar',
-        away: 'Weg',
-        freeSeat: 'Vrije plek',
-        moreSeatsOne: '+ nog 1 vrije plek',
-        moreSeatsMany: '+ nog {{seats}} vrije plekken',
-        waiting: 'Wachten…',
+        hostYou: 'Host · jij',
+        hostTag: 'Host',
+        away: 'Even weg',
+        freeSeat: 'Plek vrij',
+        invite: 'Nodig uit',
+        seatsLeftOne: 'nog 1 plek',
+        seatsLeftMany: 'nog {{seats}} plekken',
+        needPlayersOne: 'Nog 1 speler nodig',
+        needPlayersMany: 'Nog {{count}} spelers nodig',
+        tapToInvite: 'Tik om een vriend uit te nodigen',
         waitingForHost: 'Wachten op de host',
         waitingForHostMessage: '{{name}} zet het spel klaar. Blijf op dit scherm, het start hier meteen mee.',
         waitingLabel: 'Wachten',
-        closedTitle: 'Lobby gesloten',
-        inviteFriend: 'Nodig een vriend uit'
+        closedTitle: 'Lobby gesloten'
     },
     scoreboard: {
         eyebrow: 'Eindstand',
@@ -432,7 +433,7 @@ export const nl: Catalog = {
             startNote: 'Zodra je start kan er niemand meer bij.',
             needPlayers: 'Je hebt minstens één medespeler nodig.',
             hostFallback: 'De host',
-            settingsTitle: 'Spelinstellingen',
+            settingsTitle: 'Instellingen',
             timePerTurn: 'Tijd per beurt',
             timePerTurnOption: '{{seconds}} seconden'
         },
@@ -639,6 +640,7 @@ export const nl: Catalog = {
         },
         // De multi device kamer: één scherm waar de tafel naar kijkt, en ieder een telefoon.
         lobby: {
+            settingsTitle: 'Instellingen',
             loading: 'Even kijken of je al een kamer hebt…',
             opening: 'De kamer wordt geopend…',
             noLobby: 'Geen kamer',
@@ -1187,7 +1189,7 @@ export const nl: Catalog = {
                 startNote: 'Zodra je start kan er niemand meer bij.',
                 needPlayers: 'Je hebt minstens {{min}} spelers nodig.',
                 hostFallback: 'De host',
-                settingsTitle: 'Spelinstellingen'
+                settingsTitle: 'Instellingen'
             },
             play: {
                 loading: 'De rollen worden verdeeld…',
@@ -1445,7 +1447,7 @@ export const nl: Catalog = {
             startNote: 'Zodra je start kan niemand er meer bij.',
             needPlayers: 'Je hebt minstens {{min}} spelers nodig.',
             hostFallback: 'De host',
-            settingsTitle: 'Spelinstellingen',
+            settingsTitle: 'Instellingen',
             mode: 'Vragen',
             modeFacts: 'Echte feiten',
             modeCreative: 'Grappigste',

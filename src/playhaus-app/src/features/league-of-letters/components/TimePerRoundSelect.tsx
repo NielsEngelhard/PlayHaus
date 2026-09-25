@@ -1,7 +1,7 @@
 import HorizontalButtonSelect from "@/components/ui/HorizontalButtonSelect";
 import { useT } from "@/features/i18n/LanguageContext";
 
-const TIME_PER_ROUND_OPTIONS = [20, 35, 60, 100] as const;
+export const TIME_PER_ROUND_OPTIONS = [20, 35, 60, 100] as const;
 
 interface Props {
     value: number;
