@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w9",
+  "title": "Weekquiz 9 2027",
+  "description": "De wekelijkse quiz van woensdag 3 maart 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van de Australische deelstaat West-Australie?", "category": "Aardrijkskunde", "answers": [{ "text": "Perth" }] },
+        { "prompt": "Hoe heet het supercontinent waarin alle landmassa's ongeveer driehonderd miljoen jaar geleden samen lagen?", "category": "Wetenschap", "answers": [{ "text": "Pangea", "aliases": ["Pangaea"] }] },
+        { "prompt": "Welke Zuid-Afrikaanse aartsbisschop kreeg in 1984 de Nobelprijs voor de Vrede?", "category": "Geschiedenis", "answers": [{ "text": "Desmond Tutu", "aliases": ["Tutu"] }] },
+        { "prompt": "Welke Nederlander won in 1968 als eerste Nederlander de Tour de France?", "category": "Sport", "answers": [{ "text": "Jan Janssen", "aliases": ["Janssen"] }] },
+        { "prompt": "In welke film ontdekt Jim Carrey dat zijn hele leven een tv-programma is?", "category": "Film", "answers": [{ "text": "The Truman Show", "aliases": ["Truman Show"] }] },
+        { "prompt": "Welke Britse zanger scoorde in 1969 met Space Oddity over Major Tom?", "category": "Muziek", "answers": [{ "text": "David Bowie", "aliases": ["Bowie"] }] },
+        { "prompt": "In welke stad staat Paleis Het Loo?", "category": "Nederland", "answers": [{ "text": "Apeldoorn" }] },
+        { "prompt": "Welke Franse kunstenaar maakte affiches en schilderijen van de danseressen in de Moulin Rouge?", "category": "Kunst", "answers": [{ "text": "Henri de Toulouse-Lautrec", "aliases": ["Toulouse-Lautrec", "Lautrec"] }] },
+        { "prompt": "Wat is de verleden tijd van lopen?", "category": "Taal", "answers": [{ "text": "Liep", "aliases": ["Ik liep", "Liepen"] }] },
+        { "prompt": "Hoe heten de Japanse garnalen en groenten in een luchtig gefrituurd beslagje?", "category": "Eten", "answers": [{ "text": "Tempura" }] },
+        { "prompt": "Op welke Nederlandse website verkopen mensen hun tweedehands spullen?", "category": "Techniek", "answers": [{ "text": "Marktplaats" }] },
+        { "prompt": "Hoe heet de kleine tandwalvis die in de Noordzee leeft?", "category": "Natuur", "answers": [{ "text": "De bruinvis", "aliases": ["Bruinvis"] }] },
+        { "prompt": "Hoe heet het noordelijke deel van de Oostzee tussen Zweden en Finland?", "category": "Aardrijkskunde", "answers": [{ "text": "De Botnische Golf", "aliases": ["Botnische Golf"] }] },
+        { "prompt": "Welke Spaanse dictator regeerde van 1939 tot zijn dood in 1975?", "category": "Geschiedenis", "answers": [{ "text": "Francisco Franco", "aliases": ["Franco"] }] },
+        { "prompt": "Hoe heet een ijsbrok uit de ruimte dat bij de zon een lange staart krijgt?", "category": "Wetenschap", "answers": [{ "text": "Een komeet", "aliases": ["Komeet"] }] },
+        { "prompt": "Welke Brabantse zanger scoorde met Het is een nacht?", "category": "Muziek", "answers": [{ "text": "Guus Meeuwis", "aliases": ["Meeuwis"] }] },
+        { "prompt": "Wie geeft Sneeuwwitje in de Disneyfilm de vergiftigde appel?", "category": "Film", "answers": [{ "text": "De boze koningin", "aliases": ["Boze koningin", "De heks", "Stiefmoeder"] }] },
+        { "prompt": "Hoe heet de Indiase thee met melk en specerijen?", "category": "Eten", "answers": [{ "text": "Chai", "aliases": ["Masala chai"] }] },
+        { "prompt": "Welk Fins bedrijf was rond het jaar tweeduizend de grootste maker van mobiele telefoons?", "category": "Techniek", "answers": [{ "text": "Nokia" }] },
+        { "prompt": "Hoe heet het leesteken dat bestaat uit een punt boven een komma?", "category": "Taal", "answers": [{ "text": "De puntkomma", "aliases": ["Puntkomma"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Kroatie?", "options": [{ "text": "Split", "correct": true }, { "text": "Triest" }, { "text": "Ljubljana" }, { "text": "Sarajevo" }] },
+        { "prompt": "Welk van deze dieren komt uit Zuid-Amerika?", "options": [{ "text": "De lama", "correct": true }, { "text": "De kameel" }, { "text": "De jak" }, { "text": "De eland" }] },
+        { "prompt": "Welke schrijver schreef het jeugdboek Oorlogswinter?", "options": [{ "text": "Jan Terlouw", "correct": true }, { "text": "Thea Beckman" }, { "text": "Harry Mulisch" }, { "text": "Anne de Vries" }] },
+        { "prompt": "Welk van deze landen ligt in West-Afrika?", "options": [{ "text": "Senegal", "correct": true }, { "text": "Kenia" }, { "text": "Ethiopie" }, { "text": "Somalie" }] },
+        { "prompt": "Welk van deze hoort niet bij het oor?", "options": [{ "text": "Het hoornvlies", "correct": true }, { "text": "Het trommelvlies" }, { "text": "Het slakkenhuis" }, { "text": "De gehoorgang" }] },
+        { "prompt": "Bij welke Belgische stad werd in de Eerste Wereldoorlog voor het eerst gifgas ingezet?", "options": [{ "text": "Ieper", "correct": true }, { "text": "Brugge" }, { "text": "Luik" }, { "text": "Namen" }] },
+        { "prompt": "Welk van deze meren ligt op de grens van Peru en Bolivia?", "options": [{ "text": "Het Titicacameer", "correct": true }, { "text": "Het Victoriameer" }, { "text": "Het Malawimeer" }, { "text": "Het Baikalmeer" }] },
+        { "prompt": "Welke van deze roofvogels jaagt vooral 's nachts?", "options": [{ "text": "De kerkuil", "correct": true }, { "text": "De buizerd" }, { "text": "De havik" }, { "text": "De valk" }] },
+        { "prompt": "In welke film probeert Sandra Bullock als astronaut in haar eentje terug te komen naar de aarde?", "options": [{ "text": "Gravity", "correct": true }, { "text": "Interstellar" }, { "text": "Apollo 13" }, { "text": "The Martian" }] },
+        { "prompt": "In welke sport rijden deelnemers de Dakar Rally?", "options": [{ "text": "Rallyrijden", "correct": true }, { "text": "Wielrennen" }, { "text": "Paardrijden" }, { "text": "Zeilen" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Shanghai Tower?", "answer": 632, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Loire?", "answer": 1006, "unit": "kilometer" },
+        { "prompt": "Hoeveel sterren staan er op de vlag van China?", "answer": 5, "unit": "sterren" },
+        { "prompt": "Hoe oud werd John Lennon?", "answer": 40, "unit": "jaar" },
+        { "prompt": "Hoeveel kilo weegt een volwassen koningspinguin ongeveer?", "answer": 15, "unit": "kilo" },
+        { "prompt": "Hoeveel vakjes telt een ganzenbord?", "answer": 63, "unit": "vakjes" },
+        { "prompt": "Hoeveel meter liggen de honken bij honkbal uit elkaar?", "answer": 27.4, "unit": "meter" },
+        { "prompt": "In welk jaar werd de Maeslantkering in gebruik genomen?", "answer": 1997 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Chocoladepasta",
+        "Barman",
+        "Flamingo",
+        "Hockeystick",
+        "Kapstok",
+        "Hippie",
+        "Pepperoni",
+        "Rekken en strekken",
+        "Computervirus",
+        "The Voice",
+        "Walnoot",
+        "Stylist",
+        "Veearts",
+        "Kruisbes",
+        "Iron Man",
+        "Startpistool",
+        "Pictionary",
+        "Kersenbloesem",
+        "Hacker",
+        "Pollepel",
+        "Wals",
+        "Nectarine",
+        "Gum",
+        "Blackjack",
+        "Gorilla",
+        "Christusbeeld",
+        "Krokus",
+        "Afwasmachine",
+        "Afstandsbediening",
+        "Pensioen",
+        "Golden Gate Bridge",
+        "Contactlens",
+        "Troubadour",
+        "Zeekoe",
+        "Kookwekkertje",
+        "Bellenblaas",
+        "Filmster",
+        "Kopieerapparaat",
+        "Rimpels",
+        "Oliebollenkraam"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Zuid-Afrika?", "answers": [{ "text": "Nelson Mandela", "aliases": ["Mandela"] }, { "text": "Kaapstad", "aliases": ["Tafelberg", "Johannesburg"] }, { "text": "Safari", "aliases": ["Krugerpark", "Big Five"] }, { "text": "Apartheid", "aliases": ["Rassenscheiding"] }] },
+        { "prompt": "Wat weet je over de jaren tachtig?", "answers": [{ "text": "Walkman", "aliases": ["Cassettebandje"] }, { "text": "Madonna", "aliases": ["Michael Jackson"] }, { "text": "Pac-Man", "aliases": ["Spelcomputer", "Rubiks kubus"] }, { "text": "Schoudervullingen", "aliases": ["Permanent", "Matje"] }] },
+        { "prompt": "Wat weet je over de Veluwe?", "answers": [{ "text": "De Hoge Veluwe", "aliases": ["Nationaal park"] }, { "text": "Wilde zwijnen", "aliases": ["Herten", "Wolven"] }, { "text": "Bos en heide", "aliases": ["Heide", "Bossen"] }, { "text": "Gelderland", "aliases": ["Apeldoorn", "Arnhem"] }] },
+        { "prompt": "Wat weet je over Montmartre?", "answers": [{ "text": "Sacre-Coeur", "aliases": ["Witte kerk"] }, { "text": "Kunstenaars", "aliases": ["Schilders", "Picasso"] }, { "text": "Moulin Rouge", "aliases": ["Cancan"] }, { "text": "Parijs", "aliases": ["Heuvel"] }] },
+        { "prompt": "Wat weet je over zeehonden?", "answers": [{ "text": "Waddenzee", "aliases": ["Wadden"] }, { "text": "Pieterburen", "aliases": ["Zeehondencreche", "Opvang"] }, { "text": "Vis eten", "aliases": ["Vis"] }, { "text": "Huilers", "aliases": ["Pups", "Jongen"] }] },
+        { "prompt": "Wat weet je over flamenco?", "answers": [{ "text": "Spanje", "aliases": ["Andalusie", "Sevilla"] }, { "text": "Dansen", "aliases": ["Dans", "Stampen"] }, { "text": "Gitaar", "aliases": ["Spaanse gitaar"] }, { "text": "Castagnetten", "aliases": ["Handklappen", "Rode jurk"] }] },
+        { "prompt": "Wat weet je over sterren?", "answers": [{ "text": "Sterrenbeelden", "aliases": ["Grote Beer", "Orion"] }, { "text": "Poolster", "aliases": ["Noordster"] }, { "text": "Vallende ster", "aliases": ["Wens doen"] }, { "text": "De zon is een ster", "aliases": ["Zon", "Lichtjaren"] }] },
+        { "prompt": "Wat weet je over festivals?", "answers": [{ "text": "Lowlands", "aliases": ["Pinkpop", "Glastonbury"] }, { "text": "Tent", "aliases": ["Kamperen", "Camping"] }, { "text": "Modder", "aliases": ["Regen", "Laarzen"] }, { "text": "Muziek", "aliases": ["Bands", "Podium"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Waarmee trek je de klitten uit je haar?", "difficulty": "easy", "answers": [{ "text": "Een kam", "aliases": ["Kam", "Borstel", "Haarborstel"] }] },
+        { "prompt": "Welke dag komt na woensdag?", "difficulty": "easy", "answers": [{ "text": "Donderdag" }] },
+        { "prompt": "Hoe noemen we het water dat uit de wolken valt?", "difficulty": "easy", "answers": [{ "text": "Regen" }] },
+        { "prompt": "Welk vervoermiddel vliegt met vleugels door de lucht?", "difficulty": "easy", "answers": [{ "text": "Een vliegtuig", "aliases": ["Vliegtuig"] }] },
+        { "prompt": "Hoe heet het gebouw waar je boeken kunt lenen?", "difficulty": "easy", "answers": [{ "text": "De bibliotheek", "aliases": ["Bibliotheek", "Bieb"] }] },
+        { "prompt": "Welke Zwitsers-Franse architect ontwierp de Unite d'Habitation in Marseille?", "difficulty": "hard", "answers": [{ "text": "Le Corbusier", "aliases": ["Corbusier"] }] },
+        { "prompt": "Welke Italiaanse componist schreef een beroemd Stabat Mater en stierf op zijn zesentwintigste?", "difficulty": "hard", "answers": [{ "text": "Giovanni Battista Pergolesi", "aliases": ["Pergolesi"] }] },
+        { "prompt": "Welk giftig element heeft het scheikundige symbool Tl?", "difficulty": "hard", "answers": [{ "text": "Thallium" }] },
+        { "prompt": "Welke rivier stroomt door Hanoi?", "difficulty": "hard", "answers": [{ "text": "De Rode Rivier", "aliases": ["Rode Rivier", "Song Hong"] }] },
+        { "prompt": "Voor welke farao werd in Saqqara de eerste trappenpiramide gebouwd?", "difficulty": "hard", "answers": [{ "text": "Djoser", "aliases": ["Zoser"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Abu, het maatje van Aladdin?", "answers": [{ "text": "Een aap", "aliases": ["Aap", "Aapje"] }] },
+        { "prompt": "In welke Duitse stad staat de stadspoort Holstentor?", "answers": [{ "text": "Lubeck" }] },
+        { "prompt": "Welke Engelse schrijver schreef Lord of the Flies?", "answers": [{ "text": "William Golding", "aliases": ["Golding"] }] },
+        { "prompt": "Hoe heet de zachte stoffen beer waarmee kinderen slapen?", "answers": [{ "text": "Een teddybeer", "aliases": ["Teddybeer", "Knuffelbeer", "Knuffel"] }] },
+        { "prompt": "Welke Amerikaanse staat heeft de bijnaam de Golden State?", "answers": [{ "text": "Californie", "aliases": ["California"] }] },
+        { "prompt": "Welke Britse natuurkundige woog als eerste de aarde met een torsiebalans?", "answers": [{ "text": "Henry Cavendish", "aliases": ["Cavendish"] }] },
+        { "prompt": "Hoe heet het rekenteken + ?", "answers": [{ "text": "Plus", "aliases": ["Plusteken"] }] },
+        { "prompt": "Welke Amerikaanse zanger en pianist scoorde met Uptown Girl?", "answers": [{ "text": "Billy Joel", "aliases": ["Joel"] }] },
+        { "prompt": "Welke Franse schrijver bedacht met zijn Essais het essay?", "answers": [{ "text": "Michel de Montaigne", "aliases": ["Montaigne"] }] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w11",
+  "title": "Weekly quiz 11 2027",
+  "description": "The weekly quiz of Wednesday 17 March 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the second largest city in the Republic of Ireland?", "category": "Geography", "answers": [{ "text": "Cork" }] },
+        { "prompt": "What shape is a DNA molecule?", "category": "Science", "answers": [{ "text": "A double helix", "aliases": ["Double helix", "Spiral staircase"] }] },
+        { "prompt": "Which saint is said to have brought Christianity to Ireland?", "category": "History", "answers": [{ "text": "Saint Patrick", "aliases": ["Patrick", "St Patrick"] }] },
+        { "prompt": "Which Dutch athlete won the Olympic marathon in Paris in 2024?", "category": "Sport", "answers": [{ "text": "Sifan Hassan", "aliases": ["Hassan"] }] },
+        { "prompt": "Which Irish actor played the title role in Oppenheimer?", "category": "Film", "answers": [{ "text": "Cillian Murphy", "aliases": ["Murphy"] }] },
+        { "prompt": "Which Irish boy band had a hit with Flying Without Wings in 1999?", "category": "Music", "answers": [{ "text": "Westlife" }] },
+        { "prompt": "What is the castle at the mouth of the Vecht where the poet P.C. Hooft lived called?", "category": "The Netherlands", "answers": [{ "text": "Muiderslot", "aliases": ["Muiden Castle"] }] },
+        { "prompt": "Which Dublin-born painter made a famous series of screaming popes?", "category": "Art", "answers": [{ "text": "Francis Bacon", "aliases": ["Bacon"] }] },
+        { "prompt": "What is the original Celtic language of Ireland called?", "category": "Language", "answers": [{ "text": "Irish", "aliases": ["Irish Gaelic", "Gaelic"] }] },
+        { "prompt": "What is the Irish stew of lamb, potatoes and onions called?", "category": "Food", "answers": [{ "text": "Irish stew" }] },
+        { "prompt": "Which technology lets you pay contactlessly by holding your card against the terminal?", "category": "Technology", "answers": [{ "text": "NFC", "aliases": ["Near Field Communication"] }] },
+        { "prompt": "Which little plant with three leaves is the symbol of Ireland?", "category": "Nature", "answers": [{ "text": "The shamrock", "aliases": ["Shamrock", "Clover"] }] },
+        { "prompt": "What is the island group off the west coast of Scotland called?", "category": "Geography", "answers": [{ "text": "The Hebrides", "aliases": ["Hebrides"] }] },
+        { "prompt": "Which disaster struck Ireland between 1845 and 1849, killing a million people?", "category": "History", "answers": [{ "text": "The Great Famine", "aliases": ["Potato famine", "Famine"] }] },
+        { "prompt": "What is the effect that makes a straw in a glass of water look bent called?", "category": "Science", "answers": [{ "text": "Refraction" }] },
+        { "prompt": "Which Canadian singer had a hit with Ironic in 1996?", "category": "Music", "answers": [{ "text": "Alanis Morissette", "aliases": ["Morissette"] }] },
+        { "prompt": "Which Pixar film is set in Mexico around the Day of the Dead?", "category": "Film", "answers": [{ "text": "Coco" }] },
+        { "prompt": "Which fish is usually used for British fish and chips?", "category": "Food", "answers": [{ "text": "Cod", "aliases": ["Haddock"] }] },
+        { "prompt": "Which American company makes the chips much artificial intelligence runs on and became one of the most valuable companies in the world?", "category": "Technology", "answers": [{ "text": "Nvidia" }] },
+        { "prompt": "Which Greek word for victory is also the name of a sports brand?", "category": "Language", "answers": [{ "text": "Nike" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Ireland?", "options": [{ "text": "Galway", "correct": true }, { "text": "Cardiff" }, { "text": "Glasgow" }, { "text": "Liverpool" }] },
+        { "prompt": "Which animal, according to legend, has not been found in Ireland since Saint Patrick?", "options": [{ "text": "The snake", "correct": true }, { "text": "The fox" }, { "text": "The badger" }, { "text": "The deer" }] },
+        { "prompt": "Which Irish writer wrote Normal People?", "options": [{ "text": "Sally Rooney", "correct": true }, { "text": "Anne Enright" }, { "text": "Edna O'Brien" }, { "text": "Maeve Binchy" }] },
+        { "prompt": "Which country has a harp as its national symbol?", "options": [{ "text": "Ireland", "correct": true }, { "text": "Scotland" }, { "text": "Wales" }, { "text": "Iceland" }] },
+        { "prompt": "Which of these blood cells has no nucleus?", "options": [{ "text": "The red blood cell", "correct": true }, { "text": "The white blood cell" }, { "text": "The lymphocyte" }, { "text": "The stem cell" }] },
+        { "prompt": "Which British prime minister signed the Good Friday Agreement on Northern Ireland in 1998?", "options": [{ "text": "Tony Blair", "correct": true }, { "text": "John Major" }, { "text": "Gordon Brown" }, { "text": "Margaret Thatcher" }] },
+        { "prompt": "Which of these cliffs are in Ireland?", "options": [{ "text": "The Cliffs of Moher", "correct": true }, { "text": "The White Cliffs of Dover" }, { "text": "Preikestolen" }, { "text": "The cliffs of Etretat" }] },
+        { "prompt": "Which of these birds is a gull?", "options": [{ "text": "The black-headed gull", "correct": true }, { "text": "The grebe" }, { "text": "The lapwing" }, { "text": "The crow" }] },
+        { "prompt": "In which 2008 film does Liam Neeson rescue his kidnapped daughter in Paris?", "options": [{ "text": "Taken", "correct": true }, { "text": "Non-Stop" }, { "text": "The Grey" }, { "text": "Unknown" }] },
+        { "prompt": "Which fast Irish ball game is played with a wooden stick?", "options": [{ "text": "Hurling", "correct": true }, { "text": "Lacrosse" }, { "text": "Curling" }, { "text": "Polo" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high are the Cliffs of Moher at their highest point?", "answer": 214, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Shannon, the longest river in Ireland?", "answer": 360, "unit": "kilometres" },
+        { "prompt": "About how many million people live in the Republic of Ireland?", "answer": 5.3, "unit": "million" },
+        { "prompt": "How old was Oscar Wilde when he died?", "answer": 46, "unit": "years" },
+        { "prompt": "How many kilometres is it as the crow flies from Amsterdam to Dublin?", "answer": 750, "unit": "kilometres" },
+        { "prompt": "How many degrees does the earth turn in four hours?", "answer": 60, "unit": "degrees" },
+        { "prompt": "What is the maximum distance in metres between the try lines of a rugby pitch?", "answer": 100, "unit": "metres" },
+        { "prompt": "In which year did Ireland join the European Community?", "answer": 1973 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Shrek",
+        "Marathon runner",
+        "Rattle",
+        "Towel",
+        "Maple syrup",
+        "Greengrocer",
+        "Baseball",
+        "Tadpole",
+        "Madagascar",
+        "Big Bird",
+        "Plum",
+        "Table Mountain",
+        "Vine",
+        "Magic potion",
+        "Hide and seek",
+        "Kayak",
+        "Tug of war",
+        "David Bowie",
+        "Buzz Lightyear",
+        "Recorder",
+        "Babysitter",
+        "Kung Fu Panda",
+        "Jousting",
+        "Lecture hall",
+        "Easel",
+        "Broccoli",
+        "Make-up artist",
+        "Magellan",
+        "Knighthood",
+        "Hashtag",
+        "Hay fever",
+        "Cooker hood",
+        "Regatta",
+        "Twins",
+        "Turkish delight",
+        "Letter scale",
+        "Market gardener",
+        "Rock and roll",
+        "Tierra del Fuego",
+        "Hazelnut"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Saint Patrick's Day?", "answers": [{ "text": "Green", "aliases": ["Everything green", "Green beer"] }, { "text": "Ireland", "aliases": ["Irish", "Dublin"] }, { "text": "Shamrock", "aliases": ["Clover"] }, { "text": "Parade", "aliases": ["Procession", "Party"] }] },
+        { "prompt": "What do you know about Dublin?", "answers": [{ "text": "Capital of Ireland", "aliases": ["Ireland"] }, { "text": "Temple Bar", "aliases": ["Pubs"] }, { "text": "Trinity College", "aliases": ["Book of Kells"] }, { "text": "The Liffey", "aliases": ["Liffey", "River"] }] },
+        { "prompt": "What do you know about leprechauns?", "answers": [{ "text": "Pot of gold", "aliases": ["Gold"] }, { "text": "Green", "aliases": ["Green suit", "Green hat"] }, { "text": "Rainbow", "aliases": ["End of the rainbow"] }, { "text": "Shoemaker", "aliases": ["Little man", "Fairy"] }] },
+        { "prompt": "What do you know about whisky?", "answers": [{ "text": "Scotland", "aliases": ["Scotch"] }, { "text": "Ireland", "aliases": ["Irish whiskey"] }, { "text": "Oak casks", "aliases": ["Casks", "Ageing"] }, { "text": "Barley", "aliases": ["Malt", "Grain"] }] },
+        { "prompt": "What do you know about U2?", "answers": [{ "text": "Bono", "aliases": ["The Edge"] }, { "text": "Ireland", "aliases": ["Dublin"] }, { "text": "With or Without You", "aliases": ["One", "Sunday Bloody Sunday"] }, { "text": "Sunglasses", "aliases": ["Bono's sunglasses"] }] },
+        { "prompt": "What do you know about sheep?", "answers": [{ "text": "Wool", "aliases": ["Shearing"] }, { "text": "Bleating", "aliases": ["Baa"] }, { "text": "Lambs", "aliases": ["Lamb"] }, { "text": "Shepherd", "aliases": ["Sheepdog", "Flock"] }] },
+        { "prompt": "What do you know about the Dutch Golden Age?", "answers": [{ "text": "Rembrandt", "aliases": ["Vermeer", "Frans Hals"] }, { "text": "Dutch East India Company", "aliases": ["VOC", "Trade", "Ships"] }, { "text": "Canal ring", "aliases": ["Amsterdam", "Canal houses"] }, { "text": "Seventeenth century", "aliases": ["1600s", "Republic"] }] },
+        { "prompt": "What do you know about Northern Ireland?", "answers": [{ "text": "Belfast", "aliases": ["Capital"] }, { "text": "United Kingdom", "aliases": ["British"] }, { "text": "The Troubles", "aliases": ["Conflict", "IRA"] }, { "text": "Giant's Causeway", "aliases": ["Game of Thrones", "Basalt columns"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is a young cat called?", "difficulty": "easy", "answers": [{ "text": "A kitten", "aliases": ["Kitten"] }] },
+        { "prompt": "Which animal says quack?", "difficulty": "easy", "answers": [{ "text": "The duck", "aliases": ["Duck"] }] },
+        { "prompt": "What do you take with you to see your way in the dark?", "difficulty": "easy", "answers": [{ "text": "A torch", "aliases": ["Torch", "Flashlight", "Lamp"] }] },
+        { "prompt": "What is the person who delivers the letters every day called?", "difficulty": "easy", "answers": [{ "text": "The postman", "aliases": ["Postman", "Postwoman", "Postie"] }] },
+        { "prompt": "What do you do with a pair of scissors?", "difficulty": "easy", "answers": [{ "text": "Cut", "aliases": ["Cutting"] }] },
+        { "prompt": "Which Irish playwright wrote Pygmalion, on which My Fair Lady is based?", "difficulty": "hard", "answers": [{ "text": "George Bernard Shaw", "aliases": ["Shaw", "Bernard Shaw"] }] },
+        { "prompt": "What is the ancient Irish script of notches along the edge of stones called?", "difficulty": "hard", "answers": [{ "text": "Ogham", "aliases": ["Ogam"] }] },
+        { "prompt": "Which Roman numeral stands for five hundred?", "difficulty": "hard", "answers": [{ "text": "D" }] },
+        { "prompt": "What is the strait between Northern Ireland and Scotland called?", "difficulty": "hard", "answers": [{ "text": "The North Channel", "aliases": ["North Channel"] }] },
+        { "prompt": "Which Irish freedom fighter was shot dead in an ambush in 1922?", "difficulty": "hard", "answers": [{ "text": "Michael Collins", "aliases": ["Collins"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Rocket in Guardians of the Galaxy?", "answers": [{ "text": "A raccoon", "aliases": ["Raccoon"] }] },
+        { "prompt": "In which Northern Irish city was the Titanic built?", "answers": [{ "text": "Belfast" }] },
+        { "prompt": "Which Irish writer wrote The Third Policeman under a pen name?", "answers": [{ "text": "Flann O'Brien", "aliases": ["O'Brien", "Brian O'Nolan"] }] },
+        { "prompt": "What colour is the middle band of the Irish flag?", "answers": [{ "text": "White" }] },
+        { "prompt": "Which Irish beer has a harp as its logo?", "answers": [{ "text": "Guinness" }] },
+        { "prompt": "Which Irish physicist gave his name to the law about the pressure and volume of a gas?", "answers": [{ "text": "Robert Boyle", "aliases": ["Boyle"] }] },
+        { "prompt": "Which toy runs on rails through your room?", "answers": [{ "text": "A toy train", "aliases": ["Toy train", "Train set", "Model railway"] }] },
+        { "prompt": "Which Irish singer had a hit with Nothing Compares 2 U in 1990?", "answers": [{ "text": "Sinead O'Connor", "aliases": ["O'Connor"] }] },
+        { "prompt": "Which Irish philosopher and bishop argued that to exist is to be perceived?", "answers": [{ "text": "George Berkeley", "aliases": ["Berkeley"] }] }
+      ]
+    }
+  ]
+}

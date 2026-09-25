@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w9",
+  "title": "Weekly quiz 9 2027",
+  "description": "The weekly quiz of Wednesday 3 March 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of the Australian state of Western Australia?", "category": "Geography", "answers": [{ "text": "Perth" }] },
+        { "prompt": "What is the supercontinent in which all the land masses were joined together about three hundred million years ago called?", "category": "Science", "answers": [{ "text": "Pangaea", "aliases": ["Pangea"] }] },
+        { "prompt": "Which South African archbishop won the Nobel Peace Prize in 1984?", "category": "History", "answers": [{ "text": "Desmond Tutu", "aliases": ["Tutu"] }] },
+        { "prompt": "Which Dutchman became the first Dutch winner of the Tour de France, in 1968?", "category": "Sport", "answers": [{ "text": "Jan Janssen", "aliases": ["Janssen"] }] },
+        { "prompt": "In which film does Jim Carrey discover that his whole life is a TV show?", "category": "Film", "answers": [{ "text": "The Truman Show", "aliases": ["Truman Show"] }] },
+        { "prompt": "Which British singer had a hit with Space Oddity about Major Tom in 1969?", "category": "Music", "answers": [{ "text": "David Bowie", "aliases": ["Bowie"] }] },
+        { "prompt": "In which town is Het Loo Palace?", "category": "The Netherlands", "answers": [{ "text": "Apeldoorn" }] },
+        { "prompt": "Which French artist made posters and paintings of the dancers at the Moulin Rouge?", "category": "Art", "answers": [{ "text": "Henri de Toulouse-Lautrec", "aliases": ["Toulouse-Lautrec", "Lautrec"] }] },
+        { "prompt": "What is the past tense of run?", "category": "Language", "answers": [{ "text": "Ran" }] },
+        { "prompt": "What are the Japanese prawns and vegetables in a light fried batter called?", "category": "Food", "answers": [{ "text": "Tempura" }] },
+        { "prompt": "On which Dutch website do people sell their second-hand things?", "category": "Technology", "answers": [{ "text": "Marktplaats" }] },
+        { "prompt": "What is the small toothed whale that lives in the North Sea called?", "category": "Nature", "answers": [{ "text": "The harbour porpoise", "aliases": ["Porpoise", "Harbour porpoise"] }] },
+        { "prompt": "What is the northern part of the Baltic Sea between Sweden and Finland called?", "category": "Geography", "answers": [{ "text": "The Gulf of Bothnia", "aliases": ["Gulf of Bothnia"] }] },
+        { "prompt": "Which Spanish dictator ruled from 1939 until his death in 1975?", "category": "History", "answers": [{ "text": "Francisco Franco", "aliases": ["Franco"] }] },
+        { "prompt": "What is a lump of ice from space that grows a long tail near the sun called?", "category": "Science", "answers": [{ "text": "A comet", "aliases": ["Comet"] }] },
+        { "prompt": "Which singer from Brabant had a hit with Het is een nacht?", "category": "Music", "answers": [{ "text": "Guus Meeuwis", "aliases": ["Meeuwis"] }] },
+        { "prompt": "Who gives Snow White the poisoned apple in the Disney film?", "category": "Film", "answers": [{ "text": "The Evil Queen", "aliases": ["Evil Queen", "The witch", "Stepmother"] }] },
+        { "prompt": "What is the Indian tea with milk and spices called?", "category": "Food", "answers": [{ "text": "Chai", "aliases": ["Masala chai"] }] },
+        { "prompt": "Which Finnish company was the largest maker of mobile phones around the year two thousand?", "category": "Technology", "answers": [{ "text": "Nokia" }] },
+        { "prompt": "What is the punctuation mark made of a full stop above a comma called?", "category": "Language", "answers": [{ "text": "The semicolon", "aliases": ["Semicolon"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Croatia?", "options": [{ "text": "Split", "correct": true }, { "text": "Trieste" }, { "text": "Ljubljana" }, { "text": "Sarajevo" }] },
+        { "prompt": "Which of these animals comes from South America?", "options": [{ "text": "The llama", "correct": true }, { "text": "The camel" }, { "text": "The yak" }, { "text": "The moose" }] },
+        { "prompt": "Which writer wrote the Dutch children's book Winter in Wartime?", "options": [{ "text": "Jan Terlouw", "correct": true }, { "text": "Thea Beckman" }, { "text": "Harry Mulisch" }, { "text": "Anne de Vries" }] },
+        { "prompt": "Which of these countries is in West Africa?", "options": [{ "text": "Senegal", "correct": true }, { "text": "Kenya" }, { "text": "Ethiopia" }, { "text": "Somalia" }] },
+        { "prompt": "Which of these is not part of the ear?", "options": [{ "text": "The cornea", "correct": true }, { "text": "The eardrum" }, { "text": "The cochlea" }, { "text": "The ear canal" }] },
+        { "prompt": "Near which Belgian town was poison gas first used in the First World War?", "options": [{ "text": "Ypres", "correct": true }, { "text": "Bruges" }, { "text": "Liege" }, { "text": "Namur" }] },
+        { "prompt": "Which of these lakes lies on the border of Peru and Bolivia?", "options": [{ "text": "Lake Titicaca", "correct": true }, { "text": "Lake Victoria" }, { "text": "Lake Malawi" }, { "text": "Lake Baikal" }] },
+        { "prompt": "Which of these birds of prey hunts mainly at night?", "options": [{ "text": "The barn owl", "correct": true }, { "text": "The buzzard" }, { "text": "The hawk" }, { "text": "The falcon" }] },
+        { "prompt": "In which film does Sandra Bullock as an astronaut try to get back to earth on her own?", "options": [{ "text": "Gravity", "correct": true }, { "text": "Interstellar" }, { "text": "Apollo 13" }, { "text": "The Martian" }] },
+        { "prompt": "In which sport do competitors drive the Dakar Rally?", "options": [{ "text": "Rally driving", "correct": true }, { "text": "Cycling" }, { "text": "Horse riding" }, { "text": "Sailing" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Shanghai Tower?", "answer": 632, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Loire?", "answer": 1006, "unit": "kilometres" },
+        { "prompt": "How many stars are there on the flag of China?", "answer": 5, "unit": "stars" },
+        { "prompt": "How old was John Lennon when he died?", "answer": 40, "unit": "years" },
+        { "prompt": "About how many kilos does an adult king penguin weigh?", "answer": 15, "unit": "kilos" },
+        { "prompt": "How many squares are there on a Game of the Goose board?", "answer": 63, "unit": "squares" },
+        { "prompt": "How many metres apart are the bases in baseball?", "answer": 27.4, "unit": "metres" },
+        { "prompt": "In which year was the Maeslant storm surge barrier put into service?", "answer": 1997 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Chocolate spread",
+        "Bartender",
+        "Flamingo",
+        "Hockey stick",
+        "Coat rack",
+        "Hippie",
+        "Pepperoni",
+        "Stretching",
+        "Computer virus",
+        "The Voice",
+        "Walnut",
+        "Stylist",
+        "Livestock vet",
+        "Gooseberry",
+        "Iron Man",
+        "Starting pistol",
+        "Pictionary",
+        "Cherry blossom",
+        "Hacker",
+        "Ladle",
+        "Waltz",
+        "Nectarine",
+        "Eraser",
+        "Blackjack",
+        "Gorilla",
+        "Christ the Redeemer",
+        "Crocus",
+        "Dishwasher",
+        "Remote control",
+        "Retirement",
+        "Golden Gate Bridge",
+        "Contact lens",
+        "Troubadour",
+        "Manatee",
+        "Egg timer",
+        "Bubble wand",
+        "Film star",
+        "Photocopier",
+        "Wrinkles",
+        "Doughnut stall"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about South Africa?", "answers": [{ "text": "Nelson Mandela", "aliases": ["Mandela"] }, { "text": "Cape Town", "aliases": ["Table Mountain", "Johannesburg"] }, { "text": "Safari", "aliases": ["Kruger Park", "Big Five"] }, { "text": "Apartheid", "aliases": ["Segregation"] }] },
+        { "prompt": "What do you know about the eighties?", "answers": [{ "text": "Walkman", "aliases": ["Cassette"] }, { "text": "Madonna", "aliases": ["Michael Jackson"] }, { "text": "Pac-Man", "aliases": ["Games console", "Rubik's Cube"] }, { "text": "Shoulder pads", "aliases": ["Perm", "Mullet"] }] },
+        { "prompt": "What do you know about the Veluwe?", "answers": [{ "text": "Hoge Veluwe", "aliases": ["National park"] }, { "text": "Wild boar", "aliases": ["Deer", "Wolves"] }, { "text": "Woods and heath", "aliases": ["Heath", "Forest"] }, { "text": "Gelderland", "aliases": ["Apeldoorn", "Arnhem"] }] },
+        { "prompt": "What do you know about Montmartre?", "answers": [{ "text": "Sacre-Coeur", "aliases": ["White church"] }, { "text": "Artists", "aliases": ["Painters", "Picasso"] }, { "text": "Moulin Rouge", "aliases": ["Cancan"] }, { "text": "Paris", "aliases": ["Hill"] }] },
+        { "prompt": "What do you know about seals?", "answers": [{ "text": "Wadden Sea", "aliases": ["Wadden"] }, { "text": "Seal sanctuary", "aliases": ["Pieterburen", "Rescue"] }, { "text": "Eating fish", "aliases": ["Fish"] }, { "text": "Pups", "aliases": ["Seal pups", "Young"] }] },
+        { "prompt": "What do you know about flamenco?", "answers": [{ "text": "Spain", "aliases": ["Andalusia", "Seville"] }, { "text": "Dancing", "aliases": ["Dance", "Stamping"] }, { "text": "Guitar", "aliases": ["Spanish guitar"] }, { "text": "Castanets", "aliases": ["Hand clapping", "Red dress"] }] },
+        { "prompt": "What do you know about stars?", "answers": [{ "text": "Constellations", "aliases": ["Great Bear", "Orion"] }, { "text": "Pole Star", "aliases": ["North Star"] }, { "text": "Shooting star", "aliases": ["Making a wish"] }, { "text": "The sun is a star", "aliases": ["Sun", "Light years"] }] },
+        { "prompt": "What do you know about music festivals?", "answers": [{ "text": "Glastonbury", "aliases": ["Lowlands", "Pinkpop"] }, { "text": "Tent", "aliases": ["Camping"] }, { "text": "Mud", "aliases": ["Rain", "Wellies"] }, { "text": "Music", "aliases": ["Bands", "Stage"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you use to get the tangles out of your hair?", "difficulty": "easy", "answers": [{ "text": "A comb", "aliases": ["Comb", "Brush", "Hairbrush"] }] },
+        { "prompt": "Which day comes after Wednesday?", "difficulty": "easy", "answers": [{ "text": "Thursday" }] },
+        { "prompt": "What do we call the water that falls from the clouds?", "difficulty": "easy", "answers": [{ "text": "Rain" }] },
+        { "prompt": "Which vehicle flies through the air on wings?", "difficulty": "easy", "answers": [{ "text": "An aeroplane", "aliases": ["Aeroplane", "Plane", "Airplane"] }] },
+        { "prompt": "What is the building where you can borrow books called?", "difficulty": "easy", "answers": [{ "text": "The library", "aliases": ["Library"] }] },
+        { "prompt": "Which Swiss-French architect designed the Unite d'Habitation in Marseille?", "difficulty": "hard", "answers": [{ "text": "Le Corbusier", "aliases": ["Corbusier"] }] },
+        { "prompt": "Which Italian composer wrote a famous Stabat Mater and died at twenty-six?", "difficulty": "hard", "answers": [{ "text": "Giovanni Battista Pergolesi", "aliases": ["Pergolesi"] }] },
+        { "prompt": "Which poisonous element has the chemical symbol Tl?", "difficulty": "hard", "answers": [{ "text": "Thallium" }] },
+        { "prompt": "Which river flows through Hanoi?", "difficulty": "hard", "answers": [{ "text": "The Red River", "aliases": ["Red River"] }] },
+        { "prompt": "For which pharaoh was the first step pyramid built at Saqqara?", "difficulty": "hard", "answers": [{ "text": "Djoser", "aliases": ["Zoser"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Abu, Aladdin's sidekick?", "answers": [{ "text": "A monkey", "aliases": ["Monkey"] }] },
+        { "prompt": "In which German city is the Holstentor city gate?", "answers": [{ "text": "Lubeck" }] },
+        { "prompt": "Which English writer wrote Lord of the Flies?", "answers": [{ "text": "William Golding", "aliases": ["Golding"] }] },
+        { "prompt": "What is the soft cuddly bear children sleep with called?", "answers": [{ "text": "A teddy bear", "aliases": ["Teddy bear", "Teddy"] }] },
+        { "prompt": "Which American state is nicknamed the Golden State?", "answers": [{ "text": "California" }] },
+        { "prompt": "Which British physicist was the first to weigh the earth with a torsion balance?", "answers": [{ "text": "Henry Cavendish", "aliases": ["Cavendish"] }] },
+        { "prompt": "What is the maths sign + called?", "answers": [{ "text": "Plus", "aliases": ["Plus sign"] }] },
+        { "prompt": "Which American singer and pianist had a hit with Uptown Girl?", "answers": [{ "text": "Billy Joel", "aliases": ["Joel"] }] },
+        { "prompt": "Which French writer invented the essay with his Essais?", "answers": [{ "text": "Michel de Montaigne", "aliases": ["Montaigne"] }] }
+      ]
+    }
+  ]
+}

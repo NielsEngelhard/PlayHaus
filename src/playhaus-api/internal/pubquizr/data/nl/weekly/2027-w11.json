@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w11",
+  "title": "Weekquiz 11 2027",
+  "description": "De wekelijkse quiz van woensdag 17 maart 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de op een na grootste stad van de Republiek Ierland?", "category": "Aardrijkskunde", "answers": [{ "text": "Cork" }] },
+        { "prompt": "Welke vorm heeft een DNA-molecuul?", "category": "Wetenschap", "answers": [{ "text": "Een dubbele helix", "aliases": ["Dubbele helix", "Wenteltrap", "Spiraal"] }] },
+        { "prompt": "Welke heilige bracht volgens de overlevering het christendom naar Ierland?", "category": "Geschiedenis", "answers": [{ "text": "Sint-Patrick", "aliases": ["Patrick", "Sint Patricius", "Saint Patrick"] }] },
+        { "prompt": "Welke Nederlandse atlete won in 2024 in Parijs de olympische marathon?", "category": "Sport", "answers": [{ "text": "Sifan Hassan", "aliases": ["Hassan"] }] },
+        { "prompt": "Welke Ierse acteur speelde de hoofdrol in Oppenheimer?", "category": "Film", "answers": [{ "text": "Cillian Murphy", "aliases": ["Murphy"] }] },
+        { "prompt": "Welke Ierse boyband scoorde in 1999 met Flying Without Wings?", "category": "Muziek", "answers": [{ "text": "Westlife" }] },
+        { "prompt": "Hoe heet het kasteel aan de monding van de Vecht waar P.C. Hooft woonde?", "category": "Nederland", "answers": [{ "text": "Het Muiderslot", "aliases": ["Muiderslot"] }] },
+        { "prompt": "Welke in Dublin geboren schilder maakte een beroemde reeks schreeuwende pausen?", "category": "Kunst", "answers": [{ "text": "Francis Bacon", "aliases": ["Bacon"] }] },
+        { "prompt": "Hoe heet de oorspronkelijke Keltische taal van Ierland?", "category": "Taal", "answers": [{ "text": "Iers", "aliases": ["Iers-Gaelisch", "Gaelisch"] }] },
+        { "prompt": "Hoe heet de Ierse stoofpot van lamsvlees, aardappelen en ui?", "category": "Eten", "answers": [{ "text": "Irish stew", "aliases": ["Ierse stoofpot"] }] },
+        { "prompt": "Welke techniek laat je contactloos betalen door je pas tegen de automaat te houden?", "category": "Techniek", "answers": [{ "text": "NFC", "aliases": ["Near Field Communication"] }] },
+        { "prompt": "Welk plantje met drie blaadjes is het symbool van Ierland?", "category": "Natuur", "answers": [{ "text": "De klaver", "aliases": ["Klaver", "Klavertje", "Shamrock"] }] },
+        { "prompt": "Hoe heet de eilandengroep voor de westkust van Schotland?", "category": "Aardrijkskunde", "answers": [{ "text": "De Hebriden", "aliases": ["Hebriden"] }] },
+        { "prompt": "Welke ramp trof Ierland tussen 1845 en 1849, waardoor een miljoen mensen stierven?", "category": "Geschiedenis", "answers": [{ "text": "De grote hongersnood", "aliases": ["Aardappelhongersnood", "Hongersnood"] }] },
+        { "prompt": "Hoe heet het verschijnsel waardoor een rietje in een glas water geknakt lijkt?", "category": "Wetenschap", "answers": [{ "text": "Breking", "aliases": ["Lichtbreking", "Refractie"] }] },
+        { "prompt": "Welke Canadese zangeres scoorde in 1996 met Ironic?", "category": "Muziek", "answers": [{ "text": "Alanis Morissette", "aliases": ["Morissette"] }] },
+        { "prompt": "Welke Pixar-film speelt zich af in Mexico rond de Dag van de Doden?", "category": "Film", "answers": [{ "text": "Coco" }] },
+        { "prompt": "Welke vis wordt meestal gebruikt voor Engelse fish and chips?", "category": "Eten", "answers": [{ "text": "Kabeljauw", "aliases": ["De kabeljauw", "Schelvis"] }] },
+        { "prompt": "Welk Amerikaans bedrijf maakt de chips waarop veel kunstmatige intelligentie draait en werd daarmee een van de waardevolste bedrijven ter wereld?", "category": "Techniek", "answers": [{ "text": "Nvidia" }] },
+        { "prompt": "Welk Grieks woord voor overwinning is ook de naam van een sportmerk?", "category": "Taal", "answers": [{ "text": "Nike" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Ierland?", "options": [{ "text": "Galway", "correct": true }, { "text": "Cardiff" }, { "text": "Glasgow" }, { "text": "Liverpool" }] },
+        { "prompt": "Welk dier komt volgens de legende sinds Sint-Patrick in Ierland niet meer voor?", "options": [{ "text": "De slang", "correct": true }, { "text": "De vos" }, { "text": "De das" }, { "text": "Het hert" }] },
+        { "prompt": "Welke Ierse schrijfster schreef Normal People?", "options": [{ "text": "Sally Rooney", "correct": true }, { "text": "Anne Enright" }, { "text": "Edna O'Brien" }, { "text": "Maeve Binchy" }] },
+        { "prompt": "Welk land heeft een harp als nationaal symbool?", "options": [{ "text": "Ierland", "correct": true }, { "text": "Schotland" }, { "text": "Wales" }, { "text": "IJsland" }] },
+        { "prompt": "Welke van deze bloedcellen heeft geen celkern?", "options": [{ "text": "De rode bloedcel", "correct": true }, { "text": "De witte bloedcel" }, { "text": "De lymfocyt" }, { "text": "De stamcel" }] },
+        { "prompt": "Welke Britse premier sloot in 1998 het Goede Vrijdagakkoord over Noord-Ierland?", "options": [{ "text": "Tony Blair", "correct": true }, { "text": "John Major" }, { "text": "Gordon Brown" }, { "text": "Margaret Thatcher" }] },
+        { "prompt": "Welke van deze kliffen liggen in Ierland?", "options": [{ "text": "De Cliffs of Moher", "correct": true }, { "text": "De krijtrotsen van Dover" }, { "text": "De Preikestolen" }, { "text": "De kliffen van Etretat" }] },
+        { "prompt": "Welke van deze vogels is een meeuw?", "options": [{ "text": "De kokmeeuw", "correct": true }, { "text": "De fuut" }, { "text": "De kievit" }, { "text": "De kraai" }] },
+        { "prompt": "In welke film uit 2008 redt Liam Neeson zijn ontvoerde dochter in Parijs?", "options": [{ "text": "Taken", "correct": true }, { "text": "Non-Stop" }, { "text": "The Grey" }, { "text": "Unknown" }] },
+        { "prompt": "Welke snelle Ierse balsport wordt met een houten stok gespeeld?", "options": [{ "text": "Hurling", "correct": true }, { "text": "Lacrosse" }, { "text": "Curling" }, { "text": "Polo" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog zijn de Cliffs of Moher op hun hoogste punt?", "answer": 214, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Shannon, de langste rivier van Ierland?", "answer": 360, "unit": "kilometer" },
+        { "prompt": "Hoeveel miljoen mensen wonen er ongeveer in de Republiek Ierland?", "answer": 5.3, "unit": "miljoen" },
+        { "prompt": "Hoe oud werd Oscar Wilde?", "answer": 46, "unit": "jaar" },
+        { "prompt": "Hoeveel kilometer is het in vogelvlucht van Amsterdam naar Dublin?", "answer": 750, "unit": "kilometer" },
+        { "prompt": "Hoeveel graden draait de aarde in vier uur?", "answer": 60, "unit": "graden" },
+        { "prompt": "Hoeveel meter liggen de doellijnen van een rugbyveld maximaal uit elkaar?", "answer": 100, "unit": "meter" },
+        { "prompt": "In welk jaar trad Ierland toe tot de Europese Gemeenschap?", "answer": 1973 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Shrek",
+        "Marathonloper",
+        "Rammelaar",
+        "Handdoek",
+        "Ahornsiroop",
+        "Groenteboer",
+        "Honkbal",
+        "Kikkervisje",
+        "Madagaskar",
+        "Pino",
+        "Pruim",
+        "Tafelberg",
+        "Liaan",
+        "Toverdrank",
+        "Verstoppertje",
+        "Kajak",
+        "Touwtrekken",
+        "David Bowie",
+        "Buzz Lightyear",
+        "Blokfluit",
+        "Oppas",
+        "Kung Fu Panda",
+        "Steekspel",
+        "Collegezaal",
+        "Schildersezel",
+        "Broccoli",
+        "Visagist",
+        "Magellaan",
+        "Ridderslag",
+        "Hashtag",
+        "Hooikoorts",
+        "Afzuigkap",
+        "Zeilwedstrijd",
+        "Tweeling",
+        "Turks fruit",
+        "Brievenweger",
+        "Tuinder",
+        "Rock-'n-roll",
+        "Vuurland",
+        "Hazelnoot"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Sint-Patricksdag?", "answers": [{ "text": "Groen", "aliases": ["Alles groen", "Groen bier"] }, { "text": "Ierland", "aliases": ["Iers", "Dublin"] }, { "text": "Klaver", "aliases": ["Klavertje", "Shamrock"] }, { "text": "Optocht", "aliases": ["Parade", "Feest"] }] },
+        { "prompt": "Wat weet je over Dublin?", "answers": [{ "text": "Hoofdstad van Ierland", "aliases": ["Ierland"] }, { "text": "Temple Bar", "aliases": ["Pubs", "Kroegen"] }, { "text": "Trinity College", "aliases": ["Book of Kells"] }, { "text": "De Liffey", "aliases": ["Liffey", "Rivier"] }] },
+        { "prompt": "Wat weet je over leprechauns?", "answers": [{ "text": "Pot met goud", "aliases": ["Goud"] }, { "text": "Groen", "aliases": ["Groen pak", "Groene hoed"] }, { "text": "Regenboog", "aliases": ["Einde van de regenboog"] }, { "text": "Schoenmaker", "aliases": ["Kabouter", "Klein mannetje"] }] },
+        { "prompt": "Wat weet je over whisky?", "answers": [{ "text": "Schotland", "aliases": ["Scotch"] }, { "text": "Ierland", "aliases": ["Irish whiskey"] }, { "text": "Eikenhouten vaten", "aliases": ["Vaten", "Rijpen"] }, { "text": "Gerst", "aliases": ["Mout", "Graan"] }] },
+        { "prompt": "Wat weet je over U2?", "answers": [{ "text": "Bono", "aliases": ["The Edge"] }, { "text": "Ierland", "aliases": ["Dublin"] }, { "text": "With or Without You", "aliases": ["One", "Sunday Bloody Sunday"] }, { "text": "Zonnebril", "aliases": ["Bono's zonnebril"] }] },
+        { "prompt": "Wat weet je over schapen?", "answers": [{ "text": "Wol", "aliases": ["Scheren"] }, { "text": "Blaten", "aliases": ["Meh", "Mee"] }, { "text": "Lammetjes", "aliases": ["Lam"] }, { "text": "Herder", "aliases": ["Herdershond", "Kudde"] }] },
+        { "prompt": "Wat weet je over de Gouden Eeuw?", "answers": [{ "text": "Rembrandt", "aliases": ["Vermeer", "Frans Hals"] }, { "text": "VOC", "aliases": ["Handel", "Schepen"] }, { "text": "Grachtengordel", "aliases": ["Amsterdam", "Grachtenpanden"] }, { "text": "Zeventiende eeuw", "aliases": ["1600", "Republiek"] }] },
+        { "prompt": "Wat weet je over Noord-Ierland?", "answers": [{ "text": "Belfast", "aliases": ["Hoofdstad"] }, { "text": "Verenigd Koninkrijk", "aliases": ["Brits"] }, { "text": "The Troubles", "aliases": ["Conflict", "IRA"] }, { "text": "Giant's Causeway", "aliases": ["Game of Thrones", "Basaltzuilen"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het jong van een kat?", "difficulty": "easy", "answers": [{ "text": "Een kitten", "aliases": ["Kitten", "Poesje", "Katje"] }] },
+        { "prompt": "Welk dier zegt kwak?", "difficulty": "easy", "answers": [{ "text": "De eend", "aliases": ["Eend"] }] },
+        { "prompt": "Wat neem je mee om in het donker de weg te zien?", "difficulty": "easy", "answers": [{ "text": "Een zaklamp", "aliases": ["Zaklamp", "Lamp", "Zaklantaarn"] }] },
+        { "prompt": "Hoe heet de persoon die elke dag de brieven bezorgt?", "difficulty": "easy", "answers": [{ "text": "De postbode", "aliases": ["Postbode"] }] },
+        { "prompt": "Wat doe je met een schaar?", "difficulty": "easy", "answers": [{ "text": "Knippen" }] },
+        { "prompt": "Welke Ierse toneelschrijver schreef Pygmalion, waarop My Fair Lady is gebaseerd?", "difficulty": "hard", "answers": [{ "text": "George Bernard Shaw", "aliases": ["Shaw", "Bernard Shaw"] }] },
+        { "prompt": "Hoe heet het oude Ierse schrift van streepjes op de rand van stenen?", "difficulty": "hard", "answers": [{ "text": "Ogham", "aliases": ["Ogam"] }] },
+        { "prompt": "Welk Romeins cijfer staat voor vijfhonderd?", "difficulty": "hard", "answers": [{ "text": "D" }] },
+        { "prompt": "Hoe heet de zeestraat tussen Noord-Ierland en Schotland?", "difficulty": "hard", "answers": [{ "text": "Het Noordkanaal", "aliases": ["Noordkanaal", "North Channel"] }] },
+        { "prompt": "Welke Ierse vrijheidsstrijder werd in 1922 bij een hinderlaag doodgeschoten?", "difficulty": "hard", "answers": [{ "text": "Michael Collins", "aliases": ["Collins"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Rocket in Guardians of the Galaxy?", "answers": [{ "text": "Een wasbeer", "aliases": ["Wasbeer"] }] },
+        { "prompt": "In welke Noord-Ierse stad werd de Titanic gebouwd?", "answers": [{ "text": "Belfast" }] },
+        { "prompt": "Onder welke schuilnaam schreef de Ier Brian O'Nolan De derde politieman?", "answers": [{ "text": "Flann O'Brien", "aliases": ["O'Brien", "Brian O'Nolan"] }] },
+        { "prompt": "Welke kleur heeft de middelste baan van de Ierse vlag?", "answers": [{ "text": "Wit" }] },
+        { "prompt": "Welk Iers bier heeft een harp als logo?", "answers": [{ "text": "Guinness" }] },
+        { "prompt": "Welke Ierse natuurkundige gaf zijn naam aan de wet over druk en volume van een gas?", "answers": [{ "text": "Robert Boyle", "aliases": ["Boyle"] }] },
+        { "prompt": "Welk speelgoed rijdt over rails door je kamer?", "answers": [{ "text": "Een treintje", "aliases": ["Treintje", "Speelgoedtrein", "Modeltrein"] }] },
+        { "prompt": "Welke Ierse zangeres scoorde in 1990 met Nothing Compares 2 U?", "answers": [{ "text": "Sinead O'Connor", "aliases": ["O'Connor"] }] },
+        { "prompt": "Welke Ierse filosoof en bisschop stelde dat bestaan waargenomen worden is?", "answers": [{ "text": "George Berkeley", "aliases": ["Berkeley"] }] }
+      ]
+    }
+  ]
+}
