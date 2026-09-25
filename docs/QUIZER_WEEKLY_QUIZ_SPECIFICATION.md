@@ -2,6 +2,8 @@
 - Weekly quizes should not have duplicate items;
 - Questions can never be too easy. E.g. "Which color is a carrot" or "How many minutes are there in an hour" are great examples of questions that are not fun, because they are way too easy.
 - The JSON format of a quiz is always the same. Look at the file "src\playhaus-api\internal\pubquizr\data\nl\weekly\2026-w1.json" for determining the correct JSON structure
+- Questions should be "timeless" and always relevant. Dont include questions that are about e.g. "last week" because if you play a quiz a week later, it should be playable
+- Never include questions that are about a time indicating "up untill now" like "How many people are currently on earth". If you play the quiz 2 years later it might have changed. If such a question occurs it should be formulated as "How many people were on earth in {some YEAR}" 
 
 # Round 1 Trivia
 - 20 trivia questions

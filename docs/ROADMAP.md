@@ -11,6 +11,6 @@
 # Voor v1
 - alle quizes genereren
 - nieuwe game
-- refactor user avatar naar 1 generiek component
 - quizer multi device afronden
 - quizer op tv testen
+- Refactor score system for the quizer game
