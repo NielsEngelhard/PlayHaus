@@ -3,7 +3,7 @@ import AppText from "@/components/text/AppText";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
 import { useEntrance } from "@/components/ui/useEntrance";
 import { usePressPop } from "@/components/ui/usePressPop";
-import { Brand, Spacing } from "@/constants/theme";
+import { Brand, FontSizes, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import { roundIntroToneFor, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -30,11 +30,13 @@ interface Props {
     finalists?: [Seat, Seat] | null
     // Who is reading the finale out, or null for every round but that one.
     quizmaster?: Seat | null
+    // Who opens the finale a star up, and null for every round but a finale played for stars.
+    bonusNote?: string | null
     onStart: () => void
 }
 
 // The screen that opens a round: which round this is, what it is called, and what the table is about to have to do.
-export default function RoundIntroScreen({ round, totalRounds, kind, brief, finalists, quizmaster, onStart }: Props) {
+export default function RoundIntroScreen({ round, totalRounds, kind, brief, finalists, quizmaster, bonusNote = null, onStart }: Props) {
     const t = useT();
     const styles = useStyles();
     const pop = usePressPop();
@@ -150,6 +152,12 @@ export default function RoundIntroScreen({ round, totalRounds, kind, brief, fina
                             {t('pubquizr.play.intro.quizmaster', { name: quizmaster.name })}
                         </AppText>
                     </View>
+                )}
+
+                {bonusNote !== null && (
+                    <AppText style={[styles.bonusNote, { color: tone.ink }]}>
+                        {bonusNote}
+                    </AppText>
                 )}
 
                 <AppText style={[styles.brief, { color: tone.muted }]}>
@@ -308,6 +316,13 @@ const useStyles = createThemedStyles(() => ({
     },
 
     // Muted where the name above it is full ink.
+    bonusNote: {
+        marginTop: Spacing.three,
+        maxWidth: 300,
+        fontSize: FontSizes.sm,
+        fontWeight: 800,
+        textAlign: 'center'
+    },
     brief: {
         marginTop: 14,
         maxWidth: 300,

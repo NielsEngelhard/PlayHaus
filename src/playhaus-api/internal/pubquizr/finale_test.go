@@ -62,19 +62,22 @@ func settleFinale(t *testing.T, store *verdictStore, correct bool) error {
 	return err
 }
 
-// One tally, and the finale pays a hundred onto it. There is no second column any more.
-func TestFinaleVerdictPaysTheRunningScore(t *testing.T) {
+// A table with a referee plays the finale for stars, and Score stays where round 6 left it.
+func TestFinaleVerdictPaysAStarAndLeavesTheScore(t *testing.T) {
 	store := &verdictStore{session: newFinaleSession(3, 1, 2, 0, 4)}
 
 	if err := settleFinale(t, store, true); err != nil {
 		t.Fatalf("RecordFinaleTurn: %v", err)
 	}
 
-	if got, want := store.session.PlayerAt(1).Score, FinalePoints; got != want {
-		t.Errorf("Score = %d, want %d", got, want)
+	if got, want := store.session.PlayerAt(1).Stars, FinaleStars; got != want {
+		t.Errorf("Stars = %d, want %d", got, want)
 	}
-	if got, want := FinalePoints, 100; got != want {
-		t.Errorf("FinalePoints = %d, want %d", got, want)
+	if got := store.session.PlayerAt(1).Score; got != 0 {
+		t.Errorf("Score = %d, want 0 -- a star is not a point", got)
+	}
+	if got, want := only(store.recorded.Players).Stars, FinaleStars; got != want {
+		t.Errorf("recorded Stars = %d, want %d", got, want)
 	}
 }
 
@@ -87,6 +90,9 @@ func TestFinaleVerdictScoresNothingWhenWrong(t *testing.T) {
 
 	if got := store.session.PlayerAt(1).Score; got != 0 {
 		t.Errorf("Score = %d, want 0", got)
+	}
+	if got := store.session.PlayerAt(1).Stars; got != 0 {
+		t.Errorf("Stars = %d, want 0", got)
 	}
 }
 
@@ -104,12 +110,12 @@ func TestFinaleKeepsTheSameQuizmasterAllRound(t *testing.T) {
 	}
 }
 
-// The rule the whole round hangs on: the question opens on whichever finalist is behind,
-// worked out again every question rather than swapped turn about.
+// The rule the whole round hangs on: the question opens on whichever finalist is behind --
+// on stars, then on points -- worked out again every question rather than swapped turn about.
 func TestFinaleOpensOnWhicheverFinalistIsBehind(t *testing.T) {
 	session := newFinaleSession(3, 1, 2, 0, 4)
 	session.Players[1].Score = 4 // seat 1
-	session.Players[2].Score = 7 // seat 2
+	session.Players[2].Score = 7 // seat 2, and so a bonus star up
 	session.HotSeat = session.FinaleOpener()
 
 	store := &verdictStore{session: session}
@@ -117,30 +123,38 @@ func TestFinaleOpensOnWhicheverFinalistIsBehind(t *testing.T) {
 		t.Fatalf("HotSeat = %d, want %d -- the finalist behind opens", got, want)
 	}
 
-	// Seat 1 takes it: 4 -> 104, which puts seat 2 behind.
+	// Seat 1 takes it: level on a star each, and still behind on points.
 	if err := settleFinale(t, store, true); err != nil {
 		t.Fatalf("question 1: %v", err)
 	}
+	if got, want := store.session.HotSeat, 1; got != want {
+		t.Errorf("HotSeat = %d, want %d -- level on stars, so points say who is behind", got, want)
+	}
+
+	// Seat 1 takes another: two stars to one, which puts seat 2 behind.
+	if err := settleFinale(t, store, true); err != nil {
+		t.Fatalf("question 2: %v", err)
+	}
 	if got, want := store.session.HotSeat, 2; got != want {
-		t.Errorf("HotSeat = %d, want %d -- the hundred changed who is behind", got, want)
+		t.Errorf("HotSeat = %d, want %d -- the star changed who is behind", got, want)
 	}
 
 	// Seat 2 misses it and so does seat 1, so nobody moves and seat 2 is still behind.
 	store.attempts = 0
 	if err := settleFinale(t, store, false); err != nil {
-		t.Fatalf("question 2, first go: %v", err)
+		t.Fatalf("question 3, first go: %v", err)
 	}
 	store.attempts = 1
 	if err := settleFinale(t, store, false); err != nil {
-		t.Fatalf("question 2, second go: %v", err)
+		t.Fatalf("question 3, second go: %v", err)
 	}
 	if got, want := store.session.HotSeat, 2; got != want {
 		t.Errorf("HotSeat = %d, want %d -- nobody scored, so nobody moved", got, want)
 	}
 }
 
-// A question the finalist in front of it misses is still worth its full hundred to the
-// other one. Said as one settled turn now -- the miss and the take together -- because
+// A question the finalist in front of it misses is still worth its star to the other
+// one. Said as one settled turn now -- the miss and the take together -- because
 // a question crossing to the rival is not a thing the server has to be told separately
 // any more than a round 1 question going round the table is.
 func TestFinaleWrongAnswerPassesToTheOtherFinalist(t *testing.T) {
@@ -158,11 +172,11 @@ func TestFinaleWrongAnswerPassesToTheOtherFinalist(t *testing.T) {
 		t.Fatalf("RecordFinaleTurn: %v", err)
 	}
 
-	if got, want := store.session.PlayerAt(2).Score, FinalePoints; got != want {
-		t.Errorf("Score = %d, want %d -- a passed question still pays", got, want)
+	if got, want := store.session.PlayerAt(2).Stars, FinaleStars; got != want {
+		t.Errorf("Stars = %d, want %d -- a passed question still pays", got, want)
 	}
-	if got := store.session.PlayerAt(1).Score; got != 0 {
-		t.Errorf("the finalist who missed it scored %d, want 0", got)
+	if got := store.session.PlayerAt(1).Stars; got != 0 {
+		t.Errorf("the finalist who missed it took %d stars, want 0", got)
 	}
 	if got, want := store.session.CurrentPosition, 1; got != want {
 		t.Errorf("CurrentPosition = %d, want %d", got, want)
@@ -193,7 +207,7 @@ func TestFinaleTurnThatStopsHalfWayIsRefused(t *testing.T) {
 	}
 }
 
-// Nor may it hand the hundred to somebody who is not in the finale at all -- the referee
+// Nor may it hand the star to somebody who is not in the finale at all -- the referee
 // in the chair least of all, who has been reading the answer off the screen.
 func TestFinaleTurnCannotPayANonFinalist(t *testing.T) {
 	for _, seat := range []int{0, 3} {
@@ -210,8 +224,8 @@ func TestFinaleTurnCannotPayANonFinalist(t *testing.T) {
 		if !errors.Is(err, ErrStaleTurn) {
 			t.Errorf("seat %d: err = %v, want %v", seat, err, ErrStaleTurn)
 		}
-		if got := store.session.PlayerAt(seat).Score; got != 0 {
-			t.Errorf("seat %d scored %d off a refused turn, want 0", seat, got)
+		if got := store.session.PlayerAt(seat); got.Score != 0 || got.Stars != 0 {
+			t.Errorf("seat %d took %d points and %d stars off a refused turn, want none", seat, got.Score, got.Stars)
 		}
 	}
 }
@@ -426,6 +440,9 @@ func TestFinaleVerdictAtATableOfTwoPaysReducedPointsAndEndsOnOneMiss(t *testing.
 	if got, want := store.session.PlayerAt(1).Score, ClosestPoints; got != want {
 		t.Errorf("Score = %d, want %d -- the smallest table pays a normal round's points", got, want)
 	}
+	if got := store.session.PlayerAt(1).Stars; got != 0 {
+		t.Errorf("Stars = %d, want 0 -- the smallest table plays for no stars", got)
+	}
 	if got, want := store.session.CurrentPosition, 1; got != want {
 		t.Errorf("CurrentPosition = %d, want %d -- one correct answer settles the question", got, want)
 	}
@@ -452,6 +469,66 @@ func TestFinaleOpenerBreaksTiesBySeat(t *testing.T) {
 
 	if got, want := session.FinaleOpener(), 1; got != want {
 		t.Errorf("FinaleOpener() = %d, want %d", got, want)
+	}
+}
+
+func TestFinaleOpenerPutsStarsBeforePoints(t *testing.T) {
+	session := &Session{
+		Players:       []SessionPlayer{{Seat: 0}, {Seat: 1, Score: 9, Stars: 2}, {Seat: 2, Score: 3, Stars: 3}},
+		FinalistSeatA: 1, FinalistSeatB: 2,
+	}
+
+	// Seat 1 leads on points, so 2 + the bonus star is level with seat 2's 3, and seat 2 is behind on points.
+	if got, want := session.FinaleOpener(), 2; got != want {
+		t.Errorf("FinaleOpener() = %d, want %d", got, want)
+	}
+
+	session.Players[1].Stars = 1
+	if got, want := session.FinaleOpener(), 1; got != want {
+		t.Errorf("FinaleOpener() = %d, want %d -- a star behind is behind, whatever the points say", got, want)
+	}
+}
+
+// --- bonus star -------------------------------------------------------------------
+
+func TestFinaleBonusStarGoesToTheFinalistWhoLedOnPoints(t *testing.T) {
+	for _, tc := range []struct {
+		name    string
+		players []SessionPlayer
+		want    int
+	}{
+		{name: "clear leader", players: []SessionPlayer{{Seat: 0, Score: 2}, {Seat: 1, Score: 9}, {Seat: 2, Score: 5}}, want: 1},
+		{name: "leader in seat b", players: []SessionPlayer{{Seat: 0, Score: 2}, {Seat: 1, Score: 5}, {Seat: 2, Score: 9}}, want: 2},
+		{name: "level at the top", players: []SessionPlayer{{Seat: 0, Score: 2}, {Seat: 1, Score: 7}, {Seat: 2, Score: 7}}, want: -1},
+		{name: "table of two", players: []SessionPlayer{{Seat: 1, Score: 9}, {Seat: 2, Score: 5}}, want: -1},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			session := &Session{Players: tc.players, FinalistSeatA: 1, FinalistSeatB: 2}
+
+			if got := session.FinaleBonusSeat(); got != tc.want {
+				t.Errorf("FinaleBonusSeat() = %d, want %d", got, tc.want)
+			}
+			for _, seat := range []int{1, 2} {
+				want := 0
+				if seat == tc.want {
+					want = FinaleBonusStars
+				}
+				if got := session.StarsOf(seat); got != want {
+					t.Errorf("StarsOf(%d) = %d, want %d", seat, got, want)
+				}
+			}
+		})
+	}
+}
+
+func TestFinaleBonusStarWaitsForTheFinalists(t *testing.T) {
+	session := &Session{
+		Players:       []SessionPlayer{{Seat: 0, Score: 9}, {Seat: 1, Score: 5}, {Seat: 2, Score: 1}},
+		FinalistSeatA: -1, FinalistSeatB: -1,
+	}
+
+	if got := session.FinaleBonusSeat(); got != -1 {
+		t.Errorf("FinaleBonusSeat() = %d, want -1 before the finale is seated", got)
 	}
 }
 

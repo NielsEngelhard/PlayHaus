@@ -3,7 +3,7 @@ import Confetti from "@/components/ui/Confetti";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import type { FinalStanding } from "@/features/pubquizr/round-seven";
+import { finaleOrder, type FinalStanding } from "@/features/pubquizr/round-seven";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
@@ -21,8 +21,8 @@ export default function TableFinalResults({ scale, standings }: Props) {
     const t = useT();
 
     const top = standings[0];
-    // Nobody wins on a tie.
-    const leaders = top === undefined ? [] : standings.filter(seat => seat.score === top.score);
+    // Nobody wins on a tie, which in a finale played for stars means level on stars and on points.
+    const leaders = top === undefined ? [] : standings.filter(seat => finaleOrder(seat, top) === 0);
     const outright = leaders.length === 1;
 
     // Everybody the card did not already name.
@@ -76,7 +76,9 @@ export default function TableFinalResults({ scale, standings }: Props) {
                     </AppText>
 
                     <AppText style={[styles.points, { fontSize: Math.round(19 * scale) }]}>
-                        {t('pubquizr.play.final.points', { score: top.score })}
+                        {top.stars === undefined
+                            ? t('pubquizr.play.final.points', { score: top.score })
+                            : t('pubquizr.play.final.tally', { stars: top.stars, score: top.score })}
                     </AppText>
 
                     {!outright && (
@@ -148,7 +150,9 @@ export default function TableFinalResults({ scale, standings }: Props) {
                                         { fontSize: Math.round(20 * scale) }
                                     ]}
                                 >
-                                    {seat.score}
+                                    {seat.stars === undefined
+                                        ? seat.score
+                                        : t('pubquizr.play.final.tally', { stars: seat.stars, score: seat.score })}
                                 </AppText>
                             </View>
                         )

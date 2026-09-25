@@ -18,10 +18,12 @@ interface Props {
     total: number
     /** What taking it pays, and zero for a question worth only the seat. */
     worth: number
+    // Whether `worth` is counted in finale stars rather than points.
+    stars?: boolean
 }
 
 // The question as the whole table reads it. No cue: "read this out" belongs on the quizmaster's phone.
-export default function TableQuestion({ children, note, number, prompt, scale, total, worth }: Props) {
+export default function TableQuestion({ children, note, number, prompt, scale, stars = false, total, worth }: Props) {
     const styles = useStyles();
     const t = useT();
 
@@ -44,7 +46,7 @@ export default function TableQuestion({ children, note, number, prompt, scale, t
                         ]}
                     >
                         <AppText style={[styles.worth, { fontSize: Math.round(11 * scale) }]}>
-                            {note ?? t('pubquizr.play.worthPoints', { worth })}
+                            {note ?? t(stars ? 'pubquizr.play.worthStars' : 'pubquizr.play.worthPoints', { worth })}
                         </AppText>
                     </View>
                 )}

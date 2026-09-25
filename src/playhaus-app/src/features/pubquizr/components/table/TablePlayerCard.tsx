@@ -1,6 +1,7 @@
 import AppText from "@/components/text/AppText";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Brand, Radii, Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import type { TablePlayer } from "@/features/pubquizr/multi-device/table-players";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
@@ -22,6 +23,7 @@ interface Props {
 // One player on the bar: their face, their score, and the one word for what they are doing.
 export default function TablePlayerCard({ player, scale, width }: Props) {
     const styles = useStyles();
+    const t = useT();
 
     const { note, seat, tone } = player;
     const paper = tone === 'master';
@@ -64,7 +66,7 @@ export default function TablePlayerCard({ player, scale, width }: Props) {
             </View>
 
             <AppText style={[styles.score, paper && styles.onInk, onFill && styles.onFill, { fontSize: Math.round(SCORE_SIZE * scale) }]}>
-                {seat.score}
+                {seat.stars === undefined ? seat.score : t('pubquizr.play.final.tally', { stars: seat.stars, score: seat.score })}
             </AppText>
         </View>
     )

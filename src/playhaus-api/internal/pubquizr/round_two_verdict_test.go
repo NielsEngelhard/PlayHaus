@@ -215,7 +215,7 @@ func TestFinaleVerdictIsNotCheckedAgainstTheStoredAnswer(t *testing.T) {
 		t.Fatalf("RecordFinaleTurn: %v", err)
 	}
 
-	if store.session.PlayerAt(seat).Score == 0 {
+	if store.session.PlayerAt(seat).Stars == 0 {
 		t.Error("the finale paid nothing for a correct answer")
 	}
 }

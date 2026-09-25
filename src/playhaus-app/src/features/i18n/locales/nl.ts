@@ -286,6 +286,10 @@ export const nl: Catalog = {
         tie: 'Gelijkspel op {{score}}',
         youWin: 'Jij wint met {{score}}',
         playerWins: '{{name}} wint met {{score}}',
+        tieStars: 'Gelijkspel op {{stars}} ★',
+        youWinStars: 'Jij wint met {{stars}} ★',
+        playerWinsStars: '{{name}} wint met {{stars}} ★',
+        stars: '{{stars}} ★',
         places: {
             first: '1E',
             second: '2E',
@@ -868,7 +872,8 @@ export const nl: Catalog = {
                 describe: 'De omschrijver heeft 30 seconden. Elk goed woord is 1 punt voor allebei. Daarna één bonusgok per overige speler.',
                 list: 'Eén onderwerp. Vier trefwoorden.',
                 doubleDown: 'Wie aan de beurt is kiest een makkelijk (1p) vraag of een moeilijke (3p) vraag.',
-                finale: 'Zes open vragen, om en om. Fout? De vraag gaat naar de ander. Wie na de laatste vraag voorstaat wint de avond.'
+                finale: 'Open vragen, man tegen man. Fout? De vraag gaat naar de ander. Elk goed antwoord is een ster, en wie na ronde 6 voorstond begint met een bonusster. De meeste sterren wint; bij gelijke sterren wint de meeste punten.',
+                finaleTwo: 'Open vragen, om en om, voor 2 punten per vraag. Wie na de laatste vraag voorstaat wint de avond.'
             },
             rounds: {
                 open: 'Open',
@@ -935,6 +940,7 @@ export const nl: Catalog = {
             choiceAlwaysPasses: 'Volgende ronde mag {{name}} raden',
             correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
             worthPoints: '{{worth}}p',
+            worthStars: '{{worth}} ★',
             noPoint: 'Geen punt',
             scores: 'Stand',
             choice: {
@@ -1009,7 +1015,7 @@ export const nl: Catalog = {
                 readyRuleTime: '{{seconds}} seconden om zoveel mogelijk van de {{answers}} antwoorden te noemen',
                 readyRuleGuesses: '{{guesses}} gokken om zoveel mogelijk van de {{answers}} antwoorden te noemen',
                 readyRuleHidden: 'Alleen jij als quizmaster ziet deze antwoorden',
-                readyRuleScore: 'Elk antwoord dat ze noemen is {{worth}} punt voor de gokker',
+                readyRuleScore: 'Elk antwoord dat ze noemen is {{worth}} punten voor de gokker',
                 readyRuleBonus: 'Daarna krijgen de andere {{others}} spelers ieder één gok voor een antwoord dat nog niet genoemd is om zo bonuspunten te scoren',
                 start: 'Start',
                 preTimerHint: 'Lees eerst de vraag hardop voor, start dan de klok en {{guesser}} kan gaan gokken',
@@ -1044,15 +1050,18 @@ export const nl: Catalog = {
             intro: {
                 of: 'van {{total}}',
                 round: 'Ronde {{round}}',
-                briefOpen: 'Twintig open vragen. De quiz master vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout de volgende speler mag raden. Elke tweede vraag levert een punt op.',
+                briefOpen: 'Twintig open vragen. De quiz master vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout de volgende speler mag raden. Elke vraag levert een punt op.',
                 briefChoice: 'Pittigere vragen, multiple choice. Iedereen start 1x en is 1x quiz master. Elke vraag is twee punten waard.',
                 briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
                 briefClosestEveryone: 'Een vraag met een getal als antwoord. Iedereen typt één gok op de eigen telefoon, en het antwoord verschijnt zodra het laatste getal binnen is. Wie er het dichtst bij zit pakt twee punten, en bij gelijkspel krijgen ze die allebei.',
                 briefDescribe: '30 seconden om je eigen woorden te omschrijven zonder het woord te zeggen (of een vertaling).',
-                briefList: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die twintig seconden krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is een punt voor wie het noemde.',
-                briefListZen: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die geen klok heeft en acht gokken krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is een punt voor wie het noemde.',
-                briefDoubleDown: 'Makkelijk of moeilijk? Elke speler krijgt de keuze: een makkelijke vraag is 1 punt waard, een moeilijke 4. Er zijn er vijf van elk, dus als een soort op is neem je wat er over is. Fout? Dan gaat de vraag de tafel rond — en wie hem pakt krijgt de volle waarde.',
-                briefFinale: 'De 2 spelers met de meeste punten strijden tegen elkaar in de finale. Elk goed antwoord is 100 punten waard. De persoon met de minste punten begint steeds.',
+                briefList: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die twintig seconden krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is 2 punten voor wie het noemde.',
+                briefListZen: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die geen klok heeft en acht gokken krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is 2 punten voor wie het noemde.',
+                briefDoubleDown: 'Makkelijk of moeilijk? Elke speler krijgt de keuze: een makkelijke vraag is 1 punt waard, een moeilijke 3. Er zijn er vijf van elk, dus als een soort op is neem je wat er over is. Fout? Dan gaat de vraag de tafel rond — en wie hem pakt krijgt de volle waarde.',
+                briefFinale: 'De 2 spelers met de meeste punten strijden tegen elkaar in de finale. Elk goed antwoord is een ster waard, en wie na ronde 6 voorstond begint met 1 bonusster. Wie achter staat begint steeds. De meeste sterren wint de avond, en bij gelijke sterren wint de meeste punten.',
+                briefFinaleTwo: 'Jullie strijden met z’n tweeën tegen elkaar en lezen elkaar voor. Wie achter staat krijgt de vraag, en fout is fout. Elk goed antwoord is 2 punten waard, en de meeste punten wint de avond.',
+                bonusStar: '{{name}} stond na ronde 6 voor en begint met 1 bonusster',
+                noBonusStar: 'Gelijk op punten: niemand begint met een bonusster',
                 versus: 'vs',
                 quizmaster: '{{name}} is quiz master',
                 action: 'Start ronde {{round}}'
@@ -1067,13 +1076,13 @@ export const nl: Catalog = {
                 jobList: '{{name}} leest de vraag voor en vinkt elk antwoord af dat de speler links van hen noemt.',
                 jobDoubleDown: '{{name}} vraagt de volgende speler makkelijk of moeilijk en leest daarna de vraag voor die eruit komt.',
                 jobFinale: '{{name}} leest voor aan beide finalisten en speelt deze ronde zelf niet mee.',
-                ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke tweede vraag levert een punt op.',
+                ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke vraag levert een punt op.',
                 ruleChoice: 'Net als hiervoor: goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
                 ruleClosest: 'Iedereen behalve de quiz master gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
                 ruleDescribe: 'Dertig seconden, gespeeld met de speler links van je. Elk woord dat die raadt is een punt voor hen én een punt voor jou.',
                 ruleList: 'Twintig seconden, en alleen de speler links van je antwoordt. Wat zij missen gaat daarna de tafel rond, ieder één gok.',
-                ruleDoubleDown: 'Makkelijk levert 1 punt op, moeilijk 4, en er zijn er vijf van elk — dus een soort kan opraken. Fout? Dan gaat de vraag voor de volle waarde de tafel rond.',
-                ruleFinale: 'Elke vraag gaat eerst naar wie achter staat. Fout? Dan mag de ander hem alsnog pakken. 100 punten per goed antwoord, en de meeste punten wint de avond.',
+                ruleDoubleDown: 'Makkelijk levert 1 punt op, moeilijk 3, en er zijn er vijf van elk — dus een soort kan opraken. Fout? Dan gaat de vraag voor de volle waarde de tafel rond.',
+                ruleFinale: 'Elke vraag gaat eerst naar wie achter staat. Fout? Dan mag de ander hem alsnog pakken. Een ster per goed antwoord, en de meeste sterren wint de avond.',
                 action: 'Laat de vraag zien'
             },
             standings: {
@@ -1089,6 +1098,8 @@ export const nl: Catalog = {
                 finalist: 'Finalist',
                 winnerLabel: 'Winnaar',
                 points: '{{score}} punten',
+                stars: '{{stars}} ★',
+                tally: '{{stars}} ★ · {{score}} punten',
                 tieLabel: 'Gedeelde eerste plaats',
                 tieTitle: 'Niemand liep uit',
                 tieDescription: 'Niemand eindigde bovenaan. De avond is gedeeld.'

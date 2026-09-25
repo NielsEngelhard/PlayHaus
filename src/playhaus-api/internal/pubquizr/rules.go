@@ -72,18 +72,19 @@ func NextRound(m Modes, round int) int {
 
 const (
 	OpenQuestionPoints  = 1
-	OpenScoresEvery     = 2
 	ChoicePoints        = 2
 	ClosestPoints       = 2
 	DescribeWordPoints  = 1
 	DescribeGuessPoints = 1
 	// ListAnswerPoints is what one of round 5's four answers pays whoever gets credit for it.
-	ListAnswerPoints = 1
-	// FinalePoints is what a correct finale question pays, onto the same Score every other round adds to.
-	FinalePoints = 100
+	ListAnswerPoints = 2
+	// FinaleStars is what a correct finale question pays, in stars rather than onto Score.
+	FinaleStars = 1
+	// FinaleBonusStars is what the finalist who led on points after round 6 starts the finale with.
+	FinaleBonusStars = 1
 	// The two halves of round 6's choice: what the player asked for is what it pays, whoever ends up taking it.
 	EasyPoints = 1
-	HardPoints = 4
+	HardPoints = 3
 
 	// ChoiceOptions is the A, B, C, D of round 2.
 	ChoiceOptions          = 4
@@ -145,24 +146,12 @@ func DoubleDownPointsFor(difficulty Difficulty) int {
 func HotSeatPointsAt(round, position int) int {
 	switch round {
 	case RoundOpen:
-		return OpenPointsAt(position)
+		return OpenQuestionPoints
 	case RoundChoice:
 		return ChoicePoints
 	default:
 		return 0
 	}
-}
-
-// OpenPointsAt is what the round 1 question in one slot is worth.
-func OpenPointsAt(position int) int {
-	if position < 0 {
-		return 0
-	}
-	if (position+1)%OpenScoresEvery != 0 {
-		return 0
-	}
-
-	return OpenQuestionPoints
 }
 
 func DescribeWordPointsFor(winners int) int {
@@ -216,12 +205,9 @@ func FinaleHasReferee(players int) bool {
 	return players > FinalistCount
 }
 
-// FinalePointsFor is what a correct finale question pays at this table.
-func FinalePointsFor(players int) int {
-	if FinaleHasReferee(players) {
-		return FinalePoints
-	}
-	return ClosestPoints
+// FinalePaysStars is whether this table's finale is played for stars; a table of two plays it for ClosestPoints instead.
+func FinalePaysStars(players int) bool {
+	return FinaleHasReferee(players)
 }
 
 const (

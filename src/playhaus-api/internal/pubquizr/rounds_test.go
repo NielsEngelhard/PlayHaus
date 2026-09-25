@@ -283,9 +283,9 @@ func TestWholeCyclesOfPlaysEveryWholeLapAndNoPartOne(t *testing.T) {
 	}
 }
 
-// FinalePointsFor and FinaleHasReferee, the two things that change about the finale at
+// FinalePaysStars and FinaleHasReferee, the two things that change about the finale at
 // a table with nobody spare to read.
-func TestFinalePointsForNeedsAReferee(t *testing.T) {
+func TestFinalePaysStarsOnlyWithAReferee(t *testing.T) {
 	if !FinaleHasReferee(FinalistCount + 1) {
 		t.Errorf("FinaleHasReferee(%d) = false, want true", FinalistCount+1)
 	}
@@ -293,12 +293,11 @@ func TestFinalePointsForNeedsAReferee(t *testing.T) {
 		t.Errorf("FinaleHasReferee(%d) = true, want false -- both seats are finalists", FinalistCount)
 	}
 
-	if got, want := FinalePointsFor(MaxPlayers), FinalePoints; got != want {
-		t.Errorf("FinalePointsFor(%d) = %d, want %d", MaxPlayers, got, want)
+	if !FinalePaysStars(MaxPlayers) {
+		t.Errorf("FinalePaysStars(%d) = false, want true", MaxPlayers)
 	}
-	if got, want := FinalePointsFor(MinPlayers), ClosestPoints; got != want {
-		t.Errorf("FinalePointsFor(%d) = %d, want %d -- no referee, no hundred-point round",
-			MinPlayers, got, want)
+	if FinalePaysStars(MinPlayers) {
+		t.Errorf("FinalePaysStars(%d) = true, want false -- no referee, so a normal round's points", MinPlayers)
 	}
 }
 
@@ -336,11 +335,10 @@ func TestDescribeWordsPerPlayerGivesEverybodyTheSameShare(t *testing.T) {
 // What a hot seat question is worth, which is the whole of the difference between rounds
 // 1 and 2.
 func TestHotSeatPointsAt(t *testing.T) {
-	if got, want := HotSeatPointsAt(RoundOpen, 0), 0; got != want {
-		t.Errorf("round 1 question 1 = %d, want %d -- it buys the seat and nothing else", got, want)
-	}
-	if got, want := HotSeatPointsAt(RoundOpen, 1), OpenQuestionPoints; got != want {
-		t.Errorf("round 1 question 2 = %d, want %d", got, want)
+	for position := 0; position < 4; position++ {
+		if got, want := HotSeatPointsAt(RoundOpen, position), OpenQuestionPoints; got != want {
+			t.Errorf("round 1 question %d = %d, want %d", position+1, got, want)
+		}
 	}
 	for position := 0; position < 4; position++ {
 		if got, want := HotSeatPointsAt(RoundChoice, position), ChoicePoints; got != want {

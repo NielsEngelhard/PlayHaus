@@ -19,6 +19,8 @@ export interface ScoreBoardPlayer {
     id: string,
     name: string,
     score: number,
+    // Stars outrank score, and a player with stars outranks one without; absent in every game that has none.
+    stars?: number,
     swatch: AvatarColor
 }
 
@@ -79,12 +81,19 @@ const WAITING_HEIGHT = 58;
 // The lighter outline the small avatars and the list's dividers wear.
 const HAIRLINE = 1.5;
 
-// Tied scores share a place, so two players on the top score are both first.
+// Positive when `a` finishes above `b`.
+function ahead(a: ScoreBoardPlayer, b: ScoreBoardPlayer): number {
+    return Number(a.stars !== undefined) - Number(b.stars !== undefined)
+        || (a.stars ?? 0) - (b.stars ?? 0)
+        || a.score - b.score;
+}
+
+// Tied players share a place, so two players on the top score are both first.
 function rank(players: ScoreBoardPlayer[]): Placed[] {
-    const sorted = [...players].sort((a, b) => b.score - a.score);
+    const sorted = [...players].sort((a, b) => ahead(b, a));
 
     return sorted.map(player => ({
-        place: 1 + sorted.filter(other => other.score > player.score).length,
+        place: 1 + sorted.filter(other => ahead(other, player) > 0).length,
         player
     }));
 }
@@ -107,15 +116,22 @@ export default function ScoreBoardScreen({ action, error, game, onClose, players
     const podium = [ranked[1], ranked[0], ranked[2]].filter((entry): entry is Placed => entry !== undefined);
 
     const [best, runnerUp] = ranked;
-    const drawn = best !== undefined && runnerUp !== undefined && runnerUp.player.score === best.player.score;
+    const drawn = best !== undefined && runnerUp !== undefined && ahead(best.player, runnerUp.player) === 0;
+    const stars = best?.player.stars;
 
     const headline = best === undefined
         ? undefined
-        : drawn
-            ? t('scoreboard.tie', { score: best.player.score })
-            : best.player.id === youId
-                ? t('scoreboard.youWin', { score: best.player.score })
-                : t('scoreboard.playerWins', { name: best.player.name, score: best.player.score });
+        : stars !== undefined
+            ? drawn
+                ? t('scoreboard.tieStars', { stars })
+                : best.player.id === youId
+                    ? t('scoreboard.youWinStars', { stars })
+                    : t('scoreboard.playerWinsStars', { name: best.player.name, stars })
+            : drawn
+                ? t('scoreboard.tie', { score: best.player.score })
+                : best.player.id === youId
+                    ? t('scoreboard.youWin', { score: best.player.score })
+                    : t('scoreboard.playerWins', { name: best.player.name, score: best.player.score });
 
     return (
         <View style={styles.screen}>
@@ -183,6 +199,10 @@ export default function ScoreBoardScreen({ action, error, game, onClose, players
                                 <AppText style={styles.lineName} numberOfLines={1}>
                                     {entry.player.id === youId ? t('common.you') : entry.player.name}
                                 </AppText>
+
+                                {entry.player.stars !== undefined && (
+                                    <AppText style={styles.lineStars}>{t('scoreboard.stars', { stars: entry.player.stars })}</AppText>
+                                )}
 
                                 <AppText style={styles.lineScore}>{entry.player.score}</AppText>
                             </View>
@@ -254,6 +274,9 @@ function PodiumColumn({ entry, ink, you }: PodiumColumnProps) {
             </AppText>
 
             <View style={[styles.bar, { height: tier.barHeight, backgroundColor: tier.fill }]}>
+                {entry.player.stars !== undefined && (
+                    <AppText style={styles.barStars}>{t('scoreboard.stars', { stars: entry.player.stars })}</AppText>
+                )}
                 <AppText style={[styles.barScore, { fontSize: tier.scoreSize }]}>{entry.player.score}</AppText>
                 <AppText style={styles.barPlace}>{t(tier.label)}</AppText>
             </View>
@@ -399,6 +422,11 @@ const useStyles = createThemedStyles(theme => ({
         letterSpacing: -0.6,
         color: Brand.ink
     },
+    barStars: {
+        fontSize: FontSizes.xs,
+        fontWeight: 900,
+        color: Brand.ink
+    },
     barPlace: {
         fontSize: FontSizes.xs,
         fontWeight: 900,
@@ -444,6 +472,11 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: FontSizes.sm,
         fontWeight: 700,
         color: theme.colors.text
+    },
+    lineStars: {
+        fontSize: FontSizes.xs,
+        fontWeight: 900,
+        color: theme.colors.textSecondary
     },
     lineScore: {
         fontSize: FontSizes.md,

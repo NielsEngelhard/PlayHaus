@@ -288,7 +288,7 @@ func (s *Session) FinaleRival(seat int) int {
 	}
 }
 
-// FinaleOpener is whichever finalist has the fewer points, ties going the way LowestScoringSeat's do.
+// FinaleOpener is whichever finalist is behind -- on stars, then on points -- ties going the way LowestScoringSeat's do.
 func (s *Session) FinaleOpener() int {
 	a, b, ok := s.Finalists()
 	if !ok {
@@ -300,6 +300,13 @@ func (s *Session) FinaleOpener() int {
 		return -1
 	}
 
+	if starsA, starsB := s.StarsOf(a), s.StarsOf(b); starsA != starsB {
+		if starsA < starsB {
+			return a
+		}
+		return b
+	}
+
 	if first.Score != second.Score {
 		if first.Score < second.Score {
 			return a
@@ -308,6 +315,46 @@ func (s *Session) FinaleOpener() int {
 	}
 
 	return min(a, b)
+}
+
+// FinaleBonusSeat is the finalist who led on points after round 6, or -1 where nobody did or the finale pays no stars.
+func (s *Session) FinaleBonusSeat() int {
+	// Worked out rather than stored: a finale that pays stars never touches Score, so the lead it opened on is still there.
+	if !FinalePaysStars(len(s.Players)) {
+		return -1
+	}
+
+	a, b, ok := s.Finalists()
+	if !ok {
+		return -1
+	}
+
+	first, second := s.PlayerAt(a), s.PlayerAt(b)
+	switch {
+	case first == nil || second == nil:
+		return -1
+	case first.Score > second.Score:
+		return a
+	case second.Score > first.Score:
+		return b
+	default:
+		return -1
+	}
+}
+
+// StarsOf is everything a seat holds in the finale: the answers it took plus the leader's bonus star.
+func (s *Session) StarsOf(seat int) int {
+	player := s.PlayerAt(seat)
+	if player == nil {
+		return 0
+	}
+
+	stars := player.Stars
+	if seat == s.FinaleBonusSeat() {
+		stars += FinaleBonusStars
+	}
+
+	return stars
 }
 
 // FinaleAnsweringSeat is which finalist a finale question is on after `attempts` goes at it.

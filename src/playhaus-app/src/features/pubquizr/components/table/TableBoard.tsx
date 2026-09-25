@@ -6,6 +6,7 @@ import { tablePlayersOf } from "@/features/pubquizr/multi-device/table-players";
 import type { QuizDetail } from "@/features/pubquizr/pubquizr-quizzes";
 import type { PQClosestProgress, PQClosestReveal, QuizSession } from "@/features/pubquizr/pubquizr-sessions";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
+import { sessionPaysStars } from "@/features/pubquizr/round-seven";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
 
 interface Props {
@@ -28,7 +29,7 @@ export default function TableBoard({ closest, code, control, quiz, reveal, scale
     const t = useT();
 
     const ordinal = roundOrdinalOf(session);
-    const { kind, rule } = roundKindAndRule(t, session.currentRound, session.zenMode);
+    const { kind, rule } = roundKindAndRule(t, session.currentRound, session.zenMode, false, !sessionPaysStars(session));
 
     return (
         <TableFrame

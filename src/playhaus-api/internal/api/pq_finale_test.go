@@ -85,6 +85,15 @@ func scoreOf(session quizSessionResponse, seat int) int {
 	return -1
 }
 
+func starsOf(session quizSessionResponse, seat int) int {
+	for _, player := range session.Players {
+		if player.Seat == seat {
+			return player.Stars
+		}
+	}
+	return -1
+}
+
 // The whole shape of the round in one assertion: two people play it, a third reads it,
 // and the third is not one of the two.
 func TestFinaleIsReadBySomebodyWhoIsNotPlayingIt(t *testing.T) {
@@ -142,10 +151,22 @@ func TestFinaleOpensOnTheFinalistWhoIsBehind(t *testing.T) {
 	if got, want := session.HotSeat, behind; got != want {
 		t.Errorf("hotSeat = %d, want %d", got, want)
 	}
+
+	// The leader on points opens the finale a star up, and a level pair opens it on nothing.
+	switch leader := a + b - behind; {
+	case scoreOf(session, a) == scoreOf(session, b):
+		if session.FinaleBonusSeat != nil {
+			t.Errorf("finaleBonusSeat = %d, want null for a level pair", *session.FinaleBonusSeat)
+		}
+	case session.FinaleBonusSeat == nil || *session.FinaleBonusSeat != leader:
+		t.Errorf("finaleBonusSeat = %v, want %d", session.FinaleBonusSeat, leader)
+	case starsOf(session, leader) != pubquizr.FinaleBonusStars || starsOf(session, behind) != 0:
+		t.Errorf("stars = %d and %d, want %d and 0", starsOf(session, leader), starsOf(session, behind), pubquizr.FinaleBonusStars)
+	}
 }
 
 // A wrong answer crosses to the other finalist rather than ending the question, and the
-// hundred is still there to be taken.
+// star is still there to be taken.
 func TestFinaleWrongAnswerCrossesToTheOtherFinalistAndStillPays(t *testing.T) {
 	h, token, session := atTheFinale(t, 4)
 
@@ -169,7 +190,7 @@ func TestFinaleWrongAnswerCrossesToTheOtherFinalistAndStillPays(t *testing.T) {
 		t.Fatal("the other finalist is also the quizmaster")
 	}
 
-	before := scoreOf(session, crossed)
+	before, stars := scoreOf(session, crossed), starsOf(session, crossed)
 
 	rec := do(t, h, http.MethodPost, finalePath(session.ID),
 		settledBody(t, question, []int{opened}, &crossed), token)
@@ -178,8 +199,11 @@ func TestFinaleWrongAnswerCrossesToTheOtherFinalistAndStillPays(t *testing.T) {
 	}
 	session = decodeBody[quizSessionResponse](t, rec)
 
-	if got, want := scoreOf(session, crossed), before+pubquizr.FinalePoints; got != want {
-		t.Errorf("score = %d, want %d -- a passed question still pays in full", got, want)
+	if got, want := starsOf(session, crossed), stars+pubquizr.FinaleStars; got != want {
+		t.Errorf("stars = %d, want %d -- a passed question still pays in full", got, want)
+	}
+	if got := scoreOf(session, crossed); got != before {
+		t.Errorf("score = %d, want %d -- the finale pays stars, not points", got, before)
 	}
 	if got, want := session.CurrentPosition, position+1; got != want {
 		t.Errorf("currentPosition = %d, want %d", got, want)

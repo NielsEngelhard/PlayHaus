@@ -300,6 +300,11 @@ export const en = {
         tie: 'A tie at {{score}}',
         youWin: 'You win with {{score}}',
         playerWins: '{{name}} wins with {{score}}',
+        // A game whose winner is decided on stars, like the PubquizR finale.
+        tieStars: 'A tie at {{stars}} ★',
+        youWinStars: 'You win with {{stars}} ★',
+        playerWinsStars: '{{name}} wins with {{stars}} ★',
+        stars: '{{stars}} ★',
         places: {
             first: '1ST',
             second: '2ND',
@@ -551,7 +556,7 @@ export const en = {
     },
     pubquizr: {
         index: {
-            description: 'A classic pub quiz with a playful twist.',
+            description: 'A classic quiz night with a playful twist.',
             oneDevice: { title: 'One device', description: 'Pass the phone around.', action: 'Set up' },
             multiDevice: { title: 'Multi-device', description: 'One screen for the table, a phone each.', action: 'Open a room' },
             centralScreen: { title: 'Central screen', description: 'Stream the quiz to your tv. Everyone uses their phone as controller', action: 'Set up'},
@@ -908,7 +913,8 @@ export const en = {
                 describe: 'The describer has 30 seconds. Every word guessed is a point for both of them. Then one bonus guess each for everybody else.',
                 list: 'One subject. Four keywords.',
                 doubleDown: 'Pick an easy question (1p) or a hard question (3p).',
-                finale: 'Six open questions, turn by turn. Wrong? It goes to the other one. Whoever leads after the last question wins the evening.'
+                finale: 'Open questions, head to head. Wrong? It goes to the other one. Every answer is a star, and the leader after round 6 starts with a bonus star. Most stars wins; level on stars, most points wins.',
+                finaleTwo: 'Open questions, turn by turn, for 2 points each. Whoever leads after the last question wins the evening.'
             },
             rounds: {
                 open: 'Open',
@@ -994,6 +1000,7 @@ export const en = {
             correctKeepsTurn: 'Correct and the next question is {{name}} again',
             // What the turn on screen pays.
             worthPoints: 'For {{worth}}',
+            worthStars: 'For {{worth}} ★',
             noPoint: 'No point',
             /** The score strip on the question card. A running total, not this round's. */
             scores: 'Scores',
@@ -1090,7 +1097,7 @@ export const en = {
                 readyRuleTime: '{{seconds}} seconds to name as many of the {{answers}} answers as they can',
                 readyRuleGuesses: '{{guesses}} guesses to name as many of the {{answers}} answers as they can',
                 readyRuleHidden: 'The answers are on your screen only. Never read them out.',
-                readyRuleScore: 'Every answer they get is {{worth}} point for them',
+                readyRuleScore: 'Every answer they get is {{worth}} points for them',
                 readyRuleBonus: 'Afterwards the other {{others}} each get one guess at an answer nobody got',
                 start: 'Show the answers and start',
                 // The beat between the rules and the clock.
@@ -1134,15 +1141,19 @@ export const en = {
                 of: 'of {{total}}',
                 /** The headline. The table calls rounds by their number, so it is the number. */
                 round: 'Round {{round}}',
-                briefOpen: 'Twenty open questions, and they can be about anything. The reader asks the player on their left; get it right and the next one is yours as well, miss it and it moves on round the table. Only every second question is worth a point.',
+                briefOpen: 'Twenty open questions, and they can be about anything. The reader asks the player on their left; get it right and the next one is yours as well, miss it and it moves on round the table. Every question is worth a point.',
                 briefChoice: 'Hard questions, this time with four answers to choose from. One question each, read out with all four options — and every single one of them is worth two points.',
                 briefClosest: 'A question with a number for an answer. Everybody except the reader says one guess, and no two people may say the same number. Whoever lands nearest takes two points.',
                 briefClosestEveryone: 'A question with a number for an answer. Everybody types one guess on their own phone, and the answer shows once the last number is in. Whoever lands nearest takes two points, and a tie pays both.',
                 briefDescribe: 'Thirty seconds each to describe your own words — to the player on your left, and to nobody else. Every word they get is a point for them and a point for you. When time is up, everybody else gets one guess at a word that was missed.',
-                briefList: 'One question with four answers hiding in it. The reader asks the player on their left, who has twenty seconds to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
-                briefListZen: 'One question with four answers hiding in it. The reader asks the player on their left, who has no clock and gets eight guesses to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is a point for whoever named it.',
-                briefDoubleDown: 'Easy or hard? Every player is asked which they would rather have: an easy question is worth 1 point, a hard one 4. There are five of each, so once a side is spent you take what is left. Miss it and it goes round the table — and whoever takes it gets its full value.',
-                briefFinale: 'The top two scores go head to head, and a quizmaster who is not one of them reads every question. Each one goes first to whoever is behind; if they miss it, the other one still gets a go at it. Every answer is worth 100 points, and the most points wins the night.',
+                briefList: 'One question with four answers hiding in it. The reader asks the player on their left, who has twenty seconds to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is 2 points for whoever named it.',
+                briefListZen: 'One question with four answers hiding in it. The reader asks the player on their left, who has no clock and gets eight guesses to name as many as they can. Whatever is left then goes round the rest of the table, one guess each. Every answer that lands is 2 points for whoever named it.',
+                briefDoubleDown: 'Easy or hard? Every player is asked which they would rather have: an easy question is worth 1 point, a hard one 3. There are five of each, so once a side is spent you take what is left. Miss it and it goes round the table — and whoever takes it gets its full value.',
+                briefFinale: 'The top two scores go head to head, and a quizmaster who is not one of them reads every question. Each one goes first to whoever is behind; if they miss it, the other one still gets a go at it. Every answer is worth a star, and whoever led after round 6 starts with one bonus star. The most stars wins the night, and if the stars are level, the most points does.',
+                briefFinaleTwo: 'The two of you go head to head, reading to each other. Each question goes to whoever is behind, and a miss ends it. Every answer is worth 2 points, and the most points wins the night.',
+                // Under the finalists on the finale's intro, naming who opens a star up.
+                bonusStar: '{{name}} led after round 6 and starts with 1 bonus star',
+                noBonusStar: 'Level on points: nobody starts with a bonus star',
                 /** Between the two finalist portraits on the finale's intro screen. */
                 versus: 'vs',
                 /** Under the two portraits, naming whoever reads the whole finale out. */
@@ -1163,13 +1174,13 @@ export const en = {
                 jobDoubleDown: '{{name}} asks the next player easy or hard, then reads out whichever question comes up.',
                 jobFinale: '{{name}} reads to both finalists. {{name}} is not playing this round.',
                 // The round's rule, said on the one screen with room to say it properly.
-                ruleOpen: 'Get one right and the next question is yours too. Miss one and it moves on. Every second question scores.',
+                ruleOpen: 'Get one right and the next question is yours too. Miss one and it moves on. Every question is worth a point.',
                 ruleChoice: 'Same as before: get one right and the next is yours too. Every question is worth 2 here.',
                 ruleClosest: 'Everybody but the reader guesses once, and no two people may say the same number. Nearest takes 2.',
                 ruleDescribe: 'Thirty seconds, played to the person on your left. Every word they get is a point for them and a point for you.',
                 ruleList: 'Twenty seconds, and only the player on your left is answering. Whatever they miss goes round the rest of the table for one guess each.',
-                ruleDoubleDown: 'Easy pays 1, hard pays 4, and there are five of each — so a side can run out. Miss it and it moves on round the table for its full value.',
-                ruleFinale: 'Every question goes first to whoever is behind. If they miss it, the other one can still take it. 100 points an answer, and the most points wins the night.',
+                ruleDoubleDown: 'Easy pays 1, hard pays 3, and there are five of each — so a side can run out. Miss it and it moves on round the table for its full value.',
+                ruleFinale: 'Every question goes first to whoever is behind. If they miss it, the other one can still take it. A star an answer, and the most stars wins the night.',
                 action: 'Show the question'
             },
             standings: {
@@ -1191,6 +1202,10 @@ export const en = {
                 winnerLabel: 'Winner',
                 /** Under the winner's name, on the card. Their whole evening in one number. */
                 points: '{{score}} points',
+                // Beside the points, for a finalist of a finale played for stars.
+                stars: '{{stars}} ★',
+                // A finalist's whole standing mid-finale: stars first, because they decide it.
+                tally: '{{stars}} ★ · {{score}} points',
                 // Nobody won outright.
                 tieLabel: 'Shared first',
                 tieTitle: 'Too close to call',

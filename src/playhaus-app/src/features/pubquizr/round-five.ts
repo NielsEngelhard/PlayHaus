@@ -10,7 +10,7 @@ export const LIST_SECONDS = DEV_MODE ? 3 : 20;
 export const ZEN_LIST_GUESSES = 8;
 
 /** What one credited answer pays. Mirrors `ListAnswerPoints`. */
-export const LIST_ANSWER_POINTS = 1;
+export const LIST_ANSWER_POINTS = 2;
 
 /** One of the four things the table is looking for. */
 export interface ListAnswerSlot {

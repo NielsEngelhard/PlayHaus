@@ -70,6 +70,7 @@ export default function HotSeatControl({ bare, busy, emit, error, onSettle, roun
                     number={turn.number}
                     total={turn.total}
                     worth={turn.worth}
+                    stars={turn.stars}
                 />
             )}
 

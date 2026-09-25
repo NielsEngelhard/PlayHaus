@@ -1,3 +1,5 @@
+import type { ScoreBoardPlayer } from "@/components/ui/ScoreBoardScreen";
+import type { useT } from "@/features/i18n/LanguageContext";
 import type { HotSeatTurn } from "./hot-seat";
 import type { QuizDetail } from "./pubquizr-quizzes";
 import type { QuizSession } from "./pubquizr-sessions";
@@ -12,12 +14,17 @@ export const ROUND_FINALE = 7;
 /** Kept in step with `FinalistCount` in Go: how many players reach the finale. */
 export const FINALIST_COUNT = 2;
 
-// What a correct finale question pays.
-export const FINALE_POINTS = 100;
+/** Kept in step with `FinaleStars` in Go: what a correct finale question pays where the finale is played for stars. */
+export const FINALE_STARS = 1;
 
-// What a correct finale question actually pays at a table this size.
-export function finalePointsFor(players: number): number {
-    return players > FINALIST_COUNT ? FINALE_POINTS : CLOSEST_POINTS;
+// Whether this table's finale is played for stars; a table of two has no referee and plays it for points.
+export function finalePaysStars(players: number): boolean {
+    return players > FINALIST_COUNT;
+}
+
+// Whether this session's finale is played for stars.
+export function sessionPaysStars(session: QuizSession): boolean {
+    return finalePaysStars(session.players.length);
 }
 
 // The two players the finale is between, or null before it has opened.
@@ -102,7 +109,8 @@ export function finaleTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTur
         number: session.currentPosition + 1,
         total: session.turnsInRound,
         twoPlayer: seats.length === 2,
-        worth: finalePointsFor(seats.length)
+        worth: finalePaysStars(seats.length) ? FINALE_STARS : CLOSEST_POINTS,
+        stars: finalePaysStars(seats.length)
     };
 }
 
@@ -114,16 +122,41 @@ export interface FinalStanding extends Seat {
     finalist: boolean
 }
 
+// The finale's order, kept in step with the Go tiebreak: finalists first, then stars, then points.
+export function finaleOrder<T extends { finalist: boolean, score: number, stars?: number }>(a: T, b: T): number {
+    return Number(b.finalist) - Number(a.finalist)
+        || (b.stars ?? 0) - (a.stars ?? 0)
+        || b.score - a.score;
+}
+
 // Who a finished evening belongs to, and where everybody else ended up.
 export function finalStandingsOf(session: QuizSession): FinalStanding[] {
     const seats = seatsOf(session);
     const finalistSeats = new Set(session.finalistSeats ?? []);
 
-    return [...seats]
-        .sort((a, b) => b.score - a.score || a.seat - b.seat)
-        .map((seat, index) => ({
-            ...seat,
-            place: index + 1,
-            finalist: finalistSeats.has(seat.seat)
-        }));
+    return seats
+        .map(seat => ({ ...seat, finalist: finalistSeats.has(seat.seat) }))
+        .sort((a, b) => finaleOrder(a, b) || a.seat - b.seat)
+        .map((seat, index) => ({ ...seat, place: index + 1 }));
+}
+
+// The line that says who opens the finale a star up, and null for a finale that is not played for stars.
+export function finaleBonusNoteOf(t: ReturnType<typeof useT>, session: QuizSession, seats: Seat[]): string | null {
+    if (!sessionPaysStars(session) || finalistsOf(session, seats) === null) return null;
+
+    const bonus = seatAt(seats, session.finaleBonusSeat ?? null);
+    return bonus === null
+        ? t('pubquizr.play.intro.noBonusStar')
+        : t('pubquizr.play.intro.bonusStar', { name: bonus.name });
+}
+
+/** The table as the end-of-game scoreboard draws it, keyed by seat; only finalists of a finale played for stars carry `stars`. */
+export function scoreBoardPlayersOf(session: QuizSession): ScoreBoardPlayer[] {
+    return seatsOf(session).map(seat => ({
+        id: String(seat.seat),
+        name: seat.name,
+        score: seat.score,
+        stars: seat.stars,
+        swatch: seat.swatch
+    }));
 }

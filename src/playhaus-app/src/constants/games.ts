@@ -4,7 +4,7 @@ import type { TranslationKey } from '@/features/i18n/keys';
 import type { ImageSource } from 'expo-image';
 
 export const LEAGUE_OF_LETTERS_NAME: string = "League of Letters";
-export const PUBQUIZR_NAME: string = "PubquizR";
+export const PUBQUIZR_NAME: string = "Quizmaster";
 export const ONE_OF_US_NAME: string = "One of Us";
 export const FAKE_FILLER_NAME: string = "Fake Filler";
 
@@ -38,25 +38,6 @@ export interface Game {
     minutesAverage: number
 }
 
-export const LEAGUE_OF_LETTERS: Game = {
-    slug: 'league-of-letters',
-    name: LEAGUE_OF_LETTERS_NAME,
-    color: Brand.primary,
-    gradient: Gradients.primary,
-    accentInk: 'paper',
-    glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
-    icon: require('@/assets/icons/league-of-letters-icon.svg'),
-    mainCategoryIndicatorKey: 'games.leagueOfLetters.mainCategory',
-    descriptionKey: 'games.leagueOfLetters.description',
-    deviceMode: 'perPlayer',
-    playable: true,
-    navigationUrl: ROUTES.leagueOfLettersIndex,
-    joinCodePrefix: 'L',
-    roomRoute: ROUTES.leagueOfLettersRoom,
-    minMaxPlayersIndicator: "1-12",
-    minutesAverage: 10
-};
-
 export const PUBQUIZR: Game = {
     slug: 'quizzer',
     name: PUBQUIZR_NAME,
@@ -75,6 +56,25 @@ export const PUBQUIZR: Game = {
     roomRoute: ROUTES.quizzerRoom,
     minMaxPlayersIndicator: "2-8",
     minutesAverage: 25
+};
+
+export const LEAGUE_OF_LETTERS: Game = {
+    slug: 'league-of-letters',
+    name: LEAGUE_OF_LETTERS_NAME,
+    color: Brand.primary,
+    gradient: Gradients.primary,
+    accentInk: 'paper',
+    glyphInk: { light: Brand.textOnAccent, dark: Brand.ink },
+    icon: require('@/assets/icons/league-of-letters-icon.svg'),
+    mainCategoryIndicatorKey: 'games.leagueOfLetters.mainCategory',
+    descriptionKey: 'games.leagueOfLetters.description',
+    deviceMode: 'perPlayer',
+    playable: true,
+    navigationUrl: ROUTES.leagueOfLettersIndex,
+    joinCodePrefix: 'L',
+    roomRoute: ROUTES.leagueOfLettersRoom,
+    minMaxPlayersIndicator: "1-12",
+    minutesAverage: 10
 };
 
 export const ONE_OF_US: Game = {
@@ -117,7 +117,7 @@ export const FAKE_FILLER: Game = {
 };
 
 // Every game the app knows about.
-export const GAMES: Game[] = [LEAGUE_OF_LETTERS, PUBQUIZR, ONE_OF_US, FAKE_FILLER];
+export const GAMES: Game[] = [PUBQUIZR, LEAGUE_OF_LETTERS, ONE_OF_US, FAKE_FILLER];
 
 // A game's colour identity, in the shape the controls take it in.
 export function accentOf(game: Game): Accent {

@@ -1,29 +1,33 @@
 import AppText from "@/components/text/AppText";
 import SeatAvatar from "@/components/ui/SeatAvatar";
-import { Brand, withAlpha } from "@/constants/theme";
+import { Brand, FontSizes, Spacing, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import { ROUND_OPEN, scoresAt } from "@/features/pubquizr/hot-seat";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
 import { View } from "react-native";
 
+const TALLY_AVATAR = 18;
+
 interface Props {
     answering: Seat
+    // The finale's two players, whose stars and points ride under the spotlight; null in every other round.
+    finalists?: [Seat, Seat] | null
     number: number
     quizmaster: Seat
-    round: number
+    // Unread since round 1 stopped alternating.
+    round?: number
     total: number
     worth: number
+    // Whether `worth` is counted in finale stars rather than points.
+    stars?: boolean
 }
 
 // The hot seat board's part of the header band: who reads, how far into the round, and the one question put to the whole table.
-export default function TableHero({ answering, number, quizmaster, round, total, worth }: Props) {
+export default function TableHero({ answering, finalists = null, number, quizmaster, stars = false, total, worth }: Props) {
     const t = useT();
     const styles = useStyles();
 
-    // Only round 1 alternates.
-    const rhythmic = round === ROUND_OPEN;
     const scoring = worth > 0;
 
     return (
@@ -59,7 +63,6 @@ export default function TableHero({ answering, number, quizmaster, round, total,
                         key={index}
                         style={[
                             styles.pip,
-                            rhythmic && scoresAt(index + 1) && styles.pipScoring,
                             index < number && styles.pipDone
                         ]}
                     />
@@ -84,11 +87,25 @@ export default function TableHero({ answering, number, quizmaster, round, total,
                 <View style={[styles.badge, scoring && styles.badgeScoring]}>
                     <AppText style={[styles.badgeLabel, scoring && styles.badgeLabelScoring]}>
                         {scoring
-                            ? t('pubquizr.play.worthPoints', { worth })
+                            ? t(stars ? 'pubquizr.play.worthStars' : 'pubquizr.play.worthPoints', { worth })
                             : t('pubquizr.play.noPoint')}
                     </AppText>
                 </View>
             </View>
+
+            {finalists !== null && finalists.every(seat => seat.stars !== undefined) && (
+                <View style={styles.tallies}>
+                    {finalists.map(seat => (
+                        <View key={seat.seat} style={styles.tally}>
+                            <SeatAvatar seat={seat} size={TALLY_AVATAR} />
+
+                            <AppText style={styles.tallyText} numberOfLines={1}>
+                                {t('pubquizr.play.final.tally', { stars: seat.stars ?? 0, score: seat.score })}
+                            </AppText>
+                        </View>
+                    ))}
+                </View>
+            )}
         </View>
     )
 }
@@ -96,6 +113,27 @@ export default function TableHero({ answering, number, quizmaster, round, total,
 const useStyles = createThemedStyles(theme => ({
     hero: {
         gap: 9
+    },
+
+    tallies: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: Spacing.three
+    },
+
+    tally: {
+        flexShrink: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.one
+    },
+
+    // Paper on the cobalt band in both schemes, like the header above it.
+    tallyText: {
+        flexShrink: 1,
+        fontSize: FontSizes.xs,
+        fontWeight: 900,
+        color: Brand.textOnAccent
     },
 
     header: {
@@ -124,7 +162,6 @@ const useStyles = createThemedStyles(theme => ({
         color: withAlpha(Brand.textOnAccent, 0.75)
     },
 
-    // Bottom-aligned so the taller scoring pips grow upwards off one baseline.
     pips: {
         flexDirection: 'row',
         alignItems: 'flex-end',
@@ -137,10 +174,6 @@ const useStyles = createThemedStyles(theme => ({
         height: 5,
         borderRadius: 999,
         backgroundColor: withAlpha(Brand.textOnAccent, 0.35)
-    },
-
-    pipScoring: {
-        height: 9
     },
 
     pipDone: {

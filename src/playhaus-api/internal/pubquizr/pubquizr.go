@@ -352,8 +352,10 @@ type SessionPlayer struct {
 	Name      string    `gorm:"not null"`
 	// UserID is whose phone answers for this seat, and is nil for one phone passed round.
 	UserID *string `gorm:"type:text;index"`
-	// Score is everything this player has taken all evening, the finale included.
-	Score     int       `gorm:"not null;default:0"`
+	// Score is everything this player has taken all evening; a finale that pays stars leaves it alone.
+	Score int `gorm:"not null;default:0"`
+	// Stars are the finale answers this player took, without the leader's bonus star -- see StarsOf.
+	Stars     int       `gorm:"not null;default:0"`
 	Color     string    `gorm:"not null"`
 	CreatedAt time.Time `gorm:"not null"`
 }

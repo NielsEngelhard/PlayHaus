@@ -41,7 +41,7 @@ import type { QuizSession } from "@/features/pubquizr/pubquizr-sessions";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
-import { finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { finaleBonusNoteOf, finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE, sessionPaysStars } from "@/features/pubquizr/round-seven";
 import { doubleDownPoolOf, doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestHasReader, closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
@@ -78,7 +78,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
 
     const seats = seatsOf(session);
     const ordinal = roundOrdinalOf(session);
-    const { brief, kind } = roundKindAndRule(t, session.currentRound, session.zenMode, !closestHasReader(session));
+    const { brief, kind } = roundKindAndRule(t, session.currentRound, session.zenMode, !closestHasReader(session), !sessionPaysStars(session));
     const label = t('pubquizr.play.roundLabel', { round: ordinal, kind });
     const segments = roundTrack(session.totalRounds, ordinal);
     const round = session.currentRound;
@@ -187,6 +187,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
                     totalRounds={session.totalRounds}
                     kind={kind}
                     brief={brief}
+                    bonusNote={round === ROUND_FINALE ? finaleBonusNoteOf(t, session, seats) : null}
                     finalists={round === ROUND_FINALE ? finalistsOf(session, seats) : null}
                     quizmaster={round === ROUND_FINALE ? master : null}
                     onStart={() => {

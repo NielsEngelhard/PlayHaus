@@ -288,8 +288,8 @@ blocks and interface members are alphabetised.
 
 - `src/playhaus-app/PubquizrConcept.md` — the authoritative spec for PubquizR: 5 rounds, 3–8
   players, single-device only, and the hot-seat rule (answer correctly and you stay; the
-  quizmaster role only moves when a question goes all the way round unanswered; only every second
-  question scores). It maps onto `features/pubquizr/hot-seat.ts` and `round-three.ts`…`round-six.ts`.
+  quizmaster role only moves when a question goes all the way round unanswered; every question
+  scores). It maps onto `features/pubquizr/hot-seat.ts` and `round-three.ts`…`round-six.ts`.
 - `src/playhaus-app/IDEAS.md` — an unimplemented backlog of game concepts.
 - `src/playhaus-app/README.md` — untouched create-expo-app boilerplate describing an `app/`
   directory this repo does not have. Ignore it.

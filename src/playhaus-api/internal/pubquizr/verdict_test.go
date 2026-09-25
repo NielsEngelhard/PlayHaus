@@ -12,9 +12,8 @@ import (
 )
 
 // Round 1 is a hot seat, and these are the things that has to mean: taking a question
-// keeps you in it, the reading follows the seat round the table, only every second
-// question is worth anything, and a question nobody gets hands the seat to whoever was
-// reading it out.
+// keeps you in it, the reading follows the seat round the table, every question taken is
+// worth a point, and a question nobody gets hands the seat to whoever was reading it out.
 //
 // The reading following the seat is the one worth stating twice. A question is read by
 // the player on the answerer's right, always -- so a player who takes a question from
@@ -336,15 +335,15 @@ func TestTheNextRoundOpensOnTheLowestScore(t *testing.T) {
 	}
 }
 
-func TestOnlyEverySecondQuestionScores(t *testing.T) {
+func TestEveryRoundOneQuestionScores(t *testing.T) {
 	table := []struct {
 		name     string
 		position int
 		want     int
 	}{
-		{"question 1 buys the seat and nothing else", 0, 0},
+		{"question 1 pays", 0, OpenQuestionPoints},
 		{"question 2 pays", 1, OpenQuestionPoints},
-		{"question 3 buys the seat and nothing else", 2, 0},
+		{"question 3 pays", 2, OpenQuestionPoints},
 		{"question 4 pays", 3, OpenQuestionPoints},
 	}
 
@@ -544,21 +543,20 @@ func TestQuestionNobodyGetsPutsTheReaderInTheSeat(t *testing.T) {
 	}
 }
 
-// The hot seat surviving a lap is what makes holding it worth anything: a player who
-// takes question 1 has to still be in the seat for question 2, which is the one that
-// pays.
-func TestHoldingTheSeatAcrossAScoringPair(t *testing.T) {
+// Holding the hot seat is what makes it worth anything: a player who takes question 1
+// is still in the seat for question 2, and both of them pay.
+func TestHoldingTheSeatPaysEveryQuestion(t *testing.T) {
 	store := &verdictStore{session: newVerdictSession(0, 1, 0, 6)}
 
-	rule(t, store, true) // question 1: seat 1 takes it, scores nothing
-	if got := store.session.PlayerAt(1).Score; got != 0 {
-		t.Fatalf("score after question 1 = %d, want 0", got)
+	rule(t, store, true) // question 1: seat 1 takes it
+	if got, want := store.session.PlayerAt(1).Score, OpenQuestionPoints; got != want {
+		t.Fatalf("score after question 1 = %d, want %d", got, want)
 	}
 
 	store.attempts = 0
-	rule(t, store, true) // question 2: still seat 1, and this one pays
+	rule(t, store, true) // question 2: still seat 1
 
-	if got, want := store.session.PlayerAt(1).Score, OpenQuestionPoints; got != want {
+	if got, want := store.session.PlayerAt(1).Score, 2*OpenQuestionPoints; got != want {
 		t.Errorf("score after question 2 = %d, want %d", got, want)
 	}
 	if got, want := store.session.QuizMasterSeat, 0; got != want {

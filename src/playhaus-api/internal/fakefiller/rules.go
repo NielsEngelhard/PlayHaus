@@ -15,7 +15,7 @@ const MinPlayersWithoutTruth = 3
 
 // How many prompts each player writes for: the host's choice, between the two bounds.
 const (
-	DefaultAnswersPerPlayer = 2
+	DefaultAnswersPerPlayer = 3
 	MinAnswersPerPlayer     = 2
 	MaxAnswersPerPlayer     = 4
 )

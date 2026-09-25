@@ -10,7 +10,7 @@ export const ROUND_DOUBLE_DOWN = 6;
 
 /** Kept in step with `EasyPoints` and `HardPoints` in `rules.go`. */
 export const EASY_POINTS = 1;
-export const HARD_POINTS = 4;
+export const HARD_POINTS = 3;
 
 /** Which half of the round's pool a question came out of. */
 export type Difficulty = 'easy' | 'hard';
@@ -89,6 +89,7 @@ export function doubleDownTurnOf(
         number: session.currentPosition + 1,
         total: session.turnsInRound,
         twoPlayer: seats.length === 2,
-        worth: doubleDownPointsFor(question.difficulty)
+        worth: doubleDownPointsFor(question.difficulty),
+        stars: false
     };
 }

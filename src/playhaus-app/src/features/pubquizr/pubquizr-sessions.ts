@@ -8,8 +8,10 @@ export interface QuizSessionPlayer {
     /** Seat 0 is the first name that was typed in. Seats run round the table from there. */
     seat: number
     name: string
-    // Everything this seat has taken all evening, the finale included — there is one tally and the night is won on it.
+    // Everything this seat has taken all evening; a finale played for stars leaves it alone.
     score: number
+    // A finalist's stars in a finale played for stars, the leader's bonus star included, and 0 for everybody else.
+    stars: number
     /** An `AVATAR_COLORS` id, not a hex — see `features/settings/profile`. */
     color: string
 }
@@ -46,6 +48,8 @@ export interface QuizSession {
     hotSeat: number
     // The two seats round 6 is between, and null until the finale opens.
     finalistSeats: number[] | null
+    // The finalist who starts the finale a star up for leading after round 6, and null when nobody does.
+    finaleBonusSeat: number | null
     // A draw for a place in the finale the table has to play out first, and null when there is none.
     finaleTie: FinaleTie | null
     // How many questions in a row the hot seat has taken.

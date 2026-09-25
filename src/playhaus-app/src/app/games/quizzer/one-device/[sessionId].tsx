@@ -27,11 +27,11 @@ import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
-import { finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { finaleBonusNoteOf, finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE, scoreBoardPlayersOf, sessionPaysStars } from "@/features/pubquizr/round-seven";
 import { doubleDownPoolOf, doubleDownTurnOf, EASY_POINTS, HARD_POINTS, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestResultOf, closestTurnOf, ROUND_CLOSEST, type ClosestResult } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
-import { scoreBoardPlayersOf, seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
+import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
 import { useQuizSession } from "@/features/pubquizr/useQuizSession";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -59,8 +59,8 @@ interface RoundCopy {
 }
 
 // The three lines that change from round to round, written out per round.
-function roundCopy(t: ReturnType<typeof useT>, round: number, name: string, zen: boolean): RoundCopy {
-    const { kind, rule, brief } = roundKindAndRule(t, round, zen);
+function roundCopy(t: ReturnType<typeof useT>, round: number, name: string, zen: boolean, starless: boolean): RoundCopy {
+    const { kind, rule, brief } = roundKindAndRule(t, round, zen, false, starless);
 
     switch (round) {
         case ROUND_CHOICE:
@@ -291,7 +291,7 @@ export default function OneDeviceQuizPage() {
         ))
     }
 
-    const copy = roundCopy(t, round, holder.name, session.zenMode);
+    const copy = roundCopy(t, round, holder.name, session.zenMode, !sessionPaysStars(session));
 
     // The hot seat rounds put the table's question on the header band.
     const walk = hotSeat ?? doubleDown ?? finale;
@@ -309,6 +309,7 @@ export default function OneDeviceQuizPage() {
                 kind={copy.kind}
                 brief={copy.brief}
                 finalists={finalists}
+                bonusNote={round === ROUND_FINALE ? finaleBonusNoteOf(t, session, seats) : null}
                 quizmaster={finaleMaster}
                 onStart={() => setIntroducedRound(round)}
             />
@@ -348,6 +349,8 @@ export default function OneDeviceQuizPage() {
                         number={walk.number}
                         total={walk.total}
                         worth={walk.worth}
+                        stars={walk.stars}
+                        finalists={round === ROUND_FINALE ? finalistsOf(session, seats) : null}
                     />
                 )}
             />

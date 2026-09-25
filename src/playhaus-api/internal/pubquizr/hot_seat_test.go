@@ -121,18 +121,12 @@ func TestHotSeatOrFirstFallsBackToTheReadersLeft(t *testing.T) {
 	}
 }
 
-func TestOpenPointsAtPaysEverySecondQuestion(t *testing.T) {
+func TestEveryRoundOneQuestionPays(t *testing.T) {
 	// position is 0-based, so these are questions 1 through 6.
-	want := []int{0, OpenQuestionPoints, 0, OpenQuestionPoints, 0, OpenQuestionPoints}
-
-	for position, expected := range want {
-		if got := OpenPointsAt(position); got != expected {
-			t.Errorf("OpenPointsAt(%d) = %d, want %d", position, got, expected)
+	for position := range 6 {
+		if got := HotSeatPointsAt(RoundOpen, position); got != OpenQuestionPoints {
+			t.Errorf("HotSeatPointsAt(RoundOpen, %d) = %d, want %d", position, got, OpenQuestionPoints)
 		}
-	}
-
-	if got := OpenPointsAt(-1); got != 0 {
-		t.Errorf("OpenPointsAt(-1) = %d, want 0", got)
 	}
 }
 

@@ -14,24 +14,16 @@ export function isHotSeatRound(round: number): boolean {
     return round === ROUND_OPEN || round === ROUND_CHOICE;
 }
 
-// How often a round 1 question is worth a point: every second one.
-export const OPEN_SCORES_EVERY = 2;
-
 /** What a round 1 question is worth, and what a round 2 one is. `rules.go` again. */
 export const OPEN_QUESTION_POINTS = 1;
 export const CHOICE_POINTS = 2;
 
-/** Whether a round 1 question pays out, given its 1-based number in the round. */
-export function scoresAt(questionNumber: number): boolean {
-    return questionNumber % OPEN_SCORES_EVERY === 0;
-}
-
-// What the question in one slot is worth, in points rather than yes-or-no.
-export function worthOf(round: number, questionNumber: number): number {
+// What the question in one slot of a hot seat round is worth.
+export function worthOf(round: number): number {
     if (round === ROUND_CHOICE) return CHOICE_POINTS;
     if (round !== ROUND_OPEN) return 0;
 
-    return scoresAt(questionNumber) ? OPEN_QUESTION_POINTS : 0;
+    return OPEN_QUESTION_POINTS;
 }
 
 /** One of round 2's four options, as the card draws it. */
@@ -76,6 +68,8 @@ export interface HotSeatTurn {
     twoPlayer: boolean
     /** What taking this one pays, which may be nothing but the seat. */
     worth: number
+    // Whether `worth` is counted in finale stars rather than points.
+    stars: boolean
 }
 
 // What is on screen right now, or null when a hot seat round is not what is being played.
@@ -135,7 +129,8 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
         number: session.currentPosition + 1,
         total: session.turnsInRound,
         twoPlayer: seats.length === 2,
-        worth: worthOf(session.currentRound, session.currentPosition + 1)
+        worth: worthOf(session.currentRound),
+        stars: false
     };
 }
 

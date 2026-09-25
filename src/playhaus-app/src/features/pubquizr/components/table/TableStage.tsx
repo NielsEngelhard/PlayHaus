@@ -33,7 +33,7 @@ import type { PQClosestProgress, PQClosestReveal, QuizSession } from "@/features
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { DESCRIBE_WORD_POINTS, describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
-import { finaleTieOf, finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { finaleBonusNoteOf, finaleTieOf, finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE, sessionPaysStars } from "@/features/pubquizr/round-seven";
 import { doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestHasReader, closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
@@ -76,11 +76,12 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
 
     // A round states itself until the phone that reads its questions says go, which is the one moment the table is between questions rather than on one.
     if (session.currentPosition === 0 && !roundOpenOn(control, round)) {
-        const { brief, kind } = roundKindAndRule(t, round, session.zenMode, !closestHasReader(session));
+        const { brief, kind } = roundKindAndRule(t, round, session.zenMode, !closestHasReader(session), !sessionPaysStars(session));
 
         return fade(`intro:${round}`, (
             <TableRoundIntro
                 brief={brief}
+                bonusNote={round === ROUND_FINALE ? finaleBonusNoteOf(t, session, seats) : null}
                 finalists={round === ROUND_FINALE ? finalistsOf(session, seats) : null}
                 kind={kind}
                 quizmaster={seatAt(seats, session.quizMasterSeat)}
@@ -128,6 +129,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
                 number={hotSeat.number}
                 prompt={hotSeat.question.prompt}
                 scale={scale}
+                stars={hotSeat.stars}
                 total={hotSeat.total}
                 worth={hotSeat.worth}
             >

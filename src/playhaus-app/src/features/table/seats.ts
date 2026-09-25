@@ -7,6 +7,8 @@ export interface Seat {
     seat: number
     name: string
     score: number
+    // The PubquizR finale's stars, and absent everywhere else.
+    stars?: number
     /** Two letters for the swatch — `SA` for Sanne. */
     initials: string
     swatch: AvatarColor

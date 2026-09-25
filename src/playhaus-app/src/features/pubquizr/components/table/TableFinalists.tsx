@@ -59,6 +59,7 @@ interface FinalistProps {
 // One of the two, as a face and a name.
 function Finalist({ delayMs, scale, seat }: FinalistProps) {
     const styles = useStyles();
+    const t = useT();
     const entrance = useEntrance({ delayMs, durationMs: FINALIST_ENTER_MS, easing: Easing.out(Easing.back(1.6)) });
 
     return (
@@ -74,9 +75,17 @@ function Finalist({ delayMs, scale, seat }: FinalistProps) {
         >
             <SeatAvatar raised seat={seat} size={Math.round(40 * scale)} />
 
-            <AppText numberOfLines={1} style={[styles.name, { fontSize: Math.round(20 * scale) }]}>
-                {seat.name}
-            </AppText>
+            <View>
+                <AppText numberOfLines={1} style={[styles.name, { fontSize: Math.round(20 * scale) }]}>
+                    {seat.name}
+                </AppText>
+
+                {seat.stars !== undefined && (
+                    <AppText numberOfLines={1} style={[styles.tally, { fontSize: Math.round(13 * scale) }]}>
+                        {t('pubquizr.play.final.tally', { stars: seat.stars, score: seat.score })}
+                    </AppText>
+                )}
+            </View>
         </Animated.View>
     )
 }
@@ -93,6 +102,10 @@ const useStyles = createThemedStyles(theme => ({
     name: {
         fontWeight: 900,
         color: theme.colors.text
+    },
+    tally: {
+        fontWeight: 800,
+        color: theme.colors.textSecondary
     },
     versus: {
         fontWeight: 800,

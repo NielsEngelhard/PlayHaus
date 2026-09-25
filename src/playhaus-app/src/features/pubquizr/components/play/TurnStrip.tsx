@@ -3,7 +3,6 @@ import SlideFadeIn from "@/components/ui/SlideFadeIn";
 import { Brand } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import QuestionCount from "@/features/pubquizr/components/play/QuestionCount";
-import { ROUND_OPEN, scoresAt } from "@/features/pubquizr/hot-seat";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
@@ -20,13 +19,15 @@ interface Props {
     lead: string
     /** How many questions in a row `answering` has taken, and 0 when they have taken none. */
     run: number
-    /** Only for the pips' rhythm — the round's name lives up in the header now. */
-    round: number
+    // Unread since round 1 stopped alternating; kept so the strip's many callers need not change.
+    round?: number
     /** 1-based: question 3 of 8. */
     number: number
     total: number
     /** What this turn pays whoever takes it. Zero is a question worth only the seat. */
     worth: number
+    // Whether `worth` is counted in finale stars rather than points.
+    stars?: boolean
 }
 
 // Everything about the turn that is not the question: who, how far in, and what for.
@@ -35,16 +36,14 @@ export default function TurnStrip({
     answering,
     lead,
     run,
-    round,
     number,
     total,
-    worth
+    worth,
+    stars = false
 }: Props) {
     const t = useT();
     const styles = useStyles();
 
-    // Only round 1 alternates.
-    const rhythmic = round === ROUND_OPEN;
     const scoring = worth > 0;
 
     const count = <QuestionCount number={number} total={total} />;
@@ -113,7 +112,7 @@ export default function TurnStrip({
                     <View style={[styles.badge, scoring && styles.badgeScoring]}>
                         <AppText style={[styles.badgeLabel, scoring && styles.badgeLabelScoring]}>
                             {scoring
-                                ? t('pubquizr.play.worthPoints', { worth })
+                                ? t(stars ? 'pubquizr.play.worthStars' : 'pubquizr.play.worthPoints', { worth })
                                 : t('pubquizr.play.noPoint')}
                         </AppText>
                     </View>
@@ -133,7 +132,6 @@ export default function TurnStrip({
                             style={[
                                 styles.pip,
                                 // index is 0-based; the pips count turns.
-                                rhythmic && scoresAt(index + 1) && styles.pipScoring,
                                 index < number && styles.pipDone
                             ]}
                         />
@@ -315,7 +313,6 @@ const useStyles = createThemedStyles(theme => ({
 
     pips: {
         flexDirection: 'row',
-        // Bottom-aligned so the taller scoring pips grow upwards off one baseline.
         alignItems: 'flex-end',
         gap: 3,
         height: 9
@@ -329,10 +326,6 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     // The ones that pay.
-    pipScoring: {
-        height: 9
-    },
-
     // The scheme's own "this is done" accent.
     pipDone: {
         backgroundColor: theme.colors.focus

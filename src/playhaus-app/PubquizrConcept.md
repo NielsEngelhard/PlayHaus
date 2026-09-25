@@ -16,16 +16,21 @@ Round 4 - 30 Seconds
 - Each player gets 4 words that they should describe (e.g. Bradd Pitt and Milk). Then they have to describe that and the other people have to guess. If someones guesses a word the Quizmaster and the 
 
 Round 5 - Name four
-- One question with four answers hiding in it. The quiz master asks the player on their left, who has twenty seconds (or eight guesses in Zen) to name as many as they can. Whatever is left goes round the rest of the table for one guess each, and every answer is a point for whoever named it.
+- One question with four answers hiding in it. The quiz master asks the player on their left, who has twenty seconds (or eight guesses in Zen) to name as many as they can. Whatever is left goes round the rest of the table for one guess each, and every answer is 2 points for whoever named it.
 
 Round 6 - Double Down
-- The quiz master asks the next player easy or hard, taps the button for whichever they pick, and reads out the question that comes up. Easy is worth 1 point, hard 4. Each quiz carries exactly 5 easy and 5 hard questions for the round, so a difficulty can run out: if the five before you all took hard, you get an easy one.
+- The quiz master asks the next player easy or hard, taps the button for whichever they pick, and reads out the question that comes up. Easy is worth 1 point, hard 3. Each quiz carries exactly 5 easy and 5 hard questions for the round, so a difficulty can run out: if the five before you all took hard, you get an easy one.
 - A wrong answer passes round the table exactly as in round 1, and whoever takes it gets the question's full value.
 - Unlike round 1 nobody keeps the seat. The round opens on whoever is furthest behind and then goes clockwise, one turn each, one lap of the table.
 - The whole round is one HTTP call per turn: the pool arrives with the turn, so the choice and the pass walk happen on the phone.
 
 Round 7:
 The 2 persons with the most points will battle each other in the finale.
+- The finale is played for stars, not points. The finalist with the most points after round 6 starts with 1 bonus star (nobody gets it when the two are level), and every correct finale answer is worth 1 star. Points stop moving in round 7.
+- Each question goes first to whichever finalist is behind — on stars, then on points. A miss passes it to the other finalist.
+- The finalist with the most stars wins the finale and the quiz. Level on stars, the one with the most points wins; level on both is a draw.
+- The end scoreboard shows everybody's points, and the stars beside the two finalists.
+- A table of 2 has no spare quiz master, so its finale is not played for stars: every answer is worth 2 points onto the normal score.
 
 # Modes explained
 
@@ -34,7 +39,7 @@ Flow: click single device -> Fill in names of the players you play with. Should 
 
 Round 1 is a hot seat. If you answer correctly you *stay*: the next question is asked to you again, and the quiz master keeps reading. The only thing that moves the quiz master role is a question that goes all the way round without anybody getting it — then the role moves one seat on, and the next question opens on that person's left.
 
-Only every second question is worth a point. Questions 2, 4, 6 and so on score; the ones in between are worth nothing but the seat they keep you in. So holding the hot seat is the whole game: you have to survive an odd question to reach the one that pays.
+Every question is worth 1 point. Holding the hot seat is the whole game: every question you keep answering is another point, and the seat only moves on when you miss.
 
 So the quiz master role rotates, but slowly — it is a reward for beating the table rather than a turn everyone takes.  
 

@@ -21,6 +21,8 @@ export interface ControlTurn {
     run: number
     total: number
     worth: number
+    // Whether `worth` is counted in finale stars rather than points.
+    stars?: boolean
 }
 
 interface Props {

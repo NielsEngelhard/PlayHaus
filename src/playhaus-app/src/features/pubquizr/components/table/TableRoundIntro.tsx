@@ -13,6 +13,8 @@ interface Props {
     children?: ReactNode
     /** The two players the round is between, for the finale and nothing else. */
     finalists?: [Seat, Seat] | null
+    // Who opens the finale a star up, and null for every round but a finale played for stars.
+    bonusNote?: string | null
     /** What the round is called, e.g. "Closest guess". */
     kind: string
     /** Whoever is running it, and null until the turn names one. */
@@ -26,6 +28,7 @@ interface Props {
 
 // A round, stated. Round 4 is played entirely off this: the words are the describer's secret, so the rules are all the table gets.
 export default function TableRoundIntro({
+    bonusNote = null,
     brief,
     children,
     finalists = null,
@@ -49,6 +52,12 @@ export default function TableRoundIntro({
             <AppText style={[styles.kind, { fontSize: Math.round(40 * scale) }]}>{kind}</AppText>
 
             {finalists !== null && <TableFinalists finalists={finalists} scale={scale} />}
+
+            {bonusNote !== null && (
+                <AppText style={[styles.quizmaster, { fontSize: Math.round(16 * scale) }]}>
+                    {bonusNote}
+                </AppText>
+            )}
 
             {quizmaster !== null && (
                 <AppText style={[styles.quizmaster, { fontSize: Math.round(18 * scale) }]}>

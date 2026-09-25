@@ -145,8 +145,10 @@ func newQuizQuestionResponse(q pubquizr.Question) quizQuestionResponse {
 type quizSessionPlayerResponse struct {
 	Seat int    `json:"seat"`
 	Name string `json:"name"`
-	// Score is everything this player has taken all evening, the finale included.
-	Score int    `json:"score"`
+	// Score is everything this player has taken all evening, less a finale played for stars.
+	Score int `json:"score"`
+	// Stars are what a finalist holds in a finale played for stars, the leader's bonus star included; 0 for everybody else.
+	Stars int    `json:"stars"`
 	Color string `json:"color"`
 	// UserID is whose phone answers for this seat, and is absent on one phone passed round the table.
 	UserID string `json:"userId,omitempty"`
@@ -186,6 +188,8 @@ type quizSessionResponse struct {
 	HotSeat int `json:"hotSeat"`
 	// FinalistSeats are the two players the finale is between, and null until it opens.
 	FinalistSeats []int `json:"finalistSeats"`
+	// FinaleBonusSeat is the finalist who starts the finale a star up for leading after round 6, and null when nobody does.
+	FinaleBonusSeat *int `json:"finaleBonusSeat"`
 	// FinaleTie is a draw for a place in the finale the table has to play out first, and null when there is none to play.
 	FinaleTie *finaleTieResponse `json:"finaleTie"`
 	// HotSeatRun is how many questions in a row the hot seat has taken.
@@ -247,6 +251,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 			Seat:   player.Seat,
 			Name:   player.Name,
 			Score:  player.Score,
+			Stars:  s.StarsOf(player.Seat),
 			Color:  player.Color,
 			UserID: Deref(player.UserID, ""),
 		})
@@ -288,6 +293,11 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 	var finalists []int
 	if a, b, ok := s.Finalists(); ok {
 		finalists = []int{a, b}
+	}
+
+	var bonusStar *int
+	if seat := s.FinaleBonusSeat(); seat >= 0 {
+		bonusStar = &seat
 	}
 
 	var tie *finaleTieResponse
@@ -348,6 +358,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		AnsweringSeat:    asked,
 		HotSeat:          s.HotSeatOrFirst(),
 		FinalistSeats:    finalists,
+		FinaleBonusSeat:  bonusStar,
 		FinaleTie:        tie,
 		HotSeatRun:       s.HotSeatRun,
 		TurnsInRound:     s.TurnsInRound(s.CurrentRound),

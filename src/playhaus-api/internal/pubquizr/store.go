@@ -588,7 +588,7 @@ func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOu
 		for _, player := range out.Players {
 			err := tx.Model(&SessionPlayer{}).
 				Where("session_id = ? AND seat = ?", session.ID, player.Seat).
-				Updates(map[string]any{"score": player.Score}).Error
+				Updates(map[string]any{"score": player.Score, "stars": player.Stars}).Error
 			if err != nil {
 				return fmt.Errorf("update score: %w", err)
 			}

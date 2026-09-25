@@ -29,11 +29,11 @@ import { useQuizTable } from "@/features/pubquizr/multi-device/useQuizTable";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
-import { finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
+import { finaleBonusNoteOf, finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE, scoreBoardPlayersOf, sessionPaysStars } from "@/features/pubquizr/round-seven";
 import { doubleDownPoolOf, doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
 import { closestHasReader, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
-import { scoreBoardPlayersOf, seatAt, seatsOf, type Seat } from "@/features/pubquizr/seats";
+import { seatAt, seatsOf, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useRouter } from "expo-router";
@@ -51,7 +51,7 @@ function stripOf(
     quizmaster: Seat,
     round: number,
     run: number,
-    turn: { number: number, total: number, worth: number }
+    turn: { number: number, stars?: boolean, total: number, worth: number }
 ): ControlTurn {
     // Every round with a strip on a watching phone names a seat, so it never falls back to its one-line version.
     return {
@@ -61,6 +61,7 @@ function stripOf(
         quizmaster,
         round,
         run,
+        stars: turn.stars,
         total: turn.total,
         worth: turn.worth
     };
@@ -139,7 +140,7 @@ export default function QuizControlView({ code }: Props) {
 
     const seats = seatsOf(session);
     const ordinal = roundOrdinalOf(session);
-    const { brief, kind } = roundKindAndRule(t, session.currentRound, session.zenMode, !closestHasReader(session));
+    const { brief, kind } = roundKindAndRule(t, session.currentRound, session.zenMode, !closestHasReader(session), !sessionPaysStars(session));
     const label = t('pubquizr.play.roundLabel', { round: ordinal, kind });
     const segments = roundTrack(session.totalRounds, ordinal);
 
@@ -175,6 +176,7 @@ export default function QuizControlView({ code }: Props) {
                     totalRounds={session.totalRounds}
                     kind={kind}
                     brief={brief}
+                    bonusNote={round === ROUND_FINALE ? finaleBonusNoteOf(t, session, seats) : null}
                     finalists={round === ROUND_FINALE ? finalistsOf(session, seats) : null}
                     quizmaster={round === ROUND_FINALE ? master : null}
                     onStart={() => {

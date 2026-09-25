@@ -6,6 +6,7 @@
 - push notifications? (word of the day & when new quiz is live?)
 - marketing? (bierfiltjes, reclames, stickers, promo codes?)
 - one of us meer rollen
+- fake filler game mode. Verzin een definitie van een woord en dan de fun mode moet miss een ander spel worden
 
 
 # Voor v1
@@ -13,4 +14,4 @@
 - nieuwe game
 - quizer multi device afronden
 - quizer op tv testen
-- Refactor score system for the quizer game
+- content refactor voor oou en fakefiller ook een spec document voor die games maken

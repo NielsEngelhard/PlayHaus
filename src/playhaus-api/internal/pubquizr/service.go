@@ -1536,12 +1536,16 @@ func (s *Service) RecordFinaleTurn(ctx context.Context, in TurnInput) (*Session,
 			attempt.Text = &said
 		}
 
-		points = FinalePointsFor(len(session.Players))
+		// Points counts in stars at a table with a referee, and in Score at a table of two.
+		if FinalePaysStars(len(session.Players)) {
+			points = FinaleStars
+			player.Stars += points
+		} else {
+			points = ClosestPoints
+			player.Score += points
+		}
 		attempt.Points = points
 		out.Answers = append(out.Answers, attempt)
-
-		// Onto Score, the one tally the whole evening is kept on.
-		player.Score += points
 		out.Players = append(out.Players, player)
 	}
 

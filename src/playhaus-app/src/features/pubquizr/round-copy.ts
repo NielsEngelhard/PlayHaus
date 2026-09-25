@@ -16,7 +16,7 @@ export interface RoundKindAndRule {
 }
 
 // What a round is called, what its rule is, and what it asks of the table — none of which depend on who is playing it.
-export function roundKindAndRule(t: ReturnType<typeof useT>, round: number, zen = false, readerless = false): RoundKindAndRule {
+export function roundKindAndRule(t: ReturnType<typeof useT>, round: number, zen = false, readerless = false, starless = false): RoundKindAndRule {
     switch (round) {
         case ROUND_CHOICE:
             return {
@@ -52,8 +52,9 @@ export function roundKindAndRule(t: ReturnType<typeof useT>, round: number, zen 
         case ROUND_FINALE:
             return {
                 kind: t('pubquizr.play.rounds.finale'),
-                rule: t('pubquizr.play.rules.finale'),
-                brief: t('pubquizr.play.intro.briefFinale')
+                // A table of two has no referee, so its finale is played for points rather than stars.
+                rule: t(starless ? 'pubquizr.play.rules.finaleTwo' : 'pubquizr.play.rules.finale'),
+                brief: t(starless ? 'pubquizr.play.intro.briefFinaleTwo' : 'pubquizr.play.intro.briefFinale')
             };
         default:
             return {
