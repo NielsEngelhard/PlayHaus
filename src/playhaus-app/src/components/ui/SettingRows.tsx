@@ -7,7 +7,6 @@ import { Brand, FontSizes, Radii, Spacing } from '@/constants/theme';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
 import Feather from '@expo/vector-icons/Feather';
-import type { ReactNode } from 'react';
 import { View } from 'react-native';
 
 // More options than this and the segment drops under its label, across the full width.
@@ -15,19 +14,6 @@ const INLINE_MAX_OPTIONS = 3;
 
 // Labels this short are numbers, which the design pads wider so they read as buttons.
 const SHORT_LABEL = 2;
-
-// The host's settings for the room, always open, one row per setting.
-export default function LobbySettings({ title, children }: { title: string, children: ReactNode }) {
-    const styles = useStyles();
-
-    return (
-        <View style={styles.card}>
-            <AppText style={styles.cardTitle}>{title}</AppText>
-
-            {children}
-        </View>
-    )
-}
 
 interface SegmentProps<T> {
     getAccessibilityLabel?: (option: T) => string,
@@ -44,7 +30,7 @@ interface SegmentProps<T> {
 }
 
 // One setting picked from a handful of options.
-export function LobbySettingSegment<T>({
+export function SettingSegment<T>({
     getAccessibilityLabel,
     getLabel,
     hint,
@@ -141,7 +127,7 @@ interface SwitchProps {
 }
 
 // One setting that is either on or off.
-export function LobbySettingSwitch({ description, disabled = false, label, onChange, value }: SwitchProps) {
+export function SettingSwitch({ description, disabled = false, label, onChange, value }: SwitchProps) {
     const styles = useStyles();
 
     return (
@@ -164,7 +150,7 @@ interface LinkProps {
 }
 
 // A setting too big for one row, which opens somewhere else.
-export function LobbySettingLink({ label, onPress, summary }: LinkProps) {
+export function SettingLink({ label, onPress, summary }: LinkProps) {
     const theme = useTheme();
     const styles = useStyles();
 
@@ -187,22 +173,6 @@ export function LobbySettingLink({ label, onPress, summary }: LinkProps) {
 }
 
 const useStyles = createThemedStyles(theme => ({
-    card: {
-        gap: Spacing.three,
-        padding: Spacing.three,
-        borderRadius: Radii.xl,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hard
-    },
-    cardTitle: {
-        fontSize: FontSizes.xs,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 2,
-        color: theme.colors.textSecondary
-    },
     setting: {
         gap: Spacing.one
     },

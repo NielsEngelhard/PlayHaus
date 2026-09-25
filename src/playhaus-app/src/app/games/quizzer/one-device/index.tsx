@@ -6,9 +6,10 @@ import Label from "@/components/text/Label";
 import ActionButton from "@/components/ui/ActionButton";
 import PlayerNamesInputInOrder from "@/components/ui/PlayerNamesInputInOrder";
 import PopupModal from "@/components/ui/PopupModal";
+import SectionCard from "@/components/ui/SectionCard";
+import { SettingSwitch } from "@/components/ui/SettingRows";
 import StartGameButton from "@/components/ui/StartGameButton";
 import TextButton from "@/components/ui/TextButton";
-import ToggleRow from "@/components/ui/ToggleRow";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
@@ -242,7 +243,7 @@ export default function OneDeviceQuizerSetup() {
                 )}
             >
                 {step === 1 && (
-                    <>
+                    <SectionCard title={t('lobby.players')}>
                         <PlayerNamesInputInOrder
                             minPlayers={MIN_PLAYERS}
                             maxPlayers={MAX_PLAYERS}
@@ -253,7 +254,7 @@ export default function OneDeviceQuizerSetup() {
                         {showProblem && (
                             <AppText style={styles.problem}>{t(problem)}</AppText>
                         )}
-                    </>
+                    </SectionCard>
                 )}
 
                 {/* Already a fenced panel of its own, so no card around it. */}
@@ -283,28 +284,28 @@ export default function OneDeviceQuizerSetup() {
                     </View>
                 )}
 
-                {/* Trivia first, because it is the bigger cut of the two. */}
                 {step === 3 && (
-                    <ToggleRow
-                        flush
-                        value={triviaMode}
-                        onChange={trivia => {
-                            setTriviaMode(trivia);
-                            if (trivia) setZenMode(false);
-                        }}
-                        label={t('pubquizr.oneDevice.triviaMode.label')}
-                        description={t('pubquizr.oneDevice.triviaMode.description')}
-                    />
-                )}
+                    <SectionCard title={t('pubquizr.lobby.settingsTitle')}>
+                        {/* Trivia first, because it is the bigger cut of the two. */}
+                        <SettingSwitch
+                            value={triviaMode}
+                            onChange={trivia => {
+                                setTriviaMode(trivia);
+                                if (trivia) setZenMode(false);
+                            }}
+                            label={t('pubquizr.oneDevice.triviaMode.label')}
+                            description={t('pubquizr.oneDevice.triviaMode.description')}
+                        />
 
-                {step === 3 && !triviaMode && (
-                    <ToggleRow
-                        flush
-                        value={zenMode}
-                        onChange={setZenMode}
-                        label={t('pubquizr.oneDevice.zenMode.label')}
-                        description={t('pubquizr.oneDevice.zenMode.description')}
-                    />
+                        {!triviaMode && (
+                            <SettingSwitch
+                                value={zenMode}
+                                onChange={setZenMode}
+                                label={t('pubquizr.oneDevice.zenMode.label')}
+                                description={t('pubquizr.oneDevice.zenMode.description')}
+                            />
+                        )}
+                    </SectionCard>
                 )}
             </SettingsPageBase>
 
@@ -366,8 +367,6 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     problem: {
-        // The section lays its children out with no gap of its own, so the line has to keep itself off the last seat.
-        marginTop: Spacing.two,
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         fontWeight: 700,

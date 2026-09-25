@@ -6,9 +6,10 @@ import AppText from "@/components/text/AppText";
 import BigToggleButton, { type BigToggleOption } from "@/components/ui/BigToggleButton";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PopupModal from "@/components/ui/PopupModal";
+import SectionCard from "@/components/ui/SectionCard";
+import { SettingSegment, SettingSwitch } from "@/components/ui/SettingRows";
 import StartGameButton from "@/components/ui/StartGameButton";
 import TextButton from "@/components/ui/TextButton";
-import ToggleRow from "@/components/ui/ToggleRow";
 import { LEAGUE_OF_LETTERS } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes } from "@/constants/theme";
@@ -16,9 +17,8 @@ import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
 import BoardPreview from "@/features/league-of-letters/components/BoardPreview";
-import WordLengthInput from "@/features/league-of-letters/components/WordLengthInput";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
-import { BONUS_WINDOW_MINUTES, DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_MODES, SOLO_ROUNDS, type SoloMode } from "@/features/league-of-letters/solo-settings";
+import { BONUS_WINDOW_MINUTES, DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_MODES, SOLO_ROUNDS, WORD_LENGTHS, type SoloMode } from "@/features/league-of-letters/solo-settings";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useRouter, type RelativePathString } from "expo-router";
 import { useEffect, useRef, useState } from "react";
@@ -180,27 +180,30 @@ export default function LeagueOfLettersSettingsPage() {
                     />
                 }
             >
-                {/* One child per ruled section — bare on the sheet, no cards. */}
-                <WordLengthInput
-                    variant='inline'
-                    showValue
-                    value={settings.wordLength}
-                    onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
-                />
+                <SectionCard title={t('lol.lobby.settingsTitle')}>
+                    <SettingSegment
+                        label={t('lol.settings.wordLength')}
+                        options={WORD_LENGTHS}
+                        value={settings.wordLength}
+                        getLabel={length => String(length)}
+                        getAccessibilityLabel={length => t('lol.settings.wordLengthOption', { letters: length })}
+                        valueLabel={t('lol.settings.wordLengthOption', { letters: settings.wordLength })}
+                        onChange={wordLength => setSettings(current => ({ ...current, wordLength }))}
+                    />
 
-                <LanguageSelect
-                    variant='row'
-                    value={settings.locale}
-                    onChange={locale => setSettings(current => ({ ...current, locale }))}
-                />
+                    <LanguageSelect
+                        variant='pill'
+                        value={settings.locale}
+                        onChange={locale => setSettings(current => ({ ...current, locale }))}
+                    />
 
-                <ToggleRow
-                    flush
-                    value={settings.hardMode}
-                    onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
-                    label={t('lol.settings.hardMode.label')}
-                    description={t('lol.settings.hardMode.description')}
-                />
+                    <SettingSwitch
+                        value={settings.hardMode}
+                        onChange={value => setSettings(current => ({ ...current, hardMode: value }))}
+                        label={t('lol.settings.hardMode.label')}
+                        description={t('lol.settings.hardMode.description')}
+                    />
+                </SectionCard>
 
                 <BigToggleButton
                     badge={t('lol.settings.mode.badge')}

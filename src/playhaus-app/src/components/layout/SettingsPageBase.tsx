@@ -36,7 +36,7 @@ interface Props {
     preview?: ReactNode,
     // The preview's one-line reading — "5 letters · hard mode" — under it in small caps.
     previewCaption?: string,
-    // One block per child, each its own section of the column, ruled apart by hairlines.
+    // One block per child, each its own card or panel in the column.
     children: ReactNode,
     // Replays the sheet's entrance whenever it changes, for a screen that swaps its own contents underneath a band that stays put.
     enterKey?: string,
@@ -81,19 +81,15 @@ export default function SettingsPageBase({ game, title, back, onBack, eyebrow, p
 
     // Built out here so the scroller can hand it to `SlideFadeIn` or render it bare without the column being written twice.
     const column = (
-        <>
+        <View style={styles.column}>
             {intro !== undefined && (
-                <View style={styles.section}>
-                    <AppText style={styles.intro}>{intro}</AppText>
-                </View>
+                <AppText style={styles.intro}>{intro}</AppText>
             )}
 
             {sections.map((section, i) => (
-                <View key={i} style={[styles.section, i > 0 && styles.sectionDivided]}>
-                    {section}
-                </View>
+                <View key={i}>{section}</View>
             ))}
-        </>
+        </View>
     );
 
     return (
@@ -286,22 +282,14 @@ const useStyles = createThemedStyles(theme => ({
     body: {
         flex: 1
     },
-    // The sides belong to the page; the sections carry the vertical rhythm between the hairlines that rule them apart.
     bodyContent: {
         flexGrow: 1,
         paddingHorizontal: HEADER_PADDING,
-        paddingTop: 4,
-        paddingBottom: 16
+        paddingTop: Spacing.three,
+        paddingBottom: Spacing.three
     },
-    section: {
-        paddingVertical: Spacing.three
-    },
-    // A 1px rule, not the house 2px line: these are creases in the sheet, not fences between controls.
-    sectionDivided: {
-        borderTopWidth: 1,
-        borderTopColor: theme.scheme === 'dark'
-            ? theme.colors.borderSubtle
-            : withAlpha(theme.colors.border, 0.10)
+    column: {
+        gap: Spacing.three
     },
     // Not in a `Card`: a paragraph in a box reads as a notice about the page rather than as the page introducing itself.
     intro: {

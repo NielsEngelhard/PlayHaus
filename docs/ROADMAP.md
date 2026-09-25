@@ -12,12 +12,12 @@
 
 # Voor v1
 - alle quizes genereren
-- nieuwe game
+- Refactor fake filler
+- nieuwe game Witty Wars
+- Design revamp one of us game (momenteel nog steeds lelijk in vergelijking met de andere games)
+- League of letters tournament mode testen
 - quizer multi device afronden
 - quizer op tv testen
-- content refactor voor oou en fakefiller ook een spec document voor die games maken
-
-
 
 # Double checks voordat echt app
 - inzicht in load. Als er veel load is . Waar zie je problemen qua performance als er bijv. 100 mensen tegelijk spelen? Waar zit de load in de app? Valt denk ik wel mee door client

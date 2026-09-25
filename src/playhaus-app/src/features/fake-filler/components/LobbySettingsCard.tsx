@@ -1,6 +1,7 @@
 import type { FFGameMode, FFLobbySettings } from "@/api/calls/fake-filler-lobby";
 import LanguageSelect from "@/components/ui/LanguageSelect";
-import LobbySettings, { LobbySettingSegment } from "@/components/ui/LobbySettings";
+import SectionCard from "@/components/ui/SectionCard";
+import { SettingSegment } from "@/components/ui/SettingRows";
 import { useT } from "@/features/i18n/LanguageContext";
 
 interface Props {
@@ -27,8 +28,8 @@ export default function LobbySettingsCard({ maxAnswersPerPlayer, minAnswersPerPl
     );
 
     return (
-        <LobbySettings title={t('fakeFiller.lobby.settingsTitle')}>
-            <LobbySettingSegment
+        <SectionCard title={t('fakeFiller.lobby.settingsTitle')}>
+            <SettingSegment
                 label={t('fakeFiller.lobby.mode')}
                 options={MODES}
                 value={settings.gameMode}
@@ -39,7 +40,7 @@ export default function LobbySettingsCard({ maxAnswersPerPlayer, minAnswersPerPl
                 onChange={gameMode => onChange({ ...settings, gameMode })}
             />
 
-            <LobbySettingSegment
+            <SettingSegment
                 label={t('fakeFiller.lobby.answersPerPlayer')}
                 options={countsBetween(minAnswersPerPlayer, maxAnswersPerPlayer)}
                 value={settings.answersPerPlayer}
@@ -53,6 +54,6 @@ export default function LobbySettingsCard({ maxAnswersPerPlayer, minAnswersPerPl
                 value={settings.locale}
                 onChange={locale => onChange({ ...settings, locale })}
             />
-        </LobbySettings>
+        </SectionCard>
     )
 }

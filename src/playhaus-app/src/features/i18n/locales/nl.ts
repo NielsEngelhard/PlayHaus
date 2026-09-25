@@ -616,7 +616,7 @@ export const nl: Catalog = {
             steps: {
                 seatsTitle: 'Vul alle spelers in',
                 quizTitle: 'Selecteer quiz',
-                settingsTitle: 'Hoe jullie spelen',
+                settingsTitle: 'Instellingen',
                 table: 'Spelers',
             },
             zenMode: {

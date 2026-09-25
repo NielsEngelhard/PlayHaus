@@ -4,15 +4,16 @@ import { isNetworkError } from "@/api/client";
 import SettingsPageBase from "@/components/layout/SettingsPageBase";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import PlayerNamesInput from "@/components/ui/PlayerNamesInput";
+import SectionCard from "@/components/ui/SectionCard";
+import { SettingSwitch } from "@/components/ui/SettingRows";
 import StartGameButton from "@/components/ui/StartGameButton";
-import ToggleRow from "@/components/ui/ToggleRow";
 import { ONE_OF_US } from "@/constants/games";
 import { DEFAULT_LANGUAGE, LanguageCode } from "@/constants/languages";
 import { ROUTES } from "@/constants/routes";
 import { useAuth } from "@/features/auth/useAuth";
 import { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
-import RolesSettingRow from "@/features/one-of-us/components/RolesSettingRow";
+import RolesSettingLink from "@/features/one-of-us/components/RolesSettingLink";
 import TableRingPreview from "@/features/one-of-us/components/TableRingPreview";
 import { oneOfUsErrorMessage } from "@/features/one-of-us/game-errors";
 import type { OneOfUsRole } from "@/features/one-of-us/models";
@@ -145,34 +146,37 @@ export default function OneOfUsSingleDeviceIndexPage() {
                     />
                 }
             >
-                {/* One child per ruled section — bare on the sheet, no cards. */}
-                <PlayerNamesInput
-                    minPlayers={MIN_PLAYERS}
-                    maxPlayers={MAX_PLAYERS}
-                    names={names}
-                    onChange={editNames}
-                    disabled={starting}
-                />
+                <SectionCard title={t('lobby.players')}>
+                    <PlayerNamesInput
+                        minPlayers={MIN_PLAYERS}
+                        maxPlayers={MAX_PLAYERS}
+                        names={names}
+                        onChange={editNames}
+                        disabled={starting}
+                    />
+                </SectionCard>
 
-                <RolesSettingRow
-                    enabled={roles}
-                    onToggle={role => setRoles(current => toggleRole(current, role))}
-                    disabled={starting}
-                />                
+                <SectionCard title={t('oneOfUs.multiDevice.lobby.settingsTitle')}>
+                    <SettingSwitch
+                        value={wordsOnly}
+                        onChange={setWordsOnly}
+                        label={t('oneOfUs.settings.wordsOnly.title')}
+                        description={t('oneOfUs.settings.wordsOnly.description')}
+                        disabled={starting}
+                    />
 
-                <LanguageSelect
-                    variant='row'
-                    value={language}
-                    onChange={locale => setPicked(locale)}
-                />
+                    <RolesSettingLink
+                        enabled={roles}
+                        onToggle={role => setRoles(current => toggleRole(current, role))}
+                        disabled={starting}
+                    />
 
-                <ToggleRow
-                    flush
-                    value={wordsOnly}
-                    onChange={value => setWordsOnly(value)}
-                    label={t('oneOfUs.settings.wordsOnly.title')}
-                    description={t('oneOfUs.settings.wordsOnly.description')}
-                />
+                    <LanguageSelect
+                        variant='pill'
+                        value={language}
+                        onChange={locale => setPicked(locale)}
+                    />
+                </SectionCard>
             </SettingsPageBase>
         </View>
     )

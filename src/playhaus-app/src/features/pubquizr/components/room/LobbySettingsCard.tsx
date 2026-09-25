@@ -1,5 +1,6 @@
 import type { PQLobbySetup } from "@/api/calls/pubquizr-lobby";
-import LobbySettings, { LobbySettingSwitch } from "@/components/ui/LobbySettings";
+import SectionCard from "@/components/ui/SectionCard";
+import { SettingSwitch } from "@/components/ui/SettingRows";
 import { useT } from "@/features/i18n/LanguageContext";
 
 interface Props {
@@ -12,9 +13,9 @@ export default function LobbySettingsCard({ onChange, setup }: Props) {
     const t = useT();
 
     return (
-        <LobbySettings title={t('pubquizr.lobby.settingsTitle')}>
+        <SectionCard title={t('pubquizr.lobby.settingsTitle')}>
             {/* Trivia first, because it is the bigger cut of the two. */}
-            <LobbySettingSwitch
+            <SettingSwitch
                 value={setup.triviaMode}
                 // The two cuts cannot both be on, and trivia is the one that wins.
                 onChange={trivia => onChange(trivia ? { triviaMode: true, zenMode: false } : { triviaMode: false })}
@@ -23,13 +24,13 @@ export default function LobbySettingsCard({ onChange, setup }: Props) {
             />
 
             {!setup.triviaMode && (
-                <LobbySettingSwitch
+                <SettingSwitch
                     value={setup.zenMode}
                     onChange={zen => onChange({ zenMode: zen })}
                     label={t('pubquizr.oneDevice.zenMode.label')}
                     description={t('pubquizr.oneDevice.zenMode.description')}
                 />
             )}
-        </LobbySettings>
+        </SectionCard>
     )
 }

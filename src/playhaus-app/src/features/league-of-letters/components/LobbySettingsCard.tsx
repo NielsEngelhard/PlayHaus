@@ -1,9 +1,11 @@
 import type { LobbySettings as LoLLobbySettings } from "@/api/calls/league-of-letters-lobby";
 import LanguageSelect from "@/components/ui/LanguageSelect";
-import LobbySettings, { LobbySettingSegment } from "@/components/ui/LobbySettings";
+import SectionCard from "@/components/ui/SectionCard";
+import { SettingSegment } from "@/components/ui/SettingRows";
 import { useT } from "@/features/i18n/LanguageContext";
-import { TIME_PER_ROUND_OPTIONS } from "@/features/league-of-letters/components/TimePerRoundSelect";
 import { WORD_LENGTHS } from "@/features/league-of-letters/solo-settings";
+
+const TIME_PER_ROUND_OPTIONS = [20, 35, 60, 100] as const;
 
 interface Props {
     settings: LoLLobbySettings,
@@ -15,8 +17,8 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
     const t = useT();
 
     return (
-        <LobbySettings title={t('lol.lobby.settingsTitle')}>
-            <LobbySettingSegment
+        <SectionCard title={t('lol.lobby.settingsTitle')}>
+            <SettingSegment
                 label={t('lol.settings.wordLength')}
                 options={WORD_LENGTHS}
                 value={settings.wordLength}
@@ -26,7 +28,7 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
                 onChange={wordLength => onChange({ ...settings, wordLength })}
             />
 
-            <LobbySettingSegment
+            <SettingSegment
                 label={t('lol.lobby.timePerTurn')}
                 options={TIME_PER_ROUND_OPTIONS}
                 value={settings.secondsPerTurn}
@@ -41,6 +43,6 @@ export default function LobbySettingsCard({ settings, onChange }: Props) {
                 value={settings.locale}
                 onChange={locale => onChange({ ...settings, locale })}
             />
-        </LobbySettings>
+        </SectionCard>
     )
 }

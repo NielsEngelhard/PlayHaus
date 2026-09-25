@@ -1,6 +1,7 @@
 import AppText from '@/components/text/AppText';
 import { initialsFor, type LobbySeat } from '@/components/ui/lobby-seat';
 import PopPressable from '@/components/ui/PopPressable';
+import SectionCard from '@/components/ui/SectionCard';
 import { FontSizes, Radii, Spacing } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
@@ -56,17 +57,10 @@ export default function LobbyPlayersCard({ hostId, maxPlayers, minPlayers, onlin
     }
 
     return (
-        <View style={styles.card}>
-            <View style={styles.header}>
-                <AppText style={styles.label}>
-                    {userId === hostId ? t('lobby.players') : t('lobby.inLobby')}
-                </AppText>
-
-                <AppText style={styles.count}>
-                    {t('lobby.playerCount', { taken: players.length, max: maxPlayers })}
-                </AppText>
-            </View>
-
+        <SectionCard
+            title={userId === hostId ? t('lobby.players') : t('lobby.inLobby')}
+            aside={t('lobby.playerCount', { taken: players.length, max: maxPlayers })}
+        >
             <View style={styles.grid}>
                 {rows.map((row, index) => (
                     <View key={index} style={styles.row}>
@@ -78,7 +72,7 @@ export default function LobbyPlayersCard({ hostId, maxPlayers, minPlayers, onlin
 
                 {free > 0 && short > 0 && <NeedPlayersRow short={short} onInvite={onInvite} />}
             </View>
-        </View>
+        </SectionCard>
     )
 }
 
@@ -195,35 +189,6 @@ function NeedPlayersRow({ short, onInvite }: { short: number, onInvite?: () => v
 }
 
 const useStyles = createThemedStyles(theme => ({
-    card: {
-        gap: Spacing.three,
-        padding: Spacing.three,
-        borderRadius: Radii.xl,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: theme.colors.backgroundSecondary,
-        ...theme.shadows.hard
-    },
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: Spacing.two
-    },
-    label: {
-        flex: 1,
-        fontSize: FontSizes.xs,
-        fontWeight: 900,
-        textTransform: 'uppercase',
-        letterSpacing: 2,
-        color: theme.colors.textSecondary
-    },
-    count: {
-        fontSize: FontSizes.sm,
-        fontWeight: 900,
-        // The left-hand digit changes as people arrive; without this the label twitches.
-        fontVariant: ['tabular-nums'],
-        color: theme.colors.text
-    },
     grid: {
         gap: Spacing.two
     },
