@@ -7,7 +7,6 @@ export const LEAGUE_OF_LETTERS_NAME: string = "League of Letters";
 export const PUBQUIZR_NAME: string = "PubquizR";
 export const ONE_OF_US_NAME: string = "One of Us";
 export const FAKE_FILLER_NAME: string = "Fake Filler";
-export const SKETCH_OFF_NAME: string = "Sketch Off";
 
 // How many devices a group needs to play.
 export type DeviceMode = 'perPlayer' | 'oneDevice' | 'perPlayerOrOneDevice';
@@ -17,7 +16,7 @@ export const DEVICE_MODE_KEYS: Record<DeviceMode, TranslationKey> = {
     perPlayerOrOneDevice: 'games.device.perPlayerOrOneDevice',
 };
 
-export type JoinCodePrefix = 'L' | 'P' | 'O' | 'F' | 'S';
+export type JoinCodePrefix = 'L' | 'P' | 'O' | 'F';
 
 export interface Game {
     slug: string,
@@ -33,7 +32,7 @@ export interface Game {
     isNew?: boolean,
     navigationUrl: string,
     joinCodePrefix: JoinCodePrefix,
-    roomRoute: ((code: string) => string) | null,
+    roomRoute: (code: string) => string,
     deviceMode: DeviceMode,
     minMaxPlayersIndicator: string
     minutesAverage: number
@@ -117,28 +116,8 @@ export const FAKE_FILLER: Game = {
     minutesAverage: 5
 };
 
-export const SKETCH_OFF: Game = {
-    slug: 'sketch-off',
-    name: SKETCH_OFF_NAME,
-    color: Brand.pink,
-    gradient: Gradients.pink,
-    accentInk: 'ink',
-    glyphInk: { light: Brand.ink, dark: Brand.ink },
-    icon: require('@/assets/icons/sketch-off.svg'),
-    mainCategoryIndicatorKey: 'games.sketchOff.mainCategory',
-    descriptionKey: 'games.sketchOff.description',
-    deviceMode: 'perPlayer',
-    playable: true,
-    navigationUrl: ROUTES.sketchOffIndex,
-    // Not 'F' — that is Fake Filler's, and `gameForJoinCode` answers with the first game in `GAMES` that claims a character.
-    joinCodePrefix: 'S',
-    roomRoute: null,
-    minMaxPlayersIndicator: "3-8",
-    minutesAverage: 10,
-};
-
 // Every game the app knows about.
-export const GAMES: Game[] = [LEAGUE_OF_LETTERS, PUBQUIZR, ONE_OF_US, FAKE_FILLER, SKETCH_OFF];
+export const GAMES: Game[] = [LEAGUE_OF_LETTERS, PUBQUIZR, ONE_OF_US, FAKE_FILLER];
 
 // A game's colour identity, in the shape the controls take it in.
 export function accentOf(game: Game): Accent {

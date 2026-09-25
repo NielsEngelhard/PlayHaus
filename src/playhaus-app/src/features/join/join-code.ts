@@ -31,7 +31,7 @@ export type JoinTarget =
     | { kind: 'incomplete' }
     /** A game, and the page to open. */
     | { kind: 'route', game: Game, href: string }
-    // Nothing this build can open: an unclaimed first character, a game with no room yet, or a body holding characters we never hand out.
+    // Nothing this build can open: an unclaimed first character or a body holding characters we never hand out.
     | { kind: 'rejected' };
 
 // The dispatch: a code in, somewhere to go or a refusal out.
@@ -46,7 +46,7 @@ export function resolveJoinCode(code: string): JoinTarget {
     }
 
     const game = gameForJoinCode(value);
-    if (game?.roomRoute == null) return { kind: 'rejected' };
+    if (game === null) return { kind: 'rejected' };
 
     return { kind: 'route', game, href: game.roomRoute(value) };
 }

@@ -108,10 +108,6 @@ export const nl: Catalog = {
             description: 'Verzin een fout antwoord.',
             mainCategory: 'Misleiding',
         },
-        sketchOff: {
-            description: 'Wie kan het beste tekenen?',
-            mainCategory: 'Creatief',
-        },        
         newBadge: 'Nieuw',
         wipBadge: 'In de maak'
     },
@@ -1527,16 +1523,6 @@ export const nl: Catalog = {
             badAnswer: 'Vul elk gat in voordat je vastzet.',
             answerIsTruth: 'Ssst… dat is het echte antwoord! Verzin nu een nepantwoord.',
             gameFinished: 'Dit spel is afgelopen.'
-        }
-    },
-    sketchOff: {
-        index: {
-            description: "description",
-            multiplayer: {
-                title: "Sketch off",
-                description: "description",
-                action: "action"
-            }
         }
     },
     friends: {

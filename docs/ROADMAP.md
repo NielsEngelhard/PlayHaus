@@ -10,7 +10,7 @@
 
 # Voor v1
 - alle quizes genereren
-- nieuwe game ipv sketch off
+- nieuwe game
 - refactor user avatar naar 1 generiek component
 - quizer multi device afronden
 - quizer op tv testen

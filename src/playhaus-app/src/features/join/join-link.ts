@@ -7,13 +7,7 @@ import * as Linking from "expo-linking";
 
 // The link that joins this game's room.
 export function joinLink(game: Game, code: string): string {
-    const room = game.roomRoute;
-    if (room === null) {
-        // Unreachable from any screen that exists.
-        throw new Error(`${game.name} has no room to link to`);
-    }
-
-    return Linking.createURL(room(code));
+    return Linking.createURL(game.roomRoute(code));
 }
 
 // The segment every game's room sits under.

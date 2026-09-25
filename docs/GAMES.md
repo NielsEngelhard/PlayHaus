@@ -6,7 +6,5 @@
 
 # fake filler
 
-# sketch off
-
 # The Village
 Lijkt op weerwolven

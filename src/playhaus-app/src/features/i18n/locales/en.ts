@@ -116,10 +116,6 @@ export const en = {
             description: 'Invent a wrong answer.',
             mainCategory: 'Deception',
         },
-        sketchOff: {
-            description: 'Who can draw best?',
-            mainCategory: 'Creative',
-        },           
         newBadge: 'New',
         wipBadge: 'In the making'
     },
@@ -1659,16 +1655,6 @@ export const en = {
             gameFinished: 'This game is over.'
         }
     },
-    sketchOff: {
-        index: {
-            description: "description",
-            multiplayer: {
-                title: "Sketch off",
-                description: "description",
-                action: "action"
-            }
-        }
-    },    
     friends: {
         title: 'Friends',
         description: 'Play together, keep track of who wins and challenge each other.',

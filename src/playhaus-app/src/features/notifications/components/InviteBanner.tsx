@@ -122,7 +122,7 @@ interface Showing {
     game: Game
 }
 
-// The newest invite this build can actually open. Sketch Off has no room screen, so a code for one is not offered.
+// The newest invite this build can actually open.
 function firstOpenable(invites: FriendInvite[]): Showing | undefined {
     for (const invite of invites) {
         const target = resolveJoinCode(invite.code);

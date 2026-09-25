@@ -97,8 +97,7 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
     const [category, setCategory] = useState<QuizCategory>('weekly');
     const [query, setQuery] = useState('');
     const [sort, setSort] = useState<Sort>('newest');
-    // Defaults to the shelf's own reason for existing: what is left to play, not what has already been.
-    const [unplayedOnly, setUnplayedOnly] = useState(true);
+    const [unplayedOnly, setUnplayedOnly] = useState(false);
 
     const quizzes = useQuizzes(category);
 
@@ -106,7 +105,7 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
     function chooseCategory(next: QuizCategory) {
         setCategory(next);
         setQuery('');
-        setUnplayedOnly(true);
+        setUnplayedOnly(false);
     }
 
     const needle = fold(query.trim());
