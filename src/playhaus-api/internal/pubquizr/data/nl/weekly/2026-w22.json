@@ -139,7 +139,7 @@
         { "prompt": "Welke planeet heeft de Grote Rode Vlek?", "answers": [{ "text": "Jupiter" }] },
         { "prompt": "Wie schreef de roman 1984?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
         { "prompt": "Welk gebergte scheidt Europa van Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] },
-        { "prompt": "Welke uitvinder vroeg in 1876 patent aan op de telefoon?", "answers": [{ "text": "Alexander Graham Bell", "aliases": ["Graham Bell", "Bell"] }] },
+        { "prompt": "Welke Amerikaan bedacht het alfabet van punten en strepen?", "answers": [{ "text": "Samuel Morse", "aliases": ["Morse"] }] },
         { "prompt": "Wat is de hoofdstad van Wit-Rusland?", "answers": [{ "text": "Minsk" }] }
       ]
     }

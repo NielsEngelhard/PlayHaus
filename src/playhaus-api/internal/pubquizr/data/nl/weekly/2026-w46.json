@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w46",
+  "title": "Weekquiz 46 2026",
+  "description": "De wekelijkse quiz van woensdag 11 november 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van de Filipijnen?", "category": "Aardrijkskunde", "answers": [{ "text": "Manila" }] },
+        { "prompt": "Hoe heet de buitenste, harde laag van de aarde waarop wij leven?", "category": "Wetenschap", "answers": [{ "text": "De aardkorst", "aliases": ["Aardkorst", "Korst"] }] },
+        { "prompt": "Welke heilige sneed volgens de legende zijn mantel doormidden voor een bedelaar?", "category": "Geschiedenis", "answers": [{ "text": "Sint-Maarten", "aliases": ["Sint Maarten", "Martinus", "Martinus van Tours"] }] },
+        { "prompt": "Welke Nederlandse verdediger werd in 2019 tweede bij de verkiezing van de Ballon d'Or?", "category": "Sport", "answers": [{ "text": "Virgil van Dijk", "aliases": ["Van Dijk"] }] },
+        { "prompt": "Welke Nieuw-Zeelandse regisseur verfilmde The Lord of the Rings?", "category": "Film", "answers": [{ "text": "Peter Jackson", "aliases": ["Jackson"] }] },
+        { "prompt": "Welke Britse band van zanger Chris Martin scoorde met Viva la Vida?", "category": "Muziek", "answers": [{ "text": "Coldplay" }] },
+        { "prompt": "Welk voormalig eiland in het Markermeer is beroemd om zijn houten huizen en klederdracht?", "category": "Nederland", "answers": [{ "text": "Marken" }] },
+        { "prompt": "Welke Britse kunstenaar maakte een platina schedel bezet met diamanten?", "category": "Kunst", "answers": [{ "text": "Damien Hirst", "aliases": ["Hirst"] }] },
+        { "prompt": "Hoe heet een gedicht van veertien regels?", "category": "Taal", "answers": [{ "text": "Een sonnet", "aliases": ["Sonnet", "Klinkdicht"] }] },
+        { "prompt": "Welke saus eet je traditioneel bij saté?", "category": "Eten", "answers": [{ "text": "Pindasaus", "aliases": ["Satesaus"] }] },
+        { "prompt": "Welke app met korte filmpjes komt van het Chinese bedrijf ByteDance?", "category": "Techniek", "answers": [{ "text": "TikTok", "aliases": ["Douyin"] }] },
+        { "prompt": "Hoe heet de zeevogel met een grote gekleurde snavel die op kliffen in IJsland broedt?", "category": "Natuur", "answers": [{ "text": "De papegaaiduiker", "aliases": ["Papegaaiduiker"] }] },
+        { "prompt": "Welke Zuid-Afrikaanse stad ligt aan de voet van de Tafelberg?", "category": "Aardrijkskunde", "answers": [{ "text": "Kaapstad", "aliases": ["Cape Town"] }] },
+        { "prompt": "Hoe heette de Duitse aanval op de Sovjet-Unie in juni 1941?", "category": "Geschiedenis", "answers": [{ "text": "Operatie Barbarossa", "aliases": ["Barbarossa"] }] },
+        { "prompt": "Hoe heet de denkbeeldige lijn die de aarde in een noordelijk en een zuidelijk halfrond verdeelt?", "category": "Wetenschap", "answers": [{ "text": "De evenaar", "aliases": ["Evenaar", "Equator"] }] },
+        { "prompt": "Welke Nederlandse band scoorde in 1973 een wereldhit met Radar Love?", "category": "Muziek", "answers": [{ "text": "Golden Earring" }] },
+        { "prompt": "Hoe heet de koningin met ijskrachten in Frozen?", "category": "Film", "answers": [{ "text": "Elsa" }] },
+        { "prompt": "Hoe heet het platte Italiaanse brood met olijfolie en rozemarijn?", "category": "Eten", "answers": [{ "text": "Focaccia" }] },
+        { "prompt": "Hoe heet de spraakassistent van Apple?", "category": "Techniek", "answers": [{ "text": "Siri" }] },
+        { "prompt": "Van welk Nederlands woord komt het Engelse cookie?", "category": "Taal", "answers": [{ "text": "Koekje", "aliases": ["Koekie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Belgie?", "options": [{ "text": "Luik", "correct": true }, { "text": "Rijsel" }, { "text": "Aken" }, { "text": "Luxemburg" }] },
+        { "prompt": "Welk zoogdier kan het langst onder water blijven zonder adem te halen?", "options": [{ "text": "De dolfijn van Cuvier", "correct": true }, { "text": "De potvis" }, { "text": "De zeehond" }, { "text": "De walrus" }] },
+        { "prompt": "Welke Vlaamse schrijver schreef Het verdriet van Belgie?", "options": [{ "text": "Hugo Claus", "correct": true }, { "text": "Louis Paul Boon" }, { "text": "Tom Lanoye" }, { "text": "Dimitri Verhulst" }] },
+        { "prompt": "Welk van deze landen ligt niet aan de Oostzee?", "options": [{ "text": "Noorwegen", "correct": true }, { "text": "Zweden" }, { "text": "Finland" }, { "text": "Polen" }] },
+        { "prompt": "Welke van deze ziekten wordt door een virus veroorzaakt?", "options": [{ "text": "Mazelen", "correct": true }, { "text": "Tuberculose" }, { "text": "Cholera" }, { "text": "Tetanus" }] },
+        { "prompt": "Welke farao liet de tempels van Abu Simbel uithouwen?", "options": [{ "text": "Ramses II", "correct": true }, { "text": "Toetanchamon" }, { "text": "Cheops" }, { "text": "Achnaton" }] },
+        { "prompt": "Welke van deze woestijnen ligt in Australie?", "options": [{ "text": "De Simpsonwoestijn", "correct": true }, { "text": "De Gobi" }, { "text": "De Kalahari" }, { "text": "De Mojave" }] },
+        { "prompt": "Welk van deze dieren houdt geen echte winterslaap?", "options": [{ "text": "De eekhoorn", "correct": true }, { "text": "De egel" }, { "text": "De vleermuis" }, { "text": "De relmuis" }] },
+        { "prompt": "Welke hobbit draagt de Ene Ring naar Mordor?", "options": [{ "text": "Frodo", "correct": true }, { "text": "Sam" }, { "text": "Bilbo" }, { "text": "Pippin" }] },
+        { "prompt": "Welke sport is het populairst in India?", "options": [{ "text": "Cricket", "correct": true }, { "text": "Hockey" }, { "text": "Voetbal" }, { "text": "Kabaddi" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Mont Blanc?", "answer": 4806, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer rijden de renners ongeveer in totaal in de Tour de France?", "answer": 3400, "unit": "kilometer" },
+        { "prompt": "Hoeveel landen deden mee aan het WK voetbal van 2022?", "answer": 32, "unit": "landen" },
+        { "prompt": "Hoeveel bijen leven er in de zomer ongeveer in een bijenvolk?", "answer": 50000, "unit": "bijen" },
+        { "prompt": "Hoeveel dagen duurde de reis van Apollo 11, van lancering tot landing op aarde?", "answer": 8, "unit": "dagen" },
+        { "prompt": "Hoeveel officiele landstalen heeft Zwitserland?", "answer": 4, "unit": "talen" },
+        { "prompt": "Hoeveel kilometer per uur rijdt een hogesnelheidstrein tussen Parijs en Brussel maximaal?", "answer": 300, "unit": "kilometer per uur" },
+        { "prompt": "In welk jaar verscheen het eerste Harry Potter-boek?", "answer": 1997 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Disneyland",
+        "Huwelijksaanzoek",
+        "Squash",
+        "Sapcentrifuge",
+        "Mariachi",
+        "Muhammad Ali",
+        "Sleepboot",
+        "Tiesto",
+        "Kinderdagverblijf",
+        "Mayonaise",
+        "Elon Musk",
+        "Kanarie",
+        "Mark Zuckerberg",
+        "Kniebuiging",
+        "Mossel",
+        "Opera-aria",
+        "Horloge",
+        "Vasco da Gama",
+        "Bladblazer",
+        "Spelcomputer",
+        "Dictator",
+        "Klavertjevier",
+        "Heks",
+        "Tram",
+        "Grappenmaker",
+        "Diploma-uitreiking",
+        "Visboer",
+        "Toy Story",
+        "Persconferentie",
+        "Cappadocie",
+        "Jeanne d'Arc",
+        "Valentina Teresjkova",
+        "Amfitheater van Verona",
+        "Muffin",
+        "Cupcake",
+        "Coco",
+        "Robinson Crusoe",
+        "Konijn",
+        "Uitsmijter",
+        "Mascara"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Sint-Maarten?", "answers": [{ "text": "Lampionnen", "aliases": ["Lampion", "Lichtjes"] }, { "text": "Langs de deuren zingen", "aliases": ["Liedjes", "Zingen"] }, { "text": "Snoep", "aliases": ["Mandarijnen", "Lekkers"] }, { "text": "Mantel delen", "aliases": ["Bedelaar", "Halve mantel"] }] },
+        { "prompt": "Wat weet je over Brussel?", "answers": [{ "text": "Manneken Pis", "aliases": ["Plassend mannetje"] }, { "text": "Atomium", "aliases": ["Grote Markt"] }, { "text": "Europese Unie", "aliases": ["Europa", "Europees Parlement"] }, { "text": "Wafels", "aliases": ["Friet", "Chocolade"] }] },
+        { "prompt": "Wat weet je over wolven?", "answers": [{ "text": "Huilen", "aliases": ["Huilen naar de maan"] }, { "text": "Roedel", "aliases": ["In groepen"] }, { "text": "Roodkapje", "aliases": ["De grote boze wolf"] }, { "text": "Terug in Nederland", "aliases": ["Veluwe"] }] },
+        { "prompt": "Wat weet je over ABBA?", "answers": [{ "text": "Zweden", "aliases": ["Zweeds"] }, { "text": "Waterloo", "aliases": ["Songfestival"] }, { "text": "Mamma Mia", "aliases": ["De musical"] }, { "text": "Dancing Queen", "aliases": ["Super Trouper", "Gimme Gimme Gimme"] }] },
+        { "prompt": "Wat weet je over koala's?", "answers": [{ "text": "Australie", "aliases": ["Australisch"] }, { "text": "Eucalyptus", "aliases": ["Bladeren"] }, { "text": "Slapen veel", "aliases": ["Slapen", "Lui"] }, { "text": "Buideldier", "aliases": ["Buidel", "Jong in buidel"] }] },
+        { "prompt": "Wat weet je over de Koude Oorlog?", "answers": [{ "text": "Berlijnse Muur", "aliases": ["Muur", "IJzeren Gordijn"] }, { "text": "Amerika en de Sovjet-Unie", "aliases": ["Rusland", "VS"] }, { "text": "Atoombommen", "aliases": ["Kernwapens", "Wapenwedloop"] }, { "text": "Ruimtevaart", "aliases": ["Spionnen", "Ruimterace"] }] },
+        { "prompt": "Wat weet je over Frida Kahlo?", "answers": [{ "text": "Mexico", "aliases": ["Mexicaans"] }, { "text": "Zelfportretten", "aliases": ["Zelfportret", "Schilderes"] }, { "text": "Wenkbrauwen", "aliases": ["Doorlopende wenkbrauw", "Monobrow"] }, { "text": "Diego Rivera", "aliases": ["Rivera"] }] },
+        { "prompt": "Wat weet je over bowlen?", "answers": [{ "text": "Kegels", "aliases": ["Pins", "Tien kegels"] }, { "text": "Strike", "aliases": ["Spare"] }, { "text": "Bal met gaten", "aliases": ["Bowlingbal", "Bal"] }, { "text": "Bowlingschoenen", "aliases": ["Schoenen"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het huisje waarin een hond buiten slaapt?", "difficulty": "easy", "answers": [{ "text": "Een hondenhok", "aliases": ["Hondenhok", "Hok"] }] },
+        { "prompt": "Hoe heet de beer met de rode hoed die uit Peru naar Londen komt?", "difficulty": "easy", "answers": [{ "text": "Paddington", "aliases": ["Paddington Beer"] }] },
+        { "prompt": "Welk sprookjesmeisje woont bij zeven dwergen?", "difficulty": "easy", "answers": [{ "text": "Sneeuwwitje" }] },
+        { "prompt": "Welk dier draagt zijn huisje op zijn rug?", "difficulty": "easy", "answers": [{ "text": "De slak", "aliases": ["Slak", "Huisjesslak"] }] },
+        { "prompt": "Welke goedheiligman komt in november met de stoomboot naar Nederland?", "difficulty": "easy", "answers": [{ "text": "Sinterklaas", "aliases": ["Sint-Nicolaas", "De Sint"] }] },
+        { "prompt": "Wat is de hoofdstad van Kameroen?", "difficulty": "hard", "answers": [{ "text": "Yaounde" }] },
+        { "prompt": "Welke Tsjechische componist schreef De Moldau?", "difficulty": "hard", "answers": [{ "text": "Bedrich Smetana", "aliases": ["Smetana"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Bi?", "difficulty": "hard", "answers": [{ "text": "Bismut" }] },
+        { "prompt": "Welke rivier stroomt in Lyon samen met de Rhone?", "difficulty": "hard", "answers": [{ "text": "De Saone", "aliases": ["Saone"] }] },
+        { "prompt": "Welke Franse koning werd in 1793 onthoofd?", "difficulty": "hard", "answers": [{ "text": "Lodewijk XVI", "aliases": ["Lodewijk de Zestiende", "Louis XVI"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Winnie de Poeh?", "answers": [{ "text": "Een beer", "aliases": ["Beer", "Teddybeer"] }] },
+        { "prompt": "In welke Italiaanse stad staat een beroemde scheve toren?", "answers": [{ "text": "Pisa" }] },
+        { "prompt": "Welke Engelse dichter schreef Paradise Lost?", "answers": [{ "text": "John Milton", "aliases": ["Milton"] }] },
+        { "prompt": "Welk dier verandert in het sprookje na een kus in een prins?", "answers": [{ "text": "De kikker", "aliases": ["Kikker", "Kikvors"] }] },
+        { "prompt": "Welke zee ligt tussen de hak van Italie en Griekenland?", "answers": [{ "text": "De Ionische Zee", "aliases": ["Ionische Zee"] }] },
+        { "prompt": "Welke Russische schrijver schreef De meester en Margarita?", "answers": [{ "text": "Michail Boelgakov", "aliases": ["Boelgakov", "Bulgakov"] }] },
+        { "prompt": "Hoe heet het grote reuzenrad aan de Theems in Londen?", "answers": [{ "text": "De London Eye", "aliases": ["London Eye"] }] },
+        { "prompt": "Welke Nederlander werd in 1935 wereldkampioen schaken?", "answers": [{ "text": "Max Euwe", "aliases": ["Euwe"] }] },
+        { "prompt": "Welke Portugese dictator regeerde zijn land van 1932 tot 1968?", "answers": [{ "text": "Antonio Salazar", "aliases": ["Salazar"] }] }
+      ]
+    }
+  ]
+}

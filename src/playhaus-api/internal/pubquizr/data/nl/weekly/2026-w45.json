@@ -10,7 +10,7 @@
         { "prompt": "Hoe heet een driehoek waarvan alle drie de zijden even lang zijn?", "category": "Wetenschap", "answers": [{ "text": "Gelijkzijdig", "aliases": ["Een gelijkzijdige driehoek"] }] },
         { "prompt": "Welke koning van de Hunnen werd de Gesel Gods genoemd?", "category": "Geschiedenis", "answers": [{ "text": "Attila", "aliases": ["Attila de Hun"] }] },
         { "prompt": "Welke Servische tennisser won bij de mannen de meeste grandslamtitels?", "category": "Sport", "answers": [{ "text": "Novak Djokovic", "aliases": ["Djokovic"] }] },
-        { "prompt": "Hoe heet de leeuwenwelp die in The Lion King koning wordt?", "category": "Film", "answers": [{ "text": "Simba" }] },
+        { "prompt": "Hoe heet de gemene oom van Simba in The Lion King?", "category": "Film", "answers": [{ "text": "Scar" }] },
         { "prompt": "Welke Amerikaanse zangeres zong Bad Romance en Poker Face?", "category": "Muziek", "answers": [{ "text": "Lady Gaga", "aliases": ["Gaga"] }] },
         { "prompt": "Welke Nederlandse astronaut ging in 2004 en 2011 naar het ruimtestation ISS?", "category": "Nederland", "answers": [{ "text": "Andre Kuipers", "aliases": ["Kuipers"] }] },
         { "prompt": "Welke Vlaamse barokschilder is beroemd om zijn weelderige, volle vrouwen?", "category": "Kunst", "answers": [{ "text": "Peter Paul Rubens", "aliases": ["Rubens"] }] },

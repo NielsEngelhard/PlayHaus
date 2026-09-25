@@ -139,7 +139,7 @@
         { "prompt": "Which Greek mathematician is said to have shouted Eureka in his bath?", "answers": [{ "text": "Archimedes" }] },
         { "prompt": "Which German composer wrote the Brandenburg Concertos?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
         { "prompt": "What is the capital of New Zealand?", "answers": [{ "text": "Wellington" }] },
-        { "prompt": "What is the capital of Hungary?", "answers": [{ "text": "Budapest" }] },
+        { "prompt": "In which French town is the Palme d'Or awarded at the film festival?", "answers": [{ "text": "Cannes" }] },
         { "prompt": "Which American writer wrote Uncle Tom's Cabin?", "answers": [{ "text": "Harriet Beecher Stowe", "aliases": ["Beecher Stowe"] }] }
       ]
     }

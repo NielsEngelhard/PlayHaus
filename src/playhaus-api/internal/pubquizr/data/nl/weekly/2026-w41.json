@@ -19,7 +19,7 @@
         { "prompt": "Welk Japans bedrijf bracht de PlayStation op de markt?", "category": "Techniek", "answers": [{ "text": "Sony" }] },
         { "prompt": "Hoe heet het vrouwtje van het edelhert?", "category": "Natuur", "answers": [{ "text": "De hinde", "aliases": ["Hinde"] }] },
         { "prompt": "Welke rivier stroomt door Londen?", "category": "Aardrijkskunde", "answers": [{ "text": "De Theems", "aliases": ["Theems"] }] },
-        { "prompt": "Welke Amerikaanse president werd in 1963 in Dallas doodgeschoten?", "category": "Geschiedenis", "answers": [{ "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "Wie werd in 2009 de eerste zwarte president van de Verenigde Staten?", "category": "Geschiedenis", "answers": [{ "text": "Barack Obama", "aliases": ["Obama"] }] },
         { "prompt": "Welke vitamine zit veel in sinaasappels en voorkomt scheurbuik?", "category": "Wetenschap", "answers": [{ "text": "Vitamine C", "aliases": ["C"] }] },
         { "prompt": "Welke Amerikaanse zanger had de bijnaam Ol' Blue Eyes?", "category": "Muziek", "answers": [{ "text": "Frank Sinatra", "aliases": ["Sinatra"] }] },
         { "prompt": "Hoe heet de pratende sneeuwpop in Frozen?", "category": "Film", "answers": [{ "text": "Olaf" }] },
@@ -33,7 +33,7 @@
       "questions": [
         { "prompt": "Welke van deze hoofdsteden ligt het noordelijkst?", "options": [{ "text": "Helsinki", "correct": true }, { "text": "Oslo" }, { "text": "Stockholm" }, { "text": "Tallinn" }] },
         { "prompt": "Welk van deze dieren is geen zoogdier?", "options": [{ "text": "De haai", "correct": true }, { "text": "De dolfijn" }, { "text": "De vleermuis" }, { "text": "De walvis" }] },
-        { "prompt": "In welke Spaanse stad staat het Guggenheim Museum met de glimmende titanium gevel?", "options": [{ "text": "Bilbao", "correct": true }, { "text": "Madrid" }, { "text": "Barcelona" }, { "text": "Valencia" }] },
+        { "prompt": "Welke van deze Franse steden ligt aan de Atlantische Oceaan?", "options": [{ "text": "La Rochelle", "correct": true }, { "text": "Marseille" }, { "text": "Nice" }, { "text": "Toulon" }] },
         { "prompt": "Welke Griekse god was de bode van de goden?", "options": [{ "text": "Hermes", "correct": true }, { "text": "Apollo" }, { "text": "Ares" }, { "text": "Dionysus" }] },
         { "prompt": "Welke Nederlandse schilder maakte in 1647 het beroemde schilderij De stier?", "options": [{ "text": "Paulus Potter", "correct": true }, { "text": "Jan Steen" }, { "text": "Frans Hals" }, { "text": "Jacob van Ruisdael" }] },
         { "prompt": "Welke Britse koningin regeerde het langst voor Elizabeth II?", "options": [{ "text": "Victoria", "correct": true }, { "text": "Anne" }, { "text": "Mary I" }, { "text": "Elizabeth I" }] },

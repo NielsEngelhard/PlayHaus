@@ -139,7 +139,7 @@
         { "prompt": "Which is the only sea in the world without a coastline?", "answers": [{ "text": "The Sargasso Sea", "aliases": ["Sargasso Sea", "Sargasso"] }] },
         { "prompt": "Which country has the only national flag that is not a rectangle?", "answers": [{ "text": "Nepal" }] },
         { "prompt": "Which Dutch painter made the triptych The Garden of Earthly Delights?", "answers": [{ "text": "Hieronymus Bosch", "aliases": ["Jheronimus Bosch", "Bosch"] }] },
-        { "prompt": "What is the capital of Argentina?", "answers": [{ "text": "Buenos Aires" }] },
+        { "prompt": "Which Argentine footballer scored with the Hand of God at the 1986 World Cup?", "answers": [{ "text": "Diego Maradona", "aliases": ["Maradona"] }] },
         { "prompt": "Which English physicist discovered the electron in 1897?", "answers": [{ "text": "J.J. Thomson", "aliases": ["Thomson", "Joseph John Thomson"] }] }
       ]
     }

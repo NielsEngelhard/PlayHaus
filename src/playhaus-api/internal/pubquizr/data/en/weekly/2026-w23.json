@@ -139,7 +139,7 @@
         { "prompt": "Which Italian astronomer was the first to see the moons of Jupiter?", "answers": [{ "text": "Galileo Galilei", "aliases": ["Galileo"] }] },
         { "prompt": "Which is the longest river in Asia?", "answers": [{ "text": "The Yangtze", "aliases": ["Yangtze"] }] },
         { "prompt": "Which country was formerly known as Persia?", "answers": [{ "text": "Iran" }] },
-        { "prompt": "Which volcano buried the city of Pompeii in the year 79?", "answers": [{ "text": "Vesuvius", "aliases": ["Mount Vesuvius"] }] },
+        { "prompt": "What is the name of the Greek god of war?", "answers": [{ "text": "Ares" }] },
         { "prompt": "What is the name of Iceland's parliament, one of the oldest in the world?", "answers": [{ "text": "The Althing", "aliases": ["Althing", "Althingi"] }] }
       ]
     }

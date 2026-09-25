@@ -139,7 +139,7 @@
         { "prompt": "In welk jaar speelde Nederland voor het eerst op een WK?", "answers": [{ "text": "1934" }] },
         { "prompt": "Welke Duits-Britse astronoom ontdekte de planeet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] },
         { "prompt": "Wat is het langste grottenstelsel ter wereld?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoetgrot"] }] },
-        { "prompt": "Wat is de hoofdstad van Kenia?", "answers": [{ "text": "Nairobi" }] },
+        { "prompt": "Over welke rivier stort de Victoriawaterval naar beneden?", "answers": [{ "text": "De Zambezi", "aliases": ["Zambezi"] }] },
         { "prompt": "Wat is de hoofdstad van Georgie?", "answers": [{ "text": "Tbilisi" }] }
       ]
     }

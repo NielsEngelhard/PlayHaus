@@ -139,7 +139,7 @@
         { "prompt": "Welke zee ter wereld heeft als enige geen kustlijn?", "answers": [{ "text": "De Sargassozee", "aliases": ["Sargassozee", "Sargasso"] }] },
         { "prompt": "Welk land heeft als enige een nationale vlag die geen rechthoek is?", "answers": [{ "text": "Nepal" }] },
         { "prompt": "Welke Nederlandse schilder maakte het drieluik De tuin der lusten?", "answers": [{ "text": "Jheronimus Bosch", "aliases": ["Hieronymus Bosch", "Bosch"] }] },
-        { "prompt": "Wat is de hoofdstad van Argentinie?", "answers": [{ "text": "Buenos Aires" }] },
+        { "prompt": "Welke Argentijnse voetballer scoorde op het WK van 1986 met de Hand van God?", "answers": [{ "text": "Diego Maradona", "aliases": ["Maradona"] }] },
         { "prompt": "Welke Engelse natuurkundige ontdekte in 1897 het elektron?", "answers": [{ "text": "J.J. Thomson", "aliases": ["Thomson", "Joseph John Thomson"] }] }
       ]
     }

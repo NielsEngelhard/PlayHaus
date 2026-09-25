@@ -139,7 +139,7 @@
         { "prompt": "Which planet has the Great Red Spot?", "answers": [{ "text": "Jupiter" }] },
         { "prompt": "Who wrote the novel Nineteen Eighty-Four?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
         { "prompt": "Which mountain range separates Europe from Asia?", "answers": [{ "text": "The Urals", "aliases": ["Urals", "Ural mountains"] }] },
-        { "prompt": "Which inventor filed the patent for the telephone in 1876?", "answers": [{ "text": "Alexander Graham Bell", "aliases": ["Graham Bell", "Bell"] }] },
+        { "prompt": "Which American devised the alphabet of dots and dashes?", "answers": [{ "text": "Samuel Morse", "aliases": ["Morse"] }] },
         { "prompt": "What is the capital of Belarus?", "answers": [{ "text": "Minsk" }] }
       ]
     }

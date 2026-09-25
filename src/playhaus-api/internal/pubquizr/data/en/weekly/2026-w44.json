@@ -20,7 +20,7 @@
         { "prompt": "Which big cat with rosettes on its coat is the largest cat in the Americas?", "category": "Nature", "answers": [{ "text": "The jaguar", "aliases": ["Jaguar"] }] },
         { "prompt": "Which grand duchy lies between Belgium, France and Germany?", "category": "Geography", "answers": [{ "text": "Luxembourg" }] },
         { "prompt": "What was the name of the boy pharaoh whose tomb was found almost untouched in 1922?", "category": "History", "answers": [{ "text": "Tutankhamun", "aliases": ["Tutankhamen"] }] },
-        { "prompt": "What is the distance light travels in a year called?", "category": "Science", "answers": [{ "text": "A light year", "aliases": ["Light year"] }] },
+        { "prompt": "What is the moment in March or September when day and night are the same length everywhere called?", "category": "Science", "answers": [{ "text": "The equinox", "aliases": ["Equinox"] }] },
         { "prompt": "Which British singer released the album Back to Black in 2006?", "category": "Music", "answers": [{ "text": "Amy Winehouse", "aliases": ["Winehouse"] }] },
         { "prompt": "Which actor played the Terminator?", "category": "Film", "answers": [{ "text": "Arnold Schwarzenegger", "aliases": ["Schwarzenegger"] }] },
         { "prompt": "What is the Indonesian dish of fried rice called?", "category": "Food", "answers": [{ "text": "Nasi goreng", "aliases": ["Nasi"] }] },
@@ -118,7 +118,7 @@
       "round": 6,
       "questions": [
         { "prompt": "What do you make from cream by churning it for a long time?", "difficulty": "easy", "answers": [{ "text": "Butter" }] },
-        { "prompt": "What kind of animal is Pluto, Mickey Mouse's pet?", "difficulty": "easy", "answers": [{ "text": "A dog", "aliases": ["Dog"] }] },
+        { "prompt": "What kind of animal is Remy, the cook in Ratatouille?", "difficulty": "easy", "answers": [{ "text": "A rat", "aliases": ["Rat"] }] },
         { "prompt": "What is the capital of France?", "difficulty": "easy", "answers": [{ "text": "Paris" }] },
         { "prompt": "Which fairy tale is about a girl in a red hood and a wolf?", "difficulty": "easy", "answers": [{ "text": "Little Red Riding Hood", "aliases": ["Red Riding Hood"] }] },
         { "prompt": "What colour are the Smurfs?", "difficulty": "easy", "answers": [{ "text": "Blue" }] },

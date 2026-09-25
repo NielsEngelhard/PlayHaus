@@ -139,7 +139,7 @@
         { "prompt": "Welk land schonk het Vrijheidsbeeld aan de Verenigde Staten?", "answers": [{ "text": "Frankrijk" }] },
         { "prompt": "In welk jaar viel de Berlijnse Muur?", "answers": [{ "text": "1989" }] },
         { "prompt": "Wat is het grootste eiland in de Middellandse Zee?", "answers": [{ "text": "Sicilie" }] },
-        { "prompt": "Wat is de hoofdstad van Colombia?", "answers": [{ "text": "Bogota" }] },
+        { "prompt": "Hoe heet de munteenheid van het Verenigd Koninkrijk?", "answers": [{ "text": "Het pond", "aliases": ["Pond", "Pond sterling"] }] },
         { "prompt": "Welke Deense filosoof schreef Of/Of?", "answers": [{ "text": "Soren Kierkegaard", "aliases": ["Kierkegaard"] }] }
       ]
     }

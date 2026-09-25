@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w52",
+  "title": "Weekquiz 52 2026",
+  "description": "De wekelijkse quiz van woensdag 23 december 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welke Finse regio woont de kerstman volgens de Finnen?", "category": "Aardrijkskunde", "answers": [{ "text": "Lapland" }] },
+        { "prompt": "Hoe heet de kortste dag van het jaar, rond 21 december?", "category": "Wetenschap", "answers": [{ "text": "De winterzonnewende", "aliases": ["Winterzonnewende", "Midwinter"] }] },
+        { "prompt": "Hoe heet de korte wapenstilstand tussen Britse en Duitse soldaten met Kerstmis 1914?", "category": "Geschiedenis", "answers": [{ "text": "Het kerstbestand", "aliases": ["Kerstbestand", "Kerstvrede"] }] },
+        { "prompt": "Welk darttoernooi wordt elk jaar rond de kerst in Londen gespeeld?", "category": "Sport", "answers": [{ "text": "Het WK darts", "aliases": ["WK darts", "Wereldkampioenschap darts"] }] },
+        { "prompt": "Welke Canadese acteur speelde in 2000 de Grinch, die Kerstmis wil stelen?", "category": "Film", "answers": [{ "text": "Jim Carrey", "aliases": ["Carrey"] }] },
+        { "prompt": "Welk Brits duo scoorde in 1984 met Last Christmas?", "category": "Muziek", "answers": [{ "text": "Wham!", "aliases": ["Wham"] }] },
+        { "prompt": "Hoe heet het Nederlandse kerstbrood met een rol amandelspijs erin?", "category": "Nederland", "answers": [{ "text": "Kerststol", "aliases": ["Stol"] }] },
+        { "prompt": "Welke Amerikaanse illustrator schilderde vele kerstomslagen voor The Saturday Evening Post?", "category": "Kunst", "answers": [{ "text": "Norman Rockwell", "aliases": ["Rockwell"] }] },
+        { "prompt": "Wat betekent de Spaanse wens Feliz Navidad?", "category": "Taal", "answers": [{ "text": "Vrolijk kerstfeest", "aliases": ["Prettige kerst", "Fijne kerst"] }] },
+        { "prompt": "Welke grote vogel eten veel Britten en Amerikanen traditioneel met de feestdagen?", "category": "Eten", "answers": [{ "text": "De kalkoen", "aliases": ["Kalkoen"] }] },
+        { "prompt": "Hoe heet het programma van Microsoft om presentaties met dia's te maken?", "category": "Techniek", "answers": [{ "text": "PowerPoint" }] },
+        { "prompt": "Welke spar met zachte naalden die niet snel vallen is de populairste kerstboom?", "category": "Natuur", "answers": [{ "text": "De nordmannspar", "aliases": ["Nordmann", "Nordmannspar"] }] },
+        { "prompt": "Welke eilandengroep ten noorden van Schotland heeft Lerwick als hoofdplaats?", "category": "Aardrijkskunde", "answers": [{ "text": "De Shetlandeilanden", "aliases": ["Shetland", "Shetlandeilanden"] }] },
+        { "prompt": "Welke Normandische veroveraar werd op eerste kerstdag 1066 tot koning van Engeland gekroond?", "category": "Geschiedenis", "answers": [{ "text": "Willem de Veroveraar", "aliases": ["Willem I", "William the Conqueror"] }] },
+        { "prompt": "Hoe heten de patronen die in de vrieskou op een koude ruit groeien?", "category": "Wetenschap", "answers": [{ "text": "IJsbloemen", "aliases": ["IJsbloem", "Rijp"] }] },
+        { "prompt": "Welke Amerikaanse zangeres zong All I Want for Christmas Is You?", "category": "Muziek", "answers": [{ "text": "Mariah Carey", "aliases": ["Carey"] }] },
+        { "prompt": "Welke Britse acteur speelde de premier in de kerstfilm Love Actually?", "category": "Film", "answers": [{ "text": "Hugh Grant", "aliases": ["Grant"] }] },
+        { "prompt": "Hoe heet het hoge Italiaanse kerstbrood met rozijnen en gekonfijt fruit uit Milaan?", "category": "Eten", "answers": [{ "text": "Panettone" }] },
+        { "prompt": "Welke Finse programmeur schreef in 1991 de eerste versie van Linux?", "category": "Techniek", "answers": [{ "text": "Linus Torvalds", "aliases": ["Torvalds"] }] },
+        { "prompt": "Welke korte Engelse schrijfwijze gebruiken mensen soms voor Christmas?", "category": "Taal", "answers": [{ "text": "Xmas", "aliases": ["X-mas"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk land begon de traditie van de versierde kerstboom?", "options": [{ "text": "Duitsland", "correct": true }, { "text": "Engeland" }, { "text": "Nederland" }, { "text": "Zweden" }] },
+        { "prompt": "Welke vogel staat in Engeland traditioneel op kerstkaarten?", "options": [{ "text": "Het roodborstje", "correct": true }, { "text": "De merel" }, { "text": "De mus" }, { "text": "De ekster" }] },
+        { "prompt": "Welke tekenaar bedacht Charlie Brown en Snoopy?", "options": [{ "text": "Charles Schulz", "correct": true }, { "text": "Dr. Seuss" }, { "text": "Bill Watterson" }, { "text": "Jim Davis" }] },
+        { "prompt": "In welk van deze landen valt Kerstmis midden in de zomer?", "options": [{ "text": "Australie", "correct": true }, { "text": "Canada" }, { "text": "Rusland" }, { "text": "Japan" }] },
+        { "prompt": "Welke kamerplant met rode bladeren heet ook wel de kerstster?", "options": [{ "text": "De poinsettia", "correct": true }, { "text": "De hulst" }, { "text": "De amaryllis" }, { "text": "De maretak" }] },
+        { "prompt": "Welke Engelse leider verbood in de zeventiende eeuw het vieren van Kerstmis?", "options": [{ "text": "Oliver Cromwell", "correct": true }, { "text": "Karel I" }, { "text": "Hendrik VIII" }, { "text": "Willem III" }] },
+        { "prompt": "Welk land schenkt Londen elk jaar de grote kerstboom op Trafalgar Square?", "options": [{ "text": "Noorwegen", "correct": true }, { "text": "Zweden" }, { "text": "Denemarken" }, { "text": "Finland" }] },
+        { "prompt": "Welk van deze dieren krijgt in de winter een witte vacht?", "options": [{ "text": "De hermelijn", "correct": true }, { "text": "De vos" }, { "text": "De eekhoorn" }, { "text": "De egel" }] },
+        { "prompt": "In welke actiefilm met kerst roept Bruce Willis: Yippee-ki-yay?", "options": [{ "text": "Die Hard", "correct": true }, { "text": "Home Alone" }, { "text": "Lethal Weapon" }, { "text": "Gremlins" }] },
+        { "prompt": "Bij welke sport wordt rond oud en nieuw de Vierschanzentoernee gehouden?", "options": [{ "text": "Schansspringen", "correct": true }, { "text": "Langlaufen" }, { "text": "Biatlon" }, { "text": "Alpineskien" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de kerstboom bij het Rockefeller Center in New York meestal?", "answer": 23, "unit": "meter" },
+        { "prompt": "Hoeveel rendieren trekken de slee van de kerstman, Rudolph meegerekend?", "answer": 9, "unit": "rendieren" },
+        { "prompt": "In welk jaar werd Stille Nacht voor het eerst gezongen?", "answer": 1818 },
+        { "prompt": "Hoeveel kilometer is het van Amsterdam naar de Noordpool?", "answer": 4170, "unit": "kilometer" },
+        { "prompt": "Hoeveel graden Celsius was de laagste temperatuur ooit op aarde gemeten?", "answer": -89, "unit": "graden" },
+        { "prompt": "Hoe oud werd Charles Dickens?", "answer": 58, "unit": "jaar" },
+        { "prompt": "Hoeveel punten of armen heeft een sneeuwvlok?", "answer": 6, "unit": "armen" },
+        { "prompt": "In welk jaar verscheen A Christmas Carol van Charles Dickens?", "answer": 1843 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Musical",
+        "Vrachtschip",
+        "Tandem",
+        "Prei",
+        "Verboden Stad",
+        "Souffleur",
+        "Louvre",
+        "Sequoia",
+        "Sperziebonen",
+        "Barbiepop",
+        "Wasmand",
+        "Olaf",
+        "Wisselkantoor",
+        "Kunstmest",
+        "Gulliver",
+        "Krentenbol",
+        "Lucky Luke",
+        "Nirvana",
+        "Lady Gaga",
+        "Gourmetten",
+        "Tafeltennis",
+        "Luchtschip",
+        "Hobbelpaard",
+        "Buiksprekerspop",
+        "Theezakje",
+        "Verband",
+        "Lintje",
+        "Capitool",
+        "Stewardess",
+        "Kickboksen",
+        "Barbecuesaus",
+        "Monstertruck",
+        "Tempelier",
+        "Gordeldier",
+        "Sumo",
+        "Pokeren",
+        "Piercing",
+        "Vaticaan",
+        "De GVR",
+        "Satellietschotel"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over kerstmarkten?", "answers": [{ "text": "Gluhwein", "aliases": ["Warme wijn"] }, { "text": "Duitsland", "aliases": ["Keulen", "Neurenberg"] }, { "text": "Kraampjes", "aliases": ["Kramen"] }, { "text": "Lichtjes", "aliases": ["Verlichting", "Kerstverlichting"] }] },
+        { "prompt": "Wat weet je over Home Alone?", "answers": [{ "text": "Kevin", "aliases": ["Kevin McCallister"] }, { "text": "Inbrekers", "aliases": ["Boeven", "Dieven"] }, { "text": "Macaulay Culkin", "aliases": ["Culkin"] }, { "text": "Kerst", "aliases": ["Kerstmis", "Alleen thuis met kerst"] }] },
+        { "prompt": "Wat weet je over sneeuw?", "answers": [{ "text": "Sneeuwpop", "aliases": ["Sneeuwpoppen"] }, { "text": "Sneeuwvlokken", "aliases": ["Vlokken"] }, { "text": "Wit en koud", "aliases": ["Wit", "Koud"] }, { "text": "Sleeen", "aliases": ["Slee", "Sneeuwballen"] }] },
+        { "prompt": "Wat weet je over de Noordpool?", "answers": [{ "text": "IJs", "aliases": ["Pakijs", "Bevroren zee"] }, { "text": "IJsberen", "aliases": ["IJsbeer"] }, { "text": "De kerstman", "aliases": ["Kerstman"] }, { "text": "Noorderlicht", "aliases": ["Poolnacht", "Koud"] }] },
+        { "prompt": "Wat weet je over Charles Dickens?", "answers": [{ "text": "Oliver Twist", "aliases": ["David Copperfield"] }, { "text": "A Christmas Carol", "aliases": ["Scrooge"] }, { "text": "Londen", "aliases": ["Engeland"] }, { "text": "Arme kinderen", "aliases": ["Armoede", "Victoriaans"] }] },
+        { "prompt": "Wat weet je over oliebollen?", "answers": [{ "text": "Oudjaar", "aliases": ["Oudejaarsavond", "Oud en nieuw"] }, { "text": "Poedersuiker", "aliases": ["Suiker"] }, { "text": "Krenten", "aliases": ["Rozijnen"] }, { "text": "Frituren", "aliases": ["Vet", "Gefrituurd"] }] },
+        { "prompt": "Wat weet je over rendieren?", "answers": [{ "text": "Gewei", "aliases": ["Hoorns"] }, { "text": "Lapland", "aliases": ["Noorwegen", "Finland"] }, { "text": "De slee van de kerstman", "aliases": ["Kerstman", "Rudolph"] }, { "text": "Kuddes", "aliases": ["Kudde", "Sami"] }] },
+        { "prompt": "Wat weet je over Bethlehem?", "answers": [{ "text": "Jezus", "aliases": ["Geboorte van Jezus"] }, { "text": "Stal", "aliases": ["Kribbe", "Kerststal"] }, { "text": "Ster", "aliases": ["Ster van Bethlehem"] }, { "text": "Israel en Palestina", "aliases": ["Palestina", "Westelijke Jordaanoever"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat hangen Amerikanen bij de open haard op, zodat de kerstman er cadeautjes in stopt?", "difficulty": "easy", "answers": [{ "text": "Een kerstsok", "aliases": ["Sok", "Kerstsok", "Sokken"] }] },
+        { "prompt": "Hoe heet de avond van vierentwintig december?", "difficulty": "easy", "answers": [{ "text": "Kerstavond" }] },
+        { "prompt": "Hoe heet de warme wijn met kruiden die je op een kerstmarkt drinkt?", "difficulty": "easy", "answers": [{ "text": "Gluhwein", "aliases": ["Bisschopswijn", "Warme wijn"] }] },
+        { "prompt": "Hoe heet het tafereel met beeldjes van Jozef, Maria en het kindje Jezus?", "difficulty": "easy", "answers": [{ "text": "De kerststal", "aliases": ["Kerststal", "Stal", "Kribbe"] }] },
+        { "prompt": "Hoe noemen we de witte vlokken die in de winter uit de lucht vallen?", "difficulty": "easy", "answers": [{ "text": "Sneeuw", "aliases": ["Sneeuwvlokken"] }] },
+        { "prompt": "Welke Oostenrijkse priester schreef de tekst van Stille Nacht?", "difficulty": "hard", "answers": [{ "text": "Joseph Mohr", "aliases": ["Mohr"] }] },
+        { "prompt": "Welke Engelse componist schreef de Fantasia on Greensleeves?", "difficulty": "hard", "answers": [{ "text": "Ralph Vaughan Williams", "aliases": ["Vaughan Williams"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Se?", "difficulty": "hard", "answers": [{ "text": "Seleen", "aliases": ["Selenium"] }] },
+        { "prompt": "Welke rivier stroomt door Salzburg?", "difficulty": "hard", "answers": [{ "text": "De Salzach", "aliases": ["Salzach"] }] },
+        { "prompt": "Van welke stad in het huidige Turkije was Sint-Nicolaas bisschop?", "difficulty": "hard", "answers": [{ "text": "Myra" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat zet je bovenop de kerstboom?", "answers": [{ "text": "Een piek", "aliases": ["Piek", "Ster", "Engel"] }] },
+        { "prompt": "Hoe heet de gierige oude man in A Christmas Carol?", "answers": [{ "text": "Ebenezer Scrooge", "aliases": ["Scrooge"] }] },
+        { "prompt": "Welke Amerikaanse tekenaar schilderde de rode kerstman voor de reclames van Coca-Cola?", "answers": [{ "text": "Haddon Sundblom", "aliases": ["Sundblom"] }] },
+        { "prompt": "Hoe noemen we de wijzen uit het oosten die het kindje Jezus geschenken brachten?", "answers": [{ "text": "De drie koningen", "aliases": ["Drie koningen", "Drie wijzen", "Wijzen"] }] },
+        { "prompt": "Welk ballet van Tsjaikovski wordt vaak met de kerst opgevoerd?", "answers": [{ "text": "De Notenkraker", "aliases": ["Notenkraker"] }] },
+        { "prompt": "Hoe heet het Catalaanse kerstblok met een gezichtje dat cadeaus uitpoept?", "answers": [{ "text": "Tio de Nadal", "aliases": ["Caga tio", "Tio"] }] },
+        { "prompt": "Welk dier staat volgens de traditie naast de ezel in de kerststal?", "answers": [{ "text": "De os", "aliases": ["Os", "Koe"] }] },
+        { "prompt": "Welke Amerikaanse zanger nam in 1942 White Christmas op?", "answers": [{ "text": "Bing Crosby", "aliases": ["Crosby"] }] },
+        { "prompt": "Welke paus voerde in 1582 de kalender in die wij nu gebruiken?", "answers": [{ "text": "Gregorius XIII", "aliases": ["Paus Gregorius", "Gregorius"] }] }
+      ]
+    }
+  ]
+}

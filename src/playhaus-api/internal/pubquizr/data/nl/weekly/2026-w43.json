@@ -18,7 +18,7 @@
         { "prompt": "Hoe heet de Japanse schotel van dun gesneden rauwe vis zonder rijst?", "category": "Eten", "answers": [{ "text": "Sashimi" }] },
         { "prompt": "Welk bedrijf ontwikkelde het besturingssysteem Android?", "category": "Techniek", "answers": [{ "text": "Google" }] },
         { "prompt": "Wat is de grootste roofvogel die in Nederland broedt?", "category": "Natuur", "answers": [{ "text": "De zeearend", "aliases": ["Zeearend"] }] },
-        { "prompt": "Wat is de hoofdstad van Cuba?", "category": "Aardrijkskunde", "answers": [{ "text": "Havana", "aliases": ["Havanna"] }] },
+        { "prompt": "Wat is de grootste stad van de Franstalige Canadese provincie Quebec?", "category": "Aardrijkskunde", "answers": [{ "text": "Montreal" }] },
         { "prompt": "Welke Russische tsaar stichtte in 1703 Sint-Petersburg?", "category": "Geschiedenis", "answers": [{ "text": "Peter de Grote", "aliases": ["Peter I", "Peter"] }] },
         { "prompt": "Hoe heet de kracht die een voorwerp in water omhoog duwt, die Archimedes beschreef?", "category": "Wetenschap", "answers": [{ "text": "De opwaartse kracht", "aliases": ["Opwaartse kracht", "Opwaartse druk"] }] },
         { "prompt": "Welke rapper heet eigenlijk Marshall Mathers?", "category": "Muziek", "answers": [{ "text": "Eminem", "aliases": ["Slim Shady"] }] },

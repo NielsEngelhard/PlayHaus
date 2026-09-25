@@ -139,7 +139,7 @@
         { "prompt": "Welk gebergte vormt meestal de grens tussen Europa en Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Het Oeralgebergte"] }] },
         { "prompt": "Welke zee ligt tussen Italie en de Balkan?", "answers": [{ "text": "De Adriatische Zee", "aliases": ["De Adriatische", "Adriatische Zee"] }] },
         { "prompt": "Wie schreef de roman 1984?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
-        { "prompt": "Wat is de hoofdstad van Vietnam?", "answers": [{ "text": "Hanoi" }] },
+        { "prompt": "Hoe heet de munteenheid van Mexico?", "answers": [{ "text": "De peso", "aliases": ["Peso", "Mexicaanse peso"] }] },
         { "prompt": "Welke Franse filosoof schreef Het maatschappelijk verdrag?", "answers": [{ "text": "Jean-Jacques Rousseau", "aliases": ["Rousseau"] }] }
       ]
     }

@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w48",
+  "title": "Weekquiz 48 2026",
+  "description": "De wekelijkse quiz van woensdag 25 november 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welke Japanse havenstad lag Dejima, waar alleen Nederlanders mochten handelen?", "category": "Aardrijkskunde", "answers": [{ "text": "Nagasaki" }] },
+        { "prompt": "Hoe heet de kleinste bouwsteen waaruit alle levende wezens bestaan?", "category": "Wetenschap", "answers": [{ "text": "De cel", "aliases": ["Cel", "Cellen"] }] },
+        { "prompt": "Welke Amerikaanse vrouw weigerde in 1955 haar plaats in de bus af te staan aan een witte man?", "category": "Geschiedenis", "answers": [{ "text": "Rosa Parks", "aliases": ["Parks"] }] },
+        { "prompt": "Welke Nederlander werd in 2021 voor het eerst wereldkampioen Formule 1?", "category": "Sport", "answers": [{ "text": "Max Verstappen", "aliases": ["Verstappen"] }] },
+        { "prompt": "Welke acteur speelde Harry Potter in de films?", "category": "Film", "answers": [{ "text": "Daniel Radcliffe", "aliases": ["Radcliffe"] }] },
+        { "prompt": "Welke Amerikaanse zangeres scoorde in 1998 met Believe?", "category": "Muziek", "answers": [{ "text": "Cher" }] },
+        { "prompt": "In welk tv-programma zoeken de kandidaten een saboteur in hun eigen groep?", "category": "Nederland", "answers": [{ "text": "Wie is de Mol?", "aliases": ["Wie is de Mol"] }] },
+        { "prompt": "Welke Franse kunstenaar zette een urinoir op een sokkel en noemde het Fountain?", "category": "Kunst", "answers": [{ "text": "Marcel Duchamp", "aliases": ["Duchamp"] }] },
+        { "prompt": "Wat is het tegenovergestelde van meervoud?", "category": "Taal", "answers": [{ "text": "Enkelvoud" }] },
+        { "prompt": "Hoe heet het ronde Franse koekje van eiwit en amandelmeel met een zachte vulling?", "category": "Eten", "answers": [{ "text": "Macaron", "aliases": ["Macarons"] }] },
+        { "prompt": "Welk bedrijf, voorheen Facebook, is de eigenaar van Instagram?", "category": "Techniek", "answers": [{ "text": "Meta", "aliases": ["Meta Platforms"] }] },
+        { "prompt": "Hoe heet het vrouwtje van de leeuw?", "category": "Natuur", "answers": [{ "text": "De leeuwin", "aliases": ["Leeuwin"] }] },
+        { "prompt": "Welke Zwitserse berg met een scherpe piramidevorm staat op het pak van Toblerone?", "category": "Aardrijkskunde", "answers": [{ "text": "De Matterhorn", "aliases": ["Matterhorn"] }] },
+        { "prompt": "Welke Engelse koning sneuvelde in 1485 in de Slag bij Bosworth?", "category": "Geschiedenis", "answers": [{ "text": "Richard III", "aliases": ["Richard de Derde"] }] },
+        { "prompt": "Hoe heet een getal dat kleiner is dan nul?", "category": "Wetenschap", "answers": [{ "text": "Een negatief getal", "aliases": ["Negatief getal", "Negatief"] }] },
+        { "prompt": "Welke Nederlandse violist trekt met zijn Johann Strauss Orkest de hele wereld over?", "category": "Muziek", "answers": [{ "text": "Andre Rieu", "aliases": ["Rieu"] }] },
+        { "prompt": "Hoe heet de vergeetachtige blauwe vis in Finding Nemo?", "category": "Film", "answers": [{ "text": "Dory", "aliases": ["Doris"] }] },
+        { "prompt": "Van welke boon wordt tofu gemaakt?", "category": "Eten", "answers": [{ "text": "De sojaboon", "aliases": ["Soja", "Sojabonen"] }] },
+        { "prompt": "Wat is de eerste en bekendste cryptomunt, bedacht door Satoshi Nakamoto?", "category": "Techniek", "answers": [{ "text": "Bitcoin" }] },
+        { "prompt": "Uit welke taal komt het woord piano?", "category": "Taal", "answers": [{ "text": "Italiaans", "aliases": ["Het Italiaans"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In welk van deze landen rijdt het verkeer links?", "options": [{ "text": "Kenia", "correct": true }, { "text": "Ghana" }, { "text": "Nigeria" }, { "text": "Ethiopie" }] },
+        { "prompt": "Welke van deze vissen leeft in zoet water?", "options": [{ "text": "De snoek", "correct": true }, { "text": "De kabeljauw" }, { "text": "De tonijn" }, { "text": "De haring" }] },
+        { "prompt": "Welke Deense schrijfster schreef Out of Africa?", "options": [{ "text": "Karen Blixen", "correct": true }, { "text": "Selma Lagerlof" }, { "text": "Astrid Lindgren" }, { "text": "Sigrid Undset" }] },
+        { "prompt": "Welk van deze eilanden hoort bij Griekenland?", "options": [{ "text": "Rhodos", "correct": true }, { "text": "Sardinie" }, { "text": "Cyprus" }, { "text": "Malta" }] },
+        { "prompt": "Welk hormoon komt vrij als je schrikt en zorgt dat je hart sneller klopt?", "options": [{ "text": "Adrenaline", "correct": true }, { "text": "Insuline" }, { "text": "Oxytocine" }, { "text": "Melatonine" }] },
+        { "prompt": "In welke stad werd Martin Luther King in 1968 vermoord?", "options": [{ "text": "Memphis", "correct": true }, { "text": "Atlanta" }, { "text": "Dallas" }, { "text": "Chicago" }] },
+        { "prompt": "Welke van deze bergen ligt in Afrika?", "options": [{ "text": "Mount Kenya", "correct": true }, { "text": "De Aconcagua" }, { "text": "De Elbroes" }, { "text": "Denali" }] },
+        { "prompt": "Welke van deze vogels is een roofvogel?", "options": [{ "text": "De buizerd", "correct": true }, { "text": "De reiger" }, { "text": "De zwaan" }, { "text": "De meeuw" }] },
+        { "prompt": "In welk boek vinden kinderen via een kleerkast het land Narnia?", "options": [{ "text": "De leeuw, de heks en de kleerkast", "correct": true }, { "text": "De Hobbit" }, { "text": "Alice in Wonderland" }, { "text": "Peter Pan" }] },
+        { "prompt": "Waar werden de Olympische Winterspelen van 2026 gehouden?", "options": [{ "text": "Milaan en Cortina", "correct": true }, { "text": "Turijn" }, { "text": "Innsbruck" }, { "text": "Zurich" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de pyloon van de Erasmusbrug in Rotterdam?", "answer": 139, "unit": "meter" },
+        { "prompt": "Hoeveel liter past er in een gewone grijze kliko?", "answer": 240, "unit": "liter" },
+        { "prompt": "Hoeveel miljoen mensen wonen er ongeveer in Nederland?", "answer": 18, "unit": "miljoen" },
+        { "prompt": "Hoeveel kilometer per uur kan een windhond rennen?", "answer": 70, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel landen telt Zuid-Amerika?", "answer": 12, "unit": "landen" },
+        { "prompt": "Hoeveel eitjes legt een bijenkoningin in de zomer per dag?", "answer": 2000, "unit": "eitjes" },
+        { "prompt": "Hoeveel meter lang was de Seawise Giant, het langste schip ooit?", "answer": 458, "unit": "meter" },
+        { "prompt": "In welk jaar opende het Rijksmuseum in zijn huidige gebouw van Cuypers?", "answer": 1885 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Laptop",
+        "Straatmuzikant",
+        "Kraslot",
+        "Roerei",
+        "Orka",
+        "Keizerrijk",
+        "Vuurvreter",
+        "Parachutespringen",
+        "Ballet",
+        "Mountainbike",
+        "Burgemeester",
+        "Plankenkoorts",
+        "Zee-egel",
+        "Pippi Langkous",
+        "Kleiduivenschieten",
+        "Fanclub",
+        "Alcatraz",
+        "Henna",
+        "Vliegend tapijt",
+        "Wanten",
+        "Nachtmerrie",
+        "Hamsterrad",
+        "King Kong",
+        "Injectienaald",
+        "Waterglijbaan",
+        "Terminator",
+        "Brand van Londen",
+        "Bamboebos",
+        "Vijver",
+        "Uno",
+        "Moedervlek",
+        "Eierdopje",
+        "Calorieen",
+        "Breakdance",
+        "Watervliegtuig",
+        "Bossche bol",
+        "Weerman",
+        "Sherpa",
+        "Kikkerkoning",
+        "Referendum"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Florida?", "answers": [{ "text": "Disney World", "aliases": ["Walt Disney World", "Orlando"] }, { "text": "Miami", "aliases": ["Miami Beach"] }, { "text": "Alligators", "aliases": ["Everglades", "Krokodillen"] }, { "text": "Zon en strand", "aliases": ["Zon", "Strand"] }] },
+        { "prompt": "Wat weet je over Assepoester?", "answers": [{ "text": "Glazen muiltje", "aliases": ["Muiltje", "Schoen"] }, { "text": "Stiefmoeder", "aliases": ["Stiefzusters"] }, { "text": "Pompoen", "aliases": ["Koets", "Goede fee"] }, { "text": "Middernacht", "aliases": ["Twaalf uur"] }] },
+        { "prompt": "Wat weet je over het Colosseum?", "answers": [{ "text": "Rome", "aliases": ["Italie"] }, { "text": "Gladiatoren", "aliases": ["Gladiator"] }, { "text": "Amfitheater", "aliases": ["Arena"] }, { "text": "Ruine", "aliases": ["Oud", "Romeinen"] }] },
+        { "prompt": "Wat weet je over bananen?", "answers": [{ "text": "Geel", "aliases": ["Gele schil"] }, { "text": "Tropisch", "aliases": ["Tropen", "Ecuador"] }, { "text": "Apen", "aliases": ["Aap"] }, { "text": "Kalium", "aliases": ["Gezond", "Vitamines"] }] },
+        { "prompt": "Wat weet je over ijsberen?", "answers": [{ "text": "Noordpool", "aliases": ["Arctisch", "Poolgebied"] }, { "text": "Wit", "aliases": ["Witte vacht"] }, { "text": "Zeehonden", "aliases": ["Vis", "Jagen"] }, { "text": "Smeltend ijs", "aliases": ["Klimaat", "Bedreigd"] }] },
+        { "prompt": "Wat weet je over de NASA?", "answers": [{ "text": "Maanlanding", "aliases": ["Apollo", "Apollo 11"] }, { "text": "Raketten", "aliases": ["Spaceshuttle", "Raket"] }, { "text": "Astronauten", "aliases": ["Astronaut"] }, { "text": "Houston", "aliases": ["Florida", "Cape Canaveral"] }] },
+        { "prompt": "Wat weet je over Turkije?", "answers": [{ "text": "Istanboel", "aliases": ["Istanbul"] }, { "text": "Ankara", "aliases": ["De hoofdstad Ankara"] }, { "text": "Kebab", "aliases": ["Doner", "Turkse pizza"] }, { "text": "Turks fruit", "aliases": ["Turkse thee", "Baklava"] }] },
+        { "prompt": "Wat weet je over tulpen?", "answers": [{ "text": "Nederland", "aliases": ["Holland"] }, { "text": "Bollen", "aliases": ["Bol", "Bollenvelden"] }, { "text": "Keukenhof", "aliases": ["Lisse"] }, { "text": "Tulpenmanie", "aliases": ["Gouden Eeuw", "Duur"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke vruchten groeien er in een wijngaard?", "difficulty": "easy", "answers": [{ "text": "Druiven", "aliases": ["Druif"] }] },
+        { "prompt": "Wat zoeken kinderen met Pasen in de tuin?", "difficulty": "easy", "answers": [{ "text": "Paaseieren", "aliases": ["Eieren", "Paaseitjes"] }] },
+        { "prompt": "Van de melk van welk dier wordt Goudse kaas gemaakt?", "difficulty": "easy", "answers": [{ "text": "De koe", "aliases": ["Koe", "Koeien"] }] },
+        { "prompt": "Van welk houten poppetje groeit de neus als hij liegt?", "difficulty": "easy", "answers": [{ "text": "Pinokkio", "aliases": ["Pinocchio"] }] },
+        { "prompt": "Hoe heet de sprookjeskater die op laarzen loopt?", "difficulty": "easy", "answers": [{ "text": "De Gelaarsde Kat", "aliases": ["Gelaarsde Kat"] }] },
+        { "prompt": "Wat is de officiele hoofdstad van Ivoorkust?", "difficulty": "hard", "answers": [{ "text": "Yamoussoukro" }] },
+        { "prompt": "Welke Engelse componist schreef The Planets?", "difficulty": "hard", "answers": [{ "text": "Gustav Holst", "aliases": ["Holst"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Sr?", "difficulty": "hard", "answers": [{ "text": "Strontium" }] },
+        { "prompt": "Welke rivier mondt in Belgrado uit in de Donau?", "difficulty": "hard", "answers": [{ "text": "De Sava", "aliases": ["Sava"] }] },
+        { "prompt": "Welke Byzantijnse keizerin was voor haar huwelijk met Justinianus actrice?", "difficulty": "hard", "answers": [{ "text": "Theodora" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wie is de beste vriend van Asterix?", "answers": [{ "text": "Obelix" }] },
+        { "prompt": "In welke Italiaanse stad speelt Romeo en Julia zich af?", "answers": [{ "text": "Verona" }] },
+        { "prompt": "Welke Tsjechische schrijver schreef De ondraaglijke lichtheid van het bestaan?", "answers": [{ "text": "Milan Kundera", "aliases": ["Kundera"] }] },
+        { "prompt": "Welke superheld komt van de planeet Krypton?", "answers": [{ "text": "Superman" }] },
+        { "prompt": "Welke zee ligt tussen Zweden en de Baltische staten?", "answers": [{ "text": "De Oostzee", "aliases": ["Oostzee", "Baltische Zee"] }] },
+        { "prompt": "Welke Schotse natuurkundige vatte elektriciteit en magnetisme samen in vier beroemde vergelijkingen?", "answers": [{ "text": "James Clerk Maxwell", "aliases": ["Maxwell"] }] },
+        { "prompt": "Welke drank maak je van gegiste druiven?", "answers": [{ "text": "Wijn" }] },
+        { "prompt": "Welke voetbalclub heeft de bijnaam de Trots van het Noorden?", "answers": [{ "text": "FC Groningen", "aliases": ["Groningen"] }] },
+        { "prompt": "Welke Britse filosoof schreef samen met Alfred Whitehead de Principia Mathematica?", "answers": [{ "text": "Bertrand Russell", "aliases": ["Russell"] }] }
+      ]
+    }
+  ]
+}

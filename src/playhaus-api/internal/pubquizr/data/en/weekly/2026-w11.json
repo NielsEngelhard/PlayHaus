@@ -139,7 +139,7 @@
         { "prompt": "Which mountain range is the usual border between Europe and Asia?", "answers": [{ "text": "The Ural Mountains", "aliases": ["The Urals", "Urals", "Ural"] }] },
         { "prompt": "Which sea lies between Italy and the Balkans?", "answers": [{ "text": "The Adriatic Sea", "aliases": ["The Adriatic", "Adriatic"] }] },
         { "prompt": "Who wrote the novel Nineteen Eighty-Four?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
-        { "prompt": "What is the capital of Vietnam?", "answers": [{ "text": "Hanoi" }] },
+        { "prompt": "What is the currency of Mexico called?", "answers": [{ "text": "The peso", "aliases": ["Peso", "Mexican peso"] }] },
         { "prompt": "Which French philosopher wrote The Social Contract?", "answers": [{ "text": "Jean-Jacques Rousseau", "aliases": ["Rousseau"] }] }
       ]
     }

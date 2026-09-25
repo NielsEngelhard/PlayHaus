@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w50",
+  "title": "Weekly quiz 50 2026",
+  "description": "The weekly quiz of Wednesday 9 December 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the largest of the Canary Islands?", "category": "Geography", "answers": [{ "text": "Tenerife" }] },
+        { "prompt": "What is a material that conducts electricity poorly or not at all, like rubber, called?", "category": "Science", "answers": [{ "text": "An insulator", "aliases": ["Insulator"] }] },
+        { "prompt": "Which freedom fighter is the country of Bolivia named after?", "category": "History", "answers": [{ "text": "Simon Bolivar", "aliases": ["Bolivar"] }] },
+        { "prompt": "Which coach led the Netherlands to the World Cup final in 2010?", "category": "Sport", "answers": [{ "text": "Bert van Marwijk", "aliases": ["Van Marwijk"] }] },
+        { "prompt": "Which Israeli actress played Wonder Woman in 2017?", "category": "Film", "answers": [{ "text": "Gal Gadot", "aliases": ["Gadot"] }] },
+        { "prompt": "Which American rapper, married to Beyonce, released the album The Blueprint?", "category": "Music", "answers": [{ "text": "Jay-Z", "aliases": ["Jay Z", "Shawn Carter"] }] },
+        { "prompt": "On which island is Willemstad with its coloured houses on the Handelskade?", "category": "The Netherlands", "answers": [{ "text": "Curacao" }] },
+        { "prompt": "Which Belgian painter made Christ's Entry into Brussels?", "category": "Art", "answers": [{ "text": "James Ensor", "aliases": ["Ensor"] }] },
+        { "prompt": "Which dead language is, besides Italian, an official language of Vatican City?", "category": "Language", "answers": [{ "text": "Latin" }] },
+        { "prompt": "What is the Mexican rolled tortilla with beans, meat and rice called?", "category": "Food", "answers": [{ "text": "Burrito" }] },
+        { "prompt": "Which Japanese company makes the Switch games console?", "category": "Technology", "answers": [{ "text": "Nintendo" }] },
+        { "prompt": "Which fish has a long flat upper jaw like a sword?", "category": "Nature", "answers": [{ "text": "The swordfish", "aliases": ["Swordfish"] }] },
+        { "prompt": "Which Canadian city hosted the 2010 Winter Olympics?", "category": "Geography", "answers": [{ "text": "Vancouver" }] },
+        { "prompt": "Which Russian revolutionary led the October Revolution in 1917?", "category": "History", "answers": [{ "text": "Lenin", "aliases": ["Vladimir Lenin"] }] },
+        { "prompt": "What is the pathogen that can only multiply inside living cells called?", "category": "Science", "answers": [{ "text": "A virus", "aliases": ["Virus", "Viruses"] }] },
+        { "prompt": "Which British band of Mick Jagger had a hit with Paint It Black?", "category": "Music", "answers": [{ "text": "The Rolling Stones", "aliases": ["Rolling Stones"] }] },
+        { "prompt": "What is the name of the princess Shrek marries?", "category": "Film", "answers": [{ "text": "Fiona", "aliases": ["Princess Fiona"] }] },
+        { "prompt": "Which bulb with a light aniseed taste do you eat raw or braised with fish?", "category": "Food", "answers": [{ "text": "Fennel" }] },
+        { "prompt": "What is the space company of Amazon founder Jeff Bezos called?", "category": "Technology", "answers": [{ "text": "Blue Origin" }] },
+        { "prompt": "Which language does the word hygge, for a cosy and snug feeling, come from?", "category": "Language", "answers": [{ "text": "Danish" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Austria?", "options": [{ "text": "Graz", "correct": true }, { "text": "Zurich" }, { "text": "Munich" }, { "text": "Ljubljana" }] },
+        { "prompt": "Which of these birds flies to Africa for the winter?", "options": [{ "text": "The swallow", "correct": true }, { "text": "The sparrow" }, { "text": "The blackbird" }, { "text": "The magpie" }] },
+        { "prompt": "Which Scottish writer created Peter Pan?", "options": [{ "text": "J.M. Barrie", "correct": true }, { "text": "Lewis Carroll" }, { "text": "Roald Dahl" }, { "text": "A.A. Milne" }] },
+        { "prompt": "Which of these countries is on the Red Sea?", "options": [{ "text": "Yemen", "correct": true }, { "text": "Oman" }, { "text": "Iraq" }, { "text": "Syria" }] },
+        { "prompt": "Where are the most sweat glands per square centimetre?", "options": [{ "text": "On the soles of the feet", "correct": true }, { "text": "In the armpits" }, { "text": "On the back" }, { "text": "On the forehead" }] },
+        { "prompt": "Who was the last king of France?", "options": [{ "text": "Louis Philippe", "correct": true }, { "text": "Louis XVI" }, { "text": "Charles X" }, { "text": "Louis XVIII" }] },
+        { "prompt": "Which of these countries borders Russia?", "options": [{ "text": "North Korea", "correct": true }, { "text": "South Korea" }, { "text": "Japan" }, { "text": "Vietnam" }] },
+        { "prompt": "Which of these snakes is not venomous?", "options": [{ "text": "The python", "correct": true }, { "text": "The cobra" }, { "text": "The rattlesnake" }, { "text": "The mamba" }] },
+        { "prompt": "Which 1939 film is set during the American Civil War?", "options": [{ "text": "Gone with the Wind", "correct": true }, { "text": "Casablanca" }, { "text": "The Wizard of Oz" }, { "text": "Citizen Kane" }] },
+        { "prompt": "In which city were the 2008 Summer Olympics held?", "options": [{ "text": "Beijing", "correct": true }, { "text": "Shanghai" }, { "text": "Tokyo" }, { "text": "Seoul" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is The Shard in London?", "answer": 310, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Golden Gate Bridge?", "answer": 2.7, "unit": "kilometres" },
+        { "prompt": "For how many years was Nelson Mandela in prison?", "answer": 27, "unit": "years" },
+        { "prompt": "How many spectators fit into Wembley Stadium in London?", "answer": 90000, "unit": "spectators" },
+        { "prompt": "How many hours does a day on Mars last, rounded?", "answer": 25, "unit": "hours" },
+        { "prompt": "How many kilometres is it by road from Amsterdam to Maastricht?", "answer": 215, "unit": "kilometres" },
+        { "prompt": "How many languages are recognised in the constitution of India?", "answer": 22, "unit": "languages" },
+        { "prompt": "In which year did the first McDonald's in the Netherlands open, in Zaandam?", "answer": 1971 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Camper van",
+        "Molehill",
+        "Team building",
+        "Tulip mania",
+        "Security guard",
+        "Stranger Things",
+        "Donald Trump",
+        "Wimbledon",
+        "New Year's Eve",
+        "Sleeping Beauty",
+        "Moped",
+        "Flamenco",
+        "Quidditch",
+        "Fishing boat",
+        "Remembrance Day",
+        "Hangar",
+        "Durian",
+        "Playground",
+        "Shooting gallery",
+        "Action Man",
+        "Angling",
+        "Family tree",
+        "Theme park",
+        "Championship trophy",
+        "Apricot",
+        "Breaking Bad",
+        "Sculptor",
+        "Geyser",
+        "Pantomime",
+        "Hawk",
+        "Mao Zedong",
+        "Milliner",
+        "Relay race",
+        "Bermuda Triangle",
+        "Claw machine",
+        "Centipede",
+        "Genghis Khan",
+        "Seating plan",
+        "Wall Street",
+        "Watering can"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Norway?", "answers": [{ "text": "Fjords", "aliases": ["Fjord"] }, { "text": "Oslo", "aliases": ["The capital Oslo"] }, { "text": "Northern lights", "aliases": ["Midnight sun"] }, { "text": "Oil", "aliases": ["Salmon", "Fish"] }] },
+        { "prompt": "What do you know about speed skating?", "answers": [{ "text": "Ice", "aliases": ["Frozen", "Natural ice"] }, { "text": "Elfstedentocht", "aliases": ["Friesland"] }, { "text": "Thialf", "aliases": ["Heerenveen", "Ice rink"] }, { "text": "Sven Kramer", "aliases": ["Kramer", "Ireen Wust"] }] },
+        { "prompt": "What do you know about Marie Curie?", "answers": [{ "text": "Radioactivity", "aliases": ["Radiation"] }, { "text": "Nobel Prize", "aliases": ["Two Nobel Prizes"] }, { "text": "Poland", "aliases": ["Polish", "Paris"] }, { "text": "Radium", "aliases": ["Polonium"] }] },
+        { "prompt": "What do you know about Father Christmas?", "answers": [{ "text": "Reindeer", "aliases": ["Rudolph"] }, { "text": "North Pole", "aliases": ["Lapland"] }, { "text": "Sleigh", "aliases": ["Sledge"] }, { "text": "Red suit", "aliases": ["White beard", "Ho ho ho"] }] },
+        { "prompt": "What do you know about cows?", "answers": [{ "text": "Milk", "aliases": ["Milking"] }, { "text": "Farm", "aliases": ["Farmer", "Meadow"] }, { "text": "Calf", "aliases": ["Calves"] }, { "text": "Mooing", "aliases": ["Moo"] }] },
+        { "prompt": "What do you know about Nintendo?", "answers": [{ "text": "Mario", "aliases": ["Super Mario", "Luigi"] }, { "text": "Japan", "aliases": ["Japanese"] }, { "text": "Switch", "aliases": ["Game Boy", "Wii"] }, { "text": "Zelda", "aliases": ["Pokemon", "Donkey Kong"] }] },
+        { "prompt": "What do you know about the Statue of Liberty?", "answers": [{ "text": "New York", "aliases": ["Liberty Island"] }, { "text": "Gift from France", "aliases": ["France"] }, { "text": "Torch", "aliases": ["Crown", "Tablet"] }, { "text": "Green", "aliases": ["Copper"] }] },
+        { "prompt": "What do you know about Istanbul?", "answers": [{ "text": "Hagia Sophia", "aliases": ["Blue Mosque", "Mosques"] }, { "text": "Bosphorus", "aliases": ["Sea", "Water"] }, { "text": "Two continents", "aliases": ["Europe and Asia"] }, { "text": "Grand Bazaar", "aliases": ["Bazaar", "Market"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which bird can repeat words?", "difficulty": "easy", "answers": [{ "text": "The parrot", "aliases": ["Parrot", "Budgie"] }] },
+        { "prompt": "Which month comes after December?", "difficulty": "easy", "answers": [{ "text": "January" }] },
+        { "prompt": "What is the toy that rolls up and down on a string called?", "difficulty": "easy", "answers": [{ "text": "A yo-yo", "aliases": ["Yo-yo"] }] },
+        { "prompt": "What shape is the earth, roughly?", "difficulty": "easy", "answers": [{ "text": "A sphere", "aliases": ["Round", "Ball"] }] },
+        { "prompt": "Which day comes before Sunday?", "difficulty": "easy", "answers": [{ "text": "Saturday" }] },
+        { "prompt": "Which American biologist warned about pesticides in Silent Spring?", "difficulty": "hard", "answers": [{ "text": "Rachel Carson", "aliases": ["Carson"] }] },
+        { "prompt": "Which German composer wrote A German Requiem?", "difficulty": "hard", "answers": [{ "text": "Johannes Brahms", "aliases": ["Brahms"] }] },
+        { "prompt": "Which element has the chemical symbol Ba?", "difficulty": "hard", "answers": [{ "text": "Barium" }] },
+        { "prompt": "Which river flows through Bangkok?", "difficulty": "hard", "answers": [{ "text": "The Chao Phraya", "aliases": ["Chao Phraya"] }] },
+        { "prompt": "Which Macedonian king was the father of Alexander the Great?", "difficulty": "hard", "answers": [{ "text": "Philip II", "aliases": ["Philip"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Rudolph with the red nose?", "answers": [{ "text": "A reindeer", "aliases": ["Reindeer"] }] },
+        { "prompt": "Apart from Cambridge, which English university city is the most famous?", "answers": [{ "text": "Oxford" }] },
+        { "prompt": "Which American writer wrote Fahrenheit 451?", "answers": [{ "text": "Ray Bradbury", "aliases": ["Bradbury"] }] },
+        { "prompt": "Which orange vegetable do rabbits love to eat?", "answers": [{ "text": "Carrots", "aliases": ["Carrot"] }] },
+        { "prompt": "Which Egyptian port city was founded by Alexander the Great?", "answers": [{ "text": "Alexandria" }] },
+        { "prompt": "Which French painter made A Sunday Afternoon on the Island of La Grande Jatte out of thousands of dots?", "answers": [{ "text": "Georges Seurat", "aliases": ["Seurat"] }] },
+        { "prompt": "What is in the middle of the flag of Canada?", "answers": [{ "text": "A maple leaf", "aliases": ["Maple leaf", "Leaf"] }] },
+        { "prompt": "Which Swedish rock band had a hit with The Final Countdown in 1986?", "answers": [{ "text": "Europe" }] },
+        { "prompt": "Which Danish physicist saw in 1820 that an electric current makes a compass needle move?", "answers": [{ "text": "Hans Christian Orsted", "aliases": ["Orsted", "Oersted"] }] }
+      ]
+    }
+  ]
+}

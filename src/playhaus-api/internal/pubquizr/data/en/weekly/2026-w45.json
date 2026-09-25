@@ -10,7 +10,7 @@
         { "prompt": "What is a triangle with all three sides the same length called?", "category": "Science", "answers": [{ "text": "Equilateral", "aliases": ["An equilateral triangle"] }] },
         { "prompt": "Which king of the Huns was called the Scourge of God?", "category": "History", "answers": [{ "text": "Attila", "aliases": ["Attila the Hun"] }] },
         { "prompt": "Which Serbian tennis player has won the most men's Grand Slam titles?", "category": "Sport", "answers": [{ "text": "Novak Djokovic", "aliases": ["Djokovic"] }] },
-        { "prompt": "What is the name of the lion cub who becomes king in The Lion King?", "category": "Film", "answers": [{ "text": "Simba" }] },
+        { "prompt": "What is the name of Simba's wicked uncle in The Lion King?", "category": "Film", "answers": [{ "text": "Scar" }] },
         { "prompt": "Which American singer sang Bad Romance and Poker Face?", "category": "Music", "answers": [{ "text": "Lady Gaga", "aliases": ["Gaga"] }] },
         { "prompt": "Which Dutch astronaut went to the International Space Station in 2004 and 2011?", "category": "The Netherlands", "answers": [{ "text": "Andre Kuipers", "aliases": ["Kuipers"] }] },
         { "prompt": "Which Flemish baroque painter is famous for his full-figured women?", "category": "Art", "answers": [{ "text": "Peter Paul Rubens", "aliases": ["Rubens"] }] },

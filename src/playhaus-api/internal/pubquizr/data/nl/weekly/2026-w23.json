@@ -139,7 +139,7 @@
         { "prompt": "Welke Italiaanse astronoom zag als eerste de manen van Jupiter?", "answers": [{ "text": "Galileo Galilei", "aliases": ["Galilei", "Galileo"] }] },
         { "prompt": "Wat is de langste rivier van Azie?", "answers": [{ "text": "De Jangtsekiang", "aliases": ["Jangtsekiang", "Yangtze"] }] },
         { "prompt": "Welk land heette vroeger Perzie?", "answers": [{ "text": "Iran" }] },
-        { "prompt": "Welke vulkaan begroef in het jaar 79 de stad Pompeii?", "answers": [{ "text": "De Vesuvius", "aliases": ["Vesuvius"] }] },
+        { "prompt": "Hoe heet de Griekse god van de oorlog?", "answers": [{ "text": "Ares" }] },
         { "prompt": "Hoe heet het parlement van IJsland, een van de oudste ter wereld?", "answers": [{ "text": "De Althing", "aliases": ["Althing", "Althingi"] }] }
       ]
     }

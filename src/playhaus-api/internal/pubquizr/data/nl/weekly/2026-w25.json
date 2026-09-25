@@ -139,7 +139,7 @@
         { "prompt": "Welke Griekse wiskundige zou Eureka hebben geroepen in zijn bad?", "answers": [{ "text": "Archimedes" }] },
         { "prompt": "Welke Duitse componist schreef de Brandenburgse Concerten?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
         { "prompt": "Wat is de hoofdstad van Nieuw-Zeeland?", "answers": [{ "text": "Wellington" }] },
-        { "prompt": "Wat is de hoofdstad van Hongarije?", "answers": [{ "text": "Boedapest", "aliases": ["Budapest"] }] },
+        { "prompt": "In welke Franse stad wordt bij het filmfestival de Gouden Palm uitgereikt?", "answers": [{ "text": "Cannes" }] },
         { "prompt": "Welke Amerikaanse schrijfster schreef De hut van oom Tom?", "answers": [{ "text": "Harriet Beecher Stowe", "aliases": ["Beecher Stowe"] }] }
       ]
     }

@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w52",
+  "title": "Weekly quiz 52 2026",
+  "description": "The weekly quiz of Wednesday 23 December 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In which Finnish region does Father Christmas live, according to the Finns?", "category": "Geography", "answers": [{ "text": "Lapland" }] },
+        { "prompt": "What is the shortest day of the year, around 21 December, called?", "category": "Science", "answers": [{ "text": "The winter solstice", "aliases": ["Winter solstice", "Midwinter"] }] },
+        { "prompt": "What is the short ceasefire between British and German soldiers at Christmas 1914 called?", "category": "History", "answers": [{ "text": "The Christmas truce", "aliases": ["Christmas truce"] }] },
+        { "prompt": "Which darts tournament is played in London around Christmas every year?", "category": "Sport", "answers": [{ "text": "The World Darts Championship", "aliases": ["World Darts Championship", "PDC World Championship"] }] },
+        { "prompt": "Which Canadian actor played the Grinch, who wants to steal Christmas, in 2000?", "category": "Film", "answers": [{ "text": "Jim Carrey", "aliases": ["Carrey"] }] },
+        { "prompt": "Which British duo had a hit with Last Christmas in 1984?", "category": "Music", "answers": [{ "text": "Wham!", "aliases": ["Wham"] }] },
+        { "prompt": "What is the Dutch Christmas bread with a roll of almond paste inside called?", "category": "The Netherlands", "answers": [{ "text": "Kerststol", "aliases": ["Stollen", "Christmas stollen"] }] },
+        { "prompt": "Which American illustrator painted many Christmas covers for The Saturday Evening Post?", "category": "Art", "answers": [{ "text": "Norman Rockwell", "aliases": ["Rockwell"] }] },
+        { "prompt": "What does the Spanish greeting Feliz Navidad mean?", "category": "Language", "answers": [{ "text": "Merry Christmas", "aliases": ["Happy Christmas"] }] },
+        { "prompt": "Which large bird do many Britons and Americans traditionally eat over the holidays?", "category": "Food", "answers": [{ "text": "The turkey", "aliases": ["Turkey"] }] },
+        { "prompt": "What is Microsoft's program for making slide presentations called?", "category": "Technology", "answers": [{ "text": "PowerPoint" }] },
+        { "prompt": "Which fir with soft needles that do not drop quickly is the most popular Christmas tree?", "category": "Nature", "answers": [{ "text": "The Nordmann fir", "aliases": ["Nordmann", "Nordmann fir"] }] },
+        { "prompt": "Which island group north of Scotland has Lerwick as its main town?", "category": "Geography", "answers": [{ "text": "The Shetland Islands", "aliases": ["Shetland", "Shetlands"] }] },
+        { "prompt": "Which Norman conqueror was crowned king of England on Christmas Day 1066?", "category": "History", "answers": [{ "text": "William the Conqueror", "aliases": ["William I"] }] },
+        { "prompt": "What are the patterns that grow on a cold window pane in a frost called?", "category": "Science", "answers": [{ "text": "Frost flowers", "aliases": ["Frost patterns", "Jack Frost"] }] },
+        { "prompt": "Which American singer sang All I Want for Christmas Is You?", "category": "Music", "answers": [{ "text": "Mariah Carey", "aliases": ["Carey"] }] },
+        { "prompt": "Which British actor played the prime minister in the Christmas film Love Actually?", "category": "Film", "answers": [{ "text": "Hugh Grant", "aliases": ["Grant"] }] },
+        { "prompt": "What is the tall Italian Christmas bread with raisins and candied fruit from Milan called?", "category": "Food", "answers": [{ "text": "Panettone" }] },
+        { "prompt": "Which Finnish programmer wrote the first version of Linux in 1991?", "category": "Technology", "answers": [{ "text": "Linus Torvalds", "aliases": ["Torvalds"] }] },
+        { "prompt": "Which short English spelling do people sometimes use for Christmas?", "category": "Language", "answers": [{ "text": "Xmas", "aliases": ["X-mas"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which country did the tradition of the decorated Christmas tree begin?", "options": [{ "text": "Germany", "correct": true }, { "text": "England" }, { "text": "The Netherlands" }, { "text": "Sweden" }] },
+        { "prompt": "Which bird traditionally appears on Christmas cards in England?", "options": [{ "text": "The robin", "correct": true }, { "text": "The blackbird" }, { "text": "The sparrow" }, { "text": "The magpie" }] },
+        { "prompt": "Which cartoonist created Charlie Brown and Snoopy?", "options": [{ "text": "Charles Schulz", "correct": true }, { "text": "Dr. Seuss" }, { "text": "Bill Watterson" }, { "text": "Jim Davis" }] },
+        { "prompt": "In which of these countries does Christmas fall in the middle of summer?", "options": [{ "text": "Australia", "correct": true }, { "text": "Canada" }, { "text": "Russia" }, { "text": "Japan" }] },
+        { "prompt": "Which houseplant with red leaves is also called the Christmas star?", "options": [{ "text": "The poinsettia", "correct": true }, { "text": "The holly" }, { "text": "The amaryllis" }, { "text": "The mistletoe" }] },
+        { "prompt": "Which English leader banned the celebration of Christmas in the seventeenth century?", "options": [{ "text": "Oliver Cromwell", "correct": true }, { "text": "Charles I" }, { "text": "Henry VIII" }, { "text": "William III" }] },
+        { "prompt": "Which country gives London the big Christmas tree in Trafalgar Square every year?", "options": [{ "text": "Norway", "correct": true }, { "text": "Sweden" }, { "text": "Denmark" }, { "text": "Finland" }] },
+        { "prompt": "Which of these animals grows a white coat in winter?", "options": [{ "text": "The stoat", "correct": true }, { "text": "The fox" }, { "text": "The squirrel" }, { "text": "The hedgehog" }] },
+        { "prompt": "In which Christmas action film does Bruce Willis shout: Yippee-ki-yay?", "options": [{ "text": "Die Hard", "correct": true }, { "text": "Home Alone" }, { "text": "Lethal Weapon" }, { "text": "Gremlins" }] },
+        { "prompt": "In which sport is the Four Hills Tournament held around New Year?", "options": [{ "text": "Ski jumping", "correct": true }, { "text": "Cross-country skiing" }, { "text": "Biathlon" }, { "text": "Alpine skiing" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Christmas tree at the Rockefeller Center in New York usually?", "answer": 23, "unit": "metres" },
+        { "prompt": "How many reindeer pull Santa's sleigh, Rudolph included?", "answer": 9, "unit": "reindeer" },
+        { "prompt": "In which year was Silent Night first sung?", "answer": 1818 },
+        { "prompt": "How many kilometres is it from Amsterdam to the North Pole?", "answer": 4170, "unit": "kilometres" },
+        { "prompt": "What is the lowest temperature ever measured on earth, in degrees Celsius?", "answer": -89, "unit": "degrees" },
+        { "prompt": "How old was Charles Dickens when he died?", "answer": 58, "unit": "years" },
+        { "prompt": "How many points or arms does a snowflake have?", "answer": 6, "unit": "arms" },
+        { "prompt": "In which year was A Christmas Carol by Charles Dickens published?", "answer": 1843 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Musical",
+        "Cargo ship",
+        "Tandem",
+        "Leek",
+        "Forbidden City",
+        "Prompter",
+        "Louvre",
+        "Giant sequoia",
+        "Green beans",
+        "Barbie doll",
+        "Laundry basket",
+        "Olaf",
+        "Bureau de change",
+        "Fertiliser",
+        "Gulliver",
+        "Currant bun",
+        "Lucky Luke",
+        "Nirvana",
+        "Lady Gaga",
+        "Tabletop grill",
+        "Table tennis",
+        "Airship",
+        "Rocking horse",
+        "Ventriloquist's dummy",
+        "Tea bag",
+        "Bandage",
+        "Medal of honour",
+        "Capitol",
+        "Flight attendant",
+        "Kickboxing",
+        "Barbecue sauce",
+        "Monster truck",
+        "Knight Templar",
+        "Armadillo",
+        "Sumo",
+        "Poker",
+        "Piercing",
+        "Vatican",
+        "The BFG",
+        "Satellite dish"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Christmas markets?", "answers": [{ "text": "Mulled wine", "aliases": ["Gluhwein"] }, { "text": "Germany", "aliases": ["Cologne", "Nuremberg"] }, { "text": "Stalls", "aliases": ["Huts"] }, { "text": "Lights", "aliases": ["Fairy lights", "Christmas lights"] }] },
+        { "prompt": "What do you know about Home Alone?", "answers": [{ "text": "Kevin", "aliases": ["Kevin McCallister"] }, { "text": "Burglars", "aliases": ["Robbers", "Thieves"] }, { "text": "Macaulay Culkin", "aliases": ["Culkin"] }, { "text": "Christmas", "aliases": ["Alone at Christmas"] }] },
+        { "prompt": "What do you know about snow?", "answers": [{ "text": "Snowman", "aliases": ["Snowmen"] }, { "text": "Snowflakes", "aliases": ["Flakes"] }, { "text": "White and cold", "aliases": ["White", "Cold"] }, { "text": "Sledging", "aliases": ["Sledge", "Snowballs"] }] },
+        { "prompt": "What do you know about the North Pole?", "answers": [{ "text": "Ice", "aliases": ["Pack ice", "Frozen sea"] }, { "text": "Polar bears", "aliases": ["Polar bear"] }, { "text": "Father Christmas", "aliases": ["Santa"] }, { "text": "Northern lights", "aliases": ["Polar night", "Cold"] }] },
+        { "prompt": "What do you know about Charles Dickens?", "answers": [{ "text": "Oliver Twist", "aliases": ["David Copperfield"] }, { "text": "A Christmas Carol", "aliases": ["Scrooge"] }, { "text": "London", "aliases": ["England"] }, { "text": "Poor children", "aliases": ["Poverty", "Victorian"] }] },
+        { "prompt": "What do you know about oliebollen?", "answers": [{ "text": "New Year's Eve", "aliases": ["New Year"] }, { "text": "Icing sugar", "aliases": ["Sugar"] }, { "text": "Currants", "aliases": ["Raisins"] }, { "text": "Deep-fried", "aliases": ["Frying", "Fat"] }] },
+        { "prompt": "What do you know about reindeer?", "answers": [{ "text": "Antlers", "aliases": ["Horns"] }, { "text": "Lapland", "aliases": ["Norway", "Finland"] }, { "text": "Santa's sleigh", "aliases": ["Father Christmas", "Rudolph"] }, { "text": "Herds", "aliases": ["Herd", "Sami"] }] },
+        { "prompt": "What do you know about Bethlehem?", "answers": [{ "text": "Jesus", "aliases": ["Birth of Jesus"] }, { "text": "Stable", "aliases": ["Manger", "Nativity"] }, { "text": "Star", "aliases": ["Star of Bethlehem"] }, { "text": "Israel and Palestine", "aliases": ["Palestine", "West Bank"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do Americans hang by the fireplace so that Santa can fill it with presents?", "difficulty": "easy", "answers": [{ "text": "A stocking", "aliases": ["Stocking", "Christmas stocking"] }] },
+        { "prompt": "What is the evening of the twenty-fourth of December called?", "difficulty": "easy", "answers": [{ "text": "Christmas Eve" }] },
+        { "prompt": "What is the hot spiced wine you drink at a Christmas market called?", "difficulty": "easy", "answers": [{ "text": "Mulled wine", "aliases": ["Gluhwein"] }] },
+        { "prompt": "What is the scene with figures of Joseph, Mary and the baby Jesus called?", "difficulty": "easy", "answers": [{ "text": "The nativity scene", "aliases": ["Nativity", "Crib", "Manger"] }] },
+        { "prompt": "What do we call the white flakes that fall from the sky in winter?", "difficulty": "easy", "answers": [{ "text": "Snow", "aliases": ["Snowflakes"] }] },
+        { "prompt": "Which Austrian priest wrote the words of Silent Night?", "difficulty": "hard", "answers": [{ "text": "Joseph Mohr", "aliases": ["Mohr"] }] },
+        { "prompt": "Which English composer wrote the Fantasia on Greensleeves?", "difficulty": "hard", "answers": [{ "text": "Ralph Vaughan Williams", "aliases": ["Vaughan Williams"] }] },
+        { "prompt": "Which element has the chemical symbol Se?", "difficulty": "hard", "answers": [{ "text": "Selenium" }] },
+        { "prompt": "Which river flows through Salzburg?", "difficulty": "hard", "answers": [{ "text": "The Salzach", "aliases": ["Salzach"] }] },
+        { "prompt": "Of which city in present-day Turkey was Saint Nicholas the bishop?", "difficulty": "hard", "answers": [{ "text": "Myra" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What do you put on top of the Christmas tree?", "answers": [{ "text": "A star", "aliases": ["Star", "Angel", "Tree topper"] }] },
+        { "prompt": "What is the name of the miserly old man in A Christmas Carol?", "answers": [{ "text": "Ebenezer Scrooge", "aliases": ["Scrooge"] }] },
+        { "prompt": "Which American illustrator painted the red Santa Claus for the Coca-Cola adverts?", "answers": [{ "text": "Haddon Sundblom", "aliases": ["Sundblom"] }] },
+        { "prompt": "What do we call the wise men from the east who brought gifts to the baby Jesus?", "answers": [{ "text": "The three kings", "aliases": ["Three kings", "Three wise men", "Magi"] }] },
+        { "prompt": "Which Tchaikovsky ballet is often performed at Christmas?", "answers": [{ "text": "The Nutcracker", "aliases": ["Nutcracker"] }] },
+        { "prompt": "What is the Catalan Christmas log with a face that poops out presents called?", "answers": [{ "text": "Tio de Nadal", "aliases": ["Caga tio", "Tio"] }] },
+        { "prompt": "Which animal traditionally stands next to the donkey in the nativity scene?", "answers": [{ "text": "The ox", "aliases": ["Ox", "Cow"] }] },
+        { "prompt": "Which American singer recorded White Christmas in 1942?", "answers": [{ "text": "Bing Crosby", "aliases": ["Crosby"] }] },
+        { "prompt": "Which pope introduced the calendar we use today, in 1582?", "answers": [{ "text": "Gregory XIII", "aliases": ["Pope Gregory", "Gregory"] }] }
+      ]
+    }
+  ]
+}

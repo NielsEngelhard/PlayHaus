@@ -19,7 +19,7 @@
         { "prompt": "Which Japanese company launched the PlayStation?", "category": "Technology", "answers": [{ "text": "Sony" }] },
         { "prompt": "What is the female red deer called?", "category": "Nature", "answers": [{ "text": "The hind", "aliases": ["Hind"] }] },
         { "prompt": "Which river flows through London?", "category": "Geography", "answers": [{ "text": "The Thames", "aliases": ["Thames"] }] },
-        { "prompt": "Which American president was shot dead in Dallas in 1963?", "category": "History", "answers": [{ "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "Who became the first black president of the United States in 2009?", "category": "History", "answers": [{ "text": "Barack Obama", "aliases": ["Obama"] }] },
         { "prompt": "Which vitamin is plentiful in oranges and prevents scurvy?", "category": "Science", "answers": [{ "text": "Vitamin C", "aliases": ["C"] }] },
         { "prompt": "Which American singer was nicknamed Ol' Blue Eyes?", "category": "Music", "answers": [{ "text": "Frank Sinatra", "aliases": ["Sinatra"] }] },
         { "prompt": "What is the name of the talking snowman in Frozen?", "category": "Film", "answers": [{ "text": "Olaf" }] },
@@ -33,7 +33,7 @@
       "questions": [
         { "prompt": "Which of these capitals lies furthest north?", "options": [{ "text": "Helsinki", "correct": true }, { "text": "Oslo" }, { "text": "Stockholm" }, { "text": "Tallinn" }] },
         { "prompt": "Which of these animals is not a mammal?", "options": [{ "text": "The shark", "correct": true }, { "text": "The dolphin" }, { "text": "The bat" }, { "text": "The whale" }] },
-        { "prompt": "In which Spanish city is the Guggenheim Museum with the shiny titanium facade?", "options": [{ "text": "Bilbao", "correct": true }, { "text": "Madrid" }, { "text": "Barcelona" }, { "text": "Valencia" }] },
+        { "prompt": "Which of these French cities is on the Atlantic Ocean?", "options": [{ "text": "La Rochelle", "correct": true }, { "text": "Marseille" }, { "text": "Nice" }, { "text": "Toulon" }] },
         { "prompt": "Which Greek god was the messenger of the gods?", "options": [{ "text": "Hermes", "correct": true }, { "text": "Apollo" }, { "text": "Ares" }, { "text": "Dionysus" }] },
         { "prompt": "Which Dutch painter made the famous painting The Young Bull in 1647?", "options": [{ "text": "Paulus Potter", "correct": true }, { "text": "Jan Steen" }, { "text": "Frans Hals" }, { "text": "Jacob van Ruisdael" }] },
         { "prompt": "Which British queen reigned the longest before Elizabeth II?", "options": [{ "text": "Victoria", "correct": true }, { "text": "Anne" }, { "text": "Mary I" }, { "text": "Elizabeth I" }] },

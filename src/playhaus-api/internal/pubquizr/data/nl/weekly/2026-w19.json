@@ -139,7 +139,7 @@
         { "prompt": "Welk land heeft meer eilanden dan welk ander land ook?", "answers": [{ "text": "Zweden" }] },
         { "prompt": "Welk element heeft het scheikundig symbool K?", "answers": [{ "text": "Kalium" }] },
         { "prompt": "Wie schilderde De volharding der herinnering, met de smeltende klokken?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] },
-        { "prompt": "Wat is de hoofdstad van Kroatie?", "answers": [{ "text": "Zagreb" }] },
+        { "prompt": "Welke Amerikaanse stad in de woestijn van Nevada is beroemd om haar casino's?", "answers": [{ "text": "Las Vegas", "aliases": ["Vegas"] }] },
         { "prompt": "Welke Franse scheikundige gaf zuurstof zijn naam en stierf onder de guillotine?", "answers": [{ "text": "Antoine Lavoisier", "aliases": ["Lavoisier"] }] }
       ]
     }

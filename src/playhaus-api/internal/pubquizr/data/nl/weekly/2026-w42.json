@@ -15,14 +15,14 @@
         { "prompt": "Hoe heet de nationale luchtvaartmaatschappij van Nederland?", "category": "Nederland", "answers": [{ "text": "KLM", "aliases": ["Koninklijke Luchtvaart Maatschappij"] }] },
         { "prompt": "Welke Mexicaanse muurschilder was getrouwd met Frida Kahlo?", "category": "Kunst", "answers": [{ "text": "Diego Rivera", "aliases": ["Rivera"] }] },
         { "prompt": "Hoe heet een stijlfiguur die sterk overdrijft, zoals: ik heb het je al duizend keer gezegd?", "category": "Taal", "answers": [{ "text": "Een hyperbool", "aliases": ["Hyperbool", "Overdrijving"] }] },
-        { "prompt": "Welke Spaanse soep wordt koud gegeten en is gemaakt van tomaat en komkommer?", "category": "Eten", "answers": [{ "text": "Gazpacho" }] },
+        { "prompt": "Welke Spaanse rijstschotel met saffraan komt oorspronkelijk uit Valencia?", "category": "Eten", "answers": [{ "text": "Paella" }] },
         { "prompt": "Wie richtte Microsoft op samen met Paul Allen?", "category": "Techniek", "answers": [{ "text": "Bill Gates", "aliases": ["Gates"] }] },
         { "prompt": "Van de bladeren van welke boom leeft de zijderups?", "category": "Natuur", "answers": [{ "text": "De moerbeiboom", "aliases": ["Moerbei", "Moerbeiboom"] }] },
         { "prompt": "Welk gebergte loopt dwars door Marokko?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Atlasgebergte", "aliases": ["Atlas", "Atlasgebergte"] }] },
         { "prompt": "Welke Britse verpleegster kreeg in de Krimoorlog de bijnaam The Lady with the Lamp?", "category": "Geschiedenis", "answers": [{ "text": "Florence Nightingale", "aliases": ["Nightingale"] }] },
         { "prompt": "Hoe heten de groene korreltjes in een plantencel waarin de fotosynthese plaatsvindt?", "category": "Wetenschap", "answers": [{ "text": "Bladgroenkorrels", "aliases": ["Chloroplasten", "Bladgroenkorrel"] }] },
         { "prompt": "Welke Britse band van de broers Gallagher scoorde met Wonderwall?", "category": "Muziek", "answers": [{ "text": "Oasis" }] },
-        { "prompt": "Welke film van Steven Spielberg gaat over een witte haai bij het eiland Amity?", "category": "Film", "answers": [{ "text": "Jaws" }] },
+        { "prompt": "In welke film uit 1986 speelt Tom Cruise de gevechtspiloot Maverick?", "category": "Film", "answers": [{ "text": "Top Gun" }] },
         { "prompt": "Van welke vrucht wordt cider gemaakt?", "category": "Eten", "answers": [{ "text": "De appel", "aliases": ["Appel", "Appels"] }] },
         { "prompt": "Welk Zuid-Koreaans bedrijf maakt de Galaxy-telefoons?", "category": "Techniek", "answers": [{ "text": "Samsung" }] },
         { "prompt": "Hoe heet een beeldspraak zonder het woord als, zoals: hij is een leeuw?", "category": "Taal", "answers": [{ "text": "Een metafoor", "aliases": ["Metafoor"] }] }
@@ -38,7 +38,7 @@
         { "prompt": "Welke bloedcellen helpen een wondje te dichten door het bloed te laten stollen?", "options": [{ "text": "De bloedplaatjes", "correct": true }, { "text": "De rode bloedcellen" }, { "text": "De witte bloedcellen" }, { "text": "De stamcellen" }] },
         { "prompt": "Welke oorlog duurde van 1618 tot 1648?", "options": [{ "text": "De Dertigjarige Oorlog", "correct": true }, { "text": "De Tachtigjarige Oorlog" }, { "text": "De Honderdjarige Oorlog" }, { "text": "De Zevenjarige Oorlog" }] },
         { "prompt": "Welk van deze landen heeft geen koning of koningin als staatshoofd?", "options": [{ "text": "Portugal", "correct": true }, { "text": "Noorwegen" }, { "text": "Belgie" }, { "text": "Spanje" }] },
-        { "prompt": "Welke kaas komt uit Griekenland?", "options": [{ "text": "Feta", "correct": true }, { "text": "Gouda" }, { "text": "Brie" }, { "text": "Manchego" }] },
+        { "prompt": "Welke kaas met een witte schimmelkorst komt uit Normandie?", "options": [{ "text": "Camembert", "correct": true }, { "text": "Gouda" }, { "text": "Feta" }, { "text": "Cheddar" }] },
         { "prompt": "Wat is de hoogste berg van het Koninkrijk der Nederlanden?", "options": [{ "text": "Mount Scenery", "correct": true }, { "text": "De Vaalserberg" }, { "text": "De Brandaris" }, { "text": "De Christoffelberg" }] },
         { "prompt": "Welk schaakstuk kan als enige over andere stukken heen springen?", "options": [{ "text": "Het paard", "correct": true }, { "text": "De loper" }, { "text": "De toren" }, { "text": "De dame" }] }
       ]
@@ -125,7 +125,7 @@
         { "prompt": "Welke Indonesische vulkaan explodeerde in 1883 met een van de hardste knallen ooit gehoord?", "difficulty": "hard", "answers": [{ "text": "Krakatau", "aliases": ["Krakatoa"] }] },
         { "prompt": "Welke Amerikaanse schrijver schreef Of Mice and Men?", "difficulty": "hard", "answers": [{ "text": "John Steinbeck", "aliases": ["Steinbeck"] }] },
         { "prompt": "Welke Nederlandse informaticus bedacht het beroemde algoritme voor het kortste pad?", "difficulty": "hard", "answers": [{ "text": "Edsger Dijkstra", "aliases": ["Dijkstra"] }] },
-        { "prompt": "Wat is de hoofdstad van Laos?", "difficulty": "hard", "answers": [{ "text": "Vientiane" }] },
+        { "prompt": "Wat is de hoofdstad van Groenland?", "difficulty": "hard", "answers": [{ "text": "Nuuk" }] },
         { "prompt": "Welke Griekse godin van de wijsheid gaf haar naam aan de hoofdstad van Griekenland?", "difficulty": "hard", "answers": [{ "text": "Athena", "aliases": ["Pallas Athena"] }] }
       ]
     },

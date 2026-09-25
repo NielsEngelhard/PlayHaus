@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w46",
+  "title": "Weekly quiz 46 2026",
+  "description": "The weekly quiz of Wednesday 11 November 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of the Philippines?", "category": "Geography", "answers": [{ "text": "Manila" }] },
+        { "prompt": "What is the outer, hard layer of the earth that we live on called?", "category": "Science", "answers": [{ "text": "The earth's crust", "aliases": ["Crust", "The crust"] }] },
+        { "prompt": "Which saint is said to have cut his cloak in two for a beggar?", "category": "History", "answers": [{ "text": "Saint Martin", "aliases": ["St Martin", "Martin of Tours"] }] },
+        { "prompt": "Which Dutch defender finished second in the Ballon d'Or in 2019?", "category": "Sport", "answers": [{ "text": "Virgil van Dijk", "aliases": ["Van Dijk"] }] },
+        { "prompt": "Which New Zealand director filmed The Lord of the Rings?", "category": "Film", "answers": [{ "text": "Peter Jackson", "aliases": ["Jackson"] }] },
+        { "prompt": "Which British band fronted by Chris Martin had a hit with Viva la Vida?", "category": "Music", "answers": [{ "text": "Coldplay" }] },
+        { "prompt": "Which former island in the Markermeer is famous for its wooden houses and traditional costume?", "category": "The Netherlands", "answers": [{ "text": "Marken" }] },
+        { "prompt": "Which British artist made a platinum skull covered in diamonds?", "category": "Art", "answers": [{ "text": "Damien Hirst", "aliases": ["Hirst"] }] },
+        { "prompt": "What is a poem of fourteen lines called?", "category": "Language", "answers": [{ "text": "A sonnet", "aliases": ["Sonnet"] }] },
+        { "prompt": "Which sauce do you traditionally eat with satay?", "category": "Food", "answers": [{ "text": "Peanut sauce", "aliases": ["Satay sauce"] }] },
+        { "prompt": "Which short video app comes from the Chinese company ByteDance?", "category": "Technology", "answers": [{ "text": "TikTok", "aliases": ["Douyin"] }] },
+        { "prompt": "What is the seabird with a big colourful beak that nests on cliffs in Iceland called?", "category": "Nature", "answers": [{ "text": "The puffin", "aliases": ["Puffin"] }] },
+        { "prompt": "Which South African city lies at the foot of Table Mountain?", "category": "Geography", "answers": [{ "text": "Cape Town" }] },
+        { "prompt": "What was the German attack on the Soviet Union in June 1941 called?", "category": "History", "answers": [{ "text": "Operation Barbarossa", "aliases": ["Barbarossa"] }] },
+        { "prompt": "What is the imaginary line that divides the earth into a northern and a southern hemisphere called?", "category": "Science", "answers": [{ "text": "The equator", "aliases": ["Equator"] }] },
+        { "prompt": "Which Dutch band had a worldwide hit with Radar Love in 1973?", "category": "Music", "answers": [{ "text": "Golden Earring" }] },
+        { "prompt": "What is the name of the queen with ice powers in Frozen?", "category": "Film", "answers": [{ "text": "Elsa" }] },
+        { "prompt": "What is the flat Italian bread with olive oil and rosemary called?", "category": "Food", "answers": [{ "text": "Focaccia" }] },
+        { "prompt": "What is Apple's voice assistant called?", "category": "Technology", "answers": [{ "text": "Siri" }] },
+        { "prompt": "From which Dutch word does the English word cookie come?", "category": "Language", "answers": [{ "text": "Koekje", "aliases": ["Koekie"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Belgium?", "options": [{ "text": "Liege", "correct": true }, { "text": "Lille" }, { "text": "Aachen" }, { "text": "Luxembourg" }] },
+        { "prompt": "Which mammal can stay under water the longest without breathing?", "options": [{ "text": "Cuvier's beaked whale", "correct": true }, { "text": "The sperm whale" }, { "text": "The seal" }, { "text": "The walrus" }] },
+        { "prompt": "Which Flemish writer wrote The Sorrow of Belgium?", "options": [{ "text": "Hugo Claus", "correct": true }, { "text": "Louis Paul Boon" }, { "text": "Tom Lanoye" }, { "text": "Dimitri Verhulst" }] },
+        { "prompt": "Which of these countries is not on the Baltic Sea?", "options": [{ "text": "Norway", "correct": true }, { "text": "Sweden" }, { "text": "Finland" }, { "text": "Poland" }] },
+        { "prompt": "Which of these diseases is caused by a virus?", "options": [{ "text": "Measles", "correct": true }, { "text": "Tuberculosis" }, { "text": "Cholera" }, { "text": "Tetanus" }] },
+        { "prompt": "Which pharaoh had the temples of Abu Simbel carved?", "options": [{ "text": "Ramesses II", "correct": true }, { "text": "Tutankhamun" }, { "text": "Khufu" }, { "text": "Akhenaten" }] },
+        { "prompt": "Which of these deserts is in Australia?", "options": [{ "text": "The Simpson Desert", "correct": true }, { "text": "The Gobi" }, { "text": "The Kalahari" }, { "text": "The Mojave" }] },
+        { "prompt": "Which of these animals does not truly hibernate?", "options": [{ "text": "The squirrel", "correct": true }, { "text": "The hedgehog" }, { "text": "The bat" }, { "text": "The dormouse" }] },
+        { "prompt": "Which hobbit carries the One Ring to Mordor?", "options": [{ "text": "Frodo", "correct": true }, { "text": "Sam" }, { "text": "Bilbo" }, { "text": "Pippin" }] },
+        { "prompt": "Which sport is the most popular in India?", "options": [{ "text": "Cricket", "correct": true }, { "text": "Hockey" }, { "text": "Football" }, { "text": "Kabaddi" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is Mont Blanc?", "answer": 4806, "unit": "metres" },
+        { "prompt": "About how many kilometres do the riders cover in total in the Tour de France?", "answer": 3400, "unit": "kilometres" },
+        { "prompt": "How many countries took part in the 2022 World Cup?", "answer": 32, "unit": "countries" },
+        { "prompt": "About how many bees live in a honeybee colony in summer?", "answer": 50000, "unit": "bees" },
+        { "prompt": "How many days did the Apollo 11 mission last, from launch to splashdown?", "answer": 8, "unit": "days" },
+        { "prompt": "How many national languages does Switzerland have?", "answer": 4, "unit": "languages" },
+        { "prompt": "What is the top speed in kilometres per hour of the high-speed train between Paris and Brussels?", "answer": 300, "unit": "kilometres per hour" },
+        { "prompt": "In which year was the first Harry Potter book published?", "answer": 1997 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Disneyland",
+        "Marriage proposal",
+        "Squash",
+        "Juicer",
+        "Mariachi",
+        "Muhammad Ali",
+        "Tugboat",
+        "Tiesto",
+        "Nursery",
+        "Mayonnaise",
+        "Elon Musk",
+        "Canary",
+        "Mark Zuckerberg",
+        "Squat",
+        "Mussel",
+        "Aria",
+        "Watch",
+        "Vasco da Gama",
+        "Leaf blower",
+        "Games console",
+        "Dictator",
+        "Four-leaf clover",
+        "Witch",
+        "Tram",
+        "Joker",
+        "Graduation",
+        "Fishmonger",
+        "Toy Story",
+        "Press conference",
+        "Cappadocia",
+        "Joan of Arc",
+        "Valentina Tereshkova",
+        "Verona Arena",
+        "Muffin",
+        "Cupcake",
+        "Coco",
+        "Robinson Crusoe",
+        "Rabbit",
+        "Bouncer",
+        "Mascara"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Saint Martin's Day?", "answers": [{ "text": "Lanterns", "aliases": ["Lantern", "Lights"] }, { "text": "Singing door to door", "aliases": ["Songs", "Singing"] }, { "text": "Sweets", "aliases": ["Tangerines", "Treats"] }, { "text": "Sharing his cloak", "aliases": ["Beggar", "Half a cloak"] }] },
+        { "prompt": "What do you know about Brussels?", "answers": [{ "text": "Manneken Pis", "aliases": ["Peeing boy"] }, { "text": "Atomium", "aliases": ["Grand Place"] }, { "text": "European Union", "aliases": ["Europe", "European Parliament"] }, { "text": "Waffles", "aliases": ["Fries", "Chocolate"] }] },
+        { "prompt": "What do you know about wolves?", "answers": [{ "text": "Howling", "aliases": ["Howl at the moon"] }, { "text": "Pack", "aliases": ["In groups"] }, { "text": "Little Red Riding Hood", "aliases": ["Big bad wolf"] }, { "text": "Back in the Netherlands", "aliases": ["Veluwe", "Returning to Europe"] }] },
+        { "prompt": "What do you know about ABBA?", "answers": [{ "text": "Sweden", "aliases": ["Swedish"] }, { "text": "Waterloo", "aliases": ["Eurovision"] }, { "text": "Mamma Mia", "aliases": ["The musical"] }, { "text": "Dancing Queen", "aliases": ["Super Trouper", "Gimme Gimme Gimme"] }] },
+        { "prompt": "What do you know about koalas?", "answers": [{ "text": "Australia", "aliases": ["Australian"] }, { "text": "Eucalyptus", "aliases": ["Leaves"] }, { "text": "Sleep a lot", "aliases": ["Sleeping", "Lazy"] }, { "text": "Marsupial", "aliases": ["Pouch", "Baby in pouch"] }] },
+        { "prompt": "What do you know about the Cold War?", "answers": [{ "text": "Berlin Wall", "aliases": ["Wall", "Iron Curtain"] }, { "text": "America and the Soviet Union", "aliases": ["Russia", "USA"] }, { "text": "Nuclear bombs", "aliases": ["Nuclear weapons", "Arms race"] }, { "text": "Space race", "aliases": ["Spies", "Space"] }] },
+        { "prompt": "What do you know about Frida Kahlo?", "answers": [{ "text": "Mexico", "aliases": ["Mexican"] }, { "text": "Self-portraits", "aliases": ["Self-portrait", "Painter"] }, { "text": "Eyebrows", "aliases": ["Monobrow", "Unibrow"] }, { "text": "Diego Rivera", "aliases": ["Rivera"] }] },
+        { "prompt": "What do you know about bowling?", "answers": [{ "text": "Pins", "aliases": ["Ten pins", "Skittles"] }, { "text": "Strike", "aliases": ["Spare"] }, { "text": "Ball with holes", "aliases": ["Bowling ball", "Ball"] }, { "text": "Bowling shoes", "aliases": ["Shoes"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the little house a dog sleeps in outside called?", "difficulty": "easy", "answers": [{ "text": "A kennel", "aliases": ["Kennel", "Doghouse"] }] },
+        { "prompt": "What is the name of the bear in a red hat who comes from Peru to London?", "difficulty": "easy", "answers": [{ "text": "Paddington", "aliases": ["Paddington Bear"] }] },
+        { "prompt": "Which fairytale girl lives with seven dwarfs?", "difficulty": "easy", "answers": [{ "text": "Snow White" }] },
+        { "prompt": "Which animal carries its house on its back?", "difficulty": "easy", "answers": [{ "text": "The snail", "aliases": ["Snail"] }] },
+        { "prompt": "Which saint arrives in the Netherlands by steamboat in November?", "difficulty": "easy", "answers": [{ "text": "Sinterklaas", "aliases": ["Saint Nicholas"] }] },
+        { "prompt": "What is the capital of Cameroon?", "difficulty": "hard", "answers": [{ "text": "Yaounde" }] },
+        { "prompt": "Which Czech composer wrote Vltava, also known as The Moldau?", "difficulty": "hard", "answers": [{ "text": "Bedrich Smetana", "aliases": ["Smetana"] }] },
+        { "prompt": "Which element has the chemical symbol Bi?", "difficulty": "hard", "answers": [{ "text": "Bismuth" }] },
+        { "prompt": "Which river meets the Rhone in Lyon?", "difficulty": "hard", "answers": [{ "text": "The Saone", "aliases": ["Saone"] }] },
+        { "prompt": "Which French king was beheaded in 1793?", "difficulty": "hard", "answers": [{ "text": "Louis XVI", "aliases": ["Louis the Sixteenth"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Winnie the Pooh?", "answers": [{ "text": "A bear", "aliases": ["Bear", "Teddy bear"] }] },
+        { "prompt": "In which Italian city is there a famous leaning tower?", "answers": [{ "text": "Pisa" }] },
+        { "prompt": "Which English poet wrote Paradise Lost?", "answers": [{ "text": "John Milton", "aliases": ["Milton"] }] },
+        { "prompt": "Which animal turns into a prince after a kiss in the fairy tale?", "answers": [{ "text": "The frog", "aliases": ["Frog"] }] },
+        { "prompt": "Which sea lies between the heel of Italy and Greece?", "answers": [{ "text": "The Ionian Sea", "aliases": ["Ionian Sea"] }] },
+        { "prompt": "Which Russian writer wrote The Master and Margarita?", "answers": [{ "text": "Mikhail Bulgakov", "aliases": ["Bulgakov"] }] },
+        { "prompt": "What is the big observation wheel on the Thames in London called?", "answers": [{ "text": "The London Eye", "aliases": ["London Eye"] }] },
+        { "prompt": "Which Dutchman became world chess champion in 1935?", "answers": [{ "text": "Max Euwe", "aliases": ["Euwe"] }] },
+        { "prompt": "Which Portuguese dictator ruled his country from 1932 to 1968?", "answers": [{ "text": "Antonio Salazar", "aliases": ["Salazar"] }] }
+      ]
+    }
+  ]
+}

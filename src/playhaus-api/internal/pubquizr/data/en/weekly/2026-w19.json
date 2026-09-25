@@ -139,7 +139,7 @@
         { "prompt": "Which country has more islands than any other in the world?", "answers": [{ "text": "Sweden" }] },
         { "prompt": "Which element has the chemical symbol K?", "answers": [{ "text": "Potassium" }] },
         { "prompt": "Who painted The Persistence of Memory, with its melting clocks?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] },
-        { "prompt": "What is the capital of Croatia?", "answers": [{ "text": "Zagreb" }] },
+        { "prompt": "Which American city in the Nevada desert is famous for its casinos?", "answers": [{ "text": "Las Vegas", "aliases": ["Vegas"] }] },
         { "prompt": "Which French chemist gave oxygen its name and died on the guillotine?", "answers": [{ "text": "Antoine Lavoisier", "aliases": ["Lavoisier"] }] }
       ]
     }

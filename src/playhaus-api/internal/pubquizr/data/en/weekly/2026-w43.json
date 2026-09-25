@@ -18,7 +18,7 @@
         { "prompt": "What is the Japanese dish of thinly sliced raw fish without rice called?", "category": "Food", "answers": [{ "text": "Sashimi" }] },
         { "prompt": "Which company developed the Android operating system?", "category": "Technology", "answers": [{ "text": "Google" }] },
         { "prompt": "What is the largest bird of prey that breeds in the Netherlands?", "category": "Nature", "answers": [{ "text": "The white-tailed eagle", "aliases": ["White-tailed eagle", "Sea eagle"] }] },
-        { "prompt": "What is the capital of Cuba?", "category": "Geography", "answers": [{ "text": "Havana" }] },
+        { "prompt": "What is the largest city in the French-speaking Canadian province of Quebec?", "category": "Geography", "answers": [{ "text": "Montreal" }] },
         { "prompt": "Which Russian tsar founded Saint Petersburg in 1703?", "category": "History", "answers": [{ "text": "Peter the Great", "aliases": ["Peter I", "Peter"] }] },
         { "prompt": "What is the force that pushes an object up in water, described by Archimedes, called?", "category": "Science", "answers": [{ "text": "Buoyancy", "aliases": ["Upthrust", "Buoyant force"] }] },
         { "prompt": "Which rapper's real name is Marshall Mathers?", "category": "Music", "answers": [{ "text": "Eminem", "aliases": ["Slim Shady"] }] },

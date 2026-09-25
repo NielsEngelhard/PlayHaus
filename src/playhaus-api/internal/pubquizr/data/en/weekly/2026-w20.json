@@ -139,7 +139,7 @@
         { "prompt": "In which year did the Netherlands first play at a World Cup?", "answers": [{ "text": "1934" }] },
         { "prompt": "Which German-British astronomer discovered the planet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] },
         { "prompt": "Which is the longest cave system in the world?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoth"] }] },
-        { "prompt": "What is the capital of Kenya?", "answers": [{ "text": "Nairobi" }] },
+        { "prompt": "Which river plunges over the Victoria Falls?", "answers": [{ "text": "The Zambezi", "aliases": ["Zambezi"] }] },
         { "prompt": "What is the capital of Georgia, the country in the Caucasus?", "answers": [{ "text": "Tbilisi" }] }
       ]
     }
