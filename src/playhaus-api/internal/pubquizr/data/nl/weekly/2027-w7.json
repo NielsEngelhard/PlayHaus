@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w7",
+  "title": "Weekquiz 7 2027",
+  "description": "De wekelijkse quiz van woensdag 17 februari 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de grootste stad van Zwitserland?", "category": "Aardrijkskunde", "answers": [{ "text": "Zurich" }] },
+        { "prompt": "Hoe heet het vloeibare, gelige deel van het bloed?", "category": "Wetenschap", "answers": [{ "text": "Bloedplasma", "aliases": ["Plasma"] }] },
+        { "prompt": "Welke Spartaanse koning hield in 480 voor Christus met driehonderd man de pas bij Thermopylae?", "category": "Geschiedenis", "answers": [{ "text": "Leonidas" }] },
+        { "prompt": "Welke Braziliaanse voetballer won als enige drie keer het WK?", "category": "Sport", "answers": [{ "text": "Pele", "aliases": ["Edson Arantes do Nascimento"] }] },
+        { "prompt": "Welke Britse actrice won een Oscar voor haar rol als koningin Elizabeth II in The Queen?", "category": "Film", "answers": [{ "text": "Helen Mirren", "aliases": ["Mirren"] }] },
+        { "prompt": "Welke Amerikaanse zanger zong Sweet Caroline?", "category": "Muziek", "answers": [{ "text": "Neil Diamond", "aliases": ["Diamond"] }] },
+        { "prompt": "Welke Brabantse stad heet tijdens carnaval Kruikenstad?", "category": "Nederland", "answers": [{ "text": "Tilburg" }] },
+        { "prompt": "Welke Amerikaanse schilderes is beroemd om haar grote bloemen en schedels uit New Mexico?", "category": "Kunst", "answers": [{ "text": "Georgia O'Keeffe", "aliases": ["O'Keeffe"] }] },
+        { "prompt": "Hoe heet het teken en in de vorm van een krulletje: &?", "category": "Taal", "answers": [{ "text": "Ampersand", "aliases": ["En-teken"] }] },
+        { "prompt": "Hoe heet de Mexicaanse saus van pepers en pure chocolade?", "category": "Eten", "answers": [{ "text": "Mole", "aliases": ["Mole poblano"] }] },
+        { "prompt": "Welk Chinees bedrijf maakt onder meer smartphones en netwerkapparatuur en heeft een rode waaier als logo?", "category": "Techniek", "answers": [{ "text": "Huawei" }] },
+        { "prompt": "Welk insect houdt zijn voorpoten gevouwen alsof het bidt?", "category": "Natuur", "answers": [{ "text": "De bidsprinkhaan", "aliases": ["Bidsprinkhaan"] }] },
+        { "prompt": "Welke grote rivier stroomt door Laos, Cambodja en Vietnam?", "category": "Aardrijkskunde", "answers": [{ "text": "De Mekong", "aliases": ["Mekong"] }] },
+        { "prompt": "Welke Franse koning, de eerste Bourbon, werd in 1610 in Parijs vermoord?", "category": "Geschiedenis", "answers": [{ "text": "Hendrik IV", "aliases": ["Henri IV", "Hendrik de Vierde"] }] },
+        { "prompt": "Hoe heet de uitkomst als je een getal met zichzelf vermenigvuldigt?", "category": "Wetenschap", "answers": [{ "text": "Het kwadraat", "aliases": ["Kwadraat", "Tweede macht"] }] },
+        { "prompt": "Welke Belgische zanger scoorde in 2013 met Papaoutai?", "category": "Muziek", "answers": [{ "text": "Stromae" }] },
+        { "prompt": "Welke Nieuw-Zeelandse regisseur maakte Jojo Rabbit en speelde er zelf Hitler in?", "category": "Film", "answers": [{ "text": "Taika Waititi", "aliases": ["Waititi"] }] },
+        { "prompt": "Welke Cubaanse cocktail van witte rum, limoen, rietsuiker en bruiswater dronk Hemingway graag in Havana?", "category": "Eten", "answers": [{ "text": "Mojito" }] },
+        { "prompt": "Welk Nederlands bedrijf werd groot met navigatiekastjes voor in de auto?", "category": "Techniek", "answers": [{ "text": "TomTom" }] },
+        { "prompt": "In welke taal is kia ora een groet?", "category": "Taal", "answers": [{ "text": "Maori", "aliases": ["Het Maori"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Italie?", "options": [{ "text": "Triest", "correct": true }, { "text": "Nice" }, { "text": "Split" }, { "text": "Innsbruck" }] },
+        { "prompt": "Welk van deze dieren leeft in het wild niet in Afrika?", "options": [{ "text": "De tijger", "correct": true }, { "text": "De leeuw" }, { "text": "De giraf" }, { "text": "Het nijlpaard" }] },
+        { "prompt": "Welke Nederlandse schrijver schreef Het diner?", "options": [{ "text": "Herman Koch", "correct": true }, { "text": "Arnon Grunberg" }, { "text": "Kader Abdolah" }, { "text": "Tommy Wieringa" }] },
+        { "prompt": "In welk van deze landen is Arabisch de officiele taal?", "options": [{ "text": "Tunesie", "correct": true }, { "text": "Iran" }, { "text": "Turkije" }, { "text": "Pakistan" }] },
+        { "prompt": "Welke van deze tanden zit het verst achter in je mond?", "options": [{ "text": "De verstandskies", "correct": true }, { "text": "De snijtand" }, { "text": "De hoektand" }, { "text": "De voortand" }] },
+        { "prompt": "Welk Europees land had Congo als kolonie?", "options": [{ "text": "Belgie", "correct": true }, { "text": "Frankrijk" }, { "text": "Portugal" }, { "text": "Duitsland" }] },
+        { "prompt": "Welk van deze eilanden hoort bij Denemarken?", "options": [{ "text": "Bornholm", "correct": true }, { "text": "Gotland" }, { "text": "Aland" }, { "text": "Rugen" }] },
+        { "prompt": "Welke van deze vogels duikt in het water om visjes te vangen?", "options": [{ "text": "De ijsvogel", "correct": true }, { "text": "De mus" }, { "text": "De merel" }, { "text": "De ekster" }] },
+        { "prompt": "In welke film speelt Johnny Depp een jongen met scharen als handen?", "options": [{ "text": "Edward Scissorhands", "correct": true }, { "text": "Beetlejuice" }, { "text": "Big Fish" }, { "text": "Sleepy Hollow" }] },
+        { "prompt": "Welke Nederlander scoorde met een beroemde volley in de EK-finale van 1988?", "options": [{ "text": "Marco van Basten", "correct": true }, { "text": "Ruud Gullit" }, { "text": "Ronald Koeman" }, { "text": "Frank Rijkaard" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de CN Tower in Toronto?", "answer": 553, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Ganges?", "answer": 2525, "unit": "kilometer" },
+        { "prompt": "Hoeveel kilometer per uur rijdt de Japanse Shinkansen maximaal?", "answer": 320, "unit": "kilometer per uur" },
+        { "prompt": "Hoe oud werd Anne Frank?", "answer": 15, "unit": "jaar" },
+        { "prompt": "Hoeveel kilo weegt een volwassen nijlpaard ongeveer?", "answer": 1500, "unit": "kilo" },
+        { "prompt": "Hoeveel velden telt een internationaal dambord?", "answer": 100, "unit": "velden" },
+        { "prompt": "Hoeveel meter is het wereldrecord hoogspringen bij de mannen?", "answer": 2.45, "unit": "meter" },
+        { "prompt": "In welk jaar werd Nederland voor het eerst wereldkampioen hockey bij de mannen?", "answer": 1973 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Makelaar",
+        "Puntenslijper",
+        "Vaatwasmiddel",
+        "Halloween",
+        "Rastas",
+        "Middernachtzon",
+        "Legoland",
+        "Madeliefje",
+        "Bevrijdingsdag",
+        "Flowerpower",
+        "Atlas",
+        "Stickerboek",
+        "Suikerklontje",
+        "Ochtendjas",
+        "Nepnieuws",
+        "Eurovisiepunten",
+        "Fietskoers",
+        "Verkeersregelaar",
+        "Nero",
+        "Watersnoodramp",
+        "Beachvolleybal",
+        "Zwijnenstal",
+        "Eend",
+        "Straatkunst",
+        "Tapijt",
+        "Afwasborstel",
+        "Vossenstaart",
+        "Figurant",
+        "Marrakech",
+        "Ui",
+        "Luier",
+        "Dobbelsteen",
+        "Gele kaart",
+        "Nootmuskaat",
+        "Kikkererwten",
+        "Rugtas",
+        "Slangenbezweerder",
+        "Bodywarmer",
+        "Stekker",
+        "Klarinet"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over carnaval?", "answers": [{ "text": "Verkleden", "aliases": ["Verkleedpak", "Kostuum"] }, { "text": "Brabant en Limburg", "aliases": ["Het zuiden", "Maastricht", "Den Bosch"] }, { "text": "Prins Carnaval", "aliases": ["Prins"] }, { "text": "Optocht", "aliases": ["Praalwagens"] }] },
+        { "prompt": "Wat weet je over Rio de Janeiro?", "answers": [{ "text": "Christusbeeld", "aliases": ["Cristo Redentor"] }, { "text": "Copacabana", "aliases": ["Ipanema", "Strand"] }, { "text": "Carnaval", "aliases": ["Samba", "Sambadrome"] }, { "text": "Suikerbrood", "aliases": ["Suikerbroodberg"] }] },
+        { "prompt": "Wat weet je over Antwerpen?", "answers": [{ "text": "Haven", "aliases": ["Grootste haven van Belgie"] }, { "text": "Diamanten", "aliases": ["Diamantwijk"] }, { "text": "De Schelde", "aliases": ["Schelde"] }, { "text": "Rubens", "aliases": ["Rubenshuis"] }] },
+        { "prompt": "Wat weet je over mieren?", "answers": [{ "text": "Koningin", "aliases": ["Mierenkoningin"] }, { "text": "Sterk", "aliases": ["Tillen", "Zwaar dragen"] }, { "text": "Mierenhoop", "aliases": ["Nest", "Kolonie"] }, { "text": "Samenwerken", "aliases": ["Werksters", "Groep"] }] },
+        { "prompt": "Wat weet je over Vietnam?", "answers": [{ "text": "Hanoi", "aliases": ["Ho Chi Minhstad", "Saigon"] }, { "text": "Vietnamoorlog", "aliases": ["Oorlog"] }, { "text": "Pho", "aliases": ["Noedelsoep", "Loempia"] }, { "text": "Rijstvelden", "aliases": ["Rijst", "Punthoed"] }] },
+        { "prompt": "Wat weet je over Buckingham Palace?", "answers": [{ "text": "Londen", "aliases": ["Engeland"] }, { "text": "Koning", "aliases": ["Koninklijke familie", "Koningin"] }, { "text": "Wisseling van de wacht", "aliases": ["Wachters", "Berenmutsen"] }, { "text": "Balkon", "aliases": ["Zwaaien"] }] },
+        { "prompt": "Wat weet je over Monopoly?", "answers": [{ "text": "Straten", "aliases": ["Kalverstraat", "Dorpsstraat"] }, { "text": "Speelgeld", "aliases": ["Geld"] }, { "text": "Gevangenis", "aliases": ["Naar de gevangenis"] }, { "text": "Hotels", "aliases": ["Huisjes"] }] },
+        { "prompt": "Wat weet je over pannenkoeken?", "answers": [{ "text": "Stroop", "aliases": ["Poedersuiker"] }, { "text": "Spek", "aliases": ["Kaas", "Appel"] }, { "text": "Plat", "aliases": ["Dun", "Rond"] }, { "text": "Pannenkoekenhuis", "aliases": ["Pannenkoekendag"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat trek je aan als je naar een carnavalsfeest gaat?", "difficulty": "easy", "answers": [{ "text": "Een verkleedpak", "aliases": ["Verkleedpak", "Kostuum", "Verkleedkleren"] }] },
+        { "prompt": "Wie woont er in een paleis en draagt een kroon?", "difficulty": "easy", "answers": [{ "text": "Een koning", "aliases": ["Koning", "Koningin"] }] },
+        { "prompt": "Waarmee schrijft de juf op een ouderwets schoolbord?", "difficulty": "easy", "answers": [{ "text": "Krijt", "aliases": ["Een krijtje", "Krijtje"] }] },
+        { "prompt": "Welke vorm heeft een wiel?", "difficulty": "easy", "answers": [{ "text": "Rond", "aliases": ["Een cirkel", "Cirkel"] }] },
+        { "prompt": "Wat maakt een bakker elke ochtend vers?", "difficulty": "easy", "answers": [{ "text": "Brood", "aliases": ["Broden"] }] },
+        { "prompt": "Welke Nederlandse architect ontwierp de Beurs aan het Damrak in Amsterdam?", "difficulty": "hard", "answers": [{ "text": "Hendrik Petrus Berlage", "aliases": ["Berlage", "H.P. Berlage"] }] },
+        { "prompt": "Welke Amerikaanse componist schreef de muziek van West Side Story?", "difficulty": "hard", "answers": [{ "text": "Leonard Bernstein", "aliases": ["Bernstein"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Ir?", "difficulty": "hard", "answers": [{ "text": "Iridium" }] },
+        { "prompt": "Welke rivier stroomt door Leuven?", "difficulty": "hard", "answers": [{ "text": "De Dijle", "aliases": ["Dijle"] }] },
+        { "prompt": "Welke Vikingleider bereikte volgens de sagen rond het jaar duizend Noord-Amerika?", "difficulty": "hard", "answers": [{ "text": "Leif Eriksson", "aliases": ["Leif Eriksson", "Leif de Gelukkige"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor vogeltje is Tweety?", "answers": [{ "text": "Een kanarie", "aliases": ["Kanarie"] }] },
+        { "prompt": "Welke Engelse universiteitsstad is beroemd om het punteren op de Cam?", "answers": [{ "text": "Cambridge" }] },
+        { "prompt": "Welke Duitse schrijver schreef Het parfum?", "answers": [{ "text": "Patrick Suskind", "aliases": ["Suskind"] }] },
+        { "prompt": "Welke sport speel je met een klein wit balletje en batjes op een tafel met een netje?", "answers": [{ "text": "Tafeltennis", "aliases": ["Pingpong"] }] },
+        { "prompt": "Hoe heet de munteenheid van Indonesie?", "answers": [{ "text": "De roepia", "aliases": ["Roepia", "Rupiah"] }] },
+        { "prompt": "Welke Britse wetenschapper maakte de beroemde rontgenfoto van DNA, foto 51?", "answers": [{ "text": "Rosalind Franklin", "aliases": ["Franklin"] }] },
+        { "prompt": "Wat eet een koe in de wei?", "answers": [{ "text": "Gras" }] },
+        { "prompt": "Welke Amerikaanse band scoorde in 2004 met Mr. Brightside?", "answers": [{ "text": "The Killers", "aliases": ["Killers"] }] },
+        { "prompt": "Welke Griekse dichteres van het eiland Lesbos werd door Plato de tiende muze genoemd?", "answers": [{ "text": "Sappho", "aliases": ["Sapfo"] }] }
+      ]
+    }
+  ]
+}

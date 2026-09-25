@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w4",
+  "title": "Weekly quiz 4 2027",
+  "description": "The weekly quiz of Wednesday 27 January 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the highest mountain in Canada?", "category": "Geography", "answers": [{ "text": "Mount Logan", "aliases": ["Logan"] }] },
+        { "prompt": "What is the lowest layer of the atmosphere, where all our weather happens, called?", "category": "Science", "answers": [{ "text": "The troposphere", "aliases": ["Troposphere"] }] },
+        { "prompt": "Which Chinese thinker of the sixth century BC gave his name to an entire philosophy of life?", "category": "History", "answers": [{ "text": "Confucius", "aliases": ["Kong Zi", "Kongzi"] }] },
+        { "prompt": "Which Dutch judoka won Olympic gold in the open class in Tokyo in 1964?", "category": "Sport", "answers": [{ "text": "Anton Geesink", "aliases": ["Geesink"] }] },
+        { "prompt": "Which British actor played Gandalf in The Lord of the Rings?", "category": "Film", "answers": [{ "text": "Ian McKellen", "aliases": ["McKellen"] }] },
+        { "prompt": "Which German singer had a hit with 99 Luftballons in 1983?", "category": "Music", "answers": [{ "text": "Nena" }] },
+        { "prompt": "In which village on the Veluwe is the Kroller-Muller Museum?", "category": "The Netherlands", "answers": [{ "text": "Otterlo" }] },
+        { "prompt": "Which British artist painted the swimming pool in A Bigger Splash?", "category": "Art", "answers": [{ "text": "David Hockney", "aliases": ["Hockney"] }] },
+        { "prompt": "What is the word class of words such as table, dog and love called?", "category": "Language", "answers": [{ "text": "Noun", "aliases": ["Nouns"] }] },
+        { "prompt": "What are the stuffed vine leaves from Greek and Turkish cooking called?", "category": "Food", "answers": [{ "text": "Dolma", "aliases": ["Dolmades"] }] },
+        { "prompt": "Which streaming company started out in 1997 renting DVDs by post?", "category": "Technology", "answers": [{ "text": "Netflix" }] },
+        { "prompt": "Which tree blossoms exuberantly pink in Japan in spring?", "category": "Nature", "answers": [{ "text": "The cherry tree", "aliases": ["Cherry tree", "Japanese cherry", "Sakura"] }] },
+        { "prompt": "Which Brazilian city of millions lies in the middle of the Amazon?", "category": "Geography", "answers": [{ "text": "Manaus" }] },
+        { "prompt": "Which British explorer died in 1912 on the way back from the South Pole?", "category": "History", "answers": [{ "text": "Robert Falcon Scott", "aliases": ["Scott", "Robert Scott"] }] },
+        { "prompt": "What is the energy an object has because it is moving called?", "category": "Science", "answers": [{ "text": "Kinetic energy", "aliases": ["Energy of motion"] }] },
+        { "prompt": "Which American singer had a hit with I Will Survive in 1978?", "category": "Music", "answers": [{ "text": "Gloria Gaynor", "aliases": ["Gaynor"] }] },
+        { "prompt": "Which British actor played Mr Darcy in the 1995 series Pride and Prejudice?", "category": "Film", "answers": [{ "text": "Colin Firth", "aliases": ["Firth"] }] },
+        { "prompt": "What are the dried, spiced strips of meat from South Africa called?", "category": "Food", "answers": [{ "text": "Biltong" }] },
+        { "prompt": "What is the European satellite navigation system called?", "category": "Technology", "answers": [{ "text": "Galileo" }] },
+        { "prompt": "What is a word spelled and pronounced like another but with a different meaning, like bank and bank, called?", "category": "Language", "answers": [{ "text": "A homonym", "aliases": ["Homonym"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these port cities is on the Baltic Sea?", "options": [{ "text": "Gdansk", "correct": true }, { "text": "Hamburg" }, { "text": "Antwerp" }, { "text": "Rotterdam" }] },
+        { "prompt": "Which of these animals is not a ruminant?", "options": [{ "text": "The horse", "correct": true }, { "text": "The cow" }, { "text": "The goat" }, { "text": "The sheep" }] },
+        { "prompt": "Which American writer wrote To Kill a Mockingbird?", "options": [{ "text": "Harper Lee", "correct": true }, { "text": "Toni Morrison" }, { "text": "Truman Capote" }, { "text": "Maya Angelou" }] },
+        { "prompt": "Which of these countries lies furthest north?", "options": [{ "text": "Estonia", "correct": true }, { "text": "Latvia" }, { "text": "Lithuania" }, { "text": "Poland" }] },
+        { "prompt": "Which of these bones is the smallest?", "options": [{ "text": "The incus", "correct": true }, { "text": "The collarbone" }, { "text": "The kneecap" }, { "text": "The tailbone" }] },
+        { "prompt": "Which French fortress town was besieged for months in 1916?", "options": [{ "text": "Verdun", "correct": true }, { "text": "Ypres" }, { "text": "Sedan" }, { "text": "Amiens" }] },
+        { "prompt": "Which of these capitals lies highest above sea level?", "options": [{ "text": "Bogota", "correct": true }, { "text": "Mexico City" }, { "text": "Nairobi" }, { "text": "Madrid" }] },
+        { "prompt": "Which bird is on the coat of arms of Germany?", "options": [{ "text": "The eagle", "correct": true }, { "text": "The raven" }, { "text": "The owl" }, { "text": "The magpie" }] },
+        { "prompt": "In which film does Humphrey Bogart say: Here's looking at you, kid?", "options": [{ "text": "Casablanca", "correct": true }, { "text": "Gone with the Wind" }, { "text": "Citizen Kane" }, { "text": "The Maltese Falcon" }] },
+        { "prompt": "In which sport did Epke Zonderland become Olympic champion?", "options": [{ "text": "Gymnastics", "correct": true }, { "text": "Athletics" }, { "text": "Swimming" }, { "text": "Speed skating" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is One World Trade Center in New York?", "answer": 541, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Yangtze?", "answer": 6300, "unit": "kilometres" },
+        { "prompt": "How many kilometres is a half marathon?", "answer": 21.1, "unit": "kilometres" },
+        { "prompt": "How old was Michael Jackson when he died?", "answer": 50, "unit": "years" },
+        { "prompt": "How many litres does a standard wine bottle hold?", "answer": 0.75, "unit": "litres" },
+        { "prompt": "How many cards are there in a tarot deck?", "answer": 78, "unit": "cards" },
+        { "prompt": "How many metres did Mike Powell jump in 1991 for his long jump world record?", "answer": 8.95, "unit": "metres" },
+        { "prompt": "In which year did the Johan Cruyff Arena in Amsterdam open?", "answer": 1996 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Crane",
+        "Poppy",
+        "Great Ocean Road",
+        "Endive",
+        "Fortune teller",
+        "Diet",
+        "Armbands",
+        "Gritter",
+        "Detention",
+        "Headache",
+        "Snoring",
+        "Botox",
+        "Parking attendant",
+        "Sagrada Familia",
+        "Muesli",
+        "Willy Wonka",
+        "Mistletoe",
+        "Sleigh",
+        "Scrabble",
+        "Hitchhiker",
+        "Stephen Hawking",
+        "WALL-E",
+        "Disco ball",
+        "Golf buggy",
+        "Music festival",
+        "Snoopy",
+        "Michelangelo's David",
+        "Iconoclasm",
+        "Lollipop",
+        "Mountain stage",
+        "Up",
+        "Flute",
+        "TV presenter",
+        "Freddie Mercury",
+        "Party hat",
+        "Redcurrant",
+        "Galley",
+        "Trapeze artist",
+        "Steak",
+        "Removal man"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Netflix?", "answers": [{ "text": "Streaming", "aliases": ["Streaming service"] }, { "text": "Series", "aliases": ["Films", "Binge-watching"] }, { "text": "Stranger Things", "aliases": ["Squid Game", "Money Heist"] }, { "text": "Subscription", "aliases": ["Monthly fee"] }] },
+        { "prompt": "What do you know about the South Pole?", "answers": [{ "text": "Antarctica", "aliases": ["Southern continent"] }, { "text": "Penguins", "aliases": ["Emperor penguin"] }, { "text": "Amundsen", "aliases": ["Roald Amundsen", "Scott"] }, { "text": "Coldest place", "aliases": ["Cold", "Ice"] }] },
+        { "prompt": "What do you know about Thailand?", "answers": [{ "text": "Bangkok", "aliases": ["The capital Bangkok"] }, { "text": "Temples", "aliases": ["Buddhism", "Buddha"] }, { "text": "Beaches", "aliases": ["Phuket", "Islands"] }, { "text": "Pad Thai", "aliases": ["Thai food", "Curry"] }] },
+        { "prompt": "What do you know about field hockey?", "answers": [{ "text": "Stick", "aliases": ["Hockey stick"] }, { "text": "The Netherlands", "aliases": ["The Dutch often win", "Olympic gold"] }, { "text": "Artificial turf", "aliases": ["Pitch", "Water-based pitch"] }, { "text": "Ball", "aliases": ["Hard ball"] }] },
+        { "prompt": "What do you know about castles?", "answers": [{ "text": "Drawbridge", "aliases": ["Bridge"] }, { "text": "Moat", "aliases": ["Ditch"] }, { "text": "Knights", "aliases": ["King", "Princess"] }, { "text": "Towers", "aliases": ["Battlements", "Walls"] }] },
+        { "prompt": "What do you know about disco?", "answers": [{ "text": "Disco ball", "aliases": ["Mirror ball"] }, { "text": "The seventies", "aliases": ["Seventies"] }, { "text": "Bee Gees", "aliases": ["ABBA", "Donna Summer"] }, { "text": "Saturday Night Fever", "aliases": ["John Travolta"] }] },
+        { "prompt": "What do you know about aeroplanes?", "answers": [{ "text": "Pilot", "aliases": ["Flight attendant", "Cockpit"] }, { "text": "Wings", "aliases": ["Engines", "Jet engine"] }, { "text": "Airport", "aliases": ["Heathrow", "Schiphol"] }, { "text": "Wright brothers", "aliases": ["Wright"] }] },
+        { "prompt": "What do you know about the alphabet?", "answers": [{ "text": "Twenty-six letters", "aliases": ["26", "26 letters"] }, { "text": "A to Z", "aliases": ["A", "Z"] }, { "text": "Vowels", "aliases": ["Consonants"] }, { "text": "ABC", "aliases": ["Alphabet song"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the building where horses sleep called?", "difficulty": "easy", "answers": [{ "text": "A stable", "aliases": ["Stable"] }] },
+        { "prompt": "Which warm piece of clothing do you wrap around your neck when it is cold?", "difficulty": "easy", "answers": [{ "text": "A scarf", "aliases": ["Scarf"] }] },
+        { "prompt": "What is the moon called when it is completely round?", "difficulty": "easy", "answers": [{ "text": "Full moon", "aliases": ["The full moon"] }] },
+        { "prompt": "What is the appliance in which you toast slices of bread called?", "difficulty": "easy", "answers": [{ "text": "A toaster", "aliases": ["Toaster"] }] },
+        { "prompt": "Which sport do you do standing on a board on the waves?", "difficulty": "easy", "answers": [{ "text": "Surfing" }] },
+        { "prompt": "Which English statesman wrote the book Utopia in 1516?", "difficulty": "hard", "answers": [{ "text": "Thomas More", "aliases": ["More"] }] },
+        { "prompt": "Which Austrian composer wrote Das Lied von der Erde?", "difficulty": "hard", "answers": [{ "text": "Gustav Mahler", "aliases": ["Mahler"] }] },
+        { "prompt": "Which poisonous element has the chemical symbol As?", "difficulty": "hard", "answers": [{ "text": "Arsenic" }] },
+        { "prompt": "Which river flows through Innsbruck?", "difficulty": "hard", "answers": [{ "text": "The Inn", "aliases": ["Inn"] }] },
+        { "prompt": "Which Spanish queen paid for the first voyage of Columbus?", "difficulty": "hard", "answers": [{ "text": "Isabella of Castile", "aliases": ["Isabella", "Isabella I"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the name of Disney's little mermaid?", "answers": [{ "text": "Ariel" }] },
+        { "prompt": "Which German city was called Karl-Marx-Stadt in the days of the GDR?", "answers": [{ "text": "Chemnitz" }] },
+        { "prompt": "Which American poet wrote almost two thousand poems but published only a handful during her life?", "answers": [{ "text": "Emily Dickinson", "aliases": ["Dickinson"] }] },
+        { "prompt": "Which animal leaps in the logo of the sports brand Puma?", "answers": [{ "text": "A puma", "aliases": ["Puma", "Cougar"] }] },
+        { "prompt": "Which Australian coastal city has a district called Surfers Paradise?", "answers": [{ "text": "Gold Coast" }] },
+        { "prompt": "Which English physicist is the unit of energy named after?", "answers": [{ "text": "James Joule", "aliases": ["Joule"] }] },
+        { "prompt": "What kind of animal is Marty in the film Madagascar?", "answers": [{ "text": "A zebra", "aliases": ["Zebra"] }] },
+        { "prompt": "Which Dutch singer sang Laat me?", "answers": [{ "text": "Ramses Shaffy", "aliases": ["Shaffy"] }] },
+        { "prompt": "Which Austrian-British philosopher wrote the Tractatus Logico-Philosophicus?", "answers": [{ "text": "Ludwig Wittgenstein", "aliases": ["Wittgenstein"] }] }
+      ]
+    }
+  ]
+}
