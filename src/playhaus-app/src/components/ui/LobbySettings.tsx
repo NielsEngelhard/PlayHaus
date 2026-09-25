@@ -1,23 +1,20 @@
 import AppText from '@/components/text/AppText';
 import AnimatedPressable from '@/components/ui/AnimatedPressable';
 import PopPressable from '@/components/ui/PopPressable';
+import Toggle from '@/components/ui/Toggle';
 import { usePressPop } from '@/components/ui/usePressPop';
 import { Brand, FontSizes, Radii, Spacing } from '@/constants/theme';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
 import Feather from '@expo/vector-icons/Feather';
 import type { ReactNode } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 
 // More options than this and the segment drops under its label, across the full width.
 const INLINE_MAX_OPTIONS = 3;
 
 // Labels this short are numbers, which the design pads wider so they read as buttons.
 const SHORT_LABEL = 2;
-
-const SWITCH_WIDTH = 52;
-const SWITCH_HEIGHT = 32;
-const THUMB_SIZE = 24;
 
 // The host's settings for the room, always open, one row per setting.
 export default function LobbySettings({ title, children }: { title: string, children: ReactNode }) {
@@ -155,16 +152,7 @@ export function LobbySettingSwitch({ description, disabled = false, label, onCha
                 {description && <AppText style={styles.description}>{description}</AppText>}
             </View>
 
-            <Pressable
-                onPress={() => onChange(!value)}
-                disabled={disabled}
-                accessibilityRole='switch'
-                accessibilityLabel={label}
-                aria-checked={value}
-                style={[styles.switch, value ? styles.switchOn : styles.switchOff, disabled && styles.disabled]}
-            >
-                <View style={styles.thumb} />
-            </Pressable>
+            <Toggle value={value} onValueChange={onChange} label={label} disabled={disabled} />
         </View>
     )
 }
@@ -291,32 +279,5 @@ const useStyles = createThemedStyles(theme => ({
     // The focus colour is blue in light and lemon in dark, so the ink on it flips too.
     optionTextSelected: {
         color: theme.scheme === 'dark' ? Brand.ink : Brand.textOnAccent
-    },
-    switch: {
-        width: SWITCH_WIDTH,
-        height: SWITCH_HEIGHT,
-        flexShrink: 0,
-        justifyContent: 'center',
-        padding: Spacing.half,
-        borderRadius: Radii.full,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border
-    },
-    switchOn: {
-        alignItems: 'flex-end',
-        backgroundColor: Brand.available
-    },
-    switchOff: {
-        alignItems: 'flex-start',
-        backgroundColor: theme.colors.muted
-    },
-    thumb: {
-        width: THUMB_SIZE,
-        height: THUMB_SIZE,
-        borderRadius: Radii.full,
-        backgroundColor: Brand.textOnAccent
-    },
-    disabled: {
-        opacity: 0.5
     }
 }))
