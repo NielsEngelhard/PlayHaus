@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w17",
+  "title": "Weekly quiz 17 2027",
+  "description": "The weekly quiz of Wednesday 28 April 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which traditional Dutch game, played by sliding wooden discs down a long board, is often played on King's Day?", "category": "The Netherlands", "answers": [{ "text": "Sjoelen", "aliases": ["Shuffleboard", "Dutch shuffleboard"] }] },
+        { "prompt": "Which brother of Napoleon was King of Holland from 1806 to 1810?", "category": "History", "answers": [{ "text": "Louis Bonaparte", "aliases": ["Louis Napoleon", "Lodewijk Napoleon"] }] },
+        { "prompt": "What is the capital of Botswana?", "category": "Geography", "answers": [{ "text": "Gaborone" }] },
+        { "prompt": "Which German physicist is the unit of magnetic flux named after?", "category": "Science", "answers": [{ "text": "Wilhelm Weber", "aliases": ["Weber"] }] },
+        { "prompt": "Which Belgian cyclist won Gent-Wevelgem in 2022 and often finished second to Van der Poel?", "category": "Sport", "answers": [{ "text": "Wout van Aert", "aliases": ["Van Aert"] }] },
+        { "prompt": "Which Spanish director made All About My Mother?", "category": "Film", "answers": [{ "text": "Pedro Almodovar", "aliases": ["Almodovar"] }] },
+        { "prompt": "Which French duo in robot helmets made Get Lucky?", "category": "Music", "answers": [{ "text": "Daft Punk" }] },
+        { "prompt": "Which beetle rolls balls of dung across the ground?", "category": "Nature", "answers": [{ "text": "The dung beetle", "aliases": ["Dung beetle", "Scarab"] }] },
+        { "prompt": "Which Dutch Cobra painter said: I just mess around?", "category": "Art", "answers": [{ "text": "Karel Appel", "aliases": ["Appel"] }] },
+        { "prompt": "What is the longest side of a right-angled triangle called?", "category": "Science", "answers": [{ "text": "The hypotenuse", "aliases": ["Hypotenuse"] }] },
+        { "prompt": "Which French apple tart is baked upside down?", "category": "Food", "answers": [{ "text": "Tarte tatin", "aliases": ["Tarte Tatin"] }] },
+        { "prompt": "Which American naval officer created one of the first programming languages and found a real moth in a computer?", "category": "Technology", "answers": [{ "text": "Grace Hopper", "aliases": ["Hopper"] }] },
+        { "prompt": "Which African kingdom was called Swaziland until 2018?", "category": "Geography", "answers": [{ "text": "Eswatini" }] },
+        { "prompt": "Which Greek figure had to roll a boulder up a hill for all eternity?", "category": "History", "answers": [{ "text": "Sisyphus" }] },
+        { "prompt": "Which Danish director made Melancholia and Dogville?", "category": "Film", "answers": [{ "text": "Lars von Trier", "aliases": ["Von Trier"] }] },
+        { "prompt": "Which Swedish singer had a hit with Dancing On My Own in 2010?", "category": "Music", "answers": [{ "text": "Robyn" }] },
+        { "prompt": "Which Dutch photographer made the film Control and many U2 album covers?", "category": "Art", "answers": [{ "text": "Anton Corbijn", "aliases": ["Corbijn"] }] },
+        { "prompt": "Which German company from Munich makes trains, turbines and medical scanners?", "category": "Technology", "answers": [{ "text": "Siemens" }] },
+        { "prompt": "Which Greek youth flew too close to the sun on wings of wax?", "category": "History", "answers": [{ "text": "Icarus" }] },
+        { "prompt": "Which Swedish director made The Seventh Seal, with a knight playing chess against Death?", "category": "Film", "answers": [{ "text": "Ingmar Bergman", "aliases": ["Bergman"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which Dutch designer made the first cantilevered tubular steel chair?", "options": [{ "text": "Mart Stam", "correct": true }, { "text": "Gerrit Rietveld" }, { "text": "Marcel Wanders" }, { "text": "Piet Hein Eek" }] },
+        { "prompt": "Which town did the royal family visit on the very first King's Day in 2014?", "options": [{ "text": "Amstelveen", "correct": true }, { "text": "Zwolle" }, { "text": "Maastricht" }, { "text": "Dordrecht" }] },
+        { "prompt": "Which Dutch director won an Oscar with The Assault?", "options": [{ "text": "Fons Rademakers", "correct": true }, { "text": "Paul Verhoeven" }, { "text": "Mike van Diem" }, { "text": "Marleen Gorris" }] },
+        { "prompt": "Which Greek god was the blacksmith of the gods?", "options": [{ "text": "Hephaestus", "correct": true }, { "text": "Ares" }, { "text": "Hermes" }, { "text": "Apollo" }] },
+        { "prompt": "Which French company makes the language model Le Chat?", "options": [{ "text": "Mistral AI", "correct": true }, { "text": "Dassault" }, { "text": "Thales" }, { "text": "Capgemini" }] },
+        { "prompt": "What is a quadrilateral with four equal sides but no right angles called?", "options": [{ "text": "A rhombus", "correct": true }, { "text": "A trapezium" }, { "text": "A rectangle" }, { "text": "A kite" }] },
+        { "prompt": "Which Belgian surrealist mostly painted nude women at moonlit railway stations?", "options": [{ "text": "Paul Delvaux", "correct": true }, { "text": "James Ensor" }, { "text": "Rene Magritte" }, { "text": "Constant Permeke" }] },
+        { "prompt": "Which Dutch documentary maker won an Oscar with the short film Glass?", "options": [{ "text": "Bert Haanstra", "correct": true }, { "text": "Joris Ivens" }, { "text": "Johan van der Keuken" }, { "text": "Heddy Honigmann" }] },
+        { "prompt": "Which British company made AlphaGo, which beat the world Go champion?", "options": [{ "text": "DeepMind", "correct": true }, { "text": "Arm" }, { "text": "Sinclair" }, { "text": "Acorn" }] },
+        { "prompt": "In which year did Queen Beatrix abdicate?", "options": [{ "text": "2013", "correct": true }, { "text": "2010" }, { "text": "2011" }, { "text": "2014" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many discs do you play a game of sjoelen with?", "answer": 30, "unit": "discs" },
+        { "prompt": "How many metres high is Table Mountain in Cape Town?", "answer": 1085, "unit": "metres" },
+        { "prompt": "About how many minutes long is the film The Seventh Seal?", "answer": 96, "unit": "minutes" },
+        { "prompt": "A dung beetle of the strongest species can pull about how many times its own body weight?", "answer": 1141, "unit": "times" },
+        { "prompt": "How old was Willem-Alexander when he became king in 2013?", "answer": 46, "unit": "years" },
+        { "prompt": "About how many islands make up the Seychelles?", "answer": 115, "unit": "islands" },
+        { "prompt": "How many Oscars has Pedro Almodovar won?", "answer": 2, "unit": "Oscars" },
+        { "prompt": "What is the average surface temperature of Venus in degrees Celsius?", "answer": 464, "unit": "degrees" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Abraham Lincoln",
+        "Rotary phone",
+        "Grand Bazaar",
+        "Marionette",
+        "Johann Sebastian Bach",
+        "The White House",
+        "The Little Mermaid",
+        "Signet ring",
+        "Paddling pool",
+        "Radio station",
+        "Yak",
+        "Marco Polo",
+        "Digger",
+        "Rocky",
+        "Gondola ride",
+        "Sunday roast",
+        "Graffiti",
+        "Wi-Fi",
+        "Flat tyre",
+        "Nail clippers",
+        "Couscous",
+        "Insomnia",
+        "Madonna",
+        "Cinnamon stick",
+        "Safari park",
+        "Snooker",
+        "Entrance ticket",
+        "Eyeshadow",
+        "Squid",
+        "Croquette",
+        "Mascot",
+        "Recipe",
+        "Lapwing",
+        "Queue",
+        "Trombone",
+        "Bauble",
+        "King Charles",
+        "Icarus",
+        "Revolution",
+        "Viola"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about King's Day?", "answers": [{ "text": "27 April", "aliases": ["April", "King's birthday"] }, { "text": "Orange", "aliases": ["Orange clothes", "Oranjebitter"] }, { "text": "Children's games", "aliases": ["Bobbing for cake", "Sjoelen"] }, { "text": "Royal walkabout", "aliases": ["Royal family", "Visiting a town"] }] },
+        { "prompt": "What do you know about Daft Punk?", "answers": [{ "text": "Helmets", "aliases": ["Robots", "Robot helmets"] }, { "text": "France", "aliases": ["French", "Paris"] }, { "text": "Get Lucky", "aliases": ["One More Time", "Around the World"] }, { "text": "Electronic", "aliases": ["House", "Dance"] }] },
+        { "prompt": "What do you know about Greek mythology?", "answers": [{ "text": "Zeus", "aliases": ["Olympus"] }, { "text": "Heroes", "aliases": ["Heracles", "Odysseus"] }, { "text": "Monsters", "aliases": ["Medusa", "Minotaur"] }, { "text": "Gods", "aliases": ["Poseidon", "Athena"] }] },
+        { "prompt": "What do you know about Botswana?", "answers": [{ "text": "Gaborone", "aliases": ["Capital"] }, { "text": "Diamonds", "aliases": ["Mining"] }, { "text": "Okavango Delta", "aliases": ["Okavango", "Delta"] }, { "text": "Elephants", "aliases": ["Kalahari", "Safari"] }] },
+        { "prompt": "What do you know about beetles?", "answers": [{ "text": "Hard shell", "aliases": ["Wing cases", "Armour"] }, { "text": "Ladybird", "aliases": ["Cockchafer"] }, { "text": "Insect", "aliases": ["Six legs"] }, { "text": "Dung beetle", "aliases": ["Scarab", "Flying"] }] },
+        { "prompt": "What do you know about Siemens?", "answers": [{ "text": "Germany", "aliases": ["German", "Munich"] }, { "text": "Trains", "aliases": ["ICE"] }, { "text": "Electronics", "aliases": ["Household appliances", "Washing machines"] }, { "text": "Medical equipment", "aliases": ["Scanners", "MRI"] }] },
+        { "prompt": "What do you know about Scandinavian cinema?", "answers": [{ "text": "Ingmar Bergman", "aliases": ["Bergman"] }, { "text": "Lars von Trier", "aliases": ["Dogme"] }, { "text": "Sweden", "aliases": ["Denmark", "Norway"] }, { "text": "Bleak", "aliases": ["Dark", "Slow"] }] },
+        { "prompt": "What do you know about apple pie?", "answers": [{ "text": "Cinnamon", "aliases": ["Raisins"] }, { "text": "Whipped cream", "aliases": ["Cream"] }, { "text": "Pastry", "aliases": ["Lattice", "Crust"] }, { "text": "Oven", "aliases": ["Baking", "Tin"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which King's Day game do you play with a cake hanging from a string?", "difficulty": "easy", "answers": [{ "text": "Bobbing for cake", "aliases": ["Koekhappen", "Cake bobbing"] }] },
+        { "prompt": "What do you put in a piggy bank?", "difficulty": "easy", "answers": [{ "text": "Money", "aliases": ["Coins"] }] },
+        { "prompt": "What is the stick a conductor waves called?", "difficulty": "easy", "answers": [{ "text": "A baton", "aliases": ["Baton"] }] },
+        { "prompt": "Which part of your body do you smell with?", "difficulty": "easy", "answers": [{ "text": "The nose", "aliases": ["Nose"] }] },
+        { "prompt": "What do you put on so you do not get wet in the rain?", "difficulty": "easy", "answers": [{ "text": "A raincoat", "aliases": ["Raincoat", "Rain jacket", "Poncho"] }] },
+        { "prompt": "What is the river of forgetfulness in the Greek underworld called?", "difficulty": "hard", "answers": [{ "text": "The Lethe", "aliases": ["Lethe"] }] },
+        { "prompt": "Which Dutch physicist won the Nobel Prize for the phase-contrast microscope?", "difficulty": "hard", "answers": [{ "text": "Frits Zernike", "aliases": ["Zernike"] }] },
+        { "prompt": "Which river forms Botswana's northern border with Namibia and Zambia?", "difficulty": "hard", "answers": [{ "text": "The Chobe", "aliases": ["Chobe", "Linyanti"] }] },
+        { "prompt": "What is the Japanese card game played with flower cards called?", "difficulty": "hard", "answers": [{ "text": "Hanafuda" }] },
+        { "prompt": "Which German Dadaist made collages from rubbish that he called Merz?", "difficulty": "hard", "answers": [{ "text": "Kurt Schwitters", "aliases": ["Schwitters"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the hard mouth of a bird called?", "answers": [{ "text": "A beak", "aliases": ["Beak", "Bill"] }] },
+        { "prompt": "Which art group had Constant, Corneille and Appel as members?", "answers": [{ "text": "Cobra", "aliases": ["CoBrA"] }] },
+        { "prompt": "Which Dutch biologist won the Nobel Prize for his research on the behaviour of gulls and sticklebacks?", "answers": [{ "text": "Niko Tinbergen", "aliases": ["Tinbergen", "Nikolaas Tinbergen"] }] },
+        { "prompt": "Which red Russian dish is made from beetroot?", "answers": [{ "text": "Borscht", "aliases": ["Beetroot soup"] }] },
+        { "prompt": "Which Rotterdam museum opened a mirrored art depot open to the public in 2021?", "answers": [{ "text": "Boijmans Van Beuningen", "aliases": ["Boijmans", "Depot Boijmans Van Beuningen", "Depot Boijmans"] }] },
+        { "prompt": "Which American mathematician calculated trajectories for the Apollo flights and is known from Hidden Figures?", "answers": [{ "text": "Katherine Johnson", "aliases": ["Johnson"] }] },
+        { "prompt": "What kind of creature is Pegasus?", "answers": [{ "text": "A winged horse", "aliases": ["Horse", "Flying horse"] }] },
+        { "prompt": "Which Mexican salamander stays in its larval form all its life and can regrow limbs?", "answers": [{ "text": "The axolotl", "aliases": ["Axolotl"] }] },
+        { "prompt": "Which English navigator searched for a passage for the Dutch East India Company in 1609 and gave his name to a river by New York?", "answers": [{ "text": "Henry Hudson", "aliases": ["Hudson"] }] }
+      ]
+    }
+  ]
+}
