@@ -1,6 +1,9 @@
 package pubquizr
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 // The rules, asked directly. Everything in rules.go is pure, so these need no session
 // and no store -- which is most of the reason they live there.
@@ -119,6 +122,29 @@ func TestClosestQuizmasterGuesses(t *testing.T) {
 	for _, n := range []int{MinPlayers + 1, MaxPlayers} {
 		if ClosestQuizmasterGuesses(n) {
 			t.Errorf("ClosestQuizmasterGuesses(%d) = true, want false", n)
+		}
+	}
+}
+
+// 2026-w41 is Wednesday 7 October, and it goes up at midnight in Amsterdam rather than in UTC.
+func TestAWeekIsReleasedFromMidnightOnItsWednesday(t *testing.T) {
+	amsterdam, err := time.LoadLocation("Europe/Amsterdam")
+	if err != nil {
+		t.Fatalf("load zone: %v", err)
+	}
+	wednesday := time.Date(2026, time.October, 7, 0, 0, 0, 0, time.UTC)
+	quiz := &Quiz{PublishedAt: &wednesday}
+
+	for _, tc := range []struct {
+		at   time.Time
+		want bool
+	}{
+		{time.Date(2026, time.October, 6, 23, 59, 0, 0, amsterdam), false},
+		{time.Date(2026, time.October, 7, 0, 0, 0, 0, amsterdam), true},
+		{time.Date(2026, time.October, 13, 12, 0, 0, 0, amsterdam), true},
+	} {
+		if got := quiz.Released(tc.at); got != tc.want {
+			t.Errorf("Released(%s) = %v, want %v", tc.at, got, tc.want)
 		}
 	}
 }

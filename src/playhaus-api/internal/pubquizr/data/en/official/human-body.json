@@ -89,7 +89,17 @@
         "Collarbone",
         "Bone marrow",
         "Surgeon",
-        "Blood donation"
+        "Blood donation",
+        "Heart rate monitor",
+        "Blood vessel",
+        "Nostril",
+        "Sticking out your tongue",
+        "Tooth pain",
+        "Biceps",
+        "Backbone",
+        "Sole of the foot",
+        "Eyelid",
+        "Earwax"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which organ can grow back after part of it is removed?", "answers": [{ "text": "The liver", "aliases": ["liver"] }] },
         { "prompt": "What is the medical name for the kneecap?", "answers": [{ "text": "The patella", "aliases": ["patella"] }] },
         { "prompt": "A shortage of which vitamin causes scurvy?", "answers": [{ "text": "Vitamin C", "aliases": ["C"] }] },
-        { "prompt": "Which is the largest muscle in the human body?", "answers": [{ "text": "The gluteus maximus", "aliases": ["gluteus maximus", "buttock muscle"] }] }
+        { "prompt": "Which is the largest muscle in the human body?", "answers": [{ "text": "The gluteus maximus", "aliases": ["gluteus maximus", "buttock muscle"] }] },
+        { "prompt": "In which organ are the alveoli?", "answers": [{ "text": "The lungs", "aliases": ["Lungs", "Lung"] }] },
+        { "prompt": "Which gland in the neck controls the metabolism with its hormones?", "answers": [{ "text": "The thyroid", "aliases": ["Thyroid", "Thyroid gland"] }] }
       ]
     }
   ]

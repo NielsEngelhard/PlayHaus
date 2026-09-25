@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w12",
+  "title": "Weekly quiz 12 2027",
+  "description": "The weekly quiz of Wednesday 24 March 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which French region has Rennes as its capital?", "category": "Geography", "answers": [{ "text": "Brittany", "aliases": ["Bretagne"] }] },
+        { "prompt": "What is the smallest unit of information in a computer, a zero or a one, called?", "category": "Science", "answers": [{ "text": "A bit", "aliases": ["Bit"] }] },
+        { "prompt": "Which Dutch sailor captured the Spanish silver fleet in 1628?", "category": "History", "answers": [{ "text": "Piet Hein", "aliases": ["Hein"] }] },
+        { "prompt": "Which Dutch cyclist became road race world champion in Glasgow in 2023?", "category": "Sport", "answers": [{ "text": "Mathieu van der Poel", "aliases": ["Van der Poel"] }] },
+        { "prompt": "Which British actor plays Sherlock Holmes in the BBC series Sherlock?", "category": "Film", "answers": [{ "text": "Benedict Cumberbatch", "aliases": ["Cumberbatch"] }] },
+        { "prompt": "Which British singer had a hit as a teenager with Wuthering Heights in 1978?", "category": "Music", "answers": [{ "text": "Kate Bush", "aliases": ["Bush"] }] },
+        { "prompt": "On which river are Deventer and Zutphen?", "category": "The Netherlands", "answers": [{ "text": "The IJssel", "aliases": ["IJssel"] }] },
+        { "prompt": "Which pupil of Rembrandt painted The Goldfinch?", "category": "Art", "answers": [{ "text": "Carel Fabritius", "aliases": ["Fabritius"] }] },
+        { "prompt": "What does the abbreviation PTO stand for?", "category": "Language", "answers": [{ "text": "Please turn over" }] },
+        { "prompt": "What is the French baked dish of thin potato slices with cream called?", "category": "Food", "answers": [{ "text": "Gratin dauphinois", "aliases": ["Gratin"] }] },
+        { "prompt": "What is Microsoft's e-mail program called?", "category": "Technology", "answers": [{ "text": "Outlook" }] },
+        { "prompt": "What is the African antelope with long, spiral horns called?", "category": "Nature", "answers": [{ "text": "The kudu", "aliases": ["Kudu"] }] },
+        { "prompt": "Which French overseas territory does the island of Tahiti belong to?", "category": "Geography", "answers": [{ "text": "French Polynesia", "aliases": ["Polynesia"] }] },
+        { "prompt": "Which two Dutch brothers were murdered by an angry mob in The Hague in 1672?", "category": "History", "answers": [{ "text": "The De Witt brothers", "aliases": ["De Witt", "Johan and Cornelis de Witt"] }] },
+        { "prompt": "What is a number without any digits after the decimal point called?", "category": "Science", "answers": [{ "text": "A whole number", "aliases": ["Whole number", "Integer"] }] },
+        { "prompt": "Which band of three brothers had a hit with Stayin' Alive in 1977?", "category": "Music", "answers": [{ "text": "Bee Gees", "aliases": ["The Bee Gees"] }] },
+        { "prompt": "Which Disney film is about a Chinese girl who disguises herself as a man to go to war?", "category": "Film", "answers": [{ "text": "Mulan" }] },
+        { "prompt": "What is the sweet Frisian bread with lumps of sugar in it called?", "category": "Food", "answers": [{ "text": "Suikerbrood", "aliases": ["Frisian sugar bread", "Sugar bread"] }] },
+        { "prompt": "What was the name of the first Dutch satellite, launched in 1974?", "category": "Technology", "answers": [{ "text": "ANS", "aliases": ["Astronomical Netherlands Satellite"] }] },
+        { "prompt": "What do the Flemish call a portion of chips?", "category": "Language", "answers": [{ "text": "Frieten", "aliases": ["Friet"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these towns is in the Netherlands?", "options": [{ "text": "Sneek", "correct": true }, { "text": "Ghent" }, { "text": "Aachen" }, { "text": "Kleve" }] },
+        { "prompt": "What is the cross between a female horse and a male donkey called?", "options": [{ "text": "The mule", "correct": true }, { "text": "The zebra" }, { "text": "The pony" }, { "text": "The llama" }] },
+        { "prompt": "Which Flemish writer wrote The Lion of Flanders?", "options": [{ "text": "Hendrik Conscience", "correct": true }, { "text": "Guido Gezelle" }, { "text": "Felix Timmermans" }, { "text": "Stijn Streuvels" }] },
+        { "prompt": "Which of these countries is in the Balkans?", "options": [{ "text": "Bosnia and Herzegovina", "correct": true }, { "text": "Hungary" }, { "text": "Slovakia" }, { "text": "Austria" }] },
+        { "prompt": "Which of these diseases is spread by mosquitoes?", "options": [{ "text": "Malaria", "correct": true }, { "text": "Cholera" }, { "text": "Tetanus" }, { "text": "Measles" }] },
+        { "prompt": "Which tsar sold Alaska to the United States in 1867?", "options": [{ "text": "Alexander II", "correct": true }, { "text": "Nicholas I" }, { "text": "Peter the Great" }, { "text": "Catherine the Great" }] },
+        { "prompt": "Which of these mountains is in North America?", "options": [{ "text": "Mount Rainier", "correct": true }, { "text": "K2" }, { "text": "Mont Blanc" }, { "text": "Kilimanjaro" }] },
+        { "prompt": "Which of these birds builds a mud nest under the eaves?", "options": [{ "text": "The house martin", "correct": true }, { "text": "The great tit" }, { "text": "The magpie" }, { "text": "The heron" }] },
+        { "prompt": "In which film do Will Smith and Tommy Lee Jones keep an eye on aliens on earth?", "options": [{ "text": "Men in Black", "correct": true }, { "text": "Independence Day" }, { "text": "Bad Boys" }, { "text": "Wild Wild West" }] },
+        { "prompt": "Which country beat the Netherlands in the 1974 World Cup final?", "options": [{ "text": "West Germany", "correct": true }, { "text": "Poland" }, { "text": "Brazil" }, { "text": "Argentina" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is the arch of Wembley Stadium?", "answer": 133, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Scheldt?", "answer": 350, "unit": "kilometres" },
+        { "prompt": "How many bits are there in a byte?", "answer": 8, "unit": "bits" },
+        { "prompt": "How old was Johannes Vermeer when he died?", "answer": 43, "unit": "years" },
+        { "prompt": "About how many kilos does an adult dairy cow weigh?", "answer": 650, "unit": "kilos" },
+        { "prompt": "How many different colours does a Rubik's Cube have?", "answer": 6, "unit": "colours" },
+        { "prompt": "How many metres long is a tennis court?", "answer": 23.77, "unit": "metres" },
+        { "prompt": "In which year was the Elfstedentocht last held?", "answer": 1997 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Loyalty card",
+        "Roast chicken",
+        "Pufferfish",
+        "Batman",
+        "Raclette",
+        "Sitar",
+        "Carpaccio",
+        "Bus driver",
+        "Pole vault",
+        "Brad Pitt",
+        "Lobster",
+        "Rainforest",
+        "French toast",
+        "Yorkshire pudding",
+        "Plunger",
+        "Angelina Jolie",
+        "Heatwave",
+        "Bicycle pump",
+        "Ball boy",
+        "J.K. Rowling",
+        "Sumo wrestling",
+        "Cluedo",
+        "Hurdy-gurdy",
+        "Magician",
+        "Glasses",
+        "Peas",
+        "Underground train",
+        "Nile Delta",
+        "Walt Disney",
+        "Dairy farmer",
+        "Buddha",
+        "Skunk",
+        "Crutch",
+        "Pink Floyd",
+        "Chips",
+        "Spring roll",
+        "Chef's knife",
+        "U2",
+        "Butterfly house",
+        "Constitution"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Provence?", "answers": [{ "text": "Lavender", "aliases": ["Lavender fields"] }, { "text": "Sunshine", "aliases": ["South of France", "Warm"] }, { "text": "Rose", "aliases": ["Wine"] }, { "text": "Avignon", "aliases": ["Aix-en-Provence", "Marseille"] }] },
+        { "prompt": "What do you know about road cycling?", "answers": [{ "text": "Tour de France", "aliases": ["Giro", "Vuelta"] }, { "text": "Yellow jersey", "aliases": ["Polka dot jersey"] }, { "text": "Peloton", "aliases": ["Breakaway"] }, { "text": "Racing bike", "aliases": ["Bike"] }] },
+        { "prompt": "What do you know about The Hague?", "answers": [{ "text": "Binnenhof", "aliases": ["Government", "Parliament"] }, { "text": "Palace", "aliases": ["King", "Noordeinde"] }, { "text": "Scheveningen", "aliases": ["Beach", "Pier"] }, { "text": "Madurodam", "aliases": ["Peace Palace"] }] },
+        { "prompt": "What do you know about Microsoft?", "answers": [{ "text": "Bill Gates", "aliases": ["Gates"] }, { "text": "Windows", "aliases": ["Operating system"] }, { "text": "Xbox", "aliases": ["Games console"] }, { "text": "Office", "aliases": ["Word", "Excel"] }] },
+        { "prompt": "What do you know about giraffes?", "answers": [{ "text": "Long neck", "aliases": ["Tall"] }, { "text": "Africa", "aliases": ["Savannah"] }, { "text": "Patches", "aliases": ["Spotted"] }, { "text": "Long tongue", "aliases": ["Blue tongue", "Eating leaves"] }] },
+        { "prompt": "What do you know about surfing?", "answers": [{ "text": "Waves", "aliases": ["Wave"] }, { "text": "Surfboard", "aliases": ["Board"] }, { "text": "Hawaii", "aliases": ["Australia", "California"] }, { "text": "Wetsuit", "aliases": ["Suit"] }] },
+        { "prompt": "What do you know about William of Orange?", "answers": [{ "text": "Father of the Fatherland", "aliases": ["Father of the nation"] }, { "text": "Delft", "aliases": ["Murdered in Delft"] }, { "text": "Eighty Years' War", "aliases": ["Revolt", "Spanish"] }, { "text": "Wilhelmus", "aliases": ["National anthem"] }] },
+        { "prompt": "What do you know about Pixar?", "answers": [{ "text": "Toy Story", "aliases": ["Woody", "Buzz"] }, { "text": "Hopping lamp", "aliases": ["Lamp", "Luxo"] }, { "text": "Disney", "aliases": ["Walt Disney"] }, { "text": "Animation", "aliases": ["Computer animation"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is a young goat called?", "difficulty": "easy", "answers": [{ "text": "A kid", "aliases": ["Kid"] }] },
+        { "prompt": "What do you do with a whistle in your mouth?", "difficulty": "easy", "answers": [{ "text": "Whistle", "aliases": ["Blow"] }] },
+        { "prompt": "Which insect buzzes in your ear at night and bites?", "difficulty": "easy", "answers": [{ "text": "The mosquito", "aliases": ["Mosquito", "Gnat"] }] },
+        { "prompt": "What do you often eat with milk from a bowl at breakfast?", "difficulty": "easy", "answers": [{ "text": "Cornflakes", "aliases": ["Cereal", "Muesli", "Porridge"] }] },
+        { "prompt": "What is the sound a dog makes called?", "difficulty": "easy", "answers": [{ "text": "Barking", "aliases": ["Woof"] }] },
+        { "prompt": "Which Egyptian god was shown with the head of a jackal?", "difficulty": "hard", "answers": [{ "text": "Anubis" }] },
+        { "prompt": "Which Babylonian king had a famous law code carved into a stone pillar?", "difficulty": "hard", "answers": [{ "text": "Hammurabi" }] },
+        { "prompt": "What is an angle between ninety and one hundred and eighty degrees called?", "difficulty": "hard", "answers": [{ "text": "An obtuse angle", "aliases": ["Obtuse angle"] }] },
+        { "prompt": "Which French city on the Loire was relieved by Joan of Arc in 1429?", "difficulty": "hard", "answers": [{ "text": "Orleans" }] },
+        { "prompt": "Which Austrian archduke was assassinated in Sarajevo in 1914?", "difficulty": "hard", "answers": [{ "text": "Franz Ferdinand" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Bagheera in The Jungle Book?", "answers": [{ "text": "A panther", "aliases": ["Panther", "Black panther"] }] },
+        { "prompt": "In which Belgian city is the Gravensteen castle?", "answers": [{ "text": "Ghent", "aliases": ["Gent"] }] },
+        { "prompt": "Which Russian poet wrote Eugene Onegin?", "answers": [{ "text": "Alexander Pushkin", "aliases": ["Pushkin"] }] },
+        { "prompt": "What do you put on your feet before you go outside?", "answers": [{ "text": "Shoes", "aliases": ["Socks", "Boots"] }] },
+        { "prompt": "Which American state has Boston as its capital?", "answers": [{ "text": "Massachusetts" }] },
+        { "prompt": "Which French mathematician predicted in 1846, by calculation alone, where Neptune would be found?", "answers": [{ "text": "Urbain Le Verrier", "aliases": ["Le Verrier"] }] },
+        { "prompt": "What does a spider make to catch flies?", "answers": [{ "text": "A web", "aliases": ["Web", "Cobweb"] }] },
+        { "prompt": "Which British band of Jarvis Cocker had a hit with Common People in 1995?", "answers": [{ "text": "Pulp" }] },
+        { "prompt": "Which Greek philosopher wrote about the cave in which people see only shadows?", "answers": [{ "text": "Plato" }] }
+      ]
+    }
+  ]
+}

@@ -89,7 +89,17 @@
         "Shoulder pads",
         "Graduation cap",
         "Bus seat",
-        "Beauty pageant"
+        "Beauty pageant",
+        "Votes for women",
+        "Women's lib protester",
+        "My body, my choice",
+        "Glass ceiling",
+        "Equal pay",
+        "Women's Day",
+        "Emancipation",
+        "Trade union",
+        "Women's march",
+        "Rosie the Riveter"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Who was the first woman to be awarded the Fields Medal for mathematics?", "answers": [{ "text": "Maryam Mirzakhani", "aliases": ["Mirzakhani"] }] },
         { "prompt": "Which country became the first in the world with a majority of women in its parliament, after its 2008 election?", "answers": [{ "text": "Rwanda" }] },
         { "prompt": "Which American wrote the 1892 short story The Yellow Wallpaper?", "answers": [{ "text": "Charlotte Perkins Gilman", "aliases": ["Perkins Gilman", "Gilman"] }] },
-        { "prompt": "Who was the first woman to serve as a minister in a Dutch cabinet?", "answers": [{ "text": "Marga Klompe", "aliases": ["Klompe"] }] }
+        { "prompt": "Who was the first woman to serve as a minister in a Dutch cabinet?", "answers": [{ "text": "Marga Klompe", "aliases": ["Klompe"] }] },
+        { "prompt": "Which Dutch doctor was the first woman to attend a university in the Netherlands?", "answers": [{ "text": "Aletta Jacobs", "aliases": ["Jacobs"] }] },
+        { "prompt": "Which French philosopher wrote The Second Sex in 1949?", "answers": [{ "text": "Simone de Beauvoir", "aliases": ["De Beauvoir"] }] }
       ]
     }
   ]

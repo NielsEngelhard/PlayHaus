@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter is het wereldrecord schansspringen?", "answer": 254, "unit": "meter" },
         { "prompt": "Hoeveel botten heeft een paard?", "answer": 205, "unit": "botten" },
-        { "prompt": "In welk jaar won Nederland het songfestival met de groep Teach-In?", "answer": 1975, "unit": "" },
+        { "prompt": "In welk jaar won Nederland het songfestival met de groep Teach-In?", "answer": 1975 },
         { "prompt": "Hoeveel bruggen heeft Amsterdam?", "answer": 1281, "unit": "bruggen" },
         { "prompt": "Hoeveel kilometer per uur gaat de lucht uit een nies?", "answer": 160, "unit": "kilometer per uur" },
         { "prompt": "Hoeveel verschillende soorten stukken kent een schaakspel?", "answer": 6, "unit": "soorten stukken" },
@@ -88,7 +88,17 @@
         "Johan Cruijff",
         "Elfstedentocht",
         "Boemerang",
-        "Vuurwerk"
+        "Vuurwerk",
+        "Manchetknoop",
+        "Virgil van Dijk",
+        "Brouwer",
+        "Zaagtruc",
+        "Gru",
+        "Pac-Man",
+        "Pelikaan",
+        "Jongleur",
+        "Koffiemolen",
+        "Gouden medaille"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "In welk jaar begon de beurskrach van Wall Street de Grote Depressie?", "answers": [{ "text": "1929" }] },
         { "prompt": "Wat is de hoofdstad van Cambodja?", "answers": [{ "text": "Phnom Penh" }] },
         { "prompt": "Welke Duitse ingenieur bouwde de eerste motorfiets op benzine?", "answers": [{ "text": "Gottlieb Daimler", "aliases": ["Daimler"] }] },
-        { "prompt": "Welke Japanse schrijver schreef de roman Norwegian Wood?", "answers": [{ "text": "Haruki Murakami", "aliases": ["Murakami"] }] }
+        { "prompt": "Welke Japanse schrijver schreef de roman Norwegian Wood?", "answers": [{ "text": "Haruki Murakami", "aliases": ["Murakami"] }] },
+        { "prompt": "Welke Amerikaanse schrijver schreef De avonturen van Tom Sawyer?", "answers": [{ "text": "Mark Twain", "aliases": ["Twain"] }] },
+        { "prompt": "Welke rivier vormt een groot deel van de grens tussen Duitsland en Polen?", "answers": [{ "text": "De Oder", "aliases": ["Oder", "Odra"] }] }
       ]
     }
   ]

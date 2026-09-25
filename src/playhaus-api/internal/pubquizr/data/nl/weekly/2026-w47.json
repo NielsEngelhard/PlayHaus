@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w47",
+  "title": "Weekquiz 47 2026",
+  "description": "De wekelijkse quiz van woensdag 18 november 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Vietnamese stad heette tot 1976 Saigon?", "category": "Aardrijkskunde", "answers": [{ "text": "Ho Chi Minhstad", "aliases": ["Ho Chi Minh-stad", "Ho Chi Minh"] }] },
+        { "prompt": "Hoe heet het gloeiend hete, vloeibare gesteente onder de aardkorst?", "category": "Wetenschap", "answers": [{ "text": "Magma" }] },
+        { "prompt": "Welk Scandinavisch volk plunderde met drakenschepen de kusten van Europa?", "category": "Geschiedenis", "answers": [{ "text": "De Vikingen", "aliases": ["Vikingen", "Noormannen"] }] },
+        { "prompt": "Welke Belgische wielrenner kreeg de bijnaam De Kannibaal?", "category": "Sport", "answers": [{ "text": "Eddy Merckx", "aliases": ["Merckx"] }] },
+        { "prompt": "Welke Britse acteur speelt Mr. Bean?", "category": "Film", "answers": [{ "text": "Rowan Atkinson", "aliases": ["Atkinson"] }] },
+        { "prompt": "Welke zangeres uit Barbados scoorde in 2007 met Umbrella?", "category": "Muziek", "answers": [{ "text": "Rihanna" }] },
+        { "prompt": "In welke stad beginnen en eindigen de schaatsers van de Elfstedentocht?", "category": "Nederland", "answers": [{ "text": "Leeuwarden" }] },
+        { "prompt": "Welke Nederlandse tekenaar bedacht Nijntje?", "category": "Kunst", "answers": [{ "text": "Dick Bruna", "aliases": ["Bruna"] }] },
+        { "prompt": "Hoe heet de woordsoort van woorden als mooi, groot en rood?", "category": "Taal", "answers": [{ "text": "Bijvoeglijk naamwoord", "aliases": ["Bijvoeglijke naamwoorden", "Adjectief"] }] },
+        { "prompt": "Naar welke Duitse stad is de hamburger genoemd?", "category": "Eten", "answers": [{ "text": "Hamburg" }] },
+        { "prompt": "Wie richtte in 2004 in zijn studentenkamer Facebook op?", "category": "Techniek", "answers": [{ "text": "Mark Zuckerberg", "aliases": ["Zuckerberg"] }] },
+        { "prompt": "Hoe heet het jong van een paard?", "category": "Natuur", "answers": [{ "text": "Een veulen", "aliases": ["Veulen"] }] },
+        { "prompt": "Welke stadstaat ligt op de zuidpunt van het Maleisisch schiereiland?", "category": "Aardrijkskunde", "answers": [{ "text": "Singapore" }] },
+        { "prompt": "Welke Nederlandse verzetsstrijdster werd het meisje met het rode haar genoemd?", "category": "Geschiedenis", "answers": [{ "text": "Hannie Schaft", "aliases": ["Schaft"] }] },
+        { "prompt": "Met welke schaal geef je aan hoe zuur of basisch een vloeistof is?", "category": "Wetenschap", "answers": [{ "text": "De pH", "aliases": ["pH", "Zuurgraad", "pH-schaal"] }] },
+        { "prompt": "Welke Canadese zanger werd als tiener beroemd met Baby?", "category": "Muziek", "answers": [{ "text": "Justin Bieber", "aliases": ["Bieber"] }] },
+        { "prompt": "Welke Nederlandse actrice speelde in Zwartboek en in Game of Thrones?", "category": "Film", "answers": [{ "text": "Carice van Houten", "aliases": ["Van Houten"] }] },
+        { "prompt": "Welk fruit zit er naast kokos in een pina colada?", "category": "Eten", "answers": [{ "text": "Ananas", "aliases": ["De ananas"] }] },
+        { "prompt": "Welk Amerikaans bedrijf liet in 1973 de eerste draagbare mobiele telefoon zien?", "category": "Techniek", "answers": [{ "text": "Motorola" }] },
+        { "prompt": "Hoe heet het schrift van bolletjes dat blinde mensen met hun vingers lezen?", "category": "Taal", "answers": [{ "text": "Braille", "aliases": ["Brailleschrift"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze landen is qua oppervlakte het grootst?", "options": [{ "text": "Argentinie", "correct": true }, { "text": "Mexico" }, { "text": "Peru" }, { "text": "Colombia" }] },
+        { "prompt": "Welk van deze dieren is geen knaagdier?", "options": [{ "text": "Het konijn", "correct": true }, { "text": "De rat" }, { "text": "De hamster" }, { "text": "De eekhoorn" }] },
+        { "prompt": "Welke Nederlandse schrijver schreef Het gouden ei?", "options": [{ "text": "Tim Krabbe", "correct": true }, { "text": "Herman Koch" }, { "text": "Arnon Grunberg" }, { "text": "Harry Mulisch" }] },
+        { "prompt": "In welk van deze Afrikaanse landen is Spaans een officiele taal?", "options": [{ "text": "Equatoriaal-Guinea", "correct": true }, { "text": "Angola" }, { "text": "Mozambique" }, { "text": "Senegal" }] },
+        { "prompt": "Waar is de huid van het menselijk lichaam het dunst?", "options": [{ "text": "Het ooglid", "correct": true }, { "text": "De lippen" }, { "text": "De vingertoppen" }, { "text": "De hiel" }] },
+        { "prompt": "Wie was de eerste vrouwelijke premier van het Verenigd Koninkrijk?", "options": [{ "text": "Margaret Thatcher", "correct": true }, { "text": "Theresa May" }, { "text": "Liz Truss" }, { "text": "Barbara Castle" }] },
+        { "prompt": "Welke van deze steden ligt aan de Zwarte Zee?", "options": [{ "text": "Odessa", "correct": true }, { "text": "Riga" }, { "text": "Split" }, { "text": "Napels" }] },
+        { "prompt": "Welk van deze dieren is het giftigst?", "options": [{ "text": "De gouden pijlgifkikker", "correct": true }, { "text": "De koraalslang" }, { "text": "De zwarte weduwe" }, { "text": "De schorpioen" }] },
+        { "prompt": "In welke animatiefilm verschijnen voor het eerst de gele Minions?", "options": [{ "text": "Verschrikkelijke Ikke", "correct": true }, { "text": "Shrek" }, { "text": "Madagascar" }, { "text": "Ice Age" }] },
+        { "prompt": "Welke zwemslag is het snelst?", "options": [{ "text": "De borstcrawl", "correct": true }, { "text": "De schoolslag" }, { "text": "De rugslag" }, { "text": "De vlinderslag" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de berg Fuji in Japan?", "answer": 3776, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer is het in vogelvlucht van Amsterdam naar New York?", "answer": 5850, "unit": "kilometer" },
+        { "prompt": "Hoeveel jaar zat koningin Elizabeth II op de troon?", "answer": 70, "unit": "jaar" },
+        { "prompt": "Hoeveel verschillende landen hebben het WK voetbal bij de mannen ooit gewonnen?", "answer": 8, "unit": "landen" },
+        { "prompt": "Hoeveel snaren heeft een ukelele?", "answer": 4, "unit": "snaren" },
+        { "prompt": "Hoeveel liter melk is er ongeveer nodig voor een kilo kaas?", "answer": 10, "unit": "liter" },
+        { "prompt": "Bij hoeveel graden Celsius kookt water op de top van de Mount Everest ongeveer?", "answer": 70, "unit": "graden" },
+        { "prompt": "Hoeveel sterren staan er op de vlag van Australie?", "answer": 6, "unit": "sterren" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Bezem",
+        "Walkman",
+        "Hans en Grietje",
+        "Paddenstoelencirkel",
+        "Weegschaal",
+        "Zelfportret",
+        "Bob Dylan",
+        "Vrachtwagenchauffeur",
+        "Kitesurfen",
+        "Coverband",
+        "Dim sum",
+        "Minister-president",
+        "Romeo en Julia",
+        "Sprint",
+        "Zonnehoed",
+        "Baklava",
+        "Veiling",
+        "Cheesecake",
+        "Kassamedewerker",
+        "Lacrosse",
+        "Zuurdesem",
+        "Spam",
+        "Couchsurfen",
+        "Roddelblad",
+        "Orang-oetan",
+        "Roquefort",
+        "Borduurwerk",
+        "Fanfarekorps",
+        "Pottenbakker",
+        "Pest",
+        "Lawine",
+        "Pegasus",
+        "Stoepkrijt",
+        "Suikerbrood",
+        "Valse wimpers",
+        "Plakplaatje",
+        "Waterpijp",
+        "Vegetariër",
+        "Death Valley",
+        "Gelukskoekje"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Belgie?", "answers": [{ "text": "Friet", "aliases": ["Frieten", "Patat"] }, { "text": "Wafels", "aliases": ["Chocolade", "Bier"] }, { "text": "Brussel", "aliases": ["Antwerpen", "Brugge"] }, { "text": "Nederlands en Frans", "aliases": ["Vlamingen en Walen", "Drie talen"] }] },
+        { "prompt": "Wat weet je over Mickey Mouse?", "answers": [{ "text": "Walt Disney", "aliases": ["Disney"] }, { "text": "Minnie Mouse", "aliases": ["Minnie"] }, { "text": "Grote ronde oren", "aliases": ["Oren"] }, { "text": "Rode broek", "aliases": ["Witte handschoenen", "Gele schoenen"] }] },
+        { "prompt": "Wat weet je over Marokko?", "answers": [{ "text": "Marrakech", "aliases": ["Rabat", "Casablanca"] }, { "text": "Couscous", "aliases": ["Tajine", "Muntthee"] }, { "text": "Sahara", "aliases": ["Woestijn"] }, { "text": "Arabisch", "aliases": ["Berbers"] }] },
+        { "prompt": "Wat weet je over dolfijnen?", "answers": [{ "text": "Slim", "aliases": ["Intelligent"] }, { "text": "Zoogdier", "aliases": ["Geen vis"] }, { "text": "Springen", "aliases": ["Sprongen", "Kunstjes"] }, { "text": "Klikgeluiden", "aliases": ["Fluiten", "Echolocatie"] }] },
+        { "prompt": "Wat weet je over ridders?", "answers": [{ "text": "Harnas", "aliases": ["Maliënkolder", "Helm"] }, { "text": "Zwaard", "aliases": ["Lans", "Schild"] }, { "text": "Kasteel", "aliases": ["Burcht"] }, { "text": "Paard", "aliases": ["Strijdros", "Toernooi"] }] },
+        { "prompt": "Wat weet je over Michael Jordan?", "answers": [{ "text": "Basketbal", "aliases": ["NBA"] }, { "text": "Chicago Bulls", "aliases": ["Chicago", "Bulls"] }, { "text": "Air Jordan", "aliases": ["Nike", "Schoenen"] }, { "text": "Space Jam", "aliases": ["Film"] }] },
+        { "prompt": "Wat weet je over Venetie?", "answers": [{ "text": "Gondels", "aliases": ["Gondel", "Gondelier"] }, { "text": "Grachten", "aliases": ["Kanalen", "Canal Grande"] }, { "text": "Carnaval", "aliases": ["Maskers"] }, { "text": "Italie", "aliases": ["Italiaans"] }] },
+        { "prompt": "Wat weet je over het oog?", "answers": [{ "text": "Pupil", "aliases": ["Pupillen"] }, { "text": "Iris", "aliases": ["Kleur van je ogen"] }, { "text": "Netvlies", "aliases": ["Hoornvlies", "Lens"] }, { "text": "Bril", "aliases": ["Lenzen", "Opticien"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welk dier is Jerry in de tekenfilm Tom en Jerry?", "difficulty": "easy", "answers": [{ "text": "Een muis", "aliases": ["Muis"] }] },
+        { "prompt": "Hoe heet de laatste avond van het jaar?", "difficulty": "easy", "answers": [{ "text": "Oudejaarsavond", "aliases": ["Oudjaar", "Oud en nieuw"] }] },
+        { "prompt": "Welk seizoen komt na de winter?", "difficulty": "easy", "answers": [{ "text": "De lente", "aliases": ["Lente", "Voorjaar"] }] },
+        { "prompt": "Hoe heet de vader van Simba in The Lion King?", "difficulty": "easy", "answers": [{ "text": "Mufasa" }] },
+        { "prompt": "Hoe heet de toverschool van Harry Potter?", "difficulty": "easy", "answers": [{ "text": "Zweinstein", "aliases": ["Hogwarts"] }] },
+        { "prompt": "Wat is de hoofdstad van Paraguay?", "difficulty": "hard", "answers": [{ "text": "Asuncion" }] },
+        { "prompt": "Welke Hongaarse componist en pianist schreef de Hongaarse rapsodieen?", "difficulty": "hard", "answers": [{ "text": "Franz Liszt", "aliases": ["Liszt"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Mn?", "difficulty": "hard", "answers": [{ "text": "Mangaan" }] },
+        { "prompt": "Welke kleine rivier stroomt door Madrid?", "difficulty": "hard", "answers": [{ "text": "De Manzanares", "aliases": ["Manzanares"] }] },
+        { "prompt": "Hoe heette de laatste tsaar van Rusland?", "difficulty": "hard", "answers": [{ "text": "Nicolaas II", "aliases": ["Nicolaas de Tweede", "Nikolaj II"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet het wrattenzwijn dat samen met Timon voor Simba zorgt?", "answers": [{ "text": "Pumbaa", "aliases": ["Poemba"] }] },
+        { "prompt": "Welke Amerikaanse staat heeft de bijnaam de Sunshine State?", "answers": [{ "text": "Florida" }] },
+        { "prompt": "Welke Franse dichter schreef Les Fleurs du mal?", "answers": [{ "text": "Charles Baudelaire", "aliases": ["Baudelaire"] }] },
+        { "prompt": "Hoe heet de snorrende loodgieter van Nintendo?", "answers": [{ "text": "Mario", "aliases": ["Super Mario"] }] },
+        { "prompt": "Welke Griekse held was alleen kwetsbaar aan zijn hiel?", "answers": [{ "text": "Achilles" }] },
+        { "prompt": "Welke Amerikaanse astronaut was in 1962 de eerste Amerikaan in een baan om de aarde?", "answers": [{ "text": "John Glenn", "aliases": ["Glenn"] }] },
+        { "prompt": "Welk boerderijdier legt eieren en zegt tok tok?", "answers": [{ "text": "De kip", "aliases": ["Kip", "Hen"] }] },
+        { "prompt": "Welke Ierse band scoorde in 1994 met Zombie?", "answers": [{ "text": "The Cranberries", "aliases": ["Cranberries"] }] },
+        { "prompt": "Welke Zweedse sterrenkundige bedacht de temperatuurschaal van honderd graden?", "answers": [{ "text": "Anders Celsius", "aliases": ["Celsius"] }] }
+      ]
+    }
+  ]
+}

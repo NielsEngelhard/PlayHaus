@@ -89,7 +89,17 @@
         "Plate",
         "Diavola",
         "Quattro stagioni",
-        "Bruschetta"
+        "Bruschetta",
+        "Pizza dough",
+        "Pizza box",
+        "Tossing the dough",
+        "Pizza peel",
+        "Tomato sauce",
+        "Oregano",
+        "Mushrooms",
+        "Pineapple on pizza",
+        "Pizza Margherita",
+        "Calzone"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which Naples restaurant, opened in 1830, is called the oldest pizzeria in the world?", "answers": [{ "text": "Antica Pizzeria Port'Alba", "aliases": ["Port'Alba", "Pizzeria Port'Alba"] }] },
         { "prompt": "Since 2010 the pizza napoletana has carried a European protected label. What is that label called in English?", "answers": [{ "text": "Traditional Speciality Guaranteed", "aliases": ["TSG", "STG"] }] },
         { "prompt": "Which Dutch pizza delivery chain, founded in Amsterdam, is named after an American city?", "answers": [{ "text": "New York Pizza" }] },
-        { "prompt": "What is the deep fried pizza sold in the streets of Naples called?", "answers": [{ "text": "Pizza fritta", "aliases": ["Fritta"] }] }
+        { "prompt": "What is the deep fried pizza sold in the streets of Naples called?", "answers": [{ "text": "Pizza fritta", "aliases": ["Fritta"] }] },
+        { "prompt": "Which three colours of the Italian flag can you see on a Margherita?", "answers": [{ "text": "Red, white and green", "aliases": ["Green, white and red", "Red white green"] }] },
+        { "prompt": "Which American city is famous for its deep-dish pizza?", "answers": [{ "text": "Chicago" }] }
       ]
     }
   ]

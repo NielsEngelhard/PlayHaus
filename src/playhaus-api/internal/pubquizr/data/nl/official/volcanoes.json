@@ -89,7 +89,17 @@
         "Seismometer",
         "Reddingshelikopter",
         "Warmtebeeldcamera",
-        "Vulkaanobservatorium"
+        "Vulkaanobservatorium",
+        "Vulkaanuitbarsting",
+        "Lava",
+        "Rookpluim",
+        "Vulkanoloog",
+        "Puimsteen",
+        "Obsidiaan",
+        "Zwavelbron",
+        "Aardkorst",
+        "Ringwal",
+        "Vulkaanas"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Wat is het Hawaiiaanse woord voor gladde, touwachtige lava?", "answers": [{ "text": "Pahoehoe" }] },
         { "prompt": "Hoe heet een onderzeese vulkaan die de zeespiegel niet haalt?", "answers": [{ "text": "Een zeeberg", "aliases": ["Zeeberg", "Seamount"] }] },
         { "prompt": "Welke Peruaanse vulkaan zorgde in 1600 voor de grootste uitbarsting in Zuid-Amerika in historische tijden?", "answers": [{ "text": "Huaynaputina" }] },
-        { "prompt": "Welke Afrikaanse vulkaan stuurde in 2021 lava richting de stad Goma?", "answers": [{ "text": "Nyiragongo", "aliases": ["Mount Nyiragongo"] }] }
+        { "prompt": "Welke Afrikaanse vulkaan stuurde in 2021 lava richting de stad Goma?", "answers": [{ "text": "Nyiragongo", "aliases": ["Mount Nyiragongo"] }] },
+        { "prompt": "Welke IJslandse vulkaan legde in 2010 het vliegverkeer in Europa plat?", "answers": [{ "text": "Eyjafjallajokull" }] },
+        { "prompt": "Welke Indonesische vulkaan veroorzaakte in 1815 de grootste uitbarsting uit de geschreven geschiedenis?", "answers": [{ "text": "De Tambora", "aliases": ["Tambora"] }] }
       ]
     }
   ]

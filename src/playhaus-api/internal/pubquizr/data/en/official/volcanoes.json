@@ -89,7 +89,17 @@
         "Seismometer",
         "Rescue helicopter",
         "Thermal camera",
-        "Volcano observatory"
+        "Volcano observatory",
+        "Volcanic eruption",
+        "Lava",
+        "Smoke plume",
+        "Volcanologist",
+        "Pumice",
+        "Obsidian",
+        "Sulphur spring",
+        "Earth's crust",
+        "Caldera",
+        "Volcanic ash"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What is the Hawaiian word for smooth, ropy lava?", "answers": [{ "text": "Pahoehoe" }] },
         { "prompt": "What is an underwater volcano that does not reach the surface called?", "answers": [{ "text": "A seamount", "aliases": ["Seamount"] }] },
         { "prompt": "Which Peruvian volcano produced the largest eruption in South America in historic times, in 1600?", "answers": [{ "text": "Huaynaputina" }] },
-        { "prompt": "Which African volcano sent lava towards the city of Goma in 2021?", "answers": [{ "text": "Nyiragongo", "aliases": ["Mount Nyiragongo"] }] }
+        { "prompt": "Which African volcano sent lava towards the city of Goma in 2021?", "answers": [{ "text": "Nyiragongo", "aliases": ["Mount Nyiragongo"] }] },
+        { "prompt": "Which Icelandic volcano grounded air traffic across Europe in 2010?", "answers": [{ "text": "Eyjafjallajokull" }] },
+        { "prompt": "Which Indonesian volcano caused the largest eruption in recorded history, in 1815?", "answers": [{ "text": "Tambora", "aliases": ["Mount Tambora"] }] }
       ]
     }
   ]

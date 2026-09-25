@@ -89,7 +89,17 @@
         "Kwelder",
         "Wad",
         "Zeeziekte",
-        "Duiker"
+        "Duiker",
+        "Golf",
+        "Getijde",
+        "Oceaanstoomboot",
+        "Walvisspotten",
+        "Diepzeevis",
+        "Zeebodem",
+        "Zoutwater",
+        "Zeevarende",
+        "Plastic soep",
+        "IJsberg"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Hoe heet de wereldwijde circulatie van zeewater die wordt aangedreven door verschillen in temperatuur en zoutgehalte?", "answers": [{ "text": "De thermohaliene circulatie", "aliases": ["Thermohaliene circulatie", "Oceanische lopende band"] }] },
         { "prompt": "Welke zeestraat scheidt Sicilie van het Italiaanse vasteland?", "answers": [{ "text": "De Straat van Messina", "aliases": ["Straat van Messina", "Messina"] }] },
         { "prompt": "Hoe heet de periodieke opwarming van de oostelijke Stille Oceaan die het weer over de hele wereld verstoort?", "answers": [{ "text": "El Nino", "aliases": ["El Nino-effect"] }] },
-        { "prompt": "Welke zeestraat scheidt Denemarken van Zweden en wordt overspannen door de brug naar Malmo?", "answers": [{ "text": "De Sont", "aliases": ["Sont", "Oresund", "Oeresund"] }] }
+        { "prompt": "Welke zeestraat scheidt Denemarken van Zweden en wordt overspannen door de brug naar Malmo?", "answers": [{ "text": "De Sont", "aliases": ["Sont", "Oresund", "Oeresund"] }] },
+        { "prompt": "Welke oceaan ligt tussen Afrika en Australie?", "answers": [{ "text": "De Indische Oceaan", "aliases": ["Indische Oceaan"] }] },
+        { "prompt": "Hoe heet de zeestraat tussen Kaap Hoorn en Antarctica?", "answers": [{ "text": "De Straat Drake", "aliases": ["Straat Drake", "Drake Passage"] }] }
       ]
     }
   ]

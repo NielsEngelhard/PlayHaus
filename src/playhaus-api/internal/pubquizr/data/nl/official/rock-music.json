@@ -89,7 +89,17 @@
         "Platenhoes",
         "Drumsolo",
         "Rookmachine",
-        "Oordopjes"
+        "Oordopjes",
+        "Gitaar kapotslaan",
+        "Rockster",
+        "Leren broek",
+        "Duivelshoorntjes",
+        "Muziekstudio",
+        "Hardrock",
+        "Rockopera",
+        "Stadionconcert",
+        "Luchtdrum",
+        "Platenlabel"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welk Canadees trio bracht in 1976 het album 2112 uit?", "answers": [{ "text": "Rush" }] },
         { "prompt": "Welke zanger van AC/DC overleed in 1980 en werd opgevolgd door Brian Johnson?", "answers": [{ "text": "Bon Scott", "aliases": ["Scott"] }] },
         { "prompt": "Welke Nederlandse band met Sharon den Adel als zangeres bracht in 2000 het album Mother Earth uit?", "answers": [{ "text": "Within Temptation" }] },
-        { "prompt": "Wat is de echte voor- en achternaam van zanger Alice Cooper?", "answers": [{ "text": "Vincent Furnier", "aliases": ["Furnier", "Vincent Damon Furnier"] }] }
+        { "prompt": "Wat is de echte voor- en achternaam van zanger Alice Cooper?", "answers": [{ "text": "Vincent Furnier", "aliases": ["Furnier", "Vincent Damon Furnier"] }] },
+        { "prompt": "Welke Britse band nam in 1970 het album Paranoid op?", "answers": [{ "text": "Black Sabbath" }] },
+        { "prompt": "Welke gitarist van The Who sloeg als een van de eersten zijn gitaar kapot op het podium?", "answers": [{ "text": "Pete Townshend", "aliases": ["Townshend"] }] }
       ]
     }
   ]

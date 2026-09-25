@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w53",
+  "title": "Weekquiz 53 2026",
+  "description": "De wekelijkse quiz van woensdag 30 december 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welke Amerikaanse staat ligt de Grand Canyon?", "category": "Aardrijkskunde", "answers": [{ "text": "Arizona" }] },
+        { "prompt": "Hoe heet een jaar met een extra dag in februari?", "category": "Wetenschap", "answers": [{ "text": "Een schrikkeljaar", "aliases": ["Schrikkeljaar"] }] },
+        { "prompt": "Welke Romeinse god met twee gezichten gaf zijn naam aan januari?", "category": "Geschiedenis", "answers": [{ "text": "Janus" }] },
+        { "prompt": "Welke Nederlandse darter werd vijf keer wereldkampioen bij de BDO?", "category": "Sport", "answers": [{ "text": "Raymond van Barneveld", "aliases": ["Van Barneveld", "Barney"] }] },
+        { "prompt": "Welke Amerikaanse actrice speelde Bridget Jones?", "category": "Film", "answers": [{ "text": "Renee Zellweger", "aliases": ["Zellweger"] }] },
+        { "prompt": "Welke Britse drummer en zanger van Genesis scoorde solo met In the Air Tonight?", "category": "Muziek", "answers": [{ "text": "Phil Collins", "aliases": ["Collins"] }] },
+        { "prompt": "Welke Limburgse plaats is beroemd om zijn mergelgrotten en kerstmarkt onder de grond?", "category": "Nederland", "answers": [{ "text": "Valkenburg", "aliases": ["Valkenburg aan de Geul"] }] },
+        { "prompt": "Welke Zwitserse beeldhouwer maakte lange, broodmagere mensfiguren?", "category": "Kunst", "answers": [{ "text": "Alberto Giacometti", "aliases": ["Giacometti"] }] },
+        { "prompt": "Hoe heet oudejaarsavond in Schotland?", "category": "Taal", "answers": [{ "text": "Hogmanay" }] },
+        { "prompt": "Welk gebak met een schijf appel eten veel Nederlanders naast oliebollen op oudejaarsavond?", "category": "Eten", "answers": [{ "text": "Appelbeignets", "aliases": ["Appelbeignet", "Appelflappen"] }] },
+        { "prompt": "Voor welke computerfout was men bang bij de jaarwisseling naar het jaar tweeduizend?", "category": "Techniek", "answers": [{ "text": "De millenniumbug", "aliases": ["Millenniumbug", "Y2K"] }] },
+        { "prompt": "Hoe heet het gekleurde licht dat in de winternacht boven Noorwegen en IJsland danst?", "category": "Natuur", "answers": [{ "text": "Het noorderlicht", "aliases": ["Noorderlicht", "Aurora borealis"] }] },
+        { "prompt": "In welke Aziatische stad staat de wolkenkrabber Taipei 101?", "category": "Aardrijkskunde", "answers": [{ "text": "Taipei", "aliases": ["Taipeh"] }] },
+        { "prompt": "Welke Duitse keizer vluchtte in 1918 naar Nederland en woonde tot zijn dood in Doorn?", "category": "Geschiedenis", "answers": [{ "text": "Wilhelm II", "aliases": ["Keizer Wilhelm", "Wilhelm"] }] },
+        { "prompt": "Hoe heet het getal onder de streep van een breuk?", "category": "Wetenschap", "answers": [{ "text": "De noemer", "aliases": ["Noemer"] }] },
+        { "prompt": "Welke Amerikaanse zangeres scoorde in 2010 met Firework?", "category": "Muziek", "answers": [{ "text": "Katy Perry", "aliases": ["Perry"] }] },
+        { "prompt": "Welke Nederlandse regisseur won in 1998 een Oscar met de film Karakter?", "category": "Film", "answers": [{ "text": "Mike van Diem", "aliases": ["Van Diem"] }] },
+        { "prompt": "Hoe heet het Engelse gerecht van ossenhaas in bladerdeeg?", "category": "Eten", "answers": [{ "text": "Beef Wellington", "aliases": ["Wellington"] }] },
+        { "prompt": "Hoe heet het sociale medium dat tot 2023 Twitter heette?", "category": "Techniek", "answers": [{ "text": "X" }] },
+        { "prompt": "Hoe wens je iemand een gelukkig nieuwjaar in het Frans?", "category": "Taal", "answers": [{ "text": "Bonne annee" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze landen betaalt met de euro?", "options": [{ "text": "Kroatie", "correct": true }, { "text": "Polen" }, { "text": "Tsjechie" }, { "text": "Zweden" }] },
+        { "prompt": "Welk van deze zeedieren is een zoogdier?", "options": [{ "text": "De zeekoe", "correct": true }, { "text": "De haai" }, { "text": "De rog" }, { "text": "De tonijn" }] },
+        { "prompt": "Welke schrijver schreef De Da Vinci Code?", "options": [{ "text": "Dan Brown", "correct": true }, { "text": "John Grisham" }, { "text": "Stephen King" }, { "text": "Ken Follett" }] },
+        { "prompt": "Welke van deze Amerikaanse steden ligt aan de westkust?", "options": [{ "text": "Seattle", "correct": true }, { "text": "Boston" }, { "text": "Miami" }, { "text": "Atlanta" }] },
+        { "prompt": "Welke van deze is geen bloedgroep?", "options": [{ "text": "C", "correct": true }, { "text": "A" }, { "text": "B" }, { "text": "O" }] },
+        { "prompt": "Met welke munt betaalde Nederland voor de euro?", "options": [{ "text": "De gulden", "correct": true }, { "text": "De mark" }, { "text": "De frank" }, { "text": "De kroon" }] },
+        { "prompt": "Welk van deze eilanden ligt in de Stille Oceaan?", "options": [{ "text": "Tahiti", "correct": true }, { "text": "Mauritius" }, { "text": "Barbados" }, { "text": "Madeira" }] },
+        { "prompt": "Welk dier hoort volgens de Chinese kalender bij het jaar 2027?", "options": [{ "text": "De geit", "correct": true }, { "text": "Het paard" }, { "text": "De aap" }, { "text": "De haan" }] },
+        { "prompt": "Welke film won in 2025 de Oscar voor beste film?", "options": [{ "text": "Anora", "correct": true }, { "text": "The Brutalist" }, { "text": "Conclave" }, { "text": "Wicked" }] },
+        { "prompt": "Bij welke olympische sport schiet je met pijl en boog op een doel?", "options": [{ "text": "Boogschieten", "correct": true }, { "text": "Schieten" }, { "text": "Moderne vijfkamp" }, { "text": "Biatlon" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is het hotel Burj Al Arab in Dubai?", "answer": 321, "unit": "meter" },
+        { "prompt": "Hoeveel uur is het in de winter in New York vroeger dan in Nederland?", "answer": 6, "unit": "uur" },
+        { "prompt": "Hoeveel kilometer is het in vogelvlucht van Parijs naar Moskou?", "answer": 2480, "unit": "kilometer" },
+        { "prompt": "Hoeveel gulden was een euro waard bij de invoering?", "answer": 2.2, "unit": "gulden", "explanation": "Precies 2,20371 gulden." },
+        { "prompt": "Hoe oud werd Johan Cruijff?", "answer": 68, "unit": "jaar" },
+        { "prompt": "Hoeveel landen zijn lid van de NAVO?", "answer": 32, "unit": "landen" },
+        { "prompt": "Uit hoeveel kaarten bestaat een spel Uno?", "answer": 108, "unit": "kaarten" },
+        { "prompt": "In welk jaar werd de eerste nieuwjaarsduik in Scheveningen gehouden?", "answer": 1965 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Woordenboek",
+        "Meisje met de parel",
+        "Tiger Woods",
+        "Goofy",
+        "Kraamvisite",
+        "Artisjok",
+        "Parfum",
+        "Racefiets",
+        "Edinburgh Castle",
+        "Korfbal",
+        "Heksenjacht",
+        "Sauna",
+        "Risk",
+        "Kaasplank",
+        "Trouwfotograaf",
+        "Sinbad",
+        "Sint-bernardshond",
+        "Claustrofobie",
+        "Metallica",
+        "Kimchi",
+        "Gollum",
+        "Pijlstaartrog",
+        "Kokosmelk",
+        "Centaur",
+        "Kietelen",
+        "Dressuur",
+        "Kamerheer",
+        "Dekbed",
+        "Staafmixer",
+        "Sportschool",
+        "Jamaica",
+        "Spinazie",
+        "Spiekbriefje",
+        "Big Brother",
+        "Eenmansband",
+        "Curling",
+        "Tijdrit",
+        "Kleermaker",
+        "Bouwvakker",
+        "Clown"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over champagne?", "answers": [{ "text": "Frankrijk", "aliases": ["Champagnestreek", "Reims"] }, { "text": "Bubbels", "aliases": ["Bruisend", "Mousserend"] }, { "text": "Kurk", "aliases": ["Knallende kurk"] }, { "text": "Feest", "aliases": ["Proosten", "Oud en nieuw", "Bruiloft"] }] },
+        { "prompt": "Wat weet je over Sydney?", "answers": [{ "text": "Opera House", "aliases": ["Operagebouw"] }, { "text": "Harbour Bridge", "aliases": ["Brug"] }, { "text": "Bondi Beach", "aliases": ["Strand", "Surfen"] }, { "text": "Australie", "aliases": ["Australisch"] }] },
+        { "prompt": "Wat weet je over de euro?", "answers": [{ "text": "Munt", "aliases": ["Geld", "Betaalmiddel"] }, { "text": "Europese Unie", "aliases": ["Europa", "Eurozone"] }, { "text": "Tweeduizendtwee", "aliases": ["2002"] }, { "text": "Gulden", "aliases": ["Vervanging van de gulden"] }] },
+        { "prompt": "Wat weet je over Julius Caesar?", "answers": [{ "text": "Rome", "aliases": ["Romeinen", "Romeinse Rijk"] }, { "text": "Cleopatra", "aliases": ["Egypte"] }, { "text": "Vermoord", "aliases": ["Brutus", "Messteken"] }, { "text": "Veni, vidi, vici", "aliases": ["Ik kwam, ik zag, ik overwon"] }] },
+        { "prompt": "Wat weet je over het ISS?", "answers": [{ "text": "Ruimtestation", "aliases": ["Internationaal ruimtestation"] }, { "text": "Astronauten", "aliases": ["Kosmonauten"] }, { "text": "Andre Kuipers", "aliases": ["Kuipers"] }, { "text": "Rondjes om de aarde", "aliases": ["Baan om de aarde", "Zwaartekracht"] }] },
+        { "prompt": "Wat weet je over Oostenrijk?", "answers": [{ "text": "Wenen", "aliases": ["De hoofdstad Wenen"] }, { "text": "Mozart", "aliases": ["Salzburg"] }, { "text": "Skien", "aliases": ["Wintersport", "Alpen"] }, { "text": "Sachertorte", "aliases": ["Apfelstrudel", "Wiener schnitzel"] }] },
+        { "prompt": "Wat weet je over The Simpsons?", "answers": [{ "text": "Homer", "aliases": ["Homer Simpson", "Marge", "Bart", "Lisa"] }, { "text": "Geel", "aliases": ["Gele huid"] }, { "text": "Springfield", "aliases": ["Stadje"] }, { "text": "Donuts", "aliases": ["Duff-bier"] }] },
+        { "prompt": "Wat weet je over de marathon?", "answers": [{ "text": "Tweeenveertig kilometer", "aliases": ["42 kilometer", "42,195 km"] }, { "text": "Griekenland", "aliases": ["Legende", "Boodschapper"] }, { "text": "Eliud Kipchoge", "aliases": ["Kipchoge"] }, { "text": "Rotterdam", "aliases": ["New York", "Londen"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat doe je om middernacht op oudejaarsavond met je glas?", "difficulty": "easy", "answers": [{ "text": "Proosten", "aliases": ["Toosten"] }] },
+        { "prompt": "Welke maand komt na juni?", "difficulty": "easy", "answers": [{ "text": "Juli" }] },
+        { "prompt": "Hoe heet de eerste dag van het jaar?", "difficulty": "easy", "answers": [{ "text": "Nieuwjaarsdag", "aliases": ["Een januari"] }] },
+        { "prompt": "Welk klein huisdier rent in een rad en propt zijn wangen vol met voer?", "difficulty": "easy", "answers": [{ "text": "De hamster", "aliases": ["Hamster"] }] },
+        { "prompt": "Waar zou een ekster volgens de verhalen graag mee aan de haal gaan?", "difficulty": "easy", "answers": [{ "text": "Glimmende dingen", "aliases": ["Sieraden", "Glitters", "Goud"] }] },
+        { "prompt": "Welke Franse schrijver schreef Candide?", "difficulty": "hard", "answers": [{ "text": "Voltaire" }] },
+        { "prompt": "Welke Spaanse componist schreef het Concierto de Aranjuez?", "difficulty": "hard", "answers": [{ "text": "Joaquin Rodrigo", "aliases": ["Rodrigo"] }] },
+        { "prompt": "Welk radioactief edelgas heeft het scheikundige symbool Rn?", "difficulty": "hard", "answers": [{ "text": "Radon" }] },
+        { "prompt": "Welke rivier stroomt door Belfast?", "difficulty": "hard", "answers": [{ "text": "De Lagan", "aliases": ["Lagan"] }] },
+        { "prompt": "Welke keizer, geboren in Gent, regeerde over een rijk waarin de zon nooit onderging?", "difficulty": "hard", "answers": [{ "text": "Karel V", "aliases": ["Karel de Vijfde", "Keizer Karel"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welk sportmerk heeft drie strepen als logo?", "answers": [{ "text": "Adidas" }] },
+        { "prompt": "Welke hitlijst van tweeduizend liedjes zendt NPO Radio 2 elk jaar tussen kerst en oud en nieuw uit?", "answers": [{ "text": "De Top 2000", "aliases": ["Top 2000"] }] },
+        { "prompt": "Welke Japanse schrijver won in 1968 als eerste Japanner de Nobelprijs voor de Literatuur?", "answers": [{ "text": "Yasunari Kawabata", "aliases": ["Kawabata"] }] },
+        { "prompt": "Welk Frans automerk heeft een leeuw als logo?", "answers": [{ "text": "Peugeot" }] },
+        { "prompt": "Welke Belgische stad met reien en een belfort wordt het Venetie van het Noorden genoemd?", "answers": [{ "text": "Brugge", "aliases": ["Bruges"] }] },
+        { "prompt": "Welke Duitse natuurkundige formuleerde de onzekerheidsrelatie?", "answers": [{ "text": "Werner Heisenberg", "aliases": ["Heisenberg"] }] },
+        { "prompt": "Van welke groente wordt Popeye sterk?", "answers": [{ "text": "Spinazie" }] },
+        { "prompt": "Welke Amerikaanse jazzmuzikant zong What a Wonderful World?", "answers": [{ "text": "Louis Armstrong", "aliases": ["Armstrong", "Satchmo"] }] },
+        { "prompt": "Naar welke Perzische wiskundige is het woord algoritme genoemd?", "answers": [{ "text": "Al-Khwarizmi", "aliases": ["Al Khwarizmi", "Al-Chwarizmi"] }] }
+      ]
+    }
+  ]
+}

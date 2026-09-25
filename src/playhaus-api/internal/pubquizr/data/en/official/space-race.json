@@ -49,12 +49,12 @@
       "questions": [
         { "prompt": "How many metres tall was the Saturn V rocket?", "answer": 111, "unit": "metres", "explanation": "Over a hundred and ten metres, taller than the Statue of Liberty on its base." },
         { "prompt": "How many days did the flight of Apollo 11 last?", "answer": 8, "unit": "days" },
-        { "prompt": "In what year did Sputnik 1 launch?", "answer": 1957, "unit": "" },
-        { "prompt": "In what year did the first man walk on the moon?", "answer": 1969, "unit": "" },
+        { "prompt": "In what year did Sputnik 1 launch?", "answer": 1957 },
+        { "prompt": "In what year did the first man walk on the moon?", "answer": 1969 },
         { "prompt": "How many astronauts have walked on the moon in total?", "answer": 12, "unit": "astronauts" },
-        { "prompt": "In what year did Yuri Gagarin become the first human in space?", "answer": 1961, "unit": "" },
+        { "prompt": "In what year did Yuri Gagarin become the first human in space?", "answer": 1961 },
         { "prompt": "How many days did it take Apollo 11 to reach the moon?", "answer": 4, "unit": "days" },
-        { "prompt": "In what year was NASA founded?", "answer": 1958, "unit": "" }
+        { "prompt": "In what year was NASA founded?", "answer": 1958 }
       ]
     },
     {
@@ -89,7 +89,17 @@
         "Heat shield",
         "Soyuz",
         "Mars rover",
-        "Re-entry"
+        "Re-entry",
+        "Rocket launch",
+        "Footprint on the moon",
+        "Moon rocks",
+        "Space food",
+        "Flag on the moon",
+        "Space helmet",
+        "Space shuttle",
+        "Houston",
+        "Countdown to lift-off",
+        "Space capsule"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which Apollo mission was the last to land on the moon?", "answers": [{ "text": "Apollo 17" }] },
         { "prompt": "From which space centre in Florida did the Apollo missions lift off?", "answers": [{ "text": "The Kennedy Space Center", "aliases": ["Kennedy Space Center", "Cape Canaveral", "Cape Kennedy"] }] },
         { "prompt": "Which company of Elon Musk builds the Falcon 9 rocket?", "answers": [{ "text": "SpaceX" }] },
-        { "prompt": "Which American programme flew between Mercury and Apollo?", "answers": [{ "text": "Gemini", "aliases": ["Project Gemini"] }] }
+        { "prompt": "Which American programme flew between Mercury and Apollo?", "answers": [{ "text": "Gemini", "aliases": ["Project Gemini"] }] },
+        { "prompt": "Who was the second person to walk on the moon?", "answers": [{ "text": "Buzz Aldrin", "aliases": ["Aldrin", "Edwin Aldrin"] }] },
+        { "prompt": "What was the name of the American space shuttle that exploded shortly after launch in 1986?", "answers": [{ "text": "Challenger", "aliases": ["The Challenger"] }] }
       ]
     }
   ]

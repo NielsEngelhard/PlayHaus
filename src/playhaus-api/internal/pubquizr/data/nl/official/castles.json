@@ -89,7 +89,17 @@
         "Stormladder",
         "Grafkelder",
         "Valk",
-        "Haard"
+        "Haard",
+        "Ophaalbrug",
+        "Valhek",
+        "Kantelen",
+        "Donjon",
+        "Kasteelvrouw",
+        "Ridderzaal",
+        "Spookkasteel",
+        "Kasteelgeest",
+        "Kerkerwachter",
+        "Belegering"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "In welk landhuis bij Amboise bracht Leonardo da Vinci zijn laatste jaren door en stierf hij in 1519?", "answers": [{ "text": "Clos Luce", "aliases": ["Le Clos Luce", "Chateau du Clos Luce"] }] },
         { "prompt": "Welke vesting in Rome begon als het mausoleum van keizer Hadrianus en werd een bolwerk van de pausen?", "answers": [{ "text": "De Engelenburcht", "aliases": ["Engelenburcht", "Castel Sant'Angelo"] }] },
         { "prompt": "Welk felgekleurd romantisch paleis staat op een heuveltop boven Sintra in Portugal?", "answers": [{ "text": "Het Palacio da Pena", "aliases": ["Palacio da Pena", "Pena", "paleis van Pena"] }] },
-        { "prompt": "Welke vesting die uitkijkt over Salzburg is een van de grootste volledig bewaarde burchten van Europa?", "answers": [{ "text": "Hohensalzburg", "aliases": ["Festung Hohensalzburg", "vesting Hohensalzburg"] }] }
+        { "prompt": "Welke vesting die uitkijkt over Salzburg is een van de grootste volledig bewaarde burchten van Europa?", "answers": [{ "text": "Hohensalzburg", "aliases": ["Festung Hohensalzburg", "vesting Hohensalzburg"] }] },
+        { "prompt": "In welk Nederlands kasteel ontsnapte Hugo de Groot in 1621 in een boekenkist?", "answers": [{ "text": "Slot Loevestein", "aliases": ["Loevestein"] }] },
+        { "prompt": "Welk kasteel bij Brasov wordt voor toeristen het kasteel van Dracula genoemd?", "answers": [{ "text": "Kasteel Bran", "aliases": ["Bran"] }] }
       ]
     }
   ]

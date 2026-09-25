@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w5",
+  "title": "Weekquiz 5 2027",
+  "description": "De wekelijkse quiz van woensdag 3 februari 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is het grootste eiland van de Filipijnen?", "category": "Aardrijkskunde", "answers": [{ "text": "Luzon" }] },
+        { "prompt": "Hoe heet de lijn die van rand tot rand door het middelpunt van een cirkel loopt?", "category": "Wetenschap", "answers": [{ "text": "De diameter", "aliases": ["Diameter", "Middellijn"] }] },
+        { "prompt": "Welke vrouw hielp volgens de overlevering in 1573 Haarlem te verdedigen tegen de Spanjaarden?", "category": "Geschiedenis", "answers": [{ "text": "Kenau Simonsdochter Hasselaer", "aliases": ["Kenau", "Kenau Hasselaer"] }] },
+        { "prompt": "Welke Britse wielrenner won in 2012 als eerste Brit de Tour de France?", "category": "Sport", "answers": [{ "text": "Bradley Wiggins", "aliases": ["Wiggins"] }] },
+        { "prompt": "Hoe heet het hondje van Dorothy in The Wizard of Oz?", "category": "Film", "answers": [{ "text": "Toto" }] },
+        { "prompt": "Welke Amerikaanse zangeres bracht in 2016 het album Lemonade uit?", "category": "Muziek", "answers": [{ "text": "Beyonce" }] },
+        { "prompt": "Wat is het grootste meer van Friesland?", "category": "Nederland", "answers": [{ "text": "Het Tjeukemeer", "aliases": ["Tjeukemeer"] }] },
+        { "prompt": "Welke Franse schilder maakte Le Dejeuner sur l'herbe met een naakte vrouw bij een picknick?", "category": "Kunst", "answers": [{ "text": "Edouard Manet", "aliases": ["Manet"] }] },
+        { "prompt": "Hoe heet een woord met -je of -tje erachter, zoals huisje?", "category": "Taal", "answers": [{ "text": "Een verkleinwoord", "aliases": ["Verkleinwoord", "Diminutief"] }] },
+        { "prompt": "Hoe heet het Italiaanse nagerecht van opgestijfde room, letterlijk gekookte room?", "category": "Eten", "answers": [{ "text": "Panna cotta" }] },
+        { "prompt": "Welke Engelse wiskundige ontwierp in de negentiende eeuw de Analytical Engine, een vroege computer?", "category": "Techniek", "answers": [{ "text": "Charles Babbage", "aliases": ["Babbage"] }] },
+        { "prompt": "Welke grote haai speelt de hoofdrol in de film Jaws?", "category": "Natuur", "answers": [{ "text": "De witte haai", "aliases": ["Witte haai", "Mensenhaai"] }] },
+        { "prompt": "Welke rivier stroomt door Moskou?", "category": "Aardrijkskunde", "answers": [{ "text": "De Moskva", "aliases": ["Moskva", "Moskou"] }] },
+        { "prompt": "Welke Sovjetleider voerde in de jaren tachtig glasnost en perestrojka in?", "category": "Geschiedenis", "answers": [{ "text": "Michail Gorbatsjov", "aliases": ["Gorbatsjov", "Gorbachev"] }] },
+        { "prompt": "Hoe heet een ruimte waar helemaal geen lucht in zit?", "category": "Wetenschap", "answers": [{ "text": "Een vacuum", "aliases": ["Vacuum", "Luchtledig"] }] },
+        { "prompt": "Welke Nederlandse dj presenteert al jaren de radioshow A State of Trance?", "category": "Muziek", "answers": [{ "text": "Armin van Buuren", "aliases": ["Van Buuren", "Armin"] }] },
+        { "prompt": "Welke Amerikaanse acteur speelde Frodo in The Lord of the Rings?", "category": "Film", "answers": [{ "text": "Elijah Wood", "aliases": ["Wood"] }] },
+        { "prompt": "Hoe heet het Surinaamse broodje met een ovenschotel van pomtajer en kip?", "category": "Eten", "answers": [{ "text": "Broodje pom", "aliases": ["Pom"] }] },
+        { "prompt": "In welk arcadespel uit 1981 verscheen Mario voor het eerst?", "category": "Techniek", "answers": [{ "text": "Donkey Kong" }] },
+        { "prompt": "Wat is de officiele taal van Andorra?", "category": "Taal", "answers": [{ "text": "Catalaans", "aliases": ["Het Catalaans"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze landen ligt aan de Adriatische Zee?", "options": [{ "text": "Albanie", "correct": true }, { "text": "Bulgarije" }, { "text": "Noord-Macedonie" }, { "text": "Hongarije" }] },
+        { "prompt": "Welk van deze dieren is vooral 's nachts actief?", "options": [{ "text": "De egel", "correct": true }, { "text": "De eekhoorn" }, { "text": "De koe" }, { "text": "De zwaan" }] },
+        { "prompt": "Welke schrijver schreef De kleine Johannes?", "options": [{ "text": "Frederik van Eeden", "correct": true }, { "text": "Multatuli" }, { "text": "Louis Couperus" }, { "text": "Nescio" }] },
+        { "prompt": "In welk van deze landen is Portugees de officiele taal?", "options": [{ "text": "Mozambique", "correct": true }, { "text": "Mali" }, { "text": "Senegal" }, { "text": "Kenia" }] },
+        { "prompt": "Welke van deze ziekten is erfelijk?", "options": [{ "text": "Hemofilie", "correct": true }, { "text": "Griep" }, { "text": "Malaria" }, { "text": "Mazelen" }] },
+        { "prompt": "Welke koning regeerde over het Verenigd Koninkrijk tijdens de Eerste Wereldoorlog?", "options": [{ "text": "George V", "correct": true }, { "text": "Edward VII" }, { "text": "George VI" }, { "text": "Edward VIII" }] },
+        { "prompt": "Welk van deze meren ligt in Zwitserland?", "options": [{ "text": "Het Meer van Genève", "correct": true }, { "text": "Het Gardameer" }, { "text": "Het Comomeer" }, { "text": "Het Balatonmeer" }] },
+        { "prompt": "Welke van deze vogels heeft vergeleken met zijn lichaam de langste poten?", "options": [{ "text": "De steltkluut", "correct": true }, { "text": "De flamingo" }, { "text": "De reiger" }, { "text": "De ooievaar" }] },
+        { "prompt": "Welke film won in 2017 de Oscar voor beste film nadat eerst per ongeluk La La Land was genoemd?", "options": [{ "text": "Moonlight", "correct": true }, { "text": "Manchester by the Sea" }, { "text": "Arrival" }, { "text": "Hidden Figures" }] },
+        { "prompt": "In welk land werd het korfbal bedacht?", "options": [{ "text": "Nederland", "correct": true }, { "text": "Belgie" }, { "text": "Denemarken" }, { "text": "Engeland" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Gateway Arch in St. Louis?", "answer": 192, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Seine?", "answer": 777, "unit": "kilometer" },
+        { "prompt": "Hoeveel landen deden mee aan het allereerste WK voetbal in 1930?", "answer": 13, "unit": "landen" },
+        { "prompt": "Hoe oud werd Elvis Presley?", "answer": 42, "unit": "jaar" },
+        { "prompt": "Hoeveel kilo weegt een volwassen struisvogel ongeveer?", "answer": 130, "unit": "kilo" },
+        { "prompt": "Hoeveel stippen staan er in totaal op een gewone dobbelsteen?", "answer": 21, "unit": "stippen" },
+        { "prompt": "Hoeveel meter lang is een basketbalveld?", "answer": 28, "unit": "meter" },
+        { "prompt": "In welk jaar werd Schiphol als vliegveld geopend?", "answer": 1916 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Huisdier",
+        "Tamagotchi",
+        "Nagelbijten",
+        "Wave",
+        "Brie",
+        "Parthenon",
+        "Botsauto",
+        "Pelgrimstocht",
+        "Thor",
+        "Kreeftensoep",
+        "Kaneel",
+        "Smorgasbord",
+        "Voldemort",
+        "Getuige",
+        "Kaarsvet",
+        "Potvis",
+        "Hongkong",
+        "Cavia",
+        "Encyclopedie",
+        "Pinda",
+        "Majorette",
+        "Antwoordapparaat",
+        "Oscar",
+        "Roger Federer",
+        "Jockey",
+        "Acrobaat",
+        "Poseidon",
+        "Zweefvliegtuig",
+        "Krulspeld",
+        "Broche",
+        "Vlot",
+        "Cornflakes",
+        "Glasbak",
+        "Stand-upcomedian",
+        "Hamster",
+        "Servetring",
+        "Grand Slam",
+        "Tosti-ijzer",
+        "Museumwachter",
+        "Spray tan"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Friesland?", "answers": [{ "text": "Elfstedentocht", "aliases": ["Schaatsen"] }, { "text": "Fries", "aliases": ["Friese taal"] }, { "text": "Leeuwarden", "aliases": ["Heerenveen"] }, { "text": "Friese koeien", "aliases": ["Koeien", "Friese paarden", "Fierljeppen"] }] },
+        { "prompt": "Wat weet je over de Sovjet-Unie?", "answers": [{ "text": "Communisme", "aliases": ["Communistisch"] }, { "text": "Rusland", "aliases": ["Moskou"] }, { "text": "Hamer en sikkel", "aliases": ["Rode vlag"] }, { "text": "Koude Oorlog", "aliases": ["Stalin", "Lenin"] }] },
+        { "prompt": "Wat weet je over diamanten?", "answers": [{ "text": "Hardste stof", "aliases": ["Hard"] }, { "text": "Antwerpen", "aliases": ["Amsterdam"] }, { "text": "Ring", "aliases": ["Verlovingsring", "Sieraden"] }, { "text": "Karaat", "aliases": ["Slijpen", "Glinsteren"] }] },
+        { "prompt": "Wat weet je over regenbogen?", "answers": [{ "text": "Zeven kleuren", "aliases": ["Kleuren", "Rood tot paars"] }, { "text": "Zon en regen", "aliases": ["Regen", "Zon"] }, { "text": "Pot met goud", "aliases": ["Leprechaun"] }, { "text": "Licht breken", "aliases": ["Breking", "Prisma"] }] },
+        { "prompt": "Wat weet je over Las Vegas?", "answers": [{ "text": "Casino's", "aliases": ["Gokken"] }, { "text": "Nevada", "aliases": ["Woestijn"] }, { "text": "Trouwen", "aliases": ["Snel trouwen", "Elvis"] }, { "text": "Neonlicht", "aliases": ["The Strip", "Shows"] }] },
+        { "prompt": "Wat weet je over jazz?", "answers": [{ "text": "New Orleans", "aliases": ["Amerika"] }, { "text": "Saxofoon", "aliases": ["Trompet"] }, { "text": "Louis Armstrong", "aliases": ["Miles Davis", "Ella Fitzgerald"] }, { "text": "Improviseren", "aliases": ["Swing"] }] },
+        { "prompt": "Wat weet je over papegaaien?", "answers": [{ "text": "Praten", "aliases": ["Nazeggen", "Woorden"] }, { "text": "Kleurrijk", "aliases": ["Bonte veren"] }, { "text": "Tropisch", "aliases": ["Regenwoud"] }, { "text": "Piraten", "aliases": ["Op de schouder"] }] },
+        { "prompt": "Wat weet je over de post?", "answers": [{ "text": "Postbode", "aliases": ["Brievenbesteller"] }, { "text": "Postzegels", "aliases": ["Postzegel"] }, { "text": "Brievenbus", "aliases": ["Brieven"] }, { "text": "PostNL", "aliases": ["Pakketjes", "Oranje"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet je kleinste vinger?", "difficulty": "easy", "answers": [{ "text": "De pink", "aliases": ["Pink"] }] },
+        { "prompt": "Welke kleur heeft een kraai?", "difficulty": "easy", "answers": [{ "text": "Zwart" }] },
+        { "prompt": "Welk langzaam dier trekt zijn kop terug in zijn schild?", "difficulty": "easy", "answers": [{ "text": "De schildpad", "aliases": ["Schildpad"] }] },
+        { "prompt": "Wat zeg je tegen iemand die jarig is?", "difficulty": "easy", "answers": [{ "text": "Gefeliciteerd", "aliases": ["Hartelijk gefeliciteerd", "Van harte"] }] },
+        { "prompt": "In welk seizoen vallen de bladeren van de bomen?", "difficulty": "easy", "answers": [{ "text": "De herfst", "aliases": ["Herfst", "Najaar"] }] },
+        { "prompt": "Welke Franse filosoof schreef De l'esprit des lois over de scheiding der machten?", "difficulty": "hard", "answers": [{ "text": "Montesquieu" }] },
+        { "prompt": "Welke Italiaanse componist schreef de opera Pagliacci?", "difficulty": "hard", "answers": [{ "text": "Ruggero Leoncavallo", "aliases": ["Leoncavallo"] }] },
+        { "prompt": "Welk edelmetaal heeft het scheikundige symbool Pd?", "difficulty": "hard", "answers": [{ "text": "Palladium" }] },
+        { "prompt": "Welke rivier stroomt door Frankfurt?", "difficulty": "hard", "answers": [{ "text": "De Main", "aliases": ["Main"] }] },
+        { "prompt": "Welke West-Duitse bondskanselier kreeg in 1971 de Nobelprijs voor de Vrede voor zijn Ostpolitik?", "difficulty": "hard", "answers": [{ "text": "Willy Brandt", "aliases": ["Brandt"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welk dier is de mascotte van Linux?", "answers": [{ "text": "Een pinguin", "aliases": ["Pinguin", "Tux"] }] },
+        { "prompt": "Welke Franse stad ligt aan de Promenade des Anglais?", "answers": [{ "text": "Nice" }] },
+        { "prompt": "Welke Italiaanse schrijfster schreef onder een schuilnaam De geniale vriendin?", "answers": [{ "text": "Elena Ferrante", "aliases": ["Ferrante"] }] },
+        { "prompt": "Welk feest vieren we op zevenentwintig april in Nederland?", "answers": [{ "text": "Koningsdag" }] },
+        { "prompt": "Hoe heet de munteenheid van China?", "answers": [{ "text": "De yuan", "aliases": ["Yuan", "Renminbi"] }] },
+        { "prompt": "Welke Engelse wiskundige bedacht de algebra van waar en onwaar waar computers op draaien?", "answers": [{ "text": "George Boole", "aliases": ["Boole"] }] },
+        { "prompt": "Hoe heet een jong van een hond?", "answers": [{ "text": "Een puppy", "aliases": ["Puppy", "Pup"] }] },
+        { "prompt": "Welke Australische zangeres scoorde met Can't Get You Out of My Head?", "answers": [{ "text": "Kylie Minogue", "aliases": ["Kylie", "Minogue"] }] },
+        { "prompt": "Welke Franse filosoof schreef Het zijn en het niets?", "answers": [{ "text": "Jean-Paul Sartre", "aliases": ["Sartre"] }] }
+      ]
+    }
+  ]
+}

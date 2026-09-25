@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w45",
+  "title": "Weekquiz 45 2026",
+  "description": "De wekelijkse quiz van woensdag 4 november 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de grootste stad van Canada?", "category": "Aardrijkskunde", "answers": [{ "text": "Toronto" }] },
+        { "prompt": "Hoe heet een driehoek waarvan alle drie de zijden even lang zijn?", "category": "Wetenschap", "answers": [{ "text": "Gelijkzijdig", "aliases": ["Een gelijkzijdige driehoek"] }] },
+        { "prompt": "Welke koning van de Hunnen werd de Gesel Gods genoemd?", "category": "Geschiedenis", "answers": [{ "text": "Attila", "aliases": ["Attila de Hun"] }] },
+        { "prompt": "Welke Servische tennisser won bij de mannen de meeste grandslamtitels?", "category": "Sport", "answers": [{ "text": "Novak Djokovic", "aliases": ["Djokovic"] }] },
+        { "prompt": "Hoe heet de gemene oom van Simba in The Lion King?", "category": "Film", "answers": [{ "text": "Scar" }] },
+        { "prompt": "Welke Amerikaanse zangeres zong Bad Romance en Poker Face?", "category": "Muziek", "answers": [{ "text": "Lady Gaga", "aliases": ["Gaga"] }] },
+        { "prompt": "Welke Nederlandse astronaut ging in 2004 en 2011 naar het ruimtestation ISS?", "category": "Nederland", "answers": [{ "text": "Andre Kuipers", "aliases": ["Kuipers"] }] },
+        { "prompt": "Welke Vlaamse barokschilder is beroemd om zijn weelderige, volle vrouwen?", "category": "Kunst", "answers": [{ "text": "Peter Paul Rubens", "aliases": ["Rubens"] }] },
+        { "prompt": "Hoe noemen we het teken @ in het Nederlands?", "category": "Taal", "answers": [{ "text": "Apenstaartje", "aliases": ["Het apenstaartje"] }] },
+        { "prompt": "Hoe heet het Zwitserse gerecht waarbij je stukjes brood in gesmolten kaas doopt?", "category": "Eten", "answers": [{ "text": "Kaasfondue", "aliases": ["Fondue"] }] },
+        { "prompt": "Waar staat de afkorting SMS voor?", "category": "Techniek", "answers": [{ "text": "Short Message Service" }] },
+        { "prompt": "Hoe heet de periode waarin edelherten burlen en om de vrouwtjes vechten?", "category": "Natuur", "answers": [{ "text": "De bronsttijd", "aliases": ["Bronst", "Bronsttijd"] }] },
+        { "prompt": "Welke eilandengroep in de Stille Oceaan hoort bij Ecuador?", "category": "Aardrijkskunde", "answers": [{ "text": "De Galapagoseilanden", "aliases": ["Galapagos", "Galapagoseilanden"] }] },
+        { "prompt": "Welke Zuid-Afrikaanse president deelde in 1993 de Nobelprijs voor de Vrede met Nelson Mandela?", "category": "Geschiedenis", "answers": [{ "text": "Frederik de Klerk", "aliases": ["De Klerk", "F.W. de Klerk"] }] },
+        { "prompt": "Hoe heet de enorme explosie waarmee een zware ster aan het eind van zijn leven uiteenspat?", "category": "Wetenschap", "answers": [{ "text": "Een supernova", "aliases": ["Supernova"] }] },
+        { "prompt": "Welke Nederlandse zanger zong Zij gelooft in mij?", "category": "Muziek", "answers": [{ "text": "Andre Hazes", "aliases": ["Hazes"] }] },
+        { "prompt": "Welke Britse actrice speelde in 1964 Mary Poppins?", "category": "Film", "answers": [{ "text": "Julie Andrews", "aliases": ["Andrews"] }] },
+        { "prompt": "Hoe heten de witte bonen in tomatensaus uit het Engelse ontbijt?", "category": "Eten", "answers": [{ "text": "Baked beans", "aliases": ["Bonen in tomatensaus"] }] },
+        { "prompt": "Hoe heet de online encyclopedie die door iedereen bewerkt kan worden?", "category": "Techniek", "answers": [{ "text": "Wikipedia" }] },
+        { "prompt": "Wat is de officiele taal van Suriname?", "category": "Taal", "answers": [{ "text": "Nederlands", "aliases": ["Het Nederlands"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze eilanden hoort bij Spanje?", "options": [{ "text": "Mallorca", "correct": true }, { "text": "Corsica" }, { "text": "Malta" }, { "text": "Kreta" }] },
+        { "prompt": "Welke van deze katachtigen is het grootst?", "options": [{ "text": "De Siberische tijger", "correct": true }, { "text": "De leeuw" }, { "text": "De jaguar" }, { "text": "De poema" }] },
+        { "prompt": "Welke Nederlandse schilder staat bekend om zijn vrolijke, rommelige huishoudens?", "options": [{ "text": "Jan Steen", "correct": true }, { "text": "Frans Hals" }, { "text": "Pieter de Hooch" }, { "text": "Gerard ter Borch" }] },
+        { "prompt": "Welke van deze steden is geen hoofdstad?", "options": [{ "text": "Geneve", "correct": true }, { "text": "Bern" }, { "text": "Wenen" }, { "text": "Praag" }] },
+        { "prompt": "Hoe heet de ziekte waarbij het lichaam te weinig insuline maakt?", "options": [{ "text": "Diabetes", "correct": true }, { "text": "Bloedarmoede" }, { "text": "Astma" }, { "text": "Jicht" }] },
+        { "prompt": "In welke eeuw leefde Rembrandt?", "options": [{ "text": "De zeventiende eeuw", "correct": true }, { "text": "De vijftiende eeuw" }, { "text": "De zestiende eeuw" }, { "text": "De achttiende eeuw" }] },
+        { "prompt": "Welke van deze rivieren is de langste?", "options": [{ "text": "De Mississippi", "correct": true }, { "text": "De Donau" }, { "text": "De Rijn" }, { "text": "De Loire" }] },
+        { "prompt": "Welk van deze dieren is geen insect?", "options": [{ "text": "De spin", "correct": true }, { "text": "De mier" }, { "text": "De libel" }, { "text": "De kever" }] },
+        { "prompt": "Welke film speelt zich af op de maan Pandora?", "options": [{ "text": "Avatar", "correct": true }, { "text": "Dune" }, { "text": "Interstellar" }, { "text": "Alien" }] },
+        { "prompt": "Hoe vaak heeft het Nederlands mannenelftal het WK voetbal gewonnen?", "options": [{ "text": "Nooit", "correct": true }, { "text": "Een keer" }, { "text": "Twee keer" }, { "text": "Drie keer" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel toeschouwers passen er ongeveer in stadion De Kuip?", "answer": 51000, "unit": "toeschouwers" },
+        { "prompt": "Hoeveel meter hoog is de Vaalserberg?", "answer": 322, "unit": "meter" },
+        { "prompt": "Hoe oud werd Jeanne Calment, de oudste mens ooit?", "answer": 122, "unit": "jaar" },
+        { "prompt": "Hoeveel strepen heeft de vlag van de Verenigde Staten?", "answer": 13, "unit": "strepen" },
+        { "prompt": "Hoeveel kilo weegt een volwassen gorillamannetje ongeveer?", "answer": 180, "unit": "kilo" },
+        { "prompt": "Hoeveel verdiepingen telt het Empire State Building?", "answer": 102, "unit": "verdiepingen" },
+        { "prompt": "Hoeveel kilometer lang is de grens tussen Nederland en Belgie ongeveer?", "answer": 450, "unit": "kilometer" },
+        { "prompt": "Hoeveel dagen is een koe drachtig?", "answer": 283, "unit": "dagen" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Paardenbloem",
+        "Rambo",
+        "Stokbrood",
+        "Berenmuts",
+        "Ree",
+        "Deltavlieger",
+        "Schoolreisje",
+        "Lappendeken",
+        "Popcornmachine",
+        "Robotstofzuiger",
+        "Planetarium",
+        "Panter",
+        "Chocolademelk",
+        "Pudding",
+        "Edelsmid",
+        "Marina Bay Sands",
+        "Playmobil",
+        "Meditatie",
+        "Hordelopen",
+        "Lobbyist",
+        "Vikingschip",
+        "Luiaard",
+        "Lego",
+        "Verlovingsring",
+        "Garfield",
+        "Rodeorijder",
+        "Verlengsnoer",
+        "Hondenschool",
+        "Faillissement",
+        "Plato",
+        "Captain America",
+        "Overstroming",
+        "Miereneter",
+        "Zelfrijdende auto",
+        "Pokemon",
+        "Kiespijn",
+        "The Matrix",
+        "Spierpijn",
+        "Minotaurus",
+        "Griffier"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Pokemon?", "answers": [{ "text": "Pikachu", "aliases": ["Pika"] }, { "text": "Pokeballen", "aliases": ["Pokebal", "Vangen"] }, { "text": "Ash", "aliases": ["Ash Ketchum"] }, { "text": "Nintendo", "aliases": ["Game Boy", "Spelletjes"] }] },
+        { "prompt": "Wat weet je over Rotterdam?", "answers": [{ "text": "Erasmusbrug", "aliases": ["De Zwaan"] }, { "text": "Haven", "aliases": ["Grootste haven van Europa"] }, { "text": "Feyenoord", "aliases": ["De Kuip"] }, { "text": "Euromast", "aliases": ["Markthal", "Kubuswoningen"] }] },
+        { "prompt": "Wat weet je over de Grand Canyon?", "answers": [{ "text": "Arizona", "aliases": ["Amerika", "Verenigde Staten"] }, { "text": "Colorado", "aliases": ["De Colorado-rivier"] }, { "text": "Diepe kloof", "aliases": ["Kloof", "Ravijn"] }, { "text": "Rode rotsen", "aliases": ["Rotsen", "Uitzicht"] }] },
+        { "prompt": "Wat weet je over Cleopatra?", "answers": [{ "text": "Egypte", "aliases": ["Koningin van Egypte", "Farao"] }, { "text": "Julius Caesar", "aliases": ["Caesar", "Marcus Antonius"] }, { "text": "Slang", "aliases": ["Adder", "Beet van een slang"] }, { "text": "Schoonheid", "aliases": ["Mooi", "Elizabeth Taylor"] }] },
+        { "prompt": "Wat weet je over zebra's?", "answers": [{ "text": "Strepen", "aliases": ["Zwart-wit", "Zwart en wit"] }, { "text": "Afrika", "aliases": ["Savanne"] }, { "text": "Paardachtig", "aliases": ["Lijkt op een paard", "Paard"] }, { "text": "Kuddes", "aliases": ["Kudde", "Leeuwen jagen erop"] }] },
+        { "prompt": "Wat weet je over Pablo Picasso?", "answers": [{ "text": "Spanje", "aliases": ["Spaans", "Malaga"] }, { "text": "Kubisme", "aliases": ["Blokken", "Vierkante gezichten"] }, { "text": "Guernica", "aliases": ["Les Demoiselles d'Avignon"] }, { "text": "Parijs", "aliases": ["Frankrijk"] }] },
+        { "prompt": "Wat weet je over Nieuw-Zeeland?", "answers": [{ "text": "Kiwi", "aliases": ["Kiwi's"] }, { "text": "Maori", "aliases": ["Haka"] }, { "text": "Lord of the Rings", "aliases": ["Hobbiton", "Hobbits"] }, { "text": "Schapen", "aliases": ["Veel schapen"] }] },
+        { "prompt": "Wat weet je over de Keukenhof?", "answers": [{ "text": "Tulpen", "aliases": ["Bloemen", "Bollen"] }, { "text": "Lisse", "aliases": ["Bollenstreek"] }, { "text": "Voorjaar", "aliases": ["Lente", "Maart tot mei"] }, { "text": "Toeristen", "aliases": ["Bezoekers"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke vogel brengt volgens het verhaal de baby's?", "difficulty": "easy", "answers": [{ "text": "De ooievaar", "aliases": ["Ooievaar"] }] },
+        { "prompt": "Welke dag van de week is naar de zon genoemd?", "difficulty": "easy", "answers": [{ "text": "Zondag" }] },
+        { "prompt": "Welke kleur krijg je als je rood en wit mengt?", "difficulty": "easy", "answers": [{ "text": "Roze" }] },
+        { "prompt": "Hoe heet de oudste dochter van koning Willem-Alexander?", "difficulty": "easy", "answers": [{ "text": "Amalia", "aliases": ["Catharina-Amalia", "Prinses Amalia"] }] },
+        { "prompt": "Wat voor dier is Nijntje?", "difficulty": "easy", "answers": [{ "text": "Een konijn", "aliases": ["Konijn"] }] },
+        { "prompt": "Wat is de hoofdstad van Honduras?", "difficulty": "hard", "answers": [{ "text": "Tegucigalpa" }] },
+        { "prompt": "Welke Oostenrijkse componist schreef de Unvollendete, de onvoltooide symfonie?", "difficulty": "hard", "answers": [{ "text": "Franz Schubert", "aliases": ["Schubert"] }] },
+        { "prompt": "Welke rivier stroomt door Warschau?", "difficulty": "hard", "answers": [{ "text": "De Weichsel", "aliases": ["Weichsel", "Wisla"] }] },
+        { "prompt": "Welke Russische kunstenaar schilderde het Zwarte vierkant?", "difficulty": "hard", "answers": [{ "text": "Kazimir Malevitsj", "aliases": ["Malevitsj", "Malevich"] }] },
+        { "prompt": "Hoe heet het hoefijzervormige botje in de hals dat als enige bot aan geen ander bot vastzit?", "difficulty": "hard", "answers": [{ "text": "Het tongbeen", "aliases": ["Tongbeen"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Donald Duck?", "answers": [{ "text": "Een eend", "aliases": ["Eend"] }] },
+        { "prompt": "Welke Amerikaanse stad heeft de bijnaam The Big Easy?", "answers": [{ "text": "New Orleans" }] },
+        { "prompt": "Welke Nederlandse schaatsster won in 1998 in Nagano goud op de 1000 en de 1500 meter?", "answers": [{ "text": "Marianne Timmer", "aliases": ["Timmer"] }] },
+        { "prompt": "Van de bladeren van welke boom leeft de koala?", "answers": [{ "text": "De eucalyptus", "aliases": ["Eucalyptus"] }] },
+        { "prompt": "Welke Italiaanse schrijver bedacht Pinokkio?", "answers": [{ "text": "Carlo Collodi", "aliases": ["Collodi"] }] },
+        { "prompt": "Welke Duitse raketgeleerde bouwde de V2 en later de Saturnus V-raket?", "answers": [{ "text": "Wernher von Braun", "aliases": ["Von Braun"] }] },
+        { "prompt": "In welke kleur spelen de Nederlandse sportploegen?", "answers": [{ "text": "Oranje" }] },
+        { "prompt": "Welke Engelse voetbalclub speelt zijn thuiswedstrijden op Anfield?", "answers": [{ "text": "Liverpool", "aliases": ["Liverpool FC"] }] },
+        { "prompt": "Welke Amerikaanse schrijver schreef De vanger in het graan?", "answers": [{ "text": "J.D. Salinger", "aliases": ["Salinger"] }] }
+      ]
+    }
+  ]
+}

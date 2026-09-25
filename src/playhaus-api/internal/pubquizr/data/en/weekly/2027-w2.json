@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w2",
+  "title": "Weekly quiz 2 2027",
+  "description": "The weekly quiz of Wednesday 13 January 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the wide estuary between Buenos Aires and Montevideo called?", "category": "Geography", "answers": [{ "text": "The River Plate", "aliases": ["Rio de la Plata", "River Plate"] }] },
+        { "prompt": "With which organs do fish take oxygen from the water?", "category": "Science", "answers": [{ "text": "Gills", "aliases": ["The gills"] }] },
+        { "prompt": "What was the name of the man who shot William of Orange in Delft in 1584?", "category": "History", "answers": [{ "text": "Balthasar Gerards", "aliases": ["Gerards"] }] },
+        { "prompt": "Which Dutch goalkeeper came on especially for the penalty shoot-out against Costa Rica at the 2014 World Cup?", "category": "Sport", "answers": [{ "text": "Tim Krul", "aliases": ["Krul"] }] },
+        { "prompt": "In which film series does Tom Cruise play the secret agent Ethan Hunt?", "category": "Film", "answers": [{ "text": "Mission: Impossible", "aliases": ["Mission Impossible"] }] },
+        { "prompt": "Which Dutch singer and comedian sang Mag ik dan bij jou?", "category": "Music", "answers": [{ "text": "Claudia de Breij", "aliases": ["De Breij"] }] },
+        { "prompt": "In which South Holland town is a cheese market held by the town hall on summer Thursdays?", "category": "The Netherlands", "answers": [{ "text": "Gouda" }] },
+        { "prompt": "Which French fashion designer made a dress based on Mondrian's paintings in 1965?", "category": "Art", "answers": [{ "text": "Yves Saint Laurent", "aliases": ["Saint Laurent", "YSL"] }] },
+        { "prompt": "What does the Italian arrivederci mean?", "category": "Language", "answers": [{ "text": "Goodbye", "aliases": ["See you", "Until we meet again"] }] },
+        { "prompt": "What is the Greek yoghurt sauce with cucumber and garlic called?", "category": "Food", "answers": [{ "text": "Tzatziki" }] },
+        { "prompt": "Which Microsoft program for video calling shut down in 2025?", "category": "Technology", "answers": [{ "text": "Skype" }] },
+        { "prompt": "Which tree do acorns grow on?", "category": "Nature", "answers": [{ "text": "The oak", "aliases": ["Oak", "Oak tree"] }] },
+        { "prompt": "What is the second largest city in Denmark?", "category": "Geography", "answers": [{ "text": "Aarhus" }] },
+        { "prompt": "Which Dutch admiral was killed in the naval battle of Scheveningen in 1653?", "category": "History", "answers": [{ "text": "Maarten Tromp", "aliases": ["Tromp", "Maarten Harpertsz Tromp"] }] },
+        { "prompt": "What is an angle of exactly ninety degrees called?", "category": "Science", "answers": [{ "text": "A right angle", "aliases": ["Right angle"] }] },
+        { "prompt": "Which American singer had the hit Uptown Funk with Mark Ronson?", "category": "Music", "answers": [{ "text": "Bruno Mars" }] },
+        { "prompt": "In which 1979 film does a creature hunt the crew of the spaceship Nostromo?", "category": "Film", "answers": [{ "text": "Alien" }] },
+        { "prompt": "Which fruit is real English marmalade made from?", "category": "Food", "answers": [{ "text": "The orange", "aliases": ["Orange", "Oranges", "Seville orange"] }] },
+        { "prompt": "What is the Dutch system that lets you pay in online shops straight from your bank called?", "category": "Technology", "answers": [{ "text": "iDEAL", "aliases": ["Ideal"] }] },
+        { "prompt": "Which punctuation mark do you put after an exclamation?", "category": "Language", "answers": [{ "text": "An exclamation mark", "aliases": ["Exclamation mark", "Exclamation point"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities lies closest to the equator?", "options": [{ "text": "Nairobi", "correct": true }, { "text": "Cairo" }, { "text": "Johannesburg" }, { "text": "Casablanca" }] },
+        { "prompt": "Which fish can give electric shocks?", "options": [{ "text": "The electric eel", "correct": true }, { "text": "The piranha" }, { "text": "The catfish" }, { "text": "The carp" }] },
+        { "prompt": "Which writer wrote the Dutch Kameleon books?", "options": [{ "text": "Hotze de Roos", "correct": true }, { "text": "Paul Biegel" }, { "text": "Annie M.G. Schmidt" }, { "text": "Carry Slee" }] },
+        { "prompt": "Which of these countries is in Central America?", "options": [{ "text": "Costa Rica", "correct": true }, { "text": "Colombia" }, { "text": "Venezuela" }, { "text": "Ecuador" }] },
+        { "prompt": "Which of these diseases mainly affects the lungs?", "options": [{ "text": "Tuberculosis", "correct": true }, { "text": "Hepatitis" }, { "text": "Meningitis" }, { "text": "Osteoarthritis" }] },
+        { "prompt": "Which Dutch prime minister was nicknamed Teflon Mark?", "options": [{ "text": "Mark Rutte", "correct": true }, { "text": "Jan Peter Balkenende" }, { "text": "Wim Kok" }, { "text": "Ruud Lubbers" }] },
+        { "prompt": "Which of these rivers flows into the Arctic Ocean?", "options": [{ "text": "The Ob", "correct": true }, { "text": "The Volga" }, { "text": "The Danube" }, { "text": "The Dnieper" }] },
+        { "prompt": "Which of these birds lays blue eggs?", "options": [{ "text": "The song thrush", "correct": true }, { "text": "The chicken" }, { "text": "The gull" }, { "text": "The duck" }] },
+        { "prompt": "In which film does Meryl Streep play the feared editor of a fashion magazine?", "options": [{ "text": "The Devil Wears Prada", "correct": true }, { "text": "Mamma Mia" }, { "text": "The Iron Lady" }, { "text": "Sophie's Choice" }] },
+        { "prompt": "Which Dutch cyclist won the 2017 Giro d'Italia?", "options": [{ "text": "Tom Dumoulin", "correct": true }, { "text": "Steven Kruijswijk" }, { "text": "Bauke Mollema" }, { "text": "Wout Poels" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is Milan Cathedral?", "answer": 108, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Mississippi?", "answer": 3730, "unit": "kilometres" },
+        { "prompt": "About how many countries are there in Asia?", "answer": 48, "unit": "countries" },
+        { "prompt": "How old was Vincent van Gogh when he died?", "answer": 37, "unit": "years" },
+        { "prompt": "What percentage of a watermelon is water?", "answer": 92, "unit": "percent" },
+        { "prompt": "How many Olympic gold medals did Ireen Wust win?", "answer": 6, "unit": "medals" },
+        { "prompt": "About how many grams does a tennis ball weigh?", "answer": 58, "unit": "grams" },
+        { "prompt": "In which year did the Zeeland Bridge open?", "answer": 1965 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Moose",
+        "Cameraman",
+        "Matchbox",
+        "Guard of honour",
+        "Darts",
+        "Piet Hein",
+        "Kneading dough",
+        "Roofer",
+        "Barista",
+        "Lighter",
+        "Blackboard",
+        "Dominoes",
+        "Handball",
+        "Homer Simpson",
+        "Donald Duck",
+        "Sleep mask",
+        "Leaning Tower of Pisa",
+        "Barn",
+        "Musical chairs",
+        "Budgie",
+        "The Jungle Book",
+        "Rebus",
+        "Wok",
+        "Barack Obama",
+        "Vegan",
+        "Marble",
+        "Matilda",
+        "Dead Sea",
+        "Winemaker",
+        "Ice sailing",
+        "Screenshot",
+        "Colander",
+        "Boiled egg",
+        "Draughts",
+        "Minibar",
+        "Pilates",
+        "Agatha Christie",
+        "Burrito",
+        "Tax office",
+        "Black-tailed godwit"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Denmark?", "answers": [{ "text": "Copenhagen", "aliases": ["The capital Copenhagen"] }, { "text": "Lego", "aliases": ["Legoland"] }, { "text": "The Little Mermaid", "aliases": ["Mermaid", "Hans Christian Andersen"] }, { "text": "Vikings", "aliases": ["Danish pastry", "Bicycles"] }] },
+        { "prompt": "What do you know about Tom Cruise?", "answers": [{ "text": "Top Gun", "aliases": ["Maverick"] }, { "text": "Mission: Impossible", "aliases": ["Mission Impossible", "Ethan Hunt"] }, { "text": "Scientology", "aliases": ["Church of Scientology"] }, { "text": "Stunts", "aliases": ["Does his own stunts", "Planes"] }] },
+        { "prompt": "What do you know about mushrooms?", "answers": [{ "text": "Autumn", "aliases": ["In the woods"] }, { "text": "Fly agaric", "aliases": ["Red with white spots"] }, { "text": "Poisonous", "aliases": ["Poison", "Not all edible"] }, { "text": "Fungi", "aliases": ["Fungus", "Spores"] }] },
+        { "prompt": "What do you know about the United Nations?", "answers": [{ "text": "New York", "aliases": ["Headquarters in New York"] }, { "text": "Blue helmets", "aliases": ["Peacekeepers"] }, { "text": "Secretary-General", "aliases": ["Antonio Guterres", "Kofi Annan"] }, { "text": "Almost every country", "aliases": ["193 countries", "Member states"] }] },
+        { "prompt": "What do you know about Harry Houdini?", "answers": [{ "text": "Escapes", "aliases": ["Escape artist"] }, { "text": "Magician", "aliases": ["Illusionist"] }, { "text": "Handcuffs", "aliases": ["Chains", "Water tank"] }, { "text": "America", "aliases": ["Hungary", "Budapest"] }] },
+        { "prompt": "What do you know about whales?", "answers": [{ "text": "Mammals", "aliases": ["Mammal", "Not a fish"] }, { "text": "Blue whale", "aliases": ["Largest animal"] }, { "text": "Blowing", "aliases": ["Spout", "Blowhole"] }, { "text": "Singing", "aliases": ["Whale song", "Sounds"] }] },
+        { "prompt": "What do you know about Tokyo?", "answers": [{ "text": "Japan", "aliases": ["Capital of Japan"] }, { "text": "Huge population", "aliases": ["Biggest city", "Crowded"] }, { "text": "Metro", "aliases": ["Trains", "Shinkansen"] }, { "text": "Olympic Games", "aliases": ["2021 Games"] }] },
+        { "prompt": "What do you know about the Eurovision Song Contest?", "answers": [{ "text": "Eurovision", "aliases": ["Europe"] }, { "text": "Douze points", "aliases": ["Twelve points", "Points"] }, { "text": "ABBA", "aliases": ["Waterloo"] }, { "text": "Loreen", "aliases": ["Euphoria", "Duncan Laurence"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is a young sheep called?", "difficulty": "easy", "answers": [{ "text": "A lamb", "aliases": ["Lamb"] }] },
+        { "prompt": "What does a newborn baby drink?", "difficulty": "easy", "answers": [{ "text": "Milk", "aliases": ["Breast milk"] }] },
+        { "prompt": "Which black songbird with an orange beak often sings in the garden in the evening?", "difficulty": "easy", "answers": [{ "text": "The blackbird", "aliases": ["Blackbird"] }] },
+        { "prompt": "What is the symbol of the Olympic Games?", "difficulty": "easy", "answers": [{ "text": "The Olympic rings", "aliases": ["Rings", "Five rings"] }] },
+        { "prompt": "What is the name of the boy in the fairy tale who climbs a giant beanstalk?", "difficulty": "easy", "answers": [{ "text": "Jack", "aliases": ["Jack and the Beanstalk"] }] },
+        { "prompt": "Which German painter made Wanderer above the Sea of Fog?", "difficulty": "hard", "answers": [{ "text": "Caspar David Friedrich", "aliases": ["Friedrich"] }] },
+        { "prompt": "Which Russian composer and pianist wrote the famous Second Piano Concerto in C minor?", "difficulty": "hard", "answers": [{ "text": "Sergei Rachmaninoff", "aliases": ["Rachmaninoff", "Rachmaninov"] }] },
+        { "prompt": "Which element has the chemical symbol Ge?", "difficulty": "hard", "answers": [{ "text": "Germanium" }] },
+        { "prompt": "Which river flows through Seville?", "difficulty": "hard", "answers": [{ "text": "The Guadalquivir", "aliases": ["Guadalquivir"] }] },
+        { "prompt": "Which English queen was the daughter of Henry VIII and Catherine of Aragon?", "difficulty": "hard", "answers": [{ "text": "Mary I", "aliases": ["Bloody Mary", "Mary Tudor"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the name of the little pink pig who is friends with Winnie the Pooh?", "answers": [{ "text": "Piglet", "aliases": ["Knorretje"] }] },
+        { "prompt": "Which French city is world-famous for its mustard?", "answers": [{ "text": "Dijon" }] },
+        { "prompt": "Which Irish poet won the Nobel Prize in Literature in 1923?", "answers": [{ "text": "W.B. Yeats", "aliases": ["Yeats", "William Butler Yeats"] }] },
+        { "prompt": "What kind of animal is Timon in The Lion King?", "answers": [{ "text": "A meerkat", "aliases": ["Meerkat"] }] },
+        { "prompt": "Which American state has Austin as its capital?", "answers": [{ "text": "Texas" }] },
+        { "prompt": "Which French physicist discovered in 1896 that uranium gives off radiation?", "answers": [{ "text": "Henri Becquerel", "aliases": ["Becquerel"] }] },
+        { "prompt": "What shape is a football pitch?", "answers": [{ "text": "A rectangle", "aliases": ["Rectangle", "Rectangular"] }] },
+        { "prompt": "Which Canadian singer broke through in 2002 with Complicated?", "answers": [{ "text": "Avril Lavigne", "aliases": ["Lavigne"] }] },
+        { "prompt": "Which Scottish philosopher wrote A Treatise of Human Nature?", "answers": [{ "text": "David Hume", "aliases": ["Hume"] }] }
+      ]
+    }
+  ]
+}

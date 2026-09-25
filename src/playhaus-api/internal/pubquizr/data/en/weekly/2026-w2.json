@@ -50,7 +50,7 @@
         { "prompt": "How many kilometres long is the Channel Tunnel?", "answer": 50, "unit": "kilometres" },
         { "prompt": "How many hours does a flight from Amsterdam to New York take, roughly?", "answer": 8, "unit": "hours" },
         { "prompt": "How many pieces does each player start with in a game of chess?", "answer": 16, "unit": "pieces" },
-        { "prompt": "In what year were the Olympic Games held in Berlin?", "answer": 1936, "unit": "" },
+        { "prompt": "In what year were the Olympic Games held in Berlin?", "answer": 1936 },
         { "prompt": "How many kilometres per hour can a cheetah reach at full sprint?", "answer": 112, "unit": "kilometres per hour" },
         { "prompt": "How many languages are spoken in the world, roughly?", "answer": 7000, "unit": "languages" },
         { "prompt": "How many grams does a football weigh?", "answer": 430, "unit": "grams" }
@@ -88,7 +88,17 @@
         "Colosseum",
         "The Great Wall of China",
         "Albert Einstein",
-        "Windscreen wiper"
+        "Windscreen wiper",
+        "Farmer Wants a Wife",
+        "Hostel",
+        "Snorkel mask",
+        "Queen Elizabeth",
+        "Achilles heel",
+        "Parliament",
+        "Grand piano",
+        "Keytar",
+        "Windbreak",
+        "Coup"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury", "aliases": ["quicksilver"] }] },
         { "prompt": "Which is the highest waterfall in the world?", "answers": [{ "text": "Angel Falls", "aliases": ["Salto Angel"] }] },
         { "prompt": "In which country is the ancient city of Petra?", "answers": [{ "text": "Jordan" }] },
-        { "prompt": "Which is the longest river in Europe?", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] }
+        { "prompt": "Which is the longest river in Europe?", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] },
+        { "prompt": "Which Greek hero had to perform twelve labours?", "answers": [{ "text": "Heracles", "aliases": ["Hercules", "Herakles"] }] },
+        { "prompt": "What is the capital of Burkina Faso?", "answers": [{ "text": "Ouagadougou" }] }
       ]
     }
   ]

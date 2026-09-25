@@ -88,7 +88,17 @@
         "Fairy tale",
         "Peanut butter",
         "Circus tent",
-        "The Statue of Liberty"
+        "The Statue of Liberty",
+        "Receptionist",
+        "Shopping trolley",
+        "French horn",
+        "Cotton bud",
+        "Crow",
+        "Dragon fruit",
+        "Open-plan office",
+        "Sandwich filling",
+        "Seamstress",
+        "Blackberry"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which element did the Curies discover first, in 1898?", "answers": [{ "text": "Polonium" }] },
         { "prompt": "Which metal has the highest melting point of all metals?", "answers": [{ "text": "Tungsten", "aliases": ["Wolfram"] }] },
         { "prompt": "Which Russian chemist arranged the elements into a table by their properties?", "answers": [{ "text": "Dmitri Mendeleev", "aliases": ["Mendeleev"] }] },
-        { "prompt": "Which painter invented cubism together with Georges Braque?", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] }
+        { "prompt": "Which painter invented cubism together with Georges Braque?", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] },
+        { "prompt": "Which French writer wrote Around the World in Eighty Days?", "answers": [{ "text": "Jules Verne", "aliases": ["Verne"] }] },
+        { "prompt": "Which Brazilian architect designed the main buildings of Brasilia?", "answers": [{ "text": "Oscar Niemeyer", "aliases": ["Niemeyer"] }] }
       ]
     }
   ]

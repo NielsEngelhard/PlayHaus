@@ -89,7 +89,17 @@
         "Tipi",
         "Verentooi",
         "Premiejager",
-        "Zweep"
+        "Zweep",
+        "Saloon",
+        "Sheriff",
+        "Revolverheld",
+        "Duel bij zonsopgang",
+        "Postkoets",
+        "Pony Express",
+        "Goudzoeker",
+        "Veedrijver",
+        "Kampvuurbonen",
+        "Mondharmonicaspeler"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Wat was de echte naam van Calamity Jane?", "answers": [{ "text": "Martha Jane Cannary", "aliases": ["Martha Jane Canary", "Martha Cannary", "Martha Canary"] }] },
         { "prompt": "Wie schoot Wild Bill Hickok in 1876 in een saloon in Deadwood van achteren neer?", "answers": [{ "text": "Jack McCall", "aliases": ["McCall"] }] },
         { "prompt": "Welke film uit 1903, een van de eerste met een verhaallijn, geldt als de eerste western?", "answers": [{ "text": "The Great Train Robbery" }] },
-        { "prompt": "In welke vallei op de grens van Arizona en Utah filmde John Ford veel van zijn westerns?", "answers": [{ "text": "Monument Valley" }] }
+        { "prompt": "In welke vallei op de grens van Arizona en Utah filmde John Ford veel van zijn westerns?", "answers": [{ "text": "Monument Valley" }] },
+        { "prompt": "Welke vuurgevecht van 1881 bij een veestal in Tombstone werd wereldberoemd?", "answers": [{ "text": "Het vuurgevecht bij de O.K. Corral", "aliases": ["O.K. Corral", "OK Corral"] }] },
+        { "prompt": "Onder welke naam werd de revolverheld Henry McCarty bekend?", "answers": [{ "text": "Billy the Kid" }] }
       ]
     }
   ]

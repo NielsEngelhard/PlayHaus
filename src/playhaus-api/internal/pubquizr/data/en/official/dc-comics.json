@@ -89,7 +89,17 @@
         "Chemical vat",
         "Playing card",
         "Mallet",
-        "Crowbar"
+        "Crowbar",
+        "Batmobile",
+        "Superman cape",
+        "Kryptonite",
+        "Gotham City",
+        "Daily Planet",
+        "Lasso of Truth",
+        "Penguin with umbrella",
+        "Catwoman",
+        "Robin",
+        "The Flash"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Who is the editor in chief of the Daily Planet?", "answers": [{ "text": "Perry White", "aliases": ["White"] }] },
         { "prompt": "Which tyrant rules the planet Apokolips?", "answers": [{ "text": "Darkseid" }] },
         { "prompt": "Which one-eyed mercenary in orange and blue armour is really called Slade Wilson?", "answers": [{ "text": "Deathstroke", "aliases": ["Deathstroke the Terminator"] }] },
-        { "prompt": "Who is the queen of the Amazons and the mother of Wonder Woman?", "answers": [{ "text": "Hippolyta", "aliases": ["Queen Hippolyta"] }] }
+        { "prompt": "Who is the queen of the Amazons and the mother of Wonder Woman?", "answers": [{ "text": "Hippolyta", "aliases": ["Queen Hippolyta"] }] },
+        { "prompt": "What is Superman's birth name on his home planet?", "answers": [{ "text": "Kal-El" }] },
+        { "prompt": "What is the name of the owner of LexCorp and arch-enemy of Superman?", "answers": [{ "text": "Lex Luthor", "aliases": ["Luthor"] }] }
       ]
     }
   ]

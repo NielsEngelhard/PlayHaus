@@ -88,7 +88,17 @@
         "Sherlock Holmes",
         "Vending machine",
         "The moon landing",
-        "Hypnosis"
+        "Hypnosis",
+        "Nightingale",
+        "Swallow",
+        "Easter Island",
+        "Alpaca",
+        "Cristiano Ronaldo",
+        "Spare ribs",
+        "Cheeseburger",
+        "Pillory",
+        "Dimples",
+        "Wheel of Fortune"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury", "aliases": ["Quicksilver"] }] },
         { "prompt": "Which country gave the Statue of Liberty to the United States?", "answers": [{ "text": "France" }] },
         { "prompt": "In which year did the Berlin Wall come down?", "answers": [{ "text": "1989" }] },
-        { "prompt": "Which is the largest island in the Mediterranean Sea?", "answers": [{ "text": "Sicily" }] }
+        { "prompt": "Which is the largest island in the Mediterranean Sea?", "answers": [{ "text": "Sicily" }] },
+        { "prompt": "What is the currency of the United Kingdom called?", "answers": [{ "text": "The pound", "aliases": ["Pound", "Pound sterling"] }] },
+        { "prompt": "Which Danish philosopher wrote Either/Or?", "answers": [{ "text": "Soren Kierkegaard", "aliases": ["Kierkegaard"] }] }
       ]
     }
   ]

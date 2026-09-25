@@ -88,7 +88,17 @@
         "Mona Lisa",
         "Rollerskates",
         "Oerwoud",
-        "Kompas"
+        "Kompas",
+        "Omelet",
+        "Vorkheftruck",
+        "Family Guy",
+        "Kinderstoel",
+        "Fidget spinner",
+        "Regenworm",
+        "Hofdame",
+        "Spartacus",
+        "Bever",
+        "Yoda"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welke Byzantijnse keizer liet de Hagia Sophia bouwen?", "answers": [{ "text": "Justinianus" }] },
         { "prompt": "Welk insect heeft het sterkste gebit naar verhouding en kan bladeren snijden?", "answers": [{ "text": "De bladsnijdersmier", "aliases": ["Bladsnijdersmier"] }] },
         { "prompt": "Welke plant ter wereld bloeit maar een keer in enkele tientallen jaren en sterft daarna?", "answers": [{ "text": "De agave", "aliases": ["Agave"] }] },
-        { "prompt": "Hoe heet de grootste vulkaan van het Europese vasteland?", "answers": [{ "text": "De Etna", "aliases": ["Etna"] }] }
+        { "prompt": "Hoe heet de grootste vulkaan van het Europese vasteland?", "answers": [{ "text": "De Etna", "aliases": ["Etna"] }] },
+        { "prompt": "Welke ruimtetelescoop werd in 1990 door de spaceshuttle in een baan om de aarde gebracht?", "answers": [{ "text": "Hubble", "aliases": ["De Hubble-telescoop"] }] },
+        { "prompt": "Welke stad is volgens de grondwet de hoofdstad van Bolivia?", "answers": [{ "text": "Sucre" }] }
       ]
     }
   ]

@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres is the highest commercial bungee jump in the world?", "answer": 233, "unit": "metres" },
         { "prompt": "How many days did the Dutch army hold out in May 1940?", "answer": 5, "unit": "days" },
-        { "prompt": "In what year did the Netherlands introduce the postcode?", "answer": 1978, "unit": "" },
+        { "prompt": "In what year did the Netherlands introduce the postcode?", "answer": 1978 },
         { "prompt": "At how many kilometres per hour does a storm officially become a hurricane?", "answer": 119, "unit": "kilometres per hour" },
         { "prompt": "How many stars can you see with the naked eye on a clear night?", "answer": 2500, "unit": "stars" },
         { "prompt": "How many pipes does the great organ of the Bavo church in Haarlem have?", "answer": 5000, "unit": "pipes" },
@@ -88,7 +88,17 @@
         "The Wizard of Oz",
         "Gravity",
         "Morse code",
-        "Mount Rushmore"
+        "Mount Rushmore",
+        "Creme brulee",
+        "Truffle pig",
+        "Narwhal",
+        "Mosquito bite",
+        "Balloon arch",
+        "Tetris",
+        "Squid Game",
+        "Rice wine",
+        "D-Day",
+        "Job interview"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "In which Dutch village does the Airborne Museum stand?", "answers": [{ "text": "Oosterbeek" }] },
         { "prompt": "Which country has more islands than any other in the world?", "answers": [{ "text": "Sweden" }] },
         { "prompt": "Which element has the chemical symbol K?", "answers": [{ "text": "Potassium" }] },
-        { "prompt": "Who painted The Persistence of Memory, with its melting clocks?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] }
+        { "prompt": "Who painted The Persistence of Memory, with its melting clocks?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] },
+        { "prompt": "Which American city in the Nevada desert is famous for its casinos?", "answers": [{ "text": "Las Vegas", "aliases": ["Vegas"] }] },
+        { "prompt": "Which French chemist gave oxygen its name and died on the guillotine?", "answers": [{ "text": "Antoine Lavoisier", "aliases": ["Lavoisier"] }] }
       ]
     }
   ]

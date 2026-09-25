@@ -89,7 +89,17 @@
         "Slotgracht",
         "Rat",
         "Nachtjapon",
-        "Bloedtransfusie"
+        "Bloedtransfusie",
+        "Knoflookslinger",
+        "Houten staak",
+        "Doodkist openen",
+        "Vleermuisvlucht",
+        "Bloedzuiger",
+        "Spiegel zonder weerspiegeling",
+        "Transsylvanie",
+        "Zonlicht",
+        "Twilight",
+        "Nachtelijke bezoeker"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Hoe heet de vampiergraaf uit de film Nosferatu uit 1922?", "answers": [{ "text": "Graaf Orlok", "aliases": ["Orlok", "Count Orlok"] }] },
         { "prompt": "Welke kleine dingen houden een vampier in de Slavische folklore op, omdat hij ze eerst allemaal moet tellen als je ze op de grond strooit?", "answers": [{ "text": "Zaadjes", "aliases": ["Papaverzaad", "Korrels", "Gierst", "Zaden"] }] },
         { "prompt": "Wat is de familienaam van de Originals, de oervampiers uit The Vampire Diaries en de spin-off The Originals?", "answers": [{ "text": "Mikaelson" }] },
-        { "prompt": "Welke Duitse regisseur maakte Nosferatu the Vampyre uit 1979 met Klaus Kinski?", "answers": [{ "text": "Werner Herzog", "aliases": ["Herzog"] }] }
+        { "prompt": "Welke Duitse regisseur maakte Nosferatu the Vampyre uit 1979 met Klaus Kinski?", "answers": [{ "text": "Werner Herzog", "aliases": ["Herzog"] }] },
+        { "prompt": "In welk land ligt de streek Transsylvanie?", "answers": [{ "text": "Roemenie" }] },
+        { "prompt": "Welke Walachijse vorst, bijgenaamd de Spietser, zou model hebben gestaan voor Dracula?", "answers": [{ "text": "Vlad III", "aliases": ["Vlad Tepes", "Vlad de Spietser", "Vlad Dracula"] }] }
       ]
     }
   ]

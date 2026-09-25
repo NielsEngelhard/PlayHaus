@@ -47,13 +47,13 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In what year did Frozen come out?", "answer": 2013, "unit": "", "explanation": "The film came out in November 2013 and became the most watched animated film of its day." },
+        { "prompt": "In what year did Frozen come out?", "answer": 2013, "explanation": "The film came out in November 2013 and became the most watched animated film of its day." },
         { "prompt": "How many minutes does Snow White and the Seven Dwarfs last?", "answer": 83, "unit": "minutes" },
-        { "prompt": "In what year did Snow White and the Seven Dwarfs come out?", "answer": 1937, "unit": "", "explanation": "The first full-length animated feature film ever released." },
+        { "prompt": "In what year did Snow White and the Seven Dwarfs come out?", "answer": 1937, "explanation": "The first full-length animated feature film ever released." },
         { "prompt": "How many minutes does Frozen last?", "answer": 102, "unit": "minutes" },
-        { "prompt": "In what year did The Little Mermaid come out?", "answer": 1989, "unit": "" },
+        { "prompt": "In what year did The Little Mermaid come out?", "answer": 1989 },
         { "prompt": "How many official Disney princesses are there in the franchise line-up?", "answer": 12, "unit": "princesses" },
-        { "prompt": "In what year did Moana come out?", "answer": 2016, "unit": "" },
+        { "prompt": "In what year did Moana come out?", "answer": 2016 },
         { "prompt": "How many minutes does Beauty and the Beast last?", "answer": 84, "unit": "minutes" }
       ]
     },
@@ -89,7 +89,17 @@
         "Under the Sea",
         "A Whole New World",
         "Mrs Potts",
-        "Canoe"
+        "Canoe",
+        "Snow White's apple",
+        "Ariel",
+        "Jasmine",
+        "Tiana",
+        "Merida",
+        "Mulan's sword",
+        "Rapunzel's hair",
+        "Magic mirror",
+        "True love's kiss",
+        "Midnight"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which Disney princess film features the song Colors of the Wind?", "answers": [{ "text": "Pocahontas" }] },
         { "prompt": "Which Hans Christian Andersen fairytale is Frozen loosely based on?", "answers": [{ "text": "The Snow Queen", "aliases": ["Snow Queen"] }] },
         { "prompt": "What is the prince in The Princess and the Frog called?", "answers": [{ "text": "Naveen" }] },
-        { "prompt": "What is Cinderella's cat called?", "answers": [{ "text": "Lucifer" }] }
+        { "prompt": "What is Cinderella's cat called?", "answers": [{ "text": "Lucifer" }] },
+        { "prompt": "What is the name of the crab who looks after Ariel in The Little Mermaid?", "answers": [{ "text": "Sebastian" }] },
+        { "prompt": "What is the name of the evil sea witch in The Little Mermaid?", "answers": [{ "text": "Ursula" }] }
       ]
     }
   ]

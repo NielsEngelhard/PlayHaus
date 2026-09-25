@@ -89,7 +89,17 @@
         "Watertoren",
         "Rangeerterrein",
         "Abonnement",
-        "Fiets"
+        "Fiets",
+        "Treinkaartje",
+        "Conducteursfluitje",
+        "Stoptrein",
+        "Spoorwegovergang",
+        "Rails",
+        "Goederenwagon",
+        "Slaaprijtuig",
+        "Oriënt-Express",
+        "Treinvertraging",
+        "Stationschef"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Hoe noem je een spoorlijn met een kleinere spoorwijdte dan de standaard?", "answers": [{ "text": "Smalspoor", "aliases": ["Smalspoorlijn"] }] },
         { "prompt": "Welke Duitse stad heeft het grootste station van Europa qua vloeroppervlak?", "answers": [{ "text": "Leipzig" }] },
         { "prompt": "Hoe heet de Belgische nationale spoorwegmaatschappij in het Nederlands?", "answers": [{ "text": "NMBS", "aliases": ["SNCB", "Nationale Maatschappij der Belgische Spoorwegen"] }] },
-        { "prompt": "Welke ingenieur, beroemd om zijn hoge hoed, bouwde de Great Western Railway in Groot-Brittannie?", "answers": [{ "text": "Isambard Kingdom Brunel", "aliases": ["Brunel"] }] }
+        { "prompt": "Welke ingenieur, beroemd om zijn hoge hoed, bouwde de Great Western Railway in Groot-Brittannie?", "answers": [{ "text": "Isambard Kingdom Brunel", "aliases": ["Brunel"] }] },
+        { "prompt": "Welke tunnel verbindt Engeland met Frankrijk onder zee?", "answers": [{ "text": "De Kanaaltunnel", "aliases": ["Kanaaltunnel", "Eurotunnel", "Channel Tunnel"] }] },
+        { "prompt": "Welke Zwitserse tunnel, geopend in 2016, is de langste spoortunnel ter wereld?", "answers": [{ "text": "De Gotthard-basistunnel", "aliases": ["Gotthard-basistunnel", "Gotthard", "Gotthardtunnel"] }] }
       ]
     }
   ]

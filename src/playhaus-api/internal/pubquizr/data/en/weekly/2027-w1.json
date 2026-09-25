@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w1",
+  "title": "Weekly quiz 1 2027",
+  "description": "The weekly quiz of Wednesday 6 January 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which river flows through Dublin?", "category": "Geography", "answers": [{ "text": "The Liffey", "aliases": ["Liffey"] }] },
+        { "prompt": "What is the boundary between warm and cold air on a weather map called?", "category": "Science", "answers": [{ "text": "A front", "aliases": ["Front", "Weather front"] }] },
+        { "prompt": "Which Russian tsar was nicknamed the Terrible?", "category": "History", "answers": [{ "text": "Ivan IV", "aliases": ["Ivan the Terrible", "Ivan"] }] },
+        { "prompt": "Which Argentine won the 2022 World Cup as captain?", "category": "Sport", "answers": [{ "text": "Lionel Messi", "aliases": ["Messi"] }] },
+        { "prompt": "Which Mexican director made The Shape of Water?", "category": "Film", "answers": [{ "text": "Guillermo del Toro", "aliases": ["Del Toro"] }] },
+        { "prompt": "Which British singer had solo hits with Angels and Rock DJ?", "category": "Music", "answers": [{ "text": "Robbie Williams", "aliases": ["Robbie"] }] },
+        { "prompt": "In which village in Drenthe is the Hunebed Centre, next to the largest dolmen in the Netherlands?", "category": "The Netherlands", "answers": [{ "text": "Borger" }] },
+        { "prompt": "Which French artist made colourful paper cut-outs at the end of his life?", "category": "Art", "answers": [{ "text": "Henri Matisse", "aliases": ["Matisse"] }] },
+        { "prompt": "What is the name of the famous big dictionary of the Dutch language?", "category": "Language", "answers": [{ "text": "Van Dale", "aliases": ["The Dikke Van Dale"] }] },
+        { "prompt": "What are the fried Spanish dough sticks you dip into hot chocolate called?", "category": "Food", "answers": [{ "text": "Churros", "aliases": ["Churro"] }] },
+        { "prompt": "Which American company makes the MacBook?", "category": "Technology", "answers": [{ "text": "Apple" }] },
+        { "prompt": "Which mammal can live for more than two hundred years?", "category": "Nature", "answers": [{ "text": "The bowhead whale", "aliases": ["Bowhead whale", "Bowhead"] }] },
+        { "prompt": "Which African river flows through Bamako and Niamey?", "category": "Geography", "answers": [{ "text": "The Niger", "aliases": ["Niger"] }] },
+        { "prompt": "Which American president ordered the atomic bombs on Japan in 1945?", "category": "History", "answers": [{ "text": "Harry Truman", "aliases": ["Truman"] }] },
+        { "prompt": "What is a mixture in which a substance is completely dissolved, like sugar in water, called?", "category": "Science", "answers": [{ "text": "A solution", "aliases": ["Solution"] }] },
+        { "prompt": "Which Dutch DJ's real name is Tijs Verwest?", "category": "Music", "answers": [{ "text": "Tiesto" }] },
+        { "prompt": "What is the name of the little green one-eyed monster in Monsters, Inc.?", "category": "Film", "answers": [{ "text": "Mike Wazowski", "aliases": ["Mike"] }] },
+        { "prompt": "What is the sauce of mayonnaise with gherkins and capers you eat with fish called?", "category": "Food", "answers": [{ "text": "Tartar sauce", "aliases": ["Remoulade"] }] },
+        { "prompt": "Which video site has been owned by Google since 2006?", "category": "Technology", "answers": [{ "text": "YouTube" }] },
+        { "prompt": "To which word class do and, but and or belong?", "category": "Language", "answers": [{ "text": "Conjunctions", "aliases": ["Conjunction"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Spain?", "options": [{ "text": "Seville", "correct": true }, { "text": "Porto" }, { "text": "Toulouse" }, { "text": "Naples" }] },
+        { "prompt": "Which of these animals is not a cat?", "options": [{ "text": "The hyena", "correct": true }, { "text": "The lynx" }, { "text": "The puma" }, { "text": "The ocelot" }] },
+        { "prompt": "Which writer wrote the Dutch children's book Kruimeltje?", "options": [{ "text": "Chris van Abkoude", "correct": true }, { "text": "Annie M.G. Schmidt" }, { "text": "Thea Beckman" }, { "text": "Paul Biegel" }] },
+        { "prompt": "Which of these countries was part of Yugoslavia until 1991?", "options": [{ "text": "Slovenia", "correct": true }, { "text": "Slovakia" }, { "text": "Hungary" }, { "text": "Albania" }] },
+        { "prompt": "Which of these bones is in your arm?", "options": [{ "text": "The ulna", "correct": true }, { "text": "The fibula" }, { "text": "The shinbone" }, { "text": "The thigh bone" }] },
+        { "prompt": "Under which Dutch king was Thorbecke's new constitution of 1848 introduced?", "options": [{ "text": "William II", "correct": true }, { "text": "William I" }, { "text": "William III" }, { "text": "Louis Napoleon" }] },
+        { "prompt": "Which of these countries does the equator run through?", "options": [{ "text": "Gabon", "correct": true }, { "text": "Nigeria" }, { "text": "Egypt" }, { "text": "South Africa" }] },
+        { "prompt": "Which of these birds is not a waterbird?", "options": [{ "text": "The woodpecker", "correct": true }, { "text": "The grebe" }, { "text": "The coot" }, { "text": "The cormorant" }] },
+        { "prompt": "In which film does Tom Hanks, a boy of twelve, suddenly become an adult?", "options": [{ "text": "Big", "correct": true }, { "text": "Splash" }, { "text": "Cast Away" }, { "text": "Philadelphia" }] },
+        { "prompt": "Which Dutch athlete has won the most Olympic medals?", "options": [{ "text": "Ireen Wust", "correct": true }, { "text": "Sven Kramer" }, { "text": "Inge de Bruijn" }, { "text": "Anky van Grunsven" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the television tower in Berlin?", "answer": 368, "unit": "metres" },
+        { "prompt": "How many million kilometres is Mars from the earth when they are closest together?", "answer": 55, "unit": "million kilometres" },
+        { "prompt": "In how many countries is French an official language?", "answer": 29, "unit": "countries" },
+        { "prompt": "How many countries took part in the first modern Olympic Games in 1896?", "answer": 14, "unit": "countries" },
+        { "prompt": "How many kilometres long is the Western Scheldt Tunnel?", "answer": 6.6, "unit": "kilometres" },
+        { "prompt": "How old was Creme Puff, the oldest cat ever, when she died?", "answer": 38, "unit": "years" },
+        { "prompt": "How many eyes does a spider usually have?", "answer": 8, "unit": "eyes" },
+        { "prompt": "In which year did the Channel Tunnel between England and France open?", "answer": 1994 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Beauty and the Beast",
+        "Monopoly",
+        "Discus",
+        "Central Park",
+        "Ballot paper",
+        "Triathlon",
+        "Shawarma",
+        "Bassoon",
+        "Beautician",
+        "Elephant dung",
+        "Edmund Hillary",
+        "Rudder",
+        "Titanic film",
+        "Lentils",
+        "Earmuffs",
+        "Vintage car",
+        "Puberty",
+        "Willem Barentsz",
+        "Sale",
+        "Cyclops",
+        "Pancake house",
+        "Mullet",
+        "Accountant",
+        "Armin van Buuren",
+        "Martin Luther King",
+        "Hiking map",
+        "New Year's dive",
+        "Hay bale",
+        "Oboe",
+        "Oak tree",
+        "Drought",
+        "Tiramisu",
+        "Bike shed",
+        "Robin",
+        "Pencil case",
+        "Beatbox",
+        "King's Speech",
+        "Wrestling",
+        "Lasso",
+        "Paintbrush"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Wales?", "answers": [{ "text": "Dragon", "aliases": ["Red dragon"] }, { "text": "Rugby", "aliases": ["Rugby team"] }, { "text": "Cardiff", "aliases": ["The capital Cardiff"] }, { "text": "Welsh", "aliases": ["Own language", "Long place names"] }] },
+        { "prompt": "What do you know about Barcelona?", "answers": [{ "text": "Sagrada Familia", "aliases": ["Gaudi's church"] }, { "text": "FC Barcelona", "aliases": ["Barca", "Camp Nou", "Messi"] }, { "text": "Gaudi", "aliases": ["Park Guell"] }, { "text": "Ramblas", "aliases": ["Las Ramblas", "Beach"] }] },
+        { "prompt": "What do you know about astronauts?", "answers": [{ "text": "Spacesuit", "aliases": ["Helmet"] }, { "text": "Rocket", "aliases": ["Launch"] }, { "text": "Weightless", "aliases": ["Floating"] }, { "text": "Space station", "aliases": ["ISS", "Moon"] }] },
+        { "prompt": "What do you know about Elton John?", "answers": [{ "text": "Piano", "aliases": ["Pianist"] }, { "text": "Big glasses", "aliases": ["Glasses", "Wild costumes"] }, { "text": "Rocket Man", "aliases": ["Your Song", "Candle in the Wind"] }, { "text": "The Lion King", "aliases": ["Can You Feel the Love Tonight"] }] },
+        { "prompt": "What do you know about tigers?", "answers": [{ "text": "Stripes", "aliases": ["Orange with stripes"] }, { "text": "Asia", "aliases": ["India", "Siberia"] }, { "text": "Largest cat", "aliases": ["Big cat"] }, { "text": "Endangered", "aliases": ["Rare", "Extinction"] }] },
+        { "prompt": "What do you know about Dutch windmills?", "answers": [{ "text": "Kinderdijk", "aliases": ["Zaanse Schans"] }, { "text": "Wind", "aliases": ["Sails"] }, { "text": "Grinding grain", "aliases": ["Flour", "Corn mill"] }, { "text": "Pumping water", "aliases": ["Drainage mill", "Polder"] }] },
+        { "prompt": "What do you know about Mars?", "answers": [{ "text": "Red planet", "aliases": ["Red"] }, { "text": "Mars rovers", "aliases": ["Rover", "Perseverance", "Curiosity"] }, { "text": "Olympus Mons", "aliases": ["Highest volcano"] }, { "text": "Two moons", "aliases": ["Phobos", "Deimos"] }] },
+        { "prompt": "What do you know about IKEA?", "answers": [{ "text": "Sweden", "aliases": ["Swedish"] }, { "text": "Self-assembly", "aliases": ["Flat pack", "Allen key"] }, { "text": "Meatballs", "aliases": ["Restaurant"] }, { "text": "Blue and yellow", "aliases": ["Blue-yellow"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the house in which a beekeeper keeps his bees called?", "difficulty": "easy", "answers": [{ "text": "A beehive", "aliases": ["Beehive", "Hive"] }] },
+        { "prompt": "Which bird crows when the sun comes up?", "difficulty": "easy", "answers": [{ "text": "The rooster", "aliases": ["Rooster", "Cockerel"] }] },
+        { "prompt": "What do you measure with scales?", "difficulty": "easy", "answers": [{ "text": "Weight", "aliases": ["The weight"] }] },
+        { "prompt": "What is the name of the grey cartoon rabbit who always says: What's up, Doc?", "difficulty": "easy", "answers": [{ "text": "Bugs Bunny", "aliases": ["Bugs"] }] },
+        { "prompt": "Which red fruit has its seeds on the outside?", "difficulty": "easy", "answers": [{ "text": "The strawberry", "aliases": ["Strawberry"] }] },
+        { "prompt": "Which English engineer built the Rocket and is called the father of the railways?", "difficulty": "hard", "answers": [{ "text": "George Stephenson", "aliases": ["Stephenson"] }] },
+        { "prompt": "Which German composer wrote Also sprach Zarathustra?", "difficulty": "hard", "answers": [{ "text": "Richard Strauss", "aliases": ["Strauss"] }] },
+        { "prompt": "Which element has the chemical symbol Ti?", "difficulty": "hard", "answers": [{ "text": "Titanium" }] },
+        { "prompt": "Which river flows through Porto?", "difficulty": "hard", "answers": [{ "text": "The Douro", "aliases": ["Douro", "Duero"] }] },
+        { "prompt": "Which English king was nicknamed Longshanks?", "difficulty": "hard", "answers": [{ "text": "Edward I", "aliases": ["Edward the First", "Edward"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What are the names of Donald Duck's three nephews?", "answers": [{ "text": "Huey, Dewey and Louie", "aliases": ["Huey Dewey and Louie"] }] },
+        { "prompt": "On which Greek island are the white houses of Oia?", "answers": [{ "text": "Santorini", "aliases": ["Thira"] }] },
+        { "prompt": "Which English writer wrote Tess of the d'Urbervilles?", "answers": [{ "text": "Thomas Hardy", "aliases": ["Hardy"] }] },
+        { "prompt": "What do you say in English when someone sneezes?", "answers": [{ "text": "Bless you" }] },
+        { "prompt": "Which Italian football club from Turin plays in black and white striped shirts?", "answers": [{ "text": "Juventus", "aliases": ["Juve"] }] },
+        { "prompt": "Which French mathematician is the triangle of numbers giving the binomial coefficients named after?", "answers": [{ "text": "Blaise Pascal", "aliases": ["Pascal"] }] },
+        { "prompt": "Which shellfish can make a pearl?", "answers": [{ "text": "The oyster", "aliases": ["Oyster", "Pearl mussel"] }] },
+        { "prompt": "Which Canadian singer and poet wrote Hallelujah?", "answers": [{ "text": "Leonard Cohen", "aliases": ["Cohen"] }] },
+        { "prompt": "Which Russian writer wrote Dead Souls?", "answers": [{ "text": "Nikolai Gogol", "aliases": ["Gogol"] }] }
+      ]
+    }
+  ]
+}

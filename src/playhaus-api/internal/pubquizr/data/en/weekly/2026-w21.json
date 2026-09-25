@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres tall is the tallest statue in the world?", "answer": 182, "unit": "metres" },
         { "prompt": "How many wings does a bee have?", "answer": 4, "unit": "wings" },
-        { "prompt": "In what year did Reinier Paping win the coldest Elfstedentocht ever?", "answer": 1963, "unit": "" },
+        { "prompt": "In what year did Reinier Paping win the coldest Elfstedentocht ever?", "answer": 1963 },
         { "prompt": "How many kilometres is it by road from Amsterdam to Paris?", "answer": 500, "unit": "kilometres" },
         { "prompt": "How many players does a korfball team field?", "answer": 8, "unit": "players" },
         { "prompt": "How many years did it take to build St Peter's Basilica in Rome?", "answer": 120, "unit": "years" },
@@ -88,7 +88,17 @@
         "Gravity",
         "Casablanca",
         "The Cold War",
-        "Diplomat"
+        "Diplomat",
+        "Tennis racket",
+        "Candyfloss stall",
+        "Professor",
+        "Pilot",
+        "Sprinkler",
+        "Birthday candles",
+        "Mole",
+        "Campbell's soup can",
+        "Window cleaner",
+        "Court jester"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "What is the hardest natural substance on earth?", "answers": [{ "text": "Diamond", "aliases": ["A diamond"] }] },
         { "prompt": "In which country is the ancient rock city of Petra?", "answers": [{ "text": "Jordan" }] },
         { "prompt": "Which is the saltiest body of water in the world?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
-        { "prompt": "Who was the first woman to win a Nobel Prize?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] }
+        { "prompt": "Who was the first woman to win a Nobel Prize?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "Which continent has the most countries?", "answers": [{ "text": "Africa" }] },
+        { "prompt": "Which Hungarian doctor found that washing hands prevents childbed fever?", "answers": [{ "text": "Ignaz Semmelweis", "aliases": ["Semmelweis"] }] }
       ]
     }
   ]

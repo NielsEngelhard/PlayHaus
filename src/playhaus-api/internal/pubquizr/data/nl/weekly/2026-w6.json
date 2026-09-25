@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel letters telt het Griekse alfabet?", "answer": 24, "unit": "letters" },
         { "prompt": "Hoeveel kilometer breed is het Kanaal op zijn smalste punt?", "answer": 34, "unit": "kilometer" },
-        { "prompt": "In welk jaar werden de Nederlandse voetbalvrouwen Europees kampioen?", "answer": 2017, "unit": "" },
+        { "prompt": "In welk jaar werden de Nederlandse voetbalvrouwen Europees kampioen?", "answer": 2017 },
         { "prompt": "Met hoeveel letters begint een speler een partij Scrabble?", "answer": 7, "unit": "letters" },
         { "prompt": "Hoeveel meter boven de vloer hangt een basketbalring?", "answer": 3, "unit": "meter" },
         { "prompt": "Hoeveel botten heeft een haai?", "answer": 0, "unit": "botten", "explanation": "Het skelet van een haai bestaat van kop tot staart uit kraakbeen." },
@@ -88,7 +88,17 @@
         "De Nachtwacht",
         "Smid",
         "Val van de Berlijnse Muur",
-        "Origami"
+        "Origami",
+        "Theedoek",
+        "Idols",
+        "Wc-rol",
+        "Föhn",
+        "Kebab",
+        "Melkmachine",
+        "Tarotkaart",
+        "Panda",
+        "Badjas",
+        "Patagonie"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is de hoogste berg van Japan?", "answers": [{ "text": "De Fuji", "aliases": ["Fuji", "Fujiyama", "Mount Fuji"] }] },
         { "prompt": "Wat is het grootste Griekse eiland?", "answers": [{ "text": "Kreta" }] },
         { "prompt": "Wat is het diepste meer ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
-        { "prompt": "Welk metaal is als enige vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] }
+        { "prompt": "Welk metaal is als enige vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] },
+        { "prompt": "Hoe heet de grootste maan van Pluto?", "answers": [{ "text": "Charon" }] },
+        { "prompt": "Welke Mongoolse heerser stichtte in China de Yuan-dynastie?", "answers": [{ "text": "Koebilai Khan", "aliases": ["Kublai Khan", "Koeblai Khan"] }] }
       ]
     }
   ]

@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w13",
+  "title": "Weekquiz 13 2027",
+  "description": "De wekelijkse quiz van woensdag 31 maart 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Bij welke eilandengroep ten noorden van Sicilie hoort de vulkaan Stromboli?", "category": "Aardrijkskunde", "answers": [{ "text": "De Liparische Eilanden", "aliases": ["Liparische Eilanden", "Eolische Eilanden"] }] },
+        { "prompt": "Hoe heet het als ijzer met water en zuurstof bruin en brokkelig wordt?", "category": "Wetenschap", "answers": [{ "text": "Roesten", "aliases": ["Roest", "Oxidatie"] }] },
+        { "prompt": "Welke Nederlandse stad werd op 1 april 1572 door de watergeuzen ingenomen?", "category": "Geschiedenis", "answers": [{ "text": "Den Briel", "aliases": ["Brielle", "Briel"] }] },
+        { "prompt": "Welke Nederlandse schaatser won in 2014 in Sotsji goud op de 10 kilometer?", "category": "Sport", "answers": [{ "text": "Jorrit Bergsma", "aliases": ["Bergsma"] }] },
+        { "prompt": "Welke acteur speelde in 1971 Willy Wonka?", "category": "Film", "answers": [{ "text": "Gene Wilder", "aliases": ["Wilder"] }] },
+        { "prompt": "Welke Amerikaanse rockband scoorde in 1999 met Californication?", "category": "Muziek", "answers": [{ "text": "Red Hot Chili Peppers", "aliases": ["The Red Hot Chili Peppers", "Chili Peppers"] }] },
+        { "prompt": "Welke grote vuren worden met Pasen traditioneel in Twente en Drenthe aangestoken?", "category": "Nederland", "answers": [{ "text": "Paasvuren", "aliases": ["Paasvuur"] }] },
+        { "prompt": "Welke Florentijnse beeldhouwer maakte de vergulde bronzen deuren die de Poorten van het Paradijs heten?", "category": "Kunst", "answers": [{ "text": "Lorenzo Ghiberti", "aliases": ["Ghiberti"] }] },
+        { "prompt": "Hoe heet een grap die je uithaalt op de eerste dag van april?", "category": "Taal", "answers": [{ "text": "Een aprilgrap", "aliases": ["Aprilgrap", "Aprilvis"] }] },
+        { "prompt": "Hoe heet het Italiaanse paasbrood in de vorm van een duif?", "category": "Eten", "answers": [{ "text": "Colomba", "aliases": ["Colomba pasquale"] }] },
+        { "prompt": "Met welke dienst van Google kun je straten bekijken alsof je er zelf staat?", "category": "Techniek", "answers": [{ "text": "Street View", "aliases": ["Google Street View"] }] },
+        { "prompt": "Welke gele voorjaarsbloem heeft een bloem in de vorm van een trompet?", "category": "Natuur", "answers": [{ "text": "De narcis", "aliases": ["Narcis", "Paasbloem"] }] },
+        { "prompt": "Welk gebergte loopt als een ruggengraat door Italie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Apennijnen", "aliases": ["Apennijnen"] }] },
+        { "prompt": "Welke Amerikaanse president bracht zijn land in 1917 in de Eerste Wereldoorlog?", "category": "Geschiedenis", "answers": [{ "text": "Woodrow Wilson", "aliases": ["Wilson"] }] },
+        { "prompt": "Hoe heet een blok met zes vierkante vlakken, zoals een dobbelsteen?", "category": "Wetenschap", "answers": [{ "text": "Een kubus", "aliases": ["Kubus"] }] },
+        { "prompt": "Welke Nederlandse zangeres scoorde in 2019 met Hoe het danst, samen met Marco Borsato en Armin van Buuren?", "category": "Muziek", "answers": [{ "text": "Davina Michelle" }] },
+        { "prompt": "In welke film speelt Charlize Theron de kaalgeschoren strijder Furiosa?", "category": "Film", "answers": [{ "text": "Mad Max: Fury Road", "aliases": ["Mad Max", "Fury Road"] }] },
+        { "prompt": "Hoe heet het Franse bladerdeegbroodje met een reep chocolade erin?", "category": "Eten", "answers": [{ "text": "Pain au chocolat", "aliases": ["Chocoladebroodje"] }] },
+        { "prompt": "Welke Nederlander bedacht de programmeertaal Python?", "category": "Techniek", "answers": [{ "text": "Guido van Rossum", "aliases": ["Van Rossum"] }] },
+        { "prompt": "Welk dier heeft een naam uit het Maleis die mens van het bos betekent?", "category": "Taal", "answers": [{ "text": "De orang-oetan", "aliases": ["Orang-oetan", "Orang oetan"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Hongarije?", "options": [{ "text": "Debrecen", "correct": true }, { "text": "Brno" }, { "text": "Krakau" }, { "text": "Graz" }] },
+        { "prompt": "Welk van deze zoogdieren legt eieren?", "options": [{ "text": "De mierenegel", "correct": true }, { "text": "De wombat" }, { "text": "De kangoeroe" }, { "text": "De luiaard" }] },
+        { "prompt": "Welke Britse schrijver bedacht Alice in Wonderland?", "options": [{ "text": "Lewis Carroll", "correct": true }, { "text": "J.M. Barrie" }, { "text": "Roald Dahl" }, { "text": "C.S. Lewis" }] },
+        { "prompt": "In welk van deze landen is Engels een officiele taal?", "options": [{ "text": "Malta", "correct": true }, { "text": "Griekenland" }, { "text": "Portugal" }, { "text": "Italie" }] },
+        { "prompt": "Welke van deze is een gewricht?", "options": [{ "text": "De knie", "correct": true }, { "text": "Het dijbeen" }, { "text": "De biceps" }, { "text": "De pees" }] },
+        { "prompt": "Welk land viel in september 1939 kort na Duitsland ook Polen binnen?", "options": [{ "text": "De Sovjet-Unie", "correct": true }, { "text": "Italie" }, { "text": "Hongarije" }, { "text": "Tsjechoslowakije" }] },
+        { "prompt": "Welke van deze rivieren stroomt van zuid naar noord?", "options": [{ "text": "De Nijl", "correct": true }, { "text": "De Donau" }, { "text": "De Mississippi" }, { "text": "De Ganges" }] },
+        { "prompt": "Welke van deze vogels is een eend?", "options": [{ "text": "De smient", "correct": true }, { "text": "De meerkoet" }, { "text": "De fuut" }, { "text": "De aalscholver" }] },
+        { "prompt": "In welke film van Alfred Hitchcock vallen vogels mensen aan?", "options": [{ "text": "The Birds", "correct": true }, { "text": "Vertigo" }, { "text": "Rear Window" }, { "text": "Psycho" }] },
+        { "prompt": "Welke Nederlandse atlete kreeg in 1948 de bijnaam The Flying Housewife?", "options": [{ "text": "Fanny Blankers-Koen", "correct": true }, { "text": "Dafne Schippers" }, { "text": "Nelli Cooman" }, { "text": "Ellen van Langen" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de toren van de Stephansdom in Wenen?", "answer": 136, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Oder?", "answer": 866, "unit": "kilometer" },
+        { "prompt": "Hoeveel dagen broedt een kip op haar eieren?", "answer": 21, "unit": "dagen" },
+        { "prompt": "Hoe oud werd Bob Marley?", "answer": 36, "unit": "jaar" },
+        { "prompt": "Hoeveel gram weegt een gemiddeld kippenei?", "answer": 60, "unit": "gram" },
+        { "prompt": "Op hoeveel snijpunten kun je stenen leggen op een groot go-bord?", "answer": 361, "unit": "punten" },
+        { "prompt": "Hoeveel meter hoog is een hockeydoel?", "answer": 2.14, "unit": "meter" },
+        { "prompt": "In welk jaar werd Willem-Alexander koning?", "answer": 2013 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Dogepaleis",
+        "Slabbetje",
+        "Fortnite",
+        "Minecraft",
+        "Monsters en co",
+        "Polo",
+        "Hulk",
+        "Waterskien",
+        "Panamakanaal",
+        "Kilimanjaro",
+        "Brancard",
+        "Ontslag",
+        "Rollator",
+        "Odin",
+        "Tango",
+        "Sproeten",
+        "Bosbessenstruik",
+        "Back to the Future",
+        "Regenpak",
+        "Taekwondo",
+        "De Smurfen",
+        "Hobbiton",
+        "Vrijdagmiddagborrel",
+        "Hometrainer",
+        "Rugnummer",
+        "Betonmolen",
+        "Step",
+        "Socrates",
+        "Guacamole",
+        "Poffertjes",
+        "Condor",
+        "Hovercraft",
+        "Medaillon",
+        "Walhalla",
+        "Rode panda",
+        "Dumbo",
+        "Bambi",
+        "Placemat",
+        "Garnaal",
+        "Ijsdansen"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Pasen?", "answers": [{ "text": "Paaseieren", "aliases": ["Eieren zoeken", "Eieren"] }, { "text": "Paashaas", "aliases": ["Haas"] }, { "text": "Opstanding van Jezus", "aliases": ["Jezus", "Kerk"] }, { "text": "Lente", "aliases": ["Voorjaar"] }] },
+        { "prompt": "Wat weet je over kippen?", "answers": [{ "text": "Eieren", "aliases": ["Eieren leggen"] }, { "text": "Tok tok", "aliases": ["Kakelen"] }, { "text": "Haan", "aliases": ["Kukeleku"] }, { "text": "Kuikens", "aliases": ["Kuiken"] }] },
+        { "prompt": "Wat weet je over Florence?", "answers": [{ "text": "Uffizi", "aliases": ["Museum"] }, { "text": "De Dom", "aliases": ["Koepel", "Brunelleschi"] }, { "text": "David", "aliases": ["Michelangelo"] }, { "text": "Toscane", "aliases": ["Italie"] }] },
+        { "prompt": "Wat weet je over Californie?", "answers": [{ "text": "Hollywood", "aliases": ["Los Angeles"] }, { "text": "Silicon Valley", "aliases": ["Apple", "Google"] }, { "text": "Golden Gate Bridge", "aliases": ["San Francisco"] }, { "text": "Stranden", "aliases": ["Surfen", "Zon"] }] },
+        { "prompt": "Wat weet je over paardenbloemen?", "answers": [{ "text": "Geel", "aliases": ["Gele bloem"] }, { "text": "Pluizenbol", "aliases": ["Blazen", "Pluisjes"] }, { "text": "Konijnenvoer", "aliases": ["Konijnen"] }, { "text": "Onkruid", "aliases": ["Overal"] }] },
+        { "prompt": "Wat weet je over horrorfilms?", "answers": [{ "text": "Eng", "aliases": ["Schrikken", "Bang"] }, { "text": "Dracula", "aliases": ["Vampiers"] }, { "text": "Halloween", "aliases": ["Scream", "The Shining"] }, { "text": "Spoken", "aliases": ["Zombies", "Monsters"] }] },
+        { "prompt": "Wat weet je over de Middellandse Zee?", "answers": [{ "text": "Warm", "aliases": ["Zon", "Zomer"] }, { "text": "Griekenland", "aliases": ["Italie", "Spanje"] }, { "text": "Eilanden", "aliases": ["Sicilie", "Kreta"] }, { "text": "Vakantie", "aliases": ["Stranden", "Olijven"] }] },
+        { "prompt": "Wat weet je over apen?", "answers": [{ "text": "Bananen", "aliases": ["Banaan"] }, { "text": "Klimmen", "aliases": ["Bomen", "Slingeren"] }, { "text": "Chimpansee", "aliases": ["Gorilla", "Orang-oetan"] }, { "text": "Dierentuin", "aliases": ["Apenrots"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat heb je als je een ei in de pan breekt en bakt?", "difficulty": "easy", "answers": [{ "text": "Een gebakken ei", "aliases": ["Spiegelei", "Gebakken ei"] }] },
+        { "prompt": "Wat bouw je in de winter met een wortel als neus?", "difficulty": "easy", "answers": [{ "text": "Een sneeuwpop", "aliases": ["Sneeuwpop", "Sneeuwman"] }] },
+        { "prompt": "Wat doe je met een gum?", "difficulty": "easy", "answers": [{ "text": "Uitgummen", "aliases": ["Wissen", "Weggummen"] }] },
+        { "prompt": "Welke maand komt na maart?", "difficulty": "easy", "answers": [{ "text": "April" }] },
+        { "prompt": "Hoe heet een grote groep bomen dicht bij elkaar?", "difficulty": "easy", "answers": [{ "text": "Een bos", "aliases": ["Bos", "Woud"] }] },
+        { "prompt": "Naar welke Romeinse god van de oorlog is de maand maart genoemd?", "difficulty": "hard", "answers": [{ "text": "Mars" }] },
+        { "prompt": "Welke Florentijnse beeldhouwer maakte een bronzen David, eerder dan Michelangelo?", "difficulty": "hard", "answers": [{ "text": "Donatello" }] },
+        { "prompt": "Hoe heet een getal dat gelijk is aan de som van zijn delers, zoals zes en achtentwintig?", "difficulty": "hard", "answers": [{ "text": "Een perfect getal", "aliases": ["Perfect getal", "Volmaakt getal"] }] },
+        { "prompt": "Hoe heet het hoogste punt van Belgie?", "difficulty": "hard", "answers": [{ "text": "Signaal de Botrange", "aliases": ["Botrange"] }] },
+        { "prompt": "Welke Frankische koning liet zich rond 496 dopen?", "difficulty": "hard", "answers": [{ "text": "Clovis", "aliases": ["Chlodovech", "Clovis I"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Manny in de film Ice Age?", "answers": [{ "text": "Een mammoet", "aliases": ["Mammoet", "Wolharige mammoet"] }] },
+        { "prompt": "In welk Italiaans stadje ligt de basiliek van Sint-Franciscus?", "answers": [{ "text": "Assisi" }] },
+        { "prompt": "Welke Schotse schrijver schreef The Wind in the Willows?", "answers": [{ "text": "Kenneth Grahame", "aliases": ["Grahame"] }] },
+        { "prompt": "Welk oranje sap drinken veel mensen bij het ontbijt?", "answers": [{ "text": "Sinaasappelsap", "aliases": ["Jus d'orange"] }] },
+        { "prompt": "Welke Portugese havenstad geeft zijn naam aan een zoete versterkte wijn?", "answers": [{ "text": "Porto", "aliases": ["Oporto"] }] },
+        { "prompt": "Welke Britse sterrenkundige ontdekte in 1967 als promovenda de eerste pulsar?", "answers": [{ "text": "Jocelyn Bell Burnell", "aliases": ["Bell Burnell", "Jocelyn Bell"] }] },
+        { "prompt": "Welk dier heeft een lange snuit en een lange tong om mieren te eten?", "answers": [{ "text": "De miereneter", "aliases": ["Miereneter"] }] },
+        { "prompt": "Welke Amerikaanse zangeres scoorde in 1983 met Girls Just Want to Have Fun?", "answers": [{ "text": "Cyndi Lauper", "aliases": ["Lauper"] }] },
+        { "prompt": "Welke Duitse filosoof schreef Sein und Zeit?", "answers": [{ "text": "Martin Heidegger", "aliases": ["Heidegger"] }] }
+      ]
+    }
+  ]
+}

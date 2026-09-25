@@ -89,7 +89,17 @@
         "Moat",
         "Rat",
         "Nightgown",
-        "Blood transfusion"
+        "Blood transfusion",
+        "String of garlic",
+        "Wooden stake",
+        "Opening coffin",
+        "Flying bat",
+        "Leech",
+        "Mirror without reflection",
+        "Transylvania",
+        "Sunlight",
+        "Twilight",
+        "Night visitor"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What is the name of the vampire count in the 1922 film Nosferatu?", "answers": [{ "text": "Count Orlok", "aliases": ["Orlok"] }] },
         { "prompt": "In Slavic folklore, scattering which small things on the ground delays a vampire, because it has to stop and count them?", "answers": [{ "text": "Seeds", "aliases": ["Poppy seeds", "Grains", "Millet"] }] },
         { "prompt": "What is the family name of the Original vampires in The Vampire Diaries and its spin-off The Originals?", "answers": [{ "text": "Mikaelson" }] },
-        { "prompt": "Which German director made Nosferatu the Vampyre of 1979 with Klaus Kinski?", "answers": [{ "text": "Werner Herzog", "aliases": ["Herzog"] }] }
+        { "prompt": "Which German director made Nosferatu the Vampyre of 1979 with Klaus Kinski?", "answers": [{ "text": "Werner Herzog", "aliases": ["Herzog"] }] },
+        { "prompt": "In which country is the region of Transylvania?", "answers": [{ "text": "Romania" }] },
+        { "prompt": "Which Wallachian prince, nicknamed the Impaler, is said to have inspired Dracula?", "answers": [{ "text": "Vlad III", "aliases": ["Vlad Tepes", "Vlad the Impaler", "Vlad Dracula"] }] }
       ]
     }
   ]

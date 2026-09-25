@@ -47,14 +47,14 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In what year did Churchill speak at Fulton about the Iron Curtain?", "answer": 1946, "unit": "", "explanation": "March 1946, at Fulton in Missouri, with Truman on the platform beside him." },
+        { "prompt": "In what year did Churchill speak at Fulton about the Iron Curtain?", "answer": 1946, "explanation": "March 1946, at Fulton in Missouri, with Truman on the platform beside him." },
         { "prompt": "How many kilometres long was the border between East and West Germany?", "answer": 1393, "unit": "kilometres" },
-        { "prompt": "In what year was the Berlin Wall built?", "answer": 1961, "unit": "" },
-        { "prompt": "In what year did the Berlin Wall fall?", "answer": 1989, "unit": "", "explanation": "The night of 9 November 1989, after a garbled press announcement." },
+        { "prompt": "In what year was the Berlin Wall built?", "answer": 1961 },
+        { "prompt": "In what year did the Berlin Wall fall?", "answer": 1989, "explanation": "The night of 9 November 1989, after a garbled press announcement." },
         { "prompt": "How many days did the Cuban Missile Crisis last?", "answer": 13, "unit": "days" },
-        { "prompt": "In what year did the Soviet Union collapse?", "answer": 1991, "unit": "" },
+        { "prompt": "In what year did the Soviet Union collapse?", "answer": 1991 },
         { "prompt": "How many kilometres long was the Berlin Wall in total, including the parts through the city?", "answer": 155, "unit": "kilometres" },
-        { "prompt": "In what year did the Warsaw Pact come into existence?", "answer": 1955, "unit": "" }
+        { "prompt": "In what year did the Warsaw Pact come into existence?", "answer": 1955 }
       ]
     },
     {
@@ -89,7 +89,17 @@
         "Defector",
         "Double agent",
         "Radio Free Europe",
-        "Fallout shelter"
+        "Fallout shelter",
+        "Atom bomb",
+        "Mushroom cloud",
+        "Red Army",
+        "Hammer and sickle",
+        "Mural",
+        "Bug",
+        "Codebook",
+        "Secret agent",
+        "Border guard",
+        "Space dog"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which Soviet leader ruled from 1964 until his death in 1982?", "answers": [{ "text": "Leonid Brezhnev", "aliases": ["Brezhnev"] }] },
         { "prompt": "Which American secretary of state pursued detente in the seventies?", "answers": [{ "text": "Henry Kissinger", "aliases": ["Kissinger"] }] },
         { "prompt": "Which Czech playwright became president in 1989?", "answers": [{ "text": "Vaclav Havel", "aliases": ["Havel"] }] },
-        { "prompt": "Which bridge near Berlin was used to exchange spies?", "answers": [{ "text": "The Glienicke Bridge", "aliases": ["Glienicke Bridge", "Bridge of Spies"] }] }
+        { "prompt": "Which bridge near Berlin was used to exchange spies?", "answers": [{ "text": "The Glienicke Bridge", "aliases": ["Glienicke Bridge", "Bridge of Spies"] }] },
+        { "prompt": "Which American president said Ich bin ein Berliner in Berlin in 1963?", "answers": [{ "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "What was the American spy plane that was shot down over the Soviet Union in 1960?", "answers": [{ "text": "The U-2", "aliases": ["U-2", "U2"] }] }
       ]
     }
   ]

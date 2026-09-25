@@ -89,7 +89,17 @@
         "Salt marsh",
         "Mudflat",
         "Seasickness",
-        "Diver"
+        "Diver",
+        "Wave",
+        "Tide",
+        "Ocean liner",
+        "Whale watching",
+        "Deep-sea fish",
+        "Seabed",
+        "Salt water",
+        "Seafarer",
+        "Plastic soup",
+        "Iceberg"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What is the worldwide circulation of seawater driven by differences in temperature and salinity called?", "answers": [{ "text": "The thermohaline circulation", "aliases": ["Thermohaline circulation", "Ocean conveyor belt"] }] },
         { "prompt": "Which strait separates Sicily from the Italian mainland?", "answers": [{ "text": "The Strait of Messina", "aliases": ["Strait of Messina", "Messina"] }] },
         { "prompt": "What is the periodic warming of the eastern Pacific that upsets weather across the world called?", "answers": [{ "text": "El Nino", "aliases": ["El Niño"] }] },
-        { "prompt": "Which strait separates Denmark from Sweden and is spanned by the bridge to Malmo?", "answers": [{ "text": "The Oresund", "aliases": ["Oresund", "The Sound", "Oresund Strait"] }] }
+        { "prompt": "Which strait separates Denmark from Sweden and is spanned by the bridge to Malmo?", "answers": [{ "text": "The Oresund", "aliases": ["Oresund", "The Sound", "Oresund Strait"] }] },
+        { "prompt": "Which ocean lies between Africa and Australia?", "answers": [{ "text": "The Indian Ocean", "aliases": ["Indian Ocean"] }] },
+        { "prompt": "What is the strait between Cape Horn and Antarctica called?", "answers": [{ "text": "The Drake Passage", "aliases": ["Drake Passage"] }] }
       ]
     }
   ]

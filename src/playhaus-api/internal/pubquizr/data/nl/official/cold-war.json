@@ -47,14 +47,14 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In welk jaar sprak Churchill in Fulton over het IJzeren Gordijn?", "answer": 1946, "unit": "", "explanation": "Maart 1946, in Fulton in Missouri, met Truman naast hem op het podium." },
+        { "prompt": "In welk jaar sprak Churchill in Fulton over het IJzeren Gordijn?", "answer": 1946, "explanation": "Maart 1946, in Fulton in Missouri, met Truman naast hem op het podium." },
         { "prompt": "Hoeveel kilometer lang was de grens tussen Oost- en West-Duitsland?", "answer": 1393, "unit": "kilometer" },
-        { "prompt": "In welk jaar werd de Berlijnse Muur gebouwd?", "answer": 1961, "unit": "" },
-        { "prompt": "In welk jaar viel de Berlijnse Muur?", "answer": 1989, "unit": "", "explanation": "In de nacht van 9 november 1989, na een verwarrende persconferentie." },
+        { "prompt": "In welk jaar werd de Berlijnse Muur gebouwd?", "answer": 1961 },
+        { "prompt": "In welk jaar viel de Berlijnse Muur?", "answer": 1989, "explanation": "In de nacht van 9 november 1989, na een verwarrende persconferentie." },
         { "prompt": "Hoeveel dagen duurde de Cubacrisis?", "answer": 13, "unit": "dagen" },
-        { "prompt": "In welk jaar viel de Sovjet-Unie uiteen?", "answer": 1991, "unit": "" },
+        { "prompt": "In welk jaar viel de Sovjet-Unie uiteen?", "answer": 1991 },
         { "prompt": "Hoeveel kilometer lang was de Berlijnse Muur in totaal, inclusief het deel door de stad?", "answer": 155, "unit": "kilometer" },
-        { "prompt": "In welk jaar werd het Warschaupact opgericht?", "answer": 1955, "unit": "" }
+        { "prompt": "In welk jaar werd het Warschaupact opgericht?", "answer": 1955 }
       ]
     },
     {
@@ -89,7 +89,17 @@
         "Kruisraketten",
         "Woensdrecht",
         "Overloper",
-        "Schuilkelder"
+        "Schuilkelder",
+        "Atoombom",
+        "Paddenstoelwolk",
+        "Rode Leger",
+        "Hamer en sikkel",
+        "Muurschildering",
+        "Afluisterapparaat",
+        "Codeboek",
+        "Geheim agent",
+        "Grensbewaker",
+        "Ruimtehond"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke Sovjetleider regeerde van 1964 tot zijn dood in 1982?", "answers": [{ "text": "Leonid Brezjnev", "aliases": ["Brezjnev"] }] },
         { "prompt": "Welke Amerikaanse minister van Buitenlandse Zaken voerde in de jaren zeventig de ontspanningspolitiek?", "answers": [{ "text": "Henry Kissinger", "aliases": ["Kissinger"] }] },
         { "prompt": "Welke Tsjechische toneelschrijver werd in 1989 president?", "answers": [{ "text": "Vaclav Havel", "aliases": ["Havel"] }] },
-        { "prompt": "Welke brug bij Berlijn werd gebruikt om spionnen uit te wisselen?", "answers": [{ "text": "De Glienicker Brucke", "aliases": ["Glienicker Brug", "Bridge of Spies"] }] }
+        { "prompt": "Welke brug bij Berlijn werd gebruikt om spionnen uit te wisselen?", "answers": [{ "text": "De Glienicker Brucke", "aliases": ["Glienicker Brug", "Bridge of Spies"] }] },
+        { "prompt": "Welke Amerikaanse president zei in 1963 in Berlijn: Ich bin ein Berliner?", "answers": [{ "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "Hoe heette het Amerikaanse spionagevliegtuig dat in 1960 boven de Sovjet-Unie werd neergeschoten?", "answers": [{ "text": "De U-2", "aliases": ["U-2", "U2"] }] }
       ]
     }
   ]

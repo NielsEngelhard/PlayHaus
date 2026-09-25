@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many Olympic gold medals did Michael Phelps win in his career?", "answer": 23, "unit": "gold medals" },
         { "prompt": "How many metres high is the tallest sand dune in the world?", "answer": 383, "unit": "metres" },
-        { "prompt": "In what year did the Netherlands lose its first World Cup final?", "answer": 1974, "unit": "" },
+        { "prompt": "In what year did the Netherlands lose its first World Cup final?", "answer": 1974 },
         { "prompt": "How many kilometres per hour does a Formula 1 car reach flat out?", "answer": 370, "unit": "kilometres per hour" },
         { "prompt": "How many teeth does an elephant use at any one time?", "answer": 4, "unit": "teeth" },
         { "prompt": "How many steps are there inside the Statue of Liberty to the crown?", "answer": 354, "unit": "steps" },
@@ -88,7 +88,17 @@
         "Auctioneer",
         "Hot air balloon",
         "Camouflage",
-        "The northern lights"
+        "The northern lights",
+        "Coconut palm",
+        "Walkie-talkie",
+        "Sling",
+        "Living statue",
+        "Rooster",
+        "Loch Ness",
+        "Tweezers",
+        "Eminem",
+        "Asterix",
+        "Pandora's box"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which is the smallest country in the world?", "answers": [{ "text": "Vatican City", "aliases": ["The Vatican", "Vatican"] }] },
         { "prompt": "Which mountain range is the usual border between Europe and Asia?", "answers": [{ "text": "The Ural Mountains", "aliases": ["The Urals", "Urals", "Ural"] }] },
         { "prompt": "Which sea lies between Italy and the Balkans?", "answers": [{ "text": "The Adriatic Sea", "aliases": ["The Adriatic", "Adriatic"] }] },
-        { "prompt": "Who wrote the novel Nineteen Eighty-Four?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] }
+        { "prompt": "Who wrote the novel Nineteen Eighty-Four?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
+        { "prompt": "What is the currency of Mexico called?", "answers": [{ "text": "The peso", "aliases": ["Peso", "Mexican peso"] }] },
+        { "prompt": "Which French philosopher wrote The Social Contract?", "answers": [{ "text": "Jean-Jacques Rousseau", "aliases": ["Rousseau"] }] }
       ]
     }
   ]

@@ -89,7 +89,17 @@
         "Union Jack",
         "Police helmet",
         "Marmalade",
-        "Crumpet"
+        "Crumpet",
+        "Queen Victoria",
+        "Cream tea",
+        "Stonehenge at dawn",
+        "Harry Potter studio",
+        "Snooker table",
+        "British rain",
+        "Driving on the left",
+        "Bus queue",
+        "Gin and tonic",
+        "Paddington"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which strait separates the Isle of Wight from the English mainland?", "answers": [{ "text": "The Solent", "aliases": ["Solent"] }] },
         { "prompt": "Which English city did the Romans call Eboracum?", "answers": [{ "text": "York" }] },
         { "prompt": "Who is generally regarded as the first British Prime Minister?", "answers": [{ "text": "Robert Walpole", "aliases": ["Walpole"] }] },
-        { "prompt": "Which national park was the first to be designated in the United Kingdom, in 1951?", "answers": [{ "text": "The Peak District", "aliases": ["Peak District"] }] }
+        { "prompt": "Which national park was the first to be designated in the United Kingdom, in 1951?", "answers": [{ "text": "The Peak District", "aliases": ["Peak District"] }] },
+        { "prompt": "What is the capital of Wales?", "answers": [{ "text": "Cardiff" }] },
+        { "prompt": "Which English king was beheaded in 1649?", "answers": [{ "text": "Charles I", "aliases": ["Charles the First"] }] }
       ]
     }
   ]

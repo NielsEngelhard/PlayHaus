@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w16",
+  "title": "Weekly quiz 16 2027",
+  "description": "The weekly quiz of Wednesday 21 April 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which German city on the Rhine is the capital of Rhineland-Palatinate?", "category": "Geography", "answers": [{ "text": "Mainz" }] },
+        { "prompt": "What is the process in which plants use sunlight to make sugar and oxygen called?", "category": "Science", "answers": [{ "text": "Photosynthesis" }] },
+        { "prompt": "Which German chancellor governed from 2005 to 2021?", "category": "History", "answers": [{ "text": "Angela Merkel", "aliases": ["Merkel"] }] },
+        { "prompt": "Which Dutch captain scored with a long-range strike against Uruguay in the 2010 World Cup semi-final?", "category": "Sport", "answers": [{ "text": "Giovanni van Bronckhorst", "aliases": ["Van Bronckhorst", "Gio"] }] },
+        { "prompt": "In which Steven Spielberg war film does Tom Hanks go in search of a soldier?", "category": "Film", "answers": [{ "text": "Saving Private Ryan" }] },
+        { "prompt": "Which British band had a hit with Bitter Sweet Symphony in 1997?", "category": "Music", "answers": [{ "text": "The Verve", "aliases": ["Verve"] }] },
+        { "prompt": "In which North Holland town is the Singer Museum?", "category": "The Netherlands", "answers": [{ "text": "Laren" }] },
+        { "prompt": "Which Catalan artist painted cheerful shapes with stars, moons and birds?", "category": "Art", "answers": [{ "text": "Joan Miro", "aliases": ["Miro"] }] },
+        { "prompt": "What is the form of the verb you use to give an order, as in sit down, called?", "category": "Language", "answers": [{ "text": "The imperative", "aliases": ["Imperative"] }] },
+        { "prompt": "What is the orange Italian drink with prosecco and soda called?", "category": "Food", "answers": [{ "text": "Aperol spritz", "aliases": ["Spritz", "Aperol"] }] },
+        { "prompt": "Which Amsterdam brand of electric bikes went bankrupt in 2023?", "category": "Technology", "answers": [{ "text": "VanMoof", "aliases": ["Van Moof"] }] },
+        { "prompt": "Which wild cat with tufts on its ears lives in European forests?", "category": "Nature", "answers": [{ "text": "The lynx", "aliases": ["Lynx"] }] },
+        { "prompt": "Which sea lies between China and Korea?", "category": "Geography", "answers": [{ "text": "The Yellow Sea", "aliases": ["Yellow Sea"] }] },
+        { "prompt": "What was the name of Michiel de Ruyter's flagship?", "category": "History", "answers": [{ "text": "De Zeven Provincien", "aliases": ["The Seven Provinces", "Zeven Provincien"] }] },
+        { "prompt": "What is the small number at the top right that shows which power you raise to called?", "category": "Science", "answers": [{ "text": "The exponent", "aliases": ["Exponent", "Power"] }] },
+        { "prompt": "Which Canadian singer had a worldwide hit with Blinding Lights in 2020?", "category": "Music", "answers": [{ "text": "The Weeknd", "aliases": ["Weeknd"] }] },
+        { "prompt": "In which Disney film does Dwayne Johnson sing as the demigod Maui?", "category": "Film", "answers": [{ "text": "Moana", "aliases": ["Vaiana"] }] },
+        { "prompt": "What is the Viennese chocolate cake with apricot jam called?", "category": "Food", "answers": [{ "text": "Sachertorte", "aliases": ["Sacher torte"] }] },
+        { "prompt": "What is the Finnish phone game in which you catapult angry birds at pigs called?", "category": "Technology", "answers": [{ "text": "Angry Birds" }] },
+        { "prompt": "Which language in southern Africa is closest to Dutch?", "category": "Language", "answers": [{ "text": "Afrikaans" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Czechia?", "options": [{ "text": "Brno", "correct": true }, { "text": "Bratislava" }, { "text": "Wroclaw" }, { "text": "Linz" }] },
+        { "prompt": "Which of these instruments is a woodwind, even though it is made of metal?", "options": [{ "text": "The saxophone", "correct": true }, { "text": "The trumpet" }, { "text": "The tuba" }, { "text": "The trombone" }] },
+        { "prompt": "Which Dutch writer wrote Joe Speedboat?", "options": [{ "text": "Tommy Wieringa", "correct": true }, { "text": "Arnon Grunberg" }, { "text": "Herman Koch" }, { "text": "Jan Siebelink" }] },
+        { "prompt": "Which of these Asian countries has no coastline?", "options": [{ "text": "Laos", "correct": true }, { "text": "Vietnam" }, { "text": "Thailand" }, { "text": "Cambodia" }] },
+        { "prompt": "Which of these is not a sense?", "options": [{ "text": "Memory", "correct": true }, { "text": "Hearing" }, { "text": "Taste" }, { "text": "Smell" }] },
+        { "prompt": "Which Dutch prime minister led the country from 1948 to 1958?", "options": [{ "text": "Willem Drees", "correct": true }, { "text": "Joop den Uyl" }, { "text": "Hendrikus Colijn" }, { "text": "Piet de Jong" }] },
+        { "prompt": "Which of these rivers flows through South America?", "options": [{ "text": "The Orinoco", "correct": true }, { "text": "The Zambezi" }, { "text": "The Mekong" }, { "text": "The Danube" }] },
+        { "prompt": "Which bird was used in the past to deliver messages?", "options": [{ "text": "The homing pigeon", "correct": true }, { "text": "The crow" }, { "text": "The gull" }, { "text": "The magpie" }] },
+        { "prompt": "In which film does Arnold Schwarzenegger say: Hasta la vista, baby?", "options": [{ "text": "Terminator 2", "correct": true }, { "text": "Total Recall" }, { "text": "Predator" }, { "text": "True Lies" }] },
+        { "prompt": "In which sport did both the Dutch men and women become Olympic champions in 2024?", "options": [{ "text": "Field hockey", "correct": true }, { "text": "Volleyball" }, { "text": "Handball" }, { "text": "Water polo" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Elbphilharmonie in Hamburg?", "answer": 110, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Orinoco?", "answer": 2140, "unit": "kilometres" },
+        { "prompt": "For how many years was Angela Merkel chancellor?", "answer": 16, "unit": "years" },
+        { "prompt": "How old was Whitney Houston when she died?", "answer": 48, "unit": "years" },
+        { "prompt": "About how many kilos does an adult wolf weigh?", "answer": 40, "unit": "kilos" },
+        { "prompt": "How many checkers does each player start with in backgammon?", "answer": 15, "unit": "checkers" },
+        { "prompt": "How many metres wide is a football goal?", "answer": 7.32, "unit": "metres" },
+        { "prompt": "In which year did Disneyland Paris open?", "answer": 1992 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Industrial Revolution",
+        "Camping shop",
+        "Daydreaming",
+        "Printer",
+        "Bumblebee",
+        "Minions",
+        "Dance floor",
+        "Yo-yo",
+        "Homesickness",
+        "Carnivorous plant",
+        "Paralympic Games",
+        "Deja vu",
+        "Mountie",
+        "Modern pentathlon",
+        "Cheetah",
+        "Compost",
+        "Tap dancing",
+        "World record",
+        "Bait",
+        "Karma",
+        "Referee's whistle",
+        "Sigmund Freud",
+        "Fighter jet",
+        "Marshall Plan",
+        "Independence",
+        "Footman",
+        "Thermometer",
+        "Lampshade",
+        "Carpenter",
+        "Audrey Hepburn",
+        "Copacabana",
+        "Swedish meatballs",
+        "E-reader",
+        "Talent show",
+        "Boxing ring",
+        "Nativity scene",
+        "Puppeteer",
+        "Party blower",
+        "Sushi roll",
+        "Tapas"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Hamburg?", "answers": [{ "text": "Port", "aliases": ["Ships", "Containers"] }, { "text": "Elbe", "aliases": ["River"] }, { "text": "Reeperbahn", "aliases": ["Nightlife"] }, { "text": "The Beatles", "aliases": ["Where the Beatles started", "Elbphilharmonie"] }] },
+        { "prompt": "What do you know about D-Day?", "answers": [{ "text": "Normandy", "aliases": ["France", "Beaches"] }, { "text": "Sixth of June 1944", "aliases": ["1944", "June"] }, { "text": "Invasion", "aliases": ["Allies", "Landings"] }, { "text": "Liberation", "aliases": ["Second World War", "Omaha Beach"] }] },
+        { "prompt": "What do you know about Britpop?", "answers": [{ "text": "Oasis", "aliases": ["Gallagher"] }, { "text": "Blur", "aliases": ["Damon Albarn"] }, { "text": "The nineties", "aliases": ["Nineties"] }, { "text": "England", "aliases": ["British", "London"] }] },
+        { "prompt": "What do you know about lighthouses?", "answers": [{ "text": "Light", "aliases": ["Rotating light", "Lamp"] }, { "text": "Coast", "aliases": ["Sea", "Rocks"] }, { "text": "Ships", "aliases": ["Warning", "Shipping"] }, { "text": "Lighthouse keeper", "aliases": ["Keeper", "Stripes"] }] },
+        { "prompt": "What do you know about Suriname?", "answers": [{ "text": "Paramaribo", "aliases": ["Capital"] }, { "text": "Dutch", "aliases": ["Former colony", "Independent 1975"] }, { "text": "Roti", "aliases": ["Pom", "Moksi meti"] }, { "text": "Rainforest", "aliases": ["Jungle", "Amazon"] }] },
+        { "prompt": "What do you know about raccoons?", "answers": [{ "text": "Mask", "aliases": ["Black patch round the eyes"] }, { "text": "America", "aliases": ["North America"] }, { "text": "Bins", "aliases": ["Rubbish", "Trash"] }, { "text": "Little hands", "aliases": ["Washing", "Paws"] }] },
+        { "prompt": "What do you know about cocktails?", "answers": [{ "text": "Mojito", "aliases": ["Pina colada", "Margarita"] }, { "text": "Shaker", "aliases": ["Shaken"] }, { "text": "Straw", "aliases": ["Little umbrella", "Ice"] }, { "text": "Bartender", "aliases": ["Bar", "Happy hour"] }] },
+        { "prompt": "What do you know about roller coasters?", "answers": [{ "text": "Loop", "aliases": ["Upside down"] }, { "text": "Speed", "aliases": ["Fast", "Drops"] }, { "text": "Theme park", "aliases": ["Alton Towers", "Disneyland"] }, { "text": "Feeling sick", "aliases": ["Screaming", "Scary"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is a young chicken called?", "difficulty": "easy", "answers": [{ "text": "A chick", "aliases": ["Chick"] }] },
+        { "prompt": "What do you do with a toothbrush?", "difficulty": "easy", "answers": [{ "text": "Brush your teeth", "aliases": ["Brushing teeth"] }] },
+        { "prompt": "Which vegetable makes your eyes water when you cut it?", "difficulty": "easy", "answers": [{ "text": "The onion", "aliases": ["Onion", "Onions"] }] },
+        { "prompt": "What do you call a very small child who cannot walk yet?", "difficulty": "easy", "answers": [{ "text": "A baby", "aliases": ["Baby"] }] },
+        { "prompt": "Which bird do you often see squawking on the beach?", "difficulty": "easy", "answers": [{ "text": "The seagull", "aliases": ["Seagull", "Gull"] }] },
+        { "prompt": "What is the name of the Roman goddess of the hunt?", "difficulty": "hard", "answers": [{ "text": "Diana", "aliases": ["Artemis"] }] },
+        { "prompt": "Which Trojan prince carried off Helen and so started the Trojan War?", "difficulty": "hard", "answers": [{ "text": "Paris" }] },
+        { "prompt": "What is a straight line between two points on a circle called?", "difficulty": "hard", "answers": [{ "text": "A chord", "aliases": ["Chord"] }] },
+        { "prompt": "What is the highest mountain in Sweden?", "difficulty": "hard", "answers": [{ "text": "Kebnekaise" }] },
+        { "prompt": "Which Assyrian king had a famous library of clay tablets in Nineveh?", "difficulty": "hard", "answers": [{ "text": "Ashurbanipal", "aliases": ["Assurbanipal"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Mushu in the Disney film Mulan?", "answers": [{ "text": "A dragon", "aliases": ["Dragon"] }] },
+        { "prompt": "In which Indian city is the Golden Temple of the Sikhs?", "answers": [{ "text": "Amritsar" }] },
+        { "prompt": "Which Russian writer wrote Oblomov, about a man who cannot get out of bed?", "answers": [{ "text": "Ivan Goncharov", "aliases": ["Goncharov"] }] },
+        { "prompt": "What kind of character is Lightning McQueen in the film Cars?", "answers": [{ "text": "A racing car", "aliases": ["Car", "Race car"] }] },
+        { "prompt": "Which Italian city is the capital of Lombardy?", "answers": [{ "text": "Milan", "aliases": ["Milano"] }] },
+        { "prompt": "Which Dutch physicist won the Nobel Prize in 1999 together with his teacher Veltman?", "answers": [{ "text": "Gerard 't Hooft", "aliases": ["'t Hooft", "Gerard t Hooft"] }] },
+        { "prompt": "What do you blow up for a birthday party?", "answers": [{ "text": "Balloons", "aliases": ["A balloon", "Balloon"] }] },
+        { "prompt": "Which German band had a hit with Du Hast?", "answers": [{ "text": "Rammstein" }] },
+        { "prompt": "Which English philosopher wrote An Essay Concerning Human Understanding?", "answers": [{ "text": "John Locke", "aliases": ["Locke"] }] }
+      ]
+    }
+  ]
+}

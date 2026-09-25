@@ -89,7 +89,17 @@
         "Chemisch vat",
         "Speelkaart",
         "Houten hamer",
-        "Koevoet"
+        "Koevoet",
+        "Batmobiel",
+        "Supermancape",
+        "Kryptoniet",
+        "Gotham City",
+        "Daily Planet",
+        "Lasso van de waarheid",
+        "Pinguin met paraplu",
+        "Catwoman",
+        "Robin",
+        "The Flash"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Wie is de hoofdredacteur van The Daily Planet?", "answers": [{ "text": "Perry White", "aliases": ["White"] }] },
         { "prompt": "Welke tiran heerst over de planeet Apokolips?", "answers": [{ "text": "Darkseid" }] },
         { "prompt": "Welke eenogige huurling in oranje met blauw harnas heet eigenlijk Slade Wilson?", "answers": [{ "text": "Deathstroke", "aliases": ["Deathstroke the Terminator"] }] },
-        { "prompt": "Wie is de koningin van de Amazones en de moeder van Wonder Woman?", "answers": [{ "text": "Hippolyta", "aliases": ["Koningin Hippolyta"] }] }
+        { "prompt": "Wie is de koningin van de Amazones en de moeder van Wonder Woman?", "answers": [{ "text": "Hippolyta", "aliases": ["Koningin Hippolyta"] }] },
+        { "prompt": "Wat is de geboortenaam van Superman op zijn thuisplaneet?", "answers": [{ "text": "Kal-El" }] },
+        { "prompt": "Hoe heet de eigenaar van LexCorp en aartsvijand van Superman?", "answers": [{ "text": "Lex Luthor", "aliases": ["Luthor"] }] }
       ]
     }
   ]

@@ -88,7 +88,17 @@
         "Mona Lisa",
         "Roller skates",
         "Jungle",
-        "Compass"
+        "Compass",
+        "Omelette",
+        "Forklift",
+        "Family Guy",
+        "High chair",
+        "Fidget spinner",
+        "Earthworm",
+        "Lady-in-waiting",
+        "Spartacus",
+        "Beaver",
+        "Yoda"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which Byzantine emperor had the Hagia Sophia built?", "answers": [{ "text": "Justinian" }] },
         { "prompt": "Which insect has the strongest jaws for its size and cuts leaves?", "answers": [{ "text": "The leafcutter ant", "aliases": ["Leafcutter ant"] }] },
         { "prompt": "Which plant flowers only once in several decades and then dies?", "answers": [{ "text": "The agave", "aliases": ["Agave"] }] },
-        { "prompt": "Which is the largest volcano on mainland Europe?", "answers": [{ "text": "Mount Etna", "aliases": ["Etna"] }] }
+        { "prompt": "Which is the largest volcano on mainland Europe?", "answers": [{ "text": "Mount Etna", "aliases": ["Etna"] }] },
+        { "prompt": "Which space telescope was put into orbit by the space shuttle in 1990?", "answers": [{ "text": "Hubble", "aliases": ["The Hubble Space Telescope"] }] },
+        { "prompt": "Which city is the constitutional capital of Bolivia?", "answers": [{ "text": "Sucre" }] }
       ]
     }
   ]

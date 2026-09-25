@@ -89,7 +89,17 @@
         "Tar pit",
         "Neck frill",
         "Bone",
-        "Roar"
+        "Roar",
+        "Tyrannosaurus rex",
+        "Diplodocus",
+        "Ankylosaurus",
+        "Spinosaurus",
+        "Meteorite impact",
+        "Extinction",
+        "Dinosaur park",
+        "Fossil",
+        "Plesiosaur",
+        "Dinosaur bone"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which small feathered dinosaur from China had flight feathers on all four limbs?", "answers": [{ "text": "Microraptor" }] },
         { "prompt": "Which Mongolian dinosaur, whose name means 'terrible hand', was known for decades from little more than a pair of enormous arms?", "answers": [{ "text": "Deinocheirus" }] },
         { "prompt": "Which dinosaur had a thick dome of solid bone on top of its skull?", "answers": [{ "text": "Pachycephalosaurus", "aliases": ["Pachycephalosaur"] }] },
-        { "prompt": "Near which Dutch city was the skull found that gave the mosasaurs their name?", "answers": [{ "text": "Maastricht" }] }
+        { "prompt": "Near which Dutch city was the skull found that gave the mosasaurs their name?", "answers": [{ "text": "Maastricht" }] },
+        { "prompt": "In which geological period, the last of the Mesozoic, did Tyrannosaurus rex live?", "answers": [{ "text": "The Cretaceous", "aliases": ["Cretaceous"] }] },
+        { "prompt": "What is the crater on the Yucatan peninsula linked to the extinction of the dinosaurs called?", "answers": [{ "text": "Chicxulub", "aliases": ["The Chicxulub crater"] }] }
       ]
     }
   ]

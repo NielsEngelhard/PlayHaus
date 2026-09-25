@@ -88,7 +88,17 @@
         "Venice",
         "Sahara",
         "Tattoo",
-        "Cowboy"
+        "Cowboy",
+        "Michael Jordan",
+        "Hercules",
+        "Ghostbusters",
+        "Bunk bed",
+        "Black belt",
+        "Water station",
+        "Fish and chips",
+        "Oil tanker",
+        "Horse race",
+        "Beetroot"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which country was known as Ceylon until 1972?", "answers": [{ "text": "Sri Lanka" }] },
         { "prompt": "Which French chemist gave his name to heating milk to kill bacteria?", "answers": [{ "text": "Louis Pasteur", "aliases": ["Pasteur"] }] },
         { "prompt": "Which Russian author wrote War and Peace?", "answers": [{ "text": "Leo Tolstoy", "aliases": ["Tolstoy"] }] },
-        { "prompt": "In what year did the first railway line in the Netherlands open?", "answers": [{ "text": "1839" }] }
+        { "prompt": "In what year did the first railway line in the Netherlands open?", "answers": [{ "text": "1839" }] },
+        { "prompt": "Which English writer created the secret agent James Bond?", "answers": [{ "text": "Ian Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "What is the capital of Mauritania?", "answers": [{ "text": "Nouakchott" }] }
       ]
     }
   ]

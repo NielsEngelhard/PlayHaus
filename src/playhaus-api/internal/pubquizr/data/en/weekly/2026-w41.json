@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w41",
+  "title": "Weekly quiz 41 2026",
+  "description": "The weekly quiz of Wednesday 7 October 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which river flows through Lisbon?", "category": "Geography", "answers": [{ "text": "The Tagus", "aliases": ["Tagus", "Tejo"] }] },
+        { "prompt": "What is the change from caterpillar through pupa to butterfly called?", "category": "Science", "answers": [{ "text": "Metamorphosis" }] },
+        { "prompt": "Which French heroine was burned at the stake in Rouen in 1431?", "category": "History", "answers": [{ "text": "Joan of Arc", "aliases": ["Jeanne d'Arc"] }] },
+        { "prompt": "Which Dutch tennis player won Wimbledon in 1996?", "category": "Sport", "answers": [{ "text": "Richard Krajicek", "aliases": ["Krajicek"] }] },
+        { "prompt": "In which film does the main character say that life is like a box of chocolates?", "category": "Film", "answers": [{ "text": "Forrest Gump" }] },
+        { "prompt": "Which British singer released the albums 19, 21 and 25?", "category": "Music", "answers": [{ "text": "Adele" }] },
+        { "prompt": "On which Wadden island are the villages of Hollum and Nes?", "category": "The Netherlands", "answers": [{ "text": "Ameland" }] },
+        { "prompt": "Which French artist painted and sculpted mostly ballet dancers?", "category": "Art", "answers": [{ "text": "Edgar Degas", "aliases": ["Degas"] }] },
+        { "prompt": "What is the Japanese script built from Chinese characters called?", "category": "Language", "answers": [{ "text": "Kanji" }] },
+        { "prompt": "The eggs of which fish are used to make real caviar?", "category": "Food", "answers": [{ "text": "The sturgeon", "aliases": ["Sturgeon"] }] },
+        { "prompt": "Which Japanese company launched the PlayStation?", "category": "Technology", "answers": [{ "text": "Sony" }] },
+        { "prompt": "What is the female red deer called?", "category": "Nature", "answers": [{ "text": "The hind", "aliases": ["Hind"] }] },
+        { "prompt": "Which river flows through London?", "category": "Geography", "answers": [{ "text": "The Thames", "aliases": ["Thames"] }] },
+        { "prompt": "Who became the first black president of the United States in 2009?", "category": "History", "answers": [{ "text": "Barack Obama", "aliases": ["Obama"] }] },
+        { "prompt": "Which vitamin is plentiful in oranges and prevents scurvy?", "category": "Science", "answers": [{ "text": "Vitamin C", "aliases": ["C"] }] },
+        { "prompt": "Which American singer was nicknamed Ol' Blue Eyes?", "category": "Music", "answers": [{ "text": "Frank Sinatra", "aliases": ["Sinatra"] }] },
+        { "prompt": "What is the name of the talking snowman in Frozen?", "category": "Film", "answers": [{ "text": "Olaf" }] },
+        { "prompt": "Which baked dish is made of layers of pasta, meat sauce and bechamel?", "category": "Food", "answers": [{ "text": "Lasagne", "aliases": ["Lasagna"] }] },
+        { "prompt": "Which app has a white ghost on a yellow background as its logo?", "category": "Technology", "answers": [{ "text": "Snapchat" }] },
+        { "prompt": "What is a sentence that contains every letter of the alphabet called?", "category": "Language", "answers": [{ "text": "A pangram", "aliases": ["Pangram"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these capitals lies furthest north?", "options": [{ "text": "Helsinki", "correct": true }, { "text": "Oslo" }, { "text": "Stockholm" }, { "text": "Tallinn" }] },
+        { "prompt": "Which of these animals is not a mammal?", "options": [{ "text": "The shark", "correct": true }, { "text": "The dolphin" }, { "text": "The bat" }, { "text": "The whale" }] },
+        { "prompt": "Which of these French cities is on the Atlantic Ocean?", "options": [{ "text": "La Rochelle", "correct": true }, { "text": "Marseille" }, { "text": "Nice" }, { "text": "Toulon" }] },
+        { "prompt": "Which Greek god was the messenger of the gods?", "options": [{ "text": "Hermes", "correct": true }, { "text": "Apollo" }, { "text": "Ares" }, { "text": "Dionysus" }] },
+        { "prompt": "Which Dutch painter made the famous painting The Young Bull in 1647?", "options": [{ "text": "Paulus Potter", "correct": true }, { "text": "Jan Steen" }, { "text": "Frans Hals" }, { "text": "Jacob van Ruisdael" }] },
+        { "prompt": "Which British queen reigned the longest before Elizabeth II?", "options": [{ "text": "Victoria", "correct": true }, { "text": "Anne" }, { "text": "Mary I" }, { "text": "Elizabeth I" }] },
+        { "prompt": "In which Canadian province is French the only official language?", "options": [{ "text": "Quebec", "correct": true }, { "text": "Ontario" }, { "text": "Alberta" }, { "text": "Manitoba" }] },
+        { "prompt": "What colour is a polar bear's skin under its fur?", "options": [{ "text": "Black", "correct": true }, { "text": "White" }, { "text": "Pink" }, { "text": "Grey" }] },
+        { "prompt": "Which country does the metal band Rammstein come from?", "options": [{ "text": "Germany", "correct": true }, { "text": "Austria" }, { "text": "Switzerland" }, { "text": "Denmark" }] },
+        { "prompt": "Which company made the Simon in 1994, the first smartphone with a touchscreen?", "options": [{ "text": "IBM", "correct": true }, { "text": "Nokia" }, { "text": "Apple" }, { "text": "Motorola" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Elizabeth Tower, the tower of Big Ben?", "answer": 96, "unit": "metres" },
+        { "prompt": "How many countries are there on the African continent?", "answer": 54, "unit": "countries" },
+        { "prompt": "About how many kilos does an adult male giraffe weigh?", "answer": 1200, "unit": "kilos" },
+        { "prompt": "How many floors does the Burj Khalifa in Dubai have?", "answer": 163, "unit": "floors" },
+        { "prompt": "About how many kilometres long is the Nile?", "answer": 6650, "unit": "kilometres" },
+        { "prompt": "For about how many days is an elephant pregnant?", "answer": 660, "unit": "days", "explanation": "Almost two years: the longest pregnancy of any land animal." },
+        { "prompt": "In which year did the Golden Gate Bridge in San Francisco open?", "answer": 1937 },
+        { "prompt": "How many seats does the Dutch House of Representatives have?", "answer": 150, "unit": "seats" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Deep-sea diver",
+        "Executioner",
+        "Ski jumping",
+        "Beach tent",
+        "Meeting",
+        "Fax machine",
+        "Mont Blanc",
+        "Sink",
+        "Teddy bear",
+        "Fly agaric",
+        "Graduating",
+        "Times Square",
+        "Plasterer",
+        "Brownie",
+        "Rugby",
+        "Star fruit",
+        "Caterpillar",
+        "Superstition",
+        "Twister",
+        "Encanto",
+        "Tofu",
+        "Play",
+        "Fishhook",
+        "Peking duck",
+        "Ginger",
+        "Little Mermaid statue",
+        "Olympic rings",
+        "Sylvester Stallone",
+        "Mary Poppins",
+        "Ice cream man",
+        "Happy Families",
+        "Friends",
+        "Cars",
+        "Cheesemonger",
+        "Billie Eilish",
+        "Jackpot",
+        "Air guitar contest",
+        "Luge",
+        "Soap bubble",
+        "Coat hanger"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Iceland?", "answers": [{ "text": "Volcanoes", "aliases": ["Volcano", "Eyjafjallajokull"] }, { "text": "Geysers", "aliases": ["Geyser", "Hot springs", "Blue Lagoon"] }, { "text": "Reykjavik", "aliases": ["The capital Reykjavik"] }, { "text": "Glaciers", "aliases": ["Glacier", "Ice"] }] },
+        { "prompt": "What do you know about Walt Disney?", "answers": [{ "text": "Mickey Mouse", "aliases": ["Mickey", "Donald Duck"] }, { "text": "Disneyland", "aliases": ["Theme parks", "Disney World"] }, { "text": "Cartoons", "aliases": ["Animated films", "Animation"] }, { "text": "Snow White", "aliases": ["Snow White and the Seven Dwarfs"] }] },
+        { "prompt": "What do you know about penguins?", "answers": [{ "text": "They cannot fly", "aliases": ["Cannot fly", "Flightless"] }, { "text": "South Pole", "aliases": ["Antarctica", "Southern hemisphere"] }, { "text": "Black and white", "aliases": ["Tuxedo"] }, { "text": "Good swimmers", "aliases": ["Swimming", "Eat fish", "Fish"] }] },
+        { "prompt": "What do you know about Greece?", "answers": [{ "text": "Athens", "aliases": ["The capital Athens", "Acropolis"] }, { "text": "Islands", "aliases": ["Crete", "Santorini", "Island"] }, { "text": "Olympic Games", "aliases": ["Olympia"] }, { "text": "Greek gods", "aliases": ["Zeus", "Mythology"] }] },
+        { "prompt": "What do you know about the Efteling?", "answers": [{ "text": "Kaatsheuvel", "aliases": ["Brabant", "North Brabant"] }, { "text": "Fairytale Forest", "aliases": ["Fairy tales"] }, { "text": "Holle Bolle Gijs", "aliases": ["Talking litter bin"] }, { "text": "Roller coasters", "aliases": ["Baron 1898", "Python", "The Flying Dutchman"] }] },
+        { "prompt": "What do you know about Mexico?", "answers": [{ "text": "Tacos", "aliases": ["Taco", "Burrito", "Nachos"] }, { "text": "Sombrero", "aliases": ["Hat"] }, { "text": "Aztecs", "aliases": ["Maya", "Pyramids"] }, { "text": "Mexico City" }] },
+        { "prompt": "What do you know about tennis?", "answers": [{ "text": "Wimbledon", "aliases": ["Roland Garros", "Grand Slam"] }, { "text": "Racket", "aliases": ["Tennis racket"] }, { "text": "Net", "aliases": ["Over the net"] }, { "text": "Roger Federer", "aliases": ["Federer", "Rafael Nadal", "Serena Williams"] }] },
+        { "prompt": "What do you know about the Winter Olympics?", "answers": [{ "text": "Speed skating", "aliases": ["Skating"] }, { "text": "Skiing", "aliases": ["Ski jumping", "Ski"] }, { "text": "Snow and ice", "aliases": ["Snow", "Ice"] }, { "text": "Every four years", "aliases": ["Four years"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the name of the American president's house in Washington?", "difficulty": "easy", "answers": [{ "text": "The White House", "aliases": ["White House"] }] },
+        { "prompt": "Which superhero protects Gotham City?", "difficulty": "easy", "answers": [{ "text": "Batman" }] },
+        { "prompt": "Which season begins around 21 June?", "difficulty": "easy", "answers": [{ "text": "Summer", "aliases": ["The summer"] }] },
+        { "prompt": "What do you call a painting an artist makes of themselves?", "difficulty": "easy", "answers": [{ "text": "A self-portrait", "aliases": ["Self-portrait"] }] },
+        { "prompt": "Which country does pizza originally come from?", "difficulty": "easy", "answers": [{ "text": "Italy" }] },
+        { "prompt": "Which French town is known as the perfume capital of the world?", "difficulty": "hard", "answers": [{ "text": "Grasse" }] },
+        { "prompt": "What is the capital of Oman?", "difficulty": "hard", "answers": [{ "text": "Muscat" }] },
+        { "prompt": "Which English mathematician helped crack the Enigma code in the Second World War?", "difficulty": "hard", "answers": [{ "text": "Alan Turing", "aliases": ["Turing"] }] },
+        { "prompt": "Which river flows through Florence?", "difficulty": "hard", "answers": [{ "text": "The Arno", "aliases": ["Arno"] }] },
+        { "prompt": "Which noble gas has the chemical symbol Kr?", "difficulty": "hard", "answers": [{ "text": "Krypton" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What colour is an emerald?", "answers": [{ "text": "Green" }] },
+        { "prompt": "Which American state has Honolulu as its capital?", "answers": [{ "text": "Hawaii" }] },
+        { "prompt": "What is the capital of Senegal?", "answers": [{ "text": "Dakar" }] },
+        { "prompt": "What is the name of the bear in The Jungle Book?", "answers": [{ "text": "Baloo" }] },
+        { "prompt": "Which Belgian comic hero has a little white dog?", "answers": [{ "text": "Tintin", "aliases": ["Kuifje"] }] },
+        { "prompt": "Which Greek scholar was the first to calculate the circumference of the earth fairly accurately?", "answers": [{ "text": "Eratosthenes" }] },
+        { "prompt": "Which animal is in the logo of the Australian airline Qantas?", "answers": [{ "text": "The kangaroo", "aliases": ["Kangaroo"] }] },
+        { "prompt": "Which American city is nicknamed the Windy City?", "answers": [{ "text": "Chicago" }] },
+        { "prompt": "Which Russian composer wrote Pictures at an Exhibition?", "answers": [{ "text": "Modest Mussorgsky", "aliases": ["Mussorgsky", "Moussorgsky"] }] }
+      ]
+    }
+  ]
+}

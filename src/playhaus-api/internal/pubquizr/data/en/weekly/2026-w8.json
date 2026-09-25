@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres tall is the Empire State Building to the tip of its mast?", "answer": 443, "unit": "metres" },
         { "prompt": "How many keys does a full size computer keyboard have?", "answer": 104, "unit": "keys" },
-        { "prompt": "In what year did the Tour de France first ride a stage in the Netherlands?", "answer": 1954, "unit": "" },
+        { "prompt": "In what year did the Tour de France first ride a stage in the Netherlands?", "answer": 1954 },
         { "prompt": "How many bones make up the human skull?", "answer": 22, "unit": "bones" },
         { "prompt": "How many kilometres per hour does a peregrine falcon reach in a dive?", "answer": 320, "unit": "kilometres per hour" },
         { "prompt": "How many minutes does a football match last including half time?", "answer": 105, "unit": "minutes" },
@@ -88,7 +88,17 @@
         "Sherlock Holmes",
         "Venice",
         "Solar eclipse",
-        "Marathon"
+        "Marathon",
+        "Sandbag",
+        "Phone book",
+        "Iron",
+        "Heidi",
+        "Fireman Sam",
+        "Front page",
+        "Slot machine",
+        "Morning grumpiness",
+        "Self-checkout",
+        "Indiana Jones"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which sea, the saltiest in the world, lies at the lowest point on land?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
         { "prompt": "Which planet has the most moons in our solar system?", "answers": [{ "text": "Saturn" }] },
         { "prompt": "Which writer created the detective Hercule Poirot?", "answers": [{ "text": "Agatha Christie", "aliases": ["Christie"] }] },
-        { "prompt": "Which mountain range forms the border between Europe and Asia?", "answers": [{ "text": "The Urals", "aliases": ["Ural Mountains", "Urals"] }] }
+        { "prompt": "Which mountain range forms the border between Europe and Asia?", "answers": [{ "text": "The Urals", "aliases": ["Ural Mountains", "Urals"] }] },
+        { "prompt": "Which Spanish conquistador brought down the Aztec empire?", "answers": [{ "text": "Hernan Cortes", "aliases": ["Cortes"] }] },
+        { "prompt": "What is the capital of Bhutan?", "answers": [{ "text": "Thimphu" }] }
       ]
     }
   ]

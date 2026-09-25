@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w8",
+  "title": "Weekly quiz 8 2027",
+  "description": "The weekly quiz of Wednesday 24 February 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In which Spanish city is the Mezquita, a mosque with a cathedral inside it?", "category": "Geography", "answers": [{ "text": "Cordoba" }] },
+        { "prompt": "What is it called when a liquid cools and becomes a solid?", "category": "Science", "answers": [{ "text": "Solidification", "aliases": ["Freezing", "Solidifying"] }] },
+        { "prompt": "Which general of Alexander the Great founded a dynasty in Egypt after his death?", "category": "History", "answers": [{ "text": "Ptolemy", "aliases": ["Ptolemy I"] }] },
+        { "prompt": "Which German driver won the Formula 1 world championship seven times?", "category": "Sport", "answers": [{ "text": "Michael Schumacher", "aliases": ["Schumacher"] }] },
+        { "prompt": "Which American actor plays The Dude in The Big Lebowski?", "category": "Film", "answers": [{ "text": "Jeff Bridges", "aliases": ["Bridges"] }] },
+        { "prompt": "Which Icelandic singer had a hit with It's Oh So Quiet in 1995?", "category": "Music", "answers": [{ "text": "Bjork" }] },
+        { "prompt": "Which island in Zeeland has Zierikzee as its largest town?", "category": "The Netherlands", "answers": [{ "text": "Schouwen-Duiveland", "aliases": ["Schouwen"] }] },
+        { "prompt": "Which French painter made the Grande Odalisque, with a woman whose back is far too long?", "category": "Art", "answers": [{ "text": "Jean-Auguste-Dominique Ingres", "aliases": ["Ingres"] }] },
+        { "prompt": "What does the Latin phrase ad fundum mean?", "category": "Language", "answers": [{ "text": "To the bottom", "aliases": ["Down in one"] }] },
+        { "prompt": "What is the Austrian shredded pancake with icing sugar, named after the emperor, called?", "category": "Food", "answers": [{ "text": "Kaiserschmarrn" }] },
+        { "prompt": "After which first six letters is the standard keyboard layout named?", "category": "Technology", "answers": [{ "text": "QWERTY", "aliases": ["Qwerty"] }] },
+        { "prompt": "Which Australian kingfisher sounds as if it is laughing out loud?", "category": "Nature", "answers": [{ "text": "The kookaburra", "aliases": ["Kookaburra", "Laughing kookaburra"] }] },
+        { "prompt": "Which river flows along the west side of Manhattan?", "category": "Geography", "answers": [{ "text": "The Hudson", "aliases": ["Hudson"] }] },
+        { "prompt": "Which duchess was queen of France and afterwards queen of England?", "category": "History", "answers": [{ "text": "Eleanor of Aquitaine", "aliases": ["Eleanor"] }] },
+        { "prompt": "What is the instrument that records the vibrations of earthquakes called?", "category": "Science", "answers": [{ "text": "A seismograph", "aliases": ["Seismograph", "Seismometer"] }] },
+        { "prompt": "Which Dutch singer sang Kom van dat dak af in 1960?", "category": "Music", "answers": [{ "text": "Peter Koelewijn", "aliases": ["Koelewijn"] }] },
+        { "prompt": "Which blue character grants three wishes in the Disney film Aladdin?", "category": "Film", "answers": [{ "text": "The Genie", "aliases": ["Genie"] }] },
+        { "prompt": "What is the English custom of scones with clotted cream and jam with tea called?", "category": "Food", "answers": [{ "text": "Cream tea", "aliases": ["Devon cream tea"] }] },
+        { "prompt": "Which photo app with a camera icon was bought by Facebook in 2012?", "category": "Technology", "answers": [{ "text": "Instagram" }] },
+        { "prompt": "Which language is spoken alongside Dutch in Friesland?", "category": "Language", "answers": [{ "text": "Frisian", "aliases": ["West Frisian"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Portugal?", "options": [{ "text": "Coimbra", "correct": true }, { "text": "Salamanca" }, { "text": "Vigo" }, { "text": "Seville" }] },
+        { "prompt": "Which of these animals lays the most eggs at once?", "options": [{ "text": "The ocean sunfish", "correct": true }, { "text": "The chicken" }, { "text": "The salmon" }, { "text": "The crocodile" }] },
+        { "prompt": "Which Dutch writer wrote the novel Tirza?", "options": [{ "text": "Arnon Grunberg", "correct": true }, { "text": "Herman Koch" }, { "text": "A.F.Th. van der Heijden" }, { "text": "Connie Palmen" }] },
+        { "prompt": "Which of these countries lies furthest east?", "options": [{ "text": "Romania", "correct": true }, { "text": "Hungary" }, { "text": "Croatia" }, { "text": "Slovakia" }] },
+        { "prompt": "Which of these contains the most vitamin C?", "options": [{ "text": "The red pepper", "correct": true }, { "text": "The apple" }, { "text": "The banana" }, { "text": "The cucumber" }] },
+        { "prompt": "Which Dutch East India Company ship was wrecked off the coast of Australia in 1629?", "options": [{ "text": "The Batavia", "correct": true }, { "text": "The Halve Maen" }, { "text": "The Zeven Provincien" }, { "text": "The Amsterdam" }] },
+        { "prompt": "Which of these countries is in the Caucasus?", "options": [{ "text": "Azerbaijan", "correct": true }, { "text": "Kazakhstan" }, { "text": "Turkmenistan" }, { "text": "Mongolia" }] },
+        { "prompt": "Which of these birds stays in the Netherlands in winter too?", "options": [{ "text": "The great tit", "correct": true }, { "text": "The swallow" }, { "text": "The stork" }, { "text": "The cuckoo" }] },
+        { "prompt": "Which film won the very first Oscar for best picture in 1929?", "options": [{ "text": "Wings", "correct": true }, { "text": "Sunrise" }, { "text": "The Jazz Singer" }, { "text": "Metropolis" }] },
+        { "prompt": "Which tennis player won the French Open fourteen times?", "options": [{ "text": "Rafael Nadal", "correct": true }, { "text": "Novak Djokovic" }, { "text": "Roger Federer" }, { "text": "Bjorn Borg" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Lotte World Tower in Seoul?", "answer": 555, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Rio Grande?", "answer": 3050, "unit": "kilometres" },
+        { "prompt": "How many countries border Austria?", "answer": 8, "unit": "countries" },
+        { "prompt": "How old was Freddie Mercury when he died?", "answer": 45, "unit": "years" },
+        { "prompt": "What is the maximum weight of a golf ball in grams?", "answer": 46, "unit": "grams" },
+        { "prompt": "How many cards does each player get in bridge?", "answer": 13, "unit": "cards" },
+        { "prompt": "How many metres high is a men's volleyball net?", "answer": 2.43, "unit": "metres" },
+        { "prompt": "In which year did the Keukenhof first open to the public?", "answer": 1950 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Receipt",
+        "The Scream",
+        "Hagia Sophia",
+        "Credit card",
+        "Bongo drums",
+        "Sisyphus",
+        "Police car",
+        "Louis XIV",
+        "Peppa Pig",
+        "Doorbell",
+        "Piece of chalk",
+        "Queen",
+        "Bow tie",
+        "Reggae",
+        "Computer mouse",
+        "Mickey Mouse",
+        "Lord of the manor",
+        "Woodstock",
+        "Deep fryer",
+        "Feeding time",
+        "Drummer",
+        "Ramen",
+        "Gnocchi",
+        "Scones with jam",
+        "Stephen King",
+        "Jurassic World",
+        "Tearjerker song",
+        "Plait",
+        "Paver",
+        "Stapler",
+        "Ganges",
+        "Cuckoo",
+        "Bitcoin",
+        "Siesta",
+        "Funhouse mirror",
+        "Breakfast in bed",
+        "Hollywood Walk of Fame",
+        "Abel Tasman",
+        "Safety pin",
+        "Mint tea"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Ferrari?", "answers": [{ "text": "Red", "aliases": ["Red cars"] }, { "text": "Italy", "aliases": ["Maranello"] }, { "text": "Formula 1", "aliases": ["Racing"] }, { "text": "Prancing horse", "aliases": ["Horse", "Logo"] }] },
+        { "prompt": "What do you know about Finland?", "answers": [{ "text": "Sauna", "aliases": ["Saunas"] }, { "text": "Helsinki", "aliases": ["The capital Helsinki"] }, { "text": "Nokia", "aliases": ["Angry Birds"] }, { "text": "Lakes", "aliases": ["Thousand lakes", "Forests"] }] },
+        { "prompt": "What do you know about the Dutch East India Company?", "answers": [{ "text": "Golden Age", "aliases": ["Seventeenth century"] }, { "text": "Spices", "aliases": ["Pepper", "Nutmeg"] }, { "text": "Indonesia", "aliases": ["East Indies", "Batavia"] }, { "text": "Ships", "aliases": ["Trade", "Shares"] }] },
+        { "prompt": "What do you know about the Oscars?", "answers": [{ "text": "Golden statuette", "aliases": ["Statuette"] }, { "text": "Hollywood", "aliases": ["Los Angeles"] }, { "text": "Red carpet", "aliases": ["Gowns"] }, { "text": "Best picture", "aliases": ["Best actor", "Speech"] }] },
+        { "prompt": "What do you know about dreams?", "answers": [{ "text": "Sleeping", "aliases": ["Sleep", "Night"] }, { "text": "Nightmare", "aliases": ["Bad dream"] }, { "text": "REM sleep", "aliases": ["REM"] }, { "text": "Freud", "aliases": ["Dream interpretation"] }] },
+        { "prompt": "What do you know about Madrid?", "answers": [{ "text": "Real Madrid", "aliases": ["Bernabeu"] }, { "text": "Prado", "aliases": ["Museum"] }, { "text": "Capital of Spain", "aliases": ["Spain"] }, { "text": "Tapas", "aliases": ["Churros", "Plaza Mayor"] }] },
+        { "prompt": "What do you know about peanuts?", "answers": [{ "text": "Peanut butter", "aliases": ["Sandwich"] }, { "text": "Allergy", "aliases": ["Allergic"] }, { "text": "Satay sauce", "aliases": ["Peanut sauce"] }, { "text": "Grow underground", "aliases": ["Legume", "Groundnut"] }] },
+        { "prompt": "What do you know about frogs?", "answers": [{ "text": "Croaking", "aliases": ["Croak"] }, { "text": "Jumping", "aliases": ["Long legs"] }, { "text": "Tadpole", "aliases": ["Frogspawn"] }, { "text": "Catching flies", "aliases": ["Long tongue", "Insects"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What does a dog love to gnaw on?", "difficulty": "easy", "answers": [{ "text": "A bone", "aliases": ["Bone", "Bones"] }] },
+        { "prompt": "Which animal is called the king of the animals?", "difficulty": "easy", "answers": [{ "text": "The lion", "aliases": ["Lion"] }] },
+        { "prompt": "What do you sleep in at night?", "difficulty": "easy", "answers": [{ "text": "A bed", "aliases": ["Bed"] }] },
+        { "prompt": "What do you use an umbrella for?", "difficulty": "easy", "answers": [{ "text": "Keeping dry in the rain", "aliases": ["The rain", "Staying dry"] }] },
+        { "prompt": "Which bird gives feathers for a down duvet and honks?", "difficulty": "easy", "answers": [{ "text": "The goose", "aliases": ["Goose", "Duck"] }] },
+        { "prompt": "Which Dutch mathematician gave his name to a famous fixed-point theorem?", "difficulty": "hard", "answers": [{ "text": "L.E.J. Brouwer", "aliases": ["Brouwer", "Luitzen Egbertus Jan Brouwer"] }] },
+        { "prompt": "Which British composer wrote Pomp and Circumstance?", "difficulty": "hard", "answers": [{ "text": "Edward Elgar", "aliases": ["Elgar"] }] },
+        { "prompt": "Which metal that melts in your hand has the chemical symbol Ga?", "difficulty": "hard", "answers": [{ "text": "Gallium" }] },
+        { "prompt": "Which river flows through Stuttgart and Heidelberg?", "difficulty": "hard", "answers": [{ "text": "The Neckar", "aliases": ["Neckar"] }] },
+        { "prompt": "Which British prime minister bought Egypt's shares in the Suez Canal for his country in 1875?", "difficulty": "hard", "answers": [{ "text": "Benjamin Disraeli", "aliases": ["Disraeli"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Sebastian in The Little Mermaid?", "answers": [{ "text": "A crab", "aliases": ["Crab"] }] },
+        { "prompt": "In which Polish city is Wawel Castle?", "answers": [{ "text": "Krakow", "aliases": ["Cracow"] }] },
+        { "prompt": "Which Irish writer wrote Gulliver's Travels?", "answers": [{ "text": "Jonathan Swift", "aliases": ["Swift"] }] },
+        { "prompt": "What kind of animal is the big yellow Big Bird in Sesame Street?", "answers": [{ "text": "A bird", "aliases": ["Bird", "Canary"] }] },
+        { "prompt": "In which European capital is the enormous Palace of the Parliament from the Ceausescu era?", "answers": [{ "text": "Bucharest" }] },
+        { "prompt": "Which American physicist came up with diagrams to draw particle interactions?", "answers": [{ "text": "Richard Feynman", "aliases": ["Feynman"] }] },
+        { "prompt": "What kind of animal is Shrek's talking friend?", "answers": [{ "text": "A donkey", "aliases": ["Donkey"] }] },
+        { "prompt": "Which British band had a hit with Mr Blue Sky in 1978?", "answers": [{ "text": "Electric Light Orchestra", "aliases": ["ELO"] }] },
+        { "prompt": "Which Greek philosopher is said to have lived in a barrel?", "answers": [{ "text": "Diogenes", "aliases": ["Diogenes of Sinope"] }] }
+      ]
+    }
+  ]
+}

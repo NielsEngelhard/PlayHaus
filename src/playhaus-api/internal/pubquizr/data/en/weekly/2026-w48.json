@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w48",
+  "title": "Weekly quiz 48 2026",
+  "description": "The weekly quiz of Wednesday 25 November 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In which Japanese port city was Dejima, where only the Dutch were allowed to trade?", "category": "Geography", "answers": [{ "text": "Nagasaki" }] },
+        { "prompt": "What is the smallest building block that all living things are made of?", "category": "Science", "answers": [{ "text": "The cell", "aliases": ["Cell", "Cells"] }] },
+        { "prompt": "Which American woman refused to give up her bus seat to a white man in 1955?", "category": "History", "answers": [{ "text": "Rosa Parks", "aliases": ["Parks"] }] },
+        { "prompt": "Which Dutchman became Formula 1 world champion for the first time in 2021?", "category": "Sport", "answers": [{ "text": "Max Verstappen", "aliases": ["Verstappen"] }] },
+        { "prompt": "Which actor played Harry Potter in the films?", "category": "Film", "answers": [{ "text": "Daniel Radcliffe", "aliases": ["Radcliffe"] }] },
+        { "prompt": "Which American singer had a hit with Believe in 1998?", "category": "Music", "answers": [{ "text": "Cher" }] },
+        { "prompt": "In which Dutch TV show do the contestants hunt for a saboteur in their own group?", "category": "The Netherlands", "answers": [{ "text": "Wie is de Mol?", "aliases": ["Wie is de Mol", "The Mole"] }] },
+        { "prompt": "Which French artist put a urinal on a plinth and called it Fountain?", "category": "Art", "answers": [{ "text": "Marcel Duchamp", "aliases": ["Duchamp"] }] },
+        { "prompt": "What is the opposite of plural?", "category": "Language", "answers": [{ "text": "Singular" }] },
+        { "prompt": "What is the round French biscuit of egg white and almond flour with a soft filling called?", "category": "Food", "answers": [{ "text": "Macaron", "aliases": ["Macarons"] }] },
+        { "prompt": "Which company, formerly called Facebook, owns Instagram?", "category": "Technology", "answers": [{ "text": "Meta", "aliases": ["Meta Platforms"] }] },
+        { "prompt": "What is a female lion called?", "category": "Nature", "answers": [{ "text": "A lioness", "aliases": ["Lioness"] }] },
+        { "prompt": "Which pointed Swiss mountain appears on the Toblerone pack?", "category": "Geography", "answers": [{ "text": "The Matterhorn", "aliases": ["Matterhorn"] }] },
+        { "prompt": "Which English king was killed at the Battle of Bosworth in 1485?", "category": "History", "answers": [{ "text": "Richard III", "aliases": ["Richard the Third"] }] },
+        { "prompt": "What is a number smaller than zero called?", "category": "Science", "answers": [{ "text": "A negative number", "aliases": ["Negative number", "Negative"] }] },
+        { "prompt": "Which Dutch violinist tours the whole world with his Johann Strauss Orchestra?", "category": "Music", "answers": [{ "text": "Andre Rieu", "aliases": ["Rieu"] }] },
+        { "prompt": "What is the name of the forgetful blue fish in Finding Nemo?", "category": "Film", "answers": [{ "text": "Dory" }] },
+        { "prompt": "Which bean is tofu made from?", "category": "Food", "answers": [{ "text": "The soya bean", "aliases": ["Soy", "Soya", "Soybean"] }] },
+        { "prompt": "What is the first and best-known cryptocurrency, devised by Satoshi Nakamoto?", "category": "Technology", "answers": [{ "text": "Bitcoin" }] },
+        { "prompt": "Which language does the word piano come from?", "category": "Language", "answers": [{ "text": "Italian" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "In which of these countries does traffic drive on the left?", "options": [{ "text": "Kenya", "correct": true }, { "text": "Ghana" }, { "text": "Nigeria" }, { "text": "Ethiopia" }] },
+        { "prompt": "Which of these fish lives in fresh water?", "options": [{ "text": "The pike", "correct": true }, { "text": "The cod" }, { "text": "The tuna" }, { "text": "The herring" }] },
+        { "prompt": "Which Danish writer wrote Out of Africa?", "options": [{ "text": "Karen Blixen", "correct": true }, { "text": "Selma Lagerlof" }, { "text": "Astrid Lindgren" }, { "text": "Sigrid Undset" }] },
+        { "prompt": "Which of these islands belongs to Greece?", "options": [{ "text": "Rhodes", "correct": true }, { "text": "Sardinia" }, { "text": "Cyprus" }, { "text": "Malta" }] },
+        { "prompt": "Which hormone is released when you get a fright and makes your heart beat faster?", "options": [{ "text": "Adrenaline", "correct": true }, { "text": "Insulin" }, { "text": "Oxytocin" }, { "text": "Melatonin" }] },
+        { "prompt": "In which city was Martin Luther King assassinated in 1968?", "options": [{ "text": "Memphis", "correct": true }, { "text": "Atlanta" }, { "text": "Dallas" }, { "text": "Chicago" }] },
+        { "prompt": "Which of these mountains is in Africa?", "options": [{ "text": "Mount Kenya", "correct": true }, { "text": "Aconcagua" }, { "text": "Mount Elbrus" }, { "text": "Denali" }] },
+        { "prompt": "Which of these birds is a bird of prey?", "options": [{ "text": "The buzzard", "correct": true }, { "text": "The heron" }, { "text": "The swan" }, { "text": "The gull" }] },
+        { "prompt": "In which book do children find the land of Narnia through a wardrobe?", "options": [{ "text": "The Lion, the Witch and the Wardrobe", "correct": true }, { "text": "The Hobbit" }, { "text": "Alice in Wonderland" }, { "text": "Peter Pan" }] },
+        { "prompt": "Where were the 2026 Winter Olympics held?", "options": [{ "text": "Milan and Cortina", "correct": true }, { "text": "Turin" }, { "text": "Innsbruck" }, { "text": "Zurich" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is the pylon of the Erasmus Bridge in Rotterdam?", "answer": 139, "unit": "metres" },
+        { "prompt": "How many litres does a standard Dutch wheelie bin hold?", "answer": 240, "unit": "litres" },
+        { "prompt": "About how many million people live in the Netherlands?", "answer": 18, "unit": "million" },
+        { "prompt": "How many kilometres per hour can a greyhound run?", "answer": 70, "unit": "kilometres per hour" },
+        { "prompt": "How many countries are there in South America?", "answer": 12, "unit": "countries" },
+        { "prompt": "How many eggs does a queen bee lay per day in summer?", "answer": 2000, "unit": "eggs" },
+        { "prompt": "How many metres long was the Seawise Giant, the longest ship ever built?", "answer": 458, "unit": "metres" },
+        { "prompt": "In which year did the Rijksmuseum open in its current building by Cuypers?", "answer": 1885 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Laptop",
+        "Busker",
+        "Scratch card",
+        "Scrambled eggs",
+        "Killer whale",
+        "Empire",
+        "Fire eater",
+        "Skydiving",
+        "Ballet",
+        "Mountain bike",
+        "Mayor",
+        "Stage fright",
+        "Sea urchin",
+        "Pippi Longstocking",
+        "Clay pigeon shooting",
+        "Fan club",
+        "Alcatraz",
+        "Henna",
+        "Flying carpet",
+        "Mittens",
+        "Nightmare",
+        "Hamster wheel",
+        "King Kong",
+        "Syringe",
+        "Water slide",
+        "Terminator",
+        "Great Fire of London",
+        "Bamboo forest",
+        "Pond",
+        "Uno",
+        "Mole on the skin",
+        "Egg cup",
+        "Calories",
+        "Breakdancing",
+        "Seaplane",
+        "Chocolate bomb",
+        "Weatherman",
+        "Sherpa",
+        "Frog Prince",
+        "Referendum"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Florida?", "answers": [{ "text": "Disney World", "aliases": ["Walt Disney World", "Orlando"] }, { "text": "Miami", "aliases": ["Miami Beach"] }, { "text": "Alligators", "aliases": ["Everglades", "Crocodiles"] }, { "text": "Sun and beaches", "aliases": ["Sunshine", "Beach"] }] },
+        { "prompt": "What do you know about Cinderella?", "answers": [{ "text": "Glass slipper", "aliases": ["Slipper", "Shoe"] }, { "text": "Stepmother", "aliases": ["Stepsisters"] }, { "text": "Pumpkin", "aliases": ["Coach", "Fairy godmother"] }, { "text": "Midnight", "aliases": ["Twelve o'clock"] }] },
+        { "prompt": "What do you know about the Colosseum?", "answers": [{ "text": "Rome", "aliases": ["Italy"] }, { "text": "Gladiators", "aliases": ["Gladiator"] }, { "text": "Amphitheatre", "aliases": ["Arena"] }, { "text": "Ruin", "aliases": ["Ancient", "Romans"] }] },
+        { "prompt": "What do you know about bananas?", "answers": [{ "text": "Yellow", "aliases": ["Yellow skin"] }, { "text": "Tropical", "aliases": ["Tropics", "Ecuador"] }, { "text": "Monkeys", "aliases": ["Monkey"] }, { "text": "Potassium", "aliases": ["Healthy", "Vitamins"] }] },
+        { "prompt": "What do you know about polar bears?", "answers": [{ "text": "North Pole", "aliases": ["Arctic", "Polar regions"] }, { "text": "White", "aliases": ["White fur"] }, { "text": "Seals", "aliases": ["Fish", "Hunting"] }, { "text": "Melting ice", "aliases": ["Climate", "Endangered"] }] },
+        { "prompt": "What do you know about NASA?", "answers": [{ "text": "Moon landing", "aliases": ["Apollo", "Apollo 11"] }, { "text": "Rockets", "aliases": ["Space shuttle", "Rocket"] }, { "text": "Astronauts", "aliases": ["Astronaut"] }, { "text": "Houston", "aliases": ["Florida", "Cape Canaveral"] }] },
+        { "prompt": "What do you know about Turkey?", "answers": [{ "text": "Istanbul" }, { "text": "Ankara", "aliases": ["The capital Ankara"] }, { "text": "Kebab", "aliases": ["Doner", "Turkish pizza"] }, { "text": "Turkish delight", "aliases": ["Turkish tea", "Baklava"] }] },
+        { "prompt": "What do you know about tulips?", "answers": [{ "text": "The Netherlands", "aliases": ["Holland"] }, { "text": "Bulbs", "aliases": ["Bulb", "Bulb fields"] }, { "text": "Keukenhof", "aliases": ["Lisse"] }, { "text": "Tulip mania", "aliases": ["Golden Age", "Expensive"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which fruit grows in a vineyard?", "difficulty": "easy", "answers": [{ "text": "Grapes", "aliases": ["Grape"] }] },
+        { "prompt": "What do children look for in the garden at Easter?", "difficulty": "easy", "answers": [{ "text": "Easter eggs", "aliases": ["Eggs"] }] },
+        { "prompt": "The milk of which animal is Gouda cheese made from?", "difficulty": "easy", "answers": [{ "text": "The cow", "aliases": ["Cow", "Cows"] }] },
+        { "prompt": "Which wooden puppet's nose grows when he lies?", "difficulty": "easy", "answers": [{ "text": "Pinocchio" }] },
+        { "prompt": "What is the name of the fairytale cat who wears boots?", "difficulty": "easy", "answers": [{ "text": "Puss in Boots" }] },
+        { "prompt": "What is the official capital of Ivory Coast?", "difficulty": "hard", "answers": [{ "text": "Yamoussoukro" }] },
+        { "prompt": "Which English composer wrote The Planets?", "difficulty": "hard", "answers": [{ "text": "Gustav Holst", "aliases": ["Holst"] }] },
+        { "prompt": "Which element has the chemical symbol Sr?", "difficulty": "hard", "answers": [{ "text": "Strontium" }] },
+        { "prompt": "Which river flows into the Danube at Belgrade?", "difficulty": "hard", "answers": [{ "text": "The Sava", "aliases": ["Sava"] }] },
+        { "prompt": "Which Byzantine empress was an actress before she married Justinian?", "difficulty": "hard", "answers": [{ "text": "Theodora" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Who is Asterix's best friend?", "answers": [{ "text": "Obelix" }] },
+        { "prompt": "In which Italian city is Romeo and Juliet set?", "answers": [{ "text": "Verona" }] },
+        { "prompt": "Which Czech writer wrote The Unbearable Lightness of Being?", "answers": [{ "text": "Milan Kundera", "aliases": ["Kundera"] }] },
+        { "prompt": "Which superhero comes from the planet Krypton?", "answers": [{ "text": "Superman" }] },
+        { "prompt": "Which sea lies between Sweden and the Baltic states?", "answers": [{ "text": "The Baltic Sea", "aliases": ["Baltic", "Baltic Sea"] }] },
+        { "prompt": "Which Scottish physicist summed up electricity and magnetism in four famous equations?", "answers": [{ "text": "James Clerk Maxwell", "aliases": ["Maxwell"] }] },
+        { "prompt": "Which drink is made from fermented grapes?", "answers": [{ "text": "Wine" }] },
+        { "prompt": "Which Dutch football club is nicknamed the Pride of the North?", "answers": [{ "text": "FC Groningen", "aliases": ["Groningen"] }] },
+        { "prompt": "Which British philosopher wrote the Principia Mathematica together with Alfred Whitehead?", "answers": [{ "text": "Bertrand Russell", "aliases": ["Russell"] }] }
+      ]
+    }
+  ]
+}

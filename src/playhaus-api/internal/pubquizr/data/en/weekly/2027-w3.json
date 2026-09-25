@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w3",
+  "title": "Weekly quiz 3 2027",
+  "description": "The weekly quiz of Wednesday 20 January 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the largest island in the Ionian Sea?", "category": "Geography", "answers": [{ "text": "Kefalonia", "aliases": ["Cephalonia"] }] },
+        { "prompt": "With which part of the plant is water taken up from the soil?", "category": "Science", "answers": [{ "text": "The roots", "aliases": ["Roots", "Root"] }] },
+        { "prompt": "Which Roman emperor is said to have wanted to make his horse Incitatus a consul?", "category": "History", "answers": [{ "text": "Caligula" }] },
+        { "prompt": "Which Dutch cyclist won Olympic gold in the road race in London in 2012?", "category": "Sport", "answers": [{ "text": "Marianne Vos", "aliases": ["Vos"] }] },
+        { "prompt": "What is the name of the inventor of the time machine in Back to the Future?", "category": "Film", "answers": [{ "text": "Doc Brown", "aliases": ["Emmett Brown", "Doc"] }] },
+        { "prompt": "Which Scottish singer had a worldwide hit with Someone You Loved in 2019?", "category": "Music", "answers": [{ "text": "Lewis Capaldi", "aliases": ["Capaldi"] }] },
+        { "prompt": "Which Dutch Hanseatic town has a church tower nicknamed the Pepper Pot?", "category": "The Netherlands", "answers": [{ "text": "Zwolle" }] },
+        { "prompt": "Which Japanese artist is famous for her polka dots and yellow pumpkins?", "category": "Art", "answers": [{ "text": "Yayoi Kusama", "aliases": ["Kusama"] }] },
+        { "prompt": "What is a part added to the front of a word, like un in unhappy, called?", "category": "Language", "answers": [{ "text": "A prefix", "aliases": ["Prefix"] }] },
+        { "prompt": "What is the English dish of sausages baked in batter called?", "category": "Food", "answers": [{ "text": "Toad in the hole" }] },
+        { "prompt": "Which wireless technology was developed at Ericsson by the Dutchman Jaap Haartsen?", "category": "Technology", "answers": [{ "text": "Bluetooth" }] },
+        { "prompt": "Which small mammal digs tunnels and leaves mounds of earth in the grass?", "category": "Nature", "answers": [{ "text": "The mole", "aliases": ["Mole"] }] },
+        { "prompt": "What is the large bay between Greenland and Canada's Baffin Island called?", "category": "Geography", "answers": [{ "text": "Baffin Bay" }] },
+        { "prompt": "Which two American explorers travelled to the Pacific between 1804 and 1806?", "category": "History", "answers": [{ "text": "Lewis and Clark" }] },
+        { "prompt": "What is a polygon with five angles called?", "category": "Science", "answers": [{ "text": "A pentagon", "aliases": ["Pentagon"] }] },
+        { "prompt": "Which American rock band had a hit with Livin' on a Prayer in 1986?", "category": "Music", "answers": [{ "text": "Bon Jovi" }] },
+        { "prompt": "Which Pixar film is about a Scottish princess with curly red hair and a bow and arrow?", "category": "Film", "answers": [{ "text": "Brave" }] },
+        { "prompt": "What is the Indian yoghurt drink, often made with mango, called?", "category": "Food", "answers": [{ "text": "Lassi", "aliases": ["Mango lassi"] }] },
+        { "prompt": "What was the 1972 video game with two paddles and a bouncing ball called?", "category": "Technology", "answers": [{ "text": "Pong" }] },
+        { "prompt": "What is the plural of the word crisis?", "category": "Language", "answers": [{ "text": "Crises" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these islands belongs to Italy?", "options": [{ "text": "Capri", "correct": true }, { "text": "Corsica" }, { "text": "Malta" }, { "text": "Ibiza" }] },
+        { "prompt": "Which of these animals can jump the highest compared with its own length?", "options": [{ "text": "The flea", "correct": true }, { "text": "The kangaroo" }, { "text": "The frog" }, { "text": "The grasshopper" }] },
+        { "prompt": "Which Dutch writer wrote Bitter Herbs?", "options": [{ "text": "Marga Minco", "correct": true }, { "text": "Ida Vos" }, { "text": "Etty Hillesum" }, { "text": "Anne Frank" }] },
+        { "prompt": "Which of these American states borders Mexico?", "options": [{ "text": "New Mexico", "correct": true }, { "text": "Nevada" }, { "text": "Oklahoma" }, { "text": "Colorado" }] },
+        { "prompt": "Which of these nutrients provides the most energy per gram?", "options": [{ "text": "Fat", "correct": true }, { "text": "Protein" }, { "text": "Carbohydrates" }, { "text": "Fibre" }] },
+        { "prompt": "Which British prime minister resigned in 2016 after the Brexit referendum?", "options": [{ "text": "David Cameron", "correct": true }, { "text": "Theresa May" }, { "text": "Boris Johnson" }, { "text": "Gordon Brown" }] },
+        { "prompt": "Which of these waterfalls is in South America?", "options": [{ "text": "The Iguazu Falls", "correct": true }, { "text": "Niagara Falls" }, { "text": "Victoria Falls" }, { "text": "The Rhine Falls" }] },
+        { "prompt": "Which of these birds is a wader?", "options": [{ "text": "The oystercatcher", "correct": true }, { "text": "The sparrow" }, { "text": "The blackbird" }, { "text": "The crow" }] },
+        { "prompt": "In which film does Leonardo DiCaprio play a con man who poses as, among other things, a pilot?", "options": [{ "text": "Catch Me If You Can", "correct": true }, { "text": "The Aviator" }, { "text": "Inception" }, { "text": "Blood Diamond" }] },
+        { "prompt": "Which Dutchman scored a penalty in the second minute of the 1974 World Cup final?", "options": [{ "text": "Johan Neeskens", "correct": true }, { "text": "Johan Cruyff" }, { "text": "Rob Rensenbrink" }, { "text": "Johnny Rep" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall are the Petronas Towers in Kuala Lumpur?", "answer": 452, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Volga?", "answer": 3530, "unit": "kilometres" },
+        { "prompt": "How many days does a year on Mercury last?", "answer": 88, "unit": "days" },
+        { "prompt": "How old was Rembrandt when he died?", "answer": 63, "unit": "years" },
+        { "prompt": "How many kilometres per hour does the fastest roller coaster in the world reach?", "answer": 240, "unit": "kilometres per hour" },
+        { "prompt": "How many players does a field hockey team have on the pitch, including the goalkeeper?", "answer": 11, "unit": "players" },
+        { "prompt": "How many vertebrae make up the human spine?", "answer": 33, "unit": "vertebrae" },
+        { "prompt": "In which year did the Euromast in Rotterdam open?", "answer": 1960 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Push-up",
+        "Discman",
+        "Sandpit",
+        "Monsoon",
+        "Razor",
+        "Magpie",
+        "Peacock",
+        "Mount Olympus",
+        "Iguana",
+        "Stock exchange",
+        "Florida",
+        "Porthole",
+        "Plaster",
+        "Paraglider",
+        "Camembert",
+        "Bingo",
+        "Cricket",
+        "Induction hob",
+        "Fashion designer",
+        "Volleyball",
+        "Goldfish",
+        "Afternoon tea",
+        "Burj Khalifa",
+        "Gingerbread loaf",
+        "Pine cone",
+        "Coastguard",
+        "Art auction",
+        "Football sticker",
+        "Candy cane",
+        "Weather forecast",
+        "Architect",
+        "Bank manager",
+        "Mortgage",
+        "Beanie",
+        "Soft serve",
+        "Keyboard",
+        "Bin lorry",
+        "Jelly",
+        "Scooby-Doo",
+        "Acropolis"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about the Dutch province of Brabant?", "answers": [{ "text": "Carnival", "aliases": ["Oeteldonk"] }, { "text": "Efteling", "aliases": ["Kaatsheuvel"] }, { "text": "Sausage roll", "aliases": ["Brabant sausage roll"] }, { "text": "Eindhoven", "aliases": ["Den Bosch", "Tilburg", "Breda"] }] },
+        { "prompt": "What do you know about the Aztecs?", "answers": [{ "text": "Mexico", "aliases": ["Central America"] }, { "text": "Tenochtitlan", "aliases": ["Capital on a lake"] }, { "text": "Pyramids", "aliases": ["Temples"] }, { "text": "Human sacrifice", "aliases": ["Sacrifices", "Sun god"] }] },
+        { "prompt": "What do you know about cacti?", "answers": [{ "text": "Desert", "aliases": ["Dry"] }, { "text": "Spines", "aliases": ["Prickly", "Needles"] }, { "text": "Store water", "aliases": ["Need little water"] }, { "text": "Mexico", "aliases": ["Arizona", "America"] }] },
+        { "prompt": "What do you know about the Dutch royal family?", "answers": [{ "text": "Orange", "aliases": ["House of Orange-Nassau"] }, { "text": "Willem-Alexander", "aliases": ["The king"] }, { "text": "Maxima", "aliases": ["Queen Maxima"] }, { "text": "King's Day", "aliases": ["Prinsjesdag", "Palace"] }] },
+        { "prompt": "What do you know about swimming?", "answers": [{ "text": "Breaststroke", "aliases": ["Front crawl", "Butterfly", "Backstroke"] }, { "text": "Swimming pool", "aliases": ["Swimming cap", "Pool"] }, { "text": "Swimming certificate", "aliases": ["Swimming lessons"] }, { "text": "Michael Phelps", "aliases": ["Phelps", "Ranomi Kromowidjojo"] }] },
+        { "prompt": "What do you know about Greenland?", "answers": [{ "text": "Ice", "aliases": ["Ice sheet", "Glaciers"] }, { "text": "Denmark", "aliases": ["Danish"] }, { "text": "Inuit", "aliases": ["Igloo"] }, { "text": "Largest island", "aliases": ["Huge", "Island"] }] },
+        { "prompt": "What do you know about Claude Monet?", "answers": [{ "text": "Water lilies", "aliases": ["Lily pond"] }, { "text": "Impressionism", "aliases": ["Impressionist"] }, { "text": "Giverny", "aliases": ["Garden"] }, { "text": "France", "aliases": ["French", "Paris"] }] },
+        { "prompt": "What do you know about beer?", "answers": [{ "text": "Hops", "aliases": ["Barley", "Malt"] }, { "text": "Belgium", "aliases": ["Germany", "Czechia"] }, { "text": "Oktoberfest", "aliases": ["Munich"] }, { "text": "Heineken", "aliases": ["Guinness", "Lager"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the playground seat on chains that you swing back and forth on called?", "difficulty": "easy", "answers": [{ "text": "The swing", "aliases": ["Swing"] }] },
+        { "prompt": "Which day comes after Tuesday?", "difficulty": "easy", "answers": [{ "text": "Wednesday" }] },
+        { "prompt": "What is the little house of twigs a bird builds for its eggs called?", "difficulty": "easy", "answers": [{ "text": "A nest", "aliases": ["Nest", "Bird's nest"] }] },
+        { "prompt": "Which toy do you fly high in the wind on a long string?", "difficulty": "easy", "answers": [{ "text": "A kite", "aliases": ["Kite"] }] },
+        { "prompt": "Which bird spreads its big colourful tail like a fan?", "difficulty": "easy", "answers": [{ "text": "The peacock", "aliases": ["Peacock"] }] },
+        { "prompt": "Which German mathematician devised the geometry of curved spaces that Einstein later used?", "difficulty": "hard", "answers": [{ "text": "Bernhard Riemann", "aliases": ["Riemann"] }] },
+        { "prompt": "Which French composer wrote the Symphonie fantastique?", "difficulty": "hard", "answers": [{ "text": "Hector Berlioz", "aliases": ["Berlioz"] }] },
+        { "prompt": "Which element has the chemical symbol Co?", "difficulty": "hard", "answers": [{ "text": "Cobalt" }] },
+        { "prompt": "Which river flows through Toulouse and Bordeaux?", "difficulty": "hard", "answers": [{ "text": "The Garonne", "aliases": ["Garonne"] }] },
+        { "prompt": "Which Roman emperor was the last to rule the whole empire, until 395?", "difficulty": "hard", "answers": [{ "text": "Theodosius", "aliases": ["Theodosius I", "Theodosius the Great"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Shere Khan in The Jungle Book?", "answers": [{ "text": "A tiger", "aliases": ["Tiger"] }] },
+        { "prompt": "Which Portuguese island group lies in the middle of the Atlantic Ocean?", "answers": [{ "text": "The Azores", "aliases": ["Azores"] }] },
+        { "prompt": "Which French writer wrote The Plague?", "answers": [{ "text": "Albert Camus", "aliases": ["Camus"] }] },
+        { "prompt": "What kind of animal is Flipper from the old television series?", "answers": [{ "text": "A dolphin", "aliases": ["Dolphin"] }] },
+        { "prompt": "Which American city is nicknamed the City of Angels?", "answers": [{ "text": "Los Angeles", "aliases": ["LA"] }] },
+        { "prompt": "Which Portuguese navigator was the first European to round the Cape of Good Hope, in 1488?", "answers": [{ "text": "Bartolomeu Dias", "aliases": ["Dias", "Bartholomew Diaz"] }] },
+        { "prompt": "Which animal hides the eggs in the garden at Easter?", "answers": [{ "text": "The Easter Bunny", "aliases": ["Easter Bunny", "Easter hare"] }] },
+        { "prompt": "Which Swedish duo had a hit with It Must Have Been Love in 1990?", "answers": [{ "text": "Roxette" }] },
+        { "prompt": "Which German chemist came up with the ring shape of benzene after a dream about a snake?", "answers": [{ "text": "August Kekule", "aliases": ["Kekule"] }] }
+      ]
+    }
+  ]
+}

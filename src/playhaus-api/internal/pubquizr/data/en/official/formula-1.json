@@ -89,7 +89,17 @@
         "Garage",
         "Pit board",
         "Wind tunnel",
-        "Simulator"
+        "Simulator",
+        "Pit stop",
+        "Safety car",
+        "Chequered flag",
+        "Pole position",
+        "Overtake",
+        "Champagne shower",
+        "Racing driver",
+        "Tyre change",
+        "Monaco Grand Prix",
+        "Lap time"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "At which German circuit did Niki Lauda have his near-fatal crash in 1976?", "answers": [{ "text": "The Nurburgring", "aliases": ["Nurburgring", "Nordschleife"] }] },
         { "prompt": "Which British driver won the world championship in 1976?", "answers": [{ "text": "James Hunt", "aliases": ["Hunt"] }] },
         { "prompt": "Who was the Ferrari team principal throughout Michael Schumacher's five championships?", "answers": [{ "text": "Jean Todt", "aliases": ["Todt"] }] },
-        { "prompt": "At which circuit did Ayrton Senna suffer his fatal crash in 1994?", "answers": [{ "text": "Imola", "aliases": ["Autodromo Enzo e Dino Ferrari"] }] }
+        { "prompt": "At which circuit did Ayrton Senna suffer his fatal crash in 1994?", "answers": [{ "text": "Imola", "aliases": ["Autodromo Enzo e Dino Ferrari"] }] },
+        { "prompt": "On which Belgian circuit is the famous Eau Rouge corner?", "answers": [{ "text": "Spa-Francorchamps", "aliases": ["Spa", "Francorchamps"] }] },
+        { "prompt": "Which Argentine won five world championships in the fifties?", "answers": [{ "text": "Juan Manuel Fangio", "aliases": ["Fangio"] }] }
       ]
     }
   ]

@@ -47,12 +47,12 @@
       "round": 3,
       "questions": [
         { "prompt": "How many kilometres long is the Panama Canal?", "answer": 82, "unit": "kilometres", "explanation": "Eighty-two kilometres from the Atlantic to the Pacific." },
-        { "prompt": "In what year was Thorbecke's Dutch constitution introduced?", "answer": 1848, "unit": "" },
-        { "prompt": "In what year did the Panama Canal officially open?", "answer": 1914, "unit": "" },
+        { "prompt": "In what year was Thorbecke's Dutch constitution introduced?", "answer": 1848 },
+        { "prompt": "In what year did the Panama Canal officially open?", "answer": 1914 },
         { "prompt": "How many locks does the Panama Canal have in its original design?", "answer": 3, "unit": "locks", "explanation": "Miraflores, Pedro Miguel and Gatun each raise or lower ships in steps." },
-        { "prompt": "In what year did the Dutch parliament first get two chambers under Thorbecke's constitution?", "answer": 1848, "unit": "" },
+        { "prompt": "In what year did the Dutch parliament first get two chambers under Thorbecke's constitution?", "answer": 1848 },
         { "prompt": "How many hours does a ship typically take to cross the Panama Canal?", "answer": 10, "unit": "hours" },
-        { "prompt": "In what year did the United States hand over full control of the Panama Canal to Panama?", "answer": 1999, "unit": "" },
+        { "prompt": "In what year did the United States hand over full control of the Panama Canal to Panama?", "answer": 1999 },
         { "prompt": "How many thousand ships cross the Panama Canal per year, roughly?", "answer": 14, "unit": "thousand ships" }
       ]
     },
@@ -88,7 +88,17 @@
         "Jealousy",
         "The Last Supper",
         "Recycling",
-        "Mount Fuji"
+        "Mount Fuji",
+        "Justin Bieber",
+        "High jump",
+        "Envy",
+        "Galapagos Islands",
+        "Half-mast",
+        "Meatball",
+        "Notre-Dame",
+        "Thimble",
+        "Gloves",
+        "Disco"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which organ of the human body produces insulin?", "answers": [{ "text": "The pancreas", "aliases": ["pancreas"] }] },
         { "prompt": "Which Dutch painter painted The Milkmaid?", "answers": [{ "text": "Johannes Vermeer", "aliases": ["Vermeer"] }] },
         { "prompt": "In which city were the 1980 Summer Olympics held?", "answers": [{ "text": "Moscow", "aliases": ["Moskou"] }] },
-        { "prompt": "What is the largest island in the world?", "answers": [{ "text": "Greenland" }] }
+        { "prompt": "What is the largest island in the world?", "answers": [{ "text": "Greenland" }] },
+        { "prompt": "Which Scottish writer wrote Treasure Island?", "answers": [{ "text": "Robert Louis Stevenson", "aliases": ["Stevenson"] }] },
+        { "prompt": "What is the capital of Kyrgyzstan?", "answers": [{ "text": "Bishkek" }] }
       ]
     }
   ]

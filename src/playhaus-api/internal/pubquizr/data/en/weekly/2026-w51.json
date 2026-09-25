@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w51",
+  "title": "Weekly quiz 51 2026",
+  "description": "The weekly quiz of Wednesday 16 December 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the second largest city in Greece?", "category": "Geography", "answers": [{ "text": "Thessaloniki", "aliases": ["Salonika"] }] },
+        { "prompt": "What is the barrier a plane breaks with a loud bang when it flies faster than sound called?", "category": "Science", "answers": [{ "text": "The sound barrier", "aliases": ["Sound barrier"] }] },
+        { "prompt": "Which German monk made his ninety-five theses public in 1517?", "category": "History", "answers": [{ "text": "Martin Luther", "aliases": ["Luther"] }] },
+        { "prompt": "Which Polish tennis player became world number one in 2022?", "category": "Sport", "answers": [{ "text": "Iga Swiatek", "aliases": ["Swiatek"] }] },
+        { "prompt": "Which Australian actor played the Joker in The Dark Knight?", "category": "Film", "answers": [{ "text": "Heath Ledger", "aliases": ["Ledger"] }] },
+        { "prompt": "With which song did Duncan Laurence win Eurovision in 2019?", "category": "Music", "answers": [{ "text": "Arcade" }] },
+        { "prompt": "Which Dutch supermarket chain has a blue letter A as its logo?", "category": "The Netherlands", "answers": [{ "text": "Albert Heijn", "aliases": ["AH"] }] },
+        { "prompt": "Which Italian Renaissance painter made The School of Athens?", "category": "Art", "answers": [{ "text": "Raphael", "aliases": ["Raffaello"] }] },
+        { "prompt": "What does the French word bonjour mean?", "category": "Language", "answers": [{ "text": "Good day", "aliases": ["Hello", "Good morning"] }] },
+        { "prompt": "Which red powder of dried peppers comes from Hungary?", "category": "Food", "answers": [{ "text": "Paprika" }] },
+        { "prompt": "Which company from Veldhoven in the Netherlands makes the machines used to make computer chips?", "category": "Technology", "answers": [{ "text": "ASML" }] },
+        { "prompt": "Which evergreen shrub with prickly leaves and red berries goes with Christmas?", "category": "Nature", "answers": [{ "text": "Holly", "aliases": ["The holly"] }] },
+        { "prompt": "What is the longest river in Italy?", "category": "Geography", "answers": [{ "text": "The Po", "aliases": ["Po"] }] },
+        { "prompt": "Which Egyptian president nationalised the Suez Canal in 1956?", "category": "History", "answers": [{ "text": "Gamal Abdel Nasser", "aliases": ["Nasser"] }] },
+        { "prompt": "What is a triangle with a ninety-degree angle called?", "category": "Science", "answers": [{ "text": "A right-angled triangle", "aliases": ["Right-angled", "Right triangle"] }] },
+        { "prompt": "Which American singer broke through in 1998 with Baby One More Time?", "category": "Music", "answers": [{ "text": "Britney Spears", "aliases": ["Britney"] }] },
+        { "prompt": "What is the name of the inventor Wallace's dog?", "category": "Film", "answers": [{ "text": "Gromit" }] },
+        { "prompt": "What is coffee with lots of hot milk, often in a tall glass, called?", "category": "Food", "answers": [{ "text": "Latte", "aliases": ["Latte macchiato", "Caffe latte"] }] },
+        { "prompt": "What is an unmanned aircraft with propellers that you fly by remote control called?", "category": "Technology", "answers": [{ "text": "A drone", "aliases": ["Drone", "Drones"] }] },
+        { "prompt": "Which language does the word sauna come from?", "category": "Language", "answers": [{ "text": "Finnish" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these countries lies on two continents?", "options": [{ "text": "Egypt", "correct": true }, { "text": "Morocco" }, { "text": "Libya" }, { "text": "Tunisia" }] },
+        { "prompt": "Which of these animals has no backbone?", "options": [{ "text": "The earthworm", "correct": true }, { "text": "The frog" }, { "text": "The snake" }, { "text": "The shark" }] },
+        { "prompt": "Which Belgian writer created Inspector Maigret?", "options": [{ "text": "Georges Simenon", "correct": true }, { "text": "Herge" }, { "text": "Hugo Claus" }, { "text": "Jacques Brel" }] },
+        { "prompt": "Which of these cities is on the Seine?", "options": [{ "text": "Rouen", "correct": true }, { "text": "Lyon" }, { "text": "Bordeaux" }, { "text": "Lille" }] },
+        { "prompt": "Which of these is a muscle?", "options": [{ "text": "The biceps", "correct": true }, { "text": "The thigh bone" }, { "text": "The spleen" }, { "text": "The liver" }] },
+        { "prompt": "Which war was fought between 1950 and 1953?", "options": [{ "text": "The Korean War", "correct": true }, { "text": "The Vietnam War" }, { "text": "The Gulf War" }, { "text": "The Suez Crisis" }] },
+        { "prompt": "Which of these countries is not in the Alps?", "options": [{ "text": "Czechia", "correct": true }, { "text": "Slovenia" }, { "text": "Liechtenstein" }, { "text": "Austria" }] },
+        { "prompt": "What is the smallest bird in the Netherlands?", "options": [{ "text": "The goldcrest", "correct": true }, { "text": "The wren" }, { "text": "The sparrow" }, { "text": "The great tit" }] },
+        { "prompt": "In which film does Tom Hanks talk to a volleyball called Wilson?", "options": [{ "text": "Cast Away", "correct": true }, { "text": "Life of Pi" }, { "text": "The Terminal" }, { "text": "Forrest Gump" }] },
+        { "prompt": "Which Scottish golf course is regarded as the home of golf?", "options": [{ "text": "St Andrews", "correct": true }, { "text": "Augusta" }, { "text": "Carnoustie" }, { "text": "Wentworth" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is Mount Olympus in Greece?", "answer": 2917, "unit": "metres" },
+        { "prompt": "How many metres long is the Erasmus Bridge?", "answer": 802, "unit": "metres" },
+        { "prompt": "For how many years was Beatrix queen of the Netherlands?", "answer": 33, "unit": "years" },
+        { "prompt": "From what wind speed in kilometres per hour is a tornado classed in the strongest category?", "answer": 322, "unit": "kilometres per hour" },
+        { "prompt": "How many minutes does an NBA basketball game last without overtime?", "answer": 48, "unit": "minutes" },
+        { "prompt": "How many kilos does the men's shot put weigh?", "answer": 7.26, "unit": "kilos" },
+        { "prompt": "How many countries border France on the European mainland?", "answer": 8, "unit": "countries" },
+        { "prompt": "In which year did the Suez Canal open?", "answer": 1869 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Bow",
+        "Au pair",
+        "Transmitter mast",
+        "Waste separation",
+        "Charlie and the Chocolate Factory",
+        "Paddington Bear",
+        "Organ",
+        "Hairspray",
+        "Prison guard",
+        "Santa's village",
+        "Being in love",
+        "Che Guevara",
+        "Captain Cook",
+        "Poison dart frog",
+        "Apres-ski",
+        "Riddle",
+        "Victoria Falls",
+        "Nasi goreng",
+        "Belt",
+        "Paparazzi",
+        "Plaster cast",
+        "Photo finish",
+        "Western Wall",
+        "Arctic Circle",
+        "Mr. Bean",
+        "Cologne Cathedral",
+        "Keyhole",
+        "Florist",
+        "Naan bread",
+        "Rapunzel",
+        "101 Dalmatians",
+        "Wasp sting",
+        "Black Friday",
+        "Mast",
+        "Taxi driver",
+        "Barbapapa",
+        "Defibrillator",
+        "Rhinoceros",
+        "Narcissus",
+        "Spinning top"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Sicily?", "answers": [{ "text": "Etna", "aliases": ["Volcano"] }, { "text": "Mafia", "aliases": ["The Godfather", "Cosa Nostra"] }, { "text": "Palermo", "aliases": ["Catania"] }, { "text": "Island", "aliases": ["Italian island", "Largest island"] }] },
+        { "prompt": "What do you know about Aladdin?", "answers": [{ "text": "Magic lamp", "aliases": ["Lamp"] }, { "text": "Genie", "aliases": ["Genie of the lamp", "Three wishes"] }, { "text": "Flying carpet", "aliases": ["Carpet"] }, { "text": "Jasmine", "aliases": ["Princess Jasmine", "Abu"] }] },
+        { "prompt": "What do you know about kangaroos?", "answers": [{ "text": "Australia", "aliases": ["Australian"] }, { "text": "Pouch", "aliases": ["Joey in pouch"] }, { "text": "Jumping", "aliases": ["Hopping"] }, { "text": "Boxing", "aliases": ["Strong tail"] }] },
+        { "prompt": "What do you know about Johan Cruyff?", "answers": [{ "text": "Ajax", "aliases": ["Amsterdam"] }, { "text": "Number fourteen", "aliases": ["14"] }, { "text": "Total Football", "aliases": ["Cruyff turn"] }, { "text": "Barcelona", "aliases": ["FC Barcelona"] }] },
+        { "prompt": "What do you know about Stonehenge?", "answers": [{ "text": "England", "aliases": ["Britain"] }, { "text": "Stone circle", "aliases": ["Big stones"] }, { "text": "Solstice", "aliases": ["Summer", "Sun"] }, { "text": "Mystery", "aliases": ["Nobody knows why", "Druids"] }] },
+        { "prompt": "What do you know about Taylor Swift?", "answers": [{ "text": "The Eras Tour", "aliases": ["Tour"] }, { "text": "Swifties", "aliases": ["Fans"] }, { "text": "Travis Kelce", "aliases": ["Kelce"] }, { "text": "Country music", "aliases": ["Shake It Off", "Pop music"] }] },
+        { "prompt": "What do you know about Berlin?", "answers": [{ "text": "Brandenburg Gate", "aliases": ["Gate"] }, { "text": "Berlin Wall", "aliases": ["Wall", "Checkpoint Charlie"] }, { "text": "Germany", "aliases": ["Capital of Germany"] }, { "text": "Currywurst", "aliases": ["Doner"] }] },
+        { "prompt": "What do you know about fireworks?", "answers": [{ "text": "New Year's Eve", "aliases": ["New Year"] }, { "text": "Bangs", "aliases": ["Bang", "Bangers"] }, { "text": "Rockets", "aliases": ["Sparklers"] }, { "text": "Firework ban", "aliases": ["Ban", "Accidents"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the round fried pastry with a hole in the middle called?", "difficulty": "easy", "answers": [{ "text": "A doughnut", "aliases": ["Doughnut", "Donut"] }] },
+        { "prompt": "Which instrument do you play with two sticks and a pedal for the bass drum?", "difficulty": "easy", "answers": [{ "text": "The drum kit", "aliases": ["Drum kit", "Drums"] }] },
+        { "prompt": "What do you call the son of your brother or sister?", "difficulty": "easy", "answers": [{ "text": "A nephew", "aliases": ["Nephew"] }] },
+        { "prompt": "What colour is an elephant?", "difficulty": "easy", "answers": [{ "text": "Grey", "aliases": ["Gray"] }] },
+        { "prompt": "Which fairytale princess sleeps for a hundred years after pricking her finger on a spinning wheel?", "difficulty": "easy", "answers": [{ "text": "Sleeping Beauty" }] },
+        { "prompt": "Which American car maker introduced the moving assembly line in 1913?", "difficulty": "hard", "answers": [{ "text": "Henry Ford", "aliases": ["Ford"] }] },
+        { "prompt": "Which French composer wrote the Gymnopedies?", "difficulty": "hard", "answers": [{ "text": "Erik Satie", "aliases": ["Satie"] }] },
+        { "prompt": "Which element has the chemical symbol Cs?", "difficulty": "hard", "answers": [{ "text": "Caesium", "aliases": ["Cesium"] }] },
+        { "prompt": "Which river flows through Glasgow?", "difficulty": "hard", "answers": [{ "text": "The Clyde", "aliases": ["Clyde"] }] },
+        { "prompt": "Which English queen was the mother of Elizabeth I?", "difficulty": "hard", "answers": [{ "text": "Anne Boleyn", "aliases": ["Boleyn"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Kaa in The Jungle Book?", "answers": [{ "text": "A snake", "aliases": ["Snake", "Python"] }] },
+        { "prompt": "In which English town was William Shakespeare born?", "answers": [{ "text": "Stratford-upon-Avon", "aliases": ["Stratford"] }] },
+        { "prompt": "Which Portuguese poet wrote the epic The Lusiads?", "answers": [{ "text": "Luis de Camoes", "aliases": ["Camoes"] }] },
+        { "prompt": "Which yellow, curved fruit do monkeys like to peel?", "answers": [{ "text": "The banana", "aliases": ["Banana"] }] },
+        { "prompt": "Which American city is nicknamed Motor City?", "answers": [{ "text": "Detroit" }] },
+        { "prompt": "Which Dutch painter made The Windmill at Wijk bij Duurstede?", "answers": [{ "text": "Jacob van Ruisdael", "aliases": ["Van Ruisdael", "Ruisdael"] }] },
+        { "prompt": "What is the winter sport in which you slide down a mountain on two long boards called?", "answers": [{ "text": "Skiing", "aliases": ["Alpine skiing"] }] },
+        { "prompt": "Which Dutch band had an American number one with Venus in 1969?", "answers": [{ "text": "Shocking Blue" }] },
+        { "prompt": "Which French mathematician died at twenty after a duel and laid the foundations of group theory?", "answers": [{ "text": "Evariste Galois", "aliases": ["Galois"] }] }
+      ]
+    }
+  ]
+}

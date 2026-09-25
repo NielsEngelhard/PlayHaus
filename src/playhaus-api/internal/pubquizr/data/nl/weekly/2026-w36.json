@@ -88,7 +88,17 @@
         "Pizzabezorger",
         "Telescoop",
         "Hinkelen",
-        "De Chinese Muur"
+        "De Chinese Muur",
+        "Rosa Parks",
+        "Karnemelk",
+        "Donut",
+        "Mens-erger-je-niet",
+        "Valse start",
+        "Eikel",
+        "Marktkoopman",
+        "Opblaasbare krokodil",
+        "Miss Piggy",
+        "Tienkamp"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wie schreef het boek Oorlog en Vrede?", "answers": [{ "text": "Leo Tolstoj", "aliases": ["Tolstoj", "Tolstoy"] }] },
         { "prompt": "Welk deeltje draagt de sterke kernkracht over?", "answers": [{ "text": "Het gluon", "aliases": ["Gluon"] }] },
         { "prompt": "Welke Nederlandse voetballer was in 1988 aanvoerder van het elftal dat Europees kampioen werd?", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
-        { "prompt": "Welke Britse natuurkundige voorspelde het deeltje dat in 2012 bij Geneve werd aangetoond?", "answers": [{ "text": "Peter Higgs", "aliases": ["Higgs"] }] }
+        { "prompt": "Welke Britse natuurkundige voorspelde het deeltje dat in 2012 bij Geneve werd aangetoond?", "answers": [{ "text": "Peter Higgs", "aliases": ["Higgs"] }] },
+        { "prompt": "In welke stad staat het museum de Hermitage?", "answers": [{ "text": "Sint-Petersburg", "aliases": ["Petersburg", "Leningrad"] }] },
+        { "prompt": "Welke Deense sterrenkundige had een metalen neus en een eigen sterrenwacht op het eiland Hven?", "answers": [{ "text": "Tycho Brahe", "aliases": ["Brahe"] }] }
       ]
     }
   ]

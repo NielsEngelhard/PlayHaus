@@ -89,7 +89,17 @@
         "Dolomites",
         "Amalfi Coast",
         "Terracotta roof",
-        "Marble quarry"
+        "Marble quarry",
+        "Pizzeria",
+        "Spaghetti fork",
+        "Colosseum guide",
+        "Italian nonna",
+        "Limoncello",
+        "Ice cream parlour",
+        "Mafia boss",
+        "Ferrari red",
+        "Espresso bar",
+        "Tuscan hills"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Who wrote the 1980 novel The Name of the Rose?", "answers": [{ "text": "Umberto Eco", "aliases": ["Eco"] }] },
         { "prompt": "Which 1948 film by Vittorio De Sica follows a father and son searching for a stolen bicycle?", "answers": [{ "text": "Bicycle Thieves", "aliases": ["Ladri di biciclette", "The Bicycle Thief"] }] },
         { "prompt": "Which is the highest mountain that lies entirely within Italy?", "answers": [{ "text": "Gran Paradiso" }] },
-        { "prompt": "Which Italian poet wrote a lifetime of sonnets to a woman called Laura?", "answers": [{ "text": "Petrarch", "aliases": ["Francesco Petrarca", "Petrarca"] }] }
+        { "prompt": "Which Italian poet wrote a lifetime of sonnets to a woman called Laura?", "answers": [{ "text": "Petrarch", "aliases": ["Francesco Petrarca", "Petrarca"] }] },
+        { "prompt": "In which Italian city is La Scala, the famous opera house?", "answers": [{ "text": "Milan", "aliases": ["Milano"] }] },
+        { "prompt": "Which Italian freedom fighter led the Expedition of the Thousand in 1860?", "answers": [{ "text": "Giuseppe Garibaldi", "aliases": ["Garibaldi"] }] }
       ]
     }
   ]

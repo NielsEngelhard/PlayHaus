@@ -89,7 +89,17 @@
         "Radiator",
         "Lap",
         "Cat fight",
-        "Mouse"
+        "Mouse",
+        "Purring",
+        "Meowing",
+        "Cat fleas",
+        "Siamese cat",
+        "Persian cat",
+        "Sphynx cat",
+        "Kitten",
+        "Cat food",
+        "Whiskers",
+        "Cat video"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which ancient Egyptian city was the centre of the cult of the cat goddess Bastet?", "answers": [{ "text": "Bubastis", "aliases": ["Per-Bast", "Tell Basta"] }] },
         { "prompt": "On which Mediterranean island was a grave found of a person buried together with a cat some nine and a half thousand years ago?", "answers": [{ "text": "Cyprus" }] },
         { "prompt": "What is the name of the cat's third eyelid?", "answers": [{ "text": "The nictitating membrane", "aliases": ["Nictitating membrane", "Haw", "Third eyelid"] }] },
-        { "prompt": "Which American writer kept dozens of six-toed cats at his house in Key West?", "answers": [{ "text": "Ernest Hemingway", "aliases": ["Hemingway"] }] }
+        { "prompt": "Which American writer kept dozens of six-toed cats at his house in Key West?", "answers": [{ "text": "Ernest Hemingway", "aliases": ["Hemingway"] }] },
+        { "prompt": "What is the name of the witch's cat in Hayao Miyazaki's Kiki's Delivery Service?", "answers": [{ "text": "Jiji" }] },
+        { "prompt": "Which cat breed has folded ears and comes from Scotland?", "answers": [{ "text": "The Scottish Fold", "aliases": ["Scottish Fold"] }] }
       ]
     }
   ]

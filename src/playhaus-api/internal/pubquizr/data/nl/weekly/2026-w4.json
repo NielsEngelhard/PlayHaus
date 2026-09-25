@@ -49,7 +49,7 @@
         { "prompt": "Hoeveel treden lopen er naar de top van het Empire State Building?", "answer": 1576, "unit": "treden" },
         { "prompt": "Hoeveel kaarten zitten er in een spel zonder de jokers?", "answer": 52, "unit": "kaarten" },
         { "prompt": "Hoeveel spelers heeft een waterpoloteam in het water?", "answer": 7, "unit": "spelers" },
-        { "prompt": "In welk jaar organiseerde Nederland de Olympische Spelen?", "answer": 1928, "unit": "", "explanation": "In Amsterdam, en het waren de eerste Spelen met een vuur dat de hele tijd brandde." },
+        { "prompt": "In welk jaar organiseerde Nederland de Olympische Spelen?", "answer": 1928, "explanation": "In Amsterdam, en het waren de eerste Spelen met een vuur dat de hele tijd brandde." },
         { "prompt": "Hoeveel kilometer per uur mag je overdag op een Nederlandse snelweg rijden?", "answer": 100, "unit": "kilometer per uur" },
         { "prompt": "Hoeveel kilo weegt een volwassen mannetjesleeuw?", "answer": 190, "unit": "kilo" },
         { "prompt": "Hoeveel graden is elke hoek van een gelijkzijdige driehoek?", "answer": 60, "unit": "graden" },
@@ -88,7 +88,17 @@
         "Johan Cruijff",
         "De Nachtwacht",
         "Liften",
-        "Camouflage"
+        "Camouflage",
+        "Bloeddruk",
+        "Liniaal",
+        "Ambtenaar",
+        "Sifan Hassan",
+        "Pompoen",
+        "South Park",
+        "Bakoven",
+        "Tijger",
+        "Zonnebank",
+        "Gatenkaas"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] },
         { "prompt": "Wat is het diepste meer ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
         { "prompt": "In welk land ligt de oude rotsstad Petra?", "answers": [{ "text": "Jordanie" }] },
-        { "prompt": "Welke planeet in ons zonnestelsel is het heetst?", "answers": [{ "text": "Venus" }] }
+        { "prompt": "Welke planeet in ons zonnestelsel is het heetst?", "answers": [{ "text": "Venus" }] },
+        { "prompt": "Wie schreef het boek De kleine prins?", "answers": [{ "text": "Antoine de Saint-Exupery", "aliases": ["Saint-Exupery"] }] },
+        { "prompt": "Welke Romeinse keizer liet een muur dwars door het noorden van Engeland bouwen?", "answers": [{ "text": "Hadrianus", "aliases": ["Hadrian"] }] }
       ]
     }
   ]

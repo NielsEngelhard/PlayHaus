@@ -88,7 +88,17 @@
         "Toaster",
         "Seagull",
         "Mountain pass",
-        "The Sphinx"
+        "The Sphinx",
+        "Library card",
+        "Jane Goodall",
+        "Yellowstone",
+        "Abs",
+        "Garlic press",
+        "Cabaret artist",
+        "Salary",
+        "Bastille",
+        "Daffodil",
+        "Walrus"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which writer invented Pippi Longstocking?", "answers": [{ "text": "Astrid Lindgren", "aliases": ["Lindgren"] }] },
         { "prompt": "Which three smaller particles make up a proton?", "answers": [{ "text": "Quarks", "aliases": ["Three quarks"] }] },
         { "prompt": "What is the scale on which zero is absolute zero called?", "answers": [{ "text": "The Kelvin scale", "aliases": ["Kelvin"] }] },
-        { "prompt": "Which organ stores bile?", "answers": [{ "text": "The gall bladder", "aliases": ["Gall bladder", "Gallbladder"] }] }
+        { "prompt": "Which organ stores bile?", "answers": [{ "text": "The gall bladder", "aliases": ["Gall bladder", "Gallbladder"] }] },
+        { "prompt": "What is the flap called that stops food going down your windpipe?", "answers": [{ "text": "The epiglottis", "aliases": ["Epiglottis"] }] },
+        { "prompt": "What is the capital of Uzbekistan?", "answers": [{ "text": "Tashkent" }] }
       ]
     }
   ]

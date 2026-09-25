@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w47",
+  "title": "Weekly quiz 47 2026",
+  "description": "The weekly quiz of Wednesday 18 November 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which Vietnamese city was called Saigon until 1976?", "category": "Geography", "answers": [{ "text": "Ho Chi Minh City", "aliases": ["Ho Chi Minh"] }] },
+        { "prompt": "What is the glowing hot molten rock beneath the earth's crust called?", "category": "Science", "answers": [{ "text": "Magma" }] },
+        { "prompt": "Which Scandinavian people raided the coasts of Europe in longships?", "category": "History", "answers": [{ "text": "The Vikings", "aliases": ["Vikings", "Norsemen"] }] },
+        { "prompt": "Which Belgian cyclist was nicknamed The Cannibal?", "category": "Sport", "answers": [{ "text": "Eddy Merckx", "aliases": ["Merckx"] }] },
+        { "prompt": "Which British actor plays Mr Bean?", "category": "Film", "answers": [{ "text": "Rowan Atkinson", "aliases": ["Atkinson"] }] },
+        { "prompt": "Which singer from Barbados had a hit with Umbrella in 2007?", "category": "Music", "answers": [{ "text": "Rihanna" }] },
+        { "prompt": "In which city do the skaters of the Elfstedentocht start and finish?", "category": "The Netherlands", "answers": [{ "text": "Leeuwarden" }] },
+        { "prompt": "Which Dutch illustrator created Miffy?", "category": "Art", "answers": [{ "text": "Dick Bruna", "aliases": ["Bruna"] }] },
+        { "prompt": "What is the word class of words such as beautiful, big and red called?", "category": "Language", "answers": [{ "text": "Adjective", "aliases": ["Adjectives"] }] },
+        { "prompt": "Which German city is the hamburger named after?", "category": "Food", "answers": [{ "text": "Hamburg" }] },
+        { "prompt": "Who founded Facebook in his university dorm in 2004?", "category": "Technology", "answers": [{ "text": "Mark Zuckerberg", "aliases": ["Zuckerberg"] }] },
+        { "prompt": "What is a young horse called?", "category": "Nature", "answers": [{ "text": "A foal", "aliases": ["Foal"] }] },
+        { "prompt": "Which city state lies at the southern tip of the Malay Peninsula?", "category": "Geography", "answers": [{ "text": "Singapore" }] },
+        { "prompt": "Which Dutch resistance fighter was called the girl with the red hair?", "category": "History", "answers": [{ "text": "Hannie Schaft", "aliases": ["Schaft"] }] },
+        { "prompt": "Which scale shows how acidic or alkaline a liquid is?", "category": "Science", "answers": [{ "text": "The pH scale", "aliases": ["pH"] }] },
+        { "prompt": "Which Canadian singer became famous as a teenager with Baby?", "category": "Music", "answers": [{ "text": "Justin Bieber", "aliases": ["Bieber"] }] },
+        { "prompt": "Which Dutch actress starred in Black Book and in Game of Thrones?", "category": "Film", "answers": [{ "text": "Carice van Houten", "aliases": ["Van Houten"] }] },
+        { "prompt": "Which fruit goes into a pina colada alongside coconut?", "category": "Food", "answers": [{ "text": "Pineapple", "aliases": ["The pineapple"] }] },
+        { "prompt": "Which American company showed off the first handheld mobile phone in 1973?", "category": "Technology", "answers": [{ "text": "Motorola" }] },
+        { "prompt": "What is the raised dot writing that blind people read with their fingers called?", "category": "Language", "answers": [{ "text": "Braille" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these countries is the largest by area?", "options": [{ "text": "Argentina", "correct": true }, { "text": "Mexico" }, { "text": "Peru" }, { "text": "Colombia" }] },
+        { "prompt": "Which of these animals is not a rodent?", "options": [{ "text": "The rabbit", "correct": true }, { "text": "The rat" }, { "text": "The hamster" }, { "text": "The squirrel" }] },
+        { "prompt": "Which Dutch writer wrote The Golden Egg, filmed as The Vanishing?", "options": [{ "text": "Tim Krabbe", "correct": true }, { "text": "Herman Koch" }, { "text": "Arnon Grunberg" }, { "text": "Harry Mulisch" }] },
+        { "prompt": "In which of these African countries is Spanish an official language?", "options": [{ "text": "Equatorial Guinea", "correct": true }, { "text": "Angola" }, { "text": "Mozambique" }, { "text": "Senegal" }] },
+        { "prompt": "Where is the skin of the human body thinnest?", "options": [{ "text": "The eyelid", "correct": true }, { "text": "The lips" }, { "text": "The fingertips" }, { "text": "The heel" }] },
+        { "prompt": "Who was the first female prime minister of the United Kingdom?", "options": [{ "text": "Margaret Thatcher", "correct": true }, { "text": "Theresa May" }, { "text": "Liz Truss" }, { "text": "Barbara Castle" }] },
+        { "prompt": "Which of these cities is on the Black Sea?", "options": [{ "text": "Odesa", "correct": true }, { "text": "Riga" }, { "text": "Split" }, { "text": "Naples" }] },
+        { "prompt": "Which of these animals is the most poisonous?", "options": [{ "text": "The golden poison frog", "correct": true }, { "text": "The coral snake" }, { "text": "The black widow" }, { "text": "The scorpion" }] },
+        { "prompt": "In which animated film do the yellow Minions first appear?", "options": [{ "text": "Despicable Me", "correct": true }, { "text": "Shrek" }, { "text": "Madagascar" }, { "text": "Ice Age" }] },
+        { "prompt": "Which swimming stroke is the fastest?", "options": [{ "text": "Front crawl", "correct": true }, { "text": "Breaststroke" }, { "text": "Backstroke" }, { "text": "Butterfly" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is Mount Fuji in Japan?", "answer": 3776, "unit": "metres" },
+        { "prompt": "How many kilometres is it as the crow flies from Amsterdam to New York?", "answer": 5850, "unit": "kilometres" },
+        { "prompt": "For how many years was Queen Elizabeth II on the throne?", "answer": 70, "unit": "years" },
+        { "prompt": "How many different countries have ever won the men's World Cup?", "answer": 8, "unit": "countries" },
+        { "prompt": "How many strings does a ukulele have?", "answer": 4, "unit": "strings" },
+        { "prompt": "About how many litres of milk are needed for one kilo of cheese?", "answer": 10, "unit": "litres" },
+        { "prompt": "At about how many degrees Celsius does water boil on the summit of Mount Everest?", "answer": 70, "unit": "degrees" },
+        { "prompt": "How many stars are there on the flag of Australia?", "answer": 6, "unit": "stars" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Broom",
+        "Walkman",
+        "Hansel and Gretel",
+        "Fairy ring",
+        "Bathroom scales",
+        "Self-portrait",
+        "Bob Dylan",
+        "Lorry driver",
+        "Kitesurfing",
+        "Cover band",
+        "Dim sum",
+        "Prime minister",
+        "Romeo and Juliet",
+        "Sprint",
+        "Sun hat",
+        "Baklava",
+        "Auction",
+        "Cheesecake",
+        "Cashier",
+        "Lacrosse",
+        "Sourdough",
+        "Spam",
+        "Couchsurfing",
+        "Gossip magazine",
+        "Orangutan",
+        "Roquefort",
+        "Embroidery",
+        "Brass band",
+        "Potter",
+        "Plague",
+        "Avalanche",
+        "Pegasus",
+        "Pavement chalk",
+        "Sugar loaf",
+        "False eyelashes",
+        "Trading card",
+        "Hookah",
+        "Vegetarian",
+        "Death Valley",
+        "Fortune cookie"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Belgium?", "answers": [{ "text": "Fries", "aliases": ["Chips", "Frites"] }, { "text": "Waffles", "aliases": ["Chocolate", "Beer"] }, { "text": "Brussels", "aliases": ["Antwerp", "Bruges"] }, { "text": "Dutch and French", "aliases": ["Flemish and Walloons", "Three languages"] }] },
+        { "prompt": "What do you know about Mickey Mouse?", "answers": [{ "text": "Walt Disney", "aliases": ["Disney"] }, { "text": "Minnie Mouse", "aliases": ["Minnie"] }, { "text": "Big round ears", "aliases": ["Ears"] }, { "text": "Red shorts", "aliases": ["White gloves", "Yellow shoes"] }] },
+        { "prompt": "What do you know about Morocco?", "answers": [{ "text": "Marrakesh", "aliases": ["Rabat", "Casablanca"] }, { "text": "Couscous", "aliases": ["Tagine", "Mint tea"] }, { "text": "Sahara", "aliases": ["Desert"] }, { "text": "Arabic", "aliases": ["Berber"] }] },
+        { "prompt": "What do you know about dolphins?", "answers": [{ "text": "Clever", "aliases": ["Intelligent"] }, { "text": "Mammal", "aliases": ["Not a fish"] }, { "text": "Jumping", "aliases": ["Leaps", "Tricks"] }, { "text": "Clicking sounds", "aliases": ["Whistling", "Echolocation"] }] },
+        { "prompt": "What do you know about knights?", "answers": [{ "text": "Armour", "aliases": ["Chainmail", "Helmet"] }, { "text": "Sword", "aliases": ["Lance", "Shield"] }, { "text": "Castle", "aliases": ["Fortress"] }, { "text": "Horse", "aliases": ["Warhorse", "Tournament"] }] },
+        { "prompt": "What do you know about Michael Jordan?", "answers": [{ "text": "Basketball", "aliases": ["NBA"] }, { "text": "Chicago Bulls", "aliases": ["Chicago", "Bulls"] }, { "text": "Air Jordan", "aliases": ["Nike", "Trainers"] }, { "text": "Space Jam", "aliases": ["Film"] }] },
+        { "prompt": "What do you know about Venice?", "answers": [{ "text": "Gondolas", "aliases": ["Gondola", "Gondolier"] }, { "text": "Canals", "aliases": ["Grand Canal"] }, { "text": "Carnival", "aliases": ["Masks"] }, { "text": "Italy", "aliases": ["Italian"] }] },
+        { "prompt": "What do you know about the eye?", "answers": [{ "text": "Pupil", "aliases": ["Pupils"] }, { "text": "Iris", "aliases": ["Eye colour"] }, { "text": "Retina", "aliases": ["Cornea", "Lens"] }, { "text": "Glasses", "aliases": ["Contact lenses", "Optician"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What kind of animal is Jerry in the cartoon Tom and Jerry?", "difficulty": "easy", "answers": [{ "text": "A mouse", "aliases": ["Mouse"] }] },
+        { "prompt": "What is the last evening of the year called?", "difficulty": "easy", "answers": [{ "text": "New Year's Eve" }] },
+        { "prompt": "Which season comes after winter?", "difficulty": "easy", "answers": [{ "text": "Spring", "aliases": ["The spring"] }] },
+        { "prompt": "What is the name of Simba's father in The Lion King?", "difficulty": "easy", "answers": [{ "text": "Mufasa" }] },
+        { "prompt": "What is the name of Harry Potter's school of witchcraft and wizardry?", "difficulty": "easy", "answers": [{ "text": "Hogwarts" }] },
+        { "prompt": "What is the capital of Paraguay?", "difficulty": "hard", "answers": [{ "text": "Asuncion" }] },
+        { "prompt": "Which Hungarian composer and pianist wrote the Hungarian Rhapsodies?", "difficulty": "hard", "answers": [{ "text": "Franz Liszt", "aliases": ["Liszt"] }] },
+        { "prompt": "Which element has the chemical symbol Mn?", "difficulty": "hard", "answers": [{ "text": "Manganese" }] },
+        { "prompt": "Which small river flows through Madrid?", "difficulty": "hard", "answers": [{ "text": "The Manzanares", "aliases": ["Manzanares"] }] },
+        { "prompt": "What was the name of the last tsar of Russia?", "difficulty": "hard", "answers": [{ "text": "Nicholas II", "aliases": ["Nicholas the Second"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the name of the warthog who looks after Simba together with Timon?", "answers": [{ "text": "Pumbaa" }] },
+        { "prompt": "Which American state is nicknamed the Sunshine State?", "answers": [{ "text": "Florida" }] },
+        { "prompt": "Which French poet wrote Les Fleurs du mal?", "answers": [{ "text": "Charles Baudelaire", "aliases": ["Baudelaire"] }] },
+        { "prompt": "What is the name of Nintendo's moustached plumber?", "answers": [{ "text": "Mario", "aliases": ["Super Mario"] }] },
+        { "prompt": "Which Greek hero was vulnerable only in his heel?", "answers": [{ "text": "Achilles" }] },
+        { "prompt": "Which American astronaut became the first American to orbit the earth, in 1962?", "answers": [{ "text": "John Glenn", "aliases": ["Glenn"] }] },
+        { "prompt": "Which farm animal lays eggs and clucks?", "answers": [{ "text": "The chicken", "aliases": ["Chicken", "Hen"] }] },
+        { "prompt": "Which Irish band had a hit with Zombie in 1994?", "answers": [{ "text": "The Cranberries", "aliases": ["Cranberries"] }] },
+        { "prompt": "Which Swedish astronomer devised the hundred-degree temperature scale?", "answers": [{ "text": "Anders Celsius", "aliases": ["Celsius"] }] }
+      ]
+    }
+  ]
+}

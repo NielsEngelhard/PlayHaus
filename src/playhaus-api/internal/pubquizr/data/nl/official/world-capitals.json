@@ -89,7 +89,17 @@
         "Neonreclame",
         "Straatverkoper",
         "Oorlogsmonument",
-        "Nationale vlag"
+        "Nationale vlag",
+        "Hoofdstad",
+        "Regeringsgebouw",
+        "Rotondes",
+        "Stadsbus",
+        "Toeristenval",
+        "Wereldstad",
+        "Stadspark",
+        "Stadhuis",
+        "Nationale feestdag",
+        "Bezienswaardigheid"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke stad is de regeringszetel van Papoea-Nieuw-Guinea?", "answers": [{ "text": "Port Moresby" }] },
         { "prompt": "Wat is de hoofdstad van het vorstendom Liechtenstein?", "answers": [{ "text": "Vaduz" }] },
         { "prompt": "Welke speciaal gebouwde stad werd in 1970 de hoofdstad van Belize?", "answers": [{ "text": "Belmopan" }] },
-        { "prompt": "Wat is de hoofdstad van Moldavie?", "answers": [{ "text": "Chisinau" }] }
+        { "prompt": "Wat is de hoofdstad van Moldavie?", "answers": [{ "text": "Chisinau" }] },
+        { "prompt": "Wat is de hoofdstad van Finland?", "answers": [{ "text": "Helsinki" }] },
+        { "prompt": "Wat is de hoofdstad van Tadzjikistan?", "answers": [{ "text": "Doesjanbe", "aliases": ["Dushanbe"] }] }
       ]
     }
   ]

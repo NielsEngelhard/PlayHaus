@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w6",
+  "title": "Weekquiz 6 2027",
+  "description": "De wekelijkse quiz van woensdag 10 februari 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welke woestijn in Californie ligt Death Valley?", "category": "Aardrijkskunde", "answers": [{ "text": "De Mojave", "aliases": ["Mojave", "Mojavewoestijn"] }] },
+        { "prompt": "Welk hormoon wordt ook wel het knuffelhormoon genoemd?", "category": "Wetenschap", "answers": [{ "text": "Oxytocine" }] },
+        { "prompt": "Naar welke heilige is Valentijnsdag genoemd?", "category": "Geschiedenis", "answers": [{ "text": "Sint-Valentijn", "aliases": ["Valentijn", "Valentinus"] }] },
+        { "prompt": "Welke Nederlandse zwemster won in 2012 in Londen goud op de 50 en de 100 meter vrije slag?", "category": "Sport", "answers": [{ "text": "Ranomi Kromowidjojo", "aliases": ["Kromowidjojo"] }] },
+        { "prompt": "In welke film staat Audrey Hepburn met een croissant voor de etalage van een juwelier in New York?", "category": "Film", "answers": [{ "text": "Breakfast at Tiffany's" }] },
+        { "prompt": "Welke Franse zangeres zong La vie en rose?", "category": "Muziek", "answers": [{ "text": "Edith Piaf", "aliases": ["Piaf"] }] },
+        { "prompt": "Hoe heet het Drentse nationaal park met heide, vennen en een sterrenwacht?", "category": "Nederland", "answers": [{ "text": "Het Dwingelderveld", "aliases": ["Dwingelderveld"] }] },
+        { "prompt": "Welke Amerikaanse kunstenaar maakte het beeld LOVE met de scheve letter O?", "category": "Kunst", "answers": [{ "text": "Robert Indiana", "aliases": ["Indiana"] }] },
+        { "prompt": "Wat betekent het Franse je t'aime?", "category": "Taal", "answers": [{ "text": "Ik hou van jou", "aliases": ["Ik hou van je", "Ik houd van jou"] }] },
+        { "prompt": "Hoe heet het warme chocoladetaartje dat vanbinnen nog vloeibaar is?", "category": "Eten", "answers": [{ "text": "Moelleux", "aliases": ["Lava cake", "Chocoladefondant", "Fondant"] }] },
+        { "prompt": "Op welke datingapp veeg je naar rechts als je iemand leuk vindt?", "category": "Techniek", "answers": [{ "text": "Tinder" }] },
+        { "prompt": "Welke witte watervogel geldt als symbool van trouw omdat paartjes bij elkaar blijven?", "category": "Natuur", "answers": [{ "text": "De zwaan", "aliases": ["Zwaan", "Knobbelzwaan"] }] },
+        { "prompt": "Welke Indiase stad heette vroeger Bombay?", "category": "Aardrijkskunde", "answers": [{ "text": "Mumbai" }] },
+        { "prompt": "Welke Romeinse veldheer maakte samen met Cleopatra een eind aan zijn leven?", "category": "Geschiedenis", "answers": [{ "text": "Marcus Antonius", "aliases": ["Antonius", "Marcus Antonius"] }] },
+        { "prompt": "Hoe heten de twee bovenste kamers van het hart?", "category": "Wetenschap", "answers": [{ "text": "De boezems", "aliases": ["Boezems", "Atria", "Voorkamers"] }] },
+        { "prompt": "Welke Amerikaanse soulzanger scoorde in 1971 met Let's Stay Together?", "category": "Muziek", "answers": [{ "text": "Al Green", "aliases": ["Green"] }] },
+        { "prompt": "In welke film uit 1990 speelt Patrick Swayze een geest die zijn vriendin beschermt?", "category": "Film", "answers": [{ "text": "Ghost" }] },
+        { "prompt": "Welke Franse streek gaf zijn naam aan de beroemdste mousserende wijn?", "category": "Eten", "answers": [{ "text": "Champagne", "aliases": ["De Champagne"] }] },
+        { "prompt": "Hoe heette de computer die Apple in 1984 introduceerde met een beroemde tv-reclame?", "category": "Techniek", "answers": [{ "text": "Macintosh", "aliases": ["Mac", "Apple Macintosh"] }] },
+        { "prompt": "Hoe heet het leesteken dat je ziet in 's avonds en in zo'n?", "category": "Taal", "answers": [{ "text": "De apostrof", "aliases": ["Apostrof", "Weglatingsteken"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze landen ligt op het Arabisch Schiereiland?", "options": [{ "text": "Oman", "correct": true }, { "text": "Iran" }, { "text": "Irak" }, { "text": "Egypte" }] },
+        { "prompt": "Welk van deze dieren heeft geen oren aan de buitenkant?", "options": [{ "text": "De slang", "correct": true }, { "text": "De olifant" }, { "text": "De haas" }, { "text": "De kat" }] },
+        { "prompt": "Welke Franse schrijver schreef Les liaisons dangereuses?", "options": [{ "text": "Choderlos de Laclos", "correct": true }, { "text": "Stendhal" }, { "text": "Honore de Balzac" }, { "text": "Gustave Flaubert" }] },
+        { "prompt": "Welk land viert zijn nationale feestdag op zeventien mei met kinderoptochten?", "options": [{ "text": "Noorwegen", "correct": true }, { "text": "Zweden" }, { "text": "Denemarken" }, { "text": "Finland" }] },
+        { "prompt": "Welk soort bloedvat voert het bloed terug naar het hart?", "options": [{ "text": "De ader", "correct": true }, { "text": "De slagader" }, { "text": "De aorta" }, { "text": "Het haarvat" }] },
+        { "prompt": "Welk Nederlands koningspaar trouwde in 2002 in Amsterdam?", "options": [{ "text": "Willem-Alexander en Maxima", "correct": true }, { "text": "Beatrix en Claus" }, { "text": "Juliana en Bernhard" }, { "text": "Constantijn en Laurentien" }] },
+        { "prompt": "Welk van deze eilanden ligt in de Middellandse Zee?", "options": [{ "text": "Cyprus", "correct": true }, { "text": "Madeira" }, { "text": "Tenerife" }, { "text": "Jersey" }] },
+        { "prompt": "Welke van deze vogels is een papegaai?", "options": [{ "text": "De ara", "correct": true }, { "text": "De toekan" }, { "text": "De flamingo" }, { "text": "De kolibrie" }] },
+        { "prompt": "In welke film zegt Patrick Swayze: Nobody puts Baby in a corner?", "options": [{ "text": "Dirty Dancing", "correct": true }, { "text": "Point Break" }, { "text": "Grease" }, { "text": "Footloose" }] },
+        { "prompt": "In welke sport werd het Nederlandse vrouwenteam in 2019 wereldkampioen?", "options": [{ "text": "Handbal", "correct": true }, { "text": "Volleybal" }, { "text": "Basketbal" }, { "text": "Korfbal" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Tokyo Skytree?", "answer": 634, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Rhone?", "answer": 812, "unit": "kilometer" },
+        { "prompt": "Hoeveel liter bloed pompt het hart per minuut in rust ongeveer?", "answer": 5, "unit": "liter" },
+        { "prompt": "Hoe oud werd Marilyn Monroe?", "answer": 36, "unit": "jaar" },
+        { "prompt": "Hoeveel kilo weegt een volwassen menselijk brein ongeveer?", "answer": 1.4, "unit": "kilo" },
+        { "prompt": "Hoeveel gaten heeft een blokfluit, het duimgat meegerekend?", "answer": 8, "unit": "gaten" },
+        { "prompt": "Hoeveel kilometer per uur haalt een renpaard in volle galop ongeveer?", "answer": 70, "unit": "kilometer per uur" },
+        { "prompt": "In welk jaar trouwden prins Charles en Diana?", "answer": 1981 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Harpist",
+        "Ikea",
+        "Loterij",
+        "Kermit de kikker",
+        "Bluetooth",
+        "Springconcours",
+        "Alice in Wonderland",
+        "Toernooiveld",
+        "Nacho's",
+        "Punk",
+        "Vergeet-mij-nietje",
+        "Castagnetten",
+        "Pianist",
+        "Atomium",
+        "Verspringen",
+        "Floppydisk",
+        "Carnaval van Rio",
+        "Babyshower",
+        "Schoenmaker",
+        "Permanent",
+        "Kleurboek",
+        "Slagerij",
+        "Tandoori",
+        "Vingerverf",
+        "Drone",
+        "Spaarrekening",
+        "Thomas de stoomlocomotief",
+        "Banksy",
+        "Schildpad",
+        "Fotomodel",
+        "Wildwaterbaan",
+        "Granaatappel",
+        "Haka",
+        "Geest uit de fles",
+        "De gelaarsde kat",
+        "SpongeBob",
+        "Asperge",
+        "Home Alone",
+        "Tempura",
+        "Coltrui"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Valentijnsdag?", "answers": [{ "text": "Veertien februari", "aliases": ["14 februari", "Februari"] }, { "text": "Rozen", "aliases": ["Rode rozen", "Bloemen"] }, { "text": "Hartjes", "aliases": ["Hart", "Liefde"] }, { "text": "Cupido", "aliases": ["Pijl en boog", "Kaartje"] }] },
+        { "prompt": "Wat weet je over Romeo en Julia?", "answers": [{ "text": "Shakespeare", "aliases": ["William Shakespeare"] }, { "text": "Verona", "aliases": ["Italie"] }, { "text": "Gif", "aliases": ["Ze sterven", "Dood"] }, { "text": "Balkon", "aliases": ["Balkonscene"] }] },
+        { "prompt": "Wat weet je over rozen?", "answers": [{ "text": "Doornen", "aliases": ["Stekels"] }, { "text": "Rood", "aliases": ["Rode roos"] }, { "text": "Liefde", "aliases": ["Valentijn"] }, { "text": "Geur", "aliases": ["Ruiken", "Rozenwater"] }] },
+        { "prompt": "Wat weet je over Hollywood?", "answers": [{ "text": "Filmstudio's", "aliases": ["Films", "Film"] }, { "text": "Hollywoodbord", "aliases": ["Letters op de heuvel"] }, { "text": "Los Angeles", "aliases": ["Californie"] }, { "text": "Walk of Fame", "aliases": ["Sterren op de stoep", "Oscars"] }] },
+        { "prompt": "Wat weet je over zwanen?", "answers": [{ "text": "Wit", "aliases": ["Witte veren", "Zwarte zwaan"] }, { "text": "Lange nek", "aliases": ["Hals"] }, { "text": "Het lelijke eendje", "aliases": ["Andersen"] }, { "text": "Het Zwanenmeer", "aliases": ["Ballet"] }] },
+        { "prompt": "Wat weet je over Brad Pitt?", "answers": [{ "text": "Angelina Jolie", "aliases": ["Jennifer Aniston"] }, { "text": "Fight Club", "aliases": ["Troy", "Ocean's Eleven"] }, { "text": "Oscar", "aliases": ["Once Upon a Time in Hollywood"] }, { "text": "Hollywood", "aliases": ["Acteur", "Amerikaans"] }] },
+        { "prompt": "Wat weet je over zonnebloemen?", "answers": [{ "text": "Geel", "aliases": ["Gele bloemblaadjes"] }, { "text": "Van Gogh", "aliases": ["Vincent van Gogh"] }, { "text": "Pitten", "aliases": ["Zonnebloempitten", "Olie"] }, { "text": "Draaien met de zon", "aliases": ["Zon", "Groot"] }] },
+        { "prompt": "Wat weet je over de film Grease?", "answers": [{ "text": "John Travolta", "aliases": ["Travolta", "Danny"] }, { "text": "Olivia Newton-John", "aliases": ["Sandy"] }, { "text": "Summer Nights", "aliases": ["You're the One That I Want"] }, { "text": "Jaren vijftig", "aliases": ["Highschool", "Vetkuif"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke vorm heeft het symbool voor liefde?", "difficulty": "easy", "answers": [{ "text": "Een hartje", "aliases": ["Hart", "Hartje"] }] },
+        { "prompt": "Hoe heet de Romeinse liefdesgod met pijl en boog?", "difficulty": "easy", "answers": [{ "text": "Cupido", "aliases": ["Amor"] }] },
+        { "prompt": "Hoe heet het feest als een stel vijftig jaar getrouwd is?", "difficulty": "easy", "answers": [{ "text": "Gouden bruiloft", "aliases": ["De gouden bruiloft"] }] },
+        { "prompt": "Welke dag komt na maandag?", "difficulty": "easy", "answers": [{ "text": "Dinsdag" }] },
+        { "prompt": "Welke gele vrucht is heel zuur?", "difficulty": "easy", "answers": [{ "text": "De citroen", "aliases": ["Citroen"] }] },
+        { "prompt": "Welke Franse beeldhouwster was de leerling en geliefde van Rodin?", "difficulty": "hard", "answers": [{ "text": "Camille Claudel", "aliases": ["Claudel"] }] },
+        { "prompt": "Welke Franse componist schreef het romantische ballet Giselle?", "difficulty": "hard", "answers": [{ "text": "Adolphe Adam", "aliases": ["Adam"] }] },
+        { "prompt": "Welk edelmetaal heeft het scheikundige symbool Rh?", "difficulty": "hard", "answers": [{ "text": "Rhodium" }] },
+        { "prompt": "Welke rivier stroomt door Verona?", "difficulty": "hard", "answers": [{ "text": "De Adige", "aliases": ["Adige", "Etsch"] }] },
+        { "prompt": "Welke Mogolkeizer liet de Taj Mahal bouwen ter nagedachtenis van zijn vrouw?", "difficulty": "hard", "answers": [{ "text": "Shah Jahan", "aliases": ["Sjah Jahan"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke bloemen geef je traditioneel op Valentijnsdag?", "answers": [{ "text": "Rode rozen", "aliases": ["Rozen", "Roos"] }] },
+        { "prompt": "In welke Indiase stad staat de Taj Mahal?", "answers": [{ "text": "Agra" }] },
+        { "prompt": "Welke Britse dichteres schreef: How do I love thee? Let me count the ways?", "answers": [{ "text": "Elizabeth Barrett Browning", "aliases": ["Barrett Browning", "Elizabeth Browning"] }] },
+        { "prompt": "Wat voor dier is Lady uit Lady en de Vagebond?", "answers": [{ "text": "Een hond", "aliases": ["Hond", "Cockerspaniel"] }] },
+        { "prompt": "Welke Amerikaanse filmster trouwde in 1956 met prins Rainier van Monaco?", "answers": [{ "text": "Grace Kelly", "aliases": ["Kelly"] }] },
+        { "prompt": "Met welke Amerikaanse president trouwde Jacqueline Bouvier in 1953?", "answers": [{ "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "Hoe noem je twee verliefde vogeltjes die altijd samen zijn?", "answers": [{ "text": "Tortelduifjes", "aliases": ["Tortelduiven"] }] },
+        { "prompt": "Welke Canadese zanger stond in 1991 zestien weken op een in Engeland met Everything I Do?", "answers": [{ "text": "Bryan Adams", "aliases": ["Adams"] }] },
+        { "prompt": "Welke Franse toneelschrijver schreef Cyrano de Bergerac?", "answers": [{ "text": "Edmond Rostand", "aliases": ["Rostand"] }] }
+      ]
+    }
+  ]
+}

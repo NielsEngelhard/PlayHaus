@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w43",
+  "title": "Weekly quiz 43 2026",
+  "description": "The weekly quiz of Wednesday 21 October 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "On which river is the Belgian port city of Antwerp?", "category": "Geography", "answers": [{ "text": "The Scheldt", "aliases": ["Scheldt", "Schelde"] }] },
+        { "prompt": "What is an animal that lives both in water and on land, like a frog, called?", "category": "Science", "answers": [{ "text": "An amphibian", "aliases": ["Amphibian"] }] },
+        { "prompt": "Which English king was nicknamed the Lionheart?", "category": "History", "answers": [{ "text": "Richard I", "aliases": ["Richard the Lionheart", "Richard"] }] },
+        { "prompt": "Which Jamaican sprinter set the 100 metres world record in 2009?", "category": "Sport", "answers": [{ "text": "Usain Bolt", "aliases": ["Bolt"] }] },
+        { "prompt": "What is the name of Nemo's father in Finding Nemo?", "category": "Film", "answers": [{ "text": "Marlin" }] },
+        { "prompt": "Which Dutch DJ had a worldwide hit as a teenager with Animals in 2013?", "category": "Music", "answers": [{ "text": "Martin Garrix", "aliases": ["Garrix"] }] },
+        { "prompt": "Which theme park is in Biddinghuizen in Flevoland?", "category": "The Netherlands", "answers": [{ "text": "Walibi", "aliases": ["Walibi Holland"] }] },
+        { "prompt": "Which French impressionist painted the dance party Bal du moulin de la Galette?", "category": "Art", "answers": [{ "text": "Pierre-Auguste Renoir", "aliases": ["Renoir"] }] },
+        { "prompt": "To which word class do run, sing and eat belong?", "category": "Language", "answers": [{ "text": "Verbs", "aliases": ["Verb"] }] },
+        { "prompt": "What is the Japanese dish of thinly sliced raw fish without rice called?", "category": "Food", "answers": [{ "text": "Sashimi" }] },
+        { "prompt": "Which company developed the Android operating system?", "category": "Technology", "answers": [{ "text": "Google" }] },
+        { "prompt": "What is the largest bird of prey that breeds in the Netherlands?", "category": "Nature", "answers": [{ "text": "The white-tailed eagle", "aliases": ["White-tailed eagle", "Sea eagle"] }] },
+        { "prompt": "What is the largest city in the French-speaking Canadian province of Quebec?", "category": "Geography", "answers": [{ "text": "Montreal" }] },
+        { "prompt": "Which Russian tsar founded Saint Petersburg in 1703?", "category": "History", "answers": [{ "text": "Peter the Great", "aliases": ["Peter I", "Peter"] }] },
+        { "prompt": "What is the force that pushes an object up in water, described by Archimedes, called?", "category": "Science", "answers": [{ "text": "Buoyancy", "aliases": ["Upthrust", "Buoyant force"] }] },
+        { "prompt": "Which rapper's real name is Marshall Mathers?", "category": "Music", "answers": [{ "text": "Eminem", "aliases": ["Slim Shady"] }] },
+        { "prompt": "What is the name of the Hogwarts headmaster in the first six Harry Potter films?", "category": "Film", "answers": [{ "text": "Albus Dumbledore", "aliases": ["Dumbledore"] }] },
+        { "prompt": "What is the pasta shaped like a little butterfly or bow tie called?", "category": "Food", "answers": [{ "text": "Farfalle", "aliases": ["Bow-tie pasta"] }] },
+        { "prompt": "Which company sells the Kindle e-reader?", "category": "Technology", "answers": [{ "text": "Amazon" }] },
+        { "prompt": "What is the slanted type you use to emphasise a word called?", "category": "Language", "answers": [{ "text": "Italics", "aliases": ["Italic"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these planets has no rings?", "options": [{ "text": "Mars", "correct": true }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptune" }] },
+        { "prompt": "Which Greek letter is used as the symbol for the unit of electrical resistance?", "options": [{ "text": "Omega", "correct": true }, { "text": "Alpha" }, { "text": "Delta" }, { "text": "Pi" }] },
+        { "prompt": "Which Belgian singer sang Ne me quitte pas?", "options": [{ "text": "Jacques Brel", "correct": true }, { "text": "Salvatore Adamo" }, { "text": "Johnny Hallyday" }, { "text": "Charles Aznavour" }] },
+        { "prompt": "Which of these sea creatures has no brain?", "options": [{ "text": "The jellyfish", "correct": true }, { "text": "The octopus" }, { "text": "The dolphin" }, { "text": "The seal" }] },
+        { "prompt": "Which of these capitals is not on the Danube?", "options": [{ "text": "Prague", "correct": true }, { "text": "Vienna" }, { "text": "Budapest" }, { "text": "Bratislava" }] },
+        { "prompt": "Which of these presidents is not carved into Mount Rushmore?", "options": [{ "text": "John Adams", "correct": true }, { "text": "George Washington" }, { "text": "Thomas Jefferson" }, { "text": "Abraham Lincoln" }] },
+        { "prompt": "What colour is a flamingo when it has just hatched?", "options": [{ "text": "Grey", "correct": true }, { "text": "Pink" }, { "text": "White" }, { "text": "Orange" }] },
+        { "prompt": "Which of these is not a noble gas?", "options": [{ "text": "Nitrogen", "correct": true }, { "text": "Neon" }, { "text": "Argon" }, { "text": "Helium" }] },
+        { "prompt": "What is the name of Harry Potter's snowy owl?", "options": [{ "text": "Hedwig", "correct": true }, { "text": "Errol" }, { "text": "Pigwidgeon" }, { "text": "Fawkes" }] },
+        { "prompt": "In which sport did Anky van Grunsven win three Olympic gold medals?", "options": [{ "text": "Dressage", "correct": true }, { "text": "Show jumping" }, { "text": "Polo" }, { "text": "Carriage driving" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is Kilimanjaro?", "answer": 5895, "unit": "metres" },
+        { "prompt": "How many kilometres is it as the crow flies from Amsterdam to Rome?", "answer": 1300, "unit": "kilometres" },
+        { "prompt": "What is the recommended speed in kilometres per hour on German motorways without a limit?", "answer": 130, "unit": "kilometres per hour" },
+        { "prompt": "How many squares does a sudoku have?", "answer": 81, "unit": "squares" },
+        { "prompt": "About how many degrees Celsius is it at the surface of the sun?", "answer": 5500, "unit": "degrees" },
+        { "prompt": "How old was Queen Elizabeth II when she died?", "answer": 96, "unit": "years" },
+        { "prompt": "How many countries border Germany?", "answer": 9, "unit": "countries" },
+        { "prompt": "How many metres deep is the IJsselmeer on average?", "answer": 4.5, "unit": "metres" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Birdcage",
+        "Symphony",
+        "Crusade",
+        "Modelling clay",
+        "Steamroller",
+        "Orchid",
+        "Veil",
+        "Cheese fondue",
+        "Chicken nuggets",
+        "Aristotle",
+        "Slippers",
+        "Recumbent bike",
+        "Baggage carousel",
+        "Nature documentary",
+        "Influencer",
+        "Mamma Mia",
+        "Birth announcement",
+        "Scrooge McDuck",
+        "Offside trap",
+        "Serengeti",
+        "Camel caravan",
+        "Karaoke bar",
+        "Venus de Milo",
+        "Backpacker",
+        "Dummy",
+        "St Peter's Square",
+        "Kale",
+        "Painter and decorator",
+        "Fog bank",
+        "Shakespeare",
+        "Garden gnome",
+        "Fisherman",
+        "Biathlon",
+        "Cookbook",
+        "Limbo",
+        "Autograph hunter",
+        "Bicycle kick",
+        "Tapir",
+        "Operetta",
+        "Taco"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Canada?", "answers": [{ "text": "Maple leaf", "aliases": ["Maple", "Maple syrup", "Flag with a leaf"] }, { "text": "Ice hockey", "aliases": ["Hockey"] }, { "text": "Bears", "aliases": ["Moose", "Grizzly bear"] }, { "text": "French and English", "aliases": ["Bilingual", "Quebec"] }] },
+        { "prompt": "What do you know about Beyonce?", "answers": [{ "text": "Destiny's Child", "aliases": ["Girl group"] }, { "text": "Jay-Z", "aliases": ["Married to Jay-Z"] }, { "text": "Single Ladies", "aliases": ["Crazy in Love", "Halo"] }, { "text": "Texas", "aliases": ["Houston"] }] },
+        { "prompt": "What do you know about Scotland?", "answers": [{ "text": "Bagpipes", "aliases": ["Piper"] }, { "text": "Kilt", "aliases": ["Tartan", "Plaid"] }, { "text": "Whisky", "aliases": ["Scotch"] }, { "text": "Loch Ness", "aliases": ["Loch Ness Monster", "Nessie"] }] },
+        { "prompt": "What do you know about butterflies?", "answers": [{ "text": "Caterpillar", "aliases": ["First a caterpillar", "Pupa", "Cocoon"] }, { "text": "Colourful wings", "aliases": ["Wings", "Colourful"] }, { "text": "Flowers", "aliases": ["Nectar"] }, { "text": "Metamorphosis" }] },
+        { "prompt": "What do you know about Toy Story?", "answers": [{ "text": "Woody", "aliases": ["Cowboy"] }, { "text": "Buzz Lightyear", "aliases": ["Buzz"] }, { "text": "Pixar", "aliases": ["Disney"] }, { "text": "Toys come to life", "aliases": ["Toys", "Andy"] }] },
+        { "prompt": "What do you know about tea?", "answers": [{ "text": "China", "aliases": ["India", "Sri Lanka"] }, { "text": "Tea bag", "aliases": ["Teapot", "Brewing"] }, { "text": "Green tea", "aliases": ["Black tea", "Herbal tea"] }, { "text": "England", "aliases": ["Afternoon tea", "The British"] }] },
+        { "prompt": "What do you know about Vatican City?", "answers": [{ "text": "The Pope", "aliases": ["Pope"] }, { "text": "St Peter's Basilica", "aliases": ["St Peter's Square", "Sistine Chapel"] }, { "text": "Smallest country in the world", "aliases": ["Tiny"] }, { "text": "Rome", "aliases": ["Italy"] }] },
+        { "prompt": "What do you know about The Night Watch?", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }, { "text": "Rijksmuseum", "aliases": ["Amsterdam"] }, { "text": "Civic guards", "aliases": ["Militia", "Frans Banning Cocq"] }, { "text": "Sixteen forty-two", "aliases": ["1642", "Golden Age"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the name of Mickey Mouse's girlfriend?", "difficulty": "easy", "answers": [{ "text": "Minnie Mouse", "aliases": ["Minnie"] }] },
+        { "prompt": "Which festival do Christians celebrate on the twenty-fifth of December?", "difficulty": "easy", "answers": [{ "text": "Christmas", "aliases": ["Christmas Day"] }] },
+        { "prompt": "What is the star at the centre of our solar system called?", "difficulty": "easy", "answers": [{ "text": "The sun", "aliases": ["Sun"] }] },
+        { "prompt": "Who lives in a pineapple under the sea?", "difficulty": "easy", "answers": [{ "text": "SpongeBob", "aliases": ["SpongeBob SquarePants"] }] },
+        { "prompt": "Which fairytale character lost her glass slipper at midnight?", "difficulty": "easy", "answers": [{ "text": "Cinderella" }] },
+        { "prompt": "What is the capital of Nicaragua?", "difficulty": "hard", "answers": [{ "text": "Managua" }] },
+        { "prompt": "Which Italian physicist invented the barometer in 1643?", "difficulty": "hard", "answers": [{ "text": "Evangelista Torricelli", "aliases": ["Torricelli"] }] },
+        { "prompt": "Which British writer wrote Mrs Dalloway?", "difficulty": "hard", "answers": [{ "text": "Virginia Woolf", "aliases": ["Woolf"] }] },
+        { "prompt": "Which African country was called Dahomey until 1975?", "difficulty": "hard", "answers": [{ "text": "Benin" }] },
+        { "prompt": "What are the protective membranes around the brain called?", "difficulty": "hard", "answers": [{ "text": "The meninges", "aliases": ["Meninges"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the name of the bouncy tiger in Winnie the Pooh?", "answers": [{ "text": "Tigger", "aliases": ["Teigetje"] }] },
+        { "prompt": "Which Italian city lies at the foot of Vesuvius?", "answers": [{ "text": "Naples", "aliases": ["Napoli"] }] },
+        { "prompt": "Which American physicist led the scientific work of the Manhattan Project?", "answers": [{ "text": "J. Robert Oppenheimer", "aliases": ["Oppenheimer", "Robert Oppenheimer"] }] },
+        { "prompt": "What kind of animal is Bambi?", "answers": [{ "text": "A deer", "aliases": ["Deer", "Fawn"] }] },
+        { "prompt": "In which German city is the Frauenkirche that was rebuilt stone by stone after the war?", "answers": [{ "text": "Dresden" }] },
+        { "prompt": "Which German mathematician is called the prince of mathematicians?", "answers": [{ "text": "Carl Friedrich Gauss", "aliases": ["Gauss"] }] },
+        { "prompt": "In which country are the pyramids of Giza?", "answers": [{ "text": "Egypt" }] },
+        { "prompt": "What is the name of the singer and bassist who fronted The Police?", "answers": [{ "text": "Sting", "aliases": ["Gordon Sumner"] }] },
+        { "prompt": "Which German writer wrote The Magic Mountain?", "answers": [{ "text": "Thomas Mann", "aliases": ["Mann"] }] }
+      ]
+    }
+  ]
+}

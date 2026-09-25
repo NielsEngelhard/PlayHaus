@@ -47,13 +47,13 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In what year was the Levi Strauss company founded?", "answer": 1853, "unit": "", "explanation": "Levi Strauss started in San Francisco in 1853; the riveted trouser followed in 1873." },
-        { "prompt": "In what year was the first Met Gala held?", "answer": 1948, "unit": "" },
-        { "prompt": "In what year was the house of Chanel founded?", "answer": 1910, "unit": "" },
-        { "prompt": "In what year did the first Paris Fashion Week take place?", "answer": 1973, "unit": "" },
-        { "prompt": "In what year was the house of Dior founded?", "answer": 1946, "unit": "" },
-        { "prompt": "In what year did Louis Vuitton open his first shop in Paris?", "answer": 1854, "unit": "" },
-        { "prompt": "In what year did Vogue magazine first appear?", "answer": 1892, "unit": "" },
+        { "prompt": "In what year was the Levi Strauss company founded?", "answer": 1853, "explanation": "Levi Strauss started in San Francisco in 1853; the riveted trouser followed in 1873." },
+        { "prompt": "In what year was the first Met Gala held?", "answer": 1948 },
+        { "prompt": "In what year was the house of Chanel founded?", "answer": 1910 },
+        { "prompt": "In what year did the first Paris Fashion Week take place?", "answer": 1973 },
+        { "prompt": "In what year was the house of Dior founded?", "answer": 1946 },
+        { "prompt": "In what year did Louis Vuitton open his first shop in Paris?", "answer": 1854 },
+        { "prompt": "In what year did Vogue magazine first appear?", "answer": 1892 },
         { "prompt": "How many outfits does a haute couture show typically feature at minimum?", "answer": 25, "unit": "outfits" }
       ]
     },
@@ -89,7 +89,17 @@
         "Tweed",
         "Stiletto heel",
         "Trench coat",
-        "Karl Lagerfeld"
+        "Karl Lagerfeld",
+        "Fashion show",
+        "Clothing rail",
+        "Fitting room",
+        "Sewing pattern",
+        "Fashion magazine",
+        "Sunglasses on the head",
+        "Hatbox",
+        "Knee socks",
+        "Miniskirt",
+        "Fabric shop"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "In which Italian city was the house of Gucci founded?", "answers": [{ "text": "Florence" }] },
         { "prompt": "Which French designer is known for high heels with a bright red sole?", "answers": [{ "text": "Christian Louboutin", "aliases": ["Louboutin"] }] },
         { "prompt": "Which British model with a boyish haircut became the face of sixties fashion?", "answers": [{ "text": "Twiggy" }] },
-        { "prompt": "Which synthetic fibre did DuPont introduce in 1938, first used for stockings?", "answers": [{ "text": "Nylon" }] }
+        { "prompt": "Which synthetic fibre did DuPont introduce in 1938, first used for stockings?", "answers": [{ "text": "Nylon" }] },
+        { "prompt": "Which French designer launched the New Look in 1947?", "answers": [{ "text": "Christian Dior", "aliases": ["Dior"] }] },
+        { "prompt": "Which British designer is credited with inventing the miniskirt?", "answers": [{ "text": "Mary Quant", "aliases": ["Quant"] }] }
       ]
     }
   ]

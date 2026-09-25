@@ -89,7 +89,17 @@
         "Paw print",
         "Dog tag",
         "Beagle",
-        "Bulldog"
+        "Bulldog",
+        "Wagging",
+        "Giving a paw",
+        "Labrador",
+        "Chihuahua",
+        "Dalmatian",
+        "Sausage dog",
+        "Sniffer dog",
+        "Dog whistle",
+        "Dog basket",
+        "Police dog"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which hairless Mexican breed is named after an Aztec god?", "answers": [{ "text": "The Xoloitzcuintli", "aliases": ["Xoloitzcuintli", "Xolo", "Mexican hairless"] }] },
         { "prompt": "Which large white Hungarian livestock guardian has a long corded coat like a mop?", "answers": [{ "text": "The Komondor", "aliases": ["Komondor"] }] },
         { "prompt": "In Homer's Odyssey, what is the name of the old dog who recognises Odysseus on his return?", "answers": [{ "text": "Argos", "aliases": ["Argus"] }] },
-        { "prompt": "What was the name of the first cloned dog, born in South Korea in 2005?", "answers": [{ "text": "Snuppy" }] }
+        { "prompt": "What was the name of the first cloned dog, born in South Korea in 2005?", "answers": [{ "text": "Snuppy" }] },
+        { "prompt": "What is the name of Tintin's dog in the English books?", "answers": [{ "text": "Snowy" }] },
+        { "prompt": "Which Japanese dog waited for years at Shibuya station for his dead owner?", "answers": [{ "text": "Hachiko", "aliases": ["Hachi"] }] }
       ]
     }
   ]

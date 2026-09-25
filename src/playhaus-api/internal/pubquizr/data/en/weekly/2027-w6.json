@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w6",
+  "title": "Weekly quiz 6 2027",
+  "description": "The weekly quiz of Wednesday 10 February 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In which Californian desert is Death Valley?", "category": "Geography", "answers": [{ "text": "The Mojave", "aliases": ["Mojave", "Mojave Desert"] }] },
+        { "prompt": "Which hormone is also known as the cuddle hormone?", "category": "Science", "answers": [{ "text": "Oxytocin" }] },
+        { "prompt": "Which saint is Valentine's Day named after?", "category": "History", "answers": [{ "text": "Saint Valentine", "aliases": ["Valentine", "Valentinus"] }] },
+        { "prompt": "Which Dutch swimmer won gold in the 50 and 100 metres freestyle in London in 2012?", "category": "Sport", "answers": [{ "text": "Ranomi Kromowidjojo", "aliases": ["Kromowidjojo"] }] },
+        { "prompt": "In which film does Audrey Hepburn stand with a pastry in front of a New York jeweller's window?", "category": "Film", "answers": [{ "text": "Breakfast at Tiffany's" }] },
+        { "prompt": "Which French singer sang La vie en rose?", "category": "Music", "answers": [{ "text": "Edith Piaf", "aliases": ["Piaf"] }] },
+        { "prompt": "What is the national park in Drenthe with heath, pools and an observatory called?", "category": "The Netherlands", "answers": [{ "text": "The Dwingelderveld", "aliases": ["Dwingelderveld"] }] },
+        { "prompt": "Which American artist made the LOVE sculpture with the tilted letter O?", "category": "Art", "answers": [{ "text": "Robert Indiana", "aliases": ["Indiana"] }] },
+        { "prompt": "What does the French je t'aime mean?", "category": "Language", "answers": [{ "text": "I love you" }] },
+        { "prompt": "What is the warm little chocolate cake that is still runny in the middle called?", "category": "Food", "answers": [{ "text": "Chocolate fondant", "aliases": ["Lava cake", "Molten cake", "Moelleux"] }] },
+        { "prompt": "On which dating app do you swipe right when you like someone?", "category": "Technology", "answers": [{ "text": "Tinder" }] },
+        { "prompt": "Which white waterbird is a symbol of fidelity because pairs stay together?", "category": "Nature", "answers": [{ "text": "The swan", "aliases": ["Swan", "Mute swan"] }] },
+        { "prompt": "Which Indian city used to be called Bombay?", "category": "Geography", "answers": [{ "text": "Mumbai" }] },
+        { "prompt": "Which Roman general took his own life together with Cleopatra?", "category": "History", "answers": [{ "text": "Mark Antony", "aliases": ["Antony", "Marcus Antonius"] }] },
+        { "prompt": "What are the two upper chambers of the heart called?", "category": "Science", "answers": [{ "text": "The atria", "aliases": ["Atria", "Atrium"] }] },
+        { "prompt": "Which American soul singer had a hit with Let's Stay Together in 1971?", "category": "Music", "answers": [{ "text": "Al Green", "aliases": ["Green"] }] },
+        { "prompt": "In which 1990 film does Patrick Swayze play a ghost protecting his girlfriend?", "category": "Film", "answers": [{ "text": "Ghost" }] },
+        { "prompt": "Which French region gave its name to the most famous sparkling wine?", "category": "Food", "answers": [{ "text": "Champagne" }] },
+        { "prompt": "What was the computer Apple introduced in 1984 with a famous TV advert called?", "category": "Technology", "answers": [{ "text": "Macintosh", "aliases": ["Mac", "Apple Macintosh"] }] },
+        { "prompt": "What is the punctuation mark you see in don't and it's called?", "category": "Language", "answers": [{ "text": "The apostrophe", "aliases": ["Apostrophe"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these countries is on the Arabian Peninsula?", "options": [{ "text": "Oman", "correct": true }, { "text": "Iran" }, { "text": "Iraq" }, { "text": "Egypt" }] },
+        { "prompt": "Which of these animals has no ears on the outside?", "options": [{ "text": "The snake", "correct": true }, { "text": "The elephant" }, { "text": "The hare" }, { "text": "The cat" }] },
+        { "prompt": "Which French writer wrote Dangerous Liaisons?", "options": [{ "text": "Choderlos de Laclos", "correct": true }, { "text": "Stendhal" }, { "text": "Honore de Balzac" }, { "text": "Gustave Flaubert" }] },
+        { "prompt": "Which country celebrates its national day on the seventeenth of May with children's parades?", "options": [{ "text": "Norway", "correct": true }, { "text": "Sweden" }, { "text": "Denmark" }, { "text": "Finland" }] },
+        { "prompt": "Which kind of blood vessel carries blood back to the heart?", "options": [{ "text": "The vein", "correct": true }, { "text": "The artery" }, { "text": "The aorta" }, { "text": "The capillary" }] },
+        { "prompt": "Which Dutch royal couple married in Amsterdam in 2002?", "options": [{ "text": "Willem-Alexander and Maxima", "correct": true }, { "text": "Beatrix and Claus" }, { "text": "Juliana and Bernhard" }, { "text": "Constantijn and Laurentien" }] },
+        { "prompt": "Which of these islands is in the Mediterranean?", "options": [{ "text": "Cyprus", "correct": true }, { "text": "Madeira" }, { "text": "Tenerife" }, { "text": "Jersey" }] },
+        { "prompt": "Which of these birds is a parrot?", "options": [{ "text": "The macaw", "correct": true }, { "text": "The toucan" }, { "text": "The flamingo" }, { "text": "The hummingbird" }] },
+        { "prompt": "In which film does Patrick Swayze say: Nobody puts Baby in a corner?", "options": [{ "text": "Dirty Dancing", "correct": true }, { "text": "Point Break" }, { "text": "Grease" }, { "text": "Footloose" }] },
+        { "prompt": "In which sport did the Dutch women's team become world champions in 2019?", "options": [{ "text": "Handball", "correct": true }, { "text": "Volleyball" }, { "text": "Basketball" }, { "text": "Korfball" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Tokyo Skytree?", "answer": 634, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Rhone?", "answer": 812, "unit": "kilometres" },
+        { "prompt": "About how many litres of blood does the heart pump per minute at rest?", "answer": 5, "unit": "litres" },
+        { "prompt": "How old was Marilyn Monroe when she died?", "answer": 36, "unit": "years" },
+        { "prompt": "About how many kilos does an adult human brain weigh?", "answer": 1.4, "unit": "kilos" },
+        { "prompt": "How many holes does a recorder have, the thumb hole included?", "answer": 8, "unit": "holes" },
+        { "prompt": "About how many kilometres per hour does a racehorse reach at full gallop?", "answer": 70, "unit": "kilometres per hour" },
+        { "prompt": "In which year did Prince Charles and Diana marry?", "answer": 1981 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Harpist",
+        "IKEA",
+        "Lottery",
+        "Kermit the Frog",
+        "Bluetooth",
+        "Show jumping",
+        "Alice in Wonderland",
+        "Tournament field",
+        "Nachos",
+        "Punk",
+        "Forget-me-not",
+        "Castanets",
+        "Pianist",
+        "Atomium",
+        "Long jump",
+        "Floppy disk",
+        "Rio Carnival",
+        "Baby shower",
+        "Cobbler",
+        "Perm",
+        "Colouring book",
+        "Butcher's shop",
+        "Tandoori",
+        "Finger paint",
+        "Drone",
+        "Savings account",
+        "Thomas the Tank Engine",
+        "Banksy",
+        "Tortoise",
+        "Model",
+        "Log flume",
+        "Pomegranate",
+        "Haka",
+        "Genie in a bottle",
+        "Puss in Boots",
+        "SpongeBob",
+        "Asparagus",
+        "Home Alone",
+        "Tempura",
+        "Turtleneck"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Valentine's Day?", "answers": [{ "text": "Fourteenth of February", "aliases": ["14 February", "February"] }, { "text": "Roses", "aliases": ["Red roses", "Flowers"] }, { "text": "Hearts", "aliases": ["Heart", "Love"] }, { "text": "Cupid", "aliases": ["Bow and arrow", "Card"] }] },
+        { "prompt": "What do you know about Romeo and Juliet?", "answers": [{ "text": "Shakespeare", "aliases": ["William Shakespeare"] }, { "text": "Verona", "aliases": ["Italy"] }, { "text": "Poison", "aliases": ["They die", "Death"] }, { "text": "Balcony", "aliases": ["Balcony scene"] }] },
+        { "prompt": "What do you know about roses?", "answers": [{ "text": "Thorns", "aliases": ["Prickles"] }, { "text": "Red", "aliases": ["Red rose"] }, { "text": "Love", "aliases": ["Valentine"] }, { "text": "Scent", "aliases": ["Smell", "Rose water"] }] },
+        { "prompt": "What do you know about Hollywood?", "answers": [{ "text": "Film studios", "aliases": ["Films", "Movies"] }, { "text": "Hollywood sign", "aliases": ["Letters on the hill"] }, { "text": "Los Angeles", "aliases": ["California"] }, { "text": "Walk of Fame", "aliases": ["Stars on the pavement", "Oscars"] }] },
+        { "prompt": "What do you know about swans?", "answers": [{ "text": "White", "aliases": ["White feathers", "Black swan"] }, { "text": "Long neck", "aliases": ["Neck"] }, { "text": "The Ugly Duckling", "aliases": ["Andersen"] }, { "text": "Swan Lake", "aliases": ["Ballet"] }] },
+        { "prompt": "What do you know about Brad Pitt?", "answers": [{ "text": "Angelina Jolie", "aliases": ["Jennifer Aniston"] }, { "text": "Fight Club", "aliases": ["Troy", "Ocean's Eleven"] }, { "text": "Oscar", "aliases": ["Once Upon a Time in Hollywood"] }, { "text": "Hollywood", "aliases": ["Actor", "American"] }] },
+        { "prompt": "What do you know about sunflowers?", "answers": [{ "text": "Yellow", "aliases": ["Yellow petals"] }, { "text": "Van Gogh", "aliases": ["Vincent van Gogh"] }, { "text": "Seeds", "aliases": ["Sunflower seeds", "Oil"] }, { "text": "Follow the sun", "aliases": ["Sun", "Tall"] }] },
+        { "prompt": "What do you know about the film Grease?", "answers": [{ "text": "John Travolta", "aliases": ["Travolta", "Danny"] }, { "text": "Olivia Newton-John", "aliases": ["Sandy"] }, { "text": "Summer Nights", "aliases": ["You're the One That I Want"] }, { "text": "The fifties", "aliases": ["High school", "Greaser"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What shape is the symbol for love?", "difficulty": "easy", "answers": [{ "text": "A heart", "aliases": ["Heart"] }] },
+        { "prompt": "What is the name of the Roman god of love with a bow and arrow?", "difficulty": "easy", "answers": [{ "text": "Cupid", "aliases": ["Amor"] }] },
+        { "prompt": "What is the celebration called when a couple has been married for fifty years?", "difficulty": "easy", "answers": [{ "text": "Golden wedding", "aliases": ["Golden anniversary"] }] },
+        { "prompt": "Which day comes after Monday?", "difficulty": "easy", "answers": [{ "text": "Tuesday" }] },
+        { "prompt": "Which yellow fruit is very sour?", "difficulty": "easy", "answers": [{ "text": "The lemon", "aliases": ["Lemon"] }] },
+        { "prompt": "Which French sculptor was Rodin's pupil and lover?", "difficulty": "hard", "answers": [{ "text": "Camille Claudel", "aliases": ["Claudel"] }] },
+        { "prompt": "Which French composer wrote the romantic ballet Giselle?", "difficulty": "hard", "answers": [{ "text": "Adolphe Adam", "aliases": ["Adam"] }] },
+        { "prompt": "Which precious metal has the chemical symbol Rh?", "difficulty": "hard", "answers": [{ "text": "Rhodium" }] },
+        { "prompt": "Which river flows through Verona?", "difficulty": "hard", "answers": [{ "text": "The Adige", "aliases": ["Adige"] }] },
+        { "prompt": "Which Mughal emperor had the Taj Mahal built in memory of his wife?", "difficulty": "hard", "answers": [{ "text": "Shah Jahan" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which flowers do you traditionally give on Valentine's Day?", "answers": [{ "text": "Red roses", "aliases": ["Roses", "Rose"] }] },
+        { "prompt": "In which Indian city is the Taj Mahal?", "answers": [{ "text": "Agra" }] },
+        { "prompt": "Which British poet wrote: How do I love thee? Let me count the ways?", "answers": [{ "text": "Elizabeth Barrett Browning", "aliases": ["Barrett Browning", "Elizabeth Browning"] }] },
+        { "prompt": "What kind of animal is Lady in Lady and the Tramp?", "answers": [{ "text": "A dog", "aliases": ["Dog", "Cocker spaniel"] }] },
+        { "prompt": "Which American film star married Prince Rainier of Monaco in 1956?", "answers": [{ "text": "Grace Kelly", "aliases": ["Kelly"] }] },
+        { "prompt": "Which American president did Jacqueline Bouvier marry in 1953?", "answers": [{ "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "What do you call two little lovebirds who are always together?", "answers": [{ "text": "Turtle doves", "aliases": ["Lovebirds", "Turtledoves"] }] },
+        { "prompt": "Which Canadian singer spent sixteen weeks at number one in Britain in 1991 with Everything I Do?", "answers": [{ "text": "Bryan Adams", "aliases": ["Adams"] }] },
+        { "prompt": "Which French playwright wrote Cyrano de Bergerac?", "answers": [{ "text": "Edmond Rostand", "aliases": ["Rostand"] }] }
+      ]
+    }
+  ]
+}

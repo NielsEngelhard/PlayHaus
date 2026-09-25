@@ -81,7 +81,7 @@ func (s *Service) UpdateLobbySetup(ctx context.Context, code, userID string, in 
 
 	// A quiz that does not exist, or is not the room's language, is worth catching here rather than at the start.
 	if in.QuizID != nil {
-		quiz, err := s.store.QuizByID(ctx, *in.QuizID)
+		quiz, err := s.Quiz(ctx, *in.QuizID)
 		if err != nil {
 			return nil, nil, err
 		}

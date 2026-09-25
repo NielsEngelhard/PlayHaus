@@ -89,7 +89,17 @@
         "Candle",
         "Armchair",
         "Cobblestones",
-        "Walking stick"
+        "Walking stick",
+        "Deerstalker hat",
+        "Pipe",
+        "Mrs Hudson",
+        "Baker Street",
+        "Doctor Watson",
+        "Moriarty",
+        "Scotland Yard",
+        "Violin playing",
+        "London fog",
+        "Deduction"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What is the title of the book on higher mathematics that Moriarty wrote?", "answers": [{ "text": "The Dynamics of an Asteroid", "aliases": ["Dynamics of an Asteroid"] }] },
         { "prompt": "Which American actor played Holmes on stage more than a thousand times and shaped the popular image of him?", "answers": [{ "text": "William Gillette", "aliases": ["Gillette"] }] },
         { "prompt": "Holmes mentions the giant rat of which island as a story the world is not yet prepared for?", "answers": [{ "text": "Sumatra" }] },
-        { "prompt": "In which magazine did the first Sherlock Holmes story appear in 1887?", "answers": [{ "text": "Beeton's Christmas Annual", "aliases": ["Beetons Christmas Annual", "Beeton's"] }] }
+        { "prompt": "In which magazine did the first Sherlock Holmes story appear in 1887?", "answers": [{ "text": "Beeton's Christmas Annual", "aliases": ["Beetons Christmas Annual", "Beeton's"] }] },
+        { "prompt": "At which number in Baker Street does Sherlock Holmes live?", "answers": [{ "text": "221B", "aliases": ["221"] }] },
+        { "prompt": "At which Swiss waterfall do Holmes and Moriarty fight in The Final Problem?", "answers": [{ "text": "The Reichenbach Falls", "aliases": ["Reichenbach", "Reichenbach Falls"] }] }
       ]
     }
   ]

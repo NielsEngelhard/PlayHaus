@@ -89,7 +89,17 @@
         "Stemhokje",
         "Ranch",
         "Schommelstoel",
-        "Campagnebus"
+        "Campagnebus",
+        "Het Witte Huis",
+        "Oval Office",
+        "Air Force One",
+        "Presidentiele bibliotheek",
+        "Inauguratie",
+        "Geheime dienst",
+        "Kernkoffer",
+        "Ezel en olifant",
+        "Presidentsdebat",
+        "Afzettingsprocedure"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke zittende vicepresident doodde Alexander Hamilton in 1804 in een duel?", "answers": [{ "text": "Aaron Burr", "aliases": ["Burr"] }] },
         { "prompt": "Welke president was in functie toen de Titanic in 1912 zonk?", "answers": [{ "text": "William Howard Taft", "aliases": ["Taft"] }] },
         { "prompt": "Welke president zat in het Witte Huis toen de beurs in 1929 crashte?", "answers": [{ "text": "Herbert Hoover", "aliases": ["Hoover"] }] },
-        { "prompt": "Welke Amerikaanse staat is de geboortegrond van acht presidenten, meer dan elke andere?", "answers": [{ "text": "Virginia" }] }
+        { "prompt": "Welke Amerikaanse staat is de geboortegrond van acht presidenten, meer dan elke andere?", "answers": [{ "text": "Virginia" }] },
+        { "prompt": "Welke president was eerder filmacteur in Hollywood?", "answers": [{ "text": "Ronald Reagan", "aliases": ["Reagan"] }] },
+        { "prompt": "Welke president zat het kortst in functie en stierf 31 dagen na zijn inauguratie in 1841?", "answers": [{ "text": "William Henry Harrison", "aliases": ["Harrison"] }] }
       ]
     }
   ]

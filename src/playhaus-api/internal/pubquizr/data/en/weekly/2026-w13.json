@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres tall is the Great Pyramid of Giza today?", "answer": 139, "unit": "metres" },
         { "prompt": "How many countries share a border with Brazil?", "answer": 10, "unit": "countries" },
-        { "prompt": "In what year did the Netherlands and Belgium host the European football championship together?", "answer": 2000, "unit": "" },
+        { "prompt": "In what year did the Netherlands and Belgium host the European football championship together?", "answer": 2000 },
         { "prompt": "How many kilometres per hour was the fastest tennis serve ever measured?", "answer": 263, "unit": "kilometres per hour" },
         { "prompt": "How many hairs does a human head carry, roughly?", "answer": 100000, "unit": "hairs" },
         { "prompt": "How many years can a giant tortoise live?", "answer": 150, "unit": "years" },
@@ -88,7 +88,17 @@
         "The Sistine Chapel",
         "Camouflage",
         "Charlie Chaplin",
-        "Origami"
+        "Origami",
+        "Furby",
+        "Succulent",
+        "Ratatouille",
+        "Dragonfly",
+        "Lake Titicaca",
+        "Drop tower",
+        "Aerial",
+        "Distress signal",
+        "Top Gun",
+        "Cellist"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Who composed the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
         { "prompt": "Which is the second highest mountain in the world?", "answers": [{ "text": "K2" }] },
         { "prompt": "Which is the largest island in the Mediterranean?", "answers": [{ "text": "Sicily" }] },
-        { "prompt": "Which country gave the world the tango?", "answers": [{ "text": "Argentina" }] }
+        { "prompt": "Which country gave the world the tango?", "answers": [{ "text": "Argentina" }] },
+        { "prompt": "Which French queen is supposed to have said: let them eat cake?", "answers": [{ "text": "Marie Antoinette", "aliases": ["Marie-Antoinette"] }] },
+        { "prompt": "Which Spanish conquistador captured the Inca ruler Atahualpa?", "answers": [{ "text": "Francisco Pizarro", "aliases": ["Pizarro"] }] }
       ]
     }
   ]

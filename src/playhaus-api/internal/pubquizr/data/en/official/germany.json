@@ -50,11 +50,11 @@
         { "prompt": "How many kilometres long was the Berlin Wall around West Berlin?", "answer": 155, "unit": "kilometres", "explanation": "Over a hundred and fifty kilometres of concrete and fence, forty of them through the city." },
         { "prompt": "How many kilometres of the Rhine flow through Germany?", "answer": 865, "unit": "kilometres" },
         { "prompt": "How many federal states does Germany have?", "answer": 16, "unit": "states" },
-        { "prompt": "In what year was Germany reunified?", "answer": 1990, "unit": "" },
+        { "prompt": "In what year was Germany reunified?", "answer": 1990 },
         { "prompt": "How many kilometres long is the Autobahn network in total?", "answer": 13000, "unit": "kilometres", "explanation": "Germany's motorway network runs to about thirteen thousand kilometres." },
-        { "prompt": "In what year was the Volkswagen Beetle first produced?", "answer": 1938, "unit": "" },
+        { "prompt": "In what year was the Volkswagen Beetle first produced?", "answer": 1938 },
         { "prompt": "How many inhabitants does Berlin have, in millions, roughly?", "answer": 4, "unit": "million inhabitants" },
-        { "prompt": "In what year did Goethe die?", "answer": 1832, "unit": "" }
+        { "prompt": "In what year did Goethe die?", "answer": 1832 }
       ]
     },
     {
@@ -89,7 +89,17 @@
         "Glockenspiel",
         "Reunification",
         "Rumpelstiltskin",
-        "Das Boot"
+        "Das Boot",
+        "Christmas biscuit",
+        "German shepherd",
+        "Volkswagen Beetle",
+        "Pretzel stand",
+        "Beer stein",
+        "Slap dance",
+        "Cologne carnival",
+        "Porcelain garden gnome",
+        "Rhine castle",
+        "Black Forest gateau"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Besides the North Sea, which sea washes the German coast?", "answers": [{ "text": "The Baltic Sea", "aliases": ["Baltic Sea", "Baltic", "Ostsee"] }] },
         { "prompt": "Which German group owns Audi, Porsche and Skoda?", "answers": [{ "text": "Volkswagen", "aliases": ["VW", "Volkswagen Group"] }] },
         { "prompt": "In which German town is the tale of the Pied Piper set?", "answers": [{ "text": "Hamelin", "aliases": ["Hameln"] }] },
-        { "prompt": "Which German chancellor led the country through reunification in 1990?", "answers": [{ "text": "Helmut Kohl", "aliases": ["Kohl"] }] }
+        { "prompt": "Which German chancellor led the country through reunification in 1990?", "answers": [{ "text": "Helmut Kohl", "aliases": ["Kohl"] }] },
+        { "prompt": "In which German city was Ludwig van Beethoven born?", "answers": [{ "text": "Bonn" }] },
+        { "prompt": "Which German engineer patented the first car with a combustion engine in 1886?", "answers": [{ "text": "Karl Benz", "aliases": ["Carl Benz", "Benz"] }] }
       ]
     }
   ]

@@ -89,7 +89,17 @@
         "Teerput",
         "Nekschild",
         "Bot",
-        "Gebrul"
+        "Gebrul",
+        "Tyrannosaurus rex",
+        "Diplodocus",
+        "Ankylosaurus",
+        "Spinosaurus",
+        "Meteorietinslag",
+        "Uitsterven",
+        "Dinopark",
+        "Fossiel",
+        "Plesiosaurus",
+        "Dinosaurusbot"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke kleine gevederde dinosaurus uit China had slagpennen aan alle vier zijn ledematen?", "answers": [{ "text": "Microraptor" }] },
         { "prompt": "Welke Mongoolse dinosaurus, wiens naam 'verschrikkelijke hand' betekent, was tientallen jaren alleen bekend van een paar enorme armen?", "answers": [{ "text": "Deinocheirus" }] },
         { "prompt": "Welke dinosaurus had een dikke koepel van massief bot boven op zijn schedel?", "answers": [{ "text": "Pachycephalosaurus", "aliases": ["Pachycephalosaurier"] }] },
-        { "prompt": "Bij welke Nederlandse stad werd de schedel gevonden die de mosasauriers hun naam gaf?", "answers": [{ "text": "Maastricht" }] }
+        { "prompt": "Bij welke Nederlandse stad werd de schedel gevonden die de mosasauriers hun naam gaf?", "answers": [{ "text": "Maastricht" }] },
+        { "prompt": "In welk geologisch tijdperk leefde de Tyrannosaurus rex, het laatste van het mesozoicum?", "answers": [{ "text": "Het krijt", "aliases": ["Krijt", "Krijttijdperk"] }] },
+        { "prompt": "Hoe heet de krater op het schiereiland Yucatan die aan het uitsterven van de dinosauriers wordt gekoppeld?", "answers": [{ "text": "Chicxulub", "aliases": ["De Chicxulubkrater"] }] }
       ]
     }
   ]

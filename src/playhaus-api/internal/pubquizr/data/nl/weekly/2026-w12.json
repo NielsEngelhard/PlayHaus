@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter hoog is de scheve toren van Pisa?", "answer": 56, "unit": "meter" },
         { "prompt": "Hoeveel botten heeft een slang ongeveer?", "answer": 400, "unit": "botten" },
-        { "prompt": "In welk jaar werd Nederland Europees kampioen voetbal?", "answer": 1988, "unit": "" },
+        { "prompt": "In welk jaar werd Nederland Europees kampioen voetbal?", "answer": 1988 },
         { "prompt": "Hoeveel kilometer fietspad heeft Nederland?", "answer": 35000, "unit": "kilometer" },
         { "prompt": "Hoeveel poten heeft een kreeft, de scharen meegerekend?", "answer": 10, "unit": "poten" },
         { "prompt": "Hoeveel miljoen kleuren kan het menselijk oog onderscheiden?", "answer": 10, "unit": "miljoen kleuren" },
@@ -88,7 +88,17 @@
         "Astronaut",
         "Koningsdag",
         "Niagarawatervallen",
-        "Andre Rieu"
+        "Andre Rieu",
+        "Slaapliedje",
+        "Takelwagen",
+        "Statiegeld",
+        "Paperclip",
+        "Albatros",
+        "Zootopia",
+        "Nachttrein",
+        "Kasbah",
+        "Salami",
+        "Frank Sinatra"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Hoe heet de diepste oceaantrog ter wereld?", "answers": [{ "text": "De Marianentrog", "aliases": ["Marianentrog", "Mariana Trench"] }] },
         { "prompt": "In welke stad staat het Prado-museum?", "answers": [{ "text": "Madrid" }] },
         { "prompt": "Wie schilderde De Nachtwacht?", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
-        { "prompt": "Welk gas maakt ongeveer 78 procent uit van de lucht die we inademen?", "answers": [{ "text": "Stikstof" }] }
+        { "prompt": "Welk gas maakt ongeveer 78 procent uit van de lucht die we inademen?", "answers": [{ "text": "Stikstof" }] },
+        { "prompt": "Wat is de hoofdstad van Schotland?", "answers": [{ "text": "Edinburgh" }] },
+        { "prompt": "Wat is de hoogste berg van de Kaukasus?", "answers": [{ "text": "De Elbroes", "aliases": ["Elbroes", "Elbrus"] }] }
       ]
     }
   ]

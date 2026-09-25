@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w15",
+  "title": "Weekquiz 15 2027",
+  "description": "De wekelijkse quiz van woensdag 14 april 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Belgische stad aan de Maas is de hoofdstad van Wallonie?", "category": "Aardrijkskunde", "answers": [{ "text": "Namen", "aliases": ["Namur"] }] },
+        { "prompt": "Hoe heet de strook kleuren die je ziet als licht door een prisma gaat?", "category": "Wetenschap", "answers": [{ "text": "Het spectrum", "aliases": ["Spectrum", "Kleurenspectrum"] }] },
+        { "prompt": "Hoe heette de Nederlandse kolonie in Noord-Amerika met Nieuw-Amsterdam als hoofdstad?", "category": "Geschiedenis", "answers": [{ "text": "Nieuw-Nederland", "aliases": ["Nieuw Nederland"] }] },
+        { "prompt": "Welke Nederlandse voetballer speelde elf jaar bij Arsenal en had vliegangst?", "category": "Sport", "answers": [{ "text": "Dennis Bergkamp", "aliases": ["Bergkamp"] }] },
+        { "prompt": "Welke Amerikaanse actrice won een Oscar als Erin Brockovich?", "category": "Film", "answers": [{ "text": "Julia Roberts", "aliases": ["Roberts"] }] },
+        { "prompt": "Welke Canadese rapper scoorde in 2015 met Hotline Bling?", "category": "Muziek", "answers": [{ "text": "Drake" }] },
+        { "prompt": "Welk voormalig eiland in de Noordoostpolder is werelderfgoed?", "category": "Nederland", "answers": [{ "text": "Schokland" }] },
+        { "prompt": "Welke Wit-Russisch-Franse schilder maakte dromerige doeken met zwevende geliefden en violisten op daken?", "category": "Kunst", "answers": [{ "text": "Marc Chagall", "aliases": ["Chagall"] }] },
+        { "prompt": "Hoe heet de taal van handgebaren die dove mensen gebruiken?", "category": "Taal", "answers": [{ "text": "Gebarentaal", "aliases": ["Nederlandse Gebarentaal"] }] },
+        { "prompt": "Welke bleke, bittere groente heet in Belgie ook wel witloof?", "category": "Eten", "answers": [{ "text": "Witlof", "aliases": ["Witloof", "Brussels lof"] }] },
+        { "prompt": "Hoe heet het besturingssysteem van Apple voor laptops en desktops?", "category": "Techniek", "answers": [{ "text": "macOS", "aliases": ["Mac OS", "OS X"] }] },
+        { "prompt": "Welke grote zwarte specht met een rode kruin is de grootste specht van Europa?", "category": "Natuur", "answers": [{ "text": "De zwarte specht", "aliases": ["Zwarte specht"] }] },
+        { "prompt": "Welk Canadees territorium grenst aan Alaska?", "category": "Aardrijkskunde", "answers": [{ "text": "Yukon" }] },
+        { "prompt": "Welke Amerikaanse president diende twee termijnen die niet op elkaar volgden, al in de negentiende eeuw?", "category": "Geschiedenis", "answers": [{ "text": "Grover Cleveland", "aliases": ["Cleveland"] }] },
+        { "prompt": "Hoe heet de kracht die een ronddraaiend voorwerp naar het midden trekt?", "category": "Wetenschap", "answers": [{ "text": "Middelpuntzoekende kracht", "aliases": ["Centripetale kracht"] }] },
+        { "prompt": "Welke Amerikaanse zanger in het zwart zong I Walk the Line?", "category": "Muziek", "answers": [{ "text": "Johnny Cash", "aliases": ["Cash"] }] },
+        { "prompt": "In welke film uit 1995 komen wilde dieren tevoorschijn uit een bordspel?", "category": "Film", "answers": [{ "text": "Jumanji" }] },
+        { "prompt": "Hoe heet het Indonesische gerecht van gekookte groenten met pindasaus?", "category": "Eten", "answers": [{ "text": "Gado-gado", "aliases": ["Gado gado"] }] },
+        { "prompt": "Welke Amerikaanse zoekmachine met een uitroepteken in de naam was populair voor Google?", "category": "Techniek", "answers": [{ "text": "Yahoo!", "aliases": ["Yahoo"] }] },
+        { "prompt": "Welke taal heeft in Europa de meeste moedertaalsprekers?", "category": "Taal", "answers": [{ "text": "Russisch", "aliases": ["Het Russisch"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Frankrijk?", "options": [{ "text": "Rijsel", "correct": true }, { "text": "Luik" }, { "text": "Luxemburg" }, { "text": "Geneve" }] },
+        { "prompt": "Welk van deze dieren kan zijn hele leven zonder te drinken?", "options": [{ "text": "De kangoeroerat", "correct": true }, { "text": "De kameel" }, { "text": "De ezel" }, { "text": "De geit" }] },
+        { "prompt": "Welke Zweedse schrijver bedacht inspecteur Kurt Wallander?", "options": [{ "text": "Henning Mankell", "correct": true }, { "text": "Stieg Larsson" }, { "text": "Jo Nesbo" }, { "text": "Camilla Lackberg" }] },
+        { "prompt": "Bij welk land horen de Alandseilanden?", "options": [{ "text": "Finland", "correct": true }, { "text": "Zweden" }, { "text": "Estland" }, { "text": "Denemarken" }] },
+        { "prompt": "Welke van deze ziekten is een ontsteking van de longen?", "options": [{ "text": "Longontsteking", "correct": true }, { "text": "Hersenvliesontsteking" }, { "text": "Blindedarmontsteking" }, { "text": "Leverontsteking" }] },
+        { "prompt": "Welk land kreeg in 1667 Nieuw-Amsterdam in ruil voor Suriname?", "options": [{ "text": "Engeland", "correct": true }, { "text": "Frankrijk" }, { "text": "Spanje" }, { "text": "Portugal" }] },
+        { "prompt": "Welk van deze eilanden hoort bij Portugal?", "options": [{ "text": "Madeira", "correct": true }, { "text": "Mallorca" }, { "text": "Tenerife" }, { "text": "Malta" }] },
+        { "prompt": "Welke vogel is genoemd naar zijn eigen roep?", "options": [{ "text": "De tjiftjaf", "correct": true }, { "text": "De merel" }, { "text": "De mus" }, { "text": "De spreeuw" }] },
+        { "prompt": "In welke film roept Tom Cruise: Show me the money?", "options": [{ "text": "Jerry Maguire", "correct": true }, { "text": "Top Gun" }, { "text": "Rain Man" }, { "text": "A Few Good Men" }] },
+        { "prompt": "In welke sport werden de Nederlandse vrouwen in 2023 wereldkampioen?", "options": [{ "text": "Waterpolo", "correct": true }, { "text": "Handbal" }, { "text": "Volleybal" }, { "text": "Basketbal" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de A'DAM Toren aan het IJ in Amsterdam?", "answer": 100, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Tiber?", "answer": 406, "unit": "kilometer" },
+        { "prompt": "Hoeveel officiele talen heeft Zuid-Afrika sinds 2023, gebarentaal meegerekend?", "answer": 12, "unit": "talen" },
+        { "prompt": "Hoe oud werd Amy Winehouse?", "answer": 27, "unit": "jaar" },
+        { "prompt": "Hoeveel meter lang is een pasgeboren giraf ongeveer?", "answer": 1.8, "unit": "meter" },
+        { "prompt": "Uit hoeveel sterren bestaat de steelpan van de Grote Beer?", "answer": 7, "unit": "sterren" },
+        { "prompt": "Hoeveel meter is de straal van de middencirkel op een voetbalveld?", "answer": 9.15, "unit": "meter" },
+        { "prompt": "In welk jaar werd de NAVO opgericht?", "answer": 1949 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Kolibrie",
+        "Worstenbroodje",
+        "Dienblad",
+        "Knipoog",
+        "Pyjama",
+        "Leeuwentemmer",
+        "Mont Saint-Michel",
+        "Kanonschot",
+        "Airfryer",
+        "Papaja",
+        "Frisdrank",
+        "Gasstel",
+        "Horoscoop",
+        "Roald Dahl",
+        "Tiananmenplein",
+        "Mexicaanse sombrero",
+        "SOS",
+        "Spruitjes",
+        "Sprinkhaan",
+        "Kunstschaatsen",
+        "Specht",
+        "Mos",
+        "Snijplank",
+        "Brugge",
+        "Kikkerbilletjes",
+        "Schorpioenvis",
+        "Goudkoorts",
+        "Zonnebloemen",
+        "Stalin",
+        "Angkor Wat",
+        "Bill Gates",
+        "Corner",
+        "Super Mario",
+        "Rendier",
+        "Garde",
+        "Stripfiguur",
+        "Drumband",
+        "Rolstoelrace",
+        "Cocon",
+        "Knot"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over de Ardennen?", "answers": [{ "text": "Heuvels", "aliases": ["Bossen", "Groen"] }, { "text": "Belgie", "aliases": ["Luxemburg", "Wallonie"] }, { "text": "Kamperen", "aliases": ["Kajakken", "Vakantie"] }, { "text": "Slag om de Ardennen", "aliases": ["Oorlog", "Bastogne"] }] },
+        { "prompt": "Wat weet je over de serie Friends?", "answers": [{ "text": "Central Perk", "aliases": ["Koffiezaak"] }, { "text": "Ross en Rachel", "aliases": ["Joey", "Chandler", "Monica", "Phoebe"] }, { "text": "New York", "aliases": ["Appartement"] }, { "text": "Jaren negentig", "aliases": ["Sitcom"] }] },
+        { "prompt": "Wat weet je over Piet Mondriaan?", "answers": [{ "text": "Rood, geel en blauw", "aliases": ["Primaire kleuren"] }, { "text": "Zwarte lijnen", "aliases": ["Vlakken", "Lijnen"] }, { "text": "De Stijl", "aliases": ["Theo van Doesburg"] }, { "text": "Broadway Boogie Woogie", "aliases": ["Victory Boogie Woogie", "New York"] }] },
+        { "prompt": "Wat weet je over aardappelen?", "answers": [{ "text": "Friet", "aliases": ["Patat", "Chips"] }, { "text": "Peru", "aliases": ["Zuid-Amerika"] }, { "text": "Stamppot", "aliases": ["Puree"] }, { "text": "Knol", "aliases": ["Onder de grond", "Poten"] }] },
+        { "prompt": "Wat weet je over Google?", "answers": [{ "text": "Zoekmachine", "aliases": ["Googelen", "Zoeken"] }, { "text": "YouTube", "aliases": ["Video's"] }, { "text": "Android", "aliases": ["Pixel"] }, { "text": "Gmail", "aliases": ["Maps", "Chrome"] }] },
+        { "prompt": "Wat weet je over cowboys?", "answers": [{ "text": "Paard", "aliases": ["Paardrijden"] }, { "text": "Lasso", "aliases": ["Koeien vangen"] }, { "text": "Cowboyhoed", "aliases": ["Hoed", "Laarzen"] }, { "text": "Wilde Westen", "aliases": ["Amerika", "Texas"] }] },
+        { "prompt": "Wat weet je over de Europese Unie?", "answers": [{ "text": "Brussel", "aliases": ["Straatsburg"] }, { "text": "Euro", "aliases": ["Munt"] }, { "text": "Vlag met sterren", "aliases": ["Blauwe vlag", "Twaalf sterren"] }, { "text": "Europees Parlement", "aliases": ["Lidstaten", "Verkiezingen"] }] },
+        { "prompt": "Wat weet je over uilen?", "answers": [{ "text": "Nachtdier", "aliases": ["Nacht"] }, { "text": "Kop ronddraaien", "aliases": ["Draaien"] }, { "text": "Oehoe", "aliases": ["Kerkuil", "Sneeuwuil"] }, { "text": "Harry Potter", "aliases": ["Hedwig", "Uilenpost"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het jong van een varken?", "difficulty": "easy", "answers": [{ "text": "Een big", "aliases": ["Big", "Biggetje"] }] },
+        { "prompt": "Wat doe je met een zaag?", "difficulty": "easy", "answers": [{ "text": "Zagen" }] },
+        { "prompt": "Welke roze vogel staat vaak op een poot in het water?", "difficulty": "easy", "answers": [{ "text": "De flamingo", "aliases": ["Flamingo"] }] },
+        { "prompt": "Wat eet je in de bioscoop vaak uit een grote bak?", "difficulty": "easy", "answers": [{ "text": "Popcorn" }] },
+        { "prompt": "Welke rups spint de draad waarvan zijde wordt gemaakt?", "difficulty": "easy", "answers": [{ "text": "De zijderups", "aliases": ["Zijderups"] }] },
+        { "prompt": "Welke Noorse oppergod met een oog rijdt op een paard met acht benen?", "difficulty": "hard", "answers": [{ "text": "Odin", "aliases": ["Wodan", "Wotan"] }] },
+        { "prompt": "Welke Griekse held deed er tien jaar over om na de Trojaanse Oorlog thuis te komen?", "difficulty": "hard", "answers": [{ "text": "Odysseus", "aliases": ["Ulysses"] }] },
+        { "prompt": "Hoe heet het teken voor oneindig, een liggende acht?", "difficulty": "hard", "answers": [{ "text": "Lemniscaat", "aliases": ["De lemniscaat"] }] },
+        { "prompt": "Wat is de hoogste berg van Spanje?", "difficulty": "hard", "answers": [{ "text": "De Teide", "aliases": ["Teide", "Pico del Teide"] }] },
+        { "prompt": "Welke Romeinse keizer gaf in 212 alle vrije inwoners van het rijk burgerrecht?", "difficulty": "hard", "answers": [{ "text": "Caracalla" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Crush, de surfende vriend van Nemo's vader?", "answers": [{ "text": "Een zeeschildpad", "aliases": ["Schildpad", "Zeeschildpad"] }] },
+        { "prompt": "In welke Zwitserse stad zetelt het Internationaal Olympisch Comite?", "answers": [{ "text": "Lausanne" }] },
+        { "prompt": "Welke Chileense schrijfster schreef Het huis met de geesten?", "answers": [{ "text": "Isabel Allende", "aliases": ["Allende"] }] },
+        { "prompt": "Hoe noemen we weer met bliksem en donder?", "answers": [{ "text": "Onweer", "aliases": ["Onweersbui"] }] },
+        { "prompt": "Welke Schotse havenstad heeft de bijnaam Granite City?", "answers": [{ "text": "Aberdeen" }] },
+        { "prompt": "Welke Amerikaanse sterrenkundige liet zien dat het heelal uitdijt?", "answers": [{ "text": "Edwin Hubble", "aliases": ["Hubble"] }] },
+        { "prompt": "Hoe heet het geluid dat een kat maakt?", "answers": [{ "text": "Miauwen", "aliases": ["Miauw"] }] },
+        { "prompt": "Welke Britse zangeres scoorde in 2019 met Don't Start Now?", "answers": [{ "text": "Dua Lipa", "aliases": ["Lipa"] }] },
+        { "prompt": "Welke Britse filosoof schreef het essay Over vrijheid?", "answers": [{ "text": "John Stuart Mill", "aliases": ["Mill"] }] }
+      ]
+    }
+  ]
+}

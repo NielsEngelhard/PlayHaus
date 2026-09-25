@@ -89,7 +89,17 @@
         "Oortje",
         "Boyband",
         "Klederdracht",
-        "Applaus"
+        "Applaus",
+        "Douze points",
+        "Nul punten",
+        "Scorebord met punten",
+        "Winnaarstrofee",
+        "Glitterpak",
+        "Songfestivalfeest",
+        "Zangwedstrijd",
+        "Vlaggenparade",
+        "Hartvormige microfoon",
+        "Buurlandpunten"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke Israelische groep won het songfestival van 1979 met Hallelujah?", "answers": [{ "text": "Milk and Honey", "aliases": ["Gali Atari en Milk and Honey", "Milk & Honey"] }] },
         { "prompt": "In welk jaar werd de vrije taalkeuze definitief hersteld?", "answers": [{ "text": "1999", "aliases": ["Negentienhonderdnegenennegentig"] }] },
         { "prompt": "Welk land won het songfestival van 2005 met My Number One?", "answers": [{ "text": "Griekenland" }] },
-        { "prompt": "Welke Zweedse stad was in 1985 gastheer van het songfestival?", "answers": [{ "text": "Goteborg", "aliases": ["Göteborg", "Gothenburg"] }] }
+        { "prompt": "Welke Zweedse stad was in 1985 gastheer van het songfestival?", "answers": [{ "text": "Goteborg", "aliases": ["Göteborg", "Gothenburg"] }] },
+        { "prompt": "Welke Canadese zangeres won het Songfestival van 1988 voor Zwitserland?", "answers": [{ "text": "Celine Dion", "aliases": ["Dion"] }] },
+        { "prompt": "Welke Ierse zanger won het Songfestival twee keer, in 1980 en 1987?", "answers": [{ "text": "Johnny Logan", "aliases": ["Logan"] }] }
       ]
     }
   ]

@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w12",
+  "title": "Weekquiz 12 2027",
+  "description": "De wekelijkse quiz van woensdag 24 maart 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Franse regio heeft Rennes als hoofdstad?", "category": "Aardrijkskunde", "answers": [{ "text": "Bretagne" }] },
+        { "prompt": "Hoe heet de kleinste eenheid van informatie in een computer, een nul of een een?", "category": "Wetenschap", "answers": [{ "text": "Een bit", "aliases": ["Bit"] }] },
+        { "prompt": "Welke Hollandse zeevaarder veroverde in 1628 de Spaanse zilvervloot?", "category": "Geschiedenis", "answers": [{ "text": "Piet Hein", "aliases": ["Hein"] }] },
+        { "prompt": "Welke Nederlandse wielrenner werd in 2023 in Glasgow wereldkampioen op de weg?", "category": "Sport", "answers": [{ "text": "Mathieu van der Poel", "aliases": ["Van der Poel"] }] },
+        { "prompt": "Welke Britse acteur speelt Sherlock Holmes in de BBC-serie Sherlock?", "category": "Film", "answers": [{ "text": "Benedict Cumberbatch", "aliases": ["Cumberbatch"] }] },
+        { "prompt": "Welke Britse zangeres scoorde in 1978 als tiener met Wuthering Heights?", "category": "Muziek", "answers": [{ "text": "Kate Bush", "aliases": ["Bush"] }] },
+        { "prompt": "Aan welke rivier liggen Deventer en Zutphen?", "category": "Nederland", "answers": [{ "text": "De IJssel", "aliases": ["IJssel"] }] },
+        { "prompt": "Welke leerling van Rembrandt schilderde Het puttertje?", "category": "Kunst", "answers": [{ "text": "Carel Fabritius", "aliases": ["Fabritius"] }] },
+        { "prompt": "Waar staat de afkorting z.o.z. voor?", "category": "Taal", "answers": [{ "text": "Zie ommezijde" }] },
+        { "prompt": "Hoe heet de Franse ovenschotel van dunne plakjes aardappel met room?", "category": "Eten", "answers": [{ "text": "Gratin dauphinois", "aliases": ["Gratin"] }] },
+        { "prompt": "Hoe heet het e-mailprogramma van Microsoft?", "category": "Techniek", "answers": [{ "text": "Outlook" }] },
+        { "prompt": "Hoe heet de Afrikaanse antilope met lange, gedraaide hoorns?", "category": "Natuur", "answers": [{ "text": "De koedoe", "aliases": ["Koedoe", "Kudu"] }] },
+        { "prompt": "Bij welk Franse overzeese gebied hoort het eiland Tahiti?", "category": "Aardrijkskunde", "answers": [{ "text": "Frans-Polynesie", "aliases": ["Polynesie"] }] },
+        { "prompt": "Welke twee Nederlandse broers werden in 1672 in Den Haag door een woedende menigte vermoord?", "category": "Geschiedenis", "answers": [{ "text": "De gebroeders De Witt", "aliases": ["De Witt", "Johan en Cornelis de Witt"] }] },
+        { "prompt": "Hoe heet een getal zonder cijfers achter de komma?", "category": "Wetenschap", "answers": [{ "text": "Een geheel getal", "aliases": ["Geheel getal"] }] },
+        { "prompt": "Welke band van drie broers scoorde in 1977 met Stayin' Alive?", "category": "Muziek", "answers": [{ "text": "Bee Gees", "aliases": ["The Bee Gees"] }] },
+        { "prompt": "Welke Disneyfilm gaat over een Chinees meisje dat zich als man verkleedt om ten strijde te trekken?", "category": "Film", "answers": [{ "text": "Mulan" }] },
+        { "prompt": "Hoe heet het Friese zoete brood met klontjes suiker erin?", "category": "Eten", "answers": [{ "text": "Suikerbrood", "aliases": ["Fries suikerbrood"] }] },
+        { "prompt": "Hoe heette de eerste Nederlandse satelliet uit 1974?", "category": "Techniek", "answers": [{ "text": "ANS", "aliases": ["Astronomische Nederlandse Satelliet"] }] },
+        { "prompt": "Hoe noemen Vlamingen een portie patat?", "category": "Taal", "answers": [{ "text": "Frieten", "aliases": ["Friet", "Frietjes"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Nederland?", "options": [{ "text": "Sneek", "correct": true }, { "text": "Gent" }, { "text": "Aken" }, { "text": "Kleef" }] },
+        { "prompt": "Hoe heet de kruising tussen een paardenmerrie en een ezelhengst?", "options": [{ "text": "De muilezel", "correct": true }, { "text": "De zebra" }, { "text": "De pony" }, { "text": "De lama" }] },
+        { "prompt": "Welke Vlaamse schrijver schreef De leeuw van Vlaanderen?", "options": [{ "text": "Hendrik Conscience", "correct": true }, { "text": "Guido Gezelle" }, { "text": "Felix Timmermans" }, { "text": "Stijn Streuvels" }] },
+        { "prompt": "Welk van deze landen ligt op de Balkan?", "options": [{ "text": "Bosnie en Herzegovina", "correct": true }, { "text": "Hongarije" }, { "text": "Slowakije" }, { "text": "Oostenrijk" }] },
+        { "prompt": "Welke van deze ziekten wordt door muggen verspreid?", "options": [{ "text": "Malaria", "correct": true }, { "text": "Cholera" }, { "text": "Tetanus" }, { "text": "Mazelen" }] },
+        { "prompt": "Welke tsaar verkocht in 1867 Alaska aan de Verenigde Staten?", "options": [{ "text": "Alexander II", "correct": true }, { "text": "Nicolaas I" }, { "text": "Peter de Grote" }, { "text": "Catharina de Grote" }] },
+        { "prompt": "Welke van deze bergen ligt in Noord-Amerika?", "options": [{ "text": "Mount Rainier", "correct": true }, { "text": "De K2" }, { "text": "De Mont Blanc" }, { "text": "De Kilimanjaro" }] },
+        { "prompt": "Welke van deze vogels bouwt een nestje van modder onder de dakrand?", "options": [{ "text": "De huiszwaluw", "correct": true }, { "text": "De koolmees" }, { "text": "De ekster" }, { "text": "De reiger" }] },
+        { "prompt": "In welke film houden Will Smith en Tommy Lee Jones buitenaardse wezens op aarde in de gaten?", "options": [{ "text": "Men in Black", "correct": true }, { "text": "Independence Day" }, { "text": "Bad Boys" }, { "text": "Wild Wild West" }] },
+        { "prompt": "Welk land versloeg Nederland in de WK-finale van 1974?", "options": [{ "text": "West-Duitsland", "correct": true }, { "text": "Polen" }, { "text": "Brazilie" }, { "text": "Argentinie" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de boog van het Wembley-stadion?", "answer": 133, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Schelde?", "answer": 350, "unit": "kilometer" },
+        { "prompt": "Hoeveel bits zitten er in een byte?", "answer": 8, "unit": "bits" },
+        { "prompt": "Hoe oud werd Johannes Vermeer?", "answer": 43, "unit": "jaar" },
+        { "prompt": "Hoeveel kilo weegt een volwassen melkkoe ongeveer?", "answer": 650, "unit": "kilo" },
+        { "prompt": "Hoeveel verschillende kleuren heeft een Rubiks kubus?", "answer": 6, "unit": "kleuren" },
+        { "prompt": "Hoeveel meter lang is een tennisbaan?", "answer": 23.77, "unit": "meter" },
+        { "prompt": "In welk jaar werd de Elfstedentocht voor het laatst verreden?", "answer": 1997 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Klantenkaart",
+        "Gebraden kip",
+        "Kogelvis",
+        "Batman",
+        "Raclette",
+        "Sitar",
+        "Carpaccio",
+        "Buschauffeur",
+        "Polsstokhoogspringen",
+        "Brad Pitt",
+        "Kreeft",
+        "Regenwoud",
+        "Wentelteefje",
+        "Yorkshirepudding",
+        "Ontstopper",
+        "Angelina Jolie",
+        "Hittegolf",
+        "Fietspomp",
+        "Ballenjongen",
+        "J.K. Rowling",
+        "Sumoworstelen",
+        "Cluedo",
+        "Draailier",
+        "Goochelaar",
+        "Bril",
+        "Doperwten",
+        "Metro",
+        "Nijldelta",
+        "Walt Disney",
+        "Koeienboer",
+        "Boeddha",
+        "Stinkdier",
+        "Kruk",
+        "Pink Floyd",
+        "Patat",
+        "Loempia",
+        "Koksmes",
+        "U2",
+        "Vlindertuin",
+        "Grondwet"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over de Provence?", "answers": [{ "text": "Lavendel", "aliases": ["Lavendelvelden"] }, { "text": "Zon", "aliases": ["Zuid-Frankrijk", "Warm"] }, { "text": "Rose", "aliases": ["Wijn"] }, { "text": "Avignon", "aliases": ["Aix-en-Provence", "Marseille"] }] },
+        { "prompt": "Wat weet je over wielrennen?", "answers": [{ "text": "Tour de France", "aliases": ["Giro", "Vuelta"] }, { "text": "Gele trui", "aliases": ["Bolletjestrui"] }, { "text": "Peloton", "aliases": ["Kopgroep"] }, { "text": "Racefiets", "aliases": ["Fiets"] }] },
+        { "prompt": "Wat weet je over Den Haag?", "answers": [{ "text": "Binnenhof", "aliases": ["Regering", "Tweede Kamer"] }, { "text": "Paleis", "aliases": ["Koning", "Noordeinde"] }, { "text": "Scheveningen", "aliases": ["Strand", "Pier"] }, { "text": "Madurodam", "aliases": ["Vredespaleis"] }] },
+        { "prompt": "Wat weet je over Microsoft?", "answers": [{ "text": "Bill Gates", "aliases": ["Gates"] }, { "text": "Windows", "aliases": ["Besturingssysteem"] }, { "text": "Xbox", "aliases": ["Spelcomputer"] }, { "text": "Office", "aliases": ["Word", "Excel"] }] },
+        { "prompt": "Wat weet je over giraffen?", "answers": [{ "text": "Lange nek", "aliases": ["Lang"] }, { "text": "Afrika", "aliases": ["Savanne"] }, { "text": "Vlekken", "aliases": ["Gevlekt"] }, { "text": "Lange tong", "aliases": ["Blauwe tong", "Blaadjes eten"] }] },
+        { "prompt": "Wat weet je over surfen?", "answers": [{ "text": "Golven", "aliases": ["Golf"] }, { "text": "Surfplank", "aliases": ["Plank"] }, { "text": "Hawaii", "aliases": ["Australie", "Californie"] }, { "text": "Wetsuit", "aliases": ["Pak"] }] },
+        { "prompt": "Wat weet je over Willem van Oranje?", "answers": [{ "text": "Vader des vaderlands", "aliases": ["Vader"] }, { "text": "Delft", "aliases": ["Vermoord in Delft"] }, { "text": "Tachtigjarige Oorlog", "aliases": ["Opstand", "Spanjaarden"] }, { "text": "Wilhelmus", "aliases": ["Volkslied"] }] },
+        { "prompt": "Wat weet je over Pixar?", "answers": [{ "text": "Toy Story", "aliases": ["Woody", "Buzz"] }, { "text": "Springend lampje", "aliases": ["Lamp", "Luxo"] }, { "text": "Disney", "aliases": ["Walt Disney"] }, { "text": "Animatie", "aliases": ["Computeranimatie"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het jong van een geit?", "difficulty": "easy", "answers": [{ "text": "Een geitje", "aliases": ["Geitje", "Bokje", "Lammetje"] }] },
+        { "prompt": "Wat doe je met een fluitje in je mond?", "difficulty": "easy", "answers": [{ "text": "Fluiten" }] },
+        { "prompt": "Welk insect zoemt 's nachts in je oor en prikt?", "difficulty": "easy", "answers": [{ "text": "De mug", "aliases": ["Mug"] }] },
+        { "prompt": "Wat eet je vaak met melk uit een kom bij het ontbijt?", "difficulty": "easy", "answers": [{ "text": "Cornflakes", "aliases": ["Muesli", "Ontbijtgranen", "Havermout"] }] },
+        { "prompt": "Hoe heet het geluid dat een hond maakt?", "difficulty": "easy", "answers": [{ "text": "Blaffen", "aliases": ["Woef"] }] },
+        { "prompt": "Welke Egyptische god werd afgebeeld met de kop van een jakhals?", "difficulty": "hard", "answers": [{ "text": "Anubis" }] },
+        { "prompt": "Welke Babylonische koning liet een beroemde wetstekst in een stenen zuil houwen?", "difficulty": "hard", "answers": [{ "text": "Hammurabi" }] },
+        { "prompt": "Hoe heet een hoek tussen negentig en honderdtachtig graden?", "difficulty": "hard", "answers": [{ "text": "Een stompe hoek", "aliases": ["Stompe hoek"] }] },
+        { "prompt": "Welke Franse stad aan de Loire werd in 1429 door Jeanne d'Arc ontzet?", "difficulty": "hard", "answers": [{ "text": "Orleans" }] },
+        { "prompt": "Welke Oostenrijkse aartshertog werd in 1914 in Sarajevo vermoord?", "difficulty": "hard", "answers": [{ "text": "Franz Ferdinand", "aliases": ["Frans Ferdinand"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Bagheera in Het Jungleboek?", "answers": [{ "text": "Een panter", "aliases": ["Panter", "Zwarte panter"] }] },
+        { "prompt": "In welke Belgische stad staat de burcht Gravensteen?", "answers": [{ "text": "Gent", "aliases": ["Ghent"] }] },
+        { "prompt": "Welke Russische dichter schreef Jevgeni Onegin?", "answers": [{ "text": "Alexander Poesjkin", "aliases": ["Poesjkin", "Pushkin"] }] },
+        { "prompt": "Wat trek je aan je voeten voordat je naar buiten gaat?", "answers": [{ "text": "Schoenen", "aliases": ["Sokken", "Laarzen"] }] },
+        { "prompt": "Welke Amerikaanse staat heeft Boston als hoofdstad?", "answers": [{ "text": "Massachusetts" }] },
+        { "prompt": "Welke Franse wiskundige voorspelde in 1846 met alleen berekeningen waar Neptunus te vinden was?", "answers": [{ "text": "Urbain Le Verrier", "aliases": ["Le Verrier"] }] },
+        { "prompt": "Wat maakt een spin om vliegjes te vangen?", "answers": [{ "text": "Een web", "aliases": ["Web", "Spinnenweb"] }] },
+        { "prompt": "Welke Britse band van Jarvis Cocker scoorde in 1995 met Common People?", "answers": [{ "text": "Pulp" }] },
+        { "prompt": "Welke Griekse filosoof schreef over de grot waarin mensen alleen schaduwen zien?", "answers": [{ "text": "Plato", "aliases": ["Platon"] }] }
+      ]
+    }
+  ]
+}

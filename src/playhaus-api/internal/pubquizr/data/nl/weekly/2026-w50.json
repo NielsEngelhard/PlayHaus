@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w50",
+  "title": "Weekquiz 50 2026",
+  "description": "De wekelijkse quiz van woensdag 9 december 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is het grootste eiland van de Canarische Eilanden?", "category": "Aardrijkskunde", "answers": [{ "text": "Tenerife" }] },
+        { "prompt": "Hoe heet een stof die elektriciteit slecht of niet geleidt, zoals rubber?", "category": "Wetenschap", "answers": [{ "text": "Een isolator", "aliases": ["Isolator"] }] },
+        { "prompt": "Naar welke vrijheidsstrijder is het land Bolivia genoemd?", "category": "Geschiedenis", "answers": [{ "text": "Simon Bolivar", "aliases": ["Bolivar"] }] },
+        { "prompt": "Welke bondscoach leidde Oranje in 2010 naar de WK-finale?", "category": "Sport", "answers": [{ "text": "Bert van Marwijk", "aliases": ["Van Marwijk"] }] },
+        { "prompt": "Welke Israelische actrice speelde in 2017 Wonder Woman?", "category": "Film", "answers": [{ "text": "Gal Gadot", "aliases": ["Gadot"] }] },
+        { "prompt": "Welke Amerikaanse rapper, getrouwd met Beyonce, bracht het album The Blueprint uit?", "category": "Muziek", "answers": [{ "text": "Jay-Z", "aliases": ["Jay Z", "Shawn Carter"] }] },
+        { "prompt": "Op welk eiland ligt Willemstad met zijn gekleurde huizen aan de Handelskade?", "category": "Nederland", "answers": [{ "text": "Curacao" }] },
+        { "prompt": "Welke Belgische schilder maakte De intrede van Christus in Brussel?", "category": "Kunst", "answers": [{ "text": "James Ensor", "aliases": ["Ensor"] }] },
+        { "prompt": "Welke dode taal is naast het Italiaans een officiele taal van Vaticaanstad?", "category": "Taal", "answers": [{ "text": "Latijn", "aliases": ["Het Latijn"] }] },
+        { "prompt": "Hoe heet de Mexicaanse opgerolde tortilla met bonen, vlees en rijst?", "category": "Eten", "answers": [{ "text": "Burrito" }] },
+        { "prompt": "Welk Japans bedrijf maakt de spelcomputer Switch?", "category": "Techniek", "answers": [{ "text": "Nintendo" }] },
+        { "prompt": "Welke vis heeft een lange platte bovenkaak als een zwaard?", "category": "Natuur", "answers": [{ "text": "De zwaardvis", "aliases": ["Zwaardvis"] }] },
+        { "prompt": "Welke Canadese stad organiseerde de Olympische Winterspelen van 2010?", "category": "Aardrijkskunde", "answers": [{ "text": "Vancouver" }] },
+        { "prompt": "Welke Russische revolutionair leidde in 1917 de Oktoberrevolutie?", "category": "Geschiedenis", "answers": [{ "text": "Lenin", "aliases": ["Vladimir Lenin"] }] },
+        { "prompt": "Hoe heet de ziekteverwekker die zich alleen binnen levende cellen kan vermenigvuldigen?", "category": "Wetenschap", "answers": [{ "text": "Een virus", "aliases": ["Virus", "Virussen"] }] },
+        { "prompt": "Welke Britse band van Mick Jagger scoorde met Paint It Black?", "category": "Muziek", "answers": [{ "text": "The Rolling Stones", "aliases": ["Rolling Stones", "De Rolling Stones"] }] },
+        { "prompt": "Hoe heet de prinses met wie Shrek trouwt?", "category": "Film", "answers": [{ "text": "Fiona", "aliases": ["Prinses Fiona"] }] },
+        { "prompt": "Welke knol met een lichte dropsmaak eet je rauw of gestoofd bij vis?", "category": "Eten", "answers": [{ "text": "Venkel", "aliases": ["De venkel"] }] },
+        { "prompt": "Hoe heet het ruimtevaartbedrijf van Amazon-oprichter Jeff Bezos?", "category": "Techniek", "answers": [{ "text": "Blue Origin" }] },
+        { "prompt": "Uit welke taal komt het woord hygge, voor een knus en gezellig gevoel?", "category": "Taal", "answers": [{ "text": "Deens", "aliases": ["Het Deens"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Oostenrijk?", "options": [{ "text": "Graz", "correct": true }, { "text": "Zurich" }, { "text": "Munchen" }, { "text": "Ljubljana" }] },
+        { "prompt": "Welke van deze vogels trekt in de winter naar Afrika?", "options": [{ "text": "De zwaluw", "correct": true }, { "text": "De mus" }, { "text": "De merel" }, { "text": "De ekster" }] },
+        { "prompt": "Welke Schotse schrijver bedacht Peter Pan?", "options": [{ "text": "J.M. Barrie", "correct": true }, { "text": "Lewis Carroll" }, { "text": "Roald Dahl" }, { "text": "A.A. Milne" }] },
+        { "prompt": "Welk van deze landen ligt aan de Rode Zee?", "options": [{ "text": "Jemen", "correct": true }, { "text": "Oman" }, { "text": "Irak" }, { "text": "Syrie" }] },
+        { "prompt": "Waar zitten de meeste zweetklieren per vierkante centimeter?", "options": [{ "text": "Op de voetzolen", "correct": true }, { "text": "In de oksels" }, { "text": "Op de rug" }, { "text": "Op het voorhoofd" }] },
+        { "prompt": "Wie was de laatste koning van Frankrijk?", "options": [{ "text": "Lodewijk Filips", "correct": true }, { "text": "Lodewijk XVI" }, { "text": "Karel X" }, { "text": "Lodewijk XVIII" }] },
+        { "prompt": "Welk van deze landen grenst aan Rusland?", "options": [{ "text": "Noord-Korea", "correct": true }, { "text": "Zuid-Korea" }, { "text": "Japan" }, { "text": "Vietnam" }] },
+        { "prompt": "Welke van deze slangen is niet giftig?", "options": [{ "text": "De python", "correct": true }, { "text": "De cobra" }, { "text": "De ratelslang" }, { "text": "De mamba" }] },
+        { "prompt": "Welke film uit 1939 speelt zich af tijdens de Amerikaanse Burgeroorlog?", "options": [{ "text": "Gone with the Wind", "correct": true }, { "text": "Casablanca" }, { "text": "The Wizard of Oz" }, { "text": "Citizen Kane" }] },
+        { "prompt": "In welke stad werden de Olympische Zomerspelen van 2008 gehouden?", "options": [{ "text": "Peking", "correct": true }, { "text": "Shanghai" }, { "text": "Tokio" }, { "text": "Seoel" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is The Shard in Londen?", "answer": 310, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Golden Gate Bridge?", "answer": 2.7, "unit": "kilometer" },
+        { "prompt": "Hoeveel jaar zat Nelson Mandela gevangen?", "answer": 27, "unit": "jaar" },
+        { "prompt": "Hoeveel toeschouwers passen er in het Wembley-stadion in Londen?", "answer": 90000, "unit": "toeschouwers" },
+        { "prompt": "Hoeveel uur duurt een dag op Mars, afgerond?", "answer": 25, "unit": "uur" },
+        { "prompt": "Hoeveel kilometer is het over de weg van Amsterdam naar Maastricht?", "answer": 215, "unit": "kilometer" },
+        { "prompt": "Hoeveel talen worden in de grondwet van India erkend?", "answer": 22, "unit": "talen" },
+        { "prompt": "In welk jaar opende de eerste McDonald's van Nederland, in Zaandam?", "answer": 1971 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Camper",
+        "Molshoop",
+        "Teambuilding",
+        "Tulpenmanie",
+        "Beveiliger",
+        "Stranger Things",
+        "Donald Trump",
+        "Wimbledon",
+        "Oudejaarsavond",
+        "Doornroosje",
+        "Brommer",
+        "Flamenco",
+        "Zwerkbal",
+        "Vissersboot",
+        "Dodenherdenking",
+        "Hangar",
+        "Durian",
+        "Schoolplein",
+        "Schiettent",
+        "Actionman",
+        "Hengelen",
+        "Stamboom",
+        "Pretpark",
+        "Kampioensschaal",
+        "Abrikoos",
+        "Breaking Bad",
+        "Beeldhouwer",
+        "Geiser",
+        "Pantomime",
+        "Havik",
+        "Mao Zedong",
+        "Hoedenmaker",
+        "Estafette",
+        "Bermudadriehoek",
+        "Grijpautomaat",
+        "Duizendpoot",
+        "Dzjengis Khan",
+        "Tafelschikking",
+        "Wall Street",
+        "Gieter"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Noorwegen?", "answers": [{ "text": "Fjorden", "aliases": ["Fjord"] }, { "text": "Oslo", "aliases": ["De hoofdstad Oslo"] }, { "text": "Noorderlicht", "aliases": ["Middernachtzon"] }, { "text": "Olie", "aliases": ["Zalm", "Vis"] }] },
+        { "prompt": "Wat weet je over schaatsen?", "answers": [{ "text": "IJs", "aliases": ["Bevroren", "Natuurijs"] }, { "text": "Elfstedentocht", "aliases": ["Friesland"] }, { "text": "Thialf", "aliases": ["Heerenveen", "IJsbaan"] }, { "text": "Sven Kramer", "aliases": ["Kramer", "Irene Wust"] }] },
+        { "prompt": "Wat weet je over Marie Curie?", "answers": [{ "text": "Radioactiviteit", "aliases": ["Straling"] }, { "text": "Nobelprijs", "aliases": ["Twee Nobelprijzen"] }, { "text": "Polen", "aliases": ["Pools", "Parijs"] }, { "text": "Radium", "aliases": ["Polonium"] }] },
+        { "prompt": "Wat weet je over de kerstman?", "answers": [{ "text": "Rendieren", "aliases": ["Rudolph", "Rendier"] }, { "text": "Noordpool", "aliases": ["Lapland"] }, { "text": "Slee", "aliases": ["Arrenslee"] }, { "text": "Rood pak", "aliases": ["Witte baard", "Ho ho ho"] }] },
+        { "prompt": "Wat weet je over koeien?", "answers": [{ "text": "Melk", "aliases": ["Melken"] }, { "text": "Boerderij", "aliases": ["Boer", "Wei"] }, { "text": "Kalf", "aliases": ["Kalfje"] }, { "text": "Loeien", "aliases": ["Boe", "Moe"] }] },
+        { "prompt": "Wat weet je over Nintendo?", "answers": [{ "text": "Mario", "aliases": ["Super Mario", "Luigi"] }, { "text": "Japan", "aliases": ["Japans"] }, { "text": "Switch", "aliases": ["Game Boy", "Wii"] }, { "text": "Zelda", "aliases": ["Pokemon", "Donkey Kong"] }] },
+        { "prompt": "Wat weet je over het Vrijheidsbeeld?", "answers": [{ "text": "New York", "aliases": ["Liberty Island"] }, { "text": "Cadeau van Frankrijk", "aliases": ["Frankrijk"] }, { "text": "Fakkel", "aliases": ["Kroon", "Boek"] }, { "text": "Groen", "aliases": ["Koper"] }] },
+        { "prompt": "Wat weet je over Istanboel?", "answers": [{ "text": "Hagia Sophia", "aliases": ["Blauwe Moskee", "Moskeeen"] }, { "text": "Bosporus", "aliases": ["Zee", "Water"] }, { "text": "Twee continenten", "aliases": ["Europa en Azie"] }, { "text": "Grote Bazaar", "aliases": ["Bazaar", "Markt"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welke vogel kan woorden nazeggen?", "difficulty": "easy", "answers": [{ "text": "De papegaai", "aliases": ["Papegaai", "Parkiet"] }] },
+        { "prompt": "Welke maand komt na december?", "difficulty": "easy", "answers": [{ "text": "Januari" }] },
+        { "prompt": "Hoe heet het speelgoed dat aan een touwtje op en neer rolt?", "difficulty": "easy", "answers": [{ "text": "Een jojo", "aliases": ["Jojo"] }] },
+        { "prompt": "Welke vorm heeft de aarde ongeveer?", "difficulty": "easy", "answers": [{ "text": "Een bol", "aliases": ["Rond", "Bol"] }] },
+        { "prompt": "Welke dag komt voor zondag?", "difficulty": "easy", "answers": [{ "text": "Zaterdag" }] },
+        { "prompt": "Welke Amerikaanse biologe waarschuwde in Silent Spring voor bestrijdingsmiddelen?", "difficulty": "hard", "answers": [{ "text": "Rachel Carson", "aliases": ["Carson"] }] },
+        { "prompt": "Welke Duitse componist schreef Ein deutsches Requiem?", "difficulty": "hard", "answers": [{ "text": "Johannes Brahms", "aliases": ["Brahms"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Ba?", "difficulty": "hard", "answers": [{ "text": "Barium" }] },
+        { "prompt": "Welke rivier stroomt door Bangkok?", "difficulty": "hard", "answers": [{ "text": "De Chao Phraya", "aliases": ["Chao Phraya"] }] },
+        { "prompt": "Welke Macedonische koning was de vader van Alexander de Grote?", "difficulty": "hard", "answers": [{ "text": "Filippus II", "aliases": ["Philippus II", "Filippus"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Rudolph met de rode neus?", "answers": [{ "text": "Een rendier", "aliases": ["Rendier"] }] },
+        { "prompt": "Welke Engelse universiteitsstad is naast Cambridge het beroemdst?", "answers": [{ "text": "Oxford" }] },
+        { "prompt": "Welke Amerikaanse schrijver schreef Fahrenheit 451?", "answers": [{ "text": "Ray Bradbury", "aliases": ["Bradbury"] }] },
+        { "prompt": "Welke oranje groente eten konijnen graag?", "answers": [{ "text": "Wortels", "aliases": ["Wortel", "Worteltjes"] }] },
+        { "prompt": "Welke Egyptische havenstad werd gesticht door Alexander de Grote?", "answers": [{ "text": "Alexandrie", "aliases": ["Alexandria"] }] },
+        { "prompt": "Welke Franse schilder maakte Een zondagmiddag op het eiland La Grande Jatte met duizenden stipjes?", "answers": [{ "text": "Georges Seurat", "aliases": ["Seurat"] }] },
+        { "prompt": "Wat staat er in het midden van de vlag van Canada?", "answers": [{ "text": "Een esdoornblad", "aliases": ["Esdoornblad", "Blad"] }] },
+        { "prompt": "Welke Zweedse rockband scoorde in 1986 met The Final Countdown?", "answers": [{ "text": "Europe" }] },
+        { "prompt": "Welke Deense natuurkundige zag in 1820 dat een stroomdraad een kompasnaald laat uitslaan?", "answers": [{ "text": "Hans Christian Orsted", "aliases": ["Orsted", "Oersted"] }] }
+      ]
+    }
+  ]
+}

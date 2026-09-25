@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w49",
+  "title": "Weekquiz 49 2026",
+  "description": "De wekelijkse quiz van woensdag 2 december 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk meer ligt tussen Duitsland, Oostenrijk en Zwitserland?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Bodenmeer", "aliases": ["Bodenmeer", "Bodensee"] }] },
+        { "prompt": "Hoe heten de positief geladen deeltjes in de kern van een atoom?", "category": "Wetenschap", "answers": [{ "text": "Protonen", "aliases": ["Proton"] }] },
+        { "prompt": "Welke Carthaagse veldheer trok in 218 voor Christus met olifanten over de Alpen?", "category": "Geschiedenis", "answers": [{ "text": "Hannibal", "aliases": ["Hannibal Barkas"] }] },
+        { "prompt": "Welke Nederlandse atlete werd in 2023 wereldkampioen op de 400 meter horden?", "category": "Sport", "answers": [{ "text": "Femke Bol", "aliases": ["Bol"] }] },
+        { "prompt": "Welke Pixar-film speelt zich af in het hoofd van een meisje, waar haar emoties de baas zijn?", "category": "Film", "answers": [{ "text": "Inside Out", "aliases": ["Binnenstebuiten"] }] },
+        { "prompt": "Welke Zweedse zangeres won het Songfestival in 2012 en 2023?", "category": "Muziek", "answers": [{ "text": "Loreen" }] },
+        { "prompt": "Op welk Waddeneiland wordt elke zomer het festival Oerol gehouden?", "category": "Nederland", "answers": [{ "text": "Terschelling" }] },
+        { "prompt": "Welke Amerikaanse schilder maakte Nighthawks, het nachtelijke eetcafe?", "category": "Kunst", "answers": [{ "text": "Edward Hopper", "aliases": ["Hopper"] }] },
+        { "prompt": "Hoe zeg je dank je wel in het Japans?", "category": "Taal", "answers": [{ "text": "Arigato", "aliases": ["Arigatou", "Arigato gozaimasu"] }] },
+        { "prompt": "Hoe heet de Belgische wafel met stukjes parelsuiker erin?", "category": "Eten", "answers": [{ "text": "De Luikse wafel", "aliases": ["Luikse wafel"] }] },
+        { "prompt": "Welke Zweedse muziekdienst begon in 2008 met het streamen van muziek?", "category": "Techniek", "answers": [{ "text": "Spotify" }] },
+        { "prompt": "Welke weidevogel werd in 2015 gekozen tot nationale vogel van Nederland?", "category": "Natuur", "answers": [{ "text": "De grutto", "aliases": ["Grutto"] }] },
+        { "prompt": "Welke Amerikaanse staat bestaat uit twee schiereilanden tussen de Grote Meren?", "category": "Aardrijkskunde", "answers": [{ "text": "Michigan" }] },
+        { "prompt": "Hoe heette het Britse passagiersschip dat in 1915 door een Duitse onderzeeer tot zinken werd gebracht?", "category": "Geschiedenis", "answers": [{ "text": "De Lusitania", "aliases": ["Lusitania"] }] },
+        { "prompt": "Onder welke gewone naam kennen we natriumchloride?", "category": "Wetenschap", "answers": [{ "text": "Keukenzout", "aliases": ["Zout"] }] },
+        { "prompt": "Welke Amerikaanse zanger en gitarist scoorde met Purple Rain?", "category": "Muziek", "answers": [{ "text": "Prince" }] },
+        { "prompt": "In welke film uit 1990 speelt Julia Roberts naast Richard Gere?", "category": "Film", "answers": [{ "text": "Pretty Woman" }] },
+        { "prompt": "Welke Italiaanse roomkaas hoort in tiramisu?", "category": "Eten", "answers": [{ "text": "Mascarpone" }] },
+        { "prompt": "Welk Amerikaans bedrijf bracht in 2022 de chatbot ChatGPT uit?", "category": "Techniek", "answers": [{ "text": "OpenAI" }] },
+        { "prompt": "Hoe heet het golvende teken dat je ziet in het Spaanse woord senor?", "category": "Taal", "answers": [{ "text": "De tilde", "aliases": ["Tilde"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze landen is geen lid van de Europese Unie?", "options": [{ "text": "IJsland", "correct": true }, { "text": "Estland" }, { "text": "Slovenie" }, { "text": "Malta" }] },
+        { "prompt": "Welk van deze dieren heeft de meeste poten?", "options": [{ "text": "De duizendpoot", "correct": true }, { "text": "De spin" }, { "text": "De kreeft" }, { "text": "De kever" }] },
+        { "prompt": "Welke schrijver bedacht de ondeugende jongen Dik Trom?", "options": [{ "text": "C. Joh. Kieviet", "correct": true }, { "text": "Annie M.G. Schmidt" }, { "text": "Paul Biegel" }, { "text": "Guus Kuijer" }] },
+        { "prompt": "Welke van deze Franse steden ligt aan de Rhone?", "options": [{ "text": "Avignon", "correct": true }, { "text": "Toulouse" }, { "text": "Bordeaux" }, { "text": "Nantes" }] },
+        { "prompt": "Hoe heet een ontsteking van de blindedarm?", "options": [{ "text": "Appendicitis", "correct": true }, { "text": "Bronchitis" }, { "text": "Gastritis" }, { "text": "Artritis" }] },
+        { "prompt": "Welk land scheidde zich in 1830 af van Nederland?", "options": [{ "text": "Belgie", "correct": true }, { "text": "Luxemburg" }, { "text": "Indonesie" }, { "text": "Suriname" }] },
+        { "prompt": "Welke van deze steden heeft met de voorsteden de meeste inwoners?", "options": [{ "text": "Tokio", "correct": true }, { "text": "Londen" }, { "text": "Parijs" }, { "text": "New York" }] },
+        { "prompt": "Welk van deze dieren is een weekdier?", "options": [{ "text": "De inktvis", "correct": true }, { "text": "De krab" }, { "text": "De zeester" }, { "text": "De kwal" }] },
+        { "prompt": "In welke film zegt een astronaut: Houston, we have a problem?", "options": [{ "text": "Apollo 13", "correct": true }, { "text": "Gravity" }, { "text": "Armageddon" }, { "text": "The Martian" }] },
+        { "prompt": "Welk land heeft de meeste olympische gouden medailles bij het langebaanschaatsen gewonnen?", "options": [{ "text": "Nederland", "correct": true }, { "text": "Noorwegen" }, { "text": "Duitsland" }, { "text": "De Verenigde Staten" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Space Needle in Seattle?", "answer": 184, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Maas?", "answer": 925, "unit": "kilometer" },
+        { "prompt": "Hoeveel halswervels heeft een giraf?", "answer": 7, "unit": "wervels", "explanation": "Precies evenveel als een mens: ze zijn alleen veel langer." },
+        { "prompt": "Hoe oud was Mozart toen hij stierf?", "answer": 35, "unit": "jaar" },
+        { "prompt": "Hoeveel liter water gebruik je ongeveer bij een douchebeurt van tien minuten?", "answer": 80, "unit": "liter" },
+        { "prompt": "Hoeveel olympische medailles won Nederland op de Spelen van Parijs in 2024?", "answer": 34, "unit": "medailles" },
+        { "prompt": "Op hoeveel kilometer hoogte vliegt een passagiersvliegtuig ongeveer?", "answer": 11, "unit": "kilometer" },
+        { "prompt": "Hoeveel gram suiker zit er ongeveer in een blikje cola van 33 centiliter?", "answer": 35, "unit": "gram" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Coldplay",
+        "Shorttrack",
+        "Bedoeïen",
+        "Appelmoes",
+        "Adelaar",
+        "Palet",
+        "Ketchup",
+        "Bollywood",
+        "Midlifecrisis",
+        "Pauken",
+        "Stofzuigerzak",
+        "Rietje",
+        "Luisterboek",
+        "Palmeiland",
+        "Draaischijf van pottenbakker",
+        "Pet",
+        "Zomervakantie",
+        "Regisseur",
+        "Vrije trap",
+        "Wonder Woman",
+        "Marilyn Monroe",
+        "Alaska",
+        "Dirty Dancing",
+        "Ravioli",
+        "Brulaap",
+        "Roald Amundsen",
+        "Kweepeer",
+        "Kunsthandelaar",
+        "Horlogemaker",
+        "Steve Jobs",
+        "De geboorte van Venus",
+        "Roomservice",
+        "Hagelslag",
+        "Cupido",
+        "Selfie",
+        "Maatbeker",
+        "Brandstapel",
+        "Hermelien",
+        "Oplader",
+        "Peloton"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Los Angeles?", "answers": [{ "text": "Hollywood", "aliases": ["Filmstudio's", "Hollywoodbord"] }, { "text": "Californie", "aliases": ["Amerika"] }, { "text": "Beverly Hills", "aliases": ["Rijke mensen", "Villa's"] }, { "text": "Stranden", "aliases": ["Santa Monica", "Venice Beach"] }] },
+        { "prompt": "Wat weet je over de Waddenzee?", "answers": [{ "text": "Wadlopen", "aliases": ["Droogvallen", "Slik"] }, { "text": "Zeehonden", "aliases": ["Zeehond"] }, { "text": "Waddeneilanden", "aliases": ["Texel", "Terschelling"] }, { "text": "Eb en vloed", "aliases": ["Getijden"] }] },
+        { "prompt": "Wat weet je over Freddie Mercury?", "answers": [{ "text": "Queen", "aliases": ["Zanger van Queen"] }, { "text": "Bohemian Rhapsody", "aliases": ["We Are the Champions"] }, { "text": "Snor", "aliases": ["Snorretje"] }, { "text": "Live Aid", "aliases": ["Wembley"] }] },
+        { "prompt": "Wat weet je over de Chinese Muur?", "answers": [{ "text": "China", "aliases": ["Chinezen"] }, { "text": "Heel lang", "aliases": ["Duizenden kilometers", "Lang"] }, { "text": "Verdediging", "aliases": ["Mongolen", "Tegen vijanden"] }, { "text": "Toeristen", "aliases": ["Wereldwonder", "Wandelen"] }] },
+        { "prompt": "Wat weet je over spinnen?", "answers": [{ "text": "Acht poten", "aliases": ["Acht"] }, { "text": "Web", "aliases": ["Spinnenweb", "Draden"] }, { "text": "Tarantula", "aliases": ["Vogelspin", "Zwarte weduwe"] }, { "text": "Spinnenangst", "aliases": ["Eng", "Bang"] }] },
+        { "prompt": "Wat weet je over Bob Marley?", "answers": [{ "text": "Reggae", "aliases": ["Reggaemuziek"] }, { "text": "Jamaica", "aliases": ["Jamaicaans"] }, { "text": "Dreadlocks", "aliases": ["Rasta", "Rastafari"] }, { "text": "No Woman, No Cry", "aliases": ["One Love", "Three Little Birds"] }] },
+        { "prompt": "Wat weet je over golf?", "answers": [{ "text": "Tiger Woods", "aliases": ["Woods"] }, { "text": "Hole-in-one", "aliases": ["Birdie", "Hole"] }, { "text": "Golfclubs", "aliases": ["Club", "Putter"] }, { "text": "Caddie", "aliases": ["Golfkarretje"] }] },
+        { "prompt": "Wat weet je over het Rijksmuseum?", "answers": [{ "text": "Amsterdam", "aliases": ["Museumplein"] }, { "text": "De Nachtwacht", "aliases": ["Nachtwacht", "Rembrandt"] }, { "text": "Cuypers", "aliases": ["Pierre Cuypers"] }, { "text": "Het melkmeisje", "aliases": ["Vermeer", "Gouden Eeuw"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat voor boom zetten veel mensen in december in huis en versieren ze met ballen?", "difficulty": "easy", "answers": [{ "text": "Een kerstboom", "aliases": ["Kerstboom", "Dennenboom", "Spar"] }] },
+        { "prompt": "Hoe heet de avond van vijf december waarop Sinterklaas cadeaus brengt?", "difficulty": "easy", "answers": [{ "text": "Pakjesavond", "aliases": ["Sinterklaasavond"] }] },
+        { "prompt": "Hoe heet een huis van sneeuw en ijs?", "difficulty": "easy", "answers": [{ "text": "Een iglo", "aliases": ["Iglo"] }] },
+        { "prompt": "Hoe heet de sombere ezel in Winnie de Poeh?", "difficulty": "easy", "answers": [{ "text": "Iejoor", "aliases": ["Eeyore"] }] },
+        { "prompt": "Hoe heet het Deense speelgoed van plastic blokjes die je op elkaar klikt?", "difficulty": "easy", "answers": [{ "text": "Lego" }] },
+        { "prompt": "Welke Engelse natuurkundige liet met zijn tweespletenexperiment zien dat licht een golf is?", "difficulty": "hard", "answers": [{ "text": "Thomas Young", "aliases": ["Young"] }] },
+        { "prompt": "Welke Russische componist schreef het ballet Romeo en Julia en Peter en de wolf?", "difficulty": "hard", "answers": [{ "text": "Sergej Prokofjev", "aliases": ["Prokofjev", "Prokofiev"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Cd?", "difficulty": "hard", "answers": [{ "text": "Cadmium" }] },
+        { "prompt": "Welke rivier stroomt door Kiev?", "difficulty": "hard", "answers": [{ "text": "De Dnjepr", "aliases": ["Dnjepr", "Dnipro"] }] },
+        { "prompt": "Welke Romeinse keizer en filosoof schreef de Overpeinzingen?", "difficulty": "hard", "answers": [{ "text": "Marcus Aurelius", "aliases": ["Marcus Aurelius Antoninus"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet het schimmelpaard van Sinterklaas sinds 2019?", "answers": [{ "text": "Ozosnel" }] },
+        { "prompt": "Welke Griekse held zeilde met de Argonauten uit om het Gulden Vlies te halen?", "answers": [{ "text": "Jason" }] },
+        { "prompt": "Welke Franse schrijfster debuteerde op haar achttiende met Bonjour tristesse?", "answers": [{ "text": "Francoise Sagan", "aliases": ["Sagan"] }] },
+        { "prompt": "Welke Disney-prinses heeft een tijger als huisdier?", "answers": [{ "text": "Jasmine", "aliases": ["Prinses Jasmine"] }] },
+        { "prompt": "In de kathedraal van welke Franse stad werden de Franse koningen gekroond?", "answers": [{ "text": "Reims" }] },
+        { "prompt": "Welke Poolse sterrenkundige zette de zon in het midden van het heelal in plaats van de aarde?", "answers": [{ "text": "Nicolaus Copernicus", "aliases": ["Copernicus", "Mikolaj Kopernik"] }] },
+        { "prompt": "Hoe heet de dag na Eerste Kerstdag?", "answers": [{ "text": "Tweede Kerstdag" }] },
+        { "prompt": "Welke Britse meidengroep scoorde in 1996 met Wannabe?", "answers": [{ "text": "Spice Girls", "aliases": ["The Spice Girls"] }] },
+        { "prompt": "Welke Nederlandse arts vond het elektrocardiogram uit en kreeg daarvoor in 1924 de Nobelprijs?", "answers": [{ "text": "Willem Einthoven", "aliases": ["Einthoven"] }] }
+      ]
+    }
+  ]
+}

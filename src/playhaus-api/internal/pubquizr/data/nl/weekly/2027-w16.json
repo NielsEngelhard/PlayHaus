@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w16",
+  "title": "Weekquiz 16 2027",
+  "description": "De wekelijkse quiz van woensdag 21 april 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Duitse stad aan de Rijn is de hoofdstad van Rijnland-Palts?", "category": "Aardrijkskunde", "answers": [{ "text": "Mainz", "aliases": ["Mainz am Rhein"] }] },
+        { "prompt": "Hoe heet het proces waarbij planten met zonlicht suiker en zuurstof maken?", "category": "Wetenschap", "answers": [{ "text": "Fotosynthese" }] },
+        { "prompt": "Welke Duitse bondskanselier regeerde van 2005 tot 2021?", "category": "Geschiedenis", "answers": [{ "text": "Angela Merkel", "aliases": ["Merkel"] }] },
+        { "prompt": "Welke Nederlandse aanvoerder scoorde in de WK-halve finale van 2010 met een verre knal tegen Uruguay?", "category": "Sport", "answers": [{ "text": "Giovanni van Bronckhorst", "aliases": ["Van Bronckhorst", "Gio"] }] },
+        { "prompt": "In welke oorlogsfilm van Steven Spielberg gaat Tom Hanks op zoek naar een soldaat?", "category": "Film", "answers": [{ "text": "Saving Private Ryan" }] },
+        { "prompt": "Welke Britse band scoorde in 1997 met Bitter Sweet Symphony?", "category": "Muziek", "answers": [{ "text": "The Verve", "aliases": ["Verve"] }] },
+        { "prompt": "In welke Noord-Hollandse plaats staat het Singer Museum?", "category": "Nederland", "answers": [{ "text": "Laren" }] },
+        { "prompt": "Welke Catalaanse kunstenaar schilderde vrolijke vormen met sterren, manen en vogels?", "category": "Kunst", "answers": [{ "text": "Joan Miro", "aliases": ["Miro"] }] },
+        { "prompt": "Hoe heet de vorm van het werkwoord waarmee je een bevel geeft, zoals ga zitten?", "category": "Taal", "answers": [{ "text": "De gebiedende wijs", "aliases": ["Gebiedende wijs", "Imperatief"] }] },
+        { "prompt": "Hoe heet het oranje Italiaanse drankje met prosecco en bruiswater?", "category": "Eten", "answers": [{ "text": "Aperol spritz", "aliases": ["Spritz", "Aperol"] }] },
+        { "prompt": "Welk Amsterdams merk van elektrische fietsen ging in 2023 failliet?", "category": "Techniek", "answers": [{ "text": "VanMoof", "aliases": ["Van Moof"] }] },
+        { "prompt": "Welke wilde kat met pluimpjes op de oren leeft in Europese bossen?", "category": "Natuur", "answers": [{ "text": "De lynx", "aliases": ["Lynx"] }] },
+        { "prompt": "Welke zee ligt tussen China en Korea?", "category": "Aardrijkskunde", "answers": [{ "text": "De Gele Zee", "aliases": ["Gele Zee"] }] },
+        { "prompt": "Hoe heette het vlaggenschip van Michiel de Ruyter?", "category": "Geschiedenis", "answers": [{ "text": "De Zeven Provincien", "aliases": ["Zeven Provincien"] }] },
+        { "prompt": "Hoe heet het kleine getal rechtsboven dat aangeeft tot welke macht je verheft?", "category": "Wetenschap", "answers": [{ "text": "De exponent", "aliases": ["Exponent", "Macht"] }] },
+        { "prompt": "Welke Canadese zanger scoorde in 2020 wereldwijd met Blinding Lights?", "category": "Muziek", "answers": [{ "text": "The Weeknd", "aliases": ["Weeknd"] }] },
+        { "prompt": "In welke Disneyfilm zingt Dwayne Johnson als de halfgod Maui?", "category": "Film", "answers": [{ "text": "Vaiana", "aliases": ["Moana"] }] },
+        { "prompt": "Hoe heet de Weense chocoladetaart met abrikozenjam?", "category": "Eten", "answers": [{ "text": "Sachertorte", "aliases": ["Sachertaart"] }] },
+        { "prompt": "Hoe heet het Finse telefoonspelletje waarin je boze vogels op varkens afschiet?", "category": "Techniek", "answers": [{ "text": "Angry Birds" }] },
+        { "prompt": "Welke taal in zuidelijk Afrika lijkt het meest op het Nederlands?", "category": "Taal", "answers": [{ "text": "Afrikaans", "aliases": ["Het Afrikaans"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Tsjechie?", "options": [{ "text": "Brno", "correct": true }, { "text": "Bratislava" }, { "text": "Wroclaw" }, { "text": "Linz" }] },
+        { "prompt": "Welk van deze instrumenten is een houtblazer, ook al is hij van metaal?", "options": [{ "text": "De saxofoon", "correct": true }, { "text": "De trompet" }, { "text": "De tuba" }, { "text": "De trombone" }] },
+        { "prompt": "Welke Nederlandse schrijver schreef Joe Speedboot?", "options": [{ "text": "Tommy Wieringa", "correct": true }, { "text": "Arnon Grunberg" }, { "text": "Herman Koch" }, { "text": "Jan Siebelink" }] },
+        { "prompt": "Welk van deze Aziatische landen heeft geen kust?", "options": [{ "text": "Laos", "correct": true }, { "text": "Vietnam" }, { "text": "Thailand" }, { "text": "Cambodja" }] },
+        { "prompt": "Welke van deze is geen zintuig?", "options": [{ "text": "Het geheugen", "correct": true }, { "text": "Het gehoor" }, { "text": "De smaak" }, { "text": "De reuk" }] },
+        { "prompt": "Welke Nederlandse premier leidde het land van 1948 tot 1958?", "options": [{ "text": "Willem Drees", "correct": true }, { "text": "Joop den Uyl" }, { "text": "Hendrikus Colijn" }, { "text": "Piet de Jong" }] },
+        { "prompt": "Welke van deze rivieren stroomt door Zuid-Amerika?", "options": [{ "text": "De Orinoco", "correct": true }, { "text": "De Zambezi" }, { "text": "De Mekong" }, { "text": "De Donau" }] },
+        { "prompt": "Welke vogel werd vroeger gebruikt om berichten te bezorgen?", "options": [{ "text": "De postduif", "correct": true }, { "text": "De kraai" }, { "text": "De meeuw" }, { "text": "De ekster" }] },
+        { "prompt": "In welke film zegt Arnold Schwarzenegger: Hasta la vista, baby?", "options": [{ "text": "Terminator 2", "correct": true }, { "text": "Total Recall" }, { "text": "Predator" }, { "text": "True Lies" }] },
+        { "prompt": "In welke sport werden de Nederlandse mannen en vrouwen in 2024 allebei olympisch kampioen?", "options": [{ "text": "Hockey", "correct": true }, { "text": "Volleybal" }, { "text": "Handbal" }, { "text": "Waterpolo" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Elbphilharmonie in Hamburg?", "answer": 110, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Orinoco?", "answer": 2140, "unit": "kilometer" },
+        { "prompt": "Hoeveel jaar was Angela Merkel bondskanselier?", "answer": 16, "unit": "jaar" },
+        { "prompt": "Hoe oud werd Whitney Houston?", "answer": 48, "unit": "jaar" },
+        { "prompt": "Hoeveel kilo weegt een volwassen wolf ongeveer?", "answer": 40, "unit": "kilo" },
+        { "prompt": "Met hoeveel stenen begint elke speler bij backgammon?", "answer": 15, "unit": "stenen" },
+        { "prompt": "Hoeveel meter breed is een voetbaldoel?", "answer": 7.32, "unit": "meter" },
+        { "prompt": "In welk jaar ging Disneyland Parijs open?", "answer": 1992 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Industriele revolutie",
+        "Kampeerwinkel",
+        "Dagdromen",
+        "Printer",
+        "Hommel",
+        "Minions",
+        "Dansvloer",
+        "Jojo",
+        "Heimwee",
+        "Vleesetende plant",
+        "Paralympische Spelen",
+        "Deja vu",
+        "Mountie",
+        "Moderne vijfkamp",
+        "Jachtluipaard",
+        "Compost",
+        "Tapdansen",
+        "Wereldrecord",
+        "Aas",
+        "Karma",
+        "Scheidsrechterfluit",
+        "Sigmund Freud",
+        "Straaljager",
+        "Marshallplan",
+        "Onafhankelijkheid",
+        "Lakei",
+        "Thermometer",
+        "Lampenkap",
+        "Timmerman",
+        "Audrey Hepburn",
+        "Copacabana",
+        "Zweedse gehaktballen",
+        "E-reader",
+        "Talentenjacht",
+        "Boksring",
+        "Kerststal",
+        "Poppenspeler",
+        "Toeter",
+        "Sushirol",
+        "Tapas"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Hamburg?", "answers": [{ "text": "Haven", "aliases": ["Schepen", "Containers"] }, { "text": "Elbe", "aliases": ["Rivier"] }, { "text": "Reeperbahn", "aliases": ["Uitgaan"] }, { "text": "The Beatles", "aliases": ["Beatles begonnen hier", "Elbphilharmonie"] }] },
+        { "prompt": "Wat weet je over D-Day?", "answers": [{ "text": "Normandie", "aliases": ["Frankrijk", "Stranden"] }, { "text": "Zes juni 1944", "aliases": ["1944", "Juni"] }, { "text": "Invasie", "aliases": ["Geallieerden", "Landing"] }, { "text": "Bevrijding", "aliases": ["Tweede Wereldoorlog", "Omaha Beach"] }] },
+        { "prompt": "Wat weet je over Britpop?", "answers": [{ "text": "Oasis", "aliases": ["Gallagher"] }, { "text": "Blur", "aliases": ["Damon Albarn"] }, { "text": "Jaren negentig", "aliases": ["Negentig"] }, { "text": "Engeland", "aliases": ["Brits", "Londen"] }] },
+        { "prompt": "Wat weet je over vuurtorens?", "answers": [{ "text": "Licht", "aliases": ["Draaiend licht", "Lamp"] }, { "text": "Kust", "aliases": ["Zee", "Rotsen"] }, { "text": "Schepen", "aliases": ["Waarschuwen", "Scheepvaart"] }, { "text": "Brandaris", "aliases": ["Terschelling", "Vuurtorenwachter"] }] },
+        { "prompt": "Wat weet je over Suriname?", "answers": [{ "text": "Paramaribo", "aliases": ["Hoofdstad"] }, { "text": "Nederlands", "aliases": ["Oud-kolonie", "Onafhankelijk 1975"] }, { "text": "Roti", "aliases": ["Pom", "Moksi meti"] }, { "text": "Regenwoud", "aliases": ["Jungle", "Amazone"] }] },
+        { "prompt": "Wat weet je over wasberen?", "answers": [{ "text": "Masker", "aliases": ["Zwarte vlek rond de ogen"] }, { "text": "Amerika", "aliases": ["Noord-Amerika"] }, { "text": "Afvalbakken", "aliases": ["Afval", "Vuilnis"] }, { "text": "Handjes", "aliases": ["Wassen", "Pootjes"] }] },
+        { "prompt": "Wat weet je over cocktails?", "answers": [{ "text": "Mojito", "aliases": ["Pina colada", "Margarita"] }, { "text": "Shaker", "aliases": ["Shaken"] }, { "text": "Rietje", "aliases": ["Parapluutje", "IJs"] }, { "text": "Barman", "aliases": ["Bar", "Happy hour"] }] },
+        { "prompt": "Wat weet je over achtbanen?", "answers": [{ "text": "Looping", "aliases": ["Over de kop"] }, { "text": "Snelheid", "aliases": ["Hard", "Vallen"] }, { "text": "Pretpark", "aliases": ["Efteling", "Walibi"] }, { "text": "Misselijk", "aliases": ["Gillen", "Eng"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het jong van een kip?", "difficulty": "easy", "answers": [{ "text": "Een kuiken", "aliases": ["Kuiken", "Kuikentje"] }] },
+        { "prompt": "Wat doe je met een tandenborstel?", "difficulty": "easy", "answers": [{ "text": "Tanden poetsen", "aliases": ["Tandenpoetsen", "Poetsen"] }] },
+        { "prompt": "Van welke groente krijg je tranen in je ogen als je hem snijdt?", "difficulty": "easy", "answers": [{ "text": "De ui", "aliases": ["Ui", "Uien"] }] },
+        { "prompt": "Hoe noem je een heel klein kind dat nog niet kan lopen?", "difficulty": "easy", "answers": [{ "text": "Een baby", "aliases": ["Baby"] }] },
+        { "prompt": "Welke vogel zie je vaak krijsend op het strand?", "difficulty": "easy", "answers": [{ "text": "De meeuw", "aliases": ["Meeuw", "Zeemeeuw"] }] },
+        { "prompt": "Hoe heet de Romeinse godin van de jacht?", "difficulty": "hard", "answers": [{ "text": "Diana", "aliases": ["Artemis"] }] },
+        { "prompt": "Welke Trojaanse prins schaakte Helena en ontketende zo de Trojaanse Oorlog?", "difficulty": "hard", "answers": [{ "text": "Paris" }] },
+        { "prompt": "Hoe heet een lijnstuk tussen twee punten op een cirkel?", "difficulty": "hard", "answers": [{ "text": "Een koorde", "aliases": ["Koorde"] }] },
+        { "prompt": "Wat is de hoogste berg van Zweden?", "difficulty": "hard", "answers": [{ "text": "De Kebnekaise", "aliases": ["Kebnekaise"] }] },
+        { "prompt": "Welke Assyrische koning had een beroemde bibliotheek van kleitabletten in Nineve?", "difficulty": "hard", "answers": [{ "text": "Assurbanipal", "aliases": ["Ashurbanipal"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Mushu in de Disneyfilm Mulan?", "answers": [{ "text": "Een draak", "aliases": ["Draak", "Draakje"] }] },
+        { "prompt": "In welke Indiase stad staat de Gouden Tempel van de sikhs?", "answers": [{ "text": "Amritsar" }] },
+        { "prompt": "Welke Russische schrijver schreef Oblomov, over een man die zijn bed niet uit komt?", "answers": [{ "text": "Ivan Gontsjarov", "aliases": ["Gontsjarov", "Goncharov"] }] },
+        { "prompt": "Wat voor figuur is Lightning McQueen uit de film Cars?", "answers": [{ "text": "Een raceauto", "aliases": ["Auto", "Raceauto"] }] },
+        { "prompt": "Welke Italiaanse stad is de hoofdstad van Lombardije?", "answers": [{ "text": "Milaan", "aliases": ["Milano"] }] },
+        { "prompt": "Welke Nederlandse natuurkundige kreeg in 1999 samen met zijn leermeester Veltman de Nobelprijs?", "answers": [{ "text": "Gerard 't Hooft", "aliases": ["'t Hooft", "Gerard t Hooft"] }] },
+        { "prompt": "Wat blaas je op voor een verjaardagsfeestje?", "answers": [{ "text": "Ballonnen", "aliases": ["Een ballon", "Ballon"] }] },
+        { "prompt": "Welke Duitse band scoorde met Du Hast?", "answers": [{ "text": "Rammstein" }] },
+        { "prompt": "Welke Engelse filosoof schreef An Essay Concerning Human Understanding?", "answers": [{ "text": "John Locke", "aliases": ["Locke"] }] }
+      ]
+    }
+  ]
+}

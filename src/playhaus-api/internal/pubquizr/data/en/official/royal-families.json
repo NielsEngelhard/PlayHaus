@@ -47,14 +47,14 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In what year was Elizabeth II crowned?", "answer": 1953, "unit": "", "explanation": "She succeeded her father in 1952 and was crowned in June 1953." },
+        { "prompt": "In what year was Elizabeth II crowned?", "answer": 1953, "explanation": "She succeeded her father in 1952 and was crowned in June 1953." },
         { "prompt": "For how many years did the French king Louis XIV reign?", "answer": 72, "unit": "years" },
         { "prompt": "How many years did Queen Elizabeth II reign in total?", "answer": 70, "unit": "years", "explanation": "She reigned from 1952 to 2022, the longest of any British monarch." },
-        { "prompt": "In what year did King Willem-Alexander of the Netherlands take the throne?", "answer": 2013, "unit": "" },
+        { "prompt": "In what year did King Willem-Alexander of the Netherlands take the throne?", "answer": 2013 },
         { "prompt": "How many years did Louis XVI reign before the French Revolution ended his rule?", "answer": 15, "unit": "years" },
-        { "prompt": "In what year did Napoleon crown himself Emperor of the French?", "answer": 1804, "unit": "" },
+        { "prompt": "In what year did Napoleon crown himself Emperor of the French?", "answer": 1804 },
         { "prompt": "How many years did Queen Beatrix of the Netherlands reign before her abdication?", "answer": 33, "unit": "years" },
-        { "prompt": "In what year did King Charles III's coronation take place?", "answer": 2023, "unit": "" }
+        { "prompt": "In what year did King Charles III's coronation take place?", "answer": 2023 }
       ]
     },
     {
@@ -89,7 +89,17 @@
         "Regent",
         "Dynasty",
         "State visit",
-        "Coat of arms"
+        "Coat of arms",
+        "Royal yacht",
+        "Ermine robe",
+        "Heir to the throne",
+        "Curtsy",
+        "Royal family",
+        "Carriage ride",
+        "Palace guard",
+        "Crown prince",
+        "Royal portrait",
+        "Royal wave"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which English queen reigned for nine days in 1553?", "answers": [{ "text": "Jane Grey", "aliases": ["Lady Jane Grey"] }] },
         { "prompt": "Which country's royal family lives in the Amalienborg palace?", "answers": [{ "text": "Denmark" }] },
         { "prompt": "Which Russian empress, born a German princess, ruled from 1762 to 1796?", "answers": [{ "text": "Catherine the Great", "aliases": ["Catherine II", "Catherine"] }] },
-        { "prompt": "Who is the king of Belgium today?", "answers": [{ "text": "Philippe", "aliases": ["Filip", "King Philippe"] }] }
+        { "prompt": "Who is the king of Belgium today?", "answers": [{ "text": "Philippe", "aliases": ["Filip", "King Philippe"] }] },
+        { "prompt": "Which British king gave up the throne in 1936 to marry Wallis Simpson?", "answers": [{ "text": "Edward VIII", "aliases": ["Edward the Eighth", "Edward"] }] },
+        { "prompt": "What is the name of the royal house of Spain?", "answers": [{ "text": "The House of Bourbon", "aliases": ["Bourbon", "Borbon"] }] }
       ]
     }
   ]

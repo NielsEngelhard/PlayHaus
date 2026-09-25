@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w13",
+  "title": "Weekly quiz 13 2027",
+  "description": "The weekly quiz of Wednesday 31 March 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which island group north of Sicily does the volcano Stromboli belong to?", "category": "Geography", "answers": [{ "text": "The Aeolian Islands", "aliases": ["Aeolian Islands", "Lipari Islands"] }] },
+        { "prompt": "What is it called when iron turns brown and crumbly with water and oxygen?", "category": "Science", "answers": [{ "text": "Rusting", "aliases": ["Rust", "Oxidation"] }] },
+        { "prompt": "Which Dutch town was captured by the Sea Beggars on 1 April 1572?", "category": "History", "answers": [{ "text": "Brielle", "aliases": ["Den Briel", "Briel"] }] },
+        { "prompt": "Which Dutch speed skater won gold in the 10,000 metres in Sochi in 2014?", "category": "Sport", "answers": [{ "text": "Jorrit Bergsma", "aliases": ["Bergsma"] }] },
+        { "prompt": "Which actor played Willy Wonka in 1971?", "category": "Film", "answers": [{ "text": "Gene Wilder", "aliases": ["Wilder"] }] },
+        { "prompt": "Which American rock band had a hit with Californication in 1999?", "category": "Music", "answers": [{ "text": "Red Hot Chili Peppers", "aliases": ["The Red Hot Chili Peppers", "Chili Peppers"] }] },
+        { "prompt": "Which big fires are traditionally lit at Easter in Twente and Drenthe?", "category": "The Netherlands", "answers": [{ "text": "Easter bonfires", "aliases": ["Easter fire", "Paasvuur"] }] },
+        { "prompt": "Which Florentine sculptor made the gilded bronze doors known as the Gates of Paradise?", "category": "Art", "answers": [{ "text": "Lorenzo Ghiberti", "aliases": ["Ghiberti"] }] },
+        { "prompt": "What is a joke you play on the first day of April called?", "category": "Language", "answers": [{ "text": "An April Fool", "aliases": ["April Fool", "April Fools' joke"] }] },
+        { "prompt": "What is the Italian Easter bread in the shape of a dove called?", "category": "Food", "answers": [{ "text": "Colomba", "aliases": ["Colomba pasquale"] }] },
+        { "prompt": "Which Google service lets you look at streets as if you were standing there?", "category": "Technology", "answers": [{ "text": "Street View", "aliases": ["Google Street View"] }] },
+        { "prompt": "Which yellow spring flower has a trumpet-shaped bloom?", "category": "Nature", "answers": [{ "text": "The daffodil", "aliases": ["Daffodil", "Narcissus"] }] },
+        { "prompt": "Which mountain range runs like a backbone down Italy?", "category": "Geography", "answers": [{ "text": "The Apennines", "aliases": ["Apennines"] }] },
+        { "prompt": "Which American president took his country into the First World War in 1917?", "category": "History", "answers": [{ "text": "Woodrow Wilson", "aliases": ["Wilson"] }] },
+        { "prompt": "What is a solid with six square faces, like a die, called?", "category": "Science", "answers": [{ "text": "A cube", "aliases": ["Cube"] }] },
+        { "prompt": "Which Dutch singer had a hit with Hoe het danst in 2019, together with Marco Borsato and Armin van Buuren?", "category": "Music", "answers": [{ "text": "Davina Michelle" }] },
+        { "prompt": "In which film does Charlize Theron play the shaven-headed warrior Furiosa?", "category": "Film", "answers": [{ "text": "Mad Max: Fury Road", "aliases": ["Mad Max", "Fury Road"] }] },
+        { "prompt": "What is the French pastry with a bar of chocolate inside called?", "category": "Food", "answers": [{ "text": "Pain au chocolat", "aliases": ["Chocolate croissant"] }] },
+        { "prompt": "Which Dutchman created the programming language Python?", "category": "Technology", "answers": [{ "text": "Guido van Rossum", "aliases": ["Van Rossum"] }] },
+        { "prompt": "Which animal has a name from Malay that means person of the forest?", "category": "Language", "answers": [{ "text": "The orangutan", "aliases": ["Orangutan"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Hungary?", "options": [{ "text": "Debrecen", "correct": true }, { "text": "Brno" }, { "text": "Krakow" }, { "text": "Graz" }] },
+        { "prompt": "Which of these mammals lays eggs?", "options": [{ "text": "The echidna", "correct": true }, { "text": "The wombat" }, { "text": "The kangaroo" }, { "text": "The sloth" }] },
+        { "prompt": "Which British writer created Alice in Wonderland?", "options": [{ "text": "Lewis Carroll", "correct": true }, { "text": "J.M. Barrie" }, { "text": "Roald Dahl" }, { "text": "C.S. Lewis" }] },
+        { "prompt": "In which of these countries is English an official language?", "options": [{ "text": "Malta", "correct": true }, { "text": "Greece" }, { "text": "Portugal" }, { "text": "Italy" }] },
+        { "prompt": "Which of these is a joint?", "options": [{ "text": "The knee", "correct": true }, { "text": "The thigh bone" }, { "text": "The biceps" }, { "text": "The tendon" }] },
+        { "prompt": "Which country also invaded Poland in September 1939, shortly after Germany?", "options": [{ "text": "The Soviet Union", "correct": true }, { "text": "Italy" }, { "text": "Hungary" }, { "text": "Czechoslovakia" }] },
+        { "prompt": "Which of these rivers flows from south to north?", "options": [{ "text": "The Nile", "correct": true }, { "text": "The Danube" }, { "text": "The Mississippi" }, { "text": "The Ganges" }] },
+        { "prompt": "Which of these birds is a duck?", "options": [{ "text": "The wigeon", "correct": true }, { "text": "The coot" }, { "text": "The grebe" }, { "text": "The cormorant" }] },
+        { "prompt": "In which Alfred Hitchcock film do birds attack people?", "options": [{ "text": "The Birds", "correct": true }, { "text": "Vertigo" }, { "text": "Rear Window" }, { "text": "Psycho" }] },
+        { "prompt": "Which Dutch athlete was nicknamed The Flying Housewife in 1948?", "options": [{ "text": "Fanny Blankers-Koen", "correct": true }, { "text": "Dafne Schippers" }, { "text": "Nelli Cooman" }, { "text": "Ellen van Langen" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the spire of St Stephen's Cathedral in Vienna?", "answer": 136, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Oder?", "answer": 866, "unit": "kilometres" },
+        { "prompt": "How many days does a hen sit on her eggs?", "answer": 21, "unit": "days" },
+        { "prompt": "How old was Bob Marley when he died?", "answer": 36, "unit": "years" },
+        { "prompt": "How many grams does an average hen's egg weigh?", "answer": 60, "unit": "grams" },
+        { "prompt": "On how many intersections can you place stones on a full-size Go board?", "answer": 361, "unit": "points" },
+        { "prompt": "How many metres high is a field hockey goal?", "answer": 2.14, "unit": "metres" },
+        { "prompt": "In which year did Willem-Alexander become king?", "answer": 2013 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Doge's Palace",
+        "Bib",
+        "Fortnite",
+        "Minecraft",
+        "Monsters, Inc.",
+        "Polo",
+        "The Hulk",
+        "Waterskiing",
+        "Panama Canal",
+        "Kilimanjaro",
+        "Stretcher",
+        "Resignation",
+        "Walking frame",
+        "Odin",
+        "Tango",
+        "Freckles",
+        "Blueberry bush",
+        "Back to the Future",
+        "Waterproofs",
+        "Taekwondo",
+        "The Smurfs",
+        "Hobbiton",
+        "Friday drinks",
+        "Exercise bike",
+        "Race number",
+        "Cement mixer",
+        "Kick scooter",
+        "Socrates",
+        "Guacamole",
+        "Poffertjes",
+        "Condor",
+        "Hovercraft",
+        "Locket",
+        "Valhalla",
+        "Red panda",
+        "Dumbo",
+        "Bambi",
+        "Placemat",
+        "Prawn",
+        "Ice dancing"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Easter?", "answers": [{ "text": "Easter eggs", "aliases": ["Egg hunt", "Eggs"] }, { "text": "Easter Bunny", "aliases": ["Bunny"] }, { "text": "Resurrection of Jesus", "aliases": ["Jesus", "Church"] }, { "text": "Spring", "aliases": ["Springtime"] }] },
+        { "prompt": "What do you know about chickens?", "answers": [{ "text": "Eggs", "aliases": ["Laying eggs"] }, { "text": "Clucking", "aliases": ["Cluck"] }, { "text": "Rooster", "aliases": ["Cock-a-doodle-doo"] }, { "text": "Chicks", "aliases": ["Chick"] }] },
+        { "prompt": "What do you know about Florence?", "answers": [{ "text": "Uffizi", "aliases": ["Museum"] }, { "text": "The Duomo", "aliases": ["Dome", "Brunelleschi"] }, { "text": "David", "aliases": ["Michelangelo"] }, { "text": "Tuscany", "aliases": ["Italy"] }] },
+        { "prompt": "What do you know about California?", "answers": [{ "text": "Hollywood", "aliases": ["Los Angeles"] }, { "text": "Silicon Valley", "aliases": ["Apple", "Google"] }, { "text": "Golden Gate Bridge", "aliases": ["San Francisco"] }, { "text": "Beaches", "aliases": ["Surfing", "Sunshine"] }] },
+        { "prompt": "What do you know about dandelions?", "answers": [{ "text": "Yellow", "aliases": ["Yellow flower"] }, { "text": "Clock", "aliases": ["Blowing", "Seed head"] }, { "text": "Rabbit food", "aliases": ["Rabbits"] }, { "text": "Weed", "aliases": ["Everywhere"] }] },
+        { "prompt": "What do you know about horror films?", "answers": [{ "text": "Scary", "aliases": ["Jump scares", "Fear"] }, { "text": "Dracula", "aliases": ["Vampires"] }, { "text": "Halloween", "aliases": ["Scream", "The Shining"] }, { "text": "Ghosts", "aliases": ["Zombies", "Monsters"] }] },
+        { "prompt": "What do you know about the Mediterranean?", "answers": [{ "text": "Warm", "aliases": ["Sun", "Summer"] }, { "text": "Greece", "aliases": ["Italy", "Spain"] }, { "text": "Islands", "aliases": ["Sicily", "Crete"] }, { "text": "Holidays", "aliases": ["Beaches", "Olives"] }] },
+        { "prompt": "What do you know about monkeys and apes?", "answers": [{ "text": "Bananas", "aliases": ["Banana"] }, { "text": "Climbing", "aliases": ["Trees", "Swinging"] }, { "text": "Chimpanzee", "aliases": ["Gorilla", "Orangutan"] }, { "text": "Zoo", "aliases": ["Monkey enclosure"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you get when you break an egg into a pan and fry it?", "difficulty": "easy", "answers": [{ "text": "A fried egg", "aliases": ["Fried egg"] }] },
+        { "prompt": "What do you build in winter with a carrot for a nose?", "difficulty": "easy", "answers": [{ "text": "A snowman", "aliases": ["Snowman"] }] },
+        { "prompt": "What do you do with an eraser?", "difficulty": "easy", "answers": [{ "text": "Rub out", "aliases": ["Erase", "Rubbing out"] }] },
+        { "prompt": "Which month comes after March?", "difficulty": "easy", "answers": [{ "text": "April" }] },
+        { "prompt": "What is a big group of trees close together called?", "difficulty": "easy", "answers": [{ "text": "A forest", "aliases": ["Forest", "Wood", "Woods"] }] },
+        { "prompt": "Which Roman god of war is the month of March named after?", "difficulty": "hard", "answers": [{ "text": "Mars" }] },
+        { "prompt": "Which Florentine sculptor made a bronze David, before Michelangelo?", "difficulty": "hard", "answers": [{ "text": "Donatello" }] },
+        { "prompt": "What is a number equal to the sum of its divisors, like six and twenty-eight, called?", "difficulty": "hard", "answers": [{ "text": "A perfect number", "aliases": ["Perfect number"] }] },
+        { "prompt": "What is the highest point in Belgium called?", "difficulty": "hard", "answers": [{ "text": "Signal de Botrange", "aliases": ["Botrange"] }] },
+        { "prompt": "Which Frankish king was baptised around 496?", "difficulty": "hard", "answers": [{ "text": "Clovis", "aliases": ["Clovis I"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Manny in the film Ice Age?", "answers": [{ "text": "A mammoth", "aliases": ["Mammoth", "Woolly mammoth"] }] },
+        { "prompt": "In which Italian town is the Basilica of Saint Francis?", "answers": [{ "text": "Assisi" }] },
+        { "prompt": "Which Scottish writer wrote The Wind in the Willows?", "answers": [{ "text": "Kenneth Grahame", "aliases": ["Grahame"] }] },
+        { "prompt": "Which orange juice do many people drink at breakfast?", "answers": [{ "text": "Orange juice", "aliases": ["OJ"] }] },
+        { "prompt": "Which Portuguese port city gives its name to a sweet fortified wine?", "answers": [{ "text": "Porto", "aliases": ["Oporto"] }] },
+        { "prompt": "Which British astronomer discovered the first pulsar in 1967 as a PhD student?", "answers": [{ "text": "Jocelyn Bell Burnell", "aliases": ["Bell Burnell", "Jocelyn Bell"] }] },
+        { "prompt": "Which animal has a long snout and a long tongue for eating ants?", "answers": [{ "text": "The anteater", "aliases": ["Anteater"] }] },
+        { "prompt": "Which American singer had a hit with Girls Just Want to Have Fun in 1983?", "answers": [{ "text": "Cyndi Lauper", "aliases": ["Lauper"] }] },
+        { "prompt": "Which German philosopher wrote Being and Time?", "answers": [{ "text": "Martin Heidegger", "aliases": ["Heidegger"] }] }
+      ]
+    }
+  ]
+}
