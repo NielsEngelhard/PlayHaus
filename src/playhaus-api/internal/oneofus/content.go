@@ -58,7 +58,19 @@ func GetContentLines(locale i18n.Locale, mode GameMode, amount int) ([]GameInput
 		lines[i], lines[j] = lines[j], lines[i]
 	})
 
-	return lines[:amount], nil
+	lines = lines[:amount]
+	for i := range lines {
+		if rand.IntN(2) == 0 {
+			lines[i] = lines[i].Swapped()
+		}
+	}
+
+	return lines, nil
+}
+
+// Swapped deals the pair the other way round; every pair is written to play in both directions.
+func (l GameInputLine) Swapped() GameInputLine {
+	return GameInputLine{RealLine: l.ImposterLine, ImposterLine: l.RealLine}
 }
 
 // buildDataFilePath names the embedded list for a locale and mode, e.g. "data/en/en-sentences.txt".
