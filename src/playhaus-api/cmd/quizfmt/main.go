@@ -10,7 +10,6 @@ import (
 
 	"playhaus-api/internal/i18n"
 	"playhaus-api/internal/pubquizr"
-	"playhaus-api/internal/quizgen"
 )
 
 func main() {
@@ -63,7 +62,7 @@ func one(path string) error {
 		return fmt.Errorf("an official quiz needs a publishedAt")
 	}
 
-	out, err := quizgen.Encode(quiz)
+	out, err := Encode(quiz)
 	if err != nil {
 		return err
 	}

@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres high is the Atomium in Brussels?", "answer": 102, "unit": "metres" },
         { "prompt": "How many muscles does a cat have in each ear?", "answer": 32, "unit": "muscles" },
-        { "prompt": "In what year was the first Formula 1 world championship held?", "answer": 1950, "unit": "" },
+        { "prompt": "In what year was the first Formula 1 world championship held?", "answer": 1950 },
         { "prompt": "How many kilometres per hour does a golf ball leave the club at?", "answer": 290, "unit": "kilometres per hour" },
         { "prompt": "How many tonnes does an adult blue whale weigh?", "answer": 150, "unit": "tonnes" },
         { "prompt": "How many strings does a banjo usually have?", "answer": 5, "unit": "strings" },
@@ -88,7 +88,17 @@
         "Stonehenge",
         "Renaissance",
         "Acupuncture",
-        "Sherlock Holmes"
+        "Sherlock Holmes",
+        "Test",
+        "Cradle",
+        "Wild boar",
+        "Interview",
+        "Mother-in-law",
+        "Bugs Bunny",
+        "Falconer",
+        "Loop-the-loop",
+        "Mahatma Gandhi",
+        "Hand luggage"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which river in Botswana forms the world's largest inland delta?", "answers": [{ "text": "The Okavango", "aliases": ["Okavango"] }] },
         { "prompt": "What is the capital of Chile?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
         { "prompt": "Who composed the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
-        { "prompt": "In which sea can bathers float because the water is so salty?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] }
+        { "prompt": "In which sea can bathers float because the water is so salty?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
+        { "prompt": "What is the name of the red giant star in Orion's shoulder?", "answers": [{ "text": "Betelgeuse", "aliases": ["Betelgeuze"] }] },
+        { "prompt": "Which English philosopher wrote Leviathan?", "answers": [{ "text": "Thomas Hobbes", "aliases": ["Hobbes"] }] }
       ]
     }
   ]

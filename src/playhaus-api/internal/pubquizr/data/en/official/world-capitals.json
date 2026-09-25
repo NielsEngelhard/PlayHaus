@@ -89,7 +89,17 @@
         "Neon sign",
         "Street vendor",
         "War memorial",
-        "National flag"
+        "National flag",
+        "Capital city",
+        "Government building",
+        "Roundabouts",
+        "City bus",
+        "Tourist trap",
+        "Metropolis",
+        "City park",
+        "Town hall",
+        "National holiday",
+        "Landmark"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which city is the seat of government of Papua New Guinea?", "answers": [{ "text": "Port Moresby" }] },
         { "prompt": "Which city is the capital of the principality of Liechtenstein?", "answers": [{ "text": "Vaduz" }] },
         { "prompt": "Which purpose-built city became the capital of Belize in 1970?", "answers": [{ "text": "Belmopan" }] },
-        { "prompt": "Which city is the capital of Moldova?", "answers": [{ "text": "Chisinau" }] }
+        { "prompt": "Which city is the capital of Moldova?", "answers": [{ "text": "Chisinau" }] },
+        { "prompt": "What is the capital of Finland?", "answers": [{ "text": "Helsinki" }] },
+        { "prompt": "What is the capital of Tajikistan?", "answers": [{ "text": "Dushanbe", "aliases": ["Doesjanbe"] }] }
       ]
     }
   ]

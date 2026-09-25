@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter lang is een voetbalveld op ware grootte?", "answer": 105, "unit": "meter" },
         { "prompt": "Hoeveel pinguinsoorten bestaan er?", "answer": 18, "unit": "soorten" },
-        { "prompt": "In welk jaar gaf Nederland zijn eerste postzegel uit?", "answer": 1852, "unit": "" },
+        { "prompt": "In welk jaar gaf Nederland zijn eerste postzegel uit?", "answer": 1852 },
         { "prompt": "Hoeveel kilometer spoor heeft Nederland?", "answer": 3200, "unit": "kilometer" },
         { "prompt": "Hoeveel octaven beslaat een standaard pianoklavier?", "answer": 7, "unit": "octaven" },
         { "prompt": "Hoeveel kilo kaas eet de gemiddelde Nederlander per jaar?", "answer": 21, "unit": "kilo" },
@@ -88,7 +88,17 @@
         "De Rolling Stones",
         "Winterslaap",
         "Origami",
-        "Elfstedentocht"
+        "Elfstedentocht",
+        "Medusa",
+        "Vlag hijsen",
+        "De Denker",
+        "Joystick",
+        "Polonaise",
+        "Verzekering",
+        "Adele",
+        "Tuinslang",
+        "Sashimi",
+        "Samba"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is het grootste eiland ter wereld?", "answers": [{ "text": "Groenland" }] },
         { "prompt": "In welk land liggen de Angelwatervallen, de hoogste waterval ter wereld?", "answers": [{ "text": "Venezuela" }] },
         { "prompt": "Welk gas vormt ongeveer achtenzeventig procent van de lucht die we inademen?", "answers": [{ "text": "Stikstof" }] },
-        { "prompt": "Welke Engelse wetenschapper ontdekte de elektromagnetische inductie?", "answers": [{ "text": "Michael Faraday", "aliases": ["Faraday"] }] }
+        { "prompt": "Welke Engelse wetenschapper ontdekte de elektromagnetische inductie?", "answers": [{ "text": "Michael Faraday", "aliases": ["Faraday"] }] },
+        { "prompt": "Welke Amerikaanse schrijver schreef The Great Gatsby?", "answers": [{ "text": "F. Scott Fitzgerald", "aliases": ["Scott Fitzgerald", "Fitzgerald"] }] },
+        { "prompt": "Welke stad is sinds het midden van de jaren nul de hoofdstad van Myanmar?", "answers": [{ "text": "Naypyidaw", "aliases": ["Naypyitaw"] }] }
       ]
     }
   ]

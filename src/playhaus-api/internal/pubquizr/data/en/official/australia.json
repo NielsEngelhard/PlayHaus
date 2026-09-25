@@ -89,7 +89,17 @@
         "Bushfire",
         "Billabong",
         "Southern Cross",
-        "Crocodile Dundee"
+        "Crocodile Dundee",
+        "Boomerang thrower",
+        "Kangaroo with joey",
+        "Shark alarm",
+        "Surf lifesaving flag",
+        "Outback",
+        "Beach barbecue",
+        "Flying Doctor",
+        "Coral diving",
+        "Kangaroo road sign",
+        "Sheep station"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which vast salt lake in South Australia is usually dry and fills with water only rarely?", "answers": [{ "text": "Lake Eyre", "aliases": ["Eyre", "Kati Thanda"] }] },
         { "prompt": "Which Australian author wrote the novel The Thorn Birds?", "answers": [{ "text": "Colleen McCullough", "aliases": ["McCullough"] }] },
         { "prompt": "Which Australian swimmer won three gold medals at the 2000 Olympic Games?", "answers": [{ "text": "Ian Thorpe", "aliases": ["Thorpe", "Thorpedo"] }] },
-        { "prompt": "Which Australian writer won the Nobel Prize in Literature in 1973?", "answers": [{ "text": "Patrick White", "aliases": ["White"] }] }
+        { "prompt": "Which Australian writer won the Nobel Prize in Literature in 1973?", "answers": [{ "text": "Patrick White", "aliases": ["White"] }] },
+        { "prompt": "Which city served as Australia's capital before Canberra?", "answers": [{ "text": "Melbourne" }] },
+        { "prompt": "What was the name of the Australian prime minister who disappeared while swimming in 1967?", "answers": [{ "text": "Harold Holt", "aliases": ["Holt"] }] }
       ]
     }
   ]

@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w10",
+  "title": "Weekly quiz 10 2027",
+  "description": "The weekly quiz of Wednesday 10 March 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the highest mountain in Austria?", "category": "Geography", "answers": [{ "text": "The Grossglockner", "aliases": ["Grossglockner"] }] },
+        { "prompt": "What is a medicine that kills bacteria, such as penicillin, called?", "category": "Science", "answers": [{ "text": "An antibiotic", "aliases": ["Antibiotic", "Antibiotics"] }] },
+        { "prompt": "Which French explorer founded the city of Quebec in 1608?", "category": "History", "answers": [{ "text": "Samuel de Champlain", "aliases": ["Champlain"] }] },
+        { "prompt": "Which Dutch speed skater won three gold medals in Beijing in 2022?", "category": "Sport", "answers": [{ "text": "Irene Schouten", "aliases": ["Schouten"] }] },
+        { "prompt": "Which Dutch actor played the replicant Roy Batty in Blade Runner?", "category": "Film", "answers": [{ "text": "Rutger Hauer", "aliases": ["Hauer"] }] },
+        { "prompt": "Which British band of Mark Knopfler had a hit with Sultans of Swing?", "category": "Music", "answers": [{ "text": "Dire Straits" }] },
+        { "prompt": "Which Dutch town hauled in an enormous boulder in 1661 and has been nicknamed Keistad ever since?", "category": "The Netherlands", "answers": [{ "text": "Amersfoort" }] },
+        { "prompt": "Which American photographer took the picture Migrant Mother during the Depression of the thirties?", "category": "Art", "answers": [{ "text": "Dorothea Lange", "aliases": ["Lange"] }] },
+        { "prompt": "What is a word taken over from another language, such as croissant or pizza, called?", "category": "Language", "answers": [{ "text": "A loanword", "aliases": ["Loanword", "Borrowing"] }] },
+        { "prompt": "What is the French stew of beef in red wine from Burgundy called?", "category": "Food", "answers": [{ "text": "Boeuf bourguignon", "aliases": ["Beef bourguignon"] }] },
+        { "prompt": "Which computer game by the Swedish studio Mojang is all about building with blocks?", "category": "Technology", "answers": [{ "text": "Minecraft" }] },
+        { "prompt": "Which orange and black butterfly migrates thousands of kilometres from Canada to Mexico every year?", "category": "Nature", "answers": [{ "text": "The monarch butterfly", "aliases": ["Monarch", "Monarch butterfly"] }] },
+        { "prompt": "What is the largest French port city on the Mediterranean?", "category": "Geography", "answers": [{ "text": "Marseille", "aliases": ["Marseilles"] }] },
+        { "prompt": "Which American president was shot dead in 1901, after which Theodore Roosevelt succeeded him?", "category": "History", "answers": [{ "text": "William McKinley", "aliases": ["McKinley"] }] },
+        { "prompt": "What is a triangle with two sides of equal length called?", "category": "Science", "answers": [{ "text": "Isosceles", "aliases": ["An isosceles triangle"] }] },
+        { "prompt": "Which American singer had a hit as a teenager with Bad Guy?", "category": "Music", "answers": [{ "text": "Billie Eilish", "aliases": ["Eilish"] }] },
+        { "prompt": "In which 1975 film does Jack Nicholson play a patient in a psychiatric hospital?", "category": "Film", "answers": [{ "text": "One Flew Over the Cuckoo's Nest", "aliases": ["Cuckoo's Nest"] }] },
+        { "prompt": "What are the French pancakes flambeed with orange liqueur called?", "category": "Food", "answers": [{ "text": "Crepes Suzette", "aliases": ["Crepe Suzette"] }] },
+        { "prompt": "Which programming language has a steaming cup of coffee as its logo?", "category": "Technology", "answers": [{ "text": "Java" }] },
+        { "prompt": "Which Dutch word means the same as the German Schadenfreude?", "category": "Language", "answers": [{ "text": "Leedvermaak" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Sweden?", "options": [{ "text": "Malmo", "correct": true }, { "text": "Bergen" }, { "text": "Aarhus" }, { "text": "Turku" }] },
+        { "prompt": "Which of these animals is a predator?", "options": [{ "text": "The fox", "correct": true }, { "text": "The deer" }, { "text": "The rabbit" }, { "text": "The cow" }] },
+        { "prompt": "Which American writer wrote On the Road?", "options": [{ "text": "Jack Kerouac", "correct": true }, { "text": "Allen Ginsberg" }, { "text": "William Burroughs" }, { "text": "J.D. Salinger" }] },
+        { "prompt": "Which of these countries lies furthest west?", "options": [{ "text": "Ireland", "correct": true }, { "text": "Spain" }, { "text": "France" }, { "text": "Belgium" }] },
+        { "prompt": "Which of these substances is a hormone?", "options": [{ "text": "Insulin", "correct": true }, { "text": "Haemoglobin" }, { "text": "Keratin" }, { "text": "Collagen" }] },
+        { "prompt": "Which British field marshal defeated Rommel at El Alamein in 1942?", "options": [{ "text": "Bernard Montgomery", "correct": true }, { "text": "Winston Churchill" }, { "text": "Harold Alexander" }, { "text": "Arthur Harris" }] },
+        { "prompt": "Which of these islands is in the Indian Ocean?", "options": [{ "text": "Mauritius", "correct": true }, { "text": "Barbados" }, { "text": "Fiji" }, { "text": "Cuba" }] },
+        { "prompt": "Which of these birds belongs to the crow family?", "options": [{ "text": "The jay", "correct": true }, { "text": "The woodpecker" }, { "text": "The swallow" }, { "text": "The sparrow" }] },
+        { "prompt": "In which film does Arnold Schwarzenegger play a policeman who becomes a kindergarten teacher?", "options": [{ "text": "Kindergarten Cop", "correct": true }, { "text": "Twins" }, { "text": "Junior" }, { "text": "Jingle All the Way" }] },
+        { "prompt": "Which Dutch club won the European Cup in 1988?", "options": [{ "text": "PSV", "correct": true }, { "text": "Ajax" }, { "text": "Feyenoord" }, { "text": "AZ" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is the Zugspitze?", "answer": 2962, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Elbe?", "answer": 1094, "unit": "kilometres" },
+        { "prompt": "How many countries took part in the 2024 European Championship?", "answer": 24, "unit": "countries" },
+        { "prompt": "How old was Kurt Cobain when he died?", "answer": 27, "unit": "years" },
+        { "prompt": "How many litres of oil are there in a barrel, the measure oil is traded in?", "answer": 159, "unit": "litres" },
+        { "prompt": "How many fingers does Mickey Mouse have on each hand?", "answer": 4, "unit": "fingers" },
+        { "prompt": "How many metres long is a track in a velodrome usually?", "answer": 250, "unit": "metres" },
+        { "prompt": "In which year did Artis zoo in Amsterdam open?", "answer": 1838 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Changing of the guard",
+        "Electrician",
+        "Charles Darwin",
+        "Scar",
+        "Aquarium tunnel",
+        "Dinosaur skeleton",
+        "Rice terrace",
+        "Apple turnover",
+        "Hannibal",
+        "Dentures",
+        "Tin can",
+        "Florence Nightingale",
+        "Sugar bowl",
+        "Pillowcase",
+        "Leonardo DiCaprio",
+        "Obelix",
+        "Pinocchio",
+        "Doorman",
+        "George Washington",
+        "Knockout",
+        "Archimedes",
+        "Black ice",
+        "Tent peg",
+        "King",
+        "Nostalgia",
+        "National anthem",
+        "Game of Thrones",
+        "Hammerhead shark",
+        "Oasis",
+        "Water Lilies",
+        "Las Vegas",
+        "Hot sauce",
+        "Mowgli",
+        "Poacher",
+        "Ship's wheel",
+        "Totem pole",
+        "Clothes horse",
+        "Bulldozer",
+        "Parcel",
+        "Vanilla"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Roald Dahl?", "answers": [{ "text": "Charlie and the Chocolate Factory", "aliases": ["Willy Wonka"] }, { "text": "Matilda", "aliases": ["The Witches"] }, { "text": "The BFG", "aliases": ["Giant"] }, { "text": "England", "aliases": ["Wales", "Norwegian"] }] },
+        { "prompt": "What do you know about Kinderdijk?", "answers": [{ "text": "Windmills", "aliases": ["Nineteen windmills", "Mills"] }, { "text": "World Heritage", "aliases": ["UNESCO"] }, { "text": "Water", "aliases": ["Polder", "Pumping"] }, { "text": "South Holland", "aliases": ["Alblasserwaard"] }] },
+        { "prompt": "What do you know about black holes?", "answers": [{ "text": "Gravity", "aliases": ["Huge gravity"] }, { "text": "Light cannot escape", "aliases": ["Dark", "Black"] }, { "text": "Stephen Hawking", "aliases": ["Hawking", "Einstein"] }, { "text": "Collapsed star", "aliases": ["Stars", "Space"] }] },
+        { "prompt": "What do you know about bats?", "answers": [{ "text": "Nocturnal", "aliases": ["Night", "Dark"] }, { "text": "Hanging upside down", "aliases": ["Upside down"] }, { "text": "Echolocation", "aliases": ["Sound", "Echo"] }, { "text": "Dracula", "aliases": ["Vampire", "Batman"] }] },
+        { "prompt": "What do you know about James Bond?", "answers": [{ "text": "Double O Seven", "aliases": ["007"] }, { "text": "Martini", "aliases": ["Shaken, not stirred"] }, { "text": "Aston Martin", "aliases": ["Fast cars", "Gadgets"] }, { "text": "Sean Connery", "aliases": ["Daniel Craig", "Roger Moore"] }] },
+        { "prompt": "What do you know about the Dutch railways, NS?", "answers": [{ "text": "Yellow and blue", "aliases": ["Yellow trains"] }, { "text": "Delays", "aliases": ["Disruption", "Late"] }, { "text": "OV-chipkaart", "aliases": ["Checking in", "Ticket"] }, { "text": "Stations", "aliases": ["Utrecht Centraal", "Platform"] }] },
+        { "prompt": "What do you know about Big Ben?", "answers": [{ "text": "London", "aliases": ["England"] }, { "text": "Clock", "aliases": ["Clock tower", "Chimes"] }, { "text": "Parliament", "aliases": ["Westminster"] }, { "text": "Elizabeth Tower", "aliases": ["Tower"] }] },
+        { "prompt": "What do you know about crocodiles?", "answers": [{ "text": "Sharp teeth", "aliases": ["Teeth", "Strong jaws"] }, { "text": "The Nile", "aliases": ["Africa", "River"] }, { "text": "Crocodile tears", "aliases": ["Tears"] }, { "text": "Reptile", "aliases": ["Scales", "Eggs"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the sweet stuff that bees make called?", "difficulty": "easy", "answers": [{ "text": "Honey" }] },
+        { "prompt": "What do you use a straw for?", "difficulty": "easy", "answers": [{ "text": "Drinking", "aliases": ["To drink"] }] },
+        { "prompt": "Which little red beetle has black spots on its back?", "difficulty": "easy", "answers": [{ "text": "The ladybird", "aliases": ["Ladybird", "Ladybug"] }] },
+        { "prompt": "What is the day each year when people say happy birthday to you?", "difficulty": "easy", "answers": [{ "text": "Your birthday", "aliases": ["Birthday"] }] },
+        { "prompt": "What is the warm drink of milk and cocoa called?", "difficulty": "easy", "answers": [{ "text": "Hot chocolate", "aliases": ["Cocoa"] }] },
+        { "prompt": "What is the name of the Greek god of wine and revelry?", "difficulty": "hard", "answers": [{ "text": "Dionysus", "aliases": ["Dionysos", "Bacchus"] }] },
+        { "prompt": "What is the oldest known epic poem, about a king of Uruk, called?", "difficulty": "hard", "answers": [{ "text": "The Epic of Gilgamesh", "aliases": ["Gilgamesh"] }] },
+        { "prompt": "Which Greek letter looks like a trident?", "difficulty": "hard", "answers": [{ "text": "Psi" }] },
+        { "prompt": "Which strait links the Aegean Sea with the Sea of Marmara?", "difficulty": "hard", "answers": [{ "text": "The Dardanelles", "aliases": ["Dardanelles", "Hellespont"] }] },
+        { "prompt": "Which Prussian king had the palace of Sanssouci built in Potsdam?", "difficulty": "hard", "answers": [{ "text": "Frederick the Great", "aliases": ["Frederick II", "Frederick"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Gloria in the film Madagascar?", "answers": [{ "text": "A hippopotamus", "aliases": ["Hippo", "Hippopotamus"] }] },
+        { "prompt": "In which American city does the cracked Liberty Bell hang?", "answers": [{ "text": "Philadelphia" }] },
+        { "prompt": "Which American writer lived for two years in a cabin by a pond and wrote Walden about it?", "answers": [{ "text": "Henry David Thoreau", "aliases": ["Thoreau"] }] },
+        { "prompt": "Which large fruit is green outside and red inside, with black seeds?", "answers": [{ "text": "The watermelon", "aliases": ["Watermelon"] }] },
+        { "prompt": "Who is on the American hundred-dollar bill?", "answers": [{ "text": "Benjamin Franklin", "aliases": ["Franklin"] }] },
+        { "prompt": "Which Dutch meteorologist gave his name to the law about wind and air pressure?", "answers": [{ "text": "Buys Ballot", "aliases": ["Christophorus Buys Ballot"] }] },
+        { "prompt": "What is the head of the Catholic Church in Rome called?", "answers": [{ "text": "The Pope", "aliases": ["Pope"] }] },
+        { "prompt": "Which American singer and producer had a hit with Happy in 2013?", "answers": [{ "text": "Pharrell Williams", "aliases": ["Pharrell"] }] },
+        { "prompt": "Which German philosopher wrote The World as Will and Representation?", "answers": [{ "text": "Arthur Schopenhauer", "aliases": ["Schopenhauer"] }] }
+      ]
+    }
+  ]
+}

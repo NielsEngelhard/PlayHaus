@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres do the Niagara Falls drop?", "answer": 51, "unit": "metres" },
         { "prompt": "How many hearts does an earthworm have?", "answer": 5, "unit": "hearts" },
-        { "prompt": "In what year were the first Paralympic Games held?", "answer": 1960, "unit": "", "explanation": "In Rome, straight after the Olympic Games there." },
+        { "prompt": "In what year were the first Paralympic Games held?", "answer": 1960, "explanation": "In Rome, straight after the Olympic Games there." },
         { "prompt": "How many metres deep is the deepest swimming pool in the world?", "answer": 60, "unit": "metres" },
         { "prompt": "How many muscles are there in an elephant's trunk?", "answer": 40000, "unit": "muscles" },
         { "prompt": "How many seeds does a strawberry carry on the outside, roughly?", "answer": 200, "unit": "seeds" },
@@ -88,7 +88,17 @@
         "Acupuncture",
         "Auctioneer",
         "Olympic torch",
-        "Lumberjack"
+        "Lumberjack",
+        "Cheese farm",
+        "Shopping list",
+        "Casino",
+        "Curry",
+        "Marshmallow",
+        "Don Quixote",
+        "Flu",
+        "Captain Hook",
+        "Fire engine",
+        "Lawyer"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury", "aliases": ["Quicksilver"] }] },
         { "prompt": "Which is the longest river in Europe?", "answers": [{ "text": "The Volga", "aliases": ["Volga"] }] },
         { "prompt": "Which writer created the detective Hercule Poirot?", "answers": [{ "text": "Agatha Christie", "aliases": ["Christie"] }] },
-        { "prompt": "In which country does the tallest building in the world stand?", "answers": [{ "text": "The United Arab Emirates", "aliases": ["United Arab Emirates", "UAE", "Dubai"] }] }
+        { "prompt": "In which country does the tallest building in the world stand?", "answers": [{ "text": "The United Arab Emirates", "aliases": ["United Arab Emirates", "UAE", "Dubai"] }] },
+        { "prompt": "In which city was Wolfgang Amadeus Mozart born?", "answers": [{ "text": "Salzburg" }] },
+        { "prompt": "Which Swedish botanist devised the two-part scientific naming of plants and animals?", "answers": [{ "text": "Carl Linnaeus", "aliases": ["Linnaeus", "Carl von Linne", "Linne"] }] }
       ]
     }
   ]

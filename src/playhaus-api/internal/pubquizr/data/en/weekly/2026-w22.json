@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres tall is the tallest building in Europe?", "answer": 462, "unit": "metres" },
         { "prompt": "How many hearts does a squid have?", "answer": 3, "unit": "hearts" },
-        { "prompt": "In what year did the Amsterdam canal ring become a World Heritage site?", "answer": 2010, "unit": "" },
+        { "prompt": "In what year did the Amsterdam canal ring become a World Heritage site?", "answer": 2010 },
         { "prompt": "How many kilometres long is the longest non-stop flight in the world?", "answer": 15300, "unit": "kilometres" },
         { "prompt": "How many billion nerve cells does the human brain contain?", "answer": 86, "unit": "billion" },
         { "prompt": "How many million bicycles are there in the Netherlands?", "answer": 23, "unit": "million bicycles" },
@@ -88,7 +88,17 @@
         "Tightrope walker",
         "Marie Curie",
         "Machu Picchu",
-        "The Northern Lights"
+        "The Northern Lights",
+        "Chef's hat",
+        "Python",
+        "Working from home",
+        "Colony",
+        "Cruella de Vil",
+        "Ice lolly",
+        "Badger",
+        "Video call",
+        "Milkshake",
+        "Frozen"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "What is the currency of Poland?", "answers": [{ "text": "The zloty", "aliases": ["zloty"] }] },
         { "prompt": "Which planet has the Great Red Spot?", "answers": [{ "text": "Jupiter" }] },
         { "prompt": "Who wrote the novel Nineteen Eighty-Four?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
-        { "prompt": "Which mountain range separates Europe from Asia?", "answers": [{ "text": "The Urals", "aliases": ["Urals", "Ural mountains"] }] }
+        { "prompt": "Which mountain range separates Europe from Asia?", "answers": [{ "text": "The Urals", "aliases": ["Urals", "Ural mountains"] }] },
+        { "prompt": "Which American devised the alphabet of dots and dashes?", "answers": [{ "text": "Samuel Morse", "aliases": ["Morse"] }] },
+        { "prompt": "What is the capital of Belarus?", "answers": [{ "text": "Minsk" }] }
       ]
     }
   ]

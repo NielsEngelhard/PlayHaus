@@ -88,7 +88,17 @@
         "Venetie",
         "Sahara",
         "Anne Frank",
-        "Stroopwafel"
+        "Stroopwafel",
+        "Michael Jordan",
+        "Hercules",
+        "Ghostbusters",
+        "Stapelbed",
+        "Zwarte band",
+        "Waterpost",
+        "Fish and chips",
+        "Tanker",
+        "Paardenrace",
+        "Rode biet"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welk land heette tot 1972 Ceylon?", "answers": [{ "text": "Sri Lanka" }] },
         { "prompt": "Welke Franse scheikundige gaf zijn naam aan het verhitten van melk om bacterien te doden?", "answers": [{ "text": "Louis Pasteur", "aliases": ["Pasteur"] }] },
         { "prompt": "Welke Russische schrijver schreef Oorlog en vrede?", "answers": [{ "text": "Leo Tolstoj", "aliases": ["Tolstoj", "Tolstoy"] }] },
-        { "prompt": "In welk jaar werd de eerste treinverbinding in Nederland geopend?", "answers": [{ "text": "1839" }] }
+        { "prompt": "In welk jaar werd de eerste treinverbinding in Nederland geopend?", "answers": [{ "text": "1839" }] },
+        { "prompt": "Welke Engelse schrijver bedacht de geheim agent James Bond?", "answers": [{ "text": "Ian Fleming", "aliases": ["Fleming"] }] },
+        { "prompt": "Wat is de hoofdstad van Mauritanie?", "answers": [{ "text": "Nouakchott" }] }
       ]
     }
   ]

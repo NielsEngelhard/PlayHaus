@@ -89,7 +89,17 @@
         "Bord",
         "Diavola",
         "Quattro stagioni",
-        "Bruschetta"
+        "Bruschetta",
+        "Pizzadeeg",
+        "Pizzadoos",
+        "Deeg in de lucht gooien",
+        "Pizzaschep",
+        "Tomatensaus",
+        "Oregano",
+        "Champignons",
+        "Ananas op pizza",
+        "Pizza Margherita",
+        "Calzone"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welk restaurant in Napels, geopend in 1830, geldt als de oudste pizzeria ter wereld?", "answers": [{ "text": "Antica Pizzeria Port'Alba", "aliases": ["Port'Alba", "Pizzeria Port'Alba"] }] },
         { "prompt": "Sinds 2010 draagt de pizza napoletana een Europees beschermd label. Hoe heet dat label in het Nederlands?", "answers": [{ "text": "Gegarandeerde Traditionele Specialiteit", "aliases": ["GTS", "STG"] }] },
         { "prompt": "Welke Nederlandse pizzabezorgketen, opgericht in Amsterdam, is vernoemd naar een Amerikaanse stad?", "answers": [{ "text": "New York Pizza" }] },
-        { "prompt": "Hoe heet de gefrituurde pizza die in de straten van Napels wordt verkocht?", "answers": [{ "text": "Pizza fritta", "aliases": ["Fritta"] }] }
+        { "prompt": "Hoe heet de gefrituurde pizza die in de straten van Napels wordt verkocht?", "answers": [{ "text": "Pizza fritta", "aliases": ["Fritta"] }] },
+        { "prompt": "Welke drie kleuren van de Italiaanse vlag zie je op een Margherita?", "answers": [{ "text": "Rood, wit en groen", "aliases": ["Rood wit groen", "Groen, wit en rood"] }] },
+        { "prompt": "Welke Amerikaanse stad is beroemd om zijn deep dish pizza?", "answers": [{ "text": "Chicago" }] }
       ]
     }
   ]

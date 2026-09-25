@@ -89,7 +89,17 @@
         "Water tower",
         "Marshalling yard",
         "Season ticket",
-        "Bicycle"
+        "Bicycle",
+        "Train ticket",
+        "Guard's whistle",
+        "Stopping train",
+        "Railway crossing",
+        "Rails",
+        "Goods wagon",
+        "Sleeper car",
+        "Orient Express",
+        "Train delay",
+        "Stationmaster"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What is the term for a railway built to a track gauge smaller than standard?", "answers": [{ "text": "Narrow gauge", "aliases": ["Narrow-gauge railway"] }] },
         { "prompt": "Which German city has the largest railway station in Europe by floor area?", "answers": [{ "text": "Leipzig" }] },
         { "prompt": "What is the Belgian national railway company called in Dutch?", "answers": [{ "text": "NMBS", "aliases": ["SNCB", "Nationale Maatschappij der Belgische Spoorwegen"] }] },
-        { "prompt": "Which engineer, famous for his tall hat, built the Great Western Railway in Britain?", "answers": [{ "text": "Isambard Kingdom Brunel", "aliases": ["Brunel"] }] }
+        { "prompt": "Which engineer, famous for his tall hat, built the Great Western Railway in Britain?", "answers": [{ "text": "Isambard Kingdom Brunel", "aliases": ["Brunel"] }] },
+        { "prompt": "Which tunnel links England with France under the sea?", "answers": [{ "text": "The Channel Tunnel", "aliases": ["Channel Tunnel", "Eurotunnel", "Chunnel"] }] },
+        { "prompt": "Which Swiss tunnel, opened in 2016, is the longest railway tunnel in the world?", "answers": [{ "text": "The Gotthard Base Tunnel", "aliases": ["Gotthard Base Tunnel", "Gotthard"] }] }
       ]
     }
   ]

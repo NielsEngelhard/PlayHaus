@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w51",
+  "title": "Weekquiz 51 2026",
+  "description": "De wekelijkse quiz van woensdag 16 december 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de op een na grootste stad van Griekenland?", "category": "Aardrijkskunde", "answers": [{ "text": "Thessaloniki", "aliases": ["Saloniki"] }] },
+        { "prompt": "Hoe heet de grens die een vliegtuig met een harde knal doorbreekt als het sneller gaat dan het geluid?", "category": "Wetenschap", "answers": [{ "text": "De geluidsbarriere", "aliases": ["Geluidsbarriere", "Geluidsmuur"] }] },
+        { "prompt": "Welke Duitse monnik maakte in 1517 zijn vijfennegentig stellingen bekend?", "category": "Geschiedenis", "answers": [{ "text": "Maarten Luther", "aliases": ["Luther", "Martin Luther"] }] },
+        { "prompt": "Welke Poolse tennisster werd in 2022 de nummer een van de wereld?", "category": "Sport", "answers": [{ "text": "Iga Swiatek", "aliases": ["Swiatek"] }] },
+        { "prompt": "Welke Australische acteur speelde de Joker in The Dark Knight?", "category": "Film", "answers": [{ "text": "Heath Ledger", "aliases": ["Ledger"] }] },
+        { "prompt": "Met welk lied won Duncan Laurence in 2019 het Songfestival?", "category": "Muziek", "answers": [{ "text": "Arcade" }] },
+        { "prompt": "Welke supermarktketen heeft een blauwe letter A als logo?", "category": "Nederland", "answers": [{ "text": "Albert Heijn", "aliases": ["AH"] }] },
+        { "prompt": "Welke Italiaanse renaissanceschilder maakte De school van Athene?", "category": "Kunst", "answers": [{ "text": "Rafael", "aliases": ["Raffaello", "Raphael"] }] },
+        { "prompt": "Wat betekent het Franse woord bonjour?", "category": "Taal", "answers": [{ "text": "Goedendag", "aliases": ["Hallo", "Dag", "Goedemorgen"] }] },
+        { "prompt": "Welk rood poeder van gedroogde pepers komt uit Hongarije?", "category": "Eten", "answers": [{ "text": "Paprika", "aliases": ["Paprikapoeder"] }] },
+        { "prompt": "Welk bedrijf uit Veldhoven maakt de machines waarmee computerchips worden gemaakt?", "category": "Techniek", "answers": [{ "text": "ASML" }] },
+        { "prompt": "Welke groenblijvende struik met stekelige bladeren en rode bessen hoort bij de kerst?", "category": "Natuur", "answers": [{ "text": "De hulst", "aliases": ["Hulst"] }] },
+        { "prompt": "Wat is de langste rivier van Italie?", "category": "Aardrijkskunde", "answers": [{ "text": "De Po", "aliases": ["Po"] }] },
+        { "prompt": "Welke Egyptische president nationaliseerde in 1956 het Suezkanaal?", "category": "Geschiedenis", "answers": [{ "text": "Gamal Abdel Nasser", "aliases": ["Nasser"] }] },
+        { "prompt": "Hoe heet een driehoek met een hoek van negentig graden?", "category": "Wetenschap", "answers": [{ "text": "Een rechthoekige driehoek", "aliases": ["Rechthoekig"] }] },
+        { "prompt": "Welke Amerikaanse zangeres brak in 1998 door met Baby One More Time?", "category": "Muziek", "answers": [{ "text": "Britney Spears", "aliases": ["Britney"] }] },
+        { "prompt": "Hoe heet de hond van de uitvinder Wallace?", "category": "Film", "answers": [{ "text": "Gromit" }] },
+        { "prompt": "Hoe heet koffie met veel warme melk, vaak in een hoog glas?", "category": "Eten", "answers": [{ "text": "Latte", "aliases": ["Latte macchiato", "Koffie verkeerd", "Caffe latte"] }] },
+        { "prompt": "Hoe heet een onbemand toestel met propellers dat je op afstand laat vliegen?", "category": "Techniek", "answers": [{ "text": "Een drone", "aliases": ["Drone", "Drones"] }] },
+        { "prompt": "Uit welke taal komt het woord sauna?", "category": "Taal", "answers": [{ "text": "Fins", "aliases": ["Het Fins"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze landen ligt op twee continenten?", "options": [{ "text": "Egypte", "correct": true }, { "text": "Marokko" }, { "text": "Libie" }, { "text": "Tunesie" }] },
+        { "prompt": "Welk van deze dieren heeft geen ruggengraat?", "options": [{ "text": "De regenworm", "correct": true }, { "text": "De kikker" }, { "text": "De slang" }, { "text": "De haai" }] },
+        { "prompt": "Welke Belgische schrijver bedacht commissaris Maigret?", "options": [{ "text": "Georges Simenon", "correct": true }, { "text": "Herge" }, { "text": "Hugo Claus" }, { "text": "Jacques Brel" }] },
+        { "prompt": "Welke van deze steden ligt aan de Seine?", "options": [{ "text": "Rouen", "correct": true }, { "text": "Lyon" }, { "text": "Bordeaux" }, { "text": "Lille" }] },
+        { "prompt": "Welke van deze is een spier?", "options": [{ "text": "De biceps", "correct": true }, { "text": "Het dijbeen" }, { "text": "De milt" }, { "text": "De lever" }] },
+        { "prompt": "Welke oorlog werd tussen 1950 en 1953 uitgevochten?", "options": [{ "text": "De Koreaoorlog", "correct": true }, { "text": "De Vietnamoorlog" }, { "text": "De Golfoorlog" }, { "text": "De Suezcrisis" }] },
+        { "prompt": "Welk van deze landen ligt niet in de Alpen?", "options": [{ "text": "Tsjechie", "correct": true }, { "text": "Slovenie" }, { "text": "Liechtenstein" }, { "text": "Oostenrijk" }] },
+        { "prompt": "Wat is de kleinste vogel van Nederland?", "options": [{ "text": "Het goudhaantje", "correct": true }, { "text": "De winterkoning" }, { "text": "De mus" }, { "text": "De koolmees" }] },
+        { "prompt": "In welke film praat Tom Hanks tegen een volleybal genaamd Wilson?", "options": [{ "text": "Cast Away", "correct": true }, { "text": "Life of Pi" }, { "text": "The Terminal" }, { "text": "Forrest Gump" }] },
+        { "prompt": "Welke Schotse golfbaan geldt als de bakermat van het golf?", "options": [{ "text": "St Andrews", "correct": true }, { "text": "Augusta" }, { "text": "Carnoustie" }, { "text": "Wentworth" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de berg Olympus in Griekenland?", "answer": 2917, "unit": "meter" },
+        { "prompt": "Hoeveel meter lang is de Erasmusbrug?", "answer": 802, "unit": "meter" },
+        { "prompt": "Hoeveel jaar was Beatrix koningin der Nederlanden?", "answer": 33, "unit": "jaar" },
+        { "prompt": "Vanaf hoeveel kilometer per uur windsnelheid spreekt men van de zwaarste soort tornado?", "answer": 322, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel minuten duurt een NBA-basketbalwedstrijd zonder verlenging?", "answer": 48, "unit": "minuten" },
+        { "prompt": "Hoeveel kilo weegt de kogel bij het kogelstoten voor mannen?", "answer": 7.26, "unit": "kilo" },
+        { "prompt": "Aan hoeveel landen grenst Frankrijk op het Europese vasteland?", "answer": 8, "unit": "landen" },
+        { "prompt": "In welk jaar ging het Suezkanaal open?", "answer": 1869 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Strik",
+        "Au pair",
+        "Zendmast",
+        "Afvalscheiding",
+        "Charlie en de chocoladefabriek",
+        "Paddington",
+        "Orgel",
+        "Haarlak",
+        "Gevangenisbewaarder",
+        "Kerstmannendorp",
+        "Verliefdheid",
+        "Che Guevara",
+        "James Cook",
+        "Gifkikker",
+        "Apres-ski",
+        "Raadsel",
+        "Victoriawatervallen",
+        "Nasi goreng",
+        "Riem",
+        "Paparazzi",
+        "Gips",
+        "Fotofinish",
+        "Klaagmuur",
+        "Poolcirkel",
+        "Mr. Bean",
+        "Kölner Dom",
+        "Sleutelgat",
+        "Bloemist",
+        "Naanbrood",
+        "Rapunzel",
+        "101 Dalmatiers",
+        "Wespensteek",
+        "Black Friday",
+        "Mast",
+        "Taxichauffeur",
+        "Barbapapa",
+        "Defibrillator",
+        "Neushoorn",
+        "Narcissus",
+        "Tol"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Sicilie?", "answers": [{ "text": "Etna", "aliases": ["Vulkaan"] }, { "text": "Maffia", "aliases": ["The Godfather", "Cosa Nostra"] }, { "text": "Palermo", "aliases": ["Catania"] }, { "text": "Eiland", "aliases": ["Italiaans eiland", "Grootste eiland"] }] },
+        { "prompt": "Wat weet je over Aladdin?", "answers": [{ "text": "Wonderlamp", "aliases": ["Lamp"] }, { "text": "Geest", "aliases": ["Geest uit de lamp", "Drie wensen"] }, { "text": "Vliegend tapijt", "aliases": ["Tapijt"] }, { "text": "Jasmine", "aliases": ["Prinses Jasmine", "Abu"] }] },
+        { "prompt": "Wat weet je over kangoeroes?", "answers": [{ "text": "Australie", "aliases": ["Australisch"] }, { "text": "Buidel", "aliases": ["Jong in buidel"] }, { "text": "Springen", "aliases": ["Hoppen"] }, { "text": "Boksen", "aliases": ["Sterke staart"] }] },
+        { "prompt": "Wat weet je over Johan Cruijff?", "answers": [{ "text": "Ajax", "aliases": ["Amsterdam"] }, { "text": "Nummer veertien", "aliases": ["14"] }, { "text": "Totaalvoetbal", "aliases": ["Cruijff-draai"] }, { "text": "Barcelona", "aliases": ["FC Barcelona"] }] },
+        { "prompt": "Wat weet je over Stonehenge?", "answers": [{ "text": "Engeland", "aliases": ["Groot-Brittannie"] }, { "text": "Stenen cirkel", "aliases": ["Grote stenen"] }, { "text": "Zonnewende", "aliases": ["Zomer", "Zon"] }, { "text": "Mysterie", "aliases": ["Niemand weet waarom", "Druiden"] }] },
+        { "prompt": "Wat weet je over Taylor Swift?", "answers": [{ "text": "Eras Tour", "aliases": ["Tour"] }, { "text": "Swifties", "aliases": ["Fans"] }, { "text": "Travis Kelce", "aliases": ["Kelce"] }, { "text": "Countrymuziek", "aliases": ["Shake It Off", "Popmuziek"] }] },
+        { "prompt": "Wat weet je over Berlijn?", "answers": [{ "text": "Brandenburger Tor", "aliases": ["Poort"] }, { "text": "Berlijnse Muur", "aliases": ["Muur", "Checkpoint Charlie"] }, { "text": "Duitsland", "aliases": ["Hoofdstad van Duitsland"] }, { "text": "Currywurst", "aliases": ["Doner"] }] },
+        { "prompt": "Wat weet je over vuurwerk?", "answers": [{ "text": "Oud en nieuw", "aliases": ["Oudejaarsavond", "Oudjaar"] }, { "text": "Knallen", "aliases": ["Knal", "Rotjes"] }, { "text": "Vuurpijlen", "aliases": ["Pijlen", "Siervuurwerk"] }, { "text": "Vuurwerkverbod", "aliases": ["Verbod", "Ongelukken"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het ronde, gefrituurde gebakje met een gat in het midden?", "difficulty": "easy", "answers": [{ "text": "Een donut", "aliases": ["Donut"] }] },
+        { "prompt": "Op welk instrument speel je met twee stokken en een pedaal voor de grote trom?", "difficulty": "easy", "answers": [{ "text": "Het drumstel", "aliases": ["Drumstel", "Drums", "Slagwerk"] }] },
+        { "prompt": "Hoe noem je de zoon van je broer of zus?", "difficulty": "easy", "answers": [{ "text": "Een neef", "aliases": ["Neef"] }] },
+        { "prompt": "Welke kleur heeft een olifant?", "difficulty": "easy", "answers": [{ "text": "Grijs" }] },
+        { "prompt": "Welke sprookjesprinses slaapt honderd jaar na een prik aan een spinnewiel?", "difficulty": "easy", "answers": [{ "text": "Doornroosje" }] },
+        { "prompt": "Welke Amerikaanse autofabrikant voerde in 1913 de lopende band in?", "difficulty": "hard", "answers": [{ "text": "Henry Ford", "aliases": ["Ford"] }] },
+        { "prompt": "Welke Franse componist schreef de Gymnopedies?", "difficulty": "hard", "answers": [{ "text": "Erik Satie", "aliases": ["Satie"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Cs?", "difficulty": "hard", "answers": [{ "text": "Cesium", "aliases": ["Caesium"] }] },
+        { "prompt": "Welke rivier stroomt door Glasgow?", "difficulty": "hard", "answers": [{ "text": "De Clyde", "aliases": ["Clyde"] }] },
+        { "prompt": "Welke Engelse koningin was de moeder van Elizabeth I?", "difficulty": "hard", "answers": [{ "text": "Anna Boleyn", "aliases": ["Boleyn", "Anne Boleyn"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Kaa in Het Jungleboek?", "answers": [{ "text": "Een slang", "aliases": ["Slang", "Python"] }] },
+        { "prompt": "In welke Engelse stad werd William Shakespeare geboren?", "answers": [{ "text": "Stratford-upon-Avon", "aliases": ["Stratford"] }] },
+        { "prompt": "Welke Portugese dichter schreef het heldendicht De Lusiaden?", "answers": [{ "text": "Luis de Camoes", "aliases": ["Camoes"] }] },
+        { "prompt": "Welke gele, kromme vrucht pellen apen graag?", "answers": [{ "text": "De banaan", "aliases": ["Banaan"] }] },
+        { "prompt": "Welke Amerikaanse stad heeft de bijnaam Motor City?", "answers": [{ "text": "Detroit" }] },
+        { "prompt": "Welke Nederlandse schilder maakte De molen bij Wijk bij Duurstede?", "answers": [{ "text": "Jacob van Ruisdael", "aliases": ["Van Ruisdael", "Ruisdael"] }] },
+        { "prompt": "Hoe heet de wintersport waarbij je op twee latten een berg af glijdt?", "answers": [{ "text": "Skien", "aliases": ["Skieen", "Alpineskien"] }] },
+        { "prompt": "Welke Nederlandse band scoorde in 1969 een Amerikaanse nummer een met Venus?", "answers": [{ "text": "Shocking Blue" }] },
+        { "prompt": "Welke Franse wiskundige stierf op zijn twintigste na een duel en legde de basis voor de groepentheorie?", "answers": [{ "text": "Evariste Galois", "aliases": ["Galois"] }] }
+      ]
+    }
+  ]
+}

@@ -89,7 +89,17 @@
         "Garage",
         "Pitbord",
         "Windtunnel",
-        "Simulator"
+        "Simulator",
+        "Pitstop",
+        "Safety car",
+        "Geblokte vlag",
+        "Pole position",
+        "Inhaalactie",
+        "Champagnedouche",
+        "Formule 1-coureur",
+        "Bandenwissel",
+        "Monaco Grand Prix",
+        "Rondetijd"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Op welk Duits circuit had Niki Lauda in 1976 zijn bijna fatale crash?", "answers": [{ "text": "De Nurburgring", "aliases": ["Nurburgring", "Nordschleife"] }] },
         { "prompt": "Welke Britse coureur werd in 1976 wereldkampioen?", "answers": [{ "text": "James Hunt", "aliases": ["Hunt"] }] },
         { "prompt": "Wie was teambaas van Ferrari tijdens alle vijf de wereldtitels van Michael Schumacher?", "answers": [{ "text": "Jean Todt", "aliases": ["Todt"] }] },
-        { "prompt": "Op welk circuit kwam Ayrton Senna in 1994 om het leven?", "answers": [{ "text": "Imola", "aliases": ["Autodromo Enzo e Dino Ferrari"] }] }
+        { "prompt": "Op welk circuit kwam Ayrton Senna in 1994 om het leven?", "answers": [{ "text": "Imola", "aliases": ["Autodromo Enzo e Dino Ferrari"] }] },
+        { "prompt": "Op welk Belgisch circuit ligt de beroemde bocht Eau Rouge?", "answers": [{ "text": "Spa-Francorchamps", "aliases": ["Spa", "Francorchamps"] }] },
+        { "prompt": "Welke Argentijn won vijf wereldtitels in de jaren vijftig?", "answers": [{ "text": "Juan Manuel Fangio", "aliases": ["Fangio"] }] }
       ]
     }
   ]

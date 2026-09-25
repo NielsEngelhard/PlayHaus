@@ -49,9 +49,9 @@
         { "prompt": "Hoeveel botten heeft het menselijk lichaam bij de geboorte?", "answer": 270, "unit": "botten", "explanation": "Er groeien botten aan elkaar, dus een volwassene houdt er 206 over." },
         { "prompt": "Hoeveel kilometer is de Afsluitdijk lang?", "answer": 32, "unit": "kilometer" },
         { "prompt": "Hoeveel botten heeft een volwassen mens, nadat een deel van de babybotten aan elkaar is gegroeid?", "answer": 206, "unit": "botten" },
-        { "prompt": "In welk jaar werd de Zuiderzeewet aangenomen die de inpoldering en de Afsluitdijk mogelijk maakte?", "answer": 1918, "unit": "" },
+        { "prompt": "In welk jaar werd de Zuiderzeewet aangenomen die de inpoldering en de Afsluitdijk mogelijk maakte?", "answer": 1918 },
         { "prompt": "Hoeveel botten zitten er in een menselijke hand, inclusief pols?", "answer": 27, "unit": "botten" },
-        { "prompt": "In welk jaar werd de Afsluitdijk voltooid?", "answer": 1932, "unit": "" },
+        { "prompt": "In welk jaar werd de Afsluitdijk voltooid?", "answer": 1932 },
         { "prompt": "Hoeveel vierkante kilometer is de Flevopolder, de grootste kunstmatige polder ter wereld, ongeveer?", "answer": 970, "unit": "vierkante kilometer" },
         { "prompt": "Hoeveel botten zitten er in een menselijke voet, inclusief enkel?", "answer": 26, "unit": "botten" }
       ]
@@ -88,7 +88,17 @@
         "Slaapwandelen",
         "James Bond",
         "Windsurfen",
-        "Het paard van Troje"
+        "Het paard van Troje",
+        "Virtual reality",
+        "The Sound of Music",
+        "Tuba",
+        "Lychee",
+        "Zwarte doos",
+        "Slingers",
+        "Odysseus",
+        "Hiphop",
+        "Egelvis",
+        "Nagelstyliste"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welke schrijfster bedacht de detective Hercule Poirot?", "answers": [{ "text": "Agatha Christie", "aliases": ["Christie"] }] },
         { "prompt": "Welk metaal geleidt elektriciteit het beste?", "answers": [{ "text": "Zilver" }] },
         { "prompt": "Welke Nederlander sleep zijn eigen lenzen en zag als eerste bacterien door een microscoop?", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek", "Leeuwenhoek"] }] },
-        { "prompt": "Welk instrument bespeelde Miles Davis?", "answers": [{ "text": "De trompet", "aliases": ["trompet"] }] }
+        { "prompt": "Welk instrument bespeelde Miles Davis?", "answers": [{ "text": "De trompet", "aliases": ["trompet"] }] },
+        { "prompt": "Wat is na Sicilie het grootste eiland van Italie?", "answers": [{ "text": "Sardinie" }] },
+        { "prompt": "Welke Duitse componist schreef de operacyclus Der Ring des Nibelungen?", "answers": [{ "text": "Richard Wagner", "aliases": ["Wagner"] }] }
       ]
     }
   ]

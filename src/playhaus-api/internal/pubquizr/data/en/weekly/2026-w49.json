@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w49",
+  "title": "Weekly quiz 49 2026",
+  "description": "The weekly quiz of Wednesday 2 December 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which lake lies between Germany, Austria and Switzerland?", "category": "Geography", "answers": [{ "text": "Lake Constance", "aliases": ["Bodensee"] }] },
+        { "prompt": "What are the positively charged particles in the nucleus of an atom called?", "category": "Science", "answers": [{ "text": "Protons", "aliases": ["Proton"] }] },
+        { "prompt": "Which Carthaginian general crossed the Alps with elephants in 218 BC?", "category": "History", "answers": [{ "text": "Hannibal", "aliases": ["Hannibal Barca"] }] },
+        { "prompt": "Which Dutch athlete became world champion in the 400 metres hurdles in 2023?", "category": "Sport", "answers": [{ "text": "Femke Bol", "aliases": ["Bol"] }] },
+        { "prompt": "Which Pixar film takes place inside a girl's head, where her emotions are in charge?", "category": "Film", "answers": [{ "text": "Inside Out" }] },
+        { "prompt": "Which Swedish singer won Eurovision in 2012 and 2023?", "category": "Music", "answers": [{ "text": "Loreen" }] },
+        { "prompt": "On which Wadden island is the Oerol festival held every summer?", "category": "The Netherlands", "answers": [{ "text": "Terschelling" }] },
+        { "prompt": "Which American painter made Nighthawks, the late-night diner?", "category": "Art", "answers": [{ "text": "Edward Hopper", "aliases": ["Hopper"] }] },
+        { "prompt": "How do you say thank you in Japanese?", "category": "Language", "answers": [{ "text": "Arigato", "aliases": ["Arigatou", "Arigato gozaimasu"] }] },
+        { "prompt": "What is the Belgian waffle with pearl sugar baked into it called?", "category": "Food", "answers": [{ "text": "The Liege waffle", "aliases": ["Liege waffle"] }] },
+        { "prompt": "Which Swedish music service started streaming music in 2008?", "category": "Technology", "answers": [{ "text": "Spotify" }] },
+        { "prompt": "Which meadow bird was chosen as the national bird of the Netherlands in 2015?", "category": "Nature", "answers": [{ "text": "The black-tailed godwit", "aliases": ["Godwit", "Black-tailed godwit"] }] },
+        { "prompt": "Which American state consists of two peninsulas between the Great Lakes?", "category": "Geography", "answers": [{ "text": "Michigan" }] },
+        { "prompt": "What was the British passenger liner sunk by a German submarine in 1915 called?", "category": "History", "answers": [{ "text": "The Lusitania", "aliases": ["Lusitania"] }] },
+        { "prompt": "By which everyday name do we know sodium chloride?", "category": "Science", "answers": [{ "text": "Table salt", "aliases": ["Salt"] }] },
+        { "prompt": "Which American singer and guitarist had a hit with Purple Rain?", "category": "Music", "answers": [{ "text": "Prince" }] },
+        { "prompt": "In which 1990 film does Julia Roberts star alongside Richard Gere?", "category": "Film", "answers": [{ "text": "Pretty Woman" }] },
+        { "prompt": "Which Italian cream cheese belongs in tiramisu?", "category": "Food", "answers": [{ "text": "Mascarpone" }] },
+        { "prompt": "Which American company released the chatbot ChatGPT in 2022?", "category": "Technology", "answers": [{ "text": "OpenAI" }] },
+        { "prompt": "What is the wavy mark in the Spanish word senor called?", "category": "Language", "answers": [{ "text": "The tilde", "aliases": ["Tilde"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these countries is not a member of the European Union?", "options": [{ "text": "Iceland", "correct": true }, { "text": "Estonia" }, { "text": "Slovenia" }, { "text": "Malta" }] },
+        { "prompt": "Which of these animals has the most legs?", "options": [{ "text": "The centipede", "correct": true }, { "text": "The spider" }, { "text": "The lobster" }, { "text": "The beetle" }] },
+        { "prompt": "Which Dutch author created the naughty boy Dik Trom?", "options": [{ "text": "C. Joh. Kieviet", "correct": true }, { "text": "Annie M.G. Schmidt" }, { "text": "Paul Biegel" }, { "text": "Guus Kuijer" }] },
+        { "prompt": "Which of these French cities lies on the Rhone?", "options": [{ "text": "Avignon", "correct": true }, { "text": "Toulouse" }, { "text": "Bordeaux" }, { "text": "Nantes" }] },
+        { "prompt": "What is an inflammation of the appendix called?", "options": [{ "text": "Appendicitis", "correct": true }, { "text": "Bronchitis" }, { "text": "Gastritis" }, { "text": "Arthritis" }] },
+        { "prompt": "Which country broke away from the Netherlands in 1830?", "options": [{ "text": "Belgium", "correct": true }, { "text": "Luxembourg" }, { "text": "Indonesia" }, { "text": "Suriname" }] },
+        { "prompt": "Which of these cities has the most inhabitants, suburbs included?", "options": [{ "text": "Tokyo", "correct": true }, { "text": "London" }, { "text": "Paris" }, { "text": "New York" }] },
+        { "prompt": "Which of these animals is a mollusc?", "options": [{ "text": "The squid", "correct": true }, { "text": "The crab" }, { "text": "The starfish" }, { "text": "The jellyfish" }] },
+        { "prompt": "In which film does an astronaut say: Houston, we have a problem?", "options": [{ "text": "Apollo 13", "correct": true }, { "text": "Gravity" }, { "text": "Armageddon" }, { "text": "The Martian" }] },
+        { "prompt": "Which country has won the most Olympic gold medals in long track speed skating?", "options": [{ "text": "The Netherlands", "correct": true }, { "text": "Norway" }, { "text": "Germany" }, { "text": "The United States" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Space Needle in Seattle?", "answer": 184, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Meuse?", "answer": 925, "unit": "kilometres" },
+        { "prompt": "How many neck vertebrae does a giraffe have?", "answer": 7, "unit": "vertebrae", "explanation": "Exactly as many as a human: they are just much longer." },
+        { "prompt": "How old was Mozart when he died?", "answer": 35, "unit": "years" },
+        { "prompt": "About how many litres of water does a ten-minute shower use?", "answer": 80, "unit": "litres" },
+        { "prompt": "How many Olympic medals did the Netherlands win at the 2024 Paris Games?", "answer": 34, "unit": "medals" },
+        { "prompt": "At about how many kilometres altitude does a passenger jet fly?", "answer": 11, "unit": "kilometres" },
+        { "prompt": "About how many grams of sugar are there in a 330 ml can of cola?", "answer": 35, "unit": "grams" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Coldplay",
+        "Short track",
+        "Bedouin",
+        "Apple sauce",
+        "Eagle",
+        "Palette",
+        "Ketchup",
+        "Bollywood",
+        "Midlife crisis",
+        "Timpani",
+        "Vacuum cleaner bag",
+        "Drinking straw",
+        "Audiobook",
+        "Palm Jumeirah",
+        "Potter's wheel",
+        "Cap",
+        "Summer holidays",
+        "Film director",
+        "Free kick",
+        "Wonder Woman",
+        "Marilyn Monroe",
+        "Alaska",
+        "Dirty Dancing",
+        "Ravioli",
+        "Howler monkey",
+        "Roald Amundsen",
+        "Quince",
+        "Art dealer",
+        "Watchmaker",
+        "Steve Jobs",
+        "The Birth of Venus",
+        "Room service",
+        "Chocolate sprinkles",
+        "Cupid",
+        "Selfie",
+        "Measuring jug",
+        "Stake",
+        "Hermione",
+        "Charger",
+        "Peloton"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Los Angeles?", "answers": [{ "text": "Hollywood", "aliases": ["Film studios", "Hollywood sign"] }, { "text": "California", "aliases": ["America"] }, { "text": "Beverly Hills", "aliases": ["Rich people", "Mansions"] }, { "text": "Beaches", "aliases": ["Santa Monica", "Venice Beach"] }] },
+        { "prompt": "What do you know about the Wadden Sea?", "answers": [{ "text": "Mudflat hiking", "aliases": ["Mudflats", "Tidal flats"] }, { "text": "Seals", "aliases": ["Seal"] }, { "text": "Wadden Islands", "aliases": ["Texel", "Terschelling"] }, { "text": "Tides", "aliases": ["Ebb and flow"] }] },
+        { "prompt": "What do you know about Freddie Mercury?", "answers": [{ "text": "Queen", "aliases": ["Singer of Queen"] }, { "text": "Bohemian Rhapsody", "aliases": ["We Are the Champions"] }, { "text": "Moustache", "aliases": ["Tash"] }, { "text": "Live Aid", "aliases": ["Wembley"] }] },
+        { "prompt": "What do you know about the Great Wall of China?", "answers": [{ "text": "China", "aliases": ["Chinese"] }, { "text": "Very long", "aliases": ["Thousands of kilometres", "Long"] }, { "text": "Defence", "aliases": ["Mongols", "Against enemies"] }, { "text": "Tourists", "aliases": ["Wonder of the world", "Walking"] }] },
+        { "prompt": "What do you know about spiders?", "answers": [{ "text": "Eight legs", "aliases": ["Eight"] }, { "text": "Web", "aliases": ["Cobweb", "Silk"] }, { "text": "Tarantula", "aliases": ["Black widow"] }, { "text": "Fear of spiders", "aliases": ["Scary", "Afraid"] }] },
+        { "prompt": "What do you know about Bob Marley?", "answers": [{ "text": "Reggae", "aliases": ["Reggae music"] }, { "text": "Jamaica", "aliases": ["Jamaican"] }, { "text": "Dreadlocks", "aliases": ["Rasta", "Rastafari"] }, { "text": "No Woman, No Cry", "aliases": ["One Love", "Three Little Birds"] }] },
+        { "prompt": "What do you know about golf?", "answers": [{ "text": "Tiger Woods", "aliases": ["Woods"] }, { "text": "Hole in one", "aliases": ["Birdie", "Hole"] }, { "text": "Golf clubs", "aliases": ["Club", "Putter"] }, { "text": "Caddie", "aliases": ["Golf cart"] }] },
+        { "prompt": "What do you know about the Rijksmuseum?", "answers": [{ "text": "Amsterdam", "aliases": ["Museumplein"] }, { "text": "The Night Watch", "aliases": ["Night Watch", "Rembrandt"] }, { "text": "Cuypers", "aliases": ["Pierre Cuypers"] }, { "text": "The Milkmaid", "aliases": ["Vermeer", "Golden Age"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What kind of tree do many people put up at home in December and decorate with baubles?", "difficulty": "easy", "answers": [{ "text": "A Christmas tree", "aliases": ["Christmas tree", "Fir tree", "Spruce"] }] },
+        { "prompt": "What is the evening of the fifth of December, when Sinterklaas brings presents, called in the Netherlands?", "difficulty": "easy", "answers": [{ "text": "Pakjesavond", "aliases": ["Sinterklaas evening", "Present evening"] }] },
+        { "prompt": "What is a house made of snow and ice called?", "difficulty": "easy", "answers": [{ "text": "An igloo", "aliases": ["Igloo"] }] },
+        { "prompt": "What is the name of the gloomy donkey in Winnie the Pooh?", "difficulty": "easy", "answers": [{ "text": "Eeyore", "aliases": ["Iejoor"] }] },
+        { "prompt": "What is the Danish toy of plastic bricks you click together called?", "difficulty": "easy", "answers": [{ "text": "Lego" }] },
+        { "prompt": "Which English physicist showed with his double-slit experiment that light is a wave?", "difficulty": "hard", "answers": [{ "text": "Thomas Young", "aliases": ["Young"] }] },
+        { "prompt": "Which Russian composer wrote the ballet Romeo and Juliet and Peter and the Wolf?", "difficulty": "hard", "answers": [{ "text": "Sergei Prokofiev", "aliases": ["Prokofiev"] }] },
+        { "prompt": "Which element has the chemical symbol Cd?", "difficulty": "hard", "answers": [{ "text": "Cadmium" }] },
+        { "prompt": "Which river flows through Kyiv?", "difficulty": "hard", "answers": [{ "text": "The Dnieper", "aliases": ["Dnieper", "Dnipro"] }] },
+        { "prompt": "Which Roman emperor and philosopher wrote the Meditations?", "difficulty": "hard", "answers": [{ "text": "Marcus Aurelius" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What has the name of Sinterklaas's grey horse been since 2019?", "answers": [{ "text": "Ozosnel" }] },
+        { "prompt": "Which Greek hero sailed with the Argonauts to fetch the Golden Fleece?", "answers": [{ "text": "Jason" }] },
+        { "prompt": "Which French writer made her debut at eighteen with Bonjour tristesse?", "answers": [{ "text": "Francoise Sagan", "aliases": ["Sagan"] }] },
+        { "prompt": "Which Disney princess has a tiger as a pet?", "answers": [{ "text": "Jasmine", "aliases": ["Princess Jasmine"] }] },
+        { "prompt": "In the cathedral of which French city were the kings of France crowned?", "answers": [{ "text": "Reims", "aliases": ["Rheims"] }] },
+        { "prompt": "Which Polish astronomer put the sun at the centre of the universe instead of the earth?", "answers": [{ "text": "Nicolaus Copernicus", "aliases": ["Copernicus"] }] },
+        { "prompt": "What is the day after Christmas Day called?", "answers": [{ "text": "Boxing Day", "aliases": ["Second Christmas Day"] }] },
+        { "prompt": "Which British girl group had a hit with Wannabe in 1996?", "answers": [{ "text": "Spice Girls", "aliases": ["The Spice Girls"] }] },
+        { "prompt": "Which Dutch doctor invented the electrocardiogram and won the Nobel Prize for it in 1924?", "answers": [{ "text": "Willem Einthoven", "aliases": ["Einthoven"] }] }
+      ]
+    }
+  ]
+}

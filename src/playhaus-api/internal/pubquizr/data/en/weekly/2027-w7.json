@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w7",
+  "title": "Weekly quiz 7 2027",
+  "description": "The weekly quiz of Wednesday 17 February 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the largest city in Switzerland?", "category": "Geography", "answers": [{ "text": "Zurich" }] },
+        { "prompt": "What is the liquid, yellowish part of the blood called?", "category": "Science", "answers": [{ "text": "Blood plasma", "aliases": ["Plasma"] }] },
+        { "prompt": "Which Spartan king held the pass at Thermopylae with three hundred men in 480 BC?", "category": "History", "answers": [{ "text": "Leonidas" }] },
+        { "prompt": "Which Brazilian footballer is the only player to have won the World Cup three times?", "category": "Sport", "answers": [{ "text": "Pele", "aliases": ["Edson Arantes do Nascimento"] }] },
+        { "prompt": "Which British actress won an Oscar for playing Queen Elizabeth II in The Queen?", "category": "Film", "answers": [{ "text": "Helen Mirren", "aliases": ["Mirren"] }] },
+        { "prompt": "Which American singer sang Sweet Caroline?", "category": "Music", "answers": [{ "text": "Neil Diamond", "aliases": ["Diamond"] }] },
+        { "prompt": "Which Brabant city is called Kruikenstad during carnival?", "category": "The Netherlands", "answers": [{ "text": "Tilburg" }] },
+        { "prompt": "Which American painter is famous for her large flowers and skulls from New Mexico?", "category": "Art", "answers": [{ "text": "Georgia O'Keeffe", "aliases": ["O'Keeffe"] }] },
+        { "prompt": "What is the curly sign for and called: &?", "category": "Language", "answers": [{ "text": "Ampersand", "aliases": ["And sign"] }] },
+        { "prompt": "What is the Mexican sauce of chillies and dark chocolate called?", "category": "Food", "answers": [{ "text": "Mole", "aliases": ["Mole poblano"] }] },
+        { "prompt": "Which Chinese company makes smartphones and network equipment and has a red fan as its logo?", "category": "Technology", "answers": [{ "text": "Huawei" }] },
+        { "prompt": "Which insect holds its front legs folded as if praying?", "category": "Nature", "answers": [{ "text": "The praying mantis", "aliases": ["Praying mantis", "Mantis"] }] },
+        { "prompt": "Which great river flows through Laos, Cambodia and Vietnam?", "category": "Geography", "answers": [{ "text": "The Mekong", "aliases": ["Mekong"] }] },
+        { "prompt": "Which French king, the first Bourbon, was assassinated in Paris in 1610?", "category": "History", "answers": [{ "text": "Henry IV", "aliases": ["Henri IV", "Henry the Fourth"] }] },
+        { "prompt": "What is the result called when you multiply a number by itself?", "category": "Science", "answers": [{ "text": "The square", "aliases": ["Square", "Squared"] }] },
+        { "prompt": "Which Belgian singer had a hit with Papaoutai in 2013?", "category": "Music", "answers": [{ "text": "Stromae" }] },
+        { "prompt": "Which New Zealand director made Jojo Rabbit and played Hitler in it himself?", "category": "Film", "answers": [{ "text": "Taika Waititi", "aliases": ["Waititi"] }] },
+        { "prompt": "Which Cuban cocktail of white rum, lime, cane sugar and soda water did Hemingway like to drink in Havana?", "category": "Food", "answers": [{ "text": "Mojito" }] },
+        { "prompt": "Which Dutch company became big with satnav devices for the car?", "category": "Technology", "answers": [{ "text": "TomTom" }] },
+        { "prompt": "In which language is kia ora a greeting?", "category": "Language", "answers": [{ "text": "Maori" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Italy?", "options": [{ "text": "Trieste", "correct": true }, { "text": "Nice" }, { "text": "Split" }, { "text": "Innsbruck" }] },
+        { "prompt": "Which of these animals does not live in the wild in Africa?", "options": [{ "text": "The tiger", "correct": true }, { "text": "The lion" }, { "text": "The giraffe" }, { "text": "The hippopotamus" }] },
+        { "prompt": "Which Dutch writer wrote The Dinner?", "options": [{ "text": "Herman Koch", "correct": true }, { "text": "Arnon Grunberg" }, { "text": "Kader Abdolah" }, { "text": "Tommy Wieringa" }] },
+        { "prompt": "In which of these countries is Arabic the official language?", "options": [{ "text": "Tunisia", "correct": true }, { "text": "Iran" }, { "text": "Turkey" }, { "text": "Pakistan" }] },
+        { "prompt": "Which of these teeth sits furthest back in your mouth?", "options": [{ "text": "The wisdom tooth", "correct": true }, { "text": "The incisor" }, { "text": "The canine" }, { "text": "The front tooth" }] },
+        { "prompt": "Which European country had the Congo as a colony?", "options": [{ "text": "Belgium", "correct": true }, { "text": "France" }, { "text": "Portugal" }, { "text": "Germany" }] },
+        { "prompt": "Which of these islands belongs to Denmark?", "options": [{ "text": "Bornholm", "correct": true }, { "text": "Gotland" }, { "text": "Aland" }, { "text": "Rugen" }] },
+        { "prompt": "Which of these birds dives into the water to catch small fish?", "options": [{ "text": "The kingfisher", "correct": true }, { "text": "The sparrow" }, { "text": "The blackbird" }, { "text": "The magpie" }] },
+        { "prompt": "In which film does Johnny Depp play a young man with scissors for hands?", "options": [{ "text": "Edward Scissorhands", "correct": true }, { "text": "Beetlejuice" }, { "text": "Big Fish" }, { "text": "Sleepy Hollow" }] },
+        { "prompt": "Which Dutchman scored with a famous volley in the 1988 European Championship final?", "options": [{ "text": "Marco van Basten", "correct": true }, { "text": "Ruud Gullit" }, { "text": "Ronald Koeman" }, { "text": "Frank Rijkaard" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the CN Tower in Toronto?", "answer": 553, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Ganges?", "answer": 2525, "unit": "kilometres" },
+        { "prompt": "What is the top speed of the Japanese Shinkansen in kilometres per hour?", "answer": 320, "unit": "kilometres per hour" },
+        { "prompt": "How old was Anne Frank when she died?", "answer": 15, "unit": "years" },
+        { "prompt": "About how many kilos does an adult hippopotamus weigh?", "answer": 1500, "unit": "kilos" },
+        { "prompt": "How many squares does an international draughts board have?", "answer": 100, "unit": "squares" },
+        { "prompt": "How many metres is the men's high jump world record?", "answer": 2.45, "unit": "metres" },
+        { "prompt": "In which year did the Netherlands first become men's hockey world champions?", "answer": 1973 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Estate agent",
+        "Pencil sharpener",
+        "Washing-up liquid",
+        "Halloween",
+        "Dreadlocks",
+        "Midnight sun",
+        "Legoland",
+        "Daisy",
+        "Liberation Day",
+        "Flower power",
+        "Atlas",
+        "Sticker album",
+        "Sugar cube",
+        "Dressing gown",
+        "Fake news",
+        "Douze points",
+        "Cycle race",
+        "Traffic warden",
+        "Nero",
+        "North Sea flood",
+        "Beach volleyball",
+        "Pigsty",
+        "Duck",
+        "Street art",
+        "Rug",
+        "Washing-up brush",
+        "Fox tail",
+        "Extra",
+        "Marrakesh",
+        "Onion",
+        "Nappy",
+        "Dice",
+        "Yellow card",
+        "Nutmeg",
+        "Chickpeas",
+        "Schoolbag",
+        "Snake charmer",
+        "Gilet",
+        "Plug",
+        "Clarinet"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about carnival?", "answers": [{ "text": "Dressing up", "aliases": ["Costume", "Fancy dress"] }, { "text": "Brabant and Limburg", "aliases": ["The south", "Venice", "Rio"] }, { "text": "Carnival prince", "aliases": ["Prince"] }, { "text": "Parade", "aliases": ["Floats"] }] },
+        { "prompt": "What do you know about Rio de Janeiro?", "answers": [{ "text": "Christ the Redeemer", "aliases": ["Cristo Redentor"] }, { "text": "Copacabana", "aliases": ["Ipanema", "Beach"] }, { "text": "Carnival", "aliases": ["Samba", "Sambadrome"] }, { "text": "Sugarloaf Mountain", "aliases": ["Sugarloaf"] }] },
+        { "prompt": "What do you know about Antwerp?", "answers": [{ "text": "Port", "aliases": ["Belgium's biggest port"] }, { "text": "Diamonds", "aliases": ["Diamond district"] }, { "text": "The Scheldt", "aliases": ["Scheldt"] }, { "text": "Rubens", "aliases": ["Rubens House"] }] },
+        { "prompt": "What do you know about ants?", "answers": [{ "text": "Queen", "aliases": ["Ant queen"] }, { "text": "Strong", "aliases": ["Lifting", "Carrying loads"] }, { "text": "Anthill", "aliases": ["Nest", "Colony"] }, { "text": "Teamwork", "aliases": ["Workers", "Group"] }] },
+        { "prompt": "What do you know about Vietnam?", "answers": [{ "text": "Hanoi", "aliases": ["Ho Chi Minh City", "Saigon"] }, { "text": "Vietnam War", "aliases": ["War"] }, { "text": "Pho", "aliases": ["Noodle soup", "Spring rolls"] }, { "text": "Rice fields", "aliases": ["Rice", "Conical hat"] }] },
+        { "prompt": "What do you know about Buckingham Palace?", "answers": [{ "text": "London", "aliases": ["England"] }, { "text": "The King", "aliases": ["Royal family", "The Queen"] }, { "text": "Changing of the guard", "aliases": ["Guards", "Bearskins"] }, { "text": "Balcony", "aliases": ["Waving"] }] },
+        { "prompt": "What do you know about Monopoly?", "answers": [{ "text": "Streets", "aliases": ["Mayfair", "Old Kent Road"] }, { "text": "Play money", "aliases": ["Money"] }, { "text": "Jail", "aliases": ["Go to jail"] }, { "text": "Hotels", "aliases": ["Houses"] }] },
+        { "prompt": "What do you know about pancakes?", "answers": [{ "text": "Syrup", "aliases": ["Icing sugar", "Maple syrup"] }, { "text": "Bacon", "aliases": ["Cheese", "Apple"] }, { "text": "Flat", "aliases": ["Thin", "Round"] }, { "text": "Pancake Day", "aliases": ["Shrove Tuesday"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you put on when you go to a carnival party?", "difficulty": "easy", "answers": [{ "text": "A costume", "aliases": ["Costume", "Fancy dress"] }] },
+        { "prompt": "Who lives in a palace and wears a crown?", "difficulty": "easy", "answers": [{ "text": "A king", "aliases": ["King", "Queen"] }] },
+        { "prompt": "What does the teacher write with on an old-fashioned blackboard?", "difficulty": "easy", "answers": [{ "text": "Chalk", "aliases": ["A piece of chalk"] }] },
+        { "prompt": "What shape is a wheel?", "difficulty": "easy", "answers": [{ "text": "Round", "aliases": ["A circle", "Circle"] }] },
+        { "prompt": "What does a baker make fresh every morning?", "difficulty": "easy", "answers": [{ "text": "Bread", "aliases": ["Loaves"] }] },
+        { "prompt": "Which Dutch architect designed the Stock Exchange on the Damrak in Amsterdam?", "difficulty": "hard", "answers": [{ "text": "Hendrik Petrus Berlage", "aliases": ["Berlage", "H.P. Berlage"] }] },
+        { "prompt": "Which American composer wrote the music for West Side Story?", "difficulty": "hard", "answers": [{ "text": "Leonard Bernstein", "aliases": ["Bernstein"] }] },
+        { "prompt": "Which element has the chemical symbol Ir?", "difficulty": "hard", "answers": [{ "text": "Iridium" }] },
+        { "prompt": "Which river flows through Leuven?", "difficulty": "hard", "answers": [{ "text": "The Dijle", "aliases": ["Dijle", "Dyle"] }] },
+        { "prompt": "Which Viking leader, according to the sagas, reached North America around the year one thousand?", "difficulty": "hard", "answers": [{ "text": "Leif Erikson", "aliases": ["Leif Eriksson", "Leif the Lucky"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of bird is Tweety?", "answers": [{ "text": "A canary", "aliases": ["Canary"] }] },
+        { "prompt": "Which English university city is famous for punting on the river Cam?", "answers": [{ "text": "Cambridge" }] },
+        { "prompt": "Which German writer wrote Perfume?", "answers": [{ "text": "Patrick Suskind", "aliases": ["Suskind"] }] },
+        { "prompt": "Which sport do you play with a small white ball and bats on a table with a little net?", "answers": [{ "text": "Table tennis", "aliases": ["Ping pong"] }] },
+        { "prompt": "What is the currency of Indonesia called?", "answers": [{ "text": "The rupiah", "aliases": ["Rupiah"] }] },
+        { "prompt": "Which British scientist took the famous X-ray photograph of DNA, Photo 51?", "answers": [{ "text": "Rosalind Franklin", "aliases": ["Franklin"] }] },
+        { "prompt": "What does a cow eat in the field?", "answers": [{ "text": "Grass" }] },
+        { "prompt": "Which American band had a hit with Mr Brightside in 2004?", "answers": [{ "text": "The Killers", "aliases": ["Killers"] }] },
+        { "prompt": "Which Greek poet from the island of Lesbos was called the tenth Muse by Plato?", "answers": [{ "text": "Sappho" }] }
+      ]
+    }
+  ]
+}

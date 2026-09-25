@@ -89,7 +89,17 @@
         "Warhorse",
         "Anvil",
         "Shepherd",
-        "Holy Grail"
+        "Holy Grail",
+        "Knight on horseback",
+        "Signet ring",
+        "Castle wall",
+        "Cathedral builder",
+        "Serf",
+        "Manuscript",
+        "Illuminated manuscript",
+        "Candlemaker",
+        "Herb garden",
+        "Medieval market"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which archbishop was murdered in his own cathedral at Canterbury in 1170?", "answers": [{ "text": "Thomas Becket", "aliases": ["Becket", "Thomas a Becket"] }] },
         { "prompt": "Which Frankish commander defeated an Arab army near Poitiers in 732?", "answers": [{ "text": "Charles Martel", "aliases": ["Martel"] }] },
         { "prompt": "Which emperor drowned in a river in Anatolia on his way to the Third Crusade in 1190?", "answers": [{ "text": "Frederick Barbarossa", "aliases": ["Barbarossa", "Frederick the First"] }] },
-        { "prompt": "Which theologian, teaching in Paris in the thirteenth century, wrote the Summa Theologica?", "answers": [{ "text": "Thomas Aquinas", "aliases": ["Aquinas"] }] }
+        { "prompt": "Which theologian, teaching in Paris in the thirteenth century, wrote the Summa Theologica?", "answers": [{ "text": "Thomas Aquinas", "aliases": ["Aquinas"] }] },
+        { "prompt": "In which year was Charlemagne crowned emperor?", "answers": [{ "text": "800", "aliases": ["The year 800"] }] },
+        { "prompt": "What is the name of the English survey that William the Conqueror had drawn up in 1086?", "answers": [{ "text": "The Domesday Book", "aliases": ["Domesday Book", "Domesday"] }] }
       ]
     }
   ]

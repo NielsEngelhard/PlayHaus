@@ -88,7 +88,17 @@
         "Sprookje",
         "Pindakaas",
         "Circustent",
-        "Het Vrijheidsbeeld"
+        "Het Vrijheidsbeeld",
+        "Receptionist",
+        "Winkelwagen",
+        "Hoorn",
+        "Wattenstaafje",
+        "Kraai",
+        "Drakenvrucht",
+        "Kantoortuin",
+        "Broodbeleg",
+        "Naaister",
+        "Braam"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welk element ontdekte het echtpaar Curie in 1898 als eerste?", "answers": [{ "text": "Polonium" }] },
         { "prompt": "Welk metaal heeft het hoogste smeltpunt van alle metalen?", "answers": [{ "text": "Wolfraam", "aliases": ["Wolfram"] }] },
         { "prompt": "Welke Russische scheikundige ordende de elementen in een tabel naar hun eigenschappen?", "answers": [{ "text": "Dmitri Mendelejev", "aliases": ["Mendelejev"] }] },
-        { "prompt": "Welke schilder bedacht samen met Georges Braque het kubisme?", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] }
+        { "prompt": "Welke schilder bedacht samen met Georges Braque het kubisme?", "answers": [{ "text": "Pablo Picasso", "aliases": ["Picasso"] }] },
+        { "prompt": "Welke Franse schrijver schreef De reis om de wereld in tachtig dagen?", "answers": [{ "text": "Jules Verne", "aliases": ["Verne"] }] },
+        { "prompt": "Welke Braziliaanse architect ontwierp de belangrijkste gebouwen van Brasilia?", "answers": [{ "text": "Oscar Niemeyer", "aliases": ["Niemeyer"] }] }
       ]
     }
   ]

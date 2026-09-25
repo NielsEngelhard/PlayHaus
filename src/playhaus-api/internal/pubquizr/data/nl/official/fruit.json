@@ -89,7 +89,17 @@
         "Fruitplukker",
         "Fruitkraam",
         "Fruitvliegje",
-        "Jampot"
+        "Jampot",
+        "Aardbeienveld",
+        "Fruitmand",
+        "Appelboom",
+        "Fruitspies",
+        "Vruchtensap",
+        "Vijgenboom",
+        "Mandarijn",
+        "Watermeloenpit",
+        "Kersenpit",
+        "Bananenboom"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke bes, voor het eerst gekweekt in Californie, is een kruising tussen een braam en een framboos?", "answers": [{ "text": "De loganbes", "aliases": ["Loganbes", "Loganberry"] }] },
         { "prompt": "Hoe heet de vrucht van de roos, die in siroop en thee wordt gebruikt?", "answers": [{ "text": "De rozenbottel", "aliases": ["Rozenbottel", "Bottel"] }] },
         { "prompt": "Van welke vrucht worden de zaden gefermenteerd en geroosterd om chocolade te maken?", "answers": [{ "text": "De cacaovrucht", "aliases": ["Cacao", "Cacaopeul"] }] },
-        { "prompt": "Welk zuur geeft citroenen hun zure smaak?", "answers": [{ "text": "Citroenzuur", "aliases": ["Citroen zuur"] }] }
+        { "prompt": "Welk zuur geeft citroenen hun zure smaak?", "answers": [{ "text": "Citroenzuur", "aliases": ["Citroen zuur"] }] },
+        { "prompt": "Welke vrucht is een kruising tussen een pomelo en een sinaasappel?", "answers": [{ "text": "De grapefruit", "aliases": ["Grapefruit", "Pompelmoes"] }] },
+        { "prompt": "Welke citrusvrucht geeft Earl Grey-thee zijn smaak?", "answers": [{ "text": "De bergamot", "aliases": ["Bergamot"] }] }
       ]
     }
   ]

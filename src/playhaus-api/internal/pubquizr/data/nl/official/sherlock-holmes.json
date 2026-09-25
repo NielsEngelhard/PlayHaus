@@ -89,7 +89,17 @@
         "Kaars",
         "Leunstoel",
         "Kinderkopjes",
-        "Wandelstok"
+        "Wandelstok",
+        "Deerstalker",
+        "Pijp",
+        "Mrs. Hudson",
+        "Baker Street",
+        "Doctor Watson",
+        "Moriarty",
+        "Scotland Yard",
+        "Viool spelen",
+        "Mist in Londen",
+        "Deductie"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Hoe heet het boek over hogere wiskunde dat Moriarty schreef?", "answers": [{ "text": "The Dynamics of an Asteroid", "aliases": ["De dynamica van een asteroide", "Dynamics of an Asteroid"] }] },
         { "prompt": "Welke Amerikaanse acteur speelde Holmes meer dan duizend keer op het toneel en bepaalde daarmee het populaire beeld van hem?", "answers": [{ "text": "William Gillette", "aliases": ["Gillette"] }] },
         { "prompt": "Holmes noemt de reuzenrat van welk eiland als een zaak waar de wereld nog niet klaar voor is?", "answers": [{ "text": "Sumatra" }] },
-        { "prompt": "In welk tijdschrift verscheen het eerste verhaal over Sherlock Holmes in 1887?", "answers": [{ "text": "Beeton's Christmas Annual", "aliases": ["Beetons Christmas Annual", "Beeton's"] }] }
+        { "prompt": "In welk tijdschrift verscheen het eerste verhaal over Sherlock Holmes in 1887?", "answers": [{ "text": "Beeton's Christmas Annual", "aliases": ["Beetons Christmas Annual", "Beeton's"] }] },
+        { "prompt": "Op welk huisnummer in Baker Street woont Sherlock Holmes?", "answers": [{ "text": "221B", "aliases": ["221"] }] },
+        { "prompt": "Bij welke Zwitserse waterval vechten Holmes en Moriarty in The Final Problem?", "answers": [{ "text": "De Reichenbachwaterval", "aliases": ["Reichenbach", "Reichenbachfall"] }] }
       ]
     }
   ]

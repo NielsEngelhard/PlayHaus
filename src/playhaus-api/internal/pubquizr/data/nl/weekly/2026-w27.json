@@ -49,11 +49,11 @@
         { "prompt": "Hoeveel toetsen heeft een moderne concertvleugel?", "answer": 88, "unit": "toetsen", "explanation": "Ruim zeven octaven: 52 witte toetsen en 36 zwarte." },
         { "prompt": "Hoeveel meter lang is een olympisch zwembad?", "answer": 50, "unit": "meter" },
         { "prompt": "Hoeveel snaren heeft een standaard concertvleugel ongeveer?", "answer": 230, "unit": "snaren" },
-        { "prompt": "In welk jaar werden de eerste moderne olympische zwemonderdelen gehouden?", "answer": 1896, "unit": "" },
+        { "prompt": "In welk jaar werden de eerste moderne olympische zwemonderdelen gehouden?", "answer": 1896 },
         { "prompt": "Hoeveel meter diep is een olympisch duikbad minimaal?", "answer": 5, "unit": "meter" },
-        { "prompt": "In welk jaar bouwde Bartolomeo Cristofori de eerste piano?", "answer": 1700, "unit": "", "explanation": "Rond het jaar 1700, in Florence." },
+        { "prompt": "In welk jaar bouwde Bartolomeo Cristofori de eerste piano?", "answer": 1700, "explanation": "Rond het jaar 1700, in Florence." },
         { "prompt": "Hoeveel banen heeft een olympisch zwembad?", "answer": 10, "unit": "banen" },
-        { "prompt": "In welk jaar werd synchroonzwemmen een olympische sport?", "answer": 1984, "unit": "" }
+        { "prompt": "In welk jaar werd synchroonzwemmen een olympische sport?", "answer": 1984 }
       ]
     },
     {
@@ -88,7 +88,17 @@
         "Het Suezkanaal",
         "Frankenstein",
         "Acupunctuur",
-        "Camouflage"
+        "Camouflage",
+        "Pantheon",
+        "Dobber",
+        "Breiwerk",
+        "Bali",
+        "Alexander de Grote",
+        "Venusvliegenvanger",
+        "Zweetband",
+        "Bed and breakfast",
+        "Tropische storm",
+        "Vlogger"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is de hoofdstad van Canada?", "answers": [{ "text": "Ottawa" }] },
         { "prompt": "Welke wetenschapper ontdekte per ongeluk penicilline?", "answers": [{ "text": "Alexander Fleming", "aliases": ["Fleming"] }] },
         { "prompt": "Welke kunstenaar schilderde het plafond van de Sixtijnse Kapel?", "answers": [{ "text": "Michelangelo" }] },
-        { "prompt": "Uit hoeveel botten bestaat het lichaam van een volwassen mens?", "answers": [{ "text": "206", "aliases": ["Tweehonderdzes"] }] }
+        { "prompt": "Uit hoeveel botten bestaat het lichaam van een volwassen mens?", "answers": [{ "text": "206", "aliases": ["Tweehonderdzes"] }] },
+        { "prompt": "Welke Nederlandse stad heet in het Frans Bois-le-Duc?", "answers": [{ "text": "'s-Hertogenbosch", "aliases": ["Den Bosch", "Hertogenbosch"] }] },
+        { "prompt": "Welke Franse wiskundige liet een stelling na die pas in 1994 werd bewezen?", "answers": [{ "text": "Pierre de Fermat", "aliases": ["Fermat"] }] }
       ]
     }
   ]

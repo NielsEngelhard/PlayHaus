@@ -49,7 +49,7 @@
         { "prompt": "How many steps lead to the top of the Empire State Building?", "answer": 1576, "unit": "steps" },
         { "prompt": "How many cards are in a deck without the jokers?", "answer": 52, "unit": "cards" },
         { "prompt": "How many players does a water polo team have in the water?", "answer": 7, "unit": "players" },
-        { "prompt": "In what year did the Netherlands host the Olympic Games?", "answer": 1928, "unit": "", "explanation": "Amsterdam, and the first Games with a flame burning throughout." },
+        { "prompt": "In what year did the Netherlands host the Olympic Games?", "answer": 1928, "explanation": "Amsterdam, and the first Games with a flame burning throughout." },
         { "prompt": "How many kilometres per hour may you drive on a Dutch motorway during the day?", "answer": 100, "unit": "kilometres per hour" },
         { "prompt": "How many kilograms does an adult male lion weigh?", "answer": 190, "unit": "kilograms" },
         { "prompt": "How many degrees is each angle of an equilateral triangle?", "answer": 60, "unit": "degrees" },
@@ -88,7 +88,17 @@
         "Nelson Mandela",
         "The Olympic flame",
         "Hitchhiking",
-        "Camouflage"
+        "Camouflage",
+        "Blood pressure",
+        "Ruler",
+        "Civil servant",
+        "Sifan Hassan",
+        "Pumpkin",
+        "South Park",
+        "Baker's oven",
+        "Tiger",
+        "Tanning bed",
+        "Swiss cheese"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury" }] },
         { "prompt": "Which is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
         { "prompt": "In which country is the ancient rock city of Petra?", "answers": [{ "text": "Jordan" }] },
-        { "prompt": "Which planet in our solar system is the hottest?", "answers": [{ "text": "Venus" }] }
+        { "prompt": "Which planet in our solar system is the hottest?", "answers": [{ "text": "Venus" }] },
+        { "prompt": "Who wrote the book The Little Prince?", "answers": [{ "text": "Antoine de Saint-Exupery", "aliases": ["Saint-Exupery"] }] },
+        { "prompt": "Which Roman emperor had a wall built right across the north of England?", "answers": [{ "text": "Hadrian", "aliases": ["Hadrianus"] }] }
       ]
     }
   ]

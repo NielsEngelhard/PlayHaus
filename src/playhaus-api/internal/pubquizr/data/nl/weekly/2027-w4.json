@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w4",
+  "title": "Weekquiz 4 2027",
+  "description": "De wekelijkse quiz van woensdag 27 januari 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoogste berg van Canada?", "category": "Aardrijkskunde", "answers": [{ "text": "Mount Logan", "aliases": ["Logan"] }] },
+        { "prompt": "Hoe heet de onderste laag van de atmosfeer, waarin al ons weer zich afspeelt?", "category": "Wetenschap", "answers": [{ "text": "De troposfeer", "aliases": ["Troposfeer"] }] },
+        { "prompt": "Welke Chinese denker uit de zesde eeuw voor Christus gaf zijn naam aan een hele levensleer?", "category": "Geschiedenis", "answers": [{ "text": "Confucius", "aliases": ["Kong Zi", "Kongzi"] }] },
+        { "prompt": "Welke Nederlandse judoka won in 1964 in Tokio olympisch goud in de open klasse?", "category": "Sport", "answers": [{ "text": "Anton Geesink", "aliases": ["Geesink"] }] },
+        { "prompt": "Welke Britse acteur speelde Gandalf in The Lord of the Rings?", "category": "Film", "answers": [{ "text": "Ian McKellen", "aliases": ["McKellen"] }] },
+        { "prompt": "Welke Duitse zangeres scoorde in 1983 met 99 Luftballons?", "category": "Muziek", "answers": [{ "text": "Nena" }] },
+        { "prompt": "In welk dorp op de Veluwe staat het Kroller-Muller Museum?", "category": "Nederland", "answers": [{ "text": "Otterlo" }] },
+        { "prompt": "Welke Britse kunstenaar schilderde het zwembad in A Bigger Splash?", "category": "Kunst", "answers": [{ "text": "David Hockney", "aliases": ["Hockney"] }] },
+        { "prompt": "Hoe heet de woordsoort van woorden als tafel, hond en liefde?", "category": "Taal", "answers": [{ "text": "Zelfstandig naamwoord", "aliases": ["Zelfstandige naamwoorden", "Substantief"] }] },
+        { "prompt": "Hoe heten de gevulde druivenbladeren uit de Griekse en Turkse keuken?", "category": "Eten", "answers": [{ "text": "Dolma", "aliases": ["Dolmades", "Dolmadakia"] }] },
+        { "prompt": "Welk streamingbedrijf begon in 1997 met het verhuren van dvd's per post?", "category": "Techniek", "answers": [{ "text": "Netflix" }] },
+        { "prompt": "Welke boom bloeit in Japan in het voorjaar uitbundig roze?", "category": "Natuur", "answers": [{ "text": "De kersenboom", "aliases": ["Kersenboom", "Japanse kers", "Sakura"] }] },
+        { "prompt": "Welke Braziliaanse miljoenenstad ligt midden in het Amazonegebied?", "category": "Aardrijkskunde", "answers": [{ "text": "Manaus" }] },
+        { "prompt": "Welke Britse ontdekkingsreiziger kwam in 1912 om op de terugweg van de zuidpool?", "category": "Geschiedenis", "answers": [{ "text": "Robert Falcon Scott", "aliases": ["Scott", "Robert Scott"] }] },
+        { "prompt": "Hoe heet de energie die een voorwerp heeft omdat het beweegt?", "category": "Wetenschap", "answers": [{ "text": "Bewegingsenergie", "aliases": ["Kinetische energie"] }] },
+        { "prompt": "Welke Amerikaanse zangeres scoorde in 1978 met I Will Survive?", "category": "Muziek", "answers": [{ "text": "Gloria Gaynor", "aliases": ["Gaynor"] }] },
+        { "prompt": "Welke Britse acteur speelde in 1995 Mr. Darcy in de serie Pride and Prejudice?", "category": "Film", "answers": [{ "text": "Colin Firth", "aliases": ["Firth"] }] },
+        { "prompt": "Hoe heten de gedroogde, gekruide vleesreepjes uit Zuid-Afrika?", "category": "Eten", "answers": [{ "text": "Biltong" }] },
+        { "prompt": "Hoe heet het Europese systeem voor satellietnavigatie?", "category": "Techniek", "answers": [{ "text": "Galileo" }] },
+        { "prompt": "Hoe heet een woord dat hetzelfde klinkt en geschreven wordt als een ander maar iets anders betekent, zoals bank en bank?", "category": "Taal", "answers": [{ "text": "Een homoniem", "aliases": ["Homoniem"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze havensteden ligt aan de Oostzee?", "options": [{ "text": "Gdansk", "correct": true }, { "text": "Hamburg" }, { "text": "Antwerpen" }, { "text": "Rotterdam" }] },
+        { "prompt": "Welk van deze dieren is geen herkauwer?", "options": [{ "text": "Het paard", "correct": true }, { "text": "De koe" }, { "text": "De geit" }, { "text": "Het schaap" }] },
+        { "prompt": "Welke Amerikaanse schrijfster schreef To Kill a Mockingbird?", "options": [{ "text": "Harper Lee", "correct": true }, { "text": "Toni Morrison" }, { "text": "Truman Capote" }, { "text": "Maya Angelou" }] },
+        { "prompt": "Welk van deze landen ligt het noordelijkst?", "options": [{ "text": "Estland", "correct": true }, { "text": "Letland" }, { "text": "Litouwen" }, { "text": "Polen" }] },
+        { "prompt": "Welk van deze botten is het kleinst?", "options": [{ "text": "Het aambeeld", "correct": true }, { "text": "Het sleutelbeen" }, { "text": "De knieschijf" }, { "text": "Het stuitje" }] },
+        { "prompt": "Welke Franse vestingstad werd in 1916 maandenlang belegerd?", "options": [{ "text": "Verdun", "correct": true }, { "text": "Ieper" }, { "text": "Sedan" }, { "text": "Amiens" }] },
+        { "prompt": "Welke van deze hoofdsteden ligt het hoogst boven zeeniveau?", "options": [{ "text": "Bogota", "correct": true }, { "text": "Mexico-Stad" }, { "text": "Nairobi" }, { "text": "Madrid" }] },
+        { "prompt": "Welke vogel staat op het wapen van Duitsland?", "options": [{ "text": "De adelaar", "correct": true }, { "text": "De raaf" }, { "text": "De uil" }, { "text": "De ekster" }] },
+        { "prompt": "In welke film zegt Humphrey Bogart: Here's looking at you, kid?", "options": [{ "text": "Casablanca", "correct": true }, { "text": "Gone with the Wind" }, { "text": "Citizen Kane" }, { "text": "The Maltese Falcon" }] },
+        { "prompt": "In welke sport werd Epke Zonderland olympisch kampioen?", "options": [{ "text": "Turnen", "correct": true }, { "text": "Atletiek" }, { "text": "Zwemmen" }, { "text": "Schaatsen" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is het One World Trade Center in New York?", "answer": 541, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Jangtsekiang?", "answer": 6300, "unit": "kilometer" },
+        { "prompt": "Hoeveel kilometer is een halve marathon?", "answer": 21.1, "unit": "kilometer" },
+        { "prompt": "Hoe oud werd Michael Jackson?", "answer": 50, "unit": "jaar" },
+        { "prompt": "Hoeveel liter past er in een gewone wijnfles?", "answer": 0.75, "unit": "liter" },
+        { "prompt": "Uit hoeveel kaarten bestaat een tarotspel?", "answer": 78, "unit": "kaarten" },
+        { "prompt": "Hoeveel meter sprong Mike Powell in 1991 bij zijn wereldrecord verspringen?", "answer": 8.95, "unit": "meter" },
+        { "prompt": "In welk jaar werd de Amsterdamse Johan Cruijff Arena geopend?", "answer": 1996 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Hijskraan",
+        "Klaproos",
+        "Great Ocean Road",
+        "Andijvie",
+        "Waarzegster",
+        "Dieet",
+        "Zwembandjes",
+        "Strooiwagen",
+        "Strafwerk",
+        "Hoofdpijn",
+        "Snurken",
+        "Botox",
+        "Parkeerwachter",
+        "Sagrada Familia",
+        "Muesli",
+        "Willy Wonka",
+        "Maretak",
+        "Arrenslee",
+        "Scrabble",
+        "Liftende reiziger",
+        "Stephen Hawking",
+        "Wall-E",
+        "Discobal",
+        "Golfkarretje",
+        "Muziekfestival",
+        "Snoopy",
+        "David van Michelangelo",
+        "Beeldenstorm",
+        "Lolly",
+        "Bergetappe",
+        "Up",
+        "Dwarsfluit",
+        "Presentatrice",
+        "Freddie Mercury",
+        "Feesthoedje",
+        "Aalbes",
+        "Kombuis",
+        "Trapezewerker",
+        "Biefstuk",
+        "Verhuizer"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Netflix?", "answers": [{ "text": "Streamen", "aliases": ["Streamingdienst"] }, { "text": "Series", "aliases": ["Films", "Bingewatchen"] }, { "text": "Stranger Things", "aliases": ["Squid Game", "La Casa de Papel"] }, { "text": "Abonnement", "aliases": ["Maandelijks betalen"] }] },
+        { "prompt": "Wat weet je over de Zuidpool?", "answers": [{ "text": "Antarctica", "aliases": ["Zuidpoolcontinent"] }, { "text": "Pinguins", "aliases": ["Keizerspinguin"] }, { "text": "Amundsen", "aliases": ["Roald Amundsen", "Scott"] }, { "text": "Koudste plek", "aliases": ["Koud", "IJs"] }] },
+        { "prompt": "Wat weet je over Thailand?", "answers": [{ "text": "Bangkok", "aliases": ["De hoofdstad Bangkok"] }, { "text": "Tempels", "aliases": ["Boeddhisme", "Boeddha"] }, { "text": "Stranden", "aliases": ["Phuket", "Eilanden"] }, { "text": "Pad Thai", "aliases": ["Thais eten", "Curry"] }] },
+        { "prompt": "Wat weet je over hockey?", "answers": [{ "text": "Stick", "aliases": ["Hockeystick"] }, { "text": "Nederland", "aliases": ["Oranje wint vaak", "Olympisch goud"] }, { "text": "Kunstgras", "aliases": ["Veld", "Waterveld"] }, { "text": "Balletje", "aliases": ["Harde bal", "Bal"] }] },
+        { "prompt": "Wat weet je over kastelen?", "answers": [{ "text": "Ophaalbrug", "aliases": ["Brug"] }, { "text": "Slotgracht", "aliases": ["Gracht"] }, { "text": "Ridders", "aliases": ["Koning", "Jonkvrouw"] }, { "text": "Torens", "aliases": ["Kantelen", "Muren"] }] },
+        { "prompt": "Wat weet je over disco?", "answers": [{ "text": "Discobal", "aliases": ["Spiegelbal"] }, { "text": "Jaren zeventig", "aliases": ["Seventies"] }, { "text": "Bee Gees", "aliases": ["ABBA", "Donna Summer"] }, { "text": "Saturday Night Fever", "aliases": ["John Travolta"] }] },
+        { "prompt": "Wat weet je over vliegtuigen?", "answers": [{ "text": "Piloot", "aliases": ["Stewardess", "Cockpit"] }, { "text": "Vleugels", "aliases": ["Motoren", "Straalmotor"] }, { "text": "Schiphol", "aliases": ["Vliegveld", "Luchthaven"] }, { "text": "Gebroeders Wright", "aliases": ["Wright"] }] },
+        { "prompt": "Wat weet je over het alfabet?", "answers": [{ "text": "Zesentwintig letters", "aliases": ["26", "26 letters"] }, { "text": "Van A tot Z", "aliases": ["A", "Z"] }, { "text": "Klinkers", "aliases": ["Medeklinkers"] }, { "text": "ABC", "aliases": ["Alfabetlied"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het gebouw waarin paarden slapen?", "difficulty": "easy", "answers": [{ "text": "Een stal", "aliases": ["Stal", "Paardenstal"] }] },
+        { "prompt": "Welk warm kledingstuk sla je om je nek als het koud is?", "difficulty": "easy", "answers": [{ "text": "Een sjaal", "aliases": ["Sjaal", "Das"] }] },
+        { "prompt": "Hoe heet de maan als hij helemaal rond is?", "difficulty": "easy", "answers": [{ "text": "Volle maan", "aliases": ["De volle maan"] }] },
+        { "prompt": "Hoe heet het apparaat waarin je sneetjes brood roostert?", "difficulty": "easy", "answers": [{ "text": "Een broodrooster", "aliases": ["Broodrooster", "Toaster"] }] },
+        { "prompt": "Welke sport beoefen je staand op een plank op de golven?", "difficulty": "easy", "answers": [{ "text": "Surfen" }] },
+        { "prompt": "Welke Engelse staatsman schreef in 1516 het boek Utopia?", "difficulty": "hard", "answers": [{ "text": "Thomas More", "aliases": ["More", "Thomas Morus"] }] },
+        { "prompt": "Welke Oostenrijkse componist schreef Das Lied von der Erde?", "difficulty": "hard", "answers": [{ "text": "Gustav Mahler", "aliases": ["Mahler"] }] },
+        { "prompt": "Welk giftig element heeft het scheikundige symbool As?", "difficulty": "hard", "answers": [{ "text": "Arseen", "aliases": ["Arsenicum"] }] },
+        { "prompt": "Welke rivier stroomt door Innsbruck?", "difficulty": "hard", "answers": [{ "text": "De Inn", "aliases": ["Inn"] }] },
+        { "prompt": "Welke Spaanse koningin betaalde de eerste reis van Columbus?", "difficulty": "hard", "answers": [{ "text": "Isabella van Castilie", "aliases": ["Isabella", "Isabella I"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet de kleine zeemeermin van Disney?", "answers": [{ "text": "Ariel" }] },
+        { "prompt": "Welke Duitse stad heette in de DDR-tijd Karl-Marx-Stadt?", "answers": [{ "text": "Chemnitz" }] },
+        { "prompt": "Welke Amerikaanse dichteres schreef bijna tweeduizend gedichten, maar publiceerde er bij leven maar een handvol?", "answers": [{ "text": "Emily Dickinson", "aliases": ["Dickinson"] }] },
+        { "prompt": "Welk dier springt in het logo van het sportmerk Puma?", "answers": [{ "text": "Een poema", "aliases": ["Poema", "Puma"] }] },
+        { "prompt": "In welke Australische kuststad ligt de wijk Surfers Paradise?", "answers": [{ "text": "Gold Coast" }] },
+        { "prompt": "Naar welke Engelse natuurkundige is de eenheid van energie genoemd?", "answers": [{ "text": "James Joule", "aliases": ["Joule"] }] },
+        { "prompt": "Wat voor dier is Marty in de film Madagascar?", "answers": [{ "text": "Een zebra", "aliases": ["Zebra"] }] },
+        { "prompt": "Welke Nederlandse zanger zong Laat me?", "answers": [{ "text": "Ramses Shaffy", "aliases": ["Shaffy"] }] },
+        { "prompt": "Welke Oostenrijks-Britse filosoof schreef de Tractatus Logico-Philosophicus?", "answers": [{ "text": "Ludwig Wittgenstein", "aliases": ["Wittgenstein"] }] }
+      ]
+    }
+  ]
+}

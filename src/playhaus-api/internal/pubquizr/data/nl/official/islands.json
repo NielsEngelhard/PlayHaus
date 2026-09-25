@@ -89,7 +89,17 @@
         "Strohoed",
         "Ukelele",
         "Zoutpan",
-        "Cranberry"
+        "Cranberry",
+        "Eilandhoppen",
+        "Vuurtoren op de rotsen",
+        "Veerpont",
+        "Kokosnootpalm",
+        "Schatkaart van het eiland",
+        "Zeilschip",
+        "Strandjutter",
+        "Hutje op het strand",
+        "Zeegras",
+        "Eilandbewoner"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welk Noordzee-eiland stond Groot-Brittannie in 1890 af aan Duitsland in ruil voor rechten in Oost-Afrika?", "answers": [{ "text": "Helgoland", "aliases": ["Heligoland"] }] },
         { "prompt": "Wat is het grootste eiland van Denemarken, het eiland waarop Kopenhagen ligt?", "answers": [{ "text": "Seeland", "aliases": ["Sjaelland", "Zealand"] }] },
         { "prompt": "Welk eiland in het Huronmeer is het grootste eiland in een zoetwatermeer ter wereld?", "answers": [{ "text": "Manitoulin", "aliases": ["Manitoulineiland", "Manitoulin Island"] }] },
-        { "prompt": "Welk eiland in de Stille Oceaan is de kleinste republiek ter wereld?", "answers": [{ "text": "Nauru" }] }
+        { "prompt": "Welk eiland in de Stille Oceaan is de kleinste republiek ter wereld?", "answers": [{ "text": "Nauru" }] },
+        { "prompt": "Op welk eiland werd Napoleon geboren?", "answers": [{ "text": "Corsica" }] },
+        { "prompt": "Welk eiland in de Atlantische Oceaan is een van de meest afgelegen bewoonde eilanden ter wereld, met de hoofdplaats Edinburgh of the Seven Seas?", "answers": [{ "text": "Tristan da Cunha" }] }
       ]
     }
   ]

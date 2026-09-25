@@ -6,6 +6,6 @@
 *.tftpl   text eol=lf
 Caddyfile text eol=lf
 
-# The PubquizR corpus is compared byte for byte by internal/quizgen/writer_test.go, so a CRLF
+# The PubquizR corpus is compared byte for byte by cmd/quizfmt/encode_test.go, so a CRLF
 # working copy fails that test locally while CI passes. Every file is already LF in the index.
 src/playhaus-api/internal/pubquizr/data/**/*.json text eol=lf

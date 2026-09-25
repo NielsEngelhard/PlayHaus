@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w14",
+  "title": "Weekly quiz 14 2027",
+  "description": "The weekly quiz of Wednesday 7 April 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which Turkish port city used to be called Smyrna?", "category": "Geography", "answers": [{ "text": "Izmir" }] },
+        { "prompt": "What is the layer of air around the earth called?", "category": "Science", "answers": [{ "text": "The atmosphere", "aliases": ["Atmosphere"] }] },
+        { "prompt": "Which Egyptian president made peace with Israel at Camp David in 1978?", "category": "History", "answers": [{ "text": "Anwar Sadat", "aliases": ["Sadat"] }] },
+        { "prompt": "Which Dutch goalkeeper played in the 2010 World Cup final?", "category": "Sport", "answers": [{ "text": "Maarten Stekelenburg", "aliases": ["Stekelenburg"] }] },
+        { "prompt": "Which Australian actor plays Thor in the Marvel films?", "category": "Film", "answers": [{ "text": "Chris Hemsworth", "aliases": ["Hemsworth"] }] },
+        { "prompt": "Which Dutch band had a hit with Iedereen is van de wereld?", "category": "Music", "answers": [{ "text": "The Scene" }] },
+        { "prompt": "What is the Amsterdam market whose flower stalls float on boats on the Singel called?", "category": "The Netherlands", "answers": [{ "text": "The Flower Market", "aliases": ["Bloemenmarkt"] }] },
+        { "prompt": "Which German artist worked with felt and fat and always wore a hat?", "category": "Art", "answers": [{ "text": "Joseph Beuys", "aliases": ["Beuys"] }] },
+        { "prompt": "What is the big letter you start a name with called?", "category": "Language", "answers": [{ "text": "A capital letter", "aliases": ["Capital", "Capital letter"] }] },
+        { "prompt": "What is the Taiwanese tea with tapioca pearls in it called?", "category": "Food", "answers": [{ "text": "Bubble tea", "aliases": ["Boba"] }] },
+        { "prompt": "Which messaging app with a green phone logo is owned by Meta?", "category": "Technology", "answers": [{ "text": "WhatsApp" }] },
+        { "prompt": "Which sea creature usually has five arms and can regrow a lost arm?", "category": "Nature", "answers": [{ "text": "The starfish", "aliases": ["Starfish", "Sea star"] }] },
+        { "prompt": "Which Greek island group do Mykonos and Santorini belong to?", "category": "Geography", "answers": [{ "text": "The Cyclades", "aliases": ["Cyclades"] }] },
+        { "prompt": "Which Ethiopian emperor is seen by Rastafarians as a messiah?", "category": "History", "answers": [{ "text": "Haile Selassie", "aliases": ["Selassie", "Ras Tafari"] }] },
+        { "prompt": "What is the number you get by dividing a circle's circumference by its diameter called?", "category": "Science", "answers": [{ "text": "Pi" }] },
+        { "prompt": "Which British singer went solo after One Direction with Sign of the Times?", "category": "Music", "answers": [{ "text": "Harry Styles", "aliases": ["Styles"] }] },
+        { "prompt": "Which 1973 Paul Verhoeven film made Rutger Hauer a star?", "category": "Film", "answers": [{ "text": "Turkish Delight", "aliases": ["Turks fruit"] }] },
+        { "prompt": "Which green Mexican chilli is often found on nachos?", "category": "Food", "answers": [{ "text": "Jalapeno", "aliases": ["Jalapeno pepper"] }] },
+        { "prompt": "Which Japanese car brand brought the hybrid Prius to market?", "category": "Technology", "answers": [{ "text": "Toyota" }] },
+        { "prompt": "What are the little faces and pictures you send in messages called?", "category": "Language", "answers": [{ "text": "Emojis", "aliases": ["Emoji", "Emoticons"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in Greece?", "options": [{ "text": "Patras", "correct": true }, { "text": "Plovdiv" }, { "text": "Skopje" }, { "text": "Tirana" }] },
+        { "prompt": "Which of these animals is a crustacean?", "options": [{ "text": "The shrimp", "correct": true }, { "text": "The squid" }, { "text": "The starfish" }, { "text": "The jellyfish" }] },
+        { "prompt": "Which Dutch writer wrote In My Father's Garden, in Dutch Knielen op een bed violen?", "options": [{ "text": "Jan Siebelink", "correct": true }, { "text": "Tommy Wieringa" }, { "text": "Jan Wolkers" }, { "text": "Hella Haasse" }] },
+        { "prompt": "Which of these countries is in South-East Asia?", "options": [{ "text": "Myanmar", "correct": true }, { "text": "Pakistan" }, { "text": "Nepal" }, { "text": "Iran" }] },
+        { "prompt": "Which of these is inside your ear?", "options": [{ "text": "The cochlea", "correct": true }, { "text": "The larynx" }, { "text": "The diaphragm" }, { "text": "The spleen" }] },
+        { "prompt": "Which German airship went up in flames while landing in New Jersey in 1937?", "options": [{ "text": "The Hindenburg", "correct": true }, { "text": "The Graf Zeppelin" }, { "text": "The Bismarck" }, { "text": "The Lusitania" }] },
+        { "prompt": "Which of these mountains is not a volcano?", "options": [{ "text": "The Matterhorn", "correct": true }, { "text": "Etna" }, { "text": "Vesuvius" }, { "text": "Mount Fuji" }] },
+        { "prompt": "Which bird flies the highest of all?", "options": [{ "text": "Ruppell's vulture", "correct": true }, { "text": "The condor" }, { "text": "The albatross" }, { "text": "The greylag goose" }] },
+        { "prompt": "In which film does teacher Robin Williams tell his pupils: carpe diem?", "options": [{ "text": "Dead Poets Society", "correct": true }, { "text": "Good Will Hunting" }, { "text": "Mrs Doubtfire" }, { "text": "Patch Adams" }] },
+        { "prompt": "Which sport do you play with a flat bat and a wicket?", "options": [{ "text": "Cricket", "correct": true }, { "text": "Baseball" }, { "text": "Softball" }, { "text": "Hockey" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is the Arc de Triomphe in Paris?", "answer": 50, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Vistula?", "answer": 1047, "unit": "kilometres" },
+        { "prompt": "How many countries does Russia border by land?", "answer": 14, "unit": "countries" },
+        { "prompt": "How old was Heath Ledger when he died?", "answer": 28, "unit": "years" },
+        { "prompt": "About how many litres of water does a modern washing machine use per wash?", "answer": 50, "unit": "litres" },
+        { "prompt": "How many tiles are there in a standard domino set, from double blank to double six?", "answer": 28, "unit": "tiles" },
+        { "prompt": "How many metres from the goal line is the penalty spot?", "answer": 11, "unit": "metres" },
+        { "prompt": "In which year was Wikipedia founded?", "answer": 2001 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Surprise party",
+        "Valentine's Day",
+        "Hyacinth",
+        "Football scarf",
+        "Shot put",
+        "Cookie Monster",
+        "Calculator",
+        "Himalayas",
+        "Havana",
+        "Guarantee",
+        "Saffron",
+        "Mangrove",
+        "Cherry tree",
+        "Alarm clock",
+        "Snowboarding",
+        "Common cold",
+        "David Attenborough",
+        "Oyster",
+        "Shelf stacker",
+        "Sunburn",
+        "Nail file",
+        "Checkmate",
+        "Guernica",
+        "Headline",
+        "Hunter",
+        "Ghost train",
+        "Willow",
+        "Jet ski",
+        "Military tattoo",
+        "Golden Temple",
+        "Deer",
+        "Ferret",
+        "Harp",
+        "Sommelier",
+        "Newsreader",
+        "Blister",
+        "Charity shop",
+        "Grease",
+        "Tuareg",
+        "Customs"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about the Avengers?", "answers": [{ "text": "Iron Man", "aliases": ["Tony Stark"] }, { "text": "Captain America", "aliases": ["Shield"] }, { "text": "Hulk", "aliases": ["Thor", "Black Widow"] }, { "text": "Thanos", "aliases": ["Infinity Stones", "Endgame"] }] },
+        { "prompt": "What do you know about sushi?", "answers": [{ "text": "Japan", "aliases": ["Japanese"] }, { "text": "Raw fish", "aliases": ["Salmon", "Tuna"] }, { "text": "Rice", "aliases": ["Nori", "Seaweed"] }, { "text": "Chopsticks", "aliases": ["Soy sauce", "Wasabi"] }] },
+        { "prompt": "What do you know about coral reefs?", "answers": [{ "text": "Great Barrier Reef", "aliases": ["Australia"] }, { "text": "Colourful", "aliases": ["Colours"] }, { "text": "Fish", "aliases": ["Clownfish", "Nemo"] }, { "text": "Bleaching", "aliases": ["Endangered", "Warmer water"] }] },
+        { "prompt": "What do you know about Ethiopia?", "answers": [{ "text": "Coffee", "aliases": ["Birthplace of coffee"] }, { "text": "Runners", "aliases": ["Marathon", "Haile Gebrselassie"] }, { "text": "Addis Ababa", "aliases": ["Capital"] }, { "text": "Never colonised", "aliases": ["Empire", "Abyssinia"] }] },
+        { "prompt": "What do you know about the smartphone?", "answers": [{ "text": "Apps", "aliases": ["App Store"] }, { "text": "Touchscreen", "aliases": ["Swiping"] }, { "text": "iPhone", "aliases": ["Samsung", "Android"] }, { "text": "Camera", "aliases": ["Selfie", "Photos"] }] },
+        { "prompt": "What do you know about boy bands?", "answers": [{ "text": "One Direction", "aliases": ["Harry Styles"] }, { "text": "Backstreet Boys", "aliases": ["NSYNC"] }, { "text": "Take That", "aliases": ["Robbie Williams"] }, { "text": "Westlife", "aliases": ["Boyzone", "Dance moves"] }] },
+        { "prompt": "What do you know about museums?", "answers": [{ "text": "Rijksmuseum", "aliases": ["Van Gogh Museum"] }, { "text": "Louvre", "aliases": ["Mona Lisa"] }, { "text": "Paintings", "aliases": ["Art", "Sculptures"] }, { "text": "Guided tour", "aliases": ["Audio guide", "Gift shop"] }] },
+        { "prompt": "What do you know about mathematics?", "answers": [{ "text": "Arithmetic", "aliases": ["Sums", "Numbers"] }, { "text": "Pythagoras", "aliases": ["Theorem"] }, { "text": "Geometry", "aliases": ["Triangles", "Circles"] }, { "text": "Algebra", "aliases": ["Equations", "X"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is a young duck called?", "difficulty": "easy", "answers": [{ "text": "A duckling", "aliases": ["Duckling"] }] },
+        { "prompt": "Which day is the first working day of the week for most people?", "difficulty": "easy", "answers": [{ "text": "Monday" }] },
+        { "prompt": "Which flower is the best-known symbol of the Netherlands?", "difficulty": "easy", "answers": [{ "text": "The tulip", "aliases": ["Tulip", "Tulips"] }] },
+        { "prompt": "Which currency do you pay with in the Netherlands?", "difficulty": "easy", "answers": [{ "text": "The euro", "aliases": ["Euro", "Euros"] }] },
+        { "prompt": "What is the little clock you wear on your wrist called?", "difficulty": "easy", "answers": [{ "text": "A watch", "aliases": ["Watch", "Wristwatch"] }] },
+        { "prompt": "What is the name of the Greek goddess of love and beauty?", "difficulty": "hard", "answers": [{ "text": "Aphrodite", "aliases": ["Venus"] }] },
+        { "prompt": "Which Greek hero cut off the head of Medusa?", "difficulty": "hard", "answers": [{ "text": "Perseus" }] },
+        { "prompt": "What is the theorem that a squared plus b squared equals c squared called?", "difficulty": "hard", "answers": [{ "text": "Pythagoras' theorem", "aliases": ["Pythagoras", "Pythagorean theorem"] }] },
+        { "prompt": "What is the highest mountain in Mexico?", "difficulty": "hard", "answers": [{ "text": "Pico de Orizaba", "aliases": ["Citlaltepetl", "Orizaba"] }] },
+        { "prompt": "Which Babylonian king is said to have built the Hanging Gardens?", "difficulty": "hard", "answers": [{ "text": "Nebuchadnezzar", "aliases": ["Nebuchadnezzar II"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Heimlich in A Bug's Life?", "answers": [{ "text": "A caterpillar", "aliases": ["Caterpillar"] }] },
+        { "prompt": "In which Moroccan city is the famous square Djemaa el Fna?", "answers": [{ "text": "Marrakesh", "aliases": ["Marrakech"] }] },
+        { "prompt": "Which American writer wrote Little Women?", "answers": [{ "text": "Louisa May Alcott", "aliases": ["Alcott"] }] },
+        { "prompt": "What is an ice made of frozen squash on a stick called?", "answers": [{ "text": "An ice lolly", "aliases": ["Ice lolly", "Popsicle"] }] },
+        { "prompt": "Which Australian state is an island?", "answers": [{ "text": "Tasmania" }] },
+        { "prompt": "Which Austrian-Swedish physicist explained nuclear fission together with her nephew in 1938?", "answers": [{ "text": "Lise Meitner", "aliases": ["Meitner"] }] },
+        { "prompt": "What is the meal you eat in the morning called?", "answers": [{ "text": "Breakfast" }] },
+        { "prompt": "Which British band had a hit with Every Breath You Take in 1983?", "answers": [{ "text": "The Police", "aliases": ["Police"] }] },
+        { "prompt": "Which Roman philosopher was the tutor of the emperor Nero?", "answers": [{ "text": "Seneca" }] }
+      ]
+    }
+  ]
+}

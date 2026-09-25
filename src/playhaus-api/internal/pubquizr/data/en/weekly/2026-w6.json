@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many letters does the Greek alphabet have?", "answer": 24, "unit": "letters" },
         { "prompt": "How many kilometres wide is the English Channel at its narrowest?", "answer": 34, "unit": "kilometres" },
-        { "prompt": "In what year did the Dutch women's football team become European champions?", "answer": 2017, "unit": "" },
+        { "prompt": "In what year did the Dutch women's football team become European champions?", "answer": 2017 },
         { "prompt": "How many tiles does a player begin a game of Scrabble with?", "answer": 7, "unit": "tiles" },
         { "prompt": "How many metres above the floor is a basketball hoop?", "answer": 3, "unit": "metres" },
         { "prompt": "How many bones does a shark have?", "answer": 0, "unit": "bones", "explanation": "A shark's skeleton is cartilage from nose to tail." },
@@ -88,7 +88,17 @@
         "Mona Lisa",
         "Blacksmith",
         "Fall of the Berlin Wall",
-        "Origami"
+        "Origami",
+        "Tea towel",
+        "Pop Idol",
+        "Toilet roll",
+        "Hairdryer",
+        "Kebab",
+        "Milking machine",
+        "Tarot card",
+        "Panda",
+        "Bathrobe",
+        "Patagonia"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which is the highest mountain in Japan?", "answers": [{ "text": "Mount Fuji", "aliases": ["Fuji", "Fujiyama"] }] },
         { "prompt": "Which is the largest of the Greek islands?", "answers": [{ "text": "Crete" }] },
         { "prompt": "Which is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
-        { "prompt": "Which metal is the only one that is liquid at room temperature?", "answers": [{ "text": "Mercury" }] }
+        { "prompt": "Which metal is the only one that is liquid at room temperature?", "answers": [{ "text": "Mercury" }] },
+        { "prompt": "What is the name of Pluto's largest moon?", "answers": [{ "text": "Charon" }] },
+        { "prompt": "Which Mongol ruler founded the Yuan dynasty in China?", "answers": [{ "text": "Kublai Khan", "aliases": ["Kubilai Khan"] }] }
       ]
     }
   ]

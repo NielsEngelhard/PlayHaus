@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w8",
+  "title": "Weekquiz 8 2027",
+  "description": "De wekelijkse quiz van woensdag 24 februari 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In welke Spaanse stad staat de Mezquita, een moskee met een kathedraal erin?", "category": "Aardrijkskunde", "answers": [{ "text": "Cordoba" }] },
+        { "prompt": "Hoe heet het als een vloeistof afkoelt en een vaste stof wordt?", "category": "Wetenschap", "answers": [{ "text": "Stollen", "aliases": ["Bevriezen", "Stolling"] }] },
+        { "prompt": "Welke generaal van Alexander de Grote stichtte na diens dood een dynastie in Egypte?", "category": "Geschiedenis", "answers": [{ "text": "Ptolemaeus", "aliases": ["Ptolemaeus I", "Ptolemeus"] }] },
+        { "prompt": "Welke Duitse coureur won zeven keer het wereldkampioenschap Formule 1?", "category": "Sport", "answers": [{ "text": "Michael Schumacher", "aliases": ["Schumacher"] }] },
+        { "prompt": "Welke Amerikaanse acteur speelt The Dude in The Big Lebowski?", "category": "Film", "answers": [{ "text": "Jeff Bridges", "aliases": ["Bridges"] }] },
+        { "prompt": "Welke IJslandse zangeres scoorde in 1995 met It's Oh So Quiet?", "category": "Muziek", "answers": [{ "text": "Bjork" }] },
+        { "prompt": "Welk Zeeuws eiland heeft Zierikzee als grootste stad?", "category": "Nederland", "answers": [{ "text": "Schouwen-Duiveland", "aliases": ["Schouwen"] }] },
+        { "prompt": "Welke Franse schilder maakte De grote odalisk, met een vrouw met een veel te lange rug?", "category": "Kunst", "answers": [{ "text": "Jean-Auguste-Dominique Ingres", "aliases": ["Ingres"] }] },
+        { "prompt": "Wat betekent de Latijnse uitdrukking ad fundum?", "category": "Taal", "answers": [{ "text": "Tot de bodem", "aliases": ["Tot op de bodem", "Leegdrinken"] }] },
+        { "prompt": "Hoe heet de Oostenrijkse gescheurde pannenkoek met poedersuiker, genoemd naar de keizer?", "category": "Eten", "answers": [{ "text": "Kaiserschmarrn" }] },
+        { "prompt": "Naar welke eerste zes letters is de gewone toetsenbordindeling genoemd?", "category": "Techniek", "answers": [{ "text": "QWERTY", "aliases": ["Qwerty"] }] },
+        { "prompt": "Welke Australische ijsvogel klinkt alsof hij hardop lacht?", "category": "Natuur", "answers": [{ "text": "De kookaburra", "aliases": ["Kookaburra", "Lachvogel"] }] },
+        { "prompt": "Welke rivier stroomt langs de westkant van Manhattan?", "category": "Aardrijkskunde", "answers": [{ "text": "De Hudson", "aliases": ["Hudson"] }] },
+        { "prompt": "Welke hertogin was koningin van Frankrijk en daarna koningin van Engeland?", "category": "Geschiedenis", "answers": [{ "text": "Eleonora van Aquitanie", "aliases": ["Eleonora", "Alienor van Aquitanie"] }] },
+        { "prompt": "Hoe heet het apparaat dat trillingen van aardbevingen registreert?", "category": "Wetenschap", "answers": [{ "text": "Een seismograaf", "aliases": ["Seismograaf", "Seismometer"] }] },
+        { "prompt": "Welke Nederlandse zanger zong in 1960 Kom van dat dak af?", "category": "Muziek", "answers": [{ "text": "Peter Koelewijn", "aliases": ["Koelewijn"] }] },
+        { "prompt": "Welke blauwe figuur verleent drie wensen in de Disneyfilm Aladdin?", "category": "Film", "answers": [{ "text": "De geest", "aliases": ["Geest", "Genie", "Geest uit de lamp"] }] },
+        { "prompt": "Hoe heet de Engelse traditie van scones met clotted cream en jam bij de thee?", "category": "Eten", "answers": [{ "text": "Cream tea", "aliases": ["Afternoon tea"] }] },
+        { "prompt": "Welke foto-app met een camerapictogram werd in 2012 door Facebook gekocht?", "category": "Techniek", "answers": [{ "text": "Instagram" }] },
+        { "prompt": "Welke taal spreken ze naast het Nederlands in Friesland?", "category": "Taal", "answers": [{ "text": "Fries", "aliases": ["Het Fries", "Frysk"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Portugal?", "options": [{ "text": "Coimbra", "correct": true }, { "text": "Salamanca" }, { "text": "Vigo" }, { "text": "Sevilla" }] },
+        { "prompt": "Welk van deze dieren legt de meeste eitjes tegelijk?", "options": [{ "text": "De maanvis", "correct": true }, { "text": "De kip" }, { "text": "De zalm" }, { "text": "De krokodil" }] },
+        { "prompt": "Welke Nederlandse schrijver schreef de roman Tirza?", "options": [{ "text": "Arnon Grunberg", "correct": true }, { "text": "Herman Koch" }, { "text": "A.F.Th. van der Heijden" }, { "text": "Connie Palmen" }] },
+        { "prompt": "Welk van deze landen ligt het oostelijkst?", "options": [{ "text": "Roemenie", "correct": true }, { "text": "Hongarije" }, { "text": "Kroatie" }, { "text": "Slowakije" }] },
+        { "prompt": "Welke van deze groenten of vruchten bevat de meeste vitamine C?", "options": [{ "text": "De rode paprika", "correct": true }, { "text": "De appel" }, { "text": "De banaan" }, { "text": "De komkommer" }] },
+        { "prompt": "Welk VOC-schip verging in 1629 voor de kust van Australie?", "options": [{ "text": "De Batavia", "correct": true }, { "text": "De Halve Maen" }, { "text": "De Zeven Provincien" }, { "text": "De Amsterdam" }] },
+        { "prompt": "Welk van deze landen ligt in de Kaukasus?", "options": [{ "text": "Azerbeidzjan", "correct": true }, { "text": "Kazachstan" }, { "text": "Turkmenistan" }, { "text": "Mongolie" }] },
+        { "prompt": "Welke van deze vogels blijft ook in de winter in Nederland?", "options": [{ "text": "De koolmees", "correct": true }, { "text": "De zwaluw" }, { "text": "De ooievaar" }, { "text": "De koekoek" }] },
+        { "prompt": "Welke film won in 1929 de allereerste Oscar voor beste film?", "options": [{ "text": "Wings", "correct": true }, { "text": "Sunrise" }, { "text": "The Jazz Singer" }, { "text": "Metropolis" }] },
+        { "prompt": "Welke tennisser won veertien keer Roland Garros?", "options": [{ "text": "Rafael Nadal", "correct": true }, { "text": "Novak Djokovic" }, { "text": "Roger Federer" }, { "text": "Bjorn Borg" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Lotte World Tower in Seoel?", "answer": 555, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Rio Grande?", "answer": 3050, "unit": "kilometer" },
+        { "prompt": "Aan hoeveel landen grenst Oostenrijk?", "answer": 8, "unit": "landen" },
+        { "prompt": "Hoe oud werd Freddie Mercury?", "answer": 45, "unit": "jaar" },
+        { "prompt": "Hoeveel gram mag een golfbal maximaal wegen?", "answer": 46, "unit": "gram" },
+        { "prompt": "Hoeveel kaarten krijgt elke speler bij bridge?", "answer": 13, "unit": "kaarten" },
+        { "prompt": "Hoeveel meter hoog hangt een volleybalnet bij de mannen?", "answer": 2.43, "unit": "meter" },
+        { "prompt": "In welk jaar ging de Keukenhof voor het eerst open voor publiek?", "answer": 1950 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Kassabon",
+        "De Schreeuw",
+        "Hagia Sophia",
+        "Creditcard",
+        "Bongo",
+        "Sisyfus",
+        "Politieauto",
+        "Lodewijk XIV",
+        "Peppa Pig",
+        "Deurbel",
+        "Krijtje",
+        "Koningin",
+        "Vlinderdas",
+        "Reggae",
+        "Computermuis",
+        "Mickey Mouse",
+        "Kasteelheer",
+        "Woodstock",
+        "Frituurpan",
+        "Voedertijd",
+        "Drummer",
+        "Ramen",
+        "Gnocchi",
+        "Scones met jam",
+        "Stephen King",
+        "Jurassic World",
+        "Smartlap",
+        "Vlecht",
+        "Stratenmaker",
+        "Nietmachine",
+        "Ganges",
+        "Koekoek",
+        "Bitcoin",
+        "Siësta",
+        "Lachspiegel",
+        "Ontbijt op bed",
+        "Hollywood Walk of Fame",
+        "Abel Tasman",
+        "Veiligheidsspeld",
+        "Muntthee"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Ferrari?", "answers": [{ "text": "Rood", "aliases": ["Rode auto's"] }, { "text": "Italie", "aliases": ["Maranello"] }, { "text": "Formule 1", "aliases": ["Racen"] }, { "text": "Steigerend paard", "aliases": ["Paard", "Logo"] }] },
+        { "prompt": "Wat weet je over Finland?", "answers": [{ "text": "Sauna", "aliases": ["Saunas"] }, { "text": "Helsinki", "aliases": ["De hoofdstad Helsinki"] }, { "text": "Nokia", "aliases": ["Angry Birds"] }, { "text": "Meren", "aliases": ["Duizend meren", "Bossen"] }] },
+        { "prompt": "Wat weet je over de VOC?", "answers": [{ "text": "Gouden Eeuw", "aliases": ["Zeventiende eeuw"] }, { "text": "Specerijen", "aliases": ["Peper", "Nootmuskaat"] }, { "text": "Indonesie", "aliases": ["Oost-Indie", "Batavia"] }, { "text": "Schepen", "aliases": ["Handel", "Aandelen"] }] },
+        { "prompt": "Wat weet je over de Oscars?", "answers": [{ "text": "Gouden beeldje", "aliases": ["Beeldje"] }, { "text": "Hollywood", "aliases": ["Los Angeles"] }, { "text": "Rode loper", "aliases": ["Jurken"] }, { "text": "Beste film", "aliases": ["Beste acteur", "Speech"] }] },
+        { "prompt": "Wat weet je over dromen?", "answers": [{ "text": "Slapen", "aliases": ["Slaap", "Nacht"] }, { "text": "Nachtmerrie", "aliases": ["Enge droom"] }, { "text": "REM-slaap", "aliases": ["REM"] }, { "text": "Freud", "aliases": ["Droomuitleg"] }] },
+        { "prompt": "Wat weet je over Madrid?", "answers": [{ "text": "Real Madrid", "aliases": ["Bernabeu"] }, { "text": "Prado", "aliases": ["Museum"] }, { "text": "Hoofdstad van Spanje", "aliases": ["Spanje"] }, { "text": "Tapas", "aliases": ["Churros", "Plaza Mayor"] }] },
+        { "prompt": "Wat weet je over pinda's?", "answers": [{ "text": "Pindakaas", "aliases": ["Boterham"] }, { "text": "Allergie", "aliases": ["Allergisch"] }, { "text": "Satesaus", "aliases": ["Pindasaus"] }, { "text": "Groeien onder de grond", "aliases": ["Peulvrucht", "Aardnoot"] }] },
+        { "prompt": "Wat weet je over kikkers?", "answers": [{ "text": "Kwaken", "aliases": ["Kwaak"] }, { "text": "Springen", "aliases": ["Lange poten"] }, { "text": "Kikkervisje", "aliases": ["Dikkopje", "Eitjes"] }, { "text": "Vliegen vangen", "aliases": ["Lange tong", "Insecten"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Waar knaagt een hond graag op?", "difficulty": "easy", "answers": [{ "text": "Een bot", "aliases": ["Bot", "Botten", "Kluif"] }] },
+        { "prompt": "Welk dier wordt de koning van de dieren genoemd?", "difficulty": "easy", "answers": [{ "text": "De leeuw", "aliases": ["Leeuw"] }] },
+        { "prompt": "Waar slaap je 's nachts in?", "difficulty": "easy", "answers": [{ "text": "Een bed", "aliases": ["Bed"] }] },
+        { "prompt": "Waarvoor gebruik je een paraplu?", "difficulty": "easy", "answers": [{ "text": "Tegen de regen", "aliases": ["Droog blijven", "Regen"] }] },
+        { "prompt": "Welke vogel levert veren voor een donzen dekbed en gakt?", "difficulty": "easy", "answers": [{ "text": "De gans", "aliases": ["Gans", "Eend"] }] },
+        { "prompt": "Welke Nederlandse wiskundige gaf zijn naam aan een beroemde dekpuntstelling?", "difficulty": "hard", "answers": [{ "text": "L.E.J. Brouwer", "aliases": ["Brouwer", "Luitzen Egbertus Jan Brouwer"] }] },
+        { "prompt": "Welke Britse componist schreef Pomp and Circumstance?", "difficulty": "hard", "answers": [{ "text": "Edward Elgar", "aliases": ["Elgar"] }] },
+        { "prompt": "Welk metaal dat in je hand smelt heeft het scheikundige symbool Ga?", "difficulty": "hard", "answers": [{ "text": "Gallium" }] },
+        { "prompt": "Welke rivier stroomt door Stuttgart en Heidelberg?", "difficulty": "hard", "answers": [{ "text": "De Neckar", "aliases": ["Neckar"] }] },
+        { "prompt": "Welke Britse premier kocht in 1875 voor zijn land de Egyptische aandelen in het Suezkanaal?", "difficulty": "hard", "answers": [{ "text": "Benjamin Disraeli", "aliases": ["Disraeli"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Sebastian in De kleine zeemeermin?", "answers": [{ "text": "Een krab", "aliases": ["Krab"] }] },
+        { "prompt": "In welke Poolse stad staat de burcht Wawel?", "answers": [{ "text": "Krakau", "aliases": ["Krakow"] }] },
+        { "prompt": "Welke Ierse schrijver schreef Gullivers reizen?", "answers": [{ "text": "Jonathan Swift", "aliases": ["Swift"] }] },
+        { "prompt": "Wat voor dier is de grote gele Pino in Sesamstraat?", "answers": [{ "text": "Een vogel", "aliases": ["Vogel"] }] },
+        { "prompt": "In welke Europese hoofdstad staat het reusachtige Paleis van het Parlement uit de tijd van Ceausescu?", "answers": [{ "text": "Boekarest", "aliases": ["Bucharest"] }] },
+        { "prompt": "Welke Amerikaanse natuurkundige bedacht diagrammen om botsingen van deeltjes te tekenen?", "answers": [{ "text": "Richard Feynman", "aliases": ["Feynman"] }] },
+        { "prompt": "Wat voor dier is de pratende vriend van Shrek?", "answers": [{ "text": "Een ezel", "aliases": ["Ezel", "Donkey"] }] },
+        { "prompt": "Welke Britse band scoorde in 1978 met Mr. Blue Sky?", "answers": [{ "text": "Electric Light Orchestra", "aliases": ["ELO"] }] },
+        { "prompt": "Welke Griekse filosoof zou in een ton hebben gewoond?", "answers": [{ "text": "Diogenes", "aliases": ["Diogenes van Sinope"] }] }
+      ]
+    }
+  ]
+}

@@ -49,12 +49,12 @@
       "questions": [
         { "prompt": "How many minutes does All Too Well last in the long version?", "answer": 10, "unit": "minutes", "explanation": "The version on Red (Taylor's Version) runs ten minutes and thirteen seconds." },
         { "prompt": "How many songs are on Red (Taylor's Version)?", "answer": 30, "unit": "songs" },
-        { "prompt": "In what year did Taylor Swift release her debut album?", "answer": 2006, "unit": "" },
+        { "prompt": "In what year did Taylor Swift release her debut album?", "answer": 2006 },
         { "prompt": "How many studio albums had Taylor Swift released up to and including Midnights, not counting re-recordings?", "answer": 10, "unit": "albums" },
         { "prompt": "How many Grammy Awards for Album of the Year has Taylor Swift won?", "answer": 4, "unit": "awards" },
-        { "prompt": "In what year did the Eras Tour begin?", "answer": 2023, "unit": "" },
+        { "prompt": "In what year did the Eras Tour begin?", "answer": 2023 },
         { "prompt": "How many tracks are on the standard edition of 1989?", "answer": 13, "unit": "tracks" },
-        { "prompt": "In what year was Taylor Swift born?", "answer": 1989, "unit": "" }
+        { "prompt": "In what year was Taylor Swift born?", "answer": 1989 }
       ]
     },
     {
@@ -89,7 +89,17 @@
         "Taylor's Version",
         "Shake It Off",
         "Banjo",
-        "Tour bus"
+        "Tour bus",
+        "Love song",
+        "Stadium tour",
+        "Sparkly boots",
+        "Heart hands",
+        "Kitty",
+        "Guitar pick necklace",
+        "Fan photo",
+        "Songwriter",
+        "Country guitar",
+        "Purple rain of lights"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which song on folklore did she sing with Bon Iver?", "answers": [{ "text": "Exile" }] },
         { "prompt": "What is her 2022 album with the song Anti-Hero called?", "answers": [{ "text": "Midnights" }] },
         { "prompt": "Of which American state is Nashville, where she started out, the capital?", "answers": [{ "text": "Tennessee" }] },
-        { "prompt": "Which Swedish producer co-wrote Shake It Off and Blank Space with her?", "answers": [{ "text": "Max Martin" }] }
+        { "prompt": "Which Swedish producer co-wrote Shake It Off and Blank Space with her?", "answers": [{ "text": "Max Martin" }] },
+        { "prompt": "In which year was Taylor Swift born?", "answers": [{ "text": "1989" }] },
+        { "prompt": "What is the name of Taylor Swift's Scottish Fold cat named after a TV detective?", "answers": [{ "text": "Olivia Benson", "aliases": ["Olivia"] }] }
       ]
     }
   ]

@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w5",
+  "title": "Weekly quiz 5 2027",
+  "description": "The weekly quiz of Wednesday 3 February 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the largest island of the Philippines?", "category": "Geography", "answers": [{ "text": "Luzon" }] },
+        { "prompt": "What is the line that runs from edge to edge through the centre of a circle called?", "category": "Science", "answers": [{ "text": "The diameter", "aliases": ["Diameter"] }] },
+        { "prompt": "Which woman is said to have helped defend Haarlem against the Spanish in 1573?", "category": "History", "answers": [{ "text": "Kenau Simonsdochter Hasselaer", "aliases": ["Kenau", "Kenau Hasselaer"] }] },
+        { "prompt": "Which British cyclist became the first Briton to win the Tour de France, in 2012?", "category": "Sport", "answers": [{ "text": "Bradley Wiggins", "aliases": ["Wiggins"] }] },
+        { "prompt": "What is the name of Dorothy's little dog in The Wizard of Oz?", "category": "Film", "answers": [{ "text": "Toto" }] },
+        { "prompt": "Which American singer released the album Lemonade in 2016?", "category": "Music", "answers": [{ "text": "Beyonce" }] },
+        { "prompt": "What is the largest lake in Friesland?", "category": "The Netherlands", "answers": [{ "text": "The Tjeukemeer", "aliases": ["Tjeukemeer"] }] },
+        { "prompt": "Which French painter made Le Dejeuner sur l'herbe with a naked woman at a picnic?", "category": "Art", "answers": [{ "text": "Edouard Manet", "aliases": ["Manet"] }] },
+        { "prompt": "What is a word made smaller with an ending, like piglet or booklet, called?", "category": "Language", "answers": [{ "text": "A diminutive", "aliases": ["Diminutive"] }] },
+        { "prompt": "What is the Italian dessert of set cream, literally cooked cream, called?", "category": "Food", "answers": [{ "text": "Panna cotta" }] },
+        { "prompt": "Which English mathematician designed the Analytical Engine, an early computer, in the nineteenth century?", "category": "Technology", "answers": [{ "text": "Charles Babbage", "aliases": ["Babbage"] }] },
+        { "prompt": "Which big shark is the star of the film Jaws?", "category": "Nature", "answers": [{ "text": "The great white shark", "aliases": ["Great white", "Great white shark"] }] },
+        { "prompt": "Which river flows through Moscow?", "category": "Geography", "answers": [{ "text": "The Moskva", "aliases": ["Moskva"] }] },
+        { "prompt": "Which Soviet leader introduced glasnost and perestroika in the eighties?", "category": "History", "answers": [{ "text": "Mikhail Gorbachev", "aliases": ["Gorbachev"] }] },
+        { "prompt": "What is a space with no air in it at all called?", "category": "Science", "answers": [{ "text": "A vacuum", "aliases": ["Vacuum"] }] },
+        { "prompt": "Which Dutch DJ has presented the radio show A State of Trance for years?", "category": "Music", "answers": [{ "text": "Armin van Buuren", "aliases": ["Van Buuren", "Armin"] }] },
+        { "prompt": "Which American actor played Frodo in The Lord of the Rings?", "category": "Film", "answers": [{ "text": "Elijah Wood", "aliases": ["Wood"] }] },
+        { "prompt": "What is the Surinamese sandwich filled with a baked dish of tayer root and chicken called?", "category": "Food", "answers": [{ "text": "Broodje pom", "aliases": ["Pom"] }] },
+        { "prompt": "In which 1981 arcade game did Mario first appear?", "category": "Technology", "answers": [{ "text": "Donkey Kong" }] },
+        { "prompt": "What is the official language of Andorra?", "category": "Language", "answers": [{ "text": "Catalan" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these countries is on the Adriatic Sea?", "options": [{ "text": "Albania", "correct": true }, { "text": "Bulgaria" }, { "text": "North Macedonia" }, { "text": "Hungary" }] },
+        { "prompt": "Which of these animals is mainly active at night?", "options": [{ "text": "The hedgehog", "correct": true }, { "text": "The squirrel" }, { "text": "The cow" }, { "text": "The swan" }] },
+        { "prompt": "Which writer wrote Little Johannes?", "options": [{ "text": "Frederik van Eeden", "correct": true }, { "text": "Multatuli" }, { "text": "Louis Couperus" }, { "text": "Nescio" }] },
+        { "prompt": "In which of these countries is Portuguese the official language?", "options": [{ "text": "Mozambique", "correct": true }, { "text": "Mali" }, { "text": "Senegal" }, { "text": "Kenya" }] },
+        { "prompt": "Which of these diseases is hereditary?", "options": [{ "text": "Haemophilia", "correct": true }, { "text": "Flu" }, { "text": "Malaria" }, { "text": "Measles" }] },
+        { "prompt": "Which king reigned over the United Kingdom during the First World War?", "options": [{ "text": "George V", "correct": true }, { "text": "Edward VII" }, { "text": "George VI" }, { "text": "Edward VIII" }] },
+        { "prompt": "Which of these lakes is in Switzerland?", "options": [{ "text": "Lake Geneva", "correct": true }, { "text": "Lake Garda" }, { "text": "Lake Como" }, { "text": "Lake Balaton" }] },
+        { "prompt": "Which of these birds has the longest legs compared with its body?", "options": [{ "text": "The black-winged stilt", "correct": true }, { "text": "The flamingo" }, { "text": "The heron" }, { "text": "The stork" }] },
+        { "prompt": "Which film won the 2017 Oscar for best picture after La La Land had been announced by mistake?", "options": [{ "text": "Moonlight", "correct": true }, { "text": "Manchester by the Sea" }, { "text": "Arrival" }, { "text": "Hidden Figures" }] },
+        { "prompt": "In which country was korfball invented?", "options": [{ "text": "The Netherlands", "correct": true }, { "text": "Belgium" }, { "text": "Denmark" }, { "text": "England" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres high is the Gateway Arch in St Louis?", "answer": 192, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Seine?", "answer": 777, "unit": "kilometres" },
+        { "prompt": "How many countries took part in the very first World Cup in 1930?", "answer": 13, "unit": "countries" },
+        { "prompt": "How old was Elvis Presley when he died?", "answer": 42, "unit": "years" },
+        { "prompt": "About how many kilos does an adult ostrich weigh?", "answer": 130, "unit": "kilos" },
+        { "prompt": "How many pips are there in total on an ordinary die?", "answer": 21, "unit": "pips" },
+        { "prompt": "How many metres long is a basketball court?", "answer": 28, "unit": "metres" },
+        { "prompt": "In which year did Schiphol open as an airfield?", "answer": 1916 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Pet",
+        "Tamagotchi",
+        "Nail biting",
+        "Mexican wave",
+        "Brie",
+        "Parthenon",
+        "Bumper car",
+        "Pilgrimage",
+        "Thor",
+        "Lobster bisque",
+        "Cinnamon",
+        "Smorgasbord",
+        "Voldemort",
+        "Best man",
+        "Candle wax",
+        "Sperm whale",
+        "Hong Kong",
+        "Guinea pig",
+        "Encyclopaedia",
+        "Peanut",
+        "Majorette",
+        "Answering machine",
+        "Oscar",
+        "Roger Federer",
+        "Jockey",
+        "Acrobat",
+        "Poseidon",
+        "Glider",
+        "Hair curler",
+        "Brooch",
+        "Raft",
+        "Cornflakes",
+        "Bottle bank",
+        "Stand-up comedian",
+        "Hamster",
+        "Napkin ring",
+        "Grand Slam",
+        "Toastie maker",
+        "Museum attendant",
+        "Spray tan"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Friesland?", "answers": [{ "text": "Elfstedentocht", "aliases": ["Skating"] }, { "text": "Frisian", "aliases": ["Frisian language"] }, { "text": "Leeuwarden", "aliases": ["Heerenveen"] }, { "text": "Friesian cows", "aliases": ["Cows", "Friesian horses", "Canal vaulting"] }] },
+        { "prompt": "What do you know about the Soviet Union?", "answers": [{ "text": "Communism", "aliases": ["Communist"] }, { "text": "Russia", "aliases": ["Moscow"] }, { "text": "Hammer and sickle", "aliases": ["Red flag"] }, { "text": "Cold War", "aliases": ["Stalin", "Lenin"] }] },
+        { "prompt": "What do you know about diamonds?", "answers": [{ "text": "Hardest material", "aliases": ["Hard"] }, { "text": "Antwerp", "aliases": ["Amsterdam"] }, { "text": "Ring", "aliases": ["Engagement ring", "Jewellery"] }, { "text": "Carat", "aliases": ["Cutting", "Sparkle"] }] },
+        { "prompt": "What do you know about rainbows?", "answers": [{ "text": "Seven colours", "aliases": ["Colours", "Red to violet"] }, { "text": "Sun and rain", "aliases": ["Rain", "Sun"] }, { "text": "Pot of gold", "aliases": ["Leprechaun"] }, { "text": "Refraction", "aliases": ["Bending light", "Prism"] }] },
+        { "prompt": "What do you know about Las Vegas?", "answers": [{ "text": "Casinos", "aliases": ["Gambling"] }, { "text": "Nevada", "aliases": ["Desert"] }, { "text": "Weddings", "aliases": ["Quick weddings", "Elvis"] }, { "text": "Neon lights", "aliases": ["The Strip", "Shows"] }] },
+        { "prompt": "What do you know about jazz?", "answers": [{ "text": "New Orleans", "aliases": ["America"] }, { "text": "Saxophone", "aliases": ["Trumpet"] }, { "text": "Louis Armstrong", "aliases": ["Miles Davis", "Ella Fitzgerald"] }, { "text": "Improvising", "aliases": ["Swing"] }] },
+        { "prompt": "What do you know about parrots?", "answers": [{ "text": "Talking", "aliases": ["Mimicking", "Words"] }, { "text": "Colourful", "aliases": ["Bright feathers"] }, { "text": "Tropical", "aliases": ["Rainforest"] }, { "text": "Pirates", "aliases": ["On the shoulder"] }] },
+        { "prompt": "What do you know about the post?", "answers": [{ "text": "Postman", "aliases": ["Postwoman", "Postie"] }, { "text": "Stamps", "aliases": ["Stamp"] }, { "text": "Postbox", "aliases": ["Letters"] }, { "text": "Royal Mail", "aliases": ["Parcels", "PostNL"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is your smallest finger called?", "difficulty": "easy", "answers": [{ "text": "The little finger", "aliases": ["Little finger", "Pinky"] }] },
+        { "prompt": "What colour is a crow?", "difficulty": "easy", "answers": [{ "text": "Black" }] },
+        { "prompt": "Which slow animal pulls its head back into its shell?", "difficulty": "easy", "answers": [{ "text": "The tortoise", "aliases": ["Tortoise", "Turtle"] }] },
+        { "prompt": "What do you say to someone on their birthday?", "difficulty": "easy", "answers": [{ "text": "Happy birthday" }] },
+        { "prompt": "In which season do the leaves fall from the trees?", "difficulty": "easy", "answers": [{ "text": "Autumn", "aliases": ["The autumn", "Fall"] }] },
+        { "prompt": "Which French philosopher wrote The Spirit of the Laws about the separation of powers?", "difficulty": "hard", "answers": [{ "text": "Montesquieu" }] },
+        { "prompt": "Which Italian composer wrote the opera Pagliacci?", "difficulty": "hard", "answers": [{ "text": "Ruggero Leoncavallo", "aliases": ["Leoncavallo"] }] },
+        { "prompt": "Which precious metal has the chemical symbol Pd?", "difficulty": "hard", "answers": [{ "text": "Palladium" }] },
+        { "prompt": "Which river flows through Frankfurt?", "difficulty": "hard", "answers": [{ "text": "The Main", "aliases": ["Main"] }] },
+        { "prompt": "Which West German chancellor won the 1971 Nobel Peace Prize for his Ostpolitik?", "difficulty": "hard", "answers": [{ "text": "Willy Brandt", "aliases": ["Brandt"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which animal is the mascot of Linux?", "answers": [{ "text": "A penguin", "aliases": ["Penguin", "Tux"] }] },
+        { "prompt": "Which French city lies on the Promenade des Anglais?", "answers": [{ "text": "Nice" }] },
+        { "prompt": "Which Italian writer wrote My Brilliant Friend under a pen name?", "answers": [{ "text": "Elena Ferrante", "aliases": ["Ferrante"] }] },
+        { "prompt": "Which celebration is held in the Netherlands on the twenty-seventh of April?", "answers": [{ "text": "King's Day", "aliases": ["Koningsdag"] }] },
+        { "prompt": "What is the currency of China called?", "answers": [{ "text": "The yuan", "aliases": ["Yuan", "Renminbi"] }] },
+        { "prompt": "Which English mathematician devised the algebra of true and false that computers run on?", "answers": [{ "text": "George Boole", "aliases": ["Boole"] }] },
+        { "prompt": "What is a young dog called?", "answers": [{ "text": "A puppy", "aliases": ["Puppy", "Pup"] }] },
+        { "prompt": "Which Australian singer had a hit with Can't Get You Out of My Head?", "answers": [{ "text": "Kylie Minogue", "aliases": ["Kylie", "Minogue"] }] },
+        { "prompt": "Which French philosopher wrote Being and Nothingness?", "answers": [{ "text": "Jean-Paul Sartre", "aliases": ["Sartre"] }] }
+      ]
+    }
+  ]
+}

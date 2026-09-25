@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter ligt er tussen de wickets op een cricketveld?", "answer": 20, "unit": "meter" },
         { "prompt": "Hoeveel kilometer per uur zwemt een zeilvis?", "answer": 110, "unit": "kilometer per uur" },
-        { "prompt": "In welk jaar werden de Olympische Spelen voor het eerst in Azie gehouden?", "answer": 1964, "unit": "" },
+        { "prompt": "In welk jaar werden de Olympische Spelen voor het eerst in Azie gehouden?", "answer": 1964 },
         { "prompt": "Hoeveel botjes zitten er in het menselijke middenoor?", "answer": 3, "unit": "botjes" },
         { "prompt": "Hoeveel pitjes zitten er ongeveer in een granaatappel?", "answer": 600, "unit": "pitjes" },
         { "prompt": "Hoeveel meter legt een luiaard op de grond per dag af?", "answer": 40, "unit": "meter" },
@@ -88,7 +88,17 @@
         "Mount Everest",
         "Detective",
         "Harry Potter",
-        "Zonsverduistering"
+        "Zonsverduistering",
+        "Duimzuigen",
+        "Passer",
+        "Wrattenzwijn",
+        "Pindasaus",
+        "Abseilen",
+        "Alhambra",
+        "Bob de Bouwer",
+        "Kungfu",
+        "Pastamachine",
+        "Pita"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is qua volume de grootste vulkaan op aarde?", "answers": [{ "text": "Mauna Loa" }] },
         { "prompt": "Welke componist schreef de opera Die Zauberflote?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
         { "prompt": "Welke Italiaanse natuurkundige vond de elektrische batterij uit?", "answers": [{ "text": "Alessandro Volta", "aliases": ["Volta"] }] },
-        { "prompt": "Bij welke zee ligt het laagste punt op het vasteland van de aarde?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] }
+        { "prompt": "Bij welke zee ligt het laagste punt op het vasteland van de aarde?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
+        { "prompt": "Welke Franse schilder maakte een hele reeks schilderijen van waterlelies in zijn tuin?", "answers": [{ "text": "Claude Monet", "aliases": ["Monet"] }] },
+        { "prompt": "Wat is de hoofdstad van Mali?", "answers": [{ "text": "Bamako" }] }
       ]
     }
   ]

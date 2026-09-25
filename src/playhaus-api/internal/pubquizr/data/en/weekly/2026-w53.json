@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w53",
+  "title": "Weekly quiz 53 2026",
+  "description": "The weekly quiz of Wednesday 30 December 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "In which American state is the Grand Canyon?", "category": "Geography", "answers": [{ "text": "Arizona" }] },
+        { "prompt": "What is a year with an extra day in February called?", "category": "Science", "answers": [{ "text": "A leap year", "aliases": ["Leap year"] }] },
+        { "prompt": "Which two-faced Roman god gave his name to January?", "category": "History", "answers": [{ "text": "Janus" }] },
+        { "prompt": "Which Dutch darts player became BDO world champion five times?", "category": "Sport", "answers": [{ "text": "Raymond van Barneveld", "aliases": ["Van Barneveld", "Barney"] }] },
+        { "prompt": "Which American actress played Bridget Jones?", "category": "Film", "answers": [{ "text": "Renee Zellweger", "aliases": ["Zellweger"] }] },
+        { "prompt": "Which British drummer and singer of Genesis had a solo hit with In the Air Tonight?", "category": "Music", "answers": [{ "text": "Phil Collins", "aliases": ["Collins"] }] },
+        { "prompt": "Which town in Limburg is famous for its marl caves and underground Christmas market?", "category": "The Netherlands", "answers": [{ "text": "Valkenburg", "aliases": ["Valkenburg aan de Geul"] }] },
+        { "prompt": "Which Swiss sculptor made tall, skeleton-thin human figures?", "category": "Art", "answers": [{ "text": "Alberto Giacometti", "aliases": ["Giacometti"] }] },
+        { "prompt": "What is New Year's Eve called in Scotland?", "category": "Language", "answers": [{ "text": "Hogmanay" }] },
+        { "prompt": "Which pastry with a ring of apple do many Dutch people eat besides oliebollen on New Year's Eve?", "category": "Food", "answers": [{ "text": "Apple fritters", "aliases": ["Apple fritter", "Appelbeignets"] }] },
+        { "prompt": "Which computer bug were people afraid of at the turn of the year two thousand?", "category": "Technology", "answers": [{ "text": "The millennium bug", "aliases": ["Millennium bug", "Y2K"] }] },
+        { "prompt": "What is the coloured light that dances in the winter night over Norway and Iceland called?", "category": "Nature", "answers": [{ "text": "The northern lights", "aliases": ["Northern lights", "Aurora borealis"] }] },
+        { "prompt": "In which Asian city is the skyscraper Taipei 101?", "category": "Geography", "answers": [{ "text": "Taipei" }] },
+        { "prompt": "Which German emperor fled to the Netherlands in 1918 and lived in Doorn until his death?", "category": "History", "answers": [{ "text": "Wilhelm II", "aliases": ["Kaiser Wilhelm", "Wilhelm"] }] },
+        { "prompt": "What is the number below the line of a fraction called?", "category": "Science", "answers": [{ "text": "The denominator", "aliases": ["Denominator"] }] },
+        { "prompt": "Which American singer had a hit with Firework in 2010?", "category": "Music", "answers": [{ "text": "Katy Perry", "aliases": ["Perry"] }] },
+        { "prompt": "Which Dutch director won an Oscar in 1998 with the film Character?", "category": "Film", "answers": [{ "text": "Mike van Diem", "aliases": ["Van Diem"] }] },
+        { "prompt": "What is the English dish of beef fillet in puff pastry called?", "category": "Food", "answers": [{ "text": "Beef Wellington", "aliases": ["Wellington"] }] },
+        { "prompt": "What is the social network that was called Twitter until 2023 now called?", "category": "Technology", "answers": [{ "text": "X" }] },
+        { "prompt": "How do you wish someone a happy new year in French?", "category": "Language", "answers": [{ "text": "Bonne annee" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these countries pays with the euro?", "options": [{ "text": "Croatia", "correct": true }, { "text": "Poland" }, { "text": "Czechia" }, { "text": "Sweden" }] },
+        { "prompt": "Which of these sea creatures is a mammal?", "options": [{ "text": "The manatee", "correct": true }, { "text": "The shark" }, { "text": "The ray" }, { "text": "The tuna" }] },
+        { "prompt": "Which writer wrote The Da Vinci Code?", "options": [{ "text": "Dan Brown", "correct": true }, { "text": "John Grisham" }, { "text": "Stephen King" }, { "text": "Ken Follett" }] },
+        { "prompt": "Which of these American cities is on the west coast?", "options": [{ "text": "Seattle", "correct": true }, { "text": "Boston" }, { "text": "Miami" }, { "text": "Atlanta" }] },
+        { "prompt": "Which of these is not a blood group?", "options": [{ "text": "C", "correct": true }, { "text": "A" }, { "text": "B" }, { "text": "O" }] },
+        { "prompt": "Which currency did the Netherlands use before the euro?", "options": [{ "text": "The guilder", "correct": true }, { "text": "The mark" }, { "text": "The franc" }, { "text": "The crown" }] },
+        { "prompt": "Which of these islands is in the Pacific Ocean?", "options": [{ "text": "Tahiti", "correct": true }, { "text": "Mauritius" }, { "text": "Barbados" }, { "text": "Madeira" }] },
+        { "prompt": "Which animal belongs to the year 2027 in the Chinese calendar?", "options": [{ "text": "The goat", "correct": true }, { "text": "The horse" }, { "text": "The monkey" }, { "text": "The rooster" }] },
+        { "prompt": "Which film won the Oscar for best picture in 2025?", "options": [{ "text": "Anora", "correct": true }, { "text": "The Brutalist" }, { "text": "Conclave" }, { "text": "Wicked" }] },
+        { "prompt": "In which Olympic sport do you shoot at a target with a bow and arrow?", "options": [{ "text": "Archery", "correct": true }, { "text": "Shooting" }, { "text": "Modern pentathlon" }, { "text": "Biathlon" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Burj Al Arab hotel in Dubai?", "answer": 321, "unit": "metres" },
+        { "prompt": "In winter, how many hours behind the Netherlands is New York?", "answer": 6, "unit": "hours" },
+        { "prompt": "How many kilometres is it as the crow flies from Paris to Moscow?", "answer": 2480, "unit": "kilometres" },
+        { "prompt": "How many Dutch guilders was one euro worth when it was introduced?", "answer": 2.2, "unit": "guilders", "explanation": "Exactly 2.20371 guilders." },
+        { "prompt": "How old was Johan Cruyff when he died?", "answer": 68, "unit": "years" },
+        { "prompt": "How many countries are members of NATO?", "answer": 32, "unit": "countries" },
+        { "prompt": "How many cards are there in a game of Uno?", "answer": 108, "unit": "cards" },
+        { "prompt": "In which year was the first New Year's dive held in Scheveningen?", "answer": 1965 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Dictionary",
+        "Girl with a Pearl Earring",
+        "Tiger Woods",
+        "Goofy",
+        "Visit to the new baby",
+        "Artichoke",
+        "Perfume",
+        "Racing bike",
+        "Edinburgh Castle",
+        "Korfball",
+        "Witch hunt",
+        "Sauna",
+        "Risk",
+        "Cheeseboard",
+        "Wedding photographer",
+        "Sinbad",
+        "St Bernard",
+        "Claustrophobia",
+        "Metallica",
+        "Kimchi",
+        "Gollum",
+        "Stingray",
+        "Coconut milk",
+        "Centaur",
+        "Tickling",
+        "Dressage",
+        "Chamberlain",
+        "Duvet",
+        "Hand blender",
+        "Gym",
+        "Jamaica",
+        "Spinach",
+        "Cheat sheet",
+        "Big Brother",
+        "One-man band",
+        "Curling",
+        "Time trial",
+        "Tailor",
+        "Builder",
+        "Clown"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about champagne?", "answers": [{ "text": "France", "aliases": ["Champagne region", "Reims"] }, { "text": "Bubbles", "aliases": ["Sparkling", "Fizzy"] }, { "text": "Cork", "aliases": ["Popping cork"] }, { "text": "Celebration", "aliases": ["Toast", "New Year", "Wedding"] }] },
+        { "prompt": "What do you know about Sydney?", "answers": [{ "text": "Opera House" }, { "text": "Harbour Bridge", "aliases": ["Bridge"] }, { "text": "Bondi Beach", "aliases": ["Beach", "Surfing"] }, { "text": "Australia", "aliases": ["Australian"] }] },
+        { "prompt": "What do you know about the euro?", "answers": [{ "text": "Currency", "aliases": ["Money", "Coins"] }, { "text": "European Union", "aliases": ["Europe", "Eurozone"] }, { "text": "Two thousand and two", "aliases": ["2002"] }, { "text": "Guilder", "aliases": ["Replaced the guilder", "Mark", "Franc"] }] },
+        { "prompt": "What do you know about Julius Caesar?", "answers": [{ "text": "Rome", "aliases": ["Romans", "Roman Empire"] }, { "text": "Cleopatra", "aliases": ["Egypt"] }, { "text": "Murdered", "aliases": ["Brutus", "Stabbed"] }, { "text": "Veni, vidi, vici", "aliases": ["I came, I saw, I conquered"] }] },
+        { "prompt": "What do you know about the ISS?", "answers": [{ "text": "Space station", "aliases": ["International Space Station"] }, { "text": "Astronauts", "aliases": ["Cosmonauts"] }, { "text": "Andre Kuipers", "aliases": ["Kuipers", "Chris Hadfield", "Tim Peake"] }, { "text": "Orbiting the earth", "aliases": ["Orbit", "Weightless"] }] },
+        { "prompt": "What do you know about Austria?", "answers": [{ "text": "Vienna", "aliases": ["The capital Vienna"] }, { "text": "Mozart", "aliases": ["Salzburg"] }, { "text": "Skiing", "aliases": ["Winter sports", "Alps"] }, { "text": "Sachertorte", "aliases": ["Apple strudel", "Wiener schnitzel"] }] },
+        { "prompt": "What do you know about The Simpsons?", "answers": [{ "text": "Homer", "aliases": ["Homer Simpson", "Marge", "Bart", "Lisa"] }, { "text": "Yellow", "aliases": ["Yellow skin"] }, { "text": "Springfield", "aliases": ["Town"] }, { "text": "Doughnuts", "aliases": ["Duff beer"] }] },
+        { "prompt": "What do you know about the marathon?", "answers": [{ "text": "Forty-two kilometres", "aliases": ["42 kilometres", "26.2 miles"] }, { "text": "Greece", "aliases": ["Legend", "Messenger"] }, { "text": "Eliud Kipchoge", "aliases": ["Kipchoge"] }, { "text": "Rotterdam", "aliases": ["New York", "London"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you do with your glass at midnight on New Year's Eve?", "difficulty": "easy", "answers": [{ "text": "Toast", "aliases": ["Clink glasses", "Cheers"] }] },
+        { "prompt": "Which month comes after June?", "difficulty": "easy", "answers": [{ "text": "July" }] },
+        { "prompt": "What is the first day of the year called?", "difficulty": "easy", "answers": [{ "text": "New Year's Day" }] },
+        { "prompt": "Which small pet runs in a wheel and stuffs its cheeks with food?", "difficulty": "easy", "answers": [{ "text": "The hamster", "aliases": ["Hamster"] }] },
+        { "prompt": "What is a magpie said to love stealing?", "difficulty": "easy", "answers": [{ "text": "Shiny things", "aliases": ["Jewellery", "Glittery things", "Gold"] }] },
+        { "prompt": "Which French writer wrote Candide?", "difficulty": "hard", "answers": [{ "text": "Voltaire" }] },
+        { "prompt": "Which Spanish composer wrote the Concierto de Aranjuez?", "difficulty": "hard", "answers": [{ "text": "Joaquin Rodrigo", "aliases": ["Rodrigo"] }] },
+        { "prompt": "Which radioactive noble gas has the chemical symbol Rn?", "difficulty": "hard", "answers": [{ "text": "Radon" }] },
+        { "prompt": "Which river flows through Belfast?", "difficulty": "hard", "answers": [{ "text": "The Lagan", "aliases": ["Lagan"] }] },
+        { "prompt": "Which emperor, born in Ghent, ruled an empire on which the sun never set?", "difficulty": "hard", "answers": [{ "text": "Charles V", "aliases": ["Charles the Fifth"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which sports brand has three stripes as its logo?", "answers": [{ "text": "Adidas" }] },
+        { "prompt": "Which chart of two thousand songs does the Dutch station NPO Radio 2 broadcast every year between Christmas and New Year?", "answers": [{ "text": "The Top 2000", "aliases": ["Top 2000"] }] },
+        { "prompt": "Which Japanese writer became the first Japanese winner of the Nobel Prize in Literature, in 1968?", "answers": [{ "text": "Yasunari Kawabata", "aliases": ["Kawabata"] }] },
+        { "prompt": "Which French car brand has a lion as its logo?", "answers": [{ "text": "Peugeot" }] },
+        { "prompt": "Which Belgian city with canals and a belfry is called the Venice of the North?", "answers": [{ "text": "Bruges", "aliases": ["Brugge"] }] },
+        { "prompt": "Which German physicist formulated the uncertainty principle?", "answers": [{ "text": "Werner Heisenberg", "aliases": ["Heisenberg"] }] },
+        { "prompt": "Which vegetable makes Popeye strong?", "answers": [{ "text": "Spinach" }] },
+        { "prompt": "Which American jazz musician sang What a Wonderful World?", "answers": [{ "text": "Louis Armstrong", "aliases": ["Armstrong", "Satchmo"] }] },
+        { "prompt": "Which Persian mathematician is the word algorithm named after?", "answers": [{ "text": "Al-Khwarizmi", "aliases": ["Al Khwarizmi"] }] }
+      ]
+    }
+  ]
+}

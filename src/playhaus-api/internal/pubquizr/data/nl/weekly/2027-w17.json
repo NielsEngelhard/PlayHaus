@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w17",
+  "title": "Weekquiz 17 2027",
+  "description": "De wekelijkse quiz van woensdag 28 april 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welk traditioneel kinderspel met een schijf en een lange houten bak speel je vaak op Koningsdag?", "category": "Nederland", "answers": [{ "text": "Sjoelen", "aliases": ["Sjoelbak"] }] },
+        { "prompt": "Welke broer van Napoleon was van 1806 tot 1810 koning van Holland?", "category": "Geschiedenis", "answers": [{ "text": "Lodewijk Napoleon", "aliases": ["Lodewijk Bonaparte", "Louis Bonaparte", "Louis Napoleon"] }] },
+        { "prompt": "Wat is de hoofdstad van Botswana?", "category": "Aardrijkskunde", "answers": [{ "text": "Gaborone" }] },
+        { "prompt": "Naar welke Duitse natuurkundige is de eenheid van magnetische flux genoemd?", "category": "Wetenschap", "answers": [{ "text": "Wilhelm Weber", "aliases": ["Weber"] }] },
+        { "prompt": "Welke Belgische wielrenner won in 2022 Gent-Wevelgem en werd vaak tweede achter Van der Poel?", "category": "Sport", "answers": [{ "text": "Wout van Aert", "aliases": ["Van Aert"] }] },
+        { "prompt": "Welke Spaanse regisseur maakte Todo sobre mi madre?", "category": "Film", "answers": [{ "text": "Pedro Almodovar", "aliases": ["Almodovar"] }] },
+        { "prompt": "Welk Frans duo met robothelmen maakte Get Lucky?", "category": "Muziek", "answers": [{ "text": "Daft Punk" }] },
+        { "prompt": "Welke kever rolt balletjes van poep over de grond?", "category": "Natuur", "answers": [{ "text": "De mestkever", "aliases": ["Mestkever", "Pillendraaier", "Scarabee"] }] },
+        { "prompt": "Welke Nederlandse Cobra-schilder zei: Ik rotzooi maar wat aan?", "category": "Kunst", "answers": [{ "text": "Karel Appel", "aliases": ["Appel"] }] },
+        { "prompt": "Hoe heet de langste zijde van een rechthoekige driehoek?", "category": "Wetenschap", "answers": [{ "text": "De hypotenusa", "aliases": ["Hypotenusa", "Schuine zijde"] }] },
+        { "prompt": "Welk Frans appeltaartje wordt ondersteboven gebakken?", "category": "Eten", "answers": [{ "text": "Tarte tatin", "aliases": ["Tarte Tatin"] }] },
+        { "prompt": "Welke Amerikaanse marineofficier bedacht een van de eerste programmeertalen en vond een echte mot in een computer?", "category": "Techniek", "answers": [{ "text": "Grace Hopper", "aliases": ["Hopper"] }] },
+        { "prompt": "Welk Afrikaans koninkrijk heette tot 2018 Swaziland?", "category": "Aardrijkskunde", "answers": [{ "text": "Eswatini" }] },
+        { "prompt": "Welke Griekse figuur moest voor eeuwig een rotsblok een berg op rollen?", "category": "Geschiedenis", "answers": [{ "text": "Sisyfus", "aliases": ["Sisyphus"] }] },
+        { "prompt": "Welke Deense regisseur maakte Melancholia en Dogville?", "category": "Film", "answers": [{ "text": "Lars von Trier", "aliases": ["Von Trier"] }] },
+        { "prompt": "Welke Zweedse zangeres scoorde in 2010 met Dancing On My Own?", "category": "Muziek", "answers": [{ "text": "Robyn" }] },
+        { "prompt": "Welke Nederlandse fotograaf maakte de film Control en veel hoezen van U2?", "category": "Kunst", "answers": [{ "text": "Anton Corbijn", "aliases": ["Corbijn"] }] },
+        { "prompt": "Welk Duits bedrijf uit Munchen maakt treinen, turbines en medische scanners?", "category": "Techniek", "answers": [{ "text": "Siemens" }] },
+        { "prompt": "Welke Griekse jongen vloog met vleugels van was te dicht bij de zon?", "category": "Geschiedenis", "answers": [{ "text": "Icarus", "aliases": ["Ikarus"] }] },
+        { "prompt": "Welke Zweedse regisseur maakte Het zevende zegel, met een ridder die schaakt tegen de dood?", "category": "Film", "answers": [{ "text": "Ingmar Bergman", "aliases": ["Bergman"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke Nederlandse ontwerper maakte de eerste stalen buisstoel zonder achterpoten?", "options": [{ "text": "Mart Stam", "correct": true }, { "text": "Gerrit Rietveld" }, { "text": "Marcel Wanders" }, { "text": "Piet Hein Eek" }] },
+        { "prompt": "Welke plaats bezocht de koninklijke familie op de allereerste Koningsdag in 2014?", "options": [{ "text": "Amstelveen", "correct": true }, { "text": "Zwolle" }, { "text": "Maastricht" }, { "text": "Dordrecht" }] },
+        { "prompt": "Welke Nederlandse regisseur won een Oscar met De Aanslag?", "options": [{ "text": "Fons Rademakers", "correct": true }, { "text": "Paul Verhoeven" }, { "text": "Mike van Diem" }, { "text": "Marleen Gorris" }] },
+        { "prompt": "Welke Griekse god was de smid van de goden?", "options": [{ "text": "Hefaistos", "correct": true }, { "text": "Ares" }, { "text": "Hermes" }, { "text": "Apollo" }] },
+        { "prompt": "Welk Frans bedrijf maakt het taalmodel Le Chat?", "options": [{ "text": "Mistral AI", "correct": true }, { "text": "Dassault" }, { "text": "Thales" }, { "text": "Capgemini" }] },
+        { "prompt": "Hoe heet een vierhoek met vier gelijke zijden maar zonder rechte hoeken?", "options": [{ "text": "Een ruit", "correct": true }, { "text": "Een trapezium" }, { "text": "Een rechthoek" }, { "text": "Een vlieger" }] },
+        { "prompt": "Welke Belgische surrealist schilderde vooral naakte vrouwen in maanverlichte stations?", "options": [{ "text": "Paul Delvaux", "correct": true }, { "text": "James Ensor" }, { "text": "Rene Magritte" }, { "text": "Constant Permeke" }] },
+        { "prompt": "Welke Nederlandse documentairemaker won een Oscar met de korte film Glas?", "options": [{ "text": "Bert Haanstra", "correct": true }, { "text": "Joris Ivens" }, { "text": "Johan van der Keuken" }, { "text": "Heddy Honigmann" }] },
+        { "prompt": "Welk Brits bedrijf maakte AlphaGo, dat de wereldkampioen Go versloeg?", "options": [{ "text": "DeepMind", "correct": true }, { "text": "Arm" }, { "text": "Sinclair" }, { "text": "Acorn" }] },
+        { "prompt": "In welk jaar trad koningin Beatrix af?", "options": [{ "text": "2013", "correct": true }, { "text": "2010" }, { "text": "2011" }, { "text": "2014" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Met hoeveel schijven speel je een spel sjoelen?", "answer": 30, "unit": "schijven" },
+        { "prompt": "Hoeveel meter hoog is de Tafelberg in Kaapstad?", "answer": 1085, "unit": "meter" },
+        { "prompt": "Hoeveel minuten duurt de film Het zevende zegel ongeveer?", "answer": 96, "unit": "minuten" },
+        { "prompt": "Hoeveel keer zijn eigen gewicht kan de sterkste soort mestkever ongeveer trekken?", "answer": 1141, "unit": "keer" },
+        { "prompt": "Hoe oud was Willem-Alexander toen hij in 2013 koning werd?", "answer": 46, "unit": "jaar" },
+        { "prompt": "Hoeveel eilanden telt de Seychellen ongeveer?", "answer": 115, "unit": "eilanden" },
+        { "prompt": "Hoeveel Oscars heeft Pedro Almodovar gewonnen?", "answer": 2, "unit": "Oscars" },
+        { "prompt": "Hoeveel graden Celsius is de gemiddelde temperatuur op het oppervlak van Venus?", "answer": 464, "unit": "graden" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Abraham Lincoln",
+        "Draaischijftelefoon",
+        "Grote Bazaar",
+        "Marionet",
+        "Johann Sebastian Bach",
+        "Het Witte Huis",
+        "De kleine zeemeermin",
+        "Zegelring",
+        "Pierenbadje",
+        "Radiozender",
+        "Yak",
+        "Marco Polo",
+        "Graafmachine",
+        "Rocky",
+        "Gondelvaart",
+        "Zondagse lunch",
+        "Graffiti",
+        "Wifi",
+        "Lekke band",
+        "Nagelknipper",
+        "Couscous",
+        "Slapeloosheid",
+        "Madonna",
+        "Kaneelstok",
+        "Safaripark",
+        "Biljart",
+        "Toegangskaartje",
+        "Oogschaduw",
+        "Inktvis",
+        "Kroket",
+        "Mascotte",
+        "Recept",
+        "Kievit",
+        "Wachtrij",
+        "Trombone",
+        "Kerstbal",
+        "Koning Charles",
+        "Icarus",
+        "Revolutie",
+        "Altviool"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Koningsdag?", "answers": [{ "text": "27 april", "aliases": ["April", "Verjaardag koning"] }, { "text": "Oranje", "aliases": ["Oranje kleding", "Oranjebitter"] }, { "text": "Kinderspelletjes", "aliases": ["Koekhappen", "Sjoelen"] }, { "text": "Rondgang", "aliases": ["Koninklijke familie", "Bezoek aan een stad"] }] },
+        { "prompt": "Wat weet je over Daft Punk?", "answers": [{ "text": "Helmen", "aliases": ["Robots", "Robothelmen"] }, { "text": "Frankrijk", "aliases": ["Frans", "Parijs"] }, { "text": "Get Lucky", "aliases": ["One More Time", "Around the World"] }, { "text": "Elektronisch", "aliases": ["House", "Dance"] }] },
+        { "prompt": "Wat weet je over de Griekse mythologie?", "answers": [{ "text": "Zeus", "aliases": ["Olympus"] }, { "text": "Helden", "aliases": ["Herakles", "Odysseus"] }, { "text": "Monsters", "aliases": ["Medusa", "Minotaurus"] }, { "text": "Goden", "aliases": ["Poseidon", "Athena"] }] },
+        { "prompt": "Wat weet je over Botswana?", "answers": [{ "text": "Gaborone", "aliases": ["Hoofdstad"] }, { "text": "Diamanten", "aliases": ["Mijnbouw"] }, { "text": "Okavangodelta", "aliases": ["Okavango", "Delta"] }, { "text": "Olifanten", "aliases": ["Kalahari", "Safari"] }] },
+        { "prompt": "Wat weet je over kevers?", "answers": [{ "text": "Schild", "aliases": ["Dekschilden", "Pantser"] }, { "text": "Lieveheersbeestje", "aliases": ["Meikever"] }, { "text": "Insect", "aliases": ["Zes poten"] }, { "text": "Mestkever", "aliases": ["Scarabee", "Vliegen"] }] },
+        { "prompt": "Wat weet je over Siemens?", "answers": [{ "text": "Duitsland", "aliases": ["Duits", "Munchen"] }, { "text": "Treinen", "aliases": ["ICE"] }, { "text": "Elektronica", "aliases": ["Huishoudapparaten", "Wasmachines"] }, { "text": "Medische apparatuur", "aliases": ["Scanners", "MRI"] }] },
+        { "prompt": "Wat weet je over Scandinavische film?", "answers": [{ "text": "Ingmar Bergman", "aliases": ["Bergman"] }, { "text": "Lars von Trier", "aliases": ["Dogma"] }, { "text": "Zweden", "aliases": ["Denemarken", "Noorwegen"] }, { "text": "Somber", "aliases": ["Donker", "Traag"] }] },
+        { "prompt": "Wat weet je over appeltaart?", "answers": [{ "text": "Kaneel", "aliases": ["Rozijnen"] }, { "text": "Slagroom", "aliases": ["Room"] }, { "text": "Deeg", "aliases": ["Roosterwerk", "Korst"] }, { "text": "Oven", "aliases": ["Bakken", "Taartvorm"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Welk spel speel je op Koningsdag met een koek aan een touwtje?", "difficulty": "easy", "answers": [{ "text": "Koekhappen" }] },
+        { "prompt": "Wat stop je in een spaarvarken?", "difficulty": "easy", "answers": [{ "text": "Geld", "aliases": ["Munten", "Muntjes"] }] },
+        { "prompt": "Hoe heet de stok waarmee een dirigent zwaait?", "difficulty": "easy", "answers": [{ "text": "Een dirigeerstok", "aliases": ["Dirigeerstok", "Baton", "Stokje"] }] },
+        { "prompt": "Met welk lichaamsdeel ruik je?", "difficulty": "easy", "answers": [{ "text": "De neus", "aliases": ["Neus"] }] },
+        { "prompt": "Wat trek je aan zodat je niet nat wordt als het regent?", "difficulty": "easy", "answers": [{ "text": "Een regenjas", "aliases": ["Regenjas", "Regenpak", "Poncho"] }] },
+        { "prompt": "Hoe heet de rivier van de vergetelheid in de Griekse onderwereld?", "difficulty": "hard", "answers": [{ "text": "De Lethe", "aliases": ["Lethe"] }] },
+        { "prompt": "Welke Nederlandse natuurkundige kreeg de Nobelprijs voor de fasecontrastmicroscoop?", "difficulty": "hard", "answers": [{ "text": "Frits Zernike", "aliases": ["Zernike"] }] },
+        { "prompt": "Welke rivier vormt de noordgrens van Botswana met Namibie en Zambia?", "difficulty": "hard", "answers": [{ "text": "De Chobe", "aliases": ["Chobe", "Linyanti"] }] },
+        { "prompt": "Hoe heet het Japanse kaartspel met bloemenkaarten?", "difficulty": "hard", "answers": [{ "text": "Hanafuda" }] },
+        { "prompt": "Welke Duitse dadaist maakte collages van afval die hij Merz noemde?", "difficulty": "hard", "answers": [{ "text": "Kurt Schwitters", "aliases": ["Schwitters"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet de harde bek van een vogel?", "answers": [{ "text": "Een snavel", "aliases": ["Snavel"] }] },
+        { "prompt": "Welke Nederlandse kunstenaarsgroep had Constant, Corneille en Appel als leden?", "answers": [{ "text": "Cobra", "aliases": ["CoBrA"] }] },
+        { "prompt": "Welke Nederlandse bioloog kreeg de Nobelprijs voor zijn onderzoek naar het gedrag van meeuwen en stekelbaarsjes?", "answers": [{ "text": "Niko Tinbergen", "aliases": ["Tinbergen", "Nikolaas Tinbergen"] }] },
+        { "prompt": "Welk rood Russisch gerecht maak je van bieten?", "answers": [{ "text": "Borsjt", "aliases": ["Bietensoep"] }] },
+        { "prompt": "Welk Rotterdams museum opende in 2021 een spiegelend kunstdepot dat open is voor publiek?", "answers": [{ "text": "Boijmans Van Beuningen", "aliases": ["Boijmans", "Depot Boijmans Van Beuningen", "Depot Boijmans"] }] },
+        { "prompt": "Welke Amerikaanse wiskundige berekende de banen voor de Apollo-vluchten en is bekend van Hidden Figures?", "answers": [{ "text": "Katherine Johnson", "aliases": ["Johnson"] }] },
+        { "prompt": "Wat voor dier is Pegasus?", "answers": [{ "text": "Een paard met vleugels", "aliases": ["Paard", "Gevleugeld paard", "Vliegend paard"] }] },
+        { "prompt": "Welk Mexicaans salamandertje blijft zijn hele leven in de larvevorm en kan ledematen teruggroeien?", "answers": [{ "text": "De axolotl", "aliases": ["Axolotl"] }] },
+        { "prompt": "Welke Engelse zeevaarder zocht in 1609 voor de VOC een doorvaart en gaf zijn naam aan een rivier bij New York?", "answers": [{ "text": "Henry Hudson", "aliases": ["Hudson"] }] }
+      ]
+    }
+  ]
+}

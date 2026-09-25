@@ -89,7 +89,17 @@
         "Union Jack",
         "Politiehelm",
         "Marmelade",
-        "Crumpet"
+        "Crumpet",
+        "Koningin Victoria",
+        "Afternoon tea met scones",
+        "Stonehenge bij zonsopgang",
+        "Harry Potter-studio",
+        "Snooker",
+        "Britse regen",
+        "Linksrijden",
+        "Wachtrij bij de bushalte",
+        "Gin-tonic",
+        "Paddington"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke zeestraat scheidt het eiland Wight van het Engelse vasteland?", "answers": [{ "text": "The Solent", "aliases": ["Solent"] }] },
         { "prompt": "Welke Engelse stad noemden de Romeinen Eboracum?", "answers": [{ "text": "York" }] },
         { "prompt": "Wie wordt algemeen gezien als de eerste Britse premier?", "answers": [{ "text": "Robert Walpole", "aliases": ["Walpole"] }] },
-        { "prompt": "Welk nationaal park werd in 1951 als eerste van het Verenigd Koninkrijk aangewezen?", "answers": [{ "text": "The Peak District", "aliases": ["Peak District"] }] }
+        { "prompt": "Welk nationaal park werd in 1951 als eerste van het Verenigd Koninkrijk aangewezen?", "answers": [{ "text": "The Peak District", "aliases": ["Peak District"] }] },
+        { "prompt": "Wat is de hoofdstad van Wales?", "answers": [{ "text": "Cardiff" }] },
+        { "prompt": "Welke Engelse koning werd in 1649 onthoofd?", "answers": [{ "text": "Karel I", "aliases": ["Charles I", "Karel de Eerste"] }] }
       ]
     }
   ]

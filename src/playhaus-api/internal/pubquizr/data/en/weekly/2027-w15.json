@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w15",
+  "title": "Weekly quiz 15 2027",
+  "description": "The weekly quiz of Wednesday 14 April 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Which Belgian city on the Meuse is the capital of Wallonia?", "category": "Geography", "answers": [{ "text": "Namur", "aliases": ["Namen"] }] },
+        { "prompt": "What is the band of colours you see when light passes through a prism called?", "category": "Science", "answers": [{ "text": "The spectrum", "aliases": ["Spectrum", "Colour spectrum"] }] },
+        { "prompt": "What was the Dutch colony in North America with New Amsterdam as its capital called?", "category": "History", "answers": [{ "text": "New Netherland", "aliases": ["Nieuw-Nederland"] }] },
+        { "prompt": "Which Dutch footballer played eleven years for Arsenal and had a fear of flying?", "category": "Sport", "answers": [{ "text": "Dennis Bergkamp", "aliases": ["Bergkamp"] }] },
+        { "prompt": "Which American actress won an Oscar as Erin Brockovich?", "category": "Film", "answers": [{ "text": "Julia Roberts", "aliases": ["Roberts"] }] },
+        { "prompt": "Which Canadian rapper had a hit with Hotline Bling in 2015?", "category": "Music", "answers": [{ "text": "Drake" }] },
+        { "prompt": "Which former island in the Noordoostpolder is a World Heritage Site?", "category": "The Netherlands", "answers": [{ "text": "Schokland" }] },
+        { "prompt": "Which Belarusian-French painter made dreamy canvases with floating lovers and fiddlers on roofs?", "category": "Art", "answers": [{ "text": "Marc Chagall", "aliases": ["Chagall"] }] },
+        { "prompt": "What is the language of hand signs that deaf people use called?", "category": "Language", "answers": [{ "text": "Sign language", "aliases": ["British Sign Language"] }] },
+        { "prompt": "Which pale, bitter vegetable is also called Belgian endive?", "category": "Food", "answers": [{ "text": "Chicory", "aliases": ["Belgian endive", "Witlof"] }] },
+        { "prompt": "What is Apple's operating system for laptops and desktops called?", "category": "Technology", "answers": [{ "text": "macOS", "aliases": ["Mac OS", "OS X"] }] },
+        { "prompt": "Which large black woodpecker with a red crown is the biggest woodpecker in Europe?", "category": "Nature", "answers": [{ "text": "The black woodpecker", "aliases": ["Black woodpecker"] }] },
+        { "prompt": "Which Canadian territory borders Alaska?", "category": "Geography", "answers": [{ "text": "Yukon" }] },
+        { "prompt": "Which American president served two non-consecutive terms back in the nineteenth century?", "category": "History", "answers": [{ "text": "Grover Cleveland", "aliases": ["Cleveland"] }] },
+        { "prompt": "What is the force that pulls a spinning object towards the centre called?", "category": "Science", "answers": [{ "text": "Centripetal force" }] },
+        { "prompt": "Which American singer dressed in black sang I Walk the Line?", "category": "Music", "answers": [{ "text": "Johnny Cash", "aliases": ["Cash"] }] },
+        { "prompt": "In which 1995 film do wild animals burst out of a board game?", "category": "Film", "answers": [{ "text": "Jumanji" }] },
+        { "prompt": "What is the Indonesian dish of boiled vegetables with peanut sauce called?", "category": "Food", "answers": [{ "text": "Gado-gado", "aliases": ["Gado gado"] }] },
+        { "prompt": "Which American search engine with an exclamation mark in its name was popular before Google?", "category": "Technology", "answers": [{ "text": "Yahoo!", "aliases": ["Yahoo"] }] },
+        { "prompt": "Which language has the most native speakers in Europe?", "category": "Language", "answers": [{ "text": "Russian" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these cities is in France?", "options": [{ "text": "Lille", "correct": true }, { "text": "Liege" }, { "text": "Luxembourg" }, { "text": "Geneva" }] },
+        { "prompt": "Which of these animals can go its whole life without drinking?", "options": [{ "text": "The kangaroo rat", "correct": true }, { "text": "The camel" }, { "text": "The donkey" }, { "text": "The goat" }] },
+        { "prompt": "Which Swedish writer created Inspector Kurt Wallander?", "options": [{ "text": "Henning Mankell", "correct": true }, { "text": "Stieg Larsson" }, { "text": "Jo Nesbo" }, { "text": "Camilla Lackberg" }] },
+        { "prompt": "Which country do the Aland Islands belong to?", "options": [{ "text": "Finland", "correct": true }, { "text": "Sweden" }, { "text": "Estonia" }, { "text": "Denmark" }] },
+        { "prompt": "Which of these diseases is an inflammation of the lungs?", "options": [{ "text": "Pneumonia", "correct": true }, { "text": "Meningitis" }, { "text": "Appendicitis" }, { "text": "Hepatitis" }] },
+        { "prompt": "Which country got New Amsterdam in exchange for Suriname in 1667?", "options": [{ "text": "England", "correct": true }, { "text": "France" }, { "text": "Spain" }, { "text": "Portugal" }] },
+        { "prompt": "Which of these islands belongs to Portugal?", "options": [{ "text": "Madeira", "correct": true }, { "text": "Majorca" }, { "text": "Tenerife" }, { "text": "Malta" }] },
+        { "prompt": "Which of these birds is named after its own call?", "options": [{ "text": "The chiffchaff", "correct": true }, { "text": "The blackbird" }, { "text": "The sparrow" }, { "text": "The starling" }] },
+        { "prompt": "In which film does Tom Cruise shout: Show me the money?", "options": [{ "text": "Jerry Maguire", "correct": true }, { "text": "Top Gun" }, { "text": "Rain Man" }, { "text": "A Few Good Men" }] },
+        { "prompt": "In which sport did the Dutch women become world champions in 2023?", "options": [{ "text": "Water polo", "correct": true }, { "text": "Handball" }, { "text": "Volleyball" }, { "text": "Basketball" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the A'DAM Tower on the IJ in Amsterdam?", "answer": 100, "unit": "metres" },
+        { "prompt": "How many kilometres long is the Tiber?", "answer": 406, "unit": "kilometres" },
+        { "prompt": "How many official languages has South Africa had since 2023, sign language included?", "answer": 12, "unit": "languages" },
+        { "prompt": "How old was Amy Winehouse when she died?", "answer": 27, "unit": "years" },
+        { "prompt": "About how many metres tall is a newborn giraffe?", "answer": 1.8, "unit": "metres" },
+        { "prompt": "How many stars make up the Plough in the Great Bear?", "answer": 7, "unit": "stars" },
+        { "prompt": "How many metres is the radius of the centre circle on a football pitch?", "answer": 9.15, "unit": "metres" },
+        { "prompt": "In which year was NATO founded?", "answer": 1949 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Hummingbird",
+        "Sausage roll",
+        "Tray",
+        "Wink",
+        "Pyjamas",
+        "Lion tamer",
+        "Mont Saint-Michel",
+        "Cannon salute",
+        "Air fryer",
+        "Papaya",
+        "Fizzy drink",
+        "Camping stove",
+        "Horoscope",
+        "Roald Dahl",
+        "Tiananmen Square",
+        "Sombrero",
+        "SOS",
+        "Brussels sprouts",
+        "Grasshopper",
+        "Figure skating",
+        "Woodpecker",
+        "Moss",
+        "Chopping board",
+        "Bruges",
+        "Frogs' legs",
+        "Scorpionfish",
+        "Gold rush",
+        "Sunflowers",
+        "Stalin",
+        "Angkor Wat",
+        "Bill Gates",
+        "Corner kick",
+        "Super Mario",
+        "Reindeer",
+        "Whisk",
+        "Cartoon character",
+        "Marching band",
+        "Wheelchair race",
+        "Cocoon",
+        "Bun"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about the Ardennes?", "answers": [{ "text": "Hills", "aliases": ["Forests", "Green"] }, { "text": "Belgium", "aliases": ["Luxembourg", "Wallonia"] }, { "text": "Camping", "aliases": ["Kayaking", "Holidays"] }, { "text": "Battle of the Bulge", "aliases": ["War", "Bastogne"] }] },
+        { "prompt": "What do you know about the series Friends?", "answers": [{ "text": "Central Perk", "aliases": ["Coffee shop"] }, { "text": "Ross and Rachel", "aliases": ["Joey", "Chandler", "Monica", "Phoebe"] }, { "text": "New York", "aliases": ["Apartment"] }, { "text": "The nineties", "aliases": ["Sitcom"] }] },
+        { "prompt": "What do you know about Piet Mondrian?", "answers": [{ "text": "Red, yellow and blue", "aliases": ["Primary colours"] }, { "text": "Black lines", "aliases": ["Blocks", "Grid"] }, { "text": "De Stijl", "aliases": ["Theo van Doesburg"] }, { "text": "Broadway Boogie Woogie", "aliases": ["Victory Boogie Woogie", "New York"] }] },
+        { "prompt": "What do you know about potatoes?", "answers": [{ "text": "Chips", "aliases": ["Fries", "Crisps"] }, { "text": "Peru", "aliases": ["South America"] }, { "text": "Mash", "aliases": ["Mashed potato"] }, { "text": "Tuber", "aliases": ["Underground", "Planting"] }] },
+        { "prompt": "What do you know about Google?", "answers": [{ "text": "Search engine", "aliases": ["Googling", "Search"] }, { "text": "YouTube", "aliases": ["Videos"] }, { "text": "Android", "aliases": ["Pixel"] }, { "text": "Gmail", "aliases": ["Maps", "Chrome"] }] },
+        { "prompt": "What do you know about cowboys?", "answers": [{ "text": "Horse", "aliases": ["Riding"] }, { "text": "Lasso", "aliases": ["Catching cattle"] }, { "text": "Cowboy hat", "aliases": ["Hat", "Boots"] }, { "text": "Wild West", "aliases": ["America", "Texas"] }] },
+        { "prompt": "What do you know about the European Union?", "answers": [{ "text": "Brussels", "aliases": ["Strasbourg"] }, { "text": "Euro", "aliases": ["Currency"] }, { "text": "Flag with stars", "aliases": ["Blue flag", "Twelve stars"] }, { "text": "European Parliament", "aliases": ["Member states", "Elections"] }] },
+        { "prompt": "What do you know about owls?", "answers": [{ "text": "Nocturnal", "aliases": ["Night"] }, { "text": "Turning their heads", "aliases": ["Head swivel"] }, { "text": "Eagle owl", "aliases": ["Barn owl", "Snowy owl"] }, { "text": "Harry Potter", "aliases": ["Hedwig", "Owl post"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is a young pig called?", "difficulty": "easy", "answers": [{ "text": "A piglet", "aliases": ["Piglet"] }] },
+        { "prompt": "What do you do with a saw?", "difficulty": "easy", "answers": [{ "text": "Saw", "aliases": ["Sawing", "Cut wood"] }] },
+        { "prompt": "Which pink bird often stands on one leg in the water?", "difficulty": "easy", "answers": [{ "text": "The flamingo", "aliases": ["Flamingo"] }] },
+        { "prompt": "What do you often eat from a big tub at the cinema?", "difficulty": "easy", "answers": [{ "text": "Popcorn" }] },
+        { "prompt": "Which caterpillar spins the thread that silk is made from?", "difficulty": "easy", "answers": [{ "text": "The silkworm", "aliases": ["Silkworm"] }] },
+        { "prompt": "Which one-eyed chief Norse god rides a horse with eight legs?", "difficulty": "hard", "answers": [{ "text": "Odin", "aliases": ["Woden", "Wotan"] }] },
+        { "prompt": "Which Greek hero took ten years to get home after the Trojan War?", "difficulty": "hard", "answers": [{ "text": "Odysseus", "aliases": ["Ulysses"] }] },
+        { "prompt": "What is the sign for infinity, a figure eight on its side, called?", "difficulty": "hard", "answers": [{ "text": "Lemniscate", "aliases": ["The lemniscate"] }] },
+        { "prompt": "What is the highest mountain in Spain?", "difficulty": "hard", "answers": [{ "text": "Mount Teide", "aliases": ["Teide", "Pico del Teide"] }] },
+        { "prompt": "Which Roman emperor gave all free inhabitants of the empire citizenship in 212?", "difficulty": "hard", "answers": [{ "text": "Caracalla" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Crush, the surfing friend of Nemo's father?", "answers": [{ "text": "A sea turtle", "aliases": ["Turtle", "Sea turtle"] }] },
+        { "prompt": "In which Swiss city is the International Olympic Committee based?", "answers": [{ "text": "Lausanne" }] },
+        { "prompt": "Which Chilean writer wrote The House of the Spirits?", "answers": [{ "text": "Isabel Allende", "aliases": ["Allende"] }] },
+        { "prompt": "What do we call weather with lightning and thunder?", "answers": [{ "text": "A thunderstorm", "aliases": ["Thunderstorm", "Storm"] }] },
+        { "prompt": "Which Scottish port city is nicknamed the Granite City?", "answers": [{ "text": "Aberdeen" }] },
+        { "prompt": "Which American astronomer showed that the universe is expanding?", "answers": [{ "text": "Edwin Hubble", "aliases": ["Hubble"] }] },
+        { "prompt": "What is the sound a cat makes called?", "answers": [{ "text": "Meowing", "aliases": ["Meow", "Miaow"] }] },
+        { "prompt": "Which British singer had a hit with Don't Start Now in 2019?", "answers": [{ "text": "Dua Lipa", "aliases": ["Lipa"] }] },
+        { "prompt": "Which British philosopher wrote the essay On Liberty?", "answers": [{ "text": "John Stuart Mill", "aliases": ["Mill"] }] }
+      ]
+    }
+  ]
+}

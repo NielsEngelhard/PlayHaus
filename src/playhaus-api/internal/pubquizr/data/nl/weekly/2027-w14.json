@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w14",
+  "title": "Weekquiz 14 2027",
+  "description": "De wekelijkse quiz van woensdag 7 april 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke Turkse havenstad heette vroeger Smyrna?", "category": "Aardrijkskunde", "answers": [{ "text": "Izmir" }] },
+        { "prompt": "Hoe heet de laag lucht die rond de aarde hangt?", "category": "Wetenschap", "answers": [{ "text": "De atmosfeer", "aliases": ["Atmosfeer", "Dampkring"] }] },
+        { "prompt": "Welke Egyptische president sloot in 1978 in Camp David vrede met Israel?", "category": "Geschiedenis", "answers": [{ "text": "Anwar Sadat", "aliases": ["Sadat"] }] },
+        { "prompt": "Welke Nederlandse keeper stond in de WK-finale van 2010 onder de lat?", "category": "Sport", "answers": [{ "text": "Maarten Stekelenburg", "aliases": ["Stekelenburg"] }] },
+        { "prompt": "Welke Australische acteur speelt Thor in de Marvel-films?", "category": "Film", "answers": [{ "text": "Chris Hemsworth", "aliases": ["Hemsworth"] }] },
+        { "prompt": "Welke Nederlandse band scoorde met Iedereen is van de wereld?", "category": "Muziek", "answers": [{ "text": "The Scene" }] },
+        { "prompt": "Hoe heet de Amsterdamse markt waar de bloemenkramen op boten aan de Singel liggen?", "category": "Nederland", "answers": [{ "text": "De Bloemenmarkt", "aliases": ["Bloemenmarkt"] }] },
+        { "prompt": "Welke Duitse kunstenaar werkte met vilt en vet en droeg altijd een hoed?", "category": "Kunst", "answers": [{ "text": "Joseph Beuys", "aliases": ["Beuys"] }] },
+        { "prompt": "Hoe heet de grote letter waarmee je een naam begint?", "category": "Taal", "answers": [{ "text": "Een hoofdletter", "aliases": ["Hoofdletter"] }] },
+        { "prompt": "Hoe heet de Taiwanese thee met balletjes tapioca erin?", "category": "Eten", "answers": [{ "text": "Bubble tea", "aliases": ["Bubbelthee", "Boba"] }] },
+        { "prompt": "Welke berichtenapp met een groene telefoon als logo is van Meta?", "category": "Techniek", "answers": [{ "text": "WhatsApp" }] },
+        { "prompt": "Welk zeedier heeft meestal vijf armen en kan een verloren arm teruggroeien?", "category": "Natuur", "answers": [{ "text": "De zeester", "aliases": ["Zeester"] }] },
+        { "prompt": "Bij welke Griekse eilandengroep horen Mykonos en Santorini?", "category": "Aardrijkskunde", "answers": [{ "text": "De Cycladen", "aliases": ["Cycladen"] }] },
+        { "prompt": "Welke Ethiopische keizer wordt door rastafari's als messias gezien?", "category": "Geschiedenis", "answers": [{ "text": "Haile Selassie", "aliases": ["Selassie", "Ras Tafari"] }] },
+        { "prompt": "Hoe heet het getal dat de omtrek van een cirkel deelt door de diameter?", "category": "Wetenschap", "answers": [{ "text": "Pi" }] },
+        { "prompt": "Welke Britse zanger ging na One Direction solo verder met Sign of the Times?", "category": "Muziek", "answers": [{ "text": "Harry Styles", "aliases": ["Styles"] }] },
+        { "prompt": "Welke film uit 1973 van Paul Verhoeven maakte van Rutger Hauer een ster?", "category": "Film", "answers": [{ "text": "Turks fruit", "aliases": ["Turkish Delight"] }] },
+        { "prompt": "Welke groene Mexicaanse peper zit vaak op nacho's?", "category": "Eten", "answers": [{ "text": "Jalapeno", "aliases": ["Jalapeno peper"] }] },
+        { "prompt": "Welk Japans automerk bracht de hybride Prius op de markt?", "category": "Techniek", "answers": [{ "text": "Toyota" }] },
+        { "prompt": "Hoe heten de kleine gezichtjes en plaatjes die je in berichtjes stuurt?", "category": "Taal", "answers": [{ "text": "Emoji's", "aliases": ["Emoji", "Emoticons"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Griekenland?", "options": [{ "text": "Patras", "correct": true }, { "text": "Plovdiv" }, { "text": "Skopje" }, { "text": "Tirana" }] },
+        { "prompt": "Welk van deze dieren is een schaaldier?", "options": [{ "text": "De garnaal", "correct": true }, { "text": "De inktvis" }, { "text": "De zeester" }, { "text": "De kwal" }] },
+        { "prompt": "Welke Nederlandse schrijver schreef Knielen op een bed violen?", "options": [{ "text": "Jan Siebelink", "correct": true }, { "text": "Tommy Wieringa" }, { "text": "Jan Wolkers" }, { "text": "Hella Haasse" }] },
+        { "prompt": "Welk van deze landen ligt in Zuidoost-Azie?", "options": [{ "text": "Myanmar", "correct": true }, { "text": "Pakistan" }, { "text": "Nepal" }, { "text": "Iran" }] },
+        { "prompt": "Welke van deze zit in je oor?", "options": [{ "text": "Het slakkenhuis", "correct": true }, { "text": "Het strottenhoofd" }, { "text": "Het middenrif" }, { "text": "De milt" }] },
+        { "prompt": "Welk Duits luchtschip ging in 1937 bij de landing in New Jersey in vlammen op?", "options": [{ "text": "De Hindenburg", "correct": true }, { "text": "De Graf Zeppelin" }, { "text": "De Bismarck" }, { "text": "De Lusitania" }] },
+        { "prompt": "Welke van deze bergen is geen vulkaan?", "options": [{ "text": "De Matterhorn", "correct": true }, { "text": "De Etna" }, { "text": "De Vesuvius" }, { "text": "De Fuji" }] },
+        { "prompt": "Welke vogel vliegt het hoogst van allemaal?", "options": [{ "text": "De Ruppells gier", "correct": true }, { "text": "De condor" }, { "text": "De albatros" }, { "text": "De grauwe gans" }] },
+        { "prompt": "In welke film zegt leraar Robin Williams tegen zijn leerlingen: carpe diem?", "options": [{ "text": "Dead Poets Society", "correct": true }, { "text": "Good Will Hunting" }, { "text": "Mrs. Doubtfire" }, { "text": "Patch Adams" }] },
+        { "prompt": "Welke sport speel je met een platte slaghout en een wicket?", "options": [{ "text": "Cricket", "correct": true }, { "text": "Honkbal" }, { "text": "Softbal" }, { "text": "Hockey" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Arc de Triomphe in Parijs?", "answer": 50, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Weichsel?", "answer": 1047, "unit": "kilometer" },
+        { "prompt": "Aan hoeveel landen grenst Rusland over land?", "answer": 14, "unit": "landen" },
+        { "prompt": "Hoe oud werd Heath Ledger?", "answer": 28, "unit": "jaar" },
+        { "prompt": "Hoeveel liter water gebruikt een moderne wasmachine ongeveer per wasbeurt?", "answer": 50, "unit": "liter" },
+        { "prompt": "Hoeveel stenen zitten er in een gewoon dominospel, van dubbel nul tot dubbel zes?", "answer": 28, "unit": "stenen" },
+        { "prompt": "Op hoeveel meter van de doellijn ligt de strafschopstip?", "answer": 11, "unit": "meter" },
+        { "prompt": "In welk jaar werd Wikipedia opgericht?", "answer": 2001 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Verrassingsfeest",
+        "Valentijnsdag",
+        "Hyacint",
+        "Sjaal van de club",
+        "Kogelstoten",
+        "Koekiemonster",
+        "Rekenmachine",
+        "Himalaya",
+        "Havanna",
+        "Garantiebewijs",
+        "Saffraan",
+        "Mangrove",
+        "Kersenboom",
+        "Wekker",
+        "Snowboarden",
+        "Verkoudheid",
+        "David Attenborough",
+        "Oester",
+        "Vakkenvuller",
+        "Zonnebrand",
+        "Nagelvijl",
+        "Schaakmat",
+        "Guernica",
+        "Krantenkop",
+        "Jager",
+        "Spookhuis",
+        "Wilg",
+        "Jetski",
+        "Taptoe",
+        "Gouden Tempel",
+        "Hert",
+        "Fret",
+        "Harp",
+        "Sommelier",
+        "Nieuwslezer",
+        "Blaar",
+        "Kringloopwinkel",
+        "Grease",
+        "Tuareg",
+        "Douane"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over de Avengers?", "answers": [{ "text": "Iron Man", "aliases": ["Tony Stark"] }, { "text": "Captain America", "aliases": ["Schild"] }, { "text": "Hulk", "aliases": ["Thor", "Black Widow"] }, { "text": "Thanos", "aliases": ["Oneindigheidsstenen", "Endgame"] }] },
+        { "prompt": "Wat weet je over sushi?", "answers": [{ "text": "Japan", "aliases": ["Japans"] }, { "text": "Rauwe vis", "aliases": ["Zalm", "Tonijn"] }, { "text": "Rijst", "aliases": ["Nori", "Zeewier"] }, { "text": "Eetstokjes", "aliases": ["Sojasaus", "Wasabi"] }] },
+        { "prompt": "Wat weet je over koraalriffen?", "answers": [{ "text": "Great Barrier Reef", "aliases": ["Australie"] }, { "text": "Kleurrijk", "aliases": ["Kleuren"] }, { "text": "Vissen", "aliases": ["Clownvis", "Nemo"] }, { "text": "Verbleken", "aliases": ["Bedreigd", "Warmer water"] }] },
+        { "prompt": "Wat weet je over Ethiopie?", "answers": [{ "text": "Koffie", "aliases": ["Bakermat van de koffie"] }, { "text": "Hardlopers", "aliases": ["Marathon", "Haile Gebrselassie"] }, { "text": "Addis Abeba", "aliases": ["Hoofdstad"] }, { "text": "Nooit gekoloniseerd", "aliases": ["Keizerrijk", "Abessinie"] }] },
+        { "prompt": "Wat weet je over de smartphone?", "answers": [{ "text": "Apps", "aliases": ["App Store"] }, { "text": "Aanraakscherm", "aliases": ["Touchscreen", "Swipen"] }, { "text": "iPhone", "aliases": ["Samsung", "Android"] }, { "text": "Camera", "aliases": ["Selfie", "Foto's"] }] },
+        { "prompt": "Wat weet je over boybands?", "answers": [{ "text": "One Direction", "aliases": ["Harry Styles"] }, { "text": "Backstreet Boys", "aliases": ["NSYNC"] }, { "text": "Take That", "aliases": ["Robbie Williams"] }, { "text": "Westlife", "aliases": ["Boyzone", "Dansjes"] }] },
+        { "prompt": "Wat weet je over musea?", "answers": [{ "text": "Rijksmuseum", "aliases": ["Van Gogh Museum"] }, { "text": "Louvre", "aliases": ["Mona Lisa"] }, { "text": "Schilderijen", "aliases": ["Kunst", "Beelden"] }, { "text": "Museumkaart", "aliases": ["Rondleiding", "Suppoost"] }] },
+        { "prompt": "Wat weet je over wiskunde?", "answers": [{ "text": "Rekenen", "aliases": ["Sommen", "Getallen"] }, { "text": "Pythagoras", "aliases": ["Stelling"] }, { "text": "Meetkunde", "aliases": ["Driehoeken", "Cirkels"] }, { "text": "Algebra", "aliases": ["Vergelijkingen", "X"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet een jong van een eend?", "difficulty": "easy", "answers": [{ "text": "Een eendje", "aliases": ["Eendje", "Eendenkuiken", "Kuiken"] }] },
+        { "prompt": "Welke dag is voor de meeste mensen de eerste werkdag van de week?", "difficulty": "easy", "answers": [{ "text": "Maandag" }] },
+        { "prompt": "Welke bloem is het bekendste symbool van Nederland?", "difficulty": "easy", "answers": [{ "text": "De tulp", "aliases": ["Tulp", "Tulpen"] }] },
+        { "prompt": "Met welk geld betaal je in Nederland?", "difficulty": "easy", "answers": [{ "text": "De euro", "aliases": ["Euro", "Euro's"] }] },
+        { "prompt": "Hoe heet het klokje dat je om je pols draagt?", "difficulty": "easy", "answers": [{ "text": "Een horloge", "aliases": ["Horloge", "Polshorloge"] }] },
+        { "prompt": "Hoe heet de Griekse godin van de liefde en schoonheid?", "difficulty": "hard", "answers": [{ "text": "Aphrodite", "aliases": ["Afrodite", "Venus"] }] },
+        { "prompt": "Welke Griekse held hakte het hoofd van Medusa af?", "difficulty": "hard", "answers": [{ "text": "Perseus" }] },
+        { "prompt": "Hoe heet de stelling dat a kwadraat plus b kwadraat gelijk is aan c kwadraat?", "difficulty": "hard", "answers": [{ "text": "De stelling van Pythagoras", "aliases": ["Pythagoras", "Stelling van Pythagoras"] }] },
+        { "prompt": "Wat is de hoogste berg van Mexico?", "difficulty": "hard", "answers": [{ "text": "De Pico de Orizaba", "aliases": ["Pico de Orizaba", "Citlaltepetl", "Orizaba"] }] },
+        { "prompt": "Welke Babylonische koning zou de Hangende Tuinen hebben laten aanleggen?", "difficulty": "hard", "answers": [{ "text": "Nebukadnezar", "aliases": ["Nebukadnezar II"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Heimlich in A Bug's Life?", "answers": [{ "text": "Een rups", "aliases": ["Rups"] }] },
+        { "prompt": "In welke Marokkaanse stad ligt het beroemde plein Djemaa el Fna?", "answers": [{ "text": "Marrakech", "aliases": ["Marrakesh"] }] },
+        { "prompt": "Welke Amerikaanse schrijfster schreef Little Women?", "answers": [{ "text": "Louisa May Alcott", "aliases": ["Alcott"] }] },
+        { "prompt": "Hoe heet een ijsje van bevroren limonade op een stokje?", "answers": [{ "text": "Een waterijsje", "aliases": ["Waterijsje", "IJslolly", "Raket"] }] },
+        { "prompt": "Welke Australische deelstaat is een eiland?", "answers": [{ "text": "Tasmanie" }] },
+        { "prompt": "Welke Oostenrijks-Zweedse natuurkundige verklaarde in 1938 samen met haar neef de kernsplijting?", "answers": [{ "text": "Lise Meitner", "aliases": ["Meitner"] }] },
+        { "prompt": "Hoe heet de maaltijd die je 's ochtends eet?", "answers": [{ "text": "Het ontbijt", "aliases": ["Ontbijt"] }] },
+        { "prompt": "Welke Britse band scoorde in 1983 met Every Breath You Take?", "answers": [{ "text": "The Police", "aliases": ["Police"] }] },
+        { "prompt": "Welke Romeinse filosoof was de leermeester van keizer Nero?", "answers": [{ "text": "Seneca" }] }
+      ]
+    }
+  ]
+}

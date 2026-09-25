@@ -88,7 +88,17 @@
         "Zaklopen",
         "Bloemenkraam",
         "Houthakker",
-        "De Taj Mahal"
+        "De Taj Mahal",
+        "Kruiswoordpuzzel",
+        "Surfen",
+        "Vuurpijl",
+        "Raften",
+        "Klimrek",
+        "Lachbui",
+        "Kakkerlak",
+        "Sigarenboer",
+        "Hanenkam",
+        "Stratego"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wie schreef het boek De Hobbit?", "answers": [{ "text": "Tolkien", "aliases": ["J.R.R. Tolkien"] }] },
         { "prompt": "Hoe heet de grootste stad van Australie qua inwoners?", "answers": [{ "text": "Sydney" }] },
         { "prompt": "Hoe heet de vloeistof die in een koelkast warmte afvoert?", "answers": [{ "text": "Het koudemiddel", "aliases": ["Koelmiddel"] }] },
-        { "prompt": "Welke spier in het lichaam is het sterkst naar verhouding tot zijn grootte?", "answers": [{ "text": "De kauwspier", "aliases": ["Kauwspier", "Masseter"] }] }
+        { "prompt": "Welke spier in het lichaam is het sterkst naar verhouding tot zijn grootte?", "answers": [{ "text": "De kauwspier", "aliases": ["Kauwspier", "Masseter"] }] },
+        { "prompt": "Welke Jamaicaanse zanger zong No Woman, No Cry?", "answers": [{ "text": "Bob Marley", "aliases": ["Marley"] }] },
+        { "prompt": "Welke Schotse econoom schreef The Wealth of Nations?", "answers": [{ "text": "Adam Smith", "aliases": ["Smith"] }] }
       ]
     }
   ]

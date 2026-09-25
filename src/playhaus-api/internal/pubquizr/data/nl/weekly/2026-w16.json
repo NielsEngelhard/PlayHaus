@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter hoog is het Atomium in Brussel?", "answer": 102, "unit": "meter" },
         { "prompt": "Hoeveel spieren heeft een kat in elk oor?", "answer": 32, "unit": "spieren" },
-        { "prompt": "In welk jaar werd het eerste wereldkampioenschap Formule 1 gehouden?", "answer": 1950, "unit": "" },
+        { "prompt": "In welk jaar werd het eerste wereldkampioenschap Formule 1 gehouden?", "answer": 1950 },
         { "prompt": "Hoeveel kilometer per uur verlaat een golfbal de club?", "answer": 290, "unit": "kilometer per uur" },
         { "prompt": "Hoeveel ton weegt een volwassen blauwe vinvis?", "answer": 150, "unit": "ton" },
         { "prompt": "Hoeveel snaren heeft een banjo meestal?", "answer": 5, "unit": "snaren" },
@@ -88,7 +88,17 @@
         "Stonehenge",
         "Renaissance",
         "Acupunctuur",
-        "Sherlock Holmes"
+        "Sherlock Holmes",
+        "Proefwerk",
+        "Wieg",
+        "Wild zwijn",
+        "Interview",
+        "Schoonmoeder",
+        "Bugs Bunny",
+        "Valkenier",
+        "Looping",
+        "Mahatma Gandhi",
+        "Handbagage"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welke rivier in Botswana vormt de grootste binnendelta ter wereld?", "answers": [{ "text": "De Okavango", "aliases": ["Okavango"] }] },
         { "prompt": "Wat is de hoofdstad van Chili?", "answers": [{ "text": "Santiago", "aliases": ["Santiago de Chile"] }] },
         { "prompt": "Wie componeerde de opera De Toverfluit?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
-        { "prompt": "In welke zee blijf je drijven omdat het water zo zout is?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] }
+        { "prompt": "In welke zee blijf je drijven omdat het water zo zout is?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
+        { "prompt": "Hoe heet de rode reuzenster in de schouder van Orion?", "answers": [{ "text": "Betelgeuze", "aliases": ["Betelgeuse"] }] },
+        { "prompt": "Welke Engelse filosoof schreef Leviathan?", "answers": [{ "text": "Thomas Hobbes", "aliases": ["Hobbes"] }] }
       ]
     }
   ]

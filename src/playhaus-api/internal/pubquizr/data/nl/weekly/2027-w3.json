@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w3",
+  "title": "Weekquiz 3 2027",
+  "description": "De wekelijkse quiz van woensdag 20 januari 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is het grootste eiland in de Ionische Zee?", "category": "Aardrijkskunde", "answers": [{ "text": "Kefalonia", "aliases": ["Cefalonia"] }] },
+        { "prompt": "Met welk deel van de plant wordt water uit de grond opgenomen?", "category": "Wetenschap", "answers": [{ "text": "De wortels", "aliases": ["Wortels", "Wortel"] }] },
+        { "prompt": "Welke Romeinse keizer zou zijn paard Incitatus consul hebben willen maken?", "category": "Geschiedenis", "answers": [{ "text": "Caligula" }] },
+        { "prompt": "Welke Nederlandse wielrenster won in 2012 olympisch goud in de wegrit in Londen?", "category": "Sport", "answers": [{ "text": "Marianne Vos", "aliases": ["Vos"] }] },
+        { "prompt": "Hoe heet de uitvinder van de tijdmachine in Back to the Future?", "category": "Film", "answers": [{ "text": "Doc Brown", "aliases": ["Emmett Brown", "Doc"] }] },
+        { "prompt": "Welke Schotse zanger scoorde in 2019 wereldwijd met Someone You Loved?", "category": "Muziek", "answers": [{ "text": "Lewis Capaldi", "aliases": ["Capaldi"] }] },
+        { "prompt": "Welke Nederlandse hanzestad heeft een kerktoren met de bijnaam de Peperbus?", "category": "Nederland", "answers": [{ "text": "Zwolle" }] },
+        { "prompt": "Welke Japanse kunstenares is beroemd om haar stippen en gele pompoenen?", "category": "Kunst", "answers": [{ "text": "Yayoi Kusama", "aliases": ["Kusama"] }] },
+        { "prompt": "Hoe heet een stukje dat voor een woord wordt gezet, zoals on in onmogelijk?", "category": "Taal", "answers": [{ "text": "Een voorvoegsel", "aliases": ["Voorvoegsel", "Prefix"] }] },
+        { "prompt": "Hoe heet het Engelse gerecht van worstjes gebakken in pannenkoekbeslag?", "category": "Eten", "answers": [{ "text": "Toad in the hole" }] },
+        { "prompt": "Welke draadloze techniek werd door de Nederlander Jaap Haartsen bij Ericsson ontwikkeld?", "category": "Techniek", "answers": [{ "text": "Bluetooth" }] },
+        { "prompt": "Welk klein zoogdier graaft gangen en laat hoopjes aarde achter in het gras?", "category": "Natuur", "answers": [{ "text": "De mol", "aliases": ["Mol"] }] },
+        { "prompt": "Hoe heet de grote baai tussen Groenland en het Canadese Baffineiland?", "category": "Aardrijkskunde", "answers": [{ "text": "De Baffinbaai", "aliases": ["Baffinbaai"] }] },
+        { "prompt": "Welke twee Amerikaanse ontdekkingsreizigers trokken tussen 1804 en 1806 naar de Stille Oceaan?", "category": "Geschiedenis", "answers": [{ "text": "Lewis en Clark", "aliases": ["Lewis and Clark"] }] },
+        { "prompt": "Hoe heet een veelhoek met vijf hoeken?", "category": "Wetenschap", "answers": [{ "text": "Een vijfhoek", "aliases": ["Vijfhoek", "Pentagon"] }] },
+        { "prompt": "Welke Amerikaanse rockband scoorde in 1986 met Livin' on a Prayer?", "category": "Muziek", "answers": [{ "text": "Bon Jovi" }] },
+        { "prompt": "Welke Pixar-film gaat over een Schotse prinses met rood krullend haar en pijl en boog?", "category": "Film", "answers": [{ "text": "Brave", "aliases": ["Merida"] }] },
+        { "prompt": "Hoe heet de Indiase yoghurtdrank, vaak met mango?", "category": "Eten", "answers": [{ "text": "Lassi", "aliases": ["Mangolassi"] }] },
+        { "prompt": "Hoe heette het videospel uit 1972 met twee batjes en een stuiterend balletje?", "category": "Techniek", "answers": [{ "text": "Pong" }] },
+        { "prompt": "Wat is het meervoud van het woord crisis?", "category": "Taal", "answers": [{ "text": "Crises", "aliases": ["Crisissen"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welk van deze eilanden hoort bij Italie?", "options": [{ "text": "Capri", "correct": true }, { "text": "Corsica" }, { "text": "Malta" }, { "text": "Ibiza" }] },
+        { "prompt": "Welk van deze dieren kan het hoogst springen vergeleken met zijn eigen lengte?", "options": [{ "text": "De vlo", "correct": true }, { "text": "De kangoeroe" }, { "text": "De kikker" }, { "text": "De sprinkhaan" }] },
+        { "prompt": "Welke Nederlandse schrijfster schreef Het bittere kruid?", "options": [{ "text": "Marga Minco", "correct": true }, { "text": "Ida Vos" }, { "text": "Etty Hillesum" }, { "text": "Anne Frank" }] },
+        { "prompt": "Welke van deze Amerikaanse staten grenst aan Mexico?", "options": [{ "text": "New Mexico", "correct": true }, { "text": "Nevada" }, { "text": "Oklahoma" }, { "text": "Colorado" }] },
+        { "prompt": "Welke van deze voedingsstoffen levert per gram de meeste energie?", "options": [{ "text": "Vet", "correct": true }, { "text": "Eiwit" }, { "text": "Koolhydraten" }, { "text": "Vezels" }] },
+        { "prompt": "Welke Britse premier trad in 2016 af na het Brexit-referendum?", "options": [{ "text": "David Cameron", "correct": true }, { "text": "Theresa May" }, { "text": "Boris Johnson" }, { "text": "Gordon Brown" }] },
+        { "prompt": "Welke van deze watervallen ligt in Zuid-Amerika?", "options": [{ "text": "De Iguazuwatervallen", "correct": true }, { "text": "De Niagarawatervallen" }, { "text": "De Victoriawatervallen" }, { "text": "De Rijnwaterval" }] },
+        { "prompt": "Welke van deze vogels is een steltloper?", "options": [{ "text": "De scholekster", "correct": true }, { "text": "De mus" }, { "text": "De merel" }, { "text": "De kraai" }] },
+        { "prompt": "In welke film speelt Leonardo DiCaprio een oplichter die zich onder meer als piloot voordoet?", "options": [{ "text": "Catch Me If You Can", "correct": true }, { "text": "The Aviator" }, { "text": "Inception" }, { "text": "Blood Diamond" }] },
+        { "prompt": "Welke Nederlander scoorde al in de tweede minuut van de WK-finale van 1974 een strafschop?", "options": [{ "text": "Johan Neeskens", "correct": true }, { "text": "Johan Cruijff" }, { "text": "Rob Rensenbrink" }, { "text": "Johnny Rep" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog zijn de Petronas Towers in Kuala Lumpur?", "answer": 452, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Wolga?", "answer": 3530, "unit": "kilometer" },
+        { "prompt": "Hoeveel dagen duurt een jaar op Mercurius?", "answer": 88, "unit": "dagen" },
+        { "prompt": "Hoe oud werd Rembrandt?", "answer": 63, "unit": "jaar" },
+        { "prompt": "Hoeveel kilometer per uur haalt de snelste achtbaan ter wereld?", "answer": 240, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel spelers heeft een hockeyteam in het veld, de keeper meegerekend?", "answer": 11, "unit": "spelers" },
+        { "prompt": "Uit hoeveel wervels bestaat de menselijke wervelkolom?", "answer": 33, "unit": "wervels" },
+        { "prompt": "In welk jaar ging de Euromast in Rotterdam open?", "answer": 1960 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Push-up",
+        "Discman",
+        "Zandbak",
+        "Moesson",
+        "Scheermes",
+        "Ekster",
+        "Pauw",
+        "Olympus",
+        "Leguaan",
+        "Aandelenbeurs",
+        "Florida",
+        "Patrijspoort",
+        "Pleister",
+        "Paraglider",
+        "Camembert",
+        "Bingo",
+        "Krekel",
+        "Inductiekookplaat",
+        "Modeontwerper",
+        "Volleybal",
+        "Goudvis",
+        "Afternoon tea",
+        "Burj Khalifa",
+        "Ontbijtkoek",
+        "Dennenappel",
+        "Kustwacht",
+        "Kunstveiling",
+        "Voetbalplaatje",
+        "Zuurstok",
+        "Weerbericht",
+        "Architect",
+        "Bankdirecteur",
+        "Hypotheek",
+        "Muts",
+        "Softijs",
+        "Toetsenbord",
+        "Vuilniswagen",
+        "Gelatinepudding",
+        "Scooby-Doo",
+        "Akropolis"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Brabant?", "answers": [{ "text": "Carnaval", "aliases": ["Oeteldonk", "Vastelaovend"] }, { "text": "Efteling", "aliases": ["Kaatsheuvel"] }, { "text": "Worstenbroodje", "aliases": ["Brabants worstenbroodje"] }, { "text": "Eindhoven", "aliases": ["Den Bosch", "Tilburg", "Breda"] }] },
+        { "prompt": "Wat weet je over de Azteken?", "answers": [{ "text": "Mexico", "aliases": ["Midden-Amerika"] }, { "text": "Tenochtitlan", "aliases": ["Hoofdstad op een meer"] }, { "text": "Piramides", "aliases": ["Tempels"] }, { "text": "Mensenoffers", "aliases": ["Offers", "Zonnegod"] }] },
+        { "prompt": "Wat weet je over cactussen?", "answers": [{ "text": "Woestijn", "aliases": ["Droog"] }, { "text": "Stekels", "aliases": ["Prikken", "Naalden"] }, { "text": "Water opslaan", "aliases": ["Weinig water nodig"] }, { "text": "Mexico", "aliases": ["Arizona", "Amerika"] }] },
+        { "prompt": "Wat weet je over het Nederlandse koningshuis?", "answers": [{ "text": "Oranje", "aliases": ["Oranje-Nassau"] }, { "text": "Willem-Alexander", "aliases": ["Koning"] }, { "text": "Maxima", "aliases": ["Koningin Maxima"] }, { "text": "Koningsdag", "aliases": ["Prinsjesdag", "Paleis"] }] },
+        { "prompt": "Wat weet je over zwemmen?", "answers": [{ "text": "Schoolslag", "aliases": ["Borstcrawl", "Vlinderslag", "Rugslag"] }, { "text": "Zwembad", "aliases": ["Badmuts", "Bad"] }, { "text": "Zwemdiploma", "aliases": ["Diploma A", "Zwemles"] }, { "text": "Michael Phelps", "aliases": ["Phelps", "Ranomi Kromowidjojo"] }] },
+        { "prompt": "Wat weet je over Groenland?", "answers": [{ "text": "IJs", "aliases": ["IJskap", "Gletsjers"] }, { "text": "Denemarken", "aliases": ["Deens"] }, { "text": "Inuit", "aliases": ["Eskimo's", "Iglo"] }, { "text": "Grootste eiland", "aliases": ["Groot", "Eiland"] }] },
+        { "prompt": "Wat weet je over Claude Monet?", "answers": [{ "text": "Waterlelies", "aliases": ["Waterlelievijver"] }, { "text": "Impressionisme", "aliases": ["Impressionist"] }, { "text": "Giverny", "aliases": ["Tuin"] }, { "text": "Frankrijk", "aliases": ["Frans", "Parijs"] }] },
+        { "prompt": "Wat weet je over bier?", "answers": [{ "text": "Hop", "aliases": ["Gerst", "Mout"] }, { "text": "Belgie", "aliases": ["Duitsland", "Tsjechie"] }, { "text": "Oktoberfest", "aliases": ["Munchen"] }, { "text": "Heineken", "aliases": ["Grolsch", "Pils"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het speeltoestel aan kettingen waarop je heen en weer zwaait?", "difficulty": "easy", "answers": [{ "text": "De schommel", "aliases": ["Schommel"] }] },
+        { "prompt": "Welke dag komt na dinsdag?", "difficulty": "easy", "answers": [{ "text": "Woensdag" }] },
+        { "prompt": "Hoe heet het huisje van takjes dat een vogel bouwt voor zijn eieren?", "difficulty": "easy", "answers": [{ "text": "Een nest", "aliases": ["Nest", "Vogelnest"] }] },
+        { "prompt": "Welk speelgoed laat je aan een lang touw hoog in de wind vliegen?", "difficulty": "easy", "answers": [{ "text": "Een vlieger", "aliases": ["Vlieger"] }] },
+        { "prompt": "Welke vogel spreidt zijn grote gekleurde staart uit als een waaier?", "difficulty": "easy", "answers": [{ "text": "De pauw", "aliases": ["Pauw"] }] },
+        { "prompt": "Welke Duitse wiskundige bedacht de meetkunde van gekromde ruimten die Einstein later gebruikte?", "difficulty": "hard", "answers": [{ "text": "Bernhard Riemann", "aliases": ["Riemann"] }] },
+        { "prompt": "Welke Franse componist schreef de Symphonie fantastique?", "difficulty": "hard", "answers": [{ "text": "Hector Berlioz", "aliases": ["Berlioz"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Co?", "difficulty": "hard", "answers": [{ "text": "Kobalt" }] },
+        { "prompt": "Welke rivier stroomt door Toulouse en Bordeaux?", "difficulty": "hard", "answers": [{ "text": "De Garonne", "aliases": ["Garonne"] }] },
+        { "prompt": "Welke Romeinse keizer was de laatste die over het hele rijk regeerde, tot 395?", "difficulty": "hard", "answers": [{ "text": "Theodosius", "aliases": ["Theodosius I", "Theodosius de Grote"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Shere Khan in Het Jungleboek?", "answers": [{ "text": "Een tijger", "aliases": ["Tijger"] }] },
+        { "prompt": "Welke Portugese eilandengroep ligt midden in de Atlantische Oceaan?", "answers": [{ "text": "De Azoren", "aliases": ["Azoren"] }] },
+        { "prompt": "Welke Franse schrijver schreef De pest?", "answers": [{ "text": "Albert Camus", "aliases": ["Camus"] }] },
+        { "prompt": "Wat voor dier is Flipper uit de oude televisieserie?", "answers": [{ "text": "Een dolfijn", "aliases": ["Dolfijn"] }] },
+        { "prompt": "Welke Amerikaanse stad heeft de bijnaam City of Angels?", "answers": [{ "text": "Los Angeles", "aliases": ["LA"] }] },
+        { "prompt": "Welke Portugese zeevaarder rondde in 1488 als eerste Europeaan Kaap de Goede Hoop?", "answers": [{ "text": "Bartolomeu Dias", "aliases": ["Dias", "Bartholomeus Diaz"] }] },
+        { "prompt": "Welk dier verstopt met Pasen de eieren in de tuin?", "answers": [{ "text": "De paashaas", "aliases": ["Paashaas"] }] },
+        { "prompt": "Welk Zweeds duo scoorde in 1990 met It Must Have Been Love?", "answers": [{ "text": "Roxette" }] },
+        { "prompt": "Welke Duitse scheikundige bedacht de ringvorm van benzeen na een droom over een slang?", "answers": [{ "text": "August Kekule", "aliases": ["Kekule"] }] }
+      ]
+    }
+  ]
+}

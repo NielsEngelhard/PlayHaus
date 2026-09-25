@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter breed is een tennisbaan voor het enkelspel?", "answer": 8, "unit": "meter" },
         { "prompt": "Hoeveel mierensoorten bestaan er ongeveer?", "answer": 12000, "unit": "soorten" },
-        { "prompt": "In welk jaar organiseerde Rotterdam het Eurovisie Songfestival?", "answer": 2021, "unit": "" },
+        { "prompt": "In welk jaar organiseerde Rotterdam het Eurovisie Songfestival?", "answer": 2021 },
         { "prompt": "Hoeveel kilometer lang is de Grand Canyon?", "answer": 446, "unit": "kilometer" },
         { "prompt": "Hoeveel kamers heeft het hart van een vis?", "answer": 2, "unit": "kamers" },
         { "prompt": "Hoeveel kilo bamboe eet een reuzenpanda per dag?", "answer": 12, "unit": "kilo" },
@@ -88,7 +88,17 @@
         "Frida Kahlo",
         "De Mona Lisa",
         "Vuurtorenwachter",
-        "Evolutie"
+        "Evolutie",
+        "Magnolia",
+        "Zaaimachine",
+        "Speculaas",
+        "Boekenlegger",
+        "Zonnedauw",
+        "Ketting",
+        "Slijm",
+        "Mobiele telefoon",
+        "Kermis",
+        "Stuntman"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "In welke opera van Mozart komt de Koningin van de Nacht voor?", "answers": [{ "text": "Die Zauberflote", "aliases": ["De Toverfluit", "The Magic Flute"] }] },
         { "prompt": "Welke planeet van ons zonnestelsel draait op zijn kant?", "answers": [{ "text": "Uranus" }] },
         { "prompt": "Wat is het grootste eiland in de Middellandse Zee?", "answers": [{ "text": "Sicilie" }] },
-        { "prompt": "Welke Italiaanse wiskundige gaf zijn naam aan een beroemde getallenreeks?", "answers": [{ "text": "Fibonacci" }] }
+        { "prompt": "Welke Italiaanse wiskundige gaf zijn naam aan een beroemde getallenreeks?", "answers": [{ "text": "Fibonacci" }] },
+        { "prompt": "Welke Amerikaanse broers maakten in 1903 de eerste gemotoriseerde vlucht?", "answers": [{ "text": "De gebroeders Wright", "aliases": ["Wright", "Orville en Wilbur Wright"] }] },
+        { "prompt": "Welke Nederlandse uitvinder bouwde rond 1620 in Londen een van de eerste onderzeeboten?", "answers": [{ "text": "Cornelis Drebbel", "aliases": ["Drebbel"] }] }
       ]
     }
   ]

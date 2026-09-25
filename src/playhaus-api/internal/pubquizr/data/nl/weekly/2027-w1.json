@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w1",
+  "title": "Weekquiz 1 2027",
+  "description": "De wekelijkse quiz van woensdag 6 januari 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke rivier stroomt door Dublin?", "category": "Aardrijkskunde", "answers": [{ "text": "De Liffey", "aliases": ["Liffey"] }] },
+        { "prompt": "Hoe heet op een weerkaart de grens tussen warme en koude lucht?", "category": "Wetenschap", "answers": [{ "text": "Een front", "aliases": ["Front", "Weerfront"] }] },
+        { "prompt": "Welke Russische tsaar kreeg de bijnaam de Verschrikkelijke?", "category": "Geschiedenis", "answers": [{ "text": "Ivan IV", "aliases": ["Ivan de Verschrikkelijke", "Ivan"] }] },
+        { "prompt": "Welke Argentijn won in 2022 als aanvoerder het WK voetbal?", "category": "Sport", "answers": [{ "text": "Lionel Messi", "aliases": ["Messi"] }] },
+        { "prompt": "Welke Mexicaanse regisseur maakte The Shape of Water?", "category": "Film", "answers": [{ "text": "Guillermo del Toro", "aliases": ["Del Toro"] }] },
+        { "prompt": "Welke Britse zanger scoorde solo met Angels en Rock DJ?", "category": "Muziek", "answers": [{ "text": "Robbie Williams", "aliases": ["Robbie"] }] },
+        { "prompt": "In welk Drents dorp staat het Hunebedcentrum, bij het grootste hunebed van Nederland?", "category": "Nederland", "answers": [{ "text": "Borger" }] },
+        { "prompt": "Welke Franse kunstenaar maakte aan het eind van zijn leven kleurige papierknipsels?", "category": "Kunst", "answers": [{ "text": "Henri Matisse", "aliases": ["Matisse"] }] },
+        { "prompt": "Hoe heet het bekende dikke woordenboek van de Nederlandse taal?", "category": "Taal", "answers": [{ "text": "De Dikke Van Dale", "aliases": ["Van Dale", "Dikke Van Dale"] }] },
+        { "prompt": "Hoe heten de gefrituurde Spaanse deegstengels die je in warme chocolade doopt?", "category": "Eten", "answers": [{ "text": "Churros", "aliases": ["Churro"] }] },
+        { "prompt": "Welk Amerikaans bedrijf maakt de MacBook?", "category": "Techniek", "answers": [{ "text": "Apple" }] },
+        { "prompt": "Welk zoogdier kan meer dan tweehonderd jaar oud worden?", "category": "Natuur", "answers": [{ "text": "De Groenlandse walvis", "aliases": ["Groenlandse walvis", "Traanwalvis"] }] },
+        { "prompt": "Welke Afrikaanse rivier stroomt door Bamako en Niamey?", "category": "Aardrijkskunde", "answers": [{ "text": "De Niger", "aliases": ["Niger"] }] },
+        { "prompt": "Welke Amerikaanse president gaf in 1945 opdracht voor de atoombommen op Japan?", "category": "Geschiedenis", "answers": [{ "text": "Harry Truman", "aliases": ["Truman"] }] },
+        { "prompt": "Hoe noem je een mengsel waarin een stof helemaal is opgelost, zoals suiker in water?", "category": "Wetenschap", "answers": [{ "text": "Een oplossing", "aliases": ["Oplossing"] }] },
+        { "prompt": "Welke Nederlandse dj heet eigenlijk Tijs Verwest?", "category": "Muziek", "answers": [{ "text": "Tiesto" }] },
+        { "prompt": "Hoe heet het groene monstertje met een oog in Monsters en co.?", "category": "Film", "answers": [{ "text": "Mike Wazowski", "aliases": ["Mike"] }] },
+        { "prompt": "Hoe heet de saus van mayonaise met augurk en kappertjes die je bij vis eet?", "category": "Eten", "answers": [{ "text": "Tartaarsaus", "aliases": ["Remouladesaus", "Remoulade"] }] },
+        { "prompt": "Welke videosite is sinds 2006 van Google?", "category": "Techniek", "answers": [{ "text": "YouTube" }] },
+        { "prompt": "Tot welke woordsoort horen en, maar en of?", "category": "Taal", "answers": [{ "text": "Voegwoorden", "aliases": ["Voegwoord"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Spanje?", "options": [{ "text": "Sevilla", "correct": true }, { "text": "Porto" }, { "text": "Toulouse" }, { "text": "Napels" }] },
+        { "prompt": "Welk van deze dieren is geen katachtige?", "options": [{ "text": "De hyena", "correct": true }, { "text": "De lynx" }, { "text": "De poema" }, { "text": "De ocelot" }] },
+        { "prompt": "Welke schrijver schreef het boek Kruimeltje?", "options": [{ "text": "Chris van Abkoude", "correct": true }, { "text": "Annie M.G. Schmidt" }, { "text": "Thea Beckman" }, { "text": "Paul Biegel" }] },
+        { "prompt": "Welk van deze landen was tot 1991 deel van Joegoslavie?", "options": [{ "text": "Slovenie", "correct": true }, { "text": "Slowakije" }, { "text": "Hongarije" }, { "text": "Albanie" }] },
+        { "prompt": "Welke van deze botten zit in je arm?", "options": [{ "text": "De ellepijp", "correct": true }, { "text": "Het kuitbeen" }, { "text": "Het scheenbeen" }, { "text": "Het dijbeen" }] },
+        { "prompt": "Onder welke Nederlandse koning kwam in 1848 de nieuwe grondwet van Thorbecke?", "options": [{ "text": "Willem II", "correct": true }, { "text": "Willem I" }, { "text": "Willem III" }, { "text": "Lodewijk Napoleon" }] },
+        { "prompt": "Door welk van deze landen loopt de evenaar?", "options": [{ "text": "Gabon", "correct": true }, { "text": "Nigeria" }, { "text": "Egypte" }, { "text": "Zuid-Afrika" }] },
+        { "prompt": "Welke van deze vogels is geen watervogel?", "options": [{ "text": "De specht", "correct": true }, { "text": "De fuut" }, { "text": "De meerkoet" }, { "text": "De aalscholver" }] },
+        { "prompt": "In welke film wordt Tom Hanks als jongen van twaalf ineens volwassen?", "options": [{ "text": "Big", "correct": true }, { "text": "Splash" }, { "text": "Cast Away" }, { "text": "Philadelphia" }] },
+        { "prompt": "Welke Nederlandse sporter won de meeste olympische medailles?", "options": [{ "text": "Ireen Wust", "correct": true }, { "text": "Sven Kramer" }, { "text": "Inge de Bruijn" }, { "text": "Anky van Grunsven" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de televisietoren van Berlijn?", "answer": 368, "unit": "meter" },
+        { "prompt": "Hoeveel miljoen kilometer is Mars van de aarde als ze het dichtst bij elkaar staan?", "answer": 55, "unit": "miljoen kilometer" },
+        { "prompt": "In hoeveel landen is Frans een officiele taal?", "answer": 29, "unit": "landen" },
+        { "prompt": "Hoeveel landen deden mee aan de eerste moderne Olympische Spelen in 1896?", "answer": 14, "unit": "landen" },
+        { "prompt": "Hoeveel kilometer lang is de Westerscheldetunnel?", "answer": 6.6, "unit": "kilometer" },
+        { "prompt": "Hoe oud werd Creme Puff, de oudste kat ooit?", "answer": 38, "unit": "jaar" },
+        { "prompt": "Hoeveel ogen heeft een spin meestal?", "answer": 8, "unit": "ogen" },
+        { "prompt": "In welk jaar ging de Kanaaltunnel tussen Engeland en Frankrijk open?", "answer": 1994 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Belle en het Beest",
+        "Monopoly",
+        "Discuswerpen",
+        "Central Park",
+        "Stemformulier",
+        "Triatlon",
+        "Shoarma",
+        "Fagot",
+        "Schoonheidsspecialiste",
+        "Olifantenmest",
+        "Edmund Hillary",
+        "Roer",
+        "Titanic-film",
+        "Linzen",
+        "Oorwarmers",
+        "Oldtimer",
+        "Pubertijd",
+        "Willem Barentsz",
+        "Uitverkoop",
+        "Cycloop",
+        "Pannenkoekenhuis",
+        "Matje",
+        "Boekhouder",
+        "Armin van Buuren",
+        "Martin Luther King",
+        "Wandelkaart",
+        "Nieuwjaarsduik",
+        "Hooibaal",
+        "Hobo",
+        "Eikenboom",
+        "Droogte",
+        "Tiramisu",
+        "Fietsenstalling",
+        "Roodborstje",
+        "Etui",
+        "Beatbox",
+        "Troonrede",
+        "Worstelen",
+        "Lasso",
+        "Penseel"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Wales?", "answers": [{ "text": "Draak", "aliases": ["Rode draak"] }, { "text": "Rugby", "aliases": ["Rugbyteam"] }, { "text": "Cardiff", "aliases": ["De hoofdstad Cardiff"] }, { "text": "Welsh", "aliases": ["Eigen taal", "Lange plaatsnamen"] }] },
+        { "prompt": "Wat weet je over Barcelona?", "answers": [{ "text": "Sagrada Familia", "aliases": ["Kerk van Gaudi"] }, { "text": "FC Barcelona", "aliases": ["Barca", "Camp Nou", "Messi"] }, { "text": "Gaudi", "aliases": ["Park Guell"] }, { "text": "Ramblas", "aliases": ["Las Ramblas", "Strand"] }] },
+        { "prompt": "Wat weet je over astronauten?", "answers": [{ "text": "Ruimtepak", "aliases": ["Helm"] }, { "text": "Raket", "aliases": ["Lancering"] }, { "text": "Gewichtloos", "aliases": ["Zweven"] }, { "text": "Ruimtestation", "aliases": ["ISS", "Maan"] }] },
+        { "prompt": "Wat weet je over Elton John?", "answers": [{ "text": "Piano", "aliases": ["Pianist"] }, { "text": "Grote brillen", "aliases": ["Bril", "Gekke kostuums"] }, { "text": "Rocket Man", "aliases": ["Your Song", "Candle in the Wind"] }, { "text": "The Lion King", "aliases": ["Can You Feel the Love Tonight"] }] },
+        { "prompt": "Wat weet je over tijgers?", "answers": [{ "text": "Strepen", "aliases": ["Oranje met strepen"] }, { "text": "Azie", "aliases": ["India", "Siberie"] }, { "text": "Grootste katachtige", "aliases": ["Grote kat"] }, { "text": "Bedreigd", "aliases": ["Zeldzaam", "Uitsterven"] }] },
+        { "prompt": "Wat weet je over Hollandse molens?", "answers": [{ "text": "Kinderdijk", "aliases": ["Zaanse Schans"] }, { "text": "Wind", "aliases": ["Wieken"] }, { "text": "Graan malen", "aliases": ["Meel", "Korenmolen"] }, { "text": "Water wegpompen", "aliases": ["Poldermolen", "Polder"] }] },
+        { "prompt": "Wat weet je over Mars?", "answers": [{ "text": "Rode planeet", "aliases": ["Rood"] }, { "text": "Marsrovers", "aliases": ["Rover", "Perseverance", "Curiosity"] }, { "text": "Olympus Mons", "aliases": ["Hoogste vulkaan"] }, { "text": "Twee manen", "aliases": ["Phobos", "Deimos"] }] },
+        { "prompt": "Wat weet je over IKEA?", "answers": [{ "text": "Zweden", "aliases": ["Zweeds"] }, { "text": "Zelf in elkaar zetten", "aliases": ["Bouwpakket", "Inbussleutel"] }, { "text": "Gehaktballetjes", "aliases": ["Kottbullar", "Restaurant"] }, { "text": "Blauw en geel", "aliases": ["Blauw-geel"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het huis waarin een imker zijn bijen houdt?", "difficulty": "easy", "answers": [{ "text": "Een bijenkast", "aliases": ["Bijenkast", "Bijenkorf", "Korf"] }] },
+        { "prompt": "Welke vogel kraait bij het opkomen van de zon?", "difficulty": "easy", "answers": [{ "text": "De haan", "aliases": ["Haan"] }] },
+        { "prompt": "Wat meet je met een weegschaal?", "difficulty": "easy", "answers": [{ "text": "Gewicht", "aliases": ["Het gewicht"] }] },
+        { "prompt": "Hoe heet het grijze tekenfilmkonijn dat altijd zegt: What's up, Doc?", "difficulty": "easy", "answers": [{ "text": "Bugs Bunny", "aliases": ["Bugs"] }] },
+        { "prompt": "Welk rood fruit heeft zijn pitjes aan de buitenkant?", "difficulty": "easy", "answers": [{ "text": "De aardbei", "aliases": ["Aardbei", "Aardbeien"] }] },
+        { "prompt": "Welke Engelse ingenieur bouwde de Rocket en wordt de vader van de spoorwegen genoemd?", "difficulty": "hard", "answers": [{ "text": "George Stephenson", "aliases": ["Stephenson"] }] },
+        { "prompt": "Welke Duitse componist schreef Also sprach Zarathustra?", "difficulty": "hard", "answers": [{ "text": "Richard Strauss", "aliases": ["Strauss"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Ti?", "difficulty": "hard", "answers": [{ "text": "Titanium", "aliases": ["Titaan"] }] },
+        { "prompt": "Welke rivier stroomt door Porto?", "difficulty": "hard", "answers": [{ "text": "De Douro", "aliases": ["Douro", "Duero"] }] },
+        { "prompt": "Welke Engelse koning had de bijnaam Longshanks?", "difficulty": "hard", "answers": [{ "text": "Edward I", "aliases": ["Edward de Eerste", "Edward"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heten de drie neefjes van Donald Duck?", "answers": [{ "text": "Kwik, Kwek en Kwak", "aliases": ["Kwik Kwek en Kwak"] }] },
+        { "prompt": "Op welk Grieks eiland liggen de witte huisjes van Oia?", "answers": [{ "text": "Santorini", "aliases": ["Thira"] }] },
+        { "prompt": "Welke Engelse schrijver schreef Tess of the d'Urbervilles?", "answers": [{ "text": "Thomas Hardy", "aliases": ["Hardy"] }] },
+        { "prompt": "Wat zeg je in Nederland als iemand niest?", "answers": [{ "text": "Gezondheid" }] },
+        { "prompt": "Welke Italiaanse voetbalclub uit Turijn speelt in zwart-wit gestreepte shirts?", "answers": [{ "text": "Juventus", "aliases": ["Juve"] }] },
+        { "prompt": "Naar welke Franse wiskundige is de driehoek van getallen genoemd die de binomiaalcoefficienten geeft?", "answers": [{ "text": "Blaise Pascal", "aliases": ["Pascal"] }] },
+        { "prompt": "Welk schelpdier kan een parel maken?", "answers": [{ "text": "De oester", "aliases": ["Oester", "Parelmossel"] }] },
+        { "prompt": "Welke Canadese zanger en dichter schreef Hallelujah?", "answers": [{ "text": "Leonard Cohen", "aliases": ["Cohen"] }] },
+        { "prompt": "Welke Russische schrijver schreef Dode zielen?", "answers": [{ "text": "Nikolaj Gogol", "aliases": ["Gogol"] }] }
+      ]
+    }
+  ]
+}

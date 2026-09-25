@@ -47,13 +47,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many metres high is Mount Everest?", "answer": 8849, "unit": "metres", "explanation": "The height China and Nepal agreed on together in 2020." },
-        { "prompt": "In what year was the first iPhone unveiled?", "answer": 2007, "unit": "" },
+        { "prompt": "In what year was the first iPhone unveiled?", "answer": 2007 },
         { "prompt": "How many countries does the summit of Mount Everest sit on the border of?", "answer": 2, "unit": "countries", "explanation": "The summit sits on the border between Nepal and China (Tibet)." },
-        { "prompt": "In what year did Facebook launch?", "answer": 2004, "unit": "" },
+        { "prompt": "In what year did Facebook launch?", "answer": 2004 },
         { "prompt": "How many kilometres long is the Great Barrier Reef?", "answer": 2300, "unit": "kilometres" },
-        { "prompt": "In what year did the first iPod go on sale?", "answer": 2001, "unit": "" },
+        { "prompt": "In what year did the first iPod go on sale?", "answer": 2001 },
         { "prompt": "How many metres deep is the deepest point of the ocean, the Mariana Trench, roughly?", "answer": 10935, "unit": "metres" },
-        { "prompt": "In what year did Steve Jobs co-found Apple?", "answer": 1976, "unit": "" }
+        { "prompt": "In what year did Steve Jobs co-found Apple?", "answer": 1976 }
       ]
     },
     {
@@ -88,7 +88,17 @@
         "Pablo Picasso",
         "The Sphinx",
         "Air traffic controller",
-        "Camouflage"
+        "Camouflage",
+        "Meccano",
+        "DJ",
+        "Ladybird",
+        "Softball",
+        "Dumbbell",
+        "Rubik's Cube",
+        "Hotel key card",
+        "Lenin",
+        "Toucan",
+        "Mozart"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "In what year was the Berlin Wall built?", "answers": [{ "text": "1961" }] },
         { "prompt": "Which Greek mathematician is said to have shouted Eureka in his bath?", "answers": [{ "text": "Archimedes" }] },
         { "prompt": "Which German composer wrote the Brandenburg Concertos?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
-        { "prompt": "What is the capital of New Zealand?", "answers": [{ "text": "Wellington" }] }
+        { "prompt": "What is the capital of New Zealand?", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "In which French town is the Palme d'Or awarded at the film festival?", "answers": [{ "text": "Cannes" }] },
+        { "prompt": "Which American writer wrote Uncle Tom's Cabin?", "answers": [{ "text": "Harriet Beecher Stowe", "aliases": ["Beecher Stowe"] }] }
       ]
     }
   ]

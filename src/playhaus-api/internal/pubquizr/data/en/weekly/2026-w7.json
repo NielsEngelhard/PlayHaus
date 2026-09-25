@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres tall is the statue of Christ the Redeemer in Rio?", "answer": 30, "unit": "metres" },
         { "prompt": "How many players does a baseball team have on the field?", "answer": 9, "unit": "players" },
-        { "prompt": "In what year did the first version of Windows appear?", "answer": 1985, "unit": "" },
+        { "prompt": "In what year did the first version of Windows appear?", "answer": 1985 },
         { "prompt": "How many earth years does Neptune take to orbit the sun?", "answer": 165, "unit": "years" },
         { "prompt": "How many taste buds does the human tongue have, roughly?", "answer": 8000, "unit": "taste buds" },
         { "prompt": "How many eggs does a laying hen produce in a year, roughly?", "answer": 300, "unit": "eggs" },
@@ -88,7 +88,17 @@
         "Circus",
         "The Berlin Wall",
         "Sudoku",
-        "Gravity"
+        "Gravity",
+        "Farrier",
+        "Amazon River",
+        "Aquarium",
+        "Rain shower",
+        "Tax return",
+        "Student house",
+        "Mountaineering",
+        "Sparrow",
+        "Mosquito",
+        "Maple leaf"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which is the highest mountain in Australia?", "answers": [{ "text": "Mount Kosciuszko", "aliases": ["Kosciuszko"] }] },
         { "prompt": "Which German philosopher wrote Thus Spoke Zarathustra?", "answers": [{ "text": "Friedrich Nietzsche", "aliases": ["Nietzsche"] }] },
         { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury", "aliases": ["Hg"] }] },
-        { "prompt": "Which lake is the deepest in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] }
+        { "prompt": "Which lake is the deepest in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
+        { "prompt": "Which English sailor circumnavigated the globe in the Golden Hind between 1577 and 1580?", "answers": [{ "text": "Francis Drake", "aliases": ["Drake"] }] },
+        { "prompt": "Which French composer wrote The Carnival of the Animals?", "answers": [{ "text": "Camille Saint-Saens", "aliases": ["Saint-Saens"] }] }
       ]
     }
   ]

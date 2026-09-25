@@ -88,7 +88,17 @@
         "Pizza delivery rider",
         "Telescope",
         "Hopscotch",
-        "The Great Wall of China"
+        "The Great Wall of China",
+        "Rosa Parks",
+        "Buttermilk",
+        "Doughnut",
+        "Ludo",
+        "False start",
+        "Acorn",
+        "Market trader",
+        "Inflatable crocodile",
+        "Miss Piggy",
+        "Decathlon"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Who wrote the book War and Peace?", "answers": [{ "text": "Leo Tolstoy", "aliases": ["Tolstoy", "Tolstoj"] }] },
         { "prompt": "Which particle carries the strong nuclear force?", "answers": [{ "text": "The gluon", "aliases": ["Gluon"] }] },
         { "prompt": "Which Dutch footballer captained the team that became European champions in 1988?", "answers": [{ "text": "Ruud Gullit", "aliases": ["Gullit"] }] },
-        { "prompt": "Which British physicist predicted the particle confirmed near Geneva in 2012?", "answers": [{ "text": "Peter Higgs", "aliases": ["Higgs"] }] }
+        { "prompt": "Which British physicist predicted the particle confirmed near Geneva in 2012?", "answers": [{ "text": "Peter Higgs", "aliases": ["Higgs"] }] },
+        { "prompt": "In which city is the Hermitage museum?", "answers": [{ "text": "Saint Petersburg", "aliases": ["St Petersburg", "Petersburg"] }] },
+        { "prompt": "Which Danish astronomer had a metal nose and his own observatory on the island of Hven?", "answers": [{ "text": "Tycho Brahe", "aliases": ["Brahe"] }] }
       ]
     }
   ]

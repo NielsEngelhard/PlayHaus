@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter hoog is het hoogste gebouw van Europa?", "answer": 462, "unit": "meter" },
         { "prompt": "Hoeveel harten heeft een inktvis?", "answer": 3, "unit": "harten" },
-        { "prompt": "In welk jaar werd de Amsterdamse grachtengordel werelderfgoed?", "answer": 2010, "unit": "" },
+        { "prompt": "In welk jaar werd de Amsterdamse grachtengordel werelderfgoed?", "answer": 2010 },
         { "prompt": "Hoeveel kilometer lang is de langste non-stopvlucht ter wereld?", "answer": 15300, "unit": "kilometer" },
         { "prompt": "Hoeveel miljard zenuwcellen telt het menselijk brein?", "answer": 86, "unit": "miljard" },
         { "prompt": "Hoeveel miljoen fietsen zijn er in Nederland?", "answer": 23, "unit": "miljoen fietsen" },
@@ -88,7 +88,17 @@
         "Koorddanser",
         "Marie Curie",
         "Het Rijksmuseum",
-        "Het noorderlicht"
+        "Het noorderlicht",
+        "Kok met koksmuts",
+        "Python",
+        "Thuiswerken",
+        "Kolonie",
+        "Cruella de Vil",
+        "Waterijsje",
+        "Das",
+        "Videobellen",
+        "Milkshake",
+        "Frozen"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is de munteenheid van Polen?", "answers": [{ "text": "De zloty", "aliases": ["zloty"] }] },
         { "prompt": "Welke planeet heeft de Grote Rode Vlek?", "answers": [{ "text": "Jupiter" }] },
         { "prompt": "Wie schreef de roman 1984?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
-        { "prompt": "Welk gebergte scheidt Europa van Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] }
+        { "prompt": "Welk gebergte scheidt Europa van Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] },
+        { "prompt": "Welke Amerikaan bedacht het alfabet van punten en strepen?", "answers": [{ "text": "Samuel Morse", "aliases": ["Morse"] }] },
+        { "prompt": "Wat is de hoofdstad van Wit-Rusland?", "answers": [{ "text": "Minsk" }] }
       ]
     }
   ]

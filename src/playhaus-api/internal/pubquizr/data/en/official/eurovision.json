@@ -89,7 +89,17 @@
         "Earpiece",
         "Boyband",
         "Folk costume",
-        "Applause"
+        "Applause",
+        "Douze points",
+        "Nul points",
+        "Points board",
+        "Winner's trophy",
+        "Glitter suit",
+        "Eurovision party",
+        "Song contest",
+        "Flag parade",
+        "Heart-shaped microphone",
+        "Neighbourly votes"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which Israeli group won the 1979 contest with Hallelujah?", "answers": [{ "text": "Milk and Honey", "aliases": ["Gali Atari and Milk and Honey", "Milk & Honey"] }] },
         { "prompt": "In which year was the free choice of language permanently restored?", "answers": [{ "text": "1999", "aliases": ["Nineteen ninety-nine"] }] },
         { "prompt": "Which country won the 2005 contest with My Number One?", "answers": [{ "text": "Greece" }] },
-        { "prompt": "Which Swedish city hosted the contest in 1985?", "answers": [{ "text": "Gothenburg", "aliases": ["Göteborg", "Goteborg"] }] }
+        { "prompt": "Which Swedish city hosted the contest in 1985?", "answers": [{ "text": "Gothenburg", "aliases": ["Göteborg", "Goteborg"] }] },
+        { "prompt": "Which Canadian singer won Eurovision in 1988 for Switzerland?", "answers": [{ "text": "Celine Dion", "aliases": ["Dion"] }] },
+        { "prompt": "Which Irish singer won Eurovision twice, in 1980 and 1987?", "answers": [{ "text": "Johnny Logan", "aliases": ["Logan"] }] }
       ]
     }
   ]

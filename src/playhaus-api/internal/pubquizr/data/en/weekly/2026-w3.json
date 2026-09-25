@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many million kilometres is the earth from the sun?", "answer": 150, "unit": "million kilometres" },
         { "prompt": "How many muscles does it take to smile?", "answer": 17, "unit": "muscles" },
-        { "prompt": "In what year did the Netherlands win the Eurovision Song Contest with Duncan Laurence?", "answer": 2019, "unit": "" },
+        { "prompt": "In what year did the Netherlands win the Eurovision Song Contest with Duncan Laurence?", "answer": 2019 },
         { "prompt": "How many member states does the European Union have?", "answer": 27, "unit": "member states" },
         { "prompt": "How many kilometres long is the Danube?", "answer": 2850, "unit": "kilometres" },
         { "prompt": "How many calories are there in a banana, roughly?", "answer": 90, "unit": "calories" },
@@ -88,7 +88,17 @@
         "Democracy",
         "Submarine",
         "Tornado",
-        "The Berlin Wall"
+        "The Berlin Wall",
+        "Gardener",
+        "Winnie the Pooh",
+        "Attila the Hun",
+        "AC/DC",
+        "Paella",
+        "Eighty Years' War",
+        "Substitution",
+        "Corn on the cob",
+        "Video recorder",
+        "Anaconda"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which French novelist wrote In Search of Lost Time?", "answers": [{ "text": "Marcel Proust", "aliases": ["Proust"] }] },
         { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury", "aliases": ["Quicksilver"] }] },
         { "prompt": "In which year was the first successful human heart transplant carried out?", "answers": [{ "text": "1967" }] },
-        { "prompt": "Which country has more pyramids than any other?", "answers": [{ "text": "Sudan" }] }
+        { "prompt": "Which country has more pyramids than any other?", "answers": [{ "text": "Sudan" }] },
+        { "prompt": "Which British band released the album OK Computer in 1997?", "answers": [{ "text": "Radiohead" }] },
+        { "prompt": "Which Norwegian explorer crossed the Pacific on the raft Kon-Tiki in 1947?", "answers": [{ "text": "Thor Heyerdahl", "aliases": ["Heyerdahl"] }] }
       ]
     }
   ]

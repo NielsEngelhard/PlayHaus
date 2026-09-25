@@ -89,7 +89,17 @@
         "Romeinse cijfers",
         "Wastablet",
         "Zonnewijzer",
-        "Villa"
+        "Villa",
+        "Gladiatorengevecht",
+        "Duim omlaag",
+        "Romulus en Remus",
+        "Julius Caesar-moord",
+        "Senator",
+        "Tunica",
+        "Legioenkamp",
+        "Hypocaust",
+        "Circus Maximus",
+        "Latijn"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Wat was de Latijnse naam voor de versterkte grenslinie van het Romeinse Rijk?", "answers": [{ "text": "De limes", "aliases": ["limes"] }] },
         { "prompt": "Welke Romeinse dichter schreef de Metamorfosen?", "answers": [{ "text": "Ovidius", "aliases": ["Publius Ovidius Naso", "Ovid"] }] },
         { "prompt": "Welk Romeins aquaduct over de rivier de Gardon in Zuid-Frankrijk staat er nog steeds?", "answers": [{ "text": "De Pont du Gard", "aliases": ["Pont du Gard"] }] },
-        { "prompt": "Welke keizer opende het Colosseum in het jaar 80 met honderd dagen spelen?", "answers": [{ "text": "Titus" }] }
+        { "prompt": "Welke keizer opende het Colosseum in het jaar 80 met honderd dagen spelen?", "answers": [{ "text": "Titus" }] },
+        { "prompt": "Welke rivier stak Julius Caesar in 49 voor Christus over met de woorden de teerling is geworpen?", "answers": [{ "text": "De Rubicon", "aliases": ["Rubicon"] }] },
+        { "prompt": "Welke Carthaagse veldheer versloeg de Romeinen in 216 voor Christus bij Cannae?", "answers": [{ "text": "Hannibal", "aliases": ["Hannibal Barkas"] }] }
       ]
     }
   ]

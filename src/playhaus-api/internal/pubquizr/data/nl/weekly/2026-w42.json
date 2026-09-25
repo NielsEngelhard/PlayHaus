@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w42",
+  "title": "Weekquiz 42 2026",
+  "description": "De wekelijkse quiz van woensdag 14 oktober 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoofdstad van de Amerikaanse staat Californie?", "category": "Aardrijkskunde", "answers": [{ "text": "Sacramento" }] },
+        { "prompt": "Hoe heet de laag achter in het oog die licht omzet in signalen voor de hersenen?", "category": "Wetenschap", "answers": [{ "text": "Het netvlies", "aliases": ["Netvlies", "Retina"] }] },
+        { "prompt": "Hoe heette de eerste vrouw van Napoleon, die keizerin van Frankrijk werd?", "category": "Geschiedenis", "answers": [{ "text": "Josephine", "aliases": ["Josephine de Beauharnais"] }] },
+        { "prompt": "Welke Nederlandse zwemster won op de Spelen van 2000 drie gouden medailles?", "category": "Sport", "answers": [{ "text": "Inge de Bruijn", "aliases": ["De Bruijn"] }] },
+        { "prompt": "Welk speelgoedfiguur roept: tot in de oneindigheid en daar voorbij?", "category": "Film", "answers": [{ "text": "Buzz Lightyear", "aliases": ["Buzz"] }] },
+        { "prompt": "Welke Zweedse dj scoorde in 2011 een wereldhit met Levels?", "category": "Muziek", "answers": [{ "text": "Avicii", "aliases": ["Tim Bergling"] }] },
+        { "prompt": "Hoe heet de nationale luchtvaartmaatschappij van Nederland?", "category": "Nederland", "answers": [{ "text": "KLM", "aliases": ["Koninklijke Luchtvaart Maatschappij"] }] },
+        { "prompt": "Welke Mexicaanse muurschilder was getrouwd met Frida Kahlo?", "category": "Kunst", "answers": [{ "text": "Diego Rivera", "aliases": ["Rivera"] }] },
+        { "prompt": "Hoe heet een stijlfiguur die sterk overdrijft, zoals: ik heb het je al duizend keer gezegd?", "category": "Taal", "answers": [{ "text": "Een hyperbool", "aliases": ["Hyperbool", "Overdrijving"] }] },
+        { "prompt": "Welke Spaanse rijstschotel met saffraan komt oorspronkelijk uit Valencia?", "category": "Eten", "answers": [{ "text": "Paella" }] },
+        { "prompt": "Wie richtte Microsoft op samen met Paul Allen?", "category": "Techniek", "answers": [{ "text": "Bill Gates", "aliases": ["Gates"] }] },
+        { "prompt": "Van de bladeren van welke boom leeft de zijderups?", "category": "Natuur", "answers": [{ "text": "De moerbeiboom", "aliases": ["Moerbei", "Moerbeiboom"] }] },
+        { "prompt": "Welk gebergte loopt dwars door Marokko?", "category": "Aardrijkskunde", "answers": [{ "text": "Het Atlasgebergte", "aliases": ["Atlas", "Atlasgebergte"] }] },
+        { "prompt": "Welke Britse verpleegster kreeg in de Krimoorlog de bijnaam The Lady with the Lamp?", "category": "Geschiedenis", "answers": [{ "text": "Florence Nightingale", "aliases": ["Nightingale"] }] },
+        { "prompt": "Hoe heten de groene korreltjes in een plantencel waarin de fotosynthese plaatsvindt?", "category": "Wetenschap", "answers": [{ "text": "Bladgroenkorrels", "aliases": ["Chloroplasten", "Bladgroenkorrel"] }] },
+        { "prompt": "Welke Britse band van de broers Gallagher scoorde met Wonderwall?", "category": "Muziek", "answers": [{ "text": "Oasis" }] },
+        { "prompt": "In welke film uit 1986 speelt Tom Cruise de gevechtspiloot Maverick?", "category": "Film", "answers": [{ "text": "Top Gun" }] },
+        { "prompt": "Van welke vrucht wordt cider gemaakt?", "category": "Eten", "answers": [{ "text": "De appel", "aliases": ["Appel", "Appels"] }] },
+        { "prompt": "Welk Zuid-Koreaans bedrijf maakt de Galaxy-telefoons?", "category": "Techniek", "answers": [{ "text": "Samsung" }] },
+        { "prompt": "Hoe heet een beeldspraak zonder het woord als, zoals: hij is een leeuw?", "category": "Taal", "answers": [{ "text": "Een metafoor", "aliases": ["Metafoor"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke kleur heeft de tong van een giraf?", "options": [{ "text": "Blauwzwart", "correct": true }, { "text": "Roze" }, { "text": "Rood" }, { "text": "Geel" }] },
+        { "prompt": "Welke van deze vogels kan niet vliegen?", "options": [{ "text": "De emoe", "correct": true }, { "text": "De albatros" }, { "text": "De condor" }, { "text": "De pelikaan" }] },
+        { "prompt": "Welke Nederlandse schrijver schreef De avonden?", "options": [{ "text": "Gerard Reve", "correct": true }, { "text": "Willem Frederik Hermans" }, { "text": "Harry Mulisch" }, { "text": "Jan Wolkers" }] },
+        { "prompt": "Welke Amerikaanse staat is het grootst?", "options": [{ "text": "Alaska", "correct": true }, { "text": "Texas" }, { "text": "Californie" }, { "text": "Montana" }] },
+        { "prompt": "Welke bloedcellen helpen een wondje te dichten door het bloed te laten stollen?", "options": [{ "text": "De bloedplaatjes", "correct": true }, { "text": "De rode bloedcellen" }, { "text": "De witte bloedcellen" }, { "text": "De stamcellen" }] },
+        { "prompt": "Welke oorlog duurde van 1618 tot 1648?", "options": [{ "text": "De Dertigjarige Oorlog", "correct": true }, { "text": "De Tachtigjarige Oorlog" }, { "text": "De Honderdjarige Oorlog" }, { "text": "De Zevenjarige Oorlog" }] },
+        { "prompt": "Welk van deze landen heeft geen koning of koningin als staatshoofd?", "options": [{ "text": "Portugal", "correct": true }, { "text": "Noorwegen" }, { "text": "Belgie" }, { "text": "Spanje" }] },
+        { "prompt": "Welke kaas met een witte schimmelkorst komt uit Normandie?", "options": [{ "text": "Camembert", "correct": true }, { "text": "Gouda" }, { "text": "Feta" }, { "text": "Cheddar" }] },
+        { "prompt": "Wat is de hoogste berg van het Koninkrijk der Nederlanden?", "options": [{ "text": "Mount Scenery", "correct": true }, { "text": "De Vaalserberg" }, { "text": "De Brandaris" }, { "text": "De Christoffelberg" }] },
+        { "prompt": "Welk schaakstuk kan als enige over andere stukken heen springen?", "options": [{ "text": "Het paard", "correct": true }, { "text": "De loper" }, { "text": "De toren" }, { "text": "De dame" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Martinitoren in Groningen?", "answer": 97, "unit": "meter" },
+        { "prompt": "Hoeveel miljoen liter water past er in een olympisch zwembad?", "answer": 2.5, "unit": "miljoen liter" },
+        { "prompt": "Hoeveel keer per minuut kan het hart van een kolibrie slaan?", "answer": 1200, "unit": "slagen" },
+        { "prompt": "Hoeveel uur duurt een dag op Jupiter, afgerond?", "answer": 10, "unit": "uur" },
+        { "prompt": "Hoeveel provincies telt Canada?", "answer": 10, "unit": "provincies" },
+        { "prompt": "Hoeveel kilometer lang is de Zeelandbrug?", "answer": 5, "unit": "kilometer" },
+        { "prompt": "Hoeveel meter lang was de Titanic?", "answer": 269, "unit": "meter" },
+        { "prompt": "Hoeveel elementen telt het periodiek systeem?", "answer": 118, "unit": "elementen" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Slag bij Waterloo",
+        "Louis Pasteur",
+        "Wesp",
+        "Bankbiljet",
+        "Catamaran",
+        "Smartwatch",
+        "Kerstlied",
+        "Quizmaster",
+        "Tolkien",
+        "Scriptie",
+        "Nils Holgersson",
+        "Hyena",
+        "Powerbank",
+        "Dodo",
+        "Dooi",
+        "Kroonprinses",
+        "Runen",
+        "Adventskalender",
+        "Cello",
+        "Muntgeld",
+        "Clownvis",
+        "Zanger",
+        "Pinautomaat",
+        "Charles Dickens",
+        "Gebakken ei",
+        "Eenwieler",
+        "VOC",
+        "Roodkapje",
+        "Badschuim",
+        "Hartslag",
+        "Sate",
+        "Tosti",
+        "Boogschieten",
+        "Blessuretijd",
+        "Carnavalskraker",
+        "Led Zeppelin",
+        "Bobsleeën",
+        "Middagdutje",
+        "Ara",
+        "Jenga"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Rusland?", "answers": [{ "text": "Moskou", "aliases": ["De hoofdstad Moskou"] }, { "text": "Het Kremlin", "aliases": ["Kremlin", "Rode Plein"] }, { "text": "Grootste land ter wereld", "aliases": ["Groot", "Siberie"] }, { "text": "Poetin", "aliases": ["Vladimir Poetin"] }] },
+        { "prompt": "Wat weet je over Mozart?", "answers": [{ "text": "Oostenrijk", "aliases": ["Salzburg", "Wenen"] }, { "text": "Wonderkind", "aliases": ["Jong begonnen", "Als kind componeren"] }, { "text": "Die Zauberflote", "aliases": ["De Toverfluit", "Requiem"] }, { "text": "Klassieke muziek", "aliases": ["Componist", "Symfonieen"] }] },
+        { "prompt": "Wat weet je over olifanten?", "answers": [{ "text": "Slurf", "aliases": ["Lange neus"] }, { "text": "Slagtanden", "aliases": ["Ivoor"] }, { "text": "Grootste landdier", "aliases": ["Groot", "Zwaar"] }, { "text": "Afrika en Azie", "aliases": ["Afrika", "India"] }] },
+        { "prompt": "Wat weet je over Brazilie?", "answers": [{ "text": "Carnaval", "aliases": ["Samba"] }, { "text": "Voetbal", "aliases": ["Pele", "Neymar"] }, { "text": "De Amazone", "aliases": ["Regenwoud", "Amazone"] }, { "text": "Rio de Janeiro", "aliases": ["Rio", "Christusbeeld"] }] },
+        { "prompt": "Wat weet je over Halloween?", "answers": [{ "text": "Pompoenen", "aliases": ["Pompoen", "Uitgeholde pompoen"] }, { "text": "Verkleden", "aliases": ["Spoken", "Heksen", "Kostuums"] }, { "text": "Snoep ophalen", "aliases": ["Trick or treat", "Snoep"] }, { "text": "Eind oktober", "aliases": ["31 oktober", "Oktober"] }] },
+        { "prompt": "Wat weet je over de Tweede Kamer?", "answers": [{ "text": "Den Haag", "aliases": ["Binnenhof"] }, { "text": "Honderdvijftig zetels", "aliases": ["150", "150 zetels"] }, { "text": "Verkiezingen", "aliases": ["Stemmen"] }, { "text": "Wetten", "aliases": ["Debatten", "Politiek", "Partijen"] }] },
+        { "prompt": "Wat weet je over Charlie Chaplin?", "answers": [{ "text": "Stomme films", "aliases": ["Zwart-wit", "Stille film"] }, { "text": "Bolhoed", "aliases": ["Hoed"] }, { "text": "Wandelstok", "aliases": ["Stok"] }, { "text": "Snorretje", "aliases": ["Snor"] }] },
+        { "prompt": "Wat weet je over de Nijl?", "answers": [{ "text": "Egypte", "aliases": ["Cairo"] }, { "text": "Langste rivier", "aliases": ["Lang", "Langste rivier ter wereld"] }, { "text": "Krokodillen", "aliases": ["Nijlkrokodil"] }, { "text": "Piramides", "aliases": ["Farao's", "Oude Egyptenaren"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet de lange hond met de hoge stem die bevriend is met Mickey Mouse?", "difficulty": "easy", "answers": [{ "text": "Goofy" }] },
+        { "prompt": "Welke kleur krijgt blauw lakmoespapier in een zuur?", "difficulty": "easy", "answers": [{ "text": "Rood" }] },
+        { "prompt": "Wat is de hoofdstad van Duitsland?", "difficulty": "easy", "answers": [{ "text": "Berlijn" }] },
+        { "prompt": "Hoe heet een jong van een koe?", "difficulty": "easy", "answers": [{ "text": "Een kalf", "aliases": ["Kalf"] }] },
+        { "prompt": "Welk instrument speelt Sherlock Holmes?", "difficulty": "easy", "answers": [{ "text": "De viool", "aliases": ["Viool"] }] },
+        { "prompt": "Welke Indonesische vulkaan explodeerde in 1883 met een van de hardste knallen ooit gehoord?", "difficulty": "hard", "answers": [{ "text": "Krakatau", "aliases": ["Krakatoa"] }] },
+        { "prompt": "Welke Amerikaanse schrijver schreef Of Mice and Men?", "difficulty": "hard", "answers": [{ "text": "John Steinbeck", "aliases": ["Steinbeck"] }] },
+        { "prompt": "Welke Nederlandse informaticus bedacht het beroemde algoritme voor het kortste pad?", "difficulty": "hard", "answers": [{ "text": "Edsger Dijkstra", "aliases": ["Dijkstra"] }] },
+        { "prompt": "Wat is de hoofdstad van Groenland?", "difficulty": "hard", "answers": [{ "text": "Nuuk" }] },
+        { "prompt": "Welke Griekse godin van de wijsheid gaf haar naam aan de hoofdstad van Griekenland?", "difficulty": "hard", "answers": [{ "text": "Athena", "aliases": ["Pallas Athena"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welk dier woont in een burcht onder de grond?", "answers": [{ "text": "De das", "aliases": ["Das"] }] },
+        { "prompt": "Welke stad was de hoofdstad van Japan voor Tokio dat werd?", "answers": [{ "text": "Kyoto" }] },
+        { "prompt": "Welke componist, geboren bij Warschau, schreef de Minutenwals?", "answers": [{ "text": "Frederic Chopin", "aliases": ["Chopin"] }] },
+        { "prompt": "Welk sprookjesmeisje liet haar lange haar uit een toren zakken?", "answers": [{ "text": "Rapunzel" }] },
+        { "prompt": "Welke zee ligt tussen Groot-Brittannie en Ierland?", "answers": [{ "text": "De Ierse Zee", "aliases": ["Ierse Zee"] }] },
+        { "prompt": "Welke Amerikaanse ruimtesonde is als enige langs Uranus en Neptunus gevlogen?", "answers": [{ "text": "Voyager 2" }] },
+        { "prompt": "Welke vrucht met een harige bruine schil groeit aan een palmboom?", "answers": [{ "text": "De kokosnoot", "aliases": ["Kokosnoot", "Kokos"] }] },
+        { "prompt": "Welke Schotse ontdekkingsreiziger werd in Afrika gevonden met de woorden Dr. Livingstone, I presume?", "answers": [{ "text": "David Livingstone", "aliases": ["Livingstone"] }] },
+        { "prompt": "Welke Oostenrijkse natuurkundige gaf zijn naam aan het uitsluitingsprincipe voor elektronen?", "answers": [{ "text": "Wolfgang Pauli", "aliases": ["Pauli"] }] }
+      ]
+    }
+  ]
+}

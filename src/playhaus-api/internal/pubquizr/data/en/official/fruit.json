@@ -89,7 +89,17 @@
         "Fruit picker",
         "Fruit stall",
         "Fruit fly",
-        "Jam jar"
+        "Jam jar",
+        "Strawberry field",
+        "Fruit basket",
+        "Apple tree",
+        "Fruit skewer",
+        "Fruit juice",
+        "Fig tree",
+        "Mandarin",
+        "Watermelon seed",
+        "Cherry stone",
+        "Banana tree"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which berry, first grown in California, is a cross between a blackberry and a raspberry?", "answers": [{ "text": "The loganberry", "aliases": ["Loganberry"] }] },
         { "prompt": "What is the fruit of the rose called, used in syrups and teas?", "answers": [{ "text": "The rose hip", "aliases": ["Rose hip", "Rosehip", "Hip"] }] },
         { "prompt": "The seeds of which fruit are fermented and roasted to make chocolate?", "answers": [{ "text": "The cacao pod", "aliases": ["Cacao", "Cocoa", "Cocoa pod"] }] },
-        { "prompt": "Which acid gives lemons their sour taste?", "answers": [{ "text": "Citric acid", "aliases": ["Citric"] }] }
+        { "prompt": "Which acid gives lemons their sour taste?", "answers": [{ "text": "Citric acid", "aliases": ["Citric"] }] },
+        { "prompt": "Which fruit is a cross between a pomelo and an orange?", "answers": [{ "text": "The grapefruit", "aliases": ["Grapefruit"] }] },
+        { "prompt": "Which citrus fruit gives Earl Grey tea its flavour?", "answers": [{ "text": "The bergamot", "aliases": ["Bergamot"] }] }
       ]
     }
   ]

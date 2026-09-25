@@ -47,12 +47,12 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In what year was Mattel founded?", "answer": 1945, "unit": "", "explanation": "Ruth and Elliot Handler started out in 1945 with picture frames and doll furniture." },
+        { "prompt": "In what year was Mattel founded?", "answer": 1945, "explanation": "Ruth and Elliot Handler started out in 1945 with picture frames and doll furniture." },
         { "prompt": "How many minutes does the 2023 Barbie film last?", "answer": 114, "unit": "minutes" },
-        { "prompt": "In what year was the first Barbie doll launched?", "answer": 1959, "unit": "" },
+        { "prompt": "In what year was the first Barbie doll launched?", "answer": 1959 },
         { "prompt": "How many Barbie dolls has Mattel sold worldwide since 1959, in billions?", "answer": 1, "unit": "billion dolls", "explanation": "Mattel has long said over a billion dolls have been sold since launch." },
         { "prompt": "How many days after its release did the Barbie film pass a billion dollars at the box office?", "answer": 17, "unit": "days" },
-        { "prompt": "In what year did Mattel introduce Ken, Barbie's boyfriend?", "answer": 1961, "unit": "" },
+        { "prompt": "In what year did Mattel introduce Ken, Barbie's boyfriend?", "answer": 1961 },
         { "prompt": "How many Oscar nominations did the 2023 Barbie film receive?", "answer": 8, "unit": "nominations" },
         { "prompt": "How many centimetres tall is a standard Barbie doll?", "answer": 29, "unit": "centimetres" }
       ]
@@ -89,7 +89,17 @@
         "Willows",
         "Barbie and the Rockers",
         "America Ferrera",
-        "Malibu"
+        "Malibu",
+        "Pink convertible",
+        "Barbie box",
+        "Doll clothes",
+        "Hairdresser Barbie",
+        "Barbie camper",
+        "Rollerblades",
+        "Doll's house",
+        "Toy store",
+        "Mermaid Barbie",
+        "Plastic heels"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which actress played Gloria, the Mattel employee, in the 2023 film?", "answers": [{ "text": "America Ferrera", "aliases": ["Ferrera"] }] },
         { "prompt": "What is the fictional world Barbie lives in in the 2023 film called?", "answers": [{ "text": "Barbieland" }] },
         { "prompt": "Which actor played Allan, the only Allan, in the 2023 film?", "answers": [{ "text": "Michael Cera", "aliases": ["Cera"] }] },
-        { "prompt": "Which American pop artist painted a portrait of Barbie in the eighties?", "answers": [{ "text": "Andy Warhol", "aliases": ["Warhol"] }] }
+        { "prompt": "Which American pop artist painted a portrait of Barbie in the eighties?", "answers": [{ "text": "Andy Warhol", "aliases": ["Warhol"] }] },
+        { "prompt": "What is Barbie's full first name, of which Barbie is short?", "answers": [{ "text": "Barbara", "aliases": ["Barbara Millicent Roberts"] }] },
+        { "prompt": "Who was Ken named after?", "answers": [{ "text": "Kenneth Handler", "aliases": ["Ruth Handler's son", "Kenneth"] }] }
       ]
     }
   ]

@@ -51,9 +51,9 @@
         { "prompt": "How many metres below sea level is the lowest point of the Netherlands?", "answer": 7, "unit": "metres" },
         { "prompt": "How many provinces does the Netherlands have?", "answer": 12, "unit": "provinces" },
         { "prompt": "How many kilometres long is the Dutch coastline, roughly?", "answer": 450, "unit": "kilometres" },
-        { "prompt": "In what year did the Netherlands finish building the Delta Works flood barrier, the Oosterscheldekering?", "answer": 1986, "unit": "" },
+        { "prompt": "In what year did the Netherlands finish building the Delta Works flood barrier, the Oosterscheldekering?", "answer": 1986 },
         { "prompt": "How many inhabitants does the Netherlands have, in millions, roughly?", "answer": 18, "unit": "million inhabitants" },
-        { "prompt": "In what year did Rembrandt paint The Night Watch?", "answer": 1642, "unit": "" },
+        { "prompt": "In what year did Rembrandt paint The Night Watch?", "answer": 1642 },
         { "prompt": "How many thousand kilometres of cycle paths does the Netherlands have, roughly?", "answer": 37, "unit": "thousand kilometres" }
       ]
     },
@@ -89,7 +89,17 @@
         "Keukenhof",
         "Wadden Sea",
         "Gerrit Rietveld",
-        "The Golden Age"
+        "The Golden Age",
+        "Bitterbal",
+        "New herring",
+        "Delft Blue",
+        "Cheesehead",
+        "Mudflat hiking",
+        "Bike rack",
+        "Zeeland costume",
+        "Terraced house",
+        "Royal House",
+        "Orange fever"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "In what year did Spain recognise the Dutch Republic?", "answers": [{ "text": "1648" }] },
         { "prompt": "Which Dutch poet wrote the play Gijsbrecht van Aemstel?", "answers": [{ "text": "Joost van den Vondel", "aliases": ["Vondel"] }] },
         { "prompt": "Which Amsterdam-born philosopher wrote the Ethics and was expelled from his Jewish community?", "answers": [{ "text": "Baruch Spinoza", "aliases": ["Spinoza"] }] },
-        { "prompt": "Which Caribbean island of the Dutch Kingdom is the largest?", "answers": [{ "text": "Curacao" }] }
+        { "prompt": "Which Caribbean island of the Dutch Kingdom is the largest?", "answers": [{ "text": "Curacao" }] },
+        { "prompt": "In which city was the Union of 1579 signed that is seen as the start of the Dutch Republic?", "answers": [{ "text": "Utrecht" }] },
+        { "prompt": "What is the ring of forts and flood fields around Amsterdam that is a World Heritage Site called?", "answers": [{ "text": "The Defence Line of Amsterdam", "aliases": ["Defence Line of Amsterdam", "Stelling van Amsterdam"] }] }
       ]
     }
   ]

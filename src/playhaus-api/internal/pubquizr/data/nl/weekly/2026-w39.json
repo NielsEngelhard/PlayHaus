@@ -88,7 +88,17 @@
         "Ganzenbord",
         "Wafel",
         "Regenton",
-        "De Noordpool"
+        "De Noordpool",
+        "Reanimatie",
+        "Beugel",
+        "Bonsai",
+        "Baobab",
+        "Bouillabaisse",
+        "Slijter",
+        "Snoeischaar",
+        "Steeldrum",
+        "Caddie",
+        "Nijntje"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welk edelgas laat reclameborden rood oplichten?", "answers": [{ "text": "Neon" }] },
         { "prompt": "Welk gas werd naar de zon genoemd voordat het op aarde werd gevonden?", "answers": [{ "text": "Helium" }] },
         { "prompt": "Hoe heet de kleinste botjes van het menselijk lichaam, die in het oor zitten?", "answers": [{ "text": "De gehoorbeentjes", "aliases": ["Gehoorbeentjes"] }] },
-        { "prompt": "Welk woord gebruiken zeelieden voor de linkerkant van een schip?", "answers": [{ "text": "Bakboord" }] }
+        { "prompt": "Welk woord gebruiken zeelieden voor de linkerkant van een schip?", "answers": [{ "text": "Bakboord" }] },
+        { "prompt": "Welke Spaanse schilder maakte De naakte Maja?", "answers": [{ "text": "Francisco Goya", "aliases": ["Goya"] }] },
+        { "prompt": "Naar welke Franse natuurkundige is de eenheid van elektrische stroom genoemd?", "answers": [{ "text": "Andre-Marie Ampere", "aliases": ["Ampere"] }] }
       ]
     }
   ]

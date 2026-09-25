@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w45",
+  "title": "Weekly quiz 45 2026",
+  "description": "The weekly quiz of Wednesday 4 November 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the largest city in Canada?", "category": "Geography", "answers": [{ "text": "Toronto" }] },
+        { "prompt": "What is a triangle with all three sides the same length called?", "category": "Science", "answers": [{ "text": "Equilateral", "aliases": ["An equilateral triangle"] }] },
+        { "prompt": "Which king of the Huns was called the Scourge of God?", "category": "History", "answers": [{ "text": "Attila", "aliases": ["Attila the Hun"] }] },
+        { "prompt": "Which Serbian tennis player has won the most men's Grand Slam titles?", "category": "Sport", "answers": [{ "text": "Novak Djokovic", "aliases": ["Djokovic"] }] },
+        { "prompt": "What is the name of Simba's wicked uncle in The Lion King?", "category": "Film", "answers": [{ "text": "Scar" }] },
+        { "prompt": "Which American singer sang Bad Romance and Poker Face?", "category": "Music", "answers": [{ "text": "Lady Gaga", "aliases": ["Gaga"] }] },
+        { "prompt": "Which Dutch astronaut went to the International Space Station in 2004 and 2011?", "category": "The Netherlands", "answers": [{ "text": "Andre Kuipers", "aliases": ["Kuipers"] }] },
+        { "prompt": "Which Flemish baroque painter is famous for his full-figured women?", "category": "Art", "answers": [{ "text": "Peter Paul Rubens", "aliases": ["Rubens"] }] },
+        { "prompt": "What do we call the symbol @ in English?", "category": "Language", "answers": [{ "text": "The at sign", "aliases": ["At sign", "At"] }] },
+        { "prompt": "What is the Swiss dish in which you dip pieces of bread into melted cheese called?", "category": "Food", "answers": [{ "text": "Cheese fondue", "aliases": ["Fondue"] }] },
+        { "prompt": "What does the abbreviation SMS stand for?", "category": "Technology", "answers": [{ "text": "Short Message Service" }] },
+        { "prompt": "What is the period in which red deer stags roar and fight over the females called?", "category": "Nature", "answers": [{ "text": "The rut", "aliases": ["Rut", "Rutting season"] }] },
+        { "prompt": "Which island group in the Pacific belongs to Ecuador?", "category": "Geography", "answers": [{ "text": "The Galapagos Islands", "aliases": ["Galapagos"] }] },
+        { "prompt": "Which South African president shared the 1993 Nobel Peace Prize with Nelson Mandela?", "category": "History", "answers": [{ "text": "F.W. de Klerk", "aliases": ["De Klerk", "Frederik de Klerk"] }] },
+        { "prompt": "What is the huge explosion in which a massive star blows apart at the end of its life called?", "category": "Science", "answers": [{ "text": "A supernova", "aliases": ["Supernova"] }] },
+        { "prompt": "Which Dutch singer sang Zij gelooft in mij?", "category": "Music", "answers": [{ "text": "Andre Hazes", "aliases": ["Hazes"] }] },
+        { "prompt": "Which British actress played Mary Poppins in 1964?", "category": "Film", "answers": [{ "text": "Julie Andrews", "aliases": ["Andrews"] }] },
+        { "prompt": "What are the white beans in tomato sauce from the English breakfast called?", "category": "Food", "answers": [{ "text": "Baked beans" }] },
+        { "prompt": "What is the online encyclopaedia that anyone can edit called?", "category": "Technology", "answers": [{ "text": "Wikipedia" }] },
+        { "prompt": "What is the official language of Suriname?", "category": "Language", "answers": [{ "text": "Dutch" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which of these islands belongs to Spain?", "options": [{ "text": "Majorca", "correct": true }, { "text": "Corsica" }, { "text": "Malta" }, { "text": "Crete" }] },
+        { "prompt": "Which of these cats is the largest?", "options": [{ "text": "The Siberian tiger", "correct": true }, { "text": "The lion" }, { "text": "The jaguar" }, { "text": "The puma" }] },
+        { "prompt": "Which Dutch painter is known for his cheerful, messy households?", "options": [{ "text": "Jan Steen", "correct": true }, { "text": "Frans Hals" }, { "text": "Pieter de Hooch" }, { "text": "Gerard ter Borch" }] },
+        { "prompt": "Which of these cities is not a capital?", "options": [{ "text": "Geneva", "correct": true }, { "text": "Bern" }, { "text": "Vienna" }, { "text": "Prague" }] },
+        { "prompt": "What is the disease in which the body makes too little insulin called?", "options": [{ "text": "Diabetes", "correct": true }, { "text": "Anaemia" }, { "text": "Asthma" }, { "text": "Gout" }] },
+        { "prompt": "In which century did Rembrandt live?", "options": [{ "text": "The seventeenth century", "correct": true }, { "text": "The fifteenth century" }, { "text": "The sixteenth century" }, { "text": "The eighteenth century" }] },
+        { "prompt": "Which of these rivers is the longest?", "options": [{ "text": "The Mississippi", "correct": true }, { "text": "The Danube" }, { "text": "The Rhine" }, { "text": "The Loire" }] },
+        { "prompt": "Which of these animals is not an insect?", "options": [{ "text": "The spider", "correct": true }, { "text": "The ant" }, { "text": "The dragonfly" }, { "text": "The beetle" }] },
+        { "prompt": "Which film is set on the moon Pandora?", "options": [{ "text": "Avatar", "correct": true }, { "text": "Dune" }, { "text": "Interstellar" }, { "text": "Alien" }] },
+        { "prompt": "How many times has the Dutch men's team won the World Cup?", "options": [{ "text": "Never", "correct": true }, { "text": "Once" }, { "text": "Twice" }, { "text": "Three times" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "About how many spectators fit into the De Kuip stadium in Rotterdam?", "answer": 51000, "unit": "spectators" },
+        { "prompt": "How many metres high is the Vaalserberg?", "answer": 322, "unit": "metres" },
+        { "prompt": "How old was Jeanne Calment, the oldest person ever, when she died?", "answer": 122, "unit": "years" },
+        { "prompt": "How many stripes does the flag of the United States have?", "answer": 13, "unit": "stripes" },
+        { "prompt": "About how many kilos does an adult male gorilla weigh?", "answer": 180, "unit": "kilos" },
+        { "prompt": "How many floors does the Empire State Building have?", "answer": 102, "unit": "floors" },
+        { "prompt": "About how many kilometres long is the border between the Netherlands and Belgium?", "answer": 450, "unit": "kilometres" },
+        { "prompt": "For how many days is a cow pregnant?", "answer": 283, "unit": "days" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Dandelion",
+        "Rambo",
+        "Baguette",
+        "Bearskin hat",
+        "Roe deer",
+        "Hang glider",
+        "School trip",
+        "Patchwork quilt",
+        "Popcorn machine",
+        "Robot vacuum",
+        "Planetarium",
+        "Panther",
+        "Hot chocolate",
+        "Pudding",
+        "Goldsmith",
+        "Marina Bay Sands",
+        "Playmobil",
+        "Meditation",
+        "Hurdles",
+        "Lobbyist",
+        "Viking ship",
+        "Sloth",
+        "Lego",
+        "Engagement ring",
+        "Garfield",
+        "Rodeo rider",
+        "Extension cord",
+        "Dog training",
+        "Bankruptcy",
+        "Plato",
+        "Captain America",
+        "Flood",
+        "Anteater",
+        "Self-driving car",
+        "Pokemon",
+        "Toothache",
+        "The Matrix",
+        "Muscle ache",
+        "Minotaur",
+        "Court clerk"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Pokemon?", "answers": [{ "text": "Pikachu", "aliases": ["Pika"] }, { "text": "Poke Balls", "aliases": ["Poke Ball", "Catching"] }, { "text": "Ash", "aliases": ["Ash Ketchum"] }, { "text": "Nintendo", "aliases": ["Game Boy", "Games"] }] },
+        { "prompt": "What do you know about Rotterdam?", "answers": [{ "text": "Erasmus Bridge", "aliases": ["The Swan"] }, { "text": "Port", "aliases": ["Biggest port in Europe"] }, { "text": "Feyenoord", "aliases": ["De Kuip"] }, { "text": "Euromast", "aliases": ["Markthal", "Cube houses"] }] },
+        { "prompt": "What do you know about the Grand Canyon?", "answers": [{ "text": "Arizona", "aliases": ["America", "United States"] }, { "text": "Colorado", "aliases": ["The Colorado River"] }, { "text": "Deep gorge", "aliases": ["Gorge", "Canyon"] }, { "text": "Red rocks", "aliases": ["Rocks", "Views"] }] },
+        { "prompt": "What do you know about Cleopatra?", "answers": [{ "text": "Egypt", "aliases": ["Queen of Egypt", "Pharaoh"] }, { "text": "Julius Caesar", "aliases": ["Caesar", "Mark Antony"] }, { "text": "Snake", "aliases": ["Asp", "Snake bite"] }, { "text": "Beauty", "aliases": ["Beautiful", "Elizabeth Taylor"] }] },
+        { "prompt": "What do you know about zebras?", "answers": [{ "text": "Stripes", "aliases": ["Black and white"] }, { "text": "Africa", "aliases": ["Savannah"] }, { "text": "Horse family", "aliases": ["Like a horse", "Horse"] }, { "text": "Herds", "aliases": ["Herd", "Hunted by lions"] }] },
+        { "prompt": "What do you know about Pablo Picasso?", "answers": [{ "text": "Spain", "aliases": ["Spanish", "Malaga"] }, { "text": "Cubism", "aliases": ["Cubes", "Square faces"] }, { "text": "Guernica", "aliases": ["Les Demoiselles d'Avignon"] }, { "text": "Paris", "aliases": ["France"] }] },
+        { "prompt": "What do you know about New Zealand?", "answers": [{ "text": "Kiwi", "aliases": ["Kiwis"] }, { "text": "Maori", "aliases": ["Haka"] }, { "text": "Lord of the Rings", "aliases": ["Hobbiton", "Hobbits"] }, { "text": "Sheep", "aliases": ["Lots of sheep"] }] },
+        { "prompt": "What do you know about the Keukenhof?", "answers": [{ "text": "Tulips", "aliases": ["Flowers", "Bulbs"] }, { "text": "Lisse", "aliases": ["Bulb region"] }, { "text": "Spring", "aliases": ["Springtime", "March to May"] }, { "text": "Tourists", "aliases": ["Visitors"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Which bird is said to deliver babies?", "difficulty": "easy", "answers": [{ "text": "The stork", "aliases": ["Stork"] }] },
+        { "prompt": "Which day of the week is named after the sun?", "difficulty": "easy", "answers": [{ "text": "Sunday" }] },
+        { "prompt": "Which colour do you get when you mix red and white?", "difficulty": "easy", "answers": [{ "text": "Pink" }] },
+        { "prompt": "What is the name of King Willem-Alexander's eldest daughter?", "difficulty": "easy", "answers": [{ "text": "Amalia", "aliases": ["Catharina-Amalia", "Princess Amalia"] }] },
+        { "prompt": "What kind of animal is Miffy?", "difficulty": "easy", "answers": [{ "text": "A rabbit", "aliases": ["Rabbit", "Bunny"] }] },
+        { "prompt": "What is the capital of Honduras?", "difficulty": "hard", "answers": [{ "text": "Tegucigalpa" }] },
+        { "prompt": "Which Austrian composer wrote the Unfinished Symphony?", "difficulty": "hard", "answers": [{ "text": "Franz Schubert", "aliases": ["Schubert"] }] },
+        { "prompt": "Which river flows through Warsaw?", "difficulty": "hard", "answers": [{ "text": "The Vistula", "aliases": ["Vistula", "Wisla"] }] },
+        { "prompt": "Which Russian artist painted the Black Square?", "difficulty": "hard", "answers": [{ "text": "Kazimir Malevich", "aliases": ["Malevich"] }] },
+        { "prompt": "What is the horseshoe-shaped bone in the neck, the only bone not attached to another bone, called?", "difficulty": "hard", "answers": [{ "text": "The hyoid", "aliases": ["Hyoid", "Hyoid bone"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What kind of animal is Donald Duck?", "answers": [{ "text": "A duck", "aliases": ["Duck"] }] },
+        { "prompt": "Which American city is nicknamed The Big Easy?", "answers": [{ "text": "New Orleans" }] },
+        { "prompt": "Which Dutch speed skater won gold in the 1000 and 1500 metres in Nagano in 1998?", "answers": [{ "text": "Marianne Timmer", "aliases": ["Timmer"] }] },
+        { "prompt": "The leaves of which tree does the koala live on?", "answers": [{ "text": "The eucalyptus", "aliases": ["Eucalyptus", "Gum tree"] }] },
+        { "prompt": "Which Italian writer created Pinocchio?", "answers": [{ "text": "Carlo Collodi", "aliases": ["Collodi"] }] },
+        { "prompt": "Which German rocket scientist built the V-2 and later the Saturn V rocket?", "answers": [{ "text": "Wernher von Braun", "aliases": ["Von Braun"] }] },
+        { "prompt": "In which colour do Dutch national sports teams play?", "answers": [{ "text": "Orange" }] },
+        { "prompt": "Which English football club plays its home matches at Anfield?", "answers": [{ "text": "Liverpool", "aliases": ["Liverpool FC"] }] },
+        { "prompt": "Which American writer wrote The Catcher in the Rye?", "answers": [{ "text": "J.D. Salinger", "aliases": ["Salinger"] }] }
+      ]
+    }
+  ]
+}

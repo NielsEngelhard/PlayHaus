@@ -89,7 +89,17 @@
         "Deck chair",
         "Picnic basket",
         "Toll booth",
-        "Cancan"
+        "Cancan",
+        "Baguette under the arm",
+        "Wine tasting",
+        "Cheese platter",
+        "Petanque court",
+        "Tour de France rider",
+        "Marianne",
+        "Accordion music",
+        "Perfumery",
+        "Crepe stand",
+        "French kiss"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which French novelist published the open letter J'accuse in defence of Alfred Dreyfus?", "answers": [{ "text": "Emile Zola", "aliases": ["Zola"] }] },
         { "prompt": "Which cave in the Dordogne, discovered in 1940, is famous for its prehistoric paintings?", "answers": [{ "text": "Lascaux" }] },
         { "prompt": "Which French sculptor made The Thinker?", "answers": [{ "text": "Auguste Rodin", "aliases": ["Rodin"] }] },
-        { "prompt": "Which French king was crowned at Reims in 1429 with the help of Joan of Arc?", "answers": [{ "text": "Charles VII", "aliases": ["Charles the Seventh"] }] }
+        { "prompt": "Which French king was crowned at Reims in 1429 with the help of Joan of Arc?", "answers": [{ "text": "Charles VII", "aliases": ["Charles the Seventh"] }] },
+        { "prompt": "Which French river is the longest in the country?", "answers": [{ "text": "The Loire", "aliases": ["Loire"] }] },
+        { "prompt": "Which French general led Free France from London in the Second World War?", "answers": [{ "text": "Charles de Gaulle", "aliases": ["De Gaulle"] }] }
       ]
     }
   ]

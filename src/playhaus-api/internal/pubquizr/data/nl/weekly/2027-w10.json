@@ -1,0 +1,147 @@
+{
+  "slug": "2027-w10",
+  "title": "Weekquiz 10 2027",
+  "description": "De wekelijkse quiz van woensdag 10 maart 2027.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoogste berg van Oostenrijk?", "category": "Aardrijkskunde", "answers": [{ "text": "De Grossglockner", "aliases": ["Grossglockner"] }] },
+        { "prompt": "Hoe heet een medicijn dat bacterien doodt, zoals penicilline?", "category": "Wetenschap", "answers": [{ "text": "Een antibioticum", "aliases": ["Antibioticum", "Antibiotica"] }] },
+        { "prompt": "Welke Franse ontdekkingsreiziger stichtte in 1608 de stad Quebec?", "category": "Geschiedenis", "answers": [{ "text": "Samuel de Champlain", "aliases": ["Champlain"] }] },
+        { "prompt": "Welke Nederlandse schaatsster won in Beijing 2022 drie gouden medailles?", "category": "Sport", "answers": [{ "text": "Irene Schouten", "aliases": ["Schouten"] }] },
+        { "prompt": "Welke Nederlandse acteur speelde de replicant Roy Batty in Blade Runner?", "category": "Film", "answers": [{ "text": "Rutger Hauer", "aliases": ["Hauer"] }] },
+        { "prompt": "Welke Britse band van Mark Knopfler scoorde met Sultans of Swing?", "category": "Muziek", "answers": [{ "text": "Dire Straits" }] },
+        { "prompt": "Welke stad trok in 1661 een enorme zwerfkei binnen en heet sindsdien Keistad?", "category": "Nederland", "answers": [{ "text": "Amersfoort" }] },
+        { "prompt": "Welke Amerikaanse fotografe maakte in de crisis van de jaren dertig de foto Migrant Mother?", "category": "Kunst", "answers": [{ "text": "Dorothea Lange", "aliases": ["Lange"] }] },
+        { "prompt": "Hoe noem je een woord dat uit een andere taal is overgenomen, zoals computer of croissant?", "category": "Taal", "answers": [{ "text": "Een leenwoord", "aliases": ["Leenwoord"] }] },
+        { "prompt": "Hoe heet de Franse stoofpot van rundvlees in rode wijn uit Bourgondie?", "category": "Eten", "answers": [{ "text": "Boeuf bourguignon", "aliases": ["Bourguignon"] }] },
+        { "prompt": "Welk computerspel van de Zweedse studio Mojang draait om bouwen met blokken?", "category": "Techniek", "answers": [{ "text": "Minecraft" }] },
+        { "prompt": "Welke oranje-zwarte vlinder trekt elk jaar duizenden kilometers van Canada naar Mexico?", "category": "Natuur", "answers": [{ "text": "De monarchvlinder", "aliases": ["Monarchvlinder", "Monarch"] }] },
+        { "prompt": "Wat is de grootste havenstad van Frankrijk aan de Middellandse Zee?", "category": "Aardrijkskunde", "answers": [{ "text": "Marseille" }] },
+        { "prompt": "Welke Amerikaanse president werd in 1901 doodgeschoten, waarna Theodore Roosevelt hem opvolgde?", "category": "Geschiedenis", "answers": [{ "text": "William McKinley", "aliases": ["McKinley"] }] },
+        { "prompt": "Hoe heet een driehoek met twee even lange zijden?", "category": "Wetenschap", "answers": [{ "text": "Gelijkbenig", "aliases": ["Een gelijkbenige driehoek"] }] },
+        { "prompt": "Welke Amerikaanse zangeres scoorde als tiener met Bad Guy?", "category": "Muziek", "answers": [{ "text": "Billie Eilish", "aliases": ["Eilish"] }] },
+        { "prompt": "In welke film uit 1975 speelt Jack Nicholson een patient in een psychiatrische inrichting?", "category": "Film", "answers": [{ "text": "One Flew Over the Cuckoo's Nest", "aliases": ["Cuckoo's Nest"] }] },
+        { "prompt": "Hoe heten de Franse pannenkoekjes die met sinaasappellikeur worden geflambeerd?", "category": "Eten", "answers": [{ "text": "Crepes Suzette", "aliases": ["Crepe Suzette"] }] },
+        { "prompt": "Welke programmeertaal heeft een dampende kop koffie als logo?", "category": "Techniek", "answers": [{ "text": "Java" }] },
+        { "prompt": "Welk Nederlands woord betekent hetzelfde als het Duitse Schadenfreude?", "category": "Taal", "answers": [{ "text": "Leedvermaak" }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze steden ligt in Zweden?", "options": [{ "text": "Malmo", "correct": true }, { "text": "Bergen" }, { "text": "Aarhus" }, { "text": "Turku" }] },
+        { "prompt": "Welk van deze dieren is een roofdier?", "options": [{ "text": "De vos", "correct": true }, { "text": "Het hert" }, { "text": "Het konijn" }, { "text": "De koe" }] },
+        { "prompt": "Welke Amerikaanse schrijver schreef On the Road?", "options": [{ "text": "Jack Kerouac", "correct": true }, { "text": "Allen Ginsberg" }, { "text": "William Burroughs" }, { "text": "J.D. Salinger" }] },
+        { "prompt": "Welk van deze landen ligt het westelijkst?", "options": [{ "text": "Ierland", "correct": true }, { "text": "Spanje" }, { "text": "Frankrijk" }, { "text": "Belgie" }] },
+        { "prompt": "Welke van deze stoffen is een hormoon?", "options": [{ "text": "Insuline", "correct": true }, { "text": "Hemoglobine" }, { "text": "Keratine" }, { "text": "Collageen" }] },
+        { "prompt": "Welke Britse veldmaarschalk versloeg Rommel in 1942 bij El Alamein?", "options": [{ "text": "Bernard Montgomery", "correct": true }, { "text": "Winston Churchill" }, { "text": "Harold Alexander" }, { "text": "Arthur Harris" }] },
+        { "prompt": "Welk van deze eilanden ligt in de Indische Oceaan?", "options": [{ "text": "Mauritius", "correct": true }, { "text": "Barbados" }, { "text": "Fiji" }, { "text": "Cuba" }] },
+        { "prompt": "Welke van deze vogels hoort bij de kraaiachtigen?", "options": [{ "text": "De Vlaamse gaai", "correct": true }, { "text": "De specht" }, { "text": "De zwaluw" }, { "text": "De mus" }] },
+        { "prompt": "In welke film speelt Arnold Schwarzenegger een politieman die kleuterleider wordt?", "options": [{ "text": "Kindergarten Cop", "correct": true }, { "text": "Twins" }, { "text": "Junior" }, { "text": "Jingle All the Way" }] },
+        { "prompt": "Welke Nederlandse club won in 1988 de Europacup voor landskampioenen?", "options": [{ "text": "PSV", "correct": true }, { "text": "Ajax" }, { "text": "Feyenoord" }, { "text": "AZ" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Zugspitze?", "answer": 2962, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer lang is de Elbe?", "answer": 1094, "unit": "kilometer" },
+        { "prompt": "Hoeveel landen deden mee aan het EK voetbal van 2024?", "answer": 24, "unit": "landen" },
+        { "prompt": "Hoe oud werd Kurt Cobain?", "answer": 27, "unit": "jaar" },
+        { "prompt": "Hoeveel liter olie zit er in een vat, de maat waarin olie wordt verhandeld?", "answer": 159, "unit": "liter" },
+        { "prompt": "Hoeveel vingers heeft Mickey Mouse aan elke hand?", "answer": 4, "unit": "vingers" },
+        { "prompt": "Hoeveel meter is een wielerbaan in een velodroom meestal?", "answer": 250, "unit": "meter" },
+        { "prompt": "In welk jaar ging dierentuin Artis in Amsterdam open?", "answer": 1838 }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Wisseling van de wacht",
+        "Elektricien",
+        "Charles Darwin",
+        "Litteken",
+        "Aquariumtunnel",
+        "Dinosaurusskelet",
+        "Rijstterras",
+        "Appelflap",
+        "Hannibal",
+        "Kunstgebit",
+        "Blikje",
+        "Florence Nightingale",
+        "Suikerpot",
+        "Kussensloop",
+        "Leonardo DiCaprio",
+        "Obelix",
+        "Pinokkio",
+        "Portier",
+        "George Washington",
+        "Knock-out",
+        "Archimedes",
+        "Ijzel",
+        "Tentharing",
+        "Koning",
+        "Nostalgie",
+        "Volkslied",
+        "Game of Thrones",
+        "Hamerhaai",
+        "Oase",
+        "Waterlelies",
+        "Las Vegas",
+        "Pepersaus",
+        "Mowgli",
+        "Stroper",
+        "Stuurwiel",
+        "Totempaal",
+        "Wasrek",
+        "Bulldozer",
+        "Postpakket",
+        "Vanille"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Roald Dahl?", "answers": [{ "text": "Sjakie en de chocoladefabriek", "aliases": ["Willy Wonka"] }, { "text": "Matilda", "aliases": ["De heksen"] }, { "text": "De GVR", "aliases": ["Reus"] }, { "text": "Engeland", "aliases": ["Wales", "Noors"] }] },
+        { "prompt": "Wat weet je over Kinderdijk?", "answers": [{ "text": "Molens", "aliases": ["Negentien molens", "Windmolens"] }, { "text": "Werelderfgoed", "aliases": ["UNESCO"] }, { "text": "Water", "aliases": ["Polder", "Wegpompen"] }, { "text": "Zuid-Holland", "aliases": ["Alblasserwaard"] }] },
+        { "prompt": "Wat weet je over zwarte gaten?", "answers": [{ "text": "Zwaartekracht", "aliases": ["Enorme zwaartekracht"] }, { "text": "Licht ontsnapt niet", "aliases": ["Donker", "Zwart"] }, { "text": "Stephen Hawking", "aliases": ["Hawking", "Einstein"] }, { "text": "Ingestorte ster", "aliases": ["Sterren", "Ruimte"] }] },
+        { "prompt": "Wat weet je over vleermuizen?", "answers": [{ "text": "Nachtdier", "aliases": ["Nacht", "Donker"] }, { "text": "Ondersteboven hangen", "aliases": ["Ondersteboven"] }, { "text": "Echolocatie", "aliases": ["Geluid", "Echo"] }, { "text": "Dracula", "aliases": ["Vampier", "Batman"] }] },
+        { "prompt": "Wat weet je over James Bond?", "answers": [{ "text": "Nul nul zeven", "aliases": ["007"] }, { "text": "Martini", "aliases": ["Shaken, not stirred"] }, { "text": "Aston Martin", "aliases": ["Snelle auto's", "Gadgets"] }, { "text": "Sean Connery", "aliases": ["Daniel Craig", "Roger Moore"] }] },
+        { "prompt": "Wat weet je over de NS?", "answers": [{ "text": "Geel en blauw", "aliases": ["Gele treinen"] }, { "text": "Vertraging", "aliases": ["Storing", "Te laat"] }, { "text": "OV-chipkaart", "aliases": ["Inchecken", "Kaartje"] }, { "text": "Stations", "aliases": ["Utrecht Centraal", "Perron"] }] },
+        { "prompt": "Wat weet je over de Big Ben?", "answers": [{ "text": "Londen", "aliases": ["Engeland"] }, { "text": "Klok", "aliases": ["Klokkentoren", "Klokslag"] }, { "text": "Parlement", "aliases": ["Westminster"] }, { "text": "Elizabeth Tower", "aliases": ["Toren"] }] },
+        { "prompt": "Wat weet je over krokodillen?", "answers": [{ "text": "Scherpe tanden", "aliases": ["Tanden", "Sterke kaken"] }, { "text": "Nijl", "aliases": ["Afrika", "Rivier"] }, { "text": "Krokodillentranen", "aliases": ["Tranen"] }, { "text": "Reptiel", "aliases": ["Schubben", "Eieren"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het zoete goedje dat bijen maken?", "difficulty": "easy", "answers": [{ "text": "Honing" }] },
+        { "prompt": "Waarvoor gebruik je een rietje?", "difficulty": "easy", "answers": [{ "text": "Drinken", "aliases": ["Om te drinken"] }] },
+        { "prompt": "Welk rood kevertje heeft zwarte stippen op zijn rug?", "difficulty": "easy", "answers": [{ "text": "Het lieveheersbeestje", "aliases": ["Lieveheersbeestje"] }] },
+        { "prompt": "Hoe heet de dag waarop je elk jaar gefeliciteerd wordt?", "difficulty": "easy", "answers": [{ "text": "Je verjaardag", "aliases": ["Verjaardag"] }] },
+        { "prompt": "Hoe heet het warme drankje van melk en cacao?", "difficulty": "easy", "answers": [{ "text": "Chocolademelk", "aliases": ["Warme chocolademelk", "Warme chocomel"] }] },
+        { "prompt": "Hoe heet de Griekse god van de wijn en het feest?", "difficulty": "hard", "answers": [{ "text": "Dionysus", "aliases": ["Dionysos", "Bacchus"] }] },
+        { "prompt": "Hoe heet het oudst bekende heldendicht, over een koning van Uruk?", "difficulty": "hard", "answers": [{ "text": "Het Gilgamesj-epos", "aliases": ["Gilgamesj", "Gilgamesh"] }] },
+        { "prompt": "Welke Griekse letter ziet eruit als een drietand?", "difficulty": "hard", "answers": [{ "text": "Psi" }] },
+        { "prompt": "Welke zeestraat verbindt de Egeische Zee met de Zee van Marmara?", "difficulty": "hard", "answers": [{ "text": "De Dardanellen", "aliases": ["Dardanellen", "Hellespont"] }] },
+        { "prompt": "Welke Pruisische koning liet in Potsdam het paleis Sanssouci bouwen?", "difficulty": "hard", "answers": [{ "text": "Frederik de Grote", "aliases": ["Frederik II", "Frederik"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Wat voor dier is Gloria in de film Madagascar?", "answers": [{ "text": "Een nijlpaard", "aliases": ["Nijlpaard"] }] },
+        { "prompt": "In welke Amerikaanse stad hangt de gebarsten Liberty Bell?", "answers": [{ "text": "Philadelphia" }] },
+        { "prompt": "Welke Amerikaanse schrijver woonde twee jaar in een hut aan een meer en schreef daarover Walden?", "answers": [{ "text": "Henry David Thoreau", "aliases": ["Thoreau"] }] },
+        { "prompt": "Welke grote vrucht is groen vanbuiten en rood vanbinnen, met zwarte pitten?", "answers": [{ "text": "De watermeloen", "aliases": ["Watermeloen"] }] },
+        { "prompt": "Wie staat er op het Amerikaanse biljet van honderd dollar?", "answers": [{ "text": "Benjamin Franklin", "aliases": ["Franklin"] }] },
+        { "prompt": "Welke Nederlandse meteoroloog gaf zijn naam aan de regel over wind en luchtdruk?", "answers": [{ "text": "Buys Ballot", "aliases": ["Christophorus Buys Ballot"] }] },
+        { "prompt": "Hoe heet het hoofd van de katholieke kerk in Rome?", "answers": [{ "text": "De paus", "aliases": ["Paus"] }] },
+        { "prompt": "Welke Amerikaanse zanger en producer scoorde in 2013 met Happy?", "answers": [{ "text": "Pharrell Williams", "aliases": ["Pharrell"] }] },
+        { "prompt": "Welke Duitse filosoof schreef Die Welt als Wille und Vorstellung?", "answers": [{ "text": "Arthur Schopenhauer", "aliases": ["Schopenhauer"] }] }
+      ]
+    }
+  ]
+}

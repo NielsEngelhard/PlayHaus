@@ -89,7 +89,17 @@
         "Sleutelbeen",
         "Beenmerg",
         "Chirurg",
-        "Bloeddonatie"
+        "Bloeddonatie",
+        "Hartslagmeter",
+        "Bloedvat",
+        "Neusgat",
+        "Tong uitsteken",
+        "Kiespijn",
+        "Spierballen",
+        "Ruggengraat",
+        "Voetzool",
+        "Ooglid",
+        "Oorsmeer"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welk orgaan kan weer aangroeien nadat er een deel van is weggehaald?", "answers": [{ "text": "De lever", "aliases": ["lever"] }] },
         { "prompt": "Wat is de medische naam voor de knieschijf?", "answers": [{ "text": "De patella", "aliases": ["patella"] }] },
         { "prompt": "Een tekort aan welke vitamine veroorzaakt scheurbuik?", "answers": [{ "text": "Vitamine C", "aliases": ["C"] }] },
-        { "prompt": "Welke spier is de grootste van het menselijk lichaam?", "answers": [{ "text": "De bilspier", "aliases": ["bilspier", "gluteus maximus", "grote bilspier"] }] }
+        { "prompt": "Welke spier is de grootste van het menselijk lichaam?", "answers": [{ "text": "De bilspier", "aliases": ["bilspier", "gluteus maximus", "grote bilspier"] }] },
+        { "prompt": "In welk orgaan zitten de longblaasjes?", "answers": [{ "text": "De longen", "aliases": ["Longen", "Long"] }] },
+        { "prompt": "Welke klier in de hals regelt met haar hormonen de stofwisseling?", "answers": [{ "text": "De schildklier", "aliases": ["Schildklier"] }] }
       ]
     }
   ]

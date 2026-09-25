@@ -3,6 +3,8 @@ package pubquizr
 import (
 	"math"
 	"slices"
+	"time"
+	_ "time/tzdata" // the container ships no zoneinfo, and the release day is Amsterdam's
 )
 
 const (
@@ -249,10 +251,10 @@ const (
 	OpenQuestions       = 20
 	ChoiceQuestions     = 10
 	ClosestQuestions    = 8
-	DescribeWords       = 30
+	DescribeWords       = 40
 	ListQuestions       = 8
 	DoubleDownQuestions = DoubleDownPerDifficulty * 2
-	FinaleQuestions     = 7
+	FinaleQuestions     = 9
 )
 
 // QuestionsIn is exactly how many questions a round carries. MinQuestionsIn is what a table needs to play; this is what a quiz has to ship, and the difference is how the corpus once drifted to fourteen ABCD questions without anything noticing.
@@ -420,4 +422,26 @@ func DuplicateGuessSeat(guesses []SeatGuess) int {
 	}
 
 	return -1
+}
+
+// releaseZone is whose midnight a weekly quiz goes up at.
+var releaseZone = mustLoadLocation("Europe/Amsterdam")
+
+func mustLoadLocation(name string) *time.Location {
+	zone, err := time.LoadLocation(name)
+	if err != nil {
+		panic(err)
+	}
+	return zone
+}
+
+// ReleasedBefore is the first day not yet out at now: tomorrow in Amsterdam, as the UTC midnight published_at stores a day as.
+func ReleasedBefore(now time.Time) time.Time {
+	year, month, day := now.In(releaseZone).Date()
+	return time.Date(year, month, day+1, 0, 0, 0, 0, time.UTC)
+}
+
+// Released is whether players may see this quiz yet, which a weekly one is from 00:00 on its Wednesday.
+func (q *Quiz) Released(now time.Time) bool {
+	return q.PublishedAt == nil || q.PublishedAt.Before(ReleasedBefore(now))
 }

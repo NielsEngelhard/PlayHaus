@@ -89,7 +89,17 @@
         "Radiator",
         "Schoot",
         "Kattengevecht",
-        "Muis"
+        "Muis",
+        "Spinnen",
+        "Miauwen",
+        "Kattenvlooien",
+        "Siamees",
+        "Perzische kat",
+        "Naakte kat",
+        "Kitten",
+        "Kattenvoer",
+        "Snorharen",
+        "Kattenfilmpje"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke oud-Egyptische stad was het centrum van de cultus rond de kattengodin Bastet?", "answers": [{ "text": "Bubastis", "aliases": ["Per-Bast", "Tell Basta"] }] },
         { "prompt": "Op welk eiland in de Middellandse Zee is een graf gevonden van een mens die zo'n negenduizendvijfhonderd jaar geleden samen met een kat begraven werd?", "answers": [{ "text": "Cyprus" }] },
         { "prompt": "Hoe heet het derde ooglid van de kat?", "answers": [{ "text": "Het knipvlies", "aliases": ["Knipvlies", "Nictiterende membraan", "Derde ooglid"] }] },
-        { "prompt": "Welke Amerikaanse schrijver hield tientallen zestenige katten in zijn huis in Key West?", "answers": [{ "text": "Ernest Hemingway", "aliases": ["Hemingway"] }] }
+        { "prompt": "Welke Amerikaanse schrijver hield tientallen zestenige katten in zijn huis in Key West?", "answers": [{ "text": "Ernest Hemingway", "aliases": ["Hemingway"] }] },
+        { "prompt": "Hoe heet de kat van de heks in de tekenfilm van Hayao Miyazaki Kiki's Delivery Service?", "answers": [{ "text": "Jiji" }] },
+        { "prompt": "Welk kattenras heeft opgevouwen oren en komt uit Schotland?", "answers": [{ "text": "De Scottish Fold", "aliases": ["Scottish Fold"] }] }
       ]
     }
   ]

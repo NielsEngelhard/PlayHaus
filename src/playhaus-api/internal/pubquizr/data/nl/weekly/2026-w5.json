@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel snaren heeft een concertharp?", "answer": 47, "unit": "snaren" },
         { "prompt": "Hoeveel kilometer lang is de kust van Noorwegen, fjorden meegerekend?", "answer": 25000, "unit": "kilometer" },
-        { "prompt": "In welk jaar was de eerste Nederlandse televisie-uitzending?", "answer": 1951, "unit": "" },
+        { "prompt": "In welk jaar was de eerste Nederlandse televisie-uitzending?", "answer": 1951 },
         { "prompt": "Hoeveel ogen heeft een honingbij?", "answer": 5, "unit": "ogen", "explanation": "Twee grote facetogen en drie kleine ogen boven op de kop." },
         { "prompt": "Hoeveel kilo woog de zwaarste pompoen ooit gekweekt?", "answer": 1200, "unit": "kilo" },
         { "prompt": "Hoeveel boeken telt de Bijbel in de protestantse canon?", "answer": 66, "unit": "boeken" },
@@ -88,7 +88,17 @@
         "Rembrandt",
         "Marie Curie",
         "Veilingmeester",
-        "Democratie"
+        "Democratie",
+        "Luchtmatras",
+        "Kuiken",
+        "Arc de Triomphe",
+        "Croissant",
+        "Plastische chirurgie",
+        "Karl Marx",
+        "Alexander Fleming",
+        "John F. Kennedy",
+        "Falafel",
+        "Bloemkool"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welk meer is het diepste ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
         { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] },
         { "prompt": "Welke Tsjechische componist schreef de symfonie Uit de Nieuwe Wereld?", "answers": [{ "text": "Antonin Dvorak", "aliases": ["Dvorak"] }] },
-        { "prompt": "Welk gebergte geldt als de grens tussen Europa en Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] }
+        { "prompt": "Welk gebergte geldt als de grens tussen Europa en Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] },
+        { "prompt": "In welke Spaanse stad staat het Alhambra?", "answers": [{ "text": "Granada" }] },
+        { "prompt": "Welke Nederlandse natuurkundige deelde in 1902 de Nobelprijs met Pieter Zeeman?", "answers": [{ "text": "Hendrik Lorentz", "aliases": ["Lorentz", "Hendrik Antoon Lorentz"] }] }
       ]
     }
   ]

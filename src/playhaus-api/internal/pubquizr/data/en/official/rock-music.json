@@ -89,7 +89,17 @@
         "Record sleeve",
         "Drum solo",
         "Smoke machine",
-        "Earplugs"
+        "Earplugs",
+        "Smashing a guitar",
+        "Rock star",
+        "Leather trousers",
+        "Devil horns",
+        "Recording studio",
+        "Hard rock",
+        "Rock opera",
+        "Stadium gig",
+        "Air drums",
+        "Record label"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which Canadian trio released the album 2112 in 1976?", "answers": [{ "text": "Rush" }] },
         { "prompt": "Which singer of AC/DC died in 1980 and was replaced by Brian Johnson?", "answers": [{ "text": "Bon Scott", "aliases": ["Scott"] }] },
         { "prompt": "Which Dutch band fronted by Sharon den Adel released the album Mother Earth in 2000?", "answers": [{ "text": "Within Temptation" }] },
-        { "prompt": "What is the real first and last name of the singer Alice Cooper?", "answers": [{ "text": "Vincent Furnier", "aliases": ["Furnier", "Vincent Damon Furnier"] }] }
+        { "prompt": "What is the real first and last name of the singer Alice Cooper?", "answers": [{ "text": "Vincent Furnier", "aliases": ["Furnier", "Vincent Damon Furnier"] }] },
+        { "prompt": "Which British band recorded the album Paranoid in 1970?", "answers": [{ "text": "Black Sabbath" }] },
+        { "prompt": "Which guitarist of The Who was one of the first to smash his guitar on stage?", "answers": [{ "text": "Pete Townshend", "aliases": ["Townshend"] }] }
       ]
     }
   ]

@@ -47,13 +47,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoe hoog was de Eiffeltoren bij de opening in 1889, in meters?", "answer": 312, "unit": "meter", "explanation": "Ruim driehonderd meter, en daarmee veertig jaar lang het hoogste bouwwerk ter wereld." },
-        { "prompt": "In welk jaar werd de eerste mens de ruimte in gelanceerd?", "answer": 1961, "unit": "" },
+        { "prompt": "In welk jaar werd de eerste mens de ruimte in gelanceerd?", "answer": 1961 },
         { "prompt": "Hoeveel meter hoog is het Vrijheidsbeeld, inclusief voetstuk?", "answer": 93, "unit": "meter" },
-        { "prompt": "In welk jaar viel de Berlijnse Muur?", "answer": 1989, "unit": "" },
+        { "prompt": "In welk jaar viel de Berlijnse Muur?", "answer": 1989 },
         { "prompt": "Hoeveel kilometer lang is de Amazone rivier ongeveer?", "answer": 6400, "unit": "kilometer" },
-        { "prompt": "In welk jaar werd de telefoon gepatenteerd door Alexander Graham Bell?", "answer": 1876, "unit": "" },
+        { "prompt": "In welk jaar werd de telefoon gepatenteerd door Alexander Graham Bell?", "answer": 1876 },
         { "prompt": "Over hoeveel tijdzones strekt Rusland zich uit?", "answer": 11, "unit": "tijdzones" },
-        { "prompt": "In welk jaar vonden de eerste Olympische Spelen van de moderne tijd plaats?", "answer": 1896, "unit": "" }
+        { "prompt": "In welk jaar vonden de eerste Olympische Spelen van de moderne tijd plaats?", "answer": 1896 }
       ]
     },
     {
@@ -88,7 +88,17 @@
         "De Deltawerken",
         "Bliksemafleider",
         "Gebarentaal",
-        "Carnaval"
+        "Carnaval",
+        "Noorse trui",
+        "Lewis Hamilton",
+        "Tikkertje",
+        "Loopband",
+        "Confucius",
+        "Terracottaleger",
+        "Podcast",
+        "Cuba",
+        "Chocoladeletter",
+        "Duty free"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is de hoofdstad van Mongolie?", "answers": [{ "text": "Ulaanbaatar", "aliases": ["Ulan Bator"] }] },
         { "prompt": "Op welk schip maakte Charles Darwin zijn reis rond de wereld?", "answers": [{ "text": "De Beagle", "aliases": ["Beagle"] }] },
         { "prompt": "In welk jaar werden de Verenigde Naties opgericht?", "answers": [{ "text": "1945" }] },
-        { "prompt": "Welke Spaanse kunstenaar schilderde de smeltende klokken van De volharding der herinnering?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] }
+        { "prompt": "Welke Spaanse kunstenaar schilderde de smeltende klokken van De volharding der herinnering?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] },
+        { "prompt": "In welk sterrenbeeld staat de Poolster?", "answers": [{ "text": "De Kleine Beer", "aliases": ["Kleine Beer"] }] },
+        { "prompt": "Welke Italiaanse uitvinder zond in 1901 als eerste radiosignalen over de Atlantische Oceaan?", "answers": [{ "text": "Guglielmo Marconi", "aliases": ["Marconi"] }] }
       ]
     }
   ]

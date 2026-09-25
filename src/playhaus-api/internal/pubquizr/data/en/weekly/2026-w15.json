@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres wide is a tennis court for singles?", "answer": 8, "unit": "metres" },
         { "prompt": "How many species of ant are there, roughly?", "answer": 12000, "unit": "species" },
-        { "prompt": "In what year did Rotterdam host the Eurovision Song Contest?", "answer": 2021, "unit": "" },
+        { "prompt": "In what year did Rotterdam host the Eurovision Song Contest?", "answer": 2021 },
         { "prompt": "How many kilometres long is the Grand Canyon?", "answer": 446, "unit": "kilometres" },
         { "prompt": "How many chambers does a fish heart have?", "answer": 2, "unit": "chambers" },
         { "prompt": "How many kilograms of bamboo does a giant panda eat in a day?", "answer": 12, "unit": "kilograms" },
@@ -88,7 +88,17 @@
         "Frida Kahlo",
         "The Mona Lisa",
         "Lighthouse keeper",
-        "Evolution"
+        "Evolution",
+        "Magnolia",
+        "Seed drill",
+        "Speculoos",
+        "Bookmark",
+        "Sundew",
+        "Necklace",
+        "Slime",
+        "Mobile phone",
+        "Funfair",
+        "Stuntman"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which Mozart opera features the Queen of the Night?", "answers": [{ "text": "The Magic Flute", "aliases": ["Die Zauberflote", "Magic Flute"] }] },
         { "prompt": "Which planet of our solar system rotates on its side?", "answers": [{ "text": "Uranus" }] },
         { "prompt": "Which is the largest island in the Mediterranean Sea?", "answers": [{ "text": "Sicily" }] },
-        { "prompt": "Which Italian mathematician gave his name to a famous sequence of numbers?", "answers": [{ "text": "Fibonacci" }] }
+        { "prompt": "Which Italian mathematician gave his name to a famous sequence of numbers?", "answers": [{ "text": "Fibonacci" }] },
+        { "prompt": "Which American brothers made the first powered flight in 1903?", "answers": [{ "text": "The Wright brothers", "aliases": ["Wright", "Orville and Wilbur Wright"] }] },
+        { "prompt": "Which Dutch inventor built one of the first submarines in London around 1620?", "answers": [{ "text": "Cornelis Drebbel", "aliases": ["Drebbel"] }] }
       ]
     }
   ]

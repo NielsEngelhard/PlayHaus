@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter hoog is het hoogste standbeeld ter wereld?", "answer": 182, "unit": "meter" },
         { "prompt": "Hoeveel vleugels heeft een bij?", "answer": 4, "unit": "vleugels" },
-        { "prompt": "In welk jaar won Reinier Paping de koudste Elfstedentocht ooit?", "answer": 1963, "unit": "" },
+        { "prompt": "In welk jaar won Reinier Paping de koudste Elfstedentocht ooit?", "answer": 1963 },
         { "prompt": "Hoeveel kilometer is het over de weg van Amsterdam naar Parijs?", "answer": 500, "unit": "kilometer" },
         { "prompt": "Hoeveel spelers heeft een korfbalteam in het veld?", "answer": 8, "unit": "spelers" },
         { "prompt": "Hoeveel jaar duurde de bouw van de Sint-Pieter in Rome?", "answer": 120, "unit": "jaar" },
@@ -88,7 +88,17 @@
         "Zwaartekracht",
         "Casablanca",
         "De Koude Oorlog",
-        "Diplomaat"
+        "Diplomaat",
+        "Tennisracket",
+        "Suikerspinkraam",
+        "Professor",
+        "Piloot",
+        "Sproeier",
+        "Taart met kaarsjes",
+        "Mol",
+        "Campbell-soepblik",
+        "Glazenwasser",
+        "Hofnar"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is de hardste natuurlijke stof op aarde?", "answers": [{ "text": "Diamant", "aliases": ["Een diamant"] }] },
         { "prompt": "In welk land ligt de oude rotsstad Petra?", "answers": [{ "text": "Jordanie" }] },
         { "prompt": "Wat is het zoutste water ter wereld?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
-        { "prompt": "Wie was de eerste vrouw die een Nobelprijs won?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] }
+        { "prompt": "Wie was de eerste vrouw die een Nobelprijs won?", "answers": [{ "text": "Marie Curie", "aliases": ["Curie"] }] },
+        { "prompt": "Op welk continent liggen de meeste landen?", "answers": [{ "text": "Afrika" }] },
+        { "prompt": "Welke Hongaarse arts ontdekte dat handen wassen kraamvrouwenkoorts voorkomt?", "answers": [{ "text": "Ignaz Semmelweis", "aliases": ["Semmelweis"] }] }
       ]
     }
   ]

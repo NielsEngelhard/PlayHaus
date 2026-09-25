@@ -89,7 +89,17 @@
         "Pistol",
         "Boarding axe",
         "Ship's biscuit",
-        "Sword fight"
+        "Sword fight",
+        "Pirate flag",
+        "Plank",
+        "Letter of marque",
+        "Wooden leg",
+        "Parrot on the shoulder",
+        "Chest full of gold",
+        "Pirate captain",
+        "Gun deck",
+        "Sea battle",
+        "Boarding a ship"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What is the name of the pirate utopia on Madagascar described in A General History of the Pyrates?", "answers": [{ "text": "Libertalia", "aliases": ["Libertatia"] }] },
         { "prompt": "Which Royal Navy lieutenant led the boarding party that killed Blackbeard in 1718?", "answers": [{ "text": "Robert Maynard", "aliases": ["Maynard"] }] },
         { "prompt": "In Treasure Island, what is the name of Long John Silver's parrot?", "answers": [{ "text": "Captain Flint", "aliases": ["Flint"] }] },
-        { "prompt": "Which 1935 pirate film made a star of Errol Flynn?", "answers": [{ "text": "Captain Blood" }] }
+        { "prompt": "Which 1935 pirate film made a star of Errol Flynn?", "answers": [{ "text": "Captain Blood" }] },
+        { "prompt": "Which English pirate was known as Blackbeard?", "answers": [{ "text": "Edward Teach", "aliases": ["Teach", "Edward Thatch", "Thatch"] }] },
+        { "prompt": "Which Welsh pirate later became governor of Jamaica?", "answers": [{ "text": "Henry Morgan", "aliases": ["Morgan", "Captain Morgan"] }] }
       ]
     }
   ]
