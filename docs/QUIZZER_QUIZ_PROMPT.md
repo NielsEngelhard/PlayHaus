@@ -1,20 +1,9 @@
 # Prompt: write a new PubquizR quiz
 
-**Weekly quizzes are not written by hand any more.** `.github/workflows/weekly-quiz.yml` runs every
-Wednesday: `cmd/quizgen` writes the Dutch quiz, translates it into English, both files are validated
-and committed, and `cmd/quizseed` puts them in the live database. To write one off schedule, dispatch
-that workflow with a `week` input, or run it locally:
+Weekly quizzes are written ahead of time, following `docs/QUIZER_WEEKLY_QUIZ_SPECIFICATION.md`, and
+the API hides each one until 00:00 Amsterdam time on the Wednesday of its week.
 
-```
-cd src/playhaus-api
-ANTHROPIC_API_KEY=... go run ./cmd/quizgen -locale nl -week 2026-w40
-ANTHROPIC_API_KEY=... go run ./cmd/quizgen -locale en -from internal/pubquizr/data/nl/weekly/2026-w40.json
-```
-
-The prompt the model is given lives in `internal/quizgen/prompt.go` and the round briefs in
-`internal/quizgen/specs.go`. Change the quiz's character there, not here.
-
-Everything below is for an **official** quiz -- a themed one-off, still written by hand. Hand this
+Everything below is for an **official** quiz -- a themed one-off -- and holds for a weekly one too. Hand this
 file to an AI agent with read/write access to the repository, together with one line saying what you
 want:
 
@@ -60,10 +49,10 @@ are defined -- read it rather than trusting the numbers below if the two ever di
 | 1 | open trivia, read out and answered out loud | **20** | `prompt`, `category`, `answers` (exactly 1) |
 | 2 | multiple choice, hard on purpose | **10** | `prompt`, `options` (exactly 4, exactly one `"correct": true`) |
 | 3 | guess the number, nearest wins | **8** | `prompt`, `answer` (a number), `unit`, optional `explanation` |
-| 4 | describe the word, the table guesses | **30** | plain strings under `words`, not questions |
+| 4 | describe the word, the table guesses | **40** | plain strings under `words`, not questions |
 | 5 | one question, four answers to find | **8** | `prompt`, `answers` (exactly 4) |
 | 6 | double down: pick easy or hard before hearing it | **10** | `prompt`, `difficulty`, `answers` (exactly 1) -- **5 `easy` and 5 `hard`** |
-| 7 | the finale, head to head | **7** | `prompt`, `answers` (exactly 1) |
+| 7 | the finale, head to head | **9** | `prompt`, `answers` (exactly 1) |
 
 Round by round:
 
@@ -85,7 +74,7 @@ Round by round:
   is not an easy question, it is a non-question, so never ask for the colour of grass, the legs on a
   cat, the sound a cow makes, the room you cook in, where bread is sold or the minutes in an hour.
   The hard five should be genuinely hard, because they pay four times as much.
-- **Round 7** is the finale between the two highest scores. These are the seven hardest questions in
+- **Round 7** is the finale between the two highest scores. These are the nine hardest questions in
   the file, and not one of them is a warm-up.
 
 `difficulty` may only appear in round 6. Anywhere else it is a validation error.
@@ -106,7 +95,7 @@ spelled-out numbers (`Eight` / `8`), bare surnames (`Leonardo da Vinci` / `Da Vi
 articles (`The Nile` / `Nile`). Do not use them to smuggle in a second answer.
 
 Formatting: two-space indent for the structure, **one question object per line**. Match this exactly
--- it is what every existing file looks like, it is what `quizgen.Encode` produces, and it keeps the
+-- it is what every existing file looks like, it is what `go run ./cmd/quizfmt` produces, and it keeps the
 diffs readable.
 
 ```json
@@ -196,8 +185,7 @@ question however differently they are phrased.
    fine. What is not fine is the same fact twice in one file, or a rerun of an existing quiz on the
    same theme.
 
-`internal/quizgen/corpus.go` is how the generator enforces this: it normalises every shipped prompt
-and refuses a round that repeats one. Grep the existing files on the answer you are about to use --
+Grep the existing files on the answer you are about to use --
 `grep -rl "Ulaanbaatar" internal/pubquizr/data/en` -- rather than trusting your own memory.
 
 ## Validate
