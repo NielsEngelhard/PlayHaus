@@ -1,5 +1,7 @@
 import AppText from "@/components/text/AppText";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import BleedScrollView from "@/components/ui/BleedScrollView";
+import { SheetGutter } from "@/components/ui/BottomSheet";
 import InlineNotification from "@/components/ui/InlineNotification";
 import Tabs from "@/components/ui/Tabs";
 import TextButton from "@/components/ui/TextButton";
@@ -12,7 +14,6 @@ import Feather from "@expo/vector-icons/Feather";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
     Platform,
-    ScrollView,
     TextInput,
     View,
     type LayoutChangeEvent,
@@ -244,7 +245,8 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                 <>
                     {/* Takes the rest of the sheet, so the rows are what fills it and the fade below has something to sit on the edge of. */}
                     <View style={styles.rows}>
-                        <ScrollView
+                        <BleedScrollView
+                            bleed={SheetGutter}
                             style={styles.scroller}
                             contentContainerStyle={styles.scrollerContent}
                             // Tapping a row with the keyboard up should be tapping a row, not dismissing the keyboard and losing the tap.
@@ -357,7 +359,7 @@ export default function QuizBrowser({ onSelect, onOpen, selectedQuizId, onClose 
                                     onPress={quizzes.loadMore}
                                 />
                             )}
-                        </ScrollView>
+                        </BleedScrollView>
 
                         {faded && <View pointerEvents="none" style={styles.fade} />}
                     </View>
@@ -597,8 +599,6 @@ const useStyles = createThemedStyles(theme => ({
 
     scrollerContent: {
         gap: Spacing.two,
-        // The gutter the scrollbar lives in, which also leaves the cards' hard shadows room.
-        paddingRight: Spacing.two,
         // Room under the last card for the fade to sit over something.
         paddingBottom: Spacing.two
     },

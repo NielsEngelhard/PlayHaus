@@ -24,6 +24,9 @@ const CLOSE_MS = 160;
 // A sheet that sizes to its content still never swallows the whole window.
 const CONTENT_CEILING = 0.92;
 
+// The sheet clips at its rounded edge, so a scroller inside it bleeds by this much and no further.
+export const SheetGutter = Spacing.three;
+
 interface Props {
     children: ReactNode,
     /** How much of the window to take. Left out, the sheet is as tall as what is in it. */
@@ -153,7 +156,7 @@ const useStyles = createThemedStyles(theme => ({
         maxWidth: MaxContentWidth,
         borderTopLeftRadius: 26,
         borderTopRightRadius: 26,
-        paddingHorizontal: 14,
+        paddingHorizontal: SheetGutter,
         // Clips the rows to the rounded corners as they scroll under them.
         overflow: 'hidden',
         backgroundColor: theme.colors.background,
