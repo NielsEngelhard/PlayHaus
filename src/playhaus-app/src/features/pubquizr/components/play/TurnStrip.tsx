@@ -12,8 +12,8 @@ import { View } from "react-native";
 const RUN_WORTH_SAYING = 2;
 
 interface Props {
-    /** Who is reading the question out. */
-    quizmaster: Seat
+    // Who is reading the question out, and null when nobody is.
+    quizmaster: Seat | null
     // Who has to answer it, or null in the rounds where nobody in particular does.
     answering: Seat | null
     // What the strip says when `answering` is null: "Niels reads · everyone else guesses".
@@ -49,11 +49,11 @@ export default function TurnStrip({
 
     const count = <QuestionCount number={number} total={total} />;
 
-    if (answering === null) {
+    if (answering === null || quizmaster === null) {
         return (
             <View style={styles.card}>
                 <View style={styles.soloRow}>
-                    <Avatar seat={quizmaster} size="sm" decorative />
+                    {quizmaster !== null && <Avatar seat={quizmaster} size="sm" decorative />}
 
                     <AppText style={styles.lead} numberOfLines={1}>{lead}</AppText>
 

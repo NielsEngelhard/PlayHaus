@@ -147,7 +147,6 @@ func (s *Server) AddPubquizRMultiDeviceHandlers() {
 	s.mux.HandleFunc("GET /api/v1/pubquizr/multi-device/{code}", room(s.handlePQSession))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/verdict", room(s.handlePQHotSeatVerdict))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/closest/guess", room(s.handlePQClosestGuess))
-	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/closest", room(s.handlePQClosestGuesses))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/describe", room(s.handlePQDescribeAwards))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/list", room(s.handlePQListAwards))
 	s.mux.HandleFunc("POST /api/v1/pubquizr/multi-device/{code}/double-down/choice", room(s.handlePQDoubleDownChoice))
@@ -505,21 +504,7 @@ func (req pqClosestGuessRequest) Validate() map[string]string {
 	return nil
 }
 
-// pqClosestSettleRequest closes one round 3 question. The numbers are the ones the phones sent, and guesses is the quizmaster typing in for a phone that could not.
-type pqClosestSettleRequest struct {
-	SessionQuestionID string             `json:"sessionQuestionId"`
-	Guesses           []seatGuessRequest `json:"guesses,omitempty"`
-}
-
-func (req pqClosestSettleRequest) Validate() map[string]string {
-	if strings.TrimSpace(req.SessionQuestionID) == "" {
-		return map[string]string{"sessionQuestionId": "is required"}
-	}
-
-	return nil
-}
-
-// handlePQClosestGuess keeps one phone's number. Everybody round 3 lets guess, and nobody else.
+// handlePQClosestGuess keeps one phone's number, and the last one in settles the question. Everybody guesses, and nobody else.
 func (s *Server) handlePQClosestGuess(w http.ResponseWriter, r *http.Request) {
 	sessionID, actorID, ok := s.pqTable(w, r)
 	if !ok {
@@ -543,7 +528,7 @@ func (s *Server) handlePQClosestGuess(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	session, seatsIn, err := s.pubquizr.SaveClosestGuess(r.Context(), pubquizr.ClosestGuessInput{
+	session, seatsIn, settled, err := s.pubquizr.SaveClosestGuess(r.Context(), pubquizr.ClosestGuessInput{
 		SessionID:         sessionID,
 		ActorID:           actorID,
 		SessionQuestionID: questionID,
@@ -562,53 +547,20 @@ func (s *Server) handlePQClosestGuess(w http.ResponseWriter, r *http.Request) {
 	}
 	s.publishPQClosestProgress(lobbyCode(r), body)
 
+	// The last number in closed the question: the result first, so a screen paints the numbers and then the table they left behind.
+	if settled != nil {
+		s.publishPQClosestReveal(lobbyCode(r), pqClosestReveal(settled))
+
+		table, err := s.pqBodyOf(r.Context(), session)
+		if err != nil {
+			s.log.Error("session body", "err", err)
+			writeError(w, http.StatusInternalServerError, "something went wrong")
+			return
+		}
+		s.publishPQSession(lobbyCode(r), table)
+	}
+
 	writeJSON(w, http.StatusOK, body)
-}
-
-// handlePQClosestGuesses closes one round 3 question. The quizmaster's phone only.
-func (s *Server) handlePQClosestGuesses(w http.ResponseWriter, r *http.Request) {
-	sessionID, actorID, ok := s.pqTable(w, r)
-	if !ok {
-		return
-	}
-
-	req, problems, err := decode[pqClosestSettleRequest](r)
-	if err != nil {
-		writeError(w, http.StatusBadRequest, "invalid JSON body")
-		return
-	}
-	if len(problems) > 0 {
-		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
-		return
-	}
-
-	questionID, err := uuid.Parse(req.SessionQuestionID)
-	if err != nil {
-		writeErrorCode(w, http.StatusConflict, "stale_turn", "that question is no longer the current one")
-		return
-	}
-
-	// Whatever was typed in by hand rides along and wins its seat, so one dead phone cannot hold the question open.
-	byHand := make([]pubquizr.SeatGuess, 0, len(req.Guesses))
-	for _, guess := range req.Guesses {
-		byHand = append(byHand, pubquizr.SeatGuess{Seat: guess.Seat, Value: guess.Value})
-	}
-
-	session, settled, err := s.pubquizr.RecordClosestGuesses(r.Context(), pubquizr.ClosestInput{
-		SessionID:         sessionID,
-		ActorID:           actorID,
-		SessionQuestionID: questionID,
-		Guesses:           byHand,
-		Staged:            true,
-	})
-	if err != nil {
-		s.writePubquizRError(w, err)
-		return
-	}
-
-	// The result first, so a screen paints the numbers and then the table they left behind rather than the other way round.
-	s.publishPQClosestReveal(lobbyCode(r), pqClosestReveal(settled))
-	s.settlePQTurn(w, r, session)
 }
 
 // pqClosestReveal draws round 3's result for the wire.

@@ -35,7 +35,7 @@ import { DESCRIBE_WORD_POINTS, describeTurnOf, ROUND_DESCRIBE } from "@/features
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { finaleTieOf, finaleTurnOf, finalistsOf, finalStandingsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
 import { doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
-import { closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
+import { closestHasReader, closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
 import { seatAt, seatsOf, standingsOf, type Seat } from "@/features/pubquizr/seats";
 import type { ReactNode } from "react";
@@ -76,7 +76,7 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
 
     // A round states itself until the phone that reads its questions says go, which is the one moment the table is between questions rather than on one.
     if (session.currentPosition === 0 && !roundOpenOn(control, round)) {
-        const { brief, kind } = roundKindAndRule(t, round, session.zenMode);
+        const { brief, kind } = roundKindAndRule(t, round, session.zenMode, !closestHasReader(session));
 
         return fade(`intro:${round}`, (
             <TableRoundIntro

@@ -16,6 +16,11 @@ export function closestQuizmasterGuesses(players: number): boolean {
     return players === MIN_PLAYERS;
 }
 
+// Whether round 3 has a reader at all; in multi device every phone shows the question, so nobody reads it. Mirrors `ClosestHasReader` in Go.
+export function closestHasReader(session: QuizSession): boolean {
+    return session.mode !== 'multi_device';
+}
+
 export interface ClosestTurn {
     /** The dealt question being played, which is what a ruling has to name. */
     dealt: QuizSessionQuestion
@@ -27,8 +32,8 @@ export interface ClosestTurn {
     unit: string
     /** The aside the quizmaster can read after it, or empty. */
     explanation: string
-    // Whoever is reading it out.
-    quizmaster: Seat
+    // Whoever is reading it out, and null in multi device, where nobody does.
+    quizmaster: Seat | null
     /** Everybody who does, in table order from where the question opened. */
     guessing: Seat[]
     // Whether the reader is one of the seats in `guessing` this turn.
@@ -57,10 +62,10 @@ export function closestTurnOf(session: QuizSession, quiz: QuizDetail): ClosestTu
     if (question === undefined || question.numericAnswer === undefined) return null;
 
     const seats = seatsOf(session);
-    const quizmaster = seatAt(seats, session.quizMasterSeat);
-    if (quizmaster === null) return null;
+    const quizmaster = closestHasReader(session) ? seatAt(seats, session.quizMasterSeat) : null;
+    if (quizmaster === null && closestHasReader(session)) return null;
 
-    const quizmasterGuesses = closestQuizmasterGuesses(seats.length);
+    const quizmasterGuesses = quizmaster === null || closestQuizmasterGuesses(seats.length);
 
     return {
         dealt,

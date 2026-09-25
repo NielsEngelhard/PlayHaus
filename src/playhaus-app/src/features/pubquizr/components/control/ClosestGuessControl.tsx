@@ -2,8 +2,9 @@ import AppText from "@/components/text/AppText";
 import TextHint from "@/components/text/TextHint";
 import ActionButton from "@/components/ui/ActionButton";
 import InlineNotification from "@/components/ui/InlineNotification";
+import SeatAvatar from "@/components/ui/SeatAvatar";
 import TextButton from "@/components/ui/TextButton";
-import { Brand, fontFamilyForWeight, Spacing } from "@/constants/theme";
+import { Brand, fontFamilyForWeight, FontSizes, Radii, Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import NumberPad from "@/features/pubquizr/components/play/NumberPad";
@@ -22,6 +23,9 @@ const PAGE_PADDING = Spacing.four;
 // As long a number as one field will hold at this size.
 const MAX_DIGITS = 12;
 
+const ROSTER_AVATAR = 28;
+const TICK = 14;
+
 interface Props {
     /** The frame draws the strip, so this board leaves it out. */
     bare?: boolean
@@ -32,13 +36,15 @@ interface Props {
     onGuess: (value: number) => void
     /** Which round this is, for the strip's pips. */
     round: number
+    /** Whose numbers the server already has for this question. Never the numbers themselves. */
+    seatsIn: number[]
     /** Whether the server already has this phone's number for this question. */
     sent: boolean
     turn: ClosestTurn
 }
 
-// Round 3 on one guessing phone. It never draws `turn.answer`: the number the table is hunting is the quizmaster's alone.
-export default function ClosestGuessControl({ bare, busy, error, onGuess, round, sent, turn }: Props) {
+// Round 3 on one phone in multi device, where every seat guesses. It never draws `turn.answer`: nobody sees it until the last number is in.
+export default function ClosestGuessControl({ bare, busy, error, onGuess, round, seatsIn, sent, turn }: Props) {
     const styles = useStyles();
     const t = useT();
     const theme = useTheme();
@@ -62,6 +68,8 @@ export default function ClosestGuessControl({ bare, busy, error, onGuess, round,
     const ready = text.trim() !== '' && Number.isFinite(value);
     // Once the number is in, the pad goes away until somebody asks for it back.
     const holding = sent && !editing;
+
+    const missing = turn.guessing.filter(seat => !seatsIn.includes(seat.seat));
 
     function press(character: string) {
         if (busy) return;
@@ -90,9 +98,9 @@ export default function ClosestGuessControl({ bare, busy, error, onGuess, round,
                 {/* Drawn here rather than by `ControlFrame`, because round 3 asks the whole table and so names nobody. */}
                 {!bare && (
                     <TurnStrip
-                        quizmaster={turn.quizmaster}
+                        quizmaster={null}
                         answering={null}
-                        lead={t('pubquizr.play.leadClosest', { name: turn.quizmaster.name })}
+                        lead={t('pubquizr.control.everyoneGuesses')}
                         run={0}
                         round={round}
                         number={turn.number}
@@ -118,14 +126,44 @@ export default function ClosestGuessControl({ bare, busy, error, onGuess, round,
 
                 <View style={styles.middle}>
                     {holding ? (
-                        <View style={styles.in}>
-                            <Feather name="check-circle" size={22} color={Brand.ink} />
+                        <View style={styles.holding}>
+                            <View style={styles.in}>
+                                <Feather name="check-circle" size={22} color={Brand.ink} />
 
-                            <AppText style={styles.inLabel}>
-                                {t('pubquizr.control.guessSent')}
-                            </AppText>
+                                <AppText style={styles.inLabel}>
+                                    {t('pubquizr.control.guessSent')}
+                                </AppText>
 
-                            <AppText style={styles.inValue}>{text}</AppText>
+                                <AppText style={styles.inValue}>{text}</AppText>
+                            </View>
+
+                            <View style={styles.roster}>
+                                <View style={styles.faces}>
+                                    {turn.guessing.map(seat => {
+                                        const done = seatsIn.includes(seat.seat);
+
+                                        return (
+                                            <View key={seat.seat} style={!done && styles.late}>
+                                                <SeatAvatar seat={seat} size={ROSTER_AVATAR} />
+
+                                                {done && (
+                                                    <View style={styles.tick}>
+                                                        <Feather name="check" size={8} color={Brand.ink} />
+                                                    </View>
+                                                )}
+                                            </View>
+                                        )
+                                    })}
+                                </View>
+
+                                <AppText style={styles.rosterNote} numberOfLines={2}>
+                                    {missing.length === 0
+                                        ? t('pubquizr.control.allGuessesIn')
+                                        : t('pubquizr.control.waitingForGuesses', {
+                                            names: missing.map(seat => seat.name).join(', ')
+                                        })}
+                                </AppText>
+                            </View>
                         </View>
                     ) : (
                         // Inert, and that is the point of it: the pad below is the only way into it.
@@ -164,7 +202,7 @@ export default function ClosestGuessControl({ bare, busy, error, onGuess, round,
                     )}
 
                     <TextHint text={bare
-                        ? t('pubquizr.board.closestHint', { name: turn.quizmaster.name })
+                        ? t('pubquizr.board.closestHint')
                         : t('pubquizr.control.theScreenHasIt')} />
                 </View>
             </View>
@@ -260,6 +298,48 @@ const useStyles = createThemedStyles(theme => ({
         fontWeight: 900,
         letterSpacing: -1,
         color: Brand.ink
+    },
+
+    holding: {
+        alignItems: 'center',
+        gap: Spacing.four
+    },
+
+    roster: {
+        alignItems: 'center',
+        gap: Spacing.two
+    },
+
+    faces: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: Spacing.two
+    },
+
+    late: {
+        opacity: 0.4
+    },
+
+    tick: {
+        position: 'absolute',
+        right: -Spacing.one,
+        bottom: -Spacing.one,
+        width: TICK,
+        height: TICK,
+        borderRadius: Radii.full,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Brand.mint
+    },
+
+    rosterNote: {
+        textAlign: 'center',
+        fontSize: FontSizes.xs,
+        fontWeight: 700,
+        color: theme.colors.textMuted
     },
 
     footer: {

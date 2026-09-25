@@ -78,7 +78,7 @@ export function tablePlayersOf(
                 : t('pubquizr.table.status.typing'));
         }
 
-        mark(closestTurn.quizmaster.seat, 'master', t('pubquizr.table.status.quizmaster'));
+        mark(closestTurn.quizmaster?.seat, 'master', t('pubquizr.table.status.quizmaster'));
     } else if (describe !== null) {
         mark(describe.guesser.seat, 'active', t('pubquizr.table.status.guessing'));
         mark(describe.describer.seat, 'master', t('pubquizr.table.status.describing'));

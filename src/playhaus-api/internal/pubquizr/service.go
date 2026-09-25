@@ -2,11 +2,12 @@ package pubquizr
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log/slog"
 	"math"
 	"math/rand/v2"
-	"sort"
+	"slices"
 	"strings"
 	"time"
 
@@ -812,32 +813,32 @@ type ClosestGuessInput struct {
 	Value             float64
 }
 
-// SaveClosestGuess keeps one seat's number until the question is closed, and answers with the seats that are in and never with a number.
-func (s *Service) SaveClosestGuess(ctx context.Context, in ClosestGuessInput) (*Session, []int, error) {
-	session, err := s.sessionForActor(ctx, in.SessionID, "", in.ActorID)
+// SaveClosestGuess keeps one seat's number and answers with the seats that are in; without a reader the last number in settles the question too.
+func (s *Service) SaveClosestGuess(ctx context.Context, in ClosestGuessInput) (session *Session, seatsIn []int, settled *ClosestSettled, err error) {
+	session, err = s.sessionForActor(ctx, in.SessionID, "", in.ActorID)
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	if session.Status != SessionInProgress {
-		return nil, nil, ErrSessionOver
+		return nil, nil, nil, ErrSessionOver
 	}
 	if session.CurrentRound != RoundClosest {
-		return nil, nil, ErrWrongRound
+		return nil, nil, nil, ErrWrongRound
 	}
 
 	question := session.QuestionAt(session.CurrentRound, session.CurrentPosition)
 	if question == nil || question.ID != in.SessionQuestionID {
-		return nil, nil, ErrStaleTurn
+		return nil, nil, nil, ErrStaleTurn
 	}
 
 	// Which also refuses the reader, unless the table is small enough that round 3 lets them guess too.
 	seat := session.SeatFor(in.ActorID)
 	if err := session.checkGuessingSeats([]int{seat}); err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 	if math.IsNaN(in.Value) || math.IsInf(in.Value, 0) {
-		return nil, nil, fmt.Errorf("closest guess: %w: seat %d guessed something that is not a number",
+		return nil, nil, nil, fmt.Errorf("closest guess: %w: seat %d guessed something that is not a number",
 			ErrInvalidInput, seat)
 	}
 
@@ -849,20 +850,46 @@ func (s *Service) SaveClosestGuess(ctx context.Context, in ClosestGuessInput) (*
 		CreatedAt:         time.Now().UTC(),
 	})
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	staged, err := s.store.GuessesOn(ctx, question.ID)
 	if err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
-	seatsIn := make([]int, 0, len(staged))
+	seatsIn = make([]int, 0, len(staged))
+	guesses := make([]SeatGuess, 0, len(staged))
 	for _, guess := range staged {
 		seatsIn = append(seatsIn, guess.Seat)
+		guesses = append(guesses, SeatGuess{Seat: guess.Seat, Value: guess.Value})
 	}
 
-	return session, seatsIn, nil
+	if session.ClosestHasReader() || !allIn(session.GuessingSeats(), seatsIn) {
+		return session, seatsIn, nil, nil
+	}
+
+	fresh, settled, err := s.settleClosest(ctx, session, question, guesses, "", in.ActorID)
+	// Two last numbers can land together, and whichever settles second finds the question already closed by the first.
+	if errors.Is(err, ErrStaleTurn) {
+		return session, seatsIn, nil, nil
+	}
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	return fresh, seatsIn, settled, nil
+}
+
+// allIn is whether every seat in want is among got.
+func allIn(want, got []int) bool {
+	for _, seat := range want {
+		if !slices.Contains(got, seat) {
+			return false
+		}
+	}
+
+	return true
 }
 
 // ClosestInput is the quizmaster settling one round 3 question.
@@ -875,8 +902,6 @@ type ClosestInput struct {
 
 	Guesses      []SeatGuess
 	WinningSeats []int
-	// Staged scores the numbers the phones sent, with Guesses laid over them seat by seat -- which is the way in multi device settles.
-	Staged bool
 }
 
 // ClosestSettled is round 3's result the way the room wants to see it, and the only thing the numbers ever travel in.
@@ -899,6 +924,10 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 	if session.CurrentRound != RoundClosest {
 		return nil, nil, ErrWrongRound
 	}
+	// Without a reader nobody closes the question by hand: it waits for the last number, and that settles it.
+	if !session.ClosestHasReader() {
+		return nil, nil, ErrNotYourSeat
+	}
 	if err := s.requireSeat(session, in.ActorID, session.QuizMasterSeat); err != nil {
 		return nil, nil, err
 	}
@@ -909,17 +938,7 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 	}
 
 	typed, named := len(in.Guesses) > 0, len(in.WinningSeats) > 0
-	switch {
-	case in.Staged:
-		if named {
-			return nil, nil, fmt.Errorf("closest guesses: %w: a staged settle scores numbers, not winners", ErrInvalidInput)
-		}
-		// A staged settle with nothing staged is a real turn: nobody typed, so the question closes paying nobody.
-		if in.Guesses, err = s.stagedGuesses(ctx, question.ID, in.Guesses); err != nil {
-			return nil, nil, err
-		}
-		typed = len(in.Guesses) > 0
-	case typed == named:
+	if typed == named {
 		return nil, nil, fmt.Errorf("closest guesses: %w: name the guesses or the winners, not both", ErrInvalidInput)
 	}
 
@@ -935,24 +954,37 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 		return nil, nil, err
 	}
 
-	winners := in.WinningSeats
-	if typed {
-		for _, guess := range in.Guesses {
-			if math.IsNaN(guess.Value) || math.IsInf(guess.Value, 0) {
-				return nil, nil, fmt.Errorf("closest guesses: %w: seat %d guessed something that is not a number",
-					ErrInvalidInput, guess.Seat)
-			}
-		}
-		if seat := DuplicateGuessSeat(in.Guesses); seat >= 0 {
-			return nil, nil, fmt.Errorf("%w: seat %d", ErrDuplicateGuess, seat)
-		}
-
-		target, err := s.closestAnswer(ctx, session, question)
-		if err != nil {
-			return nil, nil, err
-		}
-		winners = ClosestWinners(target, in.Guesses)
+	if !typed {
+		return s.recordClosest(ctx, session, question, nil, in.WinningSeats, in.OwnerID, in.ActorID)
 	}
+
+	for _, guess := range in.Guesses {
+		if math.IsNaN(guess.Value) || math.IsInf(guess.Value, 0) {
+			return nil, nil, fmt.Errorf("closest guesses: %w: seat %d guessed something that is not a number",
+				ErrInvalidInput, guess.Seat)
+		}
+	}
+	// Said out loud round one phone, a number somebody already said is a copy rather than a guess.
+	if seat := DuplicateGuessSeat(in.Guesses); seat >= 0 {
+		return nil, nil, fmt.Errorf("%w: seat %d", ErrDuplicateGuess, seat)
+	}
+
+	return s.settleClosest(ctx, session, question, in.Guesses, in.OwnerID, in.ActorID)
+}
+
+// settleClosest scores numbers that have already been checked, paying whoever is nearest.
+func (s *Service) settleClosest(ctx context.Context, session *Session, question *SessionQuestion, guesses []SeatGuess, ownerID, actorID string) (*Session, *ClosestSettled, error) {
+	target, err := s.closestAnswer(ctx, session, question)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return s.recordClosest(ctx, session, question, guesses, ClosestWinners(target, guesses), ownerID, actorID)
+}
+
+// recordClosest writes one settled round 3 question: a row per number when there are numbers, else one per winner.
+func (s *Service) recordClosest(ctx context.Context, session *Session, question *SessionQuestion, guesses []SeatGuess, winners []int, ownerID, actorID string) (*Session, *ClosestSettled, error) {
+	typed := len(guesses) > 0
 
 	won := make(map[int]bool, len(winners))
 	for _, seat := range winners {
@@ -960,10 +992,10 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 	}
 
 	now := time.Now().UTC()
-	out := TurnOutcome{}
+	out := TurnOutcome{Once: true}
 
 	// A row per guess when they were typed in, so the table can argue about the numbers afterwards.
-	rows := in.Guesses
+	rows := guesses
 	if !typed {
 		for _, seat := range winners {
 			rows = append(rows, SeatGuess{Seat: seat, Value: math.NaN()})
@@ -999,7 +1031,7 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 
 	settled := &ClosestSettled{
 		SessionQuestionID: question.ID,
-		Guesses:           in.Guesses,
+		Guesses:           guesses,
 		WinningSeats:      winners,
 	}
 
@@ -1010,44 +1042,12 @@ func (s *Service) RecordClosestGuesses(ctx context.Context, in ClosestInput) (*S
 		return nil, nil, err
 	}
 
-	fresh, err := s.sessionForActor(ctx, in.SessionID, in.OwnerID, in.ActorID)
+	fresh, err := s.sessionForActor(ctx, session.ID, ownerID, actorID)
 	if err != nil {
 		return nil, nil, err
 	}
 
 	return fresh, settled, nil
-}
-
-// stagedGuesses is the numbers the phones sent, with anything typed in by hand winning its seat -- which is what keeps a dead phone from killing the question.
-func (s *Service) stagedGuesses(ctx context.Context, sessionQuestionID uuid.UUID, byHand []SeatGuess) ([]SeatGuess, error) {
-	staged, err := s.store.GuessesOn(ctx, sessionQuestionID)
-	if err != nil {
-		return nil, err
-	}
-
-	values := make(map[int]float64, len(staged)+len(byHand))
-	seats := make([]int, 0, len(staged)+len(byHand))
-
-	keep := func(seat int, value float64) {
-		if _, already := values[seat]; !already {
-			seats = append(seats, seat)
-		}
-		values[seat] = value
-	}
-	for _, guess := range staged {
-		keep(guess.Seat, guess.Value)
-	}
-	for _, guess := range byHand {
-		keep(guess.Seat, guess.Value)
-	}
-	sort.Ints(seats)
-
-	merged := make([]SeatGuess, 0, len(seats))
-	for _, seat := range seats {
-		merged = append(merged, SeatGuess{Seat: seat, Value: values[seat]})
-	}
-
-	return merged, nil
 }
 
 // checkGuessingSeats is the rule both ways into round 3 share.
@@ -1058,7 +1058,7 @@ func (s *Session) checkGuessingSeats(seats []int) error {
 		if s.PlayerAt(seat) == nil {
 			return fmt.Errorf("%w: seat %d", ErrUnknownSeat, seat)
 		}
-		if seat == s.QuizMasterSeat && !ClosestQuizmasterGuesses(len(s.Players)) {
+		if s.closestSkips(seat) {
 			return fmt.Errorf("%w: seat %d", ErrQuizmasterCannotGuess, seat)
 		}
 		if _, twice := named[seat]; twice {

@@ -10,7 +10,6 @@ import { getQuizRequest, type QuizDetail } from '@/features/pubquizr/pubquizr-qu
 import {
     chooseMultiDeviceFinalistsRequest,
     getMultiDeviceSessionRequest,
-    recordMultiDeviceClosestGuessesRequest,
     recordMultiDeviceClosestGuessRequest,
     recordMultiDeviceDescribeAwardsRequest,
     recordMultiDeviceDoubleDownChoiceRequest,
@@ -22,7 +21,6 @@ import {
     type PQClosestProgress,
     type PQClosestReveal,
     type QuizSession,
-    type SeatGuess,
     type WordAward
 } from '@/features/pubquizr/pubquizr-sessions';
 import { useRoomSocket } from '@/features/realtime/useRoomSocket';
@@ -69,8 +67,6 @@ export interface PQTableState {
     sendGuess: (value: number) => void
     guessing: boolean
     guessError: TranslationKey | null
-    // Round 3: the question closed, scoring the numbers the phones sent plus whatever the quizmaster typed in for a phone that could not.
-    settleClosest: (byHand: SeatGuess[]) => void
     /** Round 4: what became of each of the describer's words. */
     settleDescribe: (awards: WordAward[]) => void
     /** Round 5: what became of each of the question's four answers. */
@@ -354,15 +350,6 @@ export function useQuizTable(code: string): PQTableState {
         });
     }, [submit, code]);
 
-    const settleClosest = useCallback((byHand: SeatGuess[]) => {
-        submit(current => {
-            const [dealt] = current.turnQuestionIds;
-            if (dealt === undefined) return Promise.reject(new Error('no question in this turn'));
-
-            return recordMultiDeviceClosestGuessesRequest(code, dealt, byHand);
-        });
-    }, [submit, code]);
-
     const settleDescribe = useCallback((awards: WordAward[]) => {
         submit(current => {
             if (current.describerSeat === null) {
@@ -438,7 +425,6 @@ export function useQuizTable(code: string): PQTableState {
         guessing,
         guessError,
         settleTurn,
-        settleClosest,
         settleDescribe,
         settleList,
         chooseDoubleDown,

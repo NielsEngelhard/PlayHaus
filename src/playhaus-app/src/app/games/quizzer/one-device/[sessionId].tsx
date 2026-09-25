@@ -374,7 +374,7 @@ export default function OneDeviceQuizPage() {
                         busy={game.ruling}
                         error={game.rulingError}
                         onSettle={(settled, winners) => {
-                            setHandedFrom(closest.quizmaster.seat);
+                            setHandedFrom(closest.quizmaster?.seat ?? null);
                             setClosestResult(closestResultOf(closest, settled, winners));
                             game.settleClosest(settled);
                         }}

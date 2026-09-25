@@ -297,18 +297,6 @@ export async function recordMultiDeviceClosestGuessRequest(
     });
 }
 
-// The quizmaster's phone closing one round 3 question. It scores the numbers the phones sent, and `byHand` is typing in for one that could not.
-export async function recordMultiDeviceClosestGuessesRequest(
-    code: string,
-    sessionQuestionId: string,
-    byHand: SeatGuess[]
-): Promise<QuizSession> {
-    return request<QuizSession>(multiDevicePath(code, '/closest'), {
-        method: 'POST',
-        body: JSON.stringify({ sessionQuestionId, guesses: byHand })
-    });
-}
-
 // The describer's own phone settling their thirty seconds -- the words are their secret, so nobody else can have ticked them.
 export async function recordMultiDeviceDescribeAwardsRequest(
     code: string,

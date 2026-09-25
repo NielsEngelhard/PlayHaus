@@ -16,7 +16,7 @@ export interface RoundKindAndRule {
 }
 
 // What a round is called, what its rule is, and what it asks of the table — none of which depend on who is playing it.
-export function roundKindAndRule(t: ReturnType<typeof useT>, round: number, zen = false): RoundKindAndRule {
+export function roundKindAndRule(t: ReturnType<typeof useT>, round: number, zen = false, readerless = false): RoundKindAndRule {
     switch (round) {
         case ROUND_CHOICE:
             return {
@@ -28,7 +28,8 @@ export function roundKindAndRule(t: ReturnType<typeof useT>, round: number, zen 
             return {
                 kind: t('pubquizr.play.rounds.closest'),
                 rule: t('pubquizr.play.rules.closest'),
-                brief: t('pubquizr.play.intro.briefClosest')
+                // Without a reader round 3 is the whole table typing at once, and doubles are fine.
+                brief: t(readerless ? 'pubquizr.play.intro.briefClosestEveryone' : 'pubquizr.play.intro.briefClosest')
             };
         case ROUND_DESCRIBE:
             return {

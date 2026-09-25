@@ -16,7 +16,6 @@ import TurnOrderStrip, { type TurnOrder, type TurnPair } from "@/features/pubqui
 import WalkWatchBoard from "@/features/pubquizr/components/board/WalkWatchBoard";
 import ChoicePadControl from "@/features/pubquizr/components/control/ChoicePadControl";
 import ClosestGuessControl from "@/features/pubquizr/components/control/ClosestGuessControl";
-import ClosestSettleControl from "@/features/pubquizr/components/control/ClosestSettleControl";
 import DescribeControl from "@/features/pubquizr/components/control/DescribeControl";
 import DoubleDownControl from "@/features/pubquizr/components/control/DoubleDownControl";
 import HotSeatControl from "@/features/pubquizr/components/control/HotSeatControl";
@@ -44,7 +43,7 @@ import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
 import { doubleDownPoolOf, doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
-import { closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
+import { closestHasReader, closestRevealOf, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
 import { seatAt, seatsOf, standingsOf } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -79,7 +78,7 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
 
     const seats = seatsOf(session);
     const ordinal = roundOrdinalOf(session);
-    const { brief, kind } = roundKindAndRule(t, session.currentRound, session.zenMode);
+    const { brief, kind } = roundKindAndRule(t, session.currentRound, session.zenMode, !closestHasReader(session));
     const label = t('pubquizr.play.roundLabel', { round: ordinal, kind });
     const segments = roundTrack(session.totalRounds, ordinal);
     const round = session.currentRound;
@@ -322,27 +321,14 @@ export default function QuizBoardView({ onLeave, quiz, session, table }: Props) 
         };
         const strip = <TurnOrderStrip mySeat={me} order={order} />;
 
-        // The reader closes round 3, and at the smallest table that is somebody who guessed too.
-        if (me === closest.quizmaster.seat) {
-            return frame(`closest-control:${closest.dealt.id}`, strip, (
-                <ClosestSettleControl
-                    bare
-                    busy={table.ruling}
-                    error={table.rulingError}
-                    round={round}
-                    seatsIn={seatsIn}
-                    turn={closest}
-                    onSettle={table.settleClosest}
-                />
-            ))
-        }
-
+        // Nobody reads round 3 out: every phone guesses, and the last number in settles it.
         return frame(`closest-guess:${closest.dealt.id}`, strip, (
             <ClosestGuessControl
                 bare
                 busy={table.guessing}
                 error={table.guessError}
                 round={round}
+                seatsIn={seatsIn}
                 sent={seatsIn.includes(me ?? -1)}
                 turn={closest}
                 onGuess={table.sendGuess}

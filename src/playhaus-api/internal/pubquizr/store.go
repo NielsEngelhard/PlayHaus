@@ -552,6 +552,8 @@ type TurnOutcome struct {
 	Questions []*SessionQuestion
 	// Players are the seats whose score moved, at most once each.
 	Players []*SessionPlayer
+	// Once refuses the turn with ErrStaleTurn when one of Questions is already done, so two requests racing to settle it score it once.
+	Once bool
 }
 
 // RecordTurn writes one settled turn and the session it moved, together.
@@ -565,11 +567,16 @@ func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOu
 		}
 
 		for _, question := range out.Questions {
-			err := tx.Model(&SessionQuestion{}).
-				Where("id = ?", question.ID).
-				Updates(map[string]any{"status": question.Status, "points": question.Points}).Error
-			if err != nil {
-				return fmt.Errorf("update question: %w", err)
+			update := tx.Model(&SessionQuestion{}).Where("id = ?", question.ID)
+			if out.Once {
+				update = update.Where("status <> ?", QuestionDone)
+			}
+			result := update.Updates(map[string]any{"status": question.Status, "points": question.Points})
+			if result.Error != nil {
+				return fmt.Errorf("update question: %w", result.Error)
+			}
+			if out.Once && result.RowsAffected == 0 {
+				return ErrStaleTurn
 			}
 
 			// A settled question's staged numbers are spent, and there are none to find in any round but 3.

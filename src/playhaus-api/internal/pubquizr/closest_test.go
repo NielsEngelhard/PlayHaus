@@ -96,6 +96,23 @@ func TestGuessingSeatsSkipTheReader(t *testing.T) {
 	}
 }
 
+// In multi device every phone shows the question, so nobody reads it and the whole table guesses.
+func TestMultiDeviceRoundThreeLetsEverySeatGuess(t *testing.T) {
+	session := &Session{Mode: ModeMultiDevice, QuizMasterSeat: 1}
+	for seat := range 4 {
+		session.Players = append(session.Players, SessionPlayer{Seat: seat})
+	}
+
+	if got := session.GuessingSeats(); len(got) != 4 {
+		t.Errorf("GuessingSeats = %v, want all four seats", got)
+	}
+
+	session.Mode = ModeSingleDevice
+	if got := session.GuessingSeats(); len(got) != 3 {
+		t.Errorf("single device GuessingSeats = %v, want the reader left out", got)
+	}
+}
+
 // --- settling one question ------------------------------------------------
 
 const closestTarget = 206

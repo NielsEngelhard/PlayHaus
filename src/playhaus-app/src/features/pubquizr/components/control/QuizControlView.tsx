@@ -13,7 +13,6 @@ import QuizmasterNote from "@/features/pubquizr/components/board/QuizmasterNote"
 import ChoicePadControl from "@/features/pubquizr/components/control/ChoicePadControl";
 import ChoiceReadOut from "@/features/pubquizr/components/control/ChoiceReadOut";
 import ClosestGuessControl from "@/features/pubquizr/components/control/ClosestGuessControl";
-import ClosestSettleControl from "@/features/pubquizr/components/control/ClosestSettleControl";
 import ControlFrame, { type ControlTurn } from "@/features/pubquizr/components/control/ControlFrame";
 import ControlWatch from "@/features/pubquizr/components/control/ControlWatch";
 import ScreenChip from "@/features/pubquizr/components/control/ScreenChip";
@@ -32,7 +31,7 @@ import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { finaleTieOf, finaleTurnOf, finalistsOf, ROUND_FINALE } from "@/features/pubquizr/round-seven";
 import { doubleDownPoolOf, doubleDownTurnOf, ROUND_DOUBLE_DOWN } from "@/features/pubquizr/round-six";
-import { closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
+import { closestHasReader, closestTurnOf, ROUND_CLOSEST } from "@/features/pubquizr/round-three";
 import { roundOrdinalOf } from "@/features/pubquizr/running-order";
 import { scoreBoardPlayersOf, seatAt, seatsOf, type Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -140,7 +139,7 @@ export default function QuizControlView({ code }: Props) {
 
     const seats = seatsOf(session);
     const ordinal = roundOrdinalOf(session);
-    const { brief, kind } = roundKindAndRule(t, session.currentRound, session.zenMode);
+    const { brief, kind } = roundKindAndRule(t, session.currentRound, session.zenMode, !closestHasReader(session));
     const label = t('pubquizr.play.roundLabel', { round: ordinal, kind });
     const segments = roundTrack(session.totalRounds, ordinal);
 
@@ -313,22 +312,6 @@ export default function QuizControlView({ code }: Props) {
         )
     }
 
-    // The reader closes round 3, and at the smallest table that is somebody who guessed too -- so their own number goes in by hand.
-    if (closest !== null && table.mySeat === closest.quizmaster.seat) {
-        return (
-            <ControlFrame chip={<ScreenChip />} footer={footer} label={label} note={t('pubquizr.control.alsoOnScreen')} onClose={leave} segments={segments} turn={null}>
-                <ClosestSettleControl
-                    busy={table.ruling}
-                    error={table.rulingError}
-                    round={round}
-                    seatsIn={seatsIn}
-                    turn={closest}
-                    onSettle={table.settleClosest}
-                />
-            </ControlFrame>
-        )
-    }
-
     if (closest !== null && closest.guessing.some(seat => seat.seat === table.mySeat)) {
         return (
             <ControlFrame chip={<ScreenChip />} footer={footer} label={label} onClose={leave} segments={segments} turn={null}>
@@ -336,6 +319,7 @@ export default function QuizControlView({ code }: Props) {
                     busy={table.guessing}
                     error={table.guessError}
                     round={round}
+                    seatsIn={seatsIn}
                     sent={seatsIn.includes(table.mySeat ?? -1)}
                     turn={closest}
                     onGuess={table.sendGuess}

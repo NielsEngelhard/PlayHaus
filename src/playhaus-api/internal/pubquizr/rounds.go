@@ -147,12 +147,22 @@ func (s *Session) LowestScoringSeat() int {
 	return seat
 }
 
-// GuessingSeats is everybody round 3 lets type a number, which is the whole table bar its reader at all but the smallest.
+// ClosestHasReader is whether round 3 has somebody reading it out; in multi device every phone already shows the question, so nobody does.
+func (s *Session) ClosestHasReader() bool {
+	return s.Mode != ModeMultiDevice
+}
+
+// closestSkips is whether round 3 keeps this seat from guessing, which is only ever its reader.
+func (s *Session) closestSkips(seat int) bool {
+	return s.ClosestHasReader() && seat == s.QuizMasterSeat && !ClosestQuizmasterGuesses(len(s.Players))
+}
+
+// GuessingSeats is everybody round 3 lets type a number: the whole table, bar a reader at all but the smallest.
 func (s *Session) GuessingSeats() []int {
 	guessing := make([]int, 0, len(s.Players))
 
 	for _, player := range s.Players {
-		if player.Seat == s.QuizMasterSeat && !ClosestQuizmasterGuesses(len(s.Players)) {
+		if s.closestSkips(player.Seat) {
 			continue
 		}
 		guessing = append(guessing, player.Seat)
