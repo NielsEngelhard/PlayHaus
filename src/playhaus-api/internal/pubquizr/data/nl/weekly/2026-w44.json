@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w44",
+  "title": "Weekquiz 44 2026",
+  "description": "De wekelijkse quiz van woensdag 28 oktober 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Wat is de hoogste berg van Duitsland?", "category": "Aardrijkskunde", "answers": [{ "text": "De Zugspitze", "aliases": ["Zugspitze"] }] },
+        { "prompt": "Hoe heet een getal dat alleen deelbaar is door een en door zichzelf?", "category": "Wetenschap", "answers": [{ "text": "Een priemgetal", "aliases": ["Priemgetal"] }] },
+        { "prompt": "Welke Nederlandse admiraal voer in 1667 de Medway op en nam het Engelse vlaggenschip mee?", "category": "Geschiedenis", "answers": [{ "text": "Michiel de Ruyter", "aliases": ["De Ruyter"] }] },
+        { "prompt": "Hoe heet de voorjaarsklassieker over kasseien die de Hel van het Noorden wordt genoemd?", "category": "Sport", "answers": [{ "text": "Parijs-Roubaix", "aliases": ["Parijs Roubaix"] }] },
+        { "prompt": "In welke film verdedigt Macaulay Culkin het huis tegen twee inbrekers?", "category": "Film", "answers": [{ "text": "Home Alone", "aliases": ["Alleen thuis"] }] },
+        { "prompt": "Welke Britse zanger scoorde in 2017 met Shape of You?", "category": "Muziek", "answers": [{ "text": "Ed Sheeran", "aliases": ["Sheeran"] }] },
+        { "prompt": "Wat is de hoofdstad van de provincie Gelderland?", "category": "Nederland", "answers": [{ "text": "Arnhem" }] },
+        { "prompt": "Welke Franse schilder trok naar Tahiti en schilderde daar de eilandbewoners?", "category": "Kunst", "answers": [{ "text": "Paul Gauguin", "aliases": ["Gauguin"] }] },
+        { "prompt": "Hoe heet een woord met dezelfde betekenis als een ander woord?", "category": "Taal", "answers": [{ "text": "Een synoniem", "aliases": ["Synoniem"] }] },
+        { "prompt": "Van welke zaadjes wordt tahin gemaakt?", "category": "Eten", "answers": [{ "text": "Sesamzaad", "aliases": ["Sesam"] }] },
+        { "prompt": "Wie richtte in 1976 samen met Steve Jobs Apple op?", "category": "Techniek", "answers": [{ "text": "Steve Wozniak", "aliases": ["Wozniak"] }] },
+        { "prompt": "Welke grote katachtige met rozetten op de vacht is de grootste kat van Amerika?", "category": "Natuur", "answers": [{ "text": "De jaguar", "aliases": ["Jaguar"] }] },
+        { "prompt": "Welk groothertogdom ligt tussen Belgie, Frankrijk en Duitsland?", "category": "Aardrijkskunde", "answers": [{ "text": "Luxemburg" }] },
+        { "prompt": "Hoe heette de jonge farao wiens graf in 1922 vrijwel onaangeroerd werd gevonden?", "category": "Geschiedenis", "answers": [{ "text": "Toetanchamon", "aliases": ["Tutankhamun", "Toetankhamon"] }] },
+        { "prompt": "Hoe heet de afstand die licht in een jaar aflegt?", "category": "Wetenschap", "answers": [{ "text": "Een lichtjaar", "aliases": ["Lichtjaar"] }] },
+        { "prompt": "Welke Britse zangeres bracht in 2006 het album Back to Black uit?", "category": "Muziek", "answers": [{ "text": "Amy Winehouse", "aliases": ["Winehouse"] }] },
+        { "prompt": "Welke acteur speelde de Terminator?", "category": "Film", "answers": [{ "text": "Arnold Schwarzenegger", "aliases": ["Schwarzenegger"] }] },
+        { "prompt": "Hoe heet het Indonesische gerecht van gebakken rijst?", "category": "Eten", "answers": [{ "text": "Nasi goreng", "aliases": ["Nasi"] }] },
+        { "prompt": "Welk automerk van Elon Musk bouwt de Model 3?", "category": "Techniek", "answers": [{ "text": "Tesla" }] },
+        { "prompt": "Wat betekent de uitspraak van Julius Caesar: veni, vidi, vici?", "category": "Taal", "answers": [{ "text": "Ik kwam, ik zag, ik overwon", "aliases": ["Ik kwam ik zag ik overwon"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke stad heeft de oudste metro ter wereld?", "options": [{ "text": "Londen", "correct": true }, { "text": "Parijs" }, { "text": "New York" }, { "text": "Boedapest" }] },
+        { "prompt": "Welk dier heeft de dichtste vacht van alle dieren?", "options": [{ "text": "De zeeotter", "correct": true }, { "text": "De ijsbeer" }, { "text": "De wolf" }, { "text": "De muskusos" }] },
+        { "prompt": "Welke Zweedse schrijver schreef de Millennium-trilogie?", "options": [{ "text": "Stieg Larsson", "correct": true }, { "text": "Henning Mankell" }, { "text": "Jo Nesbo" }, { "text": "Camilla Lackberg" }] },
+        { "prompt": "Welk van deze landen ligt op het zuidelijk halfrond?", "options": [{ "text": "Angola", "correct": true }, { "text": "Nigeria" }, { "text": "Ghana" }, { "text": "Ethiopie" }] },
+        { "prompt": "Welke van deze is geen bot in het menselijk lichaam?", "options": [{ "text": "De achillespees", "correct": true }, { "text": "Het sleutelbeen" }, { "text": "Het scheenbeen" }, { "text": "Het borstbeen" }] },
+        { "prompt": "Welke Nederlandse stadhouder werd ook koning van Engeland?", "options": [{ "text": "Willem III", "correct": true }, { "text": "Willem I" }, { "text": "Willem II" }, { "text": "Maurits" }] },
+        { "prompt": "Welke van deze steden ligt in Zwitserland?", "options": [{ "text": "Lausanne", "correct": true }, { "text": "Annecy" }, { "text": "Innsbruck" }, { "text": "Grenoble" }] },
+        { "prompt": "Welk van deze dieren is geen reptiel?", "options": [{ "text": "De salamander", "correct": true }, { "text": "De gekko" }, { "text": "De schildpad" }, { "text": "De krokodil" }] },
+        { "prompt": "Welke acteur speelde de bokser Rocky Balboa?", "options": [{ "text": "Sylvester Stallone", "correct": true }, { "text": "Bruce Willis" }, { "text": "Mel Gibson" }, { "text": "Jean-Claude Van Damme" }] },
+        { "prompt": "Welk land won het allereerste EK voetbal in 1960?", "options": [{ "text": "De Sovjet-Unie", "correct": true }, { "text": "Joegoslavie" }, { "text": "Spanje" }, { "text": "Frankrijk" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel kilometer lang is de Noord/Zuidlijn van de Amsterdamse metro?", "answer": 9.7, "unit": "kilometer" },
+        { "prompt": "Hoeveel spelers heeft een ijshockeyteam tegelijk op het ijs, de keeper meegerekend?", "answer": 6, "unit": "spelers" },
+        { "prompt": "Aan hoeveel landen grenst China?", "answer": 14, "unit": "landen" },
+        { "prompt": "Hoeveel kilo weegt een volwassen mannetjesijsbeer ongeveer?", "answer": 450, "unit": "kilo" },
+        { "prompt": "Hoeveel meter lang kan een blauwe vinvis worden?", "answer": 30, "unit": "meter" },
+        { "prompt": "In welk jaar ging de Efteling open?", "answer": 1952 },
+        { "prompt": "Hoeveel kilometer lang is de route van de Elfstedentocht?", "answer": 200, "unit": "kilometer" },
+        { "prompt": "Hoeveel liter bier drinkt de gemiddelde Nederlander per jaar?", "answer": 70, "unit": "liter" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Chewbacca",
+        "Kiwi",
+        "Wip",
+        "Spaanse griep",
+        "Gondelbaan",
+        "Bakkebaarden",
+        "Heavy metal",
+        "Ali Baba",
+        "Passievrucht",
+        "Bakker",
+        "Sit-up",
+        "Minigolf",
+        "Mulan",
+        "Merel",
+        "Goocheltruc",
+        "Tom en Jerry",
+        "Hoorntje",
+        "Mosterd",
+        "Vaiana",
+        "Rapport",
+        "Whitney Houston",
+        "Koffiefilter",
+        "Moeder Teresa",
+        "Jane Austen",
+        "Navel",
+        "Grotduiken",
+        "Kleuterschool",
+        "Hamlet",
+        "Buzz Aldrin",
+        "Sesamstraat",
+        "Verkiezingsdebat",
+        "Cadeaupapier",
+        "Piranha",
+        "Triangel",
+        "Berk",
+        "Beyonce",
+        "Overwerken",
+        "Mierenboerderij",
+        "Langlaufen",
+        "Koffiecup"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Spider-Man?", "answers": [{ "text": "Peter Parker", "aliases": ["Parker"] }, { "text": "Spinnenweb", "aliases": ["Webben schieten", "Web"] }, { "text": "New York", "aliases": ["Queens"] }, { "text": "Marvel", "aliases": ["Stan Lee"] }] },
+        { "prompt": "Wat weet je over Ierland?", "answers": [{ "text": "Groen", "aliases": ["Groene eiland", "Klaver"] }, { "text": "Guinness", "aliases": ["Bier", "Pub"] }, { "text": "Dublin", "aliases": ["De hoofdstad Dublin"] }, { "text": "Sint-Patrick", "aliases": ["Saint Patrick's Day", "Sint-Patricksdag"] }] },
+        { "prompt": "Wat weet je over de Himalaya?", "answers": [{ "text": "Mount Everest", "aliases": ["Everest", "K2"] }, { "text": "Nepal", "aliases": ["Tibet", "India"] }, { "text": "Sherpa's", "aliases": ["Sherpa"] }, { "text": "Yeti", "aliases": ["Verschrikkelijke sneeuwman"] }] },
+        { "prompt": "Wat weet je over Hawaii?", "answers": [{ "text": "Surfen", "aliases": ["Surfers", "Golven"] }, { "text": "Vulkanen", "aliases": ["Vulkaan", "Lava"] }, { "text": "Hula", "aliases": ["Hoeladansen", "Bloemenkrans"] }, { "text": "Eilanden", "aliases": ["Stille Oceaan", "Honolulu"] }] },
+        { "prompt": "Wat weet je over Beethoven?", "answers": [{ "text": "Doof", "aliases": ["Hij werd doof"] }, { "text": "Duitsland", "aliases": ["Bonn", "Wenen"] }, { "text": "Fur Elise", "aliases": ["Fur Elise", "Pianostuk"] }, { "text": "Negende symfonie", "aliases": ["Symfonieen", "Ode an die Freude"] }] },
+        { "prompt": "Wat weet je over Maastricht?", "answers": [{ "text": "Limburg", "aliases": ["Zuid-Limburg"] }, { "text": "De Maas", "aliases": ["Maas"] }, { "text": "Verdrag van Maastricht", "aliases": ["Europa", "Euro"] }, { "text": "Carnaval", "aliases": ["Vrijthof", "Andre Rieu"] }] },
+        { "prompt": "Wat weet je over robots?", "answers": [{ "text": "Machines", "aliases": ["Metaal", "Mechanisch"] }, { "text": "Fabrieken", "aliases": ["Lopende band", "Auto's bouwen"] }, { "text": "Kunstmatige intelligentie", "aliases": ["AI", "Computer"] }, { "text": "Films", "aliases": ["R2-D2", "Terminator", "WALL-E"] }] },
+        { "prompt": "Wat weet je over Sherlock Holmes?", "answers": [{ "text": "Baker Street", "aliases": ["Londen"] }, { "text": "Doctor Watson", "aliases": ["Watson"] }, { "text": "Pijp", "aliases": ["Pet", "Vergrootglas"] }, { "text": "Arthur Conan Doyle", "aliases": ["Conan Doyle"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Wat maak je van room door die lang te karnen?", "difficulty": "easy", "answers": [{ "text": "Boter" }] },
+        { "prompt": "Wat voor dier is Pluto, het huisdier van Mickey Mouse?", "difficulty": "easy", "answers": [{ "text": "Een hond", "aliases": ["Hond"] }] },
+        { "prompt": "Wat is de hoofdstad van Frankrijk?", "difficulty": "easy", "answers": [{ "text": "Parijs" }] },
+        { "prompt": "Welk sprookje gaat over een meisje met een rood kapje en een wolf?", "difficulty": "easy", "answers": [{ "text": "Roodkapje" }] },
+        { "prompt": "Welke kleur hebben de Smurfen?", "difficulty": "easy", "answers": [{ "text": "Blauw" }] },
+        { "prompt": "Wat is de hoofdstad van Jemen?", "difficulty": "hard", "answers": [{ "text": "Sanaa", "aliases": ["Sana'a"] }] },
+        { "prompt": "Welke Franse schrijver schreef Madame Bovary?", "difficulty": "hard", "answers": [{ "text": "Gustave Flaubert", "aliases": ["Flaubert"] }] },
+        { "prompt": "Welk element heeft het scheikundige symbool Sb?", "difficulty": "hard", "answers": [{ "text": "Antimoon" }] },
+        { "prompt": "Welke Nederlandse zeevaarder rondde in 1616 als eerste de kaap die hij naar zijn geboortestad noemde?", "difficulty": "hard", "answers": [{ "text": "Willem Schouten", "aliases": ["Schouten", "Willem Cornelisz Schouten"] }] },
+        { "prompt": "Welke Italiaanse componist schreef Madama Butterfly?", "difficulty": "hard", "answers": [{ "text": "Giacomo Puccini", "aliases": ["Puccini"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet de beste vriend van Ernie in Sesamstraat?", "answers": [{ "text": "Bert" }] },
+        { "prompt": "In welk land ligt de heilige stad Mekka?", "answers": [{ "text": "Saoedi-Arabie", "aliases": ["Saudi-Arabie"] }] },
+        { "prompt": "Welke Spaanse koning liet het klooster El Escorial bouwen en voerde oorlog met de Nederlanden?", "answers": [{ "text": "Filips II", "aliases": ["Filips de Tweede", "Philips II"] }] },
+        { "prompt": "Wat voor dier is Garfield?", "answers": [{ "text": "Een kat", "aliases": ["Kat", "Kater"] }] },
+        { "prompt": "Welke Britse schrijver bedacht Winnie de Poeh?", "answers": [{ "text": "A.A. Milne", "aliases": ["Milne", "Alan Alexander Milne"] }] },
+        { "prompt": "Hoe heet de grootste en binnenste van de twee manen van Mars?", "answers": [{ "text": "Phobos", "aliases": ["Fobos"] }] },
+        { "prompt": "Welk dier staat in het logo van het kledingmerk Lacoste?", "answers": [{ "text": "Een krokodil", "aliases": ["Krokodil"] }] },
+        { "prompt": "Welke voetbalclub speelt in het Philips Stadion in Eindhoven?", "answers": [{ "text": "PSV", "aliases": ["PSV Eindhoven"] }] },
+        { "prompt": "Welke Britse natuurkundige ontdekte in 1932 het neutron?", "answers": [{ "text": "James Chadwick", "aliases": ["Chadwick"] }] }
+      ]
+    }
+  ]
+}

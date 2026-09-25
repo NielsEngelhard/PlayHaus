@@ -89,7 +89,17 @@
         "Helm",
         "Jachthoorn",
         "Paddenstoel",
-        "Pijlkoker"
+        "Pijlkoker",
+        "De Ene Ring",
+        "Oog van Sauron",
+        "Doemberg",
+        "Gouw",
+        "Tovenaar in het grijs",
+        "Elfenoren",
+        "Harige hobbitvoeten",
+        "Tweede ontbijt",
+        "Reuzenadelaar",
+        "Gollums vis"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Van welk rijk was de aanvoerder van de Nazgul ooit de tovenaar-koning?", "answers": [{ "text": "Angmar" }] },
         { "prompt": "Hoe heet de waard van de herberg in Breeg?", "answers": [{ "text": "Barliman Butterbur", "aliases": ["Butterbur", "Barliman", "Barlieman Boterbloem"] }] },
         { "prompt": "Welk personage uit het boek is volledig uit de films weggelaten?", "answers": [{ "text": "Tom Bombadil", "aliases": ["Bombadil"] }] },
-        { "prompt": "Hoe noemen de Enten de bijeenkomst waarop zij besluiten ten strijde te trekken?", "answers": [{ "text": "Een Entberaad", "aliases": ["Entberaad", "Entmoet", "Entmoot"] }] }
+        { "prompt": "Hoe noemen de Enten de bijeenkomst waarop zij besluiten ten strijde te trekken?", "answers": [{ "text": "Een Entberaad", "aliases": ["Entberaad", "Entmoet", "Entmoot"] }] },
+        { "prompt": "Hoe heet het zwaard van Bilbo dat hij aan Frodo geeft?", "answers": [{ "text": "Prik", "aliases": ["Sting"] }] },
+        { "prompt": "Hoe heet de reuzenspin in wier hol Frodo wordt gestoken?", "answers": [{ "text": "Shelob", "aliases": ["Lorelei"] }] }
       ]
     }
   ]

@@ -89,7 +89,17 @@
         "Kalligrafiepenseel",
         "Emoji",
         "Vismarkt",
-        "Houten sandalen"
+        "Houten sandalen",
+        "Karaoke-box",
+        "Manga",
+        "Anime",
+        "Kersenbloesemfeest",
+        "Pachinko",
+        "Samoeraizwaard",
+        "Theeceremonie",
+        "Capsulehotel",
+        "Bento box",
+        "Mount Fuji-uitzicht"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Wat is de Japanse naam voor het beleid van nationale afzondering dat duurde van de jaren 1630 tot 1853?", "answers": [{ "text": "Sakoku" }] },
         { "prompt": "Welke stad was van 710 tot 784 de hoofdstad van Japan?", "answers": [{ "text": "Nara" }] },
         { "prompt": "Welke Japanse natuurkundige werd in 1949 de eerste Nobelprijswinnaar van zijn land?", "answers": [{ "text": "Hideki Yukawa", "aliases": ["Yukawa"] }] },
-        { "prompt": "Van welke zonnegodin uit het shintoisme zou de keizerlijke familie afstammen?", "answers": [{ "text": "Amaterasu" }] }
+        { "prompt": "Van welke zonnegodin uit het shintoisme zou de keizerlijke familie afstammen?", "answers": [{ "text": "Amaterasu" }] },
+        { "prompt": "Wat is de oude naam van Tokio?", "answers": [{ "text": "Edo" }] },
+        { "prompt": "Welke Japanse keizer regeerde tijdens de Tweede Wereldoorlog?", "answers": [{ "text": "Hirohito", "aliases": ["Showa"] }] }
       ]
     }
   ]

@@ -89,7 +89,17 @@
         "Roman numerals",
         "Wax tablet",
         "Sundial",
-        "Villa"
+        "Villa",
+        "Gladiator fight",
+        "Thumbs down",
+        "Romulus and Remus",
+        "Assassination of Caesar",
+        "Senator",
+        "Tunic",
+        "Legion camp",
+        "Underfloor heating",
+        "Circus Maximus",
+        "Latin"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What was the Latin name for the fortified frontier line of the Roman Empire?", "answers": [{ "text": "The limes", "aliases": ["limes"] }] },
         { "prompt": "Which Roman poet wrote the Metamorphoses?", "answers": [{ "text": "Ovid", "aliases": ["Publius Ovidius Naso", "Ovidius"] }] },
         { "prompt": "Which Roman aqueduct bridge over the river Gardon in southern France still stands?", "answers": [{ "text": "The Pont du Gard", "aliases": ["Pont du Gard"] }] },
-        { "prompt": "Which emperor opened the Colosseum in AD 80 with a hundred days of games?", "answers": [{ "text": "Titus" }] }
+        { "prompt": "Which emperor opened the Colosseum in AD 80 with a hundred days of games?", "answers": [{ "text": "Titus" }] },
+        { "prompt": "Which river did Julius Caesar cross in 49 BC with the words the die is cast?", "answers": [{ "text": "The Rubicon", "aliases": ["Rubicon"] }] },
+        { "prompt": "Which Carthaginian general defeated the Romans at Cannae in 216 BC?", "answers": [{ "text": "Hannibal", "aliases": ["Hannibal Barca"] }] }
       ]
     }
   ]

@@ -89,7 +89,17 @@
         "Straw hat",
         "Ukulele",
         "Salt pan",
-        "Cranberry"
+        "Cranberry",
+        "Island hopping",
+        "Lighthouse on the rocks",
+        "Car ferry",
+        "Coconut tree",
+        "Island treasure map",
+        "Sailing ship",
+        "Beachcomber",
+        "Beach shack",
+        "Seagrass",
+        "Islander"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which North Sea island did Britain hand to Germany in 1890 in exchange for rights in East Africa?", "answers": [{ "text": "Heligoland", "aliases": ["Helgoland"] }] },
         { "prompt": "Which is the largest island of Denmark, the one Copenhagen stands on?", "answers": [{ "text": "Zealand", "aliases": ["Sjaelland", "Sealand"] }] },
         { "prompt": "Which island in Lake Huron is the largest island in a freshwater lake in the world?", "answers": [{ "text": "Manitoulin Island", "aliases": ["Manitoulin"] }] },
-        { "prompt": "Which island in the Pacific is the smallest republic in the world?", "answers": [{ "text": "Nauru" }] }
+        { "prompt": "Which island in the Pacific is the smallest republic in the world?", "answers": [{ "text": "Nauru" }] },
+        { "prompt": "On which island was Napoleon born?", "answers": [{ "text": "Corsica" }] },
+        { "prompt": "Which island in the Atlantic is one of the most remote inhabited islands in the world, with Edinburgh of the Seven Seas as its settlement?", "answers": [{ "text": "Tristan da Cunha" }] }
       ]
     }
   ]

@@ -82,6 +82,8 @@ type QuizFilter struct {
 	Category Category // empty means every shelf
 	Page     int      // 1-based
 	PageSize int
+	// ReleasedBefore hides every quiz dated on or after it; zero means now.
+	ReleasedBefore time.Time
 }
 
 // normalize fills in what the caller left out and pulls the rest into range.
@@ -100,6 +102,9 @@ func (f QuizFilter) normalize() QuizFilter {
 	}
 	if f.PageSize > MaxPageSize {
 		f.PageSize = MaxPageSize
+	}
+	if f.ReleasedBefore.IsZero() {
+		f.ReleasedBefore = ReleasedBefore(time.Now())
 	}
 	return f
 }
@@ -146,10 +151,14 @@ func (s *Service) SweepStaleSessions(ctx context.Context, maxAge, every time.Dur
 	}
 }
 
+// Quiz is a quiz a player may pick, so one whose Wednesday has not come yet does not exist.
 func (s *Service) Quiz(ctx context.Context, id uuid.UUID) (*Quiz, error) {
 	quiz, err := s.store.QuizByID(ctx, id)
 	if err != nil {
 		return nil, err
+	}
+	if !quiz.Released(time.Now()) {
+		return nil, ErrQuizNotFound
 	}
 
 	return quiz, nil

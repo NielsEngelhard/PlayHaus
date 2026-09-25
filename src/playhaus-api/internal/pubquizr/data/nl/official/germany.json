@@ -50,11 +50,11 @@
         { "prompt": "Hoeveel kilometer lang was de Berlijnse Muur rond West-Berlijn?", "answer": 155, "unit": "kilometer", "explanation": "Ruim honderdvijftig kilometer beton en hek, waarvan ruim veertig door de stad zelf." },
         { "prompt": "Hoeveel kilometer van de Rijn stroomt door Duitsland?", "answer": 865, "unit": "kilometer" },
         { "prompt": "Uit hoeveel deelstaten bestaat Duitsland?", "answer": 16, "unit": "deelstaten" },
-        { "prompt": "In welk jaar werd Duitsland herenigd?", "answer": 1990, "unit": "" },
+        { "prompt": "In welk jaar werd Duitsland herenigd?", "answer": 1990 },
         { "prompt": "Hoeveel kilometer lang is het Duitse Autobahn-netwerk in totaal?", "answer": 13000, "unit": "kilometer", "explanation": "Het Duitse snelwegennet beslaat ongeveer dertienduizend kilometer." },
-        { "prompt": "In welk jaar werd de Volkswagen Kever voor het eerst geproduceerd?", "answer": 1938, "unit": "" },
+        { "prompt": "In welk jaar werd de Volkswagen Kever voor het eerst geproduceerd?", "answer": 1938 },
         { "prompt": "Hoeveel miljoen inwoners heeft Berlijn ongeveer?", "answer": 4, "unit": "miljoen inwoners" },
-        { "prompt": "In welk jaar overleed Goethe?", "answer": 1832, "unit": "" }
+        { "prompt": "In welk jaar overleed Goethe?", "answer": 1832 }
       ]
     },
     {
@@ -89,7 +89,17 @@
         "Zeppelin",
         "Johannes Gutenberg",
         "Hereniging",
-        "Repelsteeltje"
+        "Repelsteeltje",
+        "Kerstkransje",
+        "Duitse herdershond",
+        "Volkswagen Kever",
+        "Pretzelkraam",
+        "Bierpul",
+        "Schuhplattler",
+        "Keulen Carnaval",
+        "Porseleinen tuinkabouter",
+        "Rijnkasteel",
+        "Zwarte Woud-taart"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke zee grenst naast de Noordzee aan de Duitse kust?", "answers": [{ "text": "De Oostzee", "aliases": ["Oostzee", "Baltische Zee", "Ostsee"] }] },
         { "prompt": "Welk Duits concern bezit Audi, Porsche en Skoda?", "answers": [{ "text": "Volkswagen", "aliases": ["VW", "Volkswagen Groep"] }] },
         { "prompt": "In welke Duitse stad speelt het verhaal van de rattenvanger?", "answers": [{ "text": "Hameln", "aliases": ["Hamelen"] }] },
-        { "prompt": "Welke Duitse bondskanselier leidde het land door de hereniging van 1990?", "answers": [{ "text": "Helmut Kohl", "aliases": ["Kohl"] }] }
+        { "prompt": "Welke Duitse bondskanselier leidde het land door de hereniging van 1990?", "answers": [{ "text": "Helmut Kohl", "aliases": ["Kohl"] }] },
+        { "prompt": "Welke Duitse stad was de geboorteplaats van Ludwig van Beethoven?", "answers": [{ "text": "Bonn" }] },
+        { "prompt": "Welke Duitse ingenieur patenteerde in 1886 de eerste auto met een verbrandingsmotor?", "answers": [{ "text": "Carl Benz", "aliases": ["Karl Benz", "Benz"] }] }
       ]
     }
   ]

@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter vallen de Niagarawatervallen?", "answer": 51, "unit": "meter" },
         { "prompt": "Hoeveel harten heeft een regenworm?", "answer": 5, "unit": "harten" },
-        { "prompt": "In welk jaar werden de eerste Paralympische Spelen gehouden?", "answer": 1960, "unit": "", "explanation": "In Rome, direct na de Olympische Spelen daar." },
+        { "prompt": "In welk jaar werden de eerste Paralympische Spelen gehouden?", "answer": 1960, "explanation": "In Rome, direct na de Olympische Spelen daar." },
         { "prompt": "Hoeveel meter diep is het diepste zwembad ter wereld?", "answer": 60, "unit": "meter" },
         { "prompt": "Hoeveel spieren zitten er in de slurf van een olifant?", "answer": 40000, "unit": "spieren" },
         { "prompt": "Hoeveel pitjes draagt een aardbei ongeveer aan de buitenkant?", "answer": 200, "unit": "pitjes" },
@@ -88,7 +88,17 @@
         "Acupunctuur",
         "Deltawerken",
         "Olympische fakkel",
-        "Houthakker"
+        "Houthakker",
+        "Kaasboerderij",
+        "Boodschappenlijstje",
+        "Casino",
+        "Curry",
+        "Marshmallow",
+        "Don Quichot",
+        "Griep",
+        "Kapitein Haak",
+        "Brandweerauto",
+        "Advocaat"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welk metaal is bij kamertemperatuur vloeibaar?", "answers": [{ "text": "Kwik" }] },
         { "prompt": "Wat is de langste rivier van Europa?", "answers": [{ "text": "De Wolga", "aliases": ["Wolga"] }] },
         { "prompt": "Welke schrijver bedacht de detective Hercule Poirot?", "answers": [{ "text": "Agatha Christie", "aliases": ["Christie"] }] },
-        { "prompt": "In welk land staat het hoogste gebouw ter wereld?", "answers": [{ "text": "De Verenigde Arabische Emiraten", "aliases": ["Verenigde Arabische Emiraten", "VAE", "Dubai"] }] }
+        { "prompt": "In welk land staat het hoogste gebouw ter wereld?", "answers": [{ "text": "De Verenigde Arabische Emiraten", "aliases": ["Verenigde Arabische Emiraten", "VAE", "Dubai"] }] },
+        { "prompt": "In welke stad werd Wolfgang Amadeus Mozart geboren?", "answers": [{ "text": "Salzburg" }] },
+        { "prompt": "Welke Zweedse plantkundige bedacht de wetenschappelijke naamgeving van planten en dieren met twee namen?", "answers": [{ "text": "Carl Linnaeus", "aliases": ["Linnaeus", "Carl von Linne", "Linne"] }] }
       ]
     }
   ]

@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres long is the Oosterschelde storm surge barrier?", "answer": 9000, "unit": "metres" },
         { "prompt": "How many teeth does a bottlenose dolphin have?", "answer": 100, "unit": "teeth" },
-        { "prompt": "In what year did the Netherlands ban smoking in bars and restaurants?", "answer": 2008, "unit": "" },
+        { "prompt": "In what year did the Netherlands ban smoking in bars and restaurants?", "answer": 2008 },
         { "prompt": "How many kilometres of dyke does the Netherlands maintain?", "answer": 17500, "unit": "kilometres" },
         { "prompt": "How many muscles does it take to make a single step?", "answer": 200, "unit": "muscles" },
         { "prompt": "How many years does an oak need before it grows its first acorns?", "answer": 40, "unit": "years" },
@@ -88,7 +88,17 @@
         "The Trojan Horse",
         "Bagpipes",
         "Frida Kahlo",
-        "Inflation"
+        "Inflation",
+        "Accordionist",
+        "Pope",
+        "Deodorant",
+        "Jar of peanut butter",
+        "Finish line",
+        "Zeus",
+        "Hedge trimmer",
+        "Maori",
+        "Lifeboat",
+        "Lily"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which country has more time zones than any other?", "answers": [{ "text": "France" }] },
         { "prompt": "Which Italian astronomer was the first to see the moons of Jupiter?", "answers": [{ "text": "Galileo Galilei", "aliases": ["Galileo"] }] },
         { "prompt": "Which is the longest river in Asia?", "answers": [{ "text": "The Yangtze", "aliases": ["Yangtze"] }] },
-        { "prompt": "Which country was formerly known as Persia?", "answers": [{ "text": "Iran" }] }
+        { "prompt": "Which country was formerly known as Persia?", "answers": [{ "text": "Iran" }] },
+        { "prompt": "Which volcano buried the city of Pompeii in the year 79?", "answers": [{ "text": "Vesuvius", "aliases": ["Mount Vesuvius"] }] },
+        { "prompt": "What is the name of Iceland's parliament, one of the oldest in the world?", "answers": [{ "text": "The Althing", "aliases": ["Althing", "Althingi"] }] }
       ]
     }
   ]

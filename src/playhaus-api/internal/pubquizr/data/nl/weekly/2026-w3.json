@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel miljoen kilometer staat de aarde van de zon?", "answer": 150, "unit": "miljoen kilometer" },
         { "prompt": "Hoeveel spieren heb je nodig om te glimlachen?", "answer": 17, "unit": "spieren" },
-        { "prompt": "In welk jaar won Nederland het Eurovisie Songfestival met Duncan Laurence?", "answer": 2019, "unit": "" },
+        { "prompt": "In welk jaar won Nederland het Eurovisie Songfestival met Duncan Laurence?", "answer": 2019 },
         { "prompt": "Hoeveel lidstaten telt de Europese Unie?", "answer": 27, "unit": "lidstaten" },
         { "prompt": "Hoeveel kilometer lang is de Donau?", "answer": 2850, "unit": "kilometer" },
         { "prompt": "Hoeveel calorieen zitten er ongeveer in een banaan?", "answer": 90, "unit": "calorieen" },
@@ -88,7 +88,17 @@
         "Democratie",
         "Onderzeeboot",
         "Windhoos",
-        "De Berlijnse Muur"
+        "De Berlijnse Muur",
+        "Hovenier",
+        "Winnie de Poeh",
+        "Attila de Hun",
+        "AC/DC",
+        "Paella",
+        "Tachtigjarige Oorlog",
+        "Wissel",
+        "Maiskolf",
+        "Videorecorder",
+        "Anaconda"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welke Franse schrijver schreef Op zoek naar de verloren tijd?", "answers": [{ "text": "Marcel Proust", "aliases": ["Proust"] }] },
         { "prompt": "Welk metaal is vloeibaar bij kamertemperatuur?", "answers": [{ "text": "Kwik" }] },
         { "prompt": "In welk jaar werd de eerste geslaagde harttransplantatie uitgevoerd?", "answers": [{ "text": "1967" }] },
-        { "prompt": "Welk land heeft meer piramides dan welk ander land ook?", "answers": [{ "text": "Soedan" }] }
+        { "prompt": "Welk land heeft meer piramides dan welk ander land ook?", "answers": [{ "text": "Soedan" }] },
+        { "prompt": "Welke Britse band bracht in 1997 het album OK Computer uit?", "answers": [{ "text": "Radiohead" }] },
+        { "prompt": "Welke Noorse ontdekkingsreiziger stak in 1947 met het vlot Kon-Tiki de Stille Oceaan over?", "answers": [{ "text": "Thor Heyerdahl", "aliases": ["Heyerdahl"] }] }
       ]
     }
   ]

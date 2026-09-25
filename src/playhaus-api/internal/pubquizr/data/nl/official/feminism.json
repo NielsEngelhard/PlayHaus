@@ -89,7 +89,17 @@
         "Schoudervullingen",
         "Universiteitsdiploma",
         "Zitplaats in de bus",
-        "Missverkiezing"
+        "Missverkiezing",
+        "Vrouwenkiesrecht",
+        "Dolle Mina",
+        "Baas in eigen buik",
+        "Glazen plafond",
+        "Gelijk loon",
+        "Vrouwendag",
+        "Emancipatie",
+        "Vakbond",
+        "Vrouwenmars",
+        "Rosie the Riveter"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Wie was de eerste vrouw die de Fields-medaille voor wiskunde kreeg?", "answers": [{ "text": "Maryam Mirzakhani", "aliases": ["Mirzakhani"] }] },
         { "prompt": "Welk land kreeg na de verkiezingen van 2008 als eerste ter wereld een parlement met een vrouwelijke meerderheid?", "answers": [{ "text": "Rwanda" }] },
         { "prompt": "Welke Amerikaanse schreef in 1892 het korte verhaal Het gele behang?", "answers": [{ "text": "Charlotte Perkins Gilman", "aliases": ["Perkins Gilman", "Gilman"] }] },
-        { "prompt": "Wie was de eerste vrouwelijke minister in een Nederlands kabinet?", "answers": [{ "text": "Marga Klompe", "aliases": ["Klompe"] }] }
+        { "prompt": "Wie was de eerste vrouwelijke minister in een Nederlands kabinet?", "answers": [{ "text": "Marga Klompe", "aliases": ["Klompe"] }] },
+        { "prompt": "Welke Nederlandse arts was de eerste vrouw die in Nederland aan een universiteit studeerde?", "answers": [{ "text": "Aletta Jacobs", "aliases": ["Jacobs"] }] },
+        { "prompt": "Welke Franse filosofe schreef in 1949 Le deuxieme sexe?", "answers": [{ "text": "Simone de Beauvoir", "aliases": ["De Beauvoir"] }] }
       ]
     }
   ]

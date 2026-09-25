@@ -89,7 +89,17 @@
         "Strandstoel",
         "Picknickmand",
         "Tolpoort",
-        "Cancan"
+        "Cancan",
+        "Stokbrood onder de arm",
+        "Wijnproeverij",
+        "Kaasplateau",
+        "Jeu de boules-baan",
+        "Tour de France-renner",
+        "Marianne",
+        "Accordeonmuziek",
+        "Parfumerie",
+        "Pannenkoekenkraam",
+        "Franse kus"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke Franse romanschrijver publiceerde de open brief J'accuse ter verdediging van Alfred Dreyfus?", "answers": [{ "text": "Emile Zola", "aliases": ["Zola"] }] },
         { "prompt": "Welke grot in de Dordogne, ontdekt in 1940, is beroemd om zijn prehistorische schilderingen?", "answers": [{ "text": "Lascaux" }] },
         { "prompt": "Welke Franse beeldhouwer maakte De Denker?", "answers": [{ "text": "Auguste Rodin", "aliases": ["Rodin"] }] },
-        { "prompt": "Welke Franse koning werd in 1429 met hulp van Jeanne d'Arc gekroond in Reims?", "answers": [{ "text": "Karel VII", "aliases": ["Charles VII", "Karel de Zevende"] }] }
+        { "prompt": "Welke Franse koning werd in 1429 met hulp van Jeanne d'Arc gekroond in Reims?", "answers": [{ "text": "Karel VII", "aliases": ["Charles VII", "Karel de Zevende"] }] },
+        { "prompt": "Welke Franse rivier is de langste van het land?", "answers": [{ "text": "De Loire", "aliases": ["Loire"] }] },
+        { "prompt": "Welke Franse generaal leidde vanuit Londen het Vrije Frankrijk in de Tweede Wereldoorlog?", "answers": [{ "text": "Charles de Gaulle", "aliases": ["De Gaulle"] }] }
       ]
     }
   ]

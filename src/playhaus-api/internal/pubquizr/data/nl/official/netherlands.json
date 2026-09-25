@@ -51,9 +51,9 @@
         { "prompt": "Hoeveel meter onder zeeniveau ligt het laagste punt van Nederland?", "answer": 7, "unit": "meter" },
         { "prompt": "Uit hoeveel provincies bestaat Nederland?", "answer": 12, "unit": "provincies" },
         { "prompt": "Hoeveel kilometer lang is de Nederlandse kustlijn ongeveer?", "answer": 450, "unit": "kilometer" },
-        { "prompt": "In welk jaar werd de Oosterscheldekering, onderdeel van de Deltawerken, voltooid?", "answer": 1986, "unit": "" },
+        { "prompt": "In welk jaar werd de Oosterscheldekering, onderdeel van de Deltawerken, voltooid?", "answer": 1986 },
         { "prompt": "Hoeveel miljoen inwoners heeft Nederland ongeveer?", "answer": 18, "unit": "miljoen inwoners" },
-        { "prompt": "In welk jaar schilderde Rembrandt De Nachtwacht?", "answer": 1642, "unit": "" },
+        { "prompt": "In welk jaar schilderde Rembrandt De Nachtwacht?", "answer": 1642 },
         { "prompt": "Hoeveel duizend kilometer aan fietspaden heeft Nederland ongeveer?", "answer": 37, "unit": "duizend kilometer" }
       ]
     },
@@ -89,7 +89,17 @@
         "Efteling",
         "Waddenzee",
         "Oliebol",
-        "De Gouden Eeuw"
+        "De Gouden Eeuw",
+        "Bitterbal",
+        "Hollandse nieuwe",
+        "Delfts blauw",
+        "Kaaskop",
+        "Wadlopen door slik",
+        "Fietsenrek",
+        "Zeeuwse klederdracht",
+        "Rijtjeshuis",
+        "Koningshuis",
+        "Oranjegekte"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "In welk jaar werd de Republiek der Zeven Verenigde Nederlanden erkend door Spanje?", "answers": [{ "text": "1648" }] },
         { "prompt": "Welke Nederlandse dichter schreef het toneelstuk Gijsbrecht van Aemstel?", "answers": [{ "text": "Joost van den Vondel", "aliases": ["Vondel"] }] },
         { "prompt": "Welke in Amsterdam geboren filosoof schreef de Ethica en werd uit zijn Joodse gemeenschap verbannen?", "answers": [{ "text": "Baruch Spinoza", "aliases": ["Spinoza"] }] },
-        { "prompt": "Welk Nederlands eiland in de Caribische Zee is het grootste van het Koninkrijk?", "answers": [{ "text": "Curacao" }] }
+        { "prompt": "Welk Nederlands eiland in de Caribische Zee is het grootste van het Koninkrijk?", "answers": [{ "text": "Curacao" }] },
+        { "prompt": "In welke stad werd in 1579 de Unie gesloten die als begin van de Republiek geldt?", "answers": [{ "text": "Utrecht" }] },
+        { "prompt": "Hoe heet de ring van forten en inundatievelden rond Amsterdam die werelderfgoed is?", "answers": [{ "text": "De Stelling van Amsterdam", "aliases": ["Stelling van Amsterdam"] }] }
       ]
     }
   ]

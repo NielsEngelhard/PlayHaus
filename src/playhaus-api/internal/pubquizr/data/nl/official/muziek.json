@@ -48,11 +48,11 @@
       "questions": [
         { "prompt": "Hoeveel seconden duurt Bohemian Rhapsody van Queen?", "answer": 355, "unit": "seconden", "explanation": "Vijf minuten en 55 seconden." },
         { "prompt": "Hoeveel bezoekers trekt Lowlands ongeveer per editie?", "answer": 55000, "unit": "bezoekers" },
-        { "prompt": "In welk jaar werd Queen opgericht?", "answer": 1970, "unit": "" },
+        { "prompt": "In welk jaar werd Queen opgericht?", "answer": 1970 },
         { "prompt": "Hoeveel miljoen exemplaren van Thriller van Michael Jackson zijn er wereldwijd ongeveer verkocht?", "answer": 70, "unit": "miljoen exemplaren" },
-        { "prompt": "In welk jaar vond het eerste Eurovisie Songfestival plaats?", "answer": 1956, "unit": "" },
+        { "prompt": "In welk jaar vond het eerste Eurovisie Songfestival plaats?", "answer": 1956 },
         { "prompt": "Hoeveel minuten duurt Hey Jude van The Beatles?", "answer": 7, "unit": "minuten" },
-        { "prompt": "In welk jaar bracht ABBA Dancing Queen uit?", "answer": 1976, "unit": "" },
+        { "prompt": "In welk jaar bracht ABBA Dancing Queen uit?", "answer": 1976 },
         { "prompt": "Hoeveel edities van Lowlands hebben er ongeveer plaatsgevonden sinds de start in 1993?", "answer": 30, "unit": "edities" }
       ]
     },
@@ -88,7 +88,17 @@
         "Doe Maar",
         "Gregoriaans",
         "Zwarte Cross",
-        "Roadie"
+        "Roadie",
+        "Hitlijst",
+        "Platenzaak",
+        "Songtekst",
+        "Muziekstandaard",
+        "Zangles",
+        "Popster",
+        "Oortjes",
+        "Luchtdrummen",
+        "Gouden plaat",
+        "Radiodj"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welke stad organiseert jaarlijks het Sziget-festival?", "answers": [{ "text": "Boedapest" }] },
         { "prompt": "Uit welk land komt de band AC/DC?", "answers": [{ "text": "Australie", "aliases": ["Australia"] }] },
         { "prompt": "Welke Nederlandse band scoorde in 1973 een wereldhit met Hocus Pocus?", "answers": [{ "text": "Focus" }] },
-        { "prompt": "Wie schreef De Vier Jaargetijden?", "answers": [{ "text": "Vivaldi", "aliases": ["Antonio Vivaldi"] }] }
+        { "prompt": "Wie schreef De Vier Jaargetijden?", "answers": [{ "text": "Vivaldi", "aliases": ["Antonio Vivaldi"] }] },
+        { "prompt": "Welke Britse zanger bracht in 1972 het album Ziggy Stardust uit?", "answers": [{ "text": "David Bowie", "aliases": ["Bowie"] }] },
+        { "prompt": "Welke Duitse componist schreef de Negende symfonie met Ode an die Freude?", "answers": [{ "text": "Ludwig van Beethoven", "aliases": ["Beethoven"] }] }
       ]
     }
   ]

@@ -89,7 +89,17 @@
         "Pootafdruk",
         "Hondenpenning",
         "Beagle",
-        "Bulldog"
+        "Bulldog",
+        "Kwispelen",
+        "Pootjes geven",
+        "Labrador",
+        "Chihuahua",
+        "Dalmatier",
+        "Tekkel",
+        "Speurhond",
+        "Hondenfluitje",
+        "Hondenmand",
+        "Politiehond"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welk haarloos Mexicaans ras is vernoemd naar een Azteekse god?", "answers": [{ "text": "De xoloitzcuintli", "aliases": ["Xoloitzcuintli", "Xolo", "Mexicaanse naakthond"] }] },
         { "prompt": "Welke grote witte Hongaarse kuddebewaker heeft een lange vacht in koorden, als een dweil?", "answers": [{ "text": "De komondor", "aliases": ["Komondor"] }] },
         { "prompt": "Hoe heet in de Odyssee van Homerus de oude hond die Odysseus bij thuiskomst herkent?", "answers": [{ "text": "Argos", "aliases": ["Argus"] }] },
-        { "prompt": "Hoe heette de eerste gekloonde hond, in 2005 geboren in Zuid-Korea?", "answers": [{ "text": "Snuppy" }] }
+        { "prompt": "Hoe heette de eerste gekloonde hond, in 2005 geboren in Zuid-Korea?", "answers": [{ "text": "Snuppy" }] },
+        { "prompt": "Hoe heet de hond van Kuifje in het Nederlands?", "answers": [{ "text": "Bobbie" }] },
+        { "prompt": "Welk Japans hondje wachtte jarenlang bij het station Shibuya op zijn overleden baasje?", "answers": [{ "text": "Hachiko", "aliases": ["Hachi"] }] }
       ]
     }
   ]

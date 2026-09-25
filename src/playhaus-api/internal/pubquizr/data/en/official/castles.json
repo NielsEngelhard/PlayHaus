@@ -89,7 +89,17 @@
         "Siege ladder",
         "Crypt",
         "Falcon",
-        "Fireplace"
+        "Fireplace",
+        "Drawbridge",
+        "Portcullis",
+        "Battlements",
+        "Keep",
+        "Lady of the castle",
+        "Great hall",
+        "Haunted castle",
+        "Castle ghost",
+        "Jailer",
+        "Siege"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "In which manor house at Amboise did Leonardo da Vinci spend his last years and die in 1519?", "answers": [{ "text": "Clos Luce", "aliases": ["Le Clos Luce", "Chateau du Clos Luce"] }] },
         { "prompt": "Which fortress in Rome began as the mausoleum of the emperor Hadrian and became a stronghold of the popes?", "answers": [{ "text": "Castel Sant'Angelo", "aliases": ["Sant'Angelo", "Castle of the Holy Angel"] }] },
         { "prompt": "Which brightly coloured romantic palace stands on a hilltop above Sintra in Portugal?", "answers": [{ "text": "The Pena Palace", "aliases": ["Pena Palace", "Pena", "Palacio da Pena"] }] },
-        { "prompt": "Which fortress looking down on Salzburg is one of the largest fully preserved castles in Europe?", "answers": [{ "text": "Hohensalzburg", "aliases": ["Hohensalzburg Fortress", "Festung Hohensalzburg"] }] }
+        { "prompt": "Which fortress looking down on Salzburg is one of the largest fully preserved castles in Europe?", "answers": [{ "text": "Hohensalzburg", "aliases": ["Hohensalzburg Fortress", "Festung Hohensalzburg"] }] },
+        { "prompt": "From which Dutch castle did Hugo Grotius escape in a book chest in 1621?", "answers": [{ "text": "Loevestein Castle", "aliases": ["Loevestein"] }] },
+        { "prompt": "Which castle near Brasov is marketed to tourists as Dracula's castle?", "answers": [{ "text": "Bran Castle", "aliases": ["Bran"] }] }
       ]
     }
   ]

@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter hoog is het Christusbeeld in Rio?", "answer": 30, "unit": "meter" },
         { "prompt": "Hoeveel spelers heeft een honkbalteam in het veld?", "answer": 9, "unit": "spelers" },
-        { "prompt": "In welk jaar verscheen de eerste versie van Windows?", "answer": 1985, "unit": "" },
+        { "prompt": "In welk jaar verscheen de eerste versie van Windows?", "answer": 1985 },
         { "prompt": "Hoeveel aardse jaren doet Neptunus over een rondje om de zon?", "answer": 165, "unit": "jaar" },
         { "prompt": "Hoeveel smaakpapillen heeft de menselijke tong ongeveer?", "answer": 8000, "unit": "smaakpapillen" },
         { "prompt": "Hoeveel eieren legt een leghen ongeveer per jaar?", "answer": 300, "unit": "eieren" },
@@ -88,7 +88,17 @@
         "Circus",
         "De Berlijnse Muur",
         "Deltawerken",
-        "Zwaartekracht"
+        "Zwaartekracht",
+        "Hoefsmid",
+        "Amazonerivier",
+        "Aquarium",
+        "Regenbui",
+        "Belastingaangifte",
+        "Studentenhuis",
+        "Bergbeklimmen",
+        "Mus",
+        "Mug",
+        "Canadese esdoorn"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is de hoogste berg van Australie?", "answers": [{ "text": "Mount Kosciuszko", "aliases": ["Kosciuszko"] }] },
         { "prompt": "Welke Duitse filosoof schreef Aldus sprak Zarathoestra?", "answers": [{ "text": "Friedrich Nietzsche", "aliases": ["Nietzsche"] }] },
         { "prompt": "Welk metaal is bij kamertemperatuur vloeibaar?", "answers": [{ "text": "Kwik", "aliases": ["Hg", "Mercurius"] }] },
-        { "prompt": "Welk meer is het diepste ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] }
+        { "prompt": "Welk meer is het diepste ter wereld?", "answers": [{ "text": "Het Baikalmeer", "aliases": ["Baikalmeer", "Baikal"] }] },
+        { "prompt": "Welke Engelse zeevaarder zeilde tussen 1577 en 1580 om de wereld met de Golden Hind?", "answers": [{ "text": "Francis Drake", "aliases": ["Drake"] }] },
+        { "prompt": "Welke Franse componist schreef Le carnaval des animaux?", "answers": [{ "text": "Camille Saint-Saens", "aliases": ["Saint-Saens"] }] }
       ]
     }
   ]

@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w42",
+  "title": "Weekly quiz 42 2026",
+  "description": "The weekly quiz of Wednesday 14 October 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the capital of the American state of California?", "category": "Geography", "answers": [{ "text": "Sacramento" }] },
+        { "prompt": "What is the layer at the back of the eye that turns light into signals for the brain called?", "category": "Science", "answers": [{ "text": "The retina", "aliases": ["Retina"] }] },
+        { "prompt": "What was the name of Napoleon's first wife, who became empress of France?", "category": "History", "answers": [{ "text": "Josephine", "aliases": ["Josephine de Beauharnais"] }] },
+        { "prompt": "Which Dutch swimmer won three gold medals at the 2000 Olympics?", "category": "Sport", "answers": [{ "text": "Inge de Bruijn", "aliases": ["De Bruijn"] }] },
+        { "prompt": "Which toy character shouts: to infinity and beyond?", "category": "Film", "answers": [{ "text": "Buzz Lightyear", "aliases": ["Buzz"] }] },
+        { "prompt": "Which Swedish DJ had a worldwide hit with Levels in 2011?", "category": "Music", "answers": [{ "text": "Avicii", "aliases": ["Tim Bergling"] }] },
+        { "prompt": "What is the national airline of the Netherlands called?", "category": "The Netherlands", "answers": [{ "text": "KLM", "aliases": ["Royal Dutch Airlines"] }] },
+        { "prompt": "Which Mexican muralist was married to Frida Kahlo?", "category": "Art", "answers": [{ "text": "Diego Rivera", "aliases": ["Rivera"] }] },
+        { "prompt": "What is a figure of speech that greatly exaggerates, such as: I have told you a thousand times, called?", "category": "Language", "answers": [{ "text": "A hyperbole", "aliases": ["Hyperbole", "Exaggeration"] }] },
+        { "prompt": "Which Spanish soup is eaten cold and made from tomato and cucumber?", "category": "Food", "answers": [{ "text": "Gazpacho" }] },
+        { "prompt": "Who founded Microsoft together with Paul Allen?", "category": "Technology", "answers": [{ "text": "Bill Gates", "aliases": ["Gates"] }] },
+        { "prompt": "The leaves of which tree does the silkworm feed on?", "category": "Nature", "answers": [{ "text": "The mulberry tree", "aliases": ["Mulberry", "White mulberry"] }] },
+        { "prompt": "Which mountain range runs right across Morocco?", "category": "Geography", "answers": [{ "text": "The Atlas Mountains", "aliases": ["Atlas", "Atlas Mountains"] }] },
+        { "prompt": "Which British nurse was nicknamed The Lady with the Lamp in the Crimean War?", "category": "History", "answers": [{ "text": "Florence Nightingale", "aliases": ["Nightingale"] }] },
+        { "prompt": "What are the green particles in a plant cell where photosynthesis takes place called?", "category": "Science", "answers": [{ "text": "Chloroplasts", "aliases": ["Chloroplast"] }] },
+        { "prompt": "Which British band of the Gallagher brothers had a hit with Wonderwall?", "category": "Music", "answers": [{ "text": "Oasis" }] },
+        { "prompt": "Which Steven Spielberg film is about a great white shark off Amity Island?", "category": "Film", "answers": [{ "text": "Jaws" }] },
+        { "prompt": "Which fruit is cider made from?", "category": "Food", "answers": [{ "text": "The apple", "aliases": ["Apple", "Apples"] }] },
+        { "prompt": "Which South Korean company makes the Galaxy phones?", "category": "Technology", "answers": [{ "text": "Samsung" }] },
+        { "prompt": "What is a figure of speech without the word like, such as: he is a lion, called?", "category": "Language", "answers": [{ "text": "A metaphor", "aliases": ["Metaphor"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "What colour is a giraffe's tongue?", "options": [{ "text": "Bluish black", "correct": true }, { "text": "Pink" }, { "text": "Red" }, { "text": "Yellow" }] },
+        { "prompt": "Which of these birds cannot fly?", "options": [{ "text": "The emu", "correct": true }, { "text": "The albatross" }, { "text": "The condor" }, { "text": "The pelican" }] },
+        { "prompt": "Which Dutch writer wrote The Evenings?", "options": [{ "text": "Gerard Reve", "correct": true }, { "text": "Willem Frederik Hermans" }, { "text": "Harry Mulisch" }, { "text": "Jan Wolkers" }] },
+        { "prompt": "Which American state is the largest?", "options": [{ "text": "Alaska", "correct": true }, { "text": "Texas" }, { "text": "California" }, { "text": "Montana" }] },
+        { "prompt": "Which blood cells help to close a wound by making the blood clot?", "options": [{ "text": "The platelets", "correct": true }, { "text": "The red blood cells" }, { "text": "The white blood cells" }, { "text": "The stem cells" }] },
+        { "prompt": "Which war lasted from 1618 to 1648?", "options": [{ "text": "The Thirty Years' War", "correct": true }, { "text": "The Eighty Years' War" }, { "text": "The Hundred Years' War" }, { "text": "The Seven Years' War" }] },
+        { "prompt": "Which of these countries does not have a king or queen as head of state?", "options": [{ "text": "Portugal", "correct": true }, { "text": "Norway" }, { "text": "Belgium" }, { "text": "Spain" }] },
+        { "prompt": "Which cheese comes from Greece?", "options": [{ "text": "Feta", "correct": true }, { "text": "Gouda" }, { "text": "Brie" }, { "text": "Manchego" }] },
+        { "prompt": "What is the highest mountain in the Kingdom of the Netherlands?", "options": [{ "text": "Mount Scenery", "correct": true }, { "text": "The Vaalserberg" }, { "text": "The Brandaris" }, { "text": "The Christoffelberg" }] },
+        { "prompt": "Which chess piece is the only one that can jump over other pieces?", "options": [{ "text": "The knight", "correct": true }, { "text": "The bishop" }, { "text": "The rook" }, { "text": "The queen" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many metres tall is the Martini Tower in Groningen?", "answer": 97, "unit": "metres" },
+        { "prompt": "How many million litres of water does an Olympic swimming pool hold?", "answer": 2.5, "unit": "million litres" },
+        { "prompt": "How many times a minute can a hummingbird's heart beat?", "answer": 1200, "unit": "beats" },
+        { "prompt": "How many hours does a day on Jupiter last, rounded?", "answer": 10, "unit": "hours" },
+        { "prompt": "How many provinces does Canada have?", "answer": 10, "unit": "provinces" },
+        { "prompt": "How many kilometres long is the Zeeland Bridge?", "answer": 5, "unit": "kilometres" },
+        { "prompt": "How many metres long was the Titanic?", "answer": 269, "unit": "metres" },
+        { "prompt": "How many elements are there in the periodic table?", "answer": 118, "unit": "elements" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Battle of Waterloo",
+        "Louis Pasteur",
+        "Wasp",
+        "Banknote",
+        "Catamaran",
+        "Smartwatch",
+        "Christmas carol",
+        "Quizmaster",
+        "Tolkien",
+        "Thesis",
+        "Nils Holgersson",
+        "Hyena",
+        "Power bank",
+        "Dodo",
+        "Thaw",
+        "Crown princess",
+        "Runes",
+        "Advent calendar",
+        "Cello",
+        "Coins",
+        "Clownfish",
+        "Singer",
+        "Cash machine",
+        "Charles Dickens",
+        "Fried egg",
+        "Unicycle",
+        "Dutch East India Company",
+        "Little Red Riding Hood",
+        "Bubble bath",
+        "Heartbeat",
+        "Satay",
+        "Toastie",
+        "Archery",
+        "Stoppage time",
+        "Carnival hit",
+        "Led Zeppelin",
+        "Bobsleigh",
+        "Afternoon nap",
+        "Macaw",
+        "Jenga"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Russia?", "answers": [{ "text": "Moscow", "aliases": ["The capital Moscow"] }, { "text": "The Kremlin", "aliases": ["Kremlin", "Red Square"] }, { "text": "Largest country in the world", "aliases": ["Huge", "Siberia"] }, { "text": "Putin", "aliases": ["Vladimir Putin"] }] },
+        { "prompt": "What do you know about Mozart?", "answers": [{ "text": "Austria", "aliases": ["Salzburg", "Vienna"] }, { "text": "Child prodigy", "aliases": ["Started young", "Composed as a child"] }, { "text": "The Magic Flute", "aliases": ["Die Zauberflote", "Requiem"] }, { "text": "Classical music", "aliases": ["Composer", "Symphonies"] }] },
+        { "prompt": "What do you know about elephants?", "answers": [{ "text": "Trunk", "aliases": ["Long nose"] }, { "text": "Tusks", "aliases": ["Ivory"] }, { "text": "Largest land animal", "aliases": ["Big", "Heavy"] }, { "text": "Africa and Asia", "aliases": ["Africa", "India"] }] },
+        { "prompt": "What do you know about Brazil?", "answers": [{ "text": "Carnival", "aliases": ["Samba"] }, { "text": "Football", "aliases": ["Pele", "Neymar"] }, { "text": "The Amazon", "aliases": ["Rainforest", "Amazon"] }, { "text": "Rio de Janeiro", "aliases": ["Rio", "Christ the Redeemer"] }] },
+        { "prompt": "What do you know about Halloween?", "answers": [{ "text": "Pumpkins", "aliases": ["Pumpkin", "Jack-o'-lantern"] }, { "text": "Dressing up", "aliases": ["Ghosts", "Witches", "Costumes"] }, { "text": "Trick or treat", "aliases": ["Sweets", "Candy"] }, { "text": "End of October", "aliases": ["31 October", "October"] }] },
+        { "prompt": "What do you know about the Dutch House of Representatives?", "answers": [{ "text": "The Hague", "aliases": ["Binnenhof"] }, { "text": "A hundred and fifty seats", "aliases": ["150", "150 seats"] }, { "text": "Elections", "aliases": ["Voting"] }, { "text": "Laws", "aliases": ["Debates", "Politics", "Parties"] }] },
+        { "prompt": "What do you know about Charlie Chaplin?", "answers": [{ "text": "Silent films", "aliases": ["Black and white", "Silent movie"] }, { "text": "Bowler hat", "aliases": ["Hat"] }, { "text": "Walking cane", "aliases": ["Cane"] }, { "text": "Little moustache", "aliases": ["Moustache"] }] },
+        { "prompt": "What do you know about the Nile?", "answers": [{ "text": "Egypt", "aliases": ["Cairo"] }, { "text": "Longest river", "aliases": ["Long", "Longest river in the world"] }, { "text": "Crocodiles", "aliases": ["Nile crocodile"] }, { "text": "Pyramids", "aliases": ["Pharaohs", "Ancient Egyptians"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What is the name of the tall dog who is friends with Mickey Mouse?", "difficulty": "easy", "answers": [{ "text": "Goofy" }] },
+        { "prompt": "What colour does blue litmus paper turn in an acid?", "difficulty": "easy", "answers": [{ "text": "Red" }] },
+        { "prompt": "What is the capital of Germany?", "difficulty": "easy", "answers": [{ "text": "Berlin" }] },
+        { "prompt": "What is a young cow called?", "difficulty": "easy", "answers": [{ "text": "A calf", "aliases": ["Calf"] }] },
+        { "prompt": "Which instrument does Sherlock Holmes play?", "difficulty": "easy", "answers": [{ "text": "The violin", "aliases": ["Violin"] }] },
+        { "prompt": "Which Indonesian volcano exploded in 1883 with one of the loudest bangs ever heard?", "difficulty": "hard", "answers": [{ "text": "Krakatoa", "aliases": ["Krakatau"] }] },
+        { "prompt": "Which American writer wrote Of Mice and Men?", "difficulty": "hard", "answers": [{ "text": "John Steinbeck", "aliases": ["Steinbeck"] }] },
+        { "prompt": "Which Dutch computer scientist devised the famous shortest path algorithm?", "difficulty": "hard", "answers": [{ "text": "Edsger Dijkstra", "aliases": ["Dijkstra"] }] },
+        { "prompt": "What is the capital of Laos?", "difficulty": "hard", "answers": [{ "text": "Vientiane" }] },
+        { "prompt": "Which Greek goddess of wisdom gave her name to the capital of Greece?", "difficulty": "hard", "answers": [{ "text": "Athena", "aliases": ["Pallas Athena"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Which animal lives in a sett under the ground?", "answers": [{ "text": "The badger", "aliases": ["Badger"] }] },
+        { "prompt": "Which city was the capital of Japan before Tokyo?", "answers": [{ "text": "Kyoto" }] },
+        { "prompt": "Which composer, born near Warsaw, wrote the Minute Waltz?", "answers": [{ "text": "Frederic Chopin", "aliases": ["Chopin"] }] },
+        { "prompt": "Which fairytale girl let her long hair down from a tower?", "answers": [{ "text": "Rapunzel" }] },
+        { "prompt": "Which sea lies between Great Britain and Ireland?", "answers": [{ "text": "The Irish Sea", "aliases": ["Irish Sea"] }] },
+        { "prompt": "Which American space probe is the only one to have flown past Uranus and Neptune?", "answers": [{ "text": "Voyager 2" }] },
+        { "prompt": "Which fruit with a hairy brown shell grows on a palm tree?", "answers": [{ "text": "The coconut", "aliases": ["Coconut"] }] },
+        { "prompt": "Which Scottish explorer was found in Africa with the words Dr Livingstone, I presume?", "answers": [{ "text": "David Livingstone", "aliases": ["Livingstone"] }] },
+        { "prompt": "Which Austrian physicist gave his name to the exclusion principle for electrons?", "answers": [{ "text": "Wolfgang Pauli", "aliases": ["Pauli"] }] }
+      ]
+    }
+  ]
+}

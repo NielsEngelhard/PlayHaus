@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter hoog is de hoogste boom ter wereld?", "answer": 116, "unit": "meter" },
         { "prompt": "Hoeveel uur per dag slaapt een kat?", "answer": 15, "unit": "uur" },
-        { "prompt": "In welk jaar vond het eerste Pinkpopfestival plaats?", "answer": 1970, "unit": "" },
+        { "prompt": "In welk jaar vond het eerste Pinkpopfestival plaats?", "answer": 1970 },
         { "prompt": "Hoeveel kilometer gracht loopt er door Amsterdam?", "answer": 100, "unit": "kilometer" },
         { "prompt": "Hoeveel botten heeft een olifant?", "answer": 350, "unit": "botten" },
         { "prompt": "Hoeveel piepkleine tandjes heeft een tuinslak op zijn tong?", "answer": 14000, "unit": "tandjes" },
@@ -88,7 +88,17 @@
         "Veilingmeester",
         "Noorderlicht",
         "Samoerai",
-        "Stamppot"
+        "Stamppot",
+        "Stilleven",
+        "Karikatuur",
+        "Grap",
+        "Pirates of the Caribbean",
+        "Vrijgezellenfeest",
+        "Macaroni",
+        "Maaidorser",
+        "Gewei",
+        "Paasei",
+        "Knex"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is de hoofdstad van Panama?", "answers": [{ "text": "Panama-Stad", "aliases": ["Panama City"] }] },
         { "prompt": "In welk jaar speelde Nederland voor het eerst op een WK?", "answers": [{ "text": "1934" }] },
         { "prompt": "Welke Duits-Britse astronoom ontdekte de planeet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] },
-        { "prompt": "Wat is het langste grottenstelsel ter wereld?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoetgrot"] }] }
+        { "prompt": "Wat is het langste grottenstelsel ter wereld?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoetgrot"] }] },
+        { "prompt": "Wat is de hoofdstad van Kenia?", "answers": [{ "text": "Nairobi" }] },
+        { "prompt": "Wat is de hoofdstad van Georgie?", "answers": [{ "text": "Tbilisi" }] }
       ]
     }
   ]

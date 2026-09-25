@@ -88,7 +88,17 @@
         "Broodrooster",
         "Meeuw",
         "Bergpas",
-        "De Sfinx"
+        "De Sfinx",
+        "Bibliotheekpas",
+        "Jane Goodall",
+        "Yellowstone",
+        "Buikspieren",
+        "Knoflookpers",
+        "Cabaretier",
+        "Salaris",
+        "Bastille",
+        "Narcis",
+        "Walrus"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welke schrijver bedacht Pippi Langkous?", "answers": [{ "text": "Astrid Lindgren", "aliases": ["Lindgren"] }] },
         { "prompt": "Uit welke drie kleinere deeltjes bestaat een proton?", "answers": [{ "text": "Quarks", "aliases": ["Drie quarks"] }] },
         { "prompt": "Hoe heet de schaal waarop nul het absolute nulpunt is?", "answers": [{ "text": "De kelvinschaal", "aliases": ["Kelvin"] }] },
-        { "prompt": "Welk orgaan slaat gal op?", "answers": [{ "text": "De galblaas", "aliases": ["Galblaas"] }] }
+        { "prompt": "Welk orgaan slaat gal op?", "answers": [{ "text": "De galblaas", "aliases": ["Galblaas"] }] },
+        { "prompt": "Hoe heet het klepje dat voorkomt dat eten in je luchtpijp komt?", "answers": [{ "text": "Het strotklepje", "aliases": ["Strotklepje", "Epiglottis"] }] },
+        { "prompt": "Wat is de hoofdstad van Oezbekistan?", "answers": [{ "text": "Tasjkent", "aliases": ["Tashkent"] }] }
       ]
     }
   ]

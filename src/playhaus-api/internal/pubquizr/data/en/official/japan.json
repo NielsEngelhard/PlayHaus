@@ -89,7 +89,17 @@
         "Calligraphy brush",
         "Emoji",
         "Fish market",
-        "Wooden sandals"
+        "Wooden sandals",
+        "Karaoke box",
+        "Manga",
+        "Anime",
+        "Cherry blossom viewing",
+        "Pachinko",
+        "Katana",
+        "Tea ceremony",
+        "Capsule hotel",
+        "Bento box",
+        "View of Mount Fuji"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What is the Japanese name for the policy of national isolation that lasted from the 1630s until 1853?", "answers": [{ "text": "Sakoku" }] },
         { "prompt": "Which city was the capital of Japan from 710 until 784?", "answers": [{ "text": "Nara" }] },
         { "prompt": "Which Japanese physicist became his country's first Nobel laureate, in 1949?", "answers": [{ "text": "Hideki Yukawa", "aliases": ["Yukawa"] }] },
-        { "prompt": "Which sun goddess of the Shinto religion is the imperial family said to descend from?", "answers": [{ "text": "Amaterasu" }] }
+        { "prompt": "Which sun goddess of the Shinto religion is the imperial family said to descend from?", "answers": [{ "text": "Amaterasu" }] },
+        { "prompt": "What is the old name of Tokyo?", "answers": [{ "text": "Edo" }] },
+        { "prompt": "Which Japanese emperor reigned during the Second World War?", "answers": [{ "text": "Hirohito", "aliases": ["Showa"] }] }
       ]
     }
   ]

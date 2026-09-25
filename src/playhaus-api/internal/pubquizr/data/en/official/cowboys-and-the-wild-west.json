@@ -89,7 +89,17 @@
         "Tipi",
         "Feather headdress",
         "Bounty hunter",
-        "Whip"
+        "Whip",
+        "Saloon",
+        "Sheriff",
+        "Gunslinger",
+        "Duel at dawn",
+        "Stagecoach",
+        "Pony Express",
+        "Gold prospector",
+        "Cattle drive",
+        "Campfire beans",
+        "Harmonica player"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What was Calamity Jane's real name?", "answers": [{ "text": "Martha Jane Cannary", "aliases": ["Martha Jane Canary", "Martha Cannary", "Martha Canary"] }] },
         { "prompt": "Who shot Wild Bill Hickok in the back in a Deadwood saloon in 1876?", "answers": [{ "text": "Jack McCall", "aliases": ["McCall"] }] },
         { "prompt": "Which 1903 film, one of the first to tell a story, is regarded as the first western?", "answers": [{ "text": "The Great Train Robbery" }] },
-        { "prompt": "In which valley on the border of Arizona and Utah did John Ford shoot many of his westerns?", "answers": [{ "text": "Monument Valley" }] }
+        { "prompt": "In which valley on the border of Arizona and Utah did John Ford shoot many of his westerns?", "answers": [{ "text": "Monument Valley" }] },
+        { "prompt": "Which 1881 gunfight at a corral in Tombstone became world famous?", "answers": [{ "text": "The Gunfight at the O.K. Corral", "aliases": ["O.K. Corral", "OK Corral"] }] },
+        { "prompt": "Under which name did the gunslinger Henry McCarty become known?", "answers": [{ "text": "Billy the Kid" }] }
       ]
     }
   ]

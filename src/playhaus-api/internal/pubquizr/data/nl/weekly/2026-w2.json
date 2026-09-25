@@ -50,7 +50,7 @@
         { "prompt": "Hoeveel kilometer lang is de Kanaaltunnel?", "answer": 50, "unit": "kilometer" },
         { "prompt": "Hoeveel uur duurt een vlucht van Amsterdam naar New York ongeveer?", "answer": 8, "unit": "uur" },
         { "prompt": "Met hoeveel stukken begint elke speler een partij schaak?", "answer": 16, "unit": "stukken" },
-        { "prompt": "In welk jaar werden de Olympische Spelen in Berlijn gehouden?", "answer": 1936, "unit": "" },
+        { "prompt": "In welk jaar werden de Olympische Spelen in Berlijn gehouden?", "answer": 1936 },
         { "prompt": "Hoeveel kilometer per uur haalt een jachtluipaard in volle sprint?", "answer": 112, "unit": "kilometer per uur" },
         { "prompt": "Hoeveel talen worden er ongeveer in de wereld gesproken?", "answer": 7000, "unit": "talen" },
         { "prompt": "Hoeveel gram weegt een voetbal?", "answer": 430, "unit": "gram" }
@@ -88,7 +88,17 @@
         "Deltawerken",
         "De Chinese Muur",
         "Albert Einstein",
-        "Ruitenwisser"
+        "Ruitenwisser",
+        "Boer zoekt vrouw",
+        "Hostel",
+        "Snorkelmasker",
+        "Koningin Elizabeth",
+        "Achilleshiel",
+        "Parlement",
+        "Vleugel",
+        "Keytar",
+        "Windscherm",
+        "Staatsgreep"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welk metaal is bij kamertemperatuur vloeibaar?", "answers": [{ "text": "Kwik", "aliases": ["kwikzilver"] }] },
         { "prompt": "Wat is de hoogste waterval ter wereld?", "answers": [{ "text": "De Angelwaterval", "aliases": ["Angel Falls", "Salto Angel"] }] },
         { "prompt": "In welk land ligt de oude stad Petra?", "answers": [{ "text": "Jordanie" }] },
-        { "prompt": "Wat is de langste rivier van Europa?", "answers": [{ "text": "De Wolga", "aliases": ["Wolga", "Volga"] }] }
+        { "prompt": "Wat is de langste rivier van Europa?", "answers": [{ "text": "De Wolga", "aliases": ["Wolga", "Volga"] }] },
+        { "prompt": "Welke Griekse held moest twaalf werken verrichten?", "answers": [{ "text": "Heracles", "aliases": ["Hercules", "Herakles"] }] },
+        { "prompt": "Wat is de hoofdstad van Burkina Faso?", "answers": [{ "text": "Ouagadougou" }] }
       ]
     }
   ]

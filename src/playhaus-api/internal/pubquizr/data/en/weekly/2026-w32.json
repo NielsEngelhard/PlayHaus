@@ -47,13 +47,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many metres high is the Dom Tower of Utrecht?", "answer": 112, "unit": "metres", "explanation": "Just over a hundred and ten metres, the tallest church tower in the Netherlands." },
-        { "prompt": "In what year was The Night Watch completed?", "answer": 1642, "unit": "" },
+        { "prompt": "In what year was The Night Watch completed?", "answer": 1642 },
         { "prompt": "How many bells hang in the carillon of the Dom Tower of Utrecht, roughly?", "answer": 50, "unit": "bells" },
-        { "prompt": "In what year did Rembrandt die?", "answer": 1669, "unit": "" },
+        { "prompt": "In what year did Rembrandt die?", "answer": 1669 },
         { "prompt": "How many steps does the Dom Tower have to the top?", "answer": 465, "unit": "steps" },
-        { "prompt": "In what year was Rembrandt born?", "answer": 1606, "unit": "" },
+        { "prompt": "In what year was Rembrandt born?", "answer": 1606 },
         { "prompt": "How many figures, roughly, are depicted in The Night Watch?", "answer": 34, "unit": "figures" },
-        { "prompt": "In what year did construction of the Dom Tower begin?", "answer": 1321, "unit": "" }
+        { "prompt": "In what year did construction of the Dom Tower begin?", "answer": 1321 }
       ]
     },
     {
@@ -88,7 +88,17 @@
         "The Silk Road",
         "Beethoven",
         "The Trojan Horse",
-        "The Great Barrier Reef"
+        "The Great Barrier Reef",
+        "Tom Hanks",
+        "Choir",
+        "Fencing",
+        "Fjord",
+        "Bungee jumping",
+        "American football",
+        "Paw Patrol",
+        "Password",
+        "Header",
+        "Grizzly bear"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Into which sea does the river Danube flow?", "answers": [{ "text": "The Black Sea", "aliases": ["Black Sea"] }] },
         { "prompt": "In which country were the first modern Olympic Games held in 1896?", "answers": [{ "text": "Greece", "aliases": ["Athens, Greece"] }] },
         { "prompt": "Which metal has the chemical symbol Pb?", "answers": [{ "text": "Lead" }] },
-        { "prompt": "Which Italian explorer gave his name to America?", "answers": [{ "text": "Amerigo Vespucci", "aliases": ["Vespucci"] }] }
+        { "prompt": "Which Italian explorer gave his name to America?", "answers": [{ "text": "Amerigo Vespucci", "aliases": ["Vespucci"] }] },
+        { "prompt": "Which blood group is known as the universal donor?", "answers": [{ "text": "O negative", "aliases": ["O-"] }] },
+        { "prompt": "Which German physicist laid the foundation of quantum theory in 1900?", "answers": [{ "text": "Max Planck", "aliases": ["Planck"] }] }
       ]
     }
   ]

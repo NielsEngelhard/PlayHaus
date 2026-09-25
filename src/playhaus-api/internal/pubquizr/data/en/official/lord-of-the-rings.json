@@ -89,7 +89,17 @@
         "Helmet",
         "Hunting horn",
         "Mushroom",
-        "Quiver"
+        "Quiver",
+        "The One Ring",
+        "Eye of Sauron",
+        "Mount Doom",
+        "The Shire",
+        "Grey wizard",
+        "Elf ears",
+        "Hairy hobbit feet",
+        "Second breakfast",
+        "Giant eagle",
+        "Gollum's fish"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which realm was the leader of the Ringwraiths once the witch-king of?", "answers": [{ "text": "Angmar" }] },
         { "prompt": "What is the name of the landlord of the inn at Bree?", "answers": [{ "text": "Barliman Butterbur", "aliases": ["Butterbur", "Barliman"] }] },
         { "prompt": "Which character from the book was left out of the films entirely?", "answers": [{ "text": "Tom Bombadil", "aliases": ["Bombadil"] }] },
-        { "prompt": "What do the Ents call the gathering at which they decide to go to war?", "answers": [{ "text": "An Entmoot", "aliases": ["Entmoot"] }] }
+        { "prompt": "What do the Ents call the gathering at which they decide to go to war?", "answers": [{ "text": "An Entmoot", "aliases": ["Entmoot"] }] },
+        { "prompt": "What is the name of the sword Bilbo gives to Frodo?", "answers": [{ "text": "Sting", "aliases": ["Prik"] }] },
+        { "prompt": "What is the name of the giant spider in whose lair Frodo is stung?", "answers": [{ "text": "Shelob" }] }
       ]
     }
   ]

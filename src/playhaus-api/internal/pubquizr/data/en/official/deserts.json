@@ -89,7 +89,17 @@
         "Adobe house",
         "Souk",
         "Dust devil",
-        "Air conditioning"
+        "Air conditioning",
+        "Dune",
+        "Oasis",
+        "Dromedary",
+        "Water skin",
+        "Cactus flower",
+        "Fennec fox",
+        "Rock painting",
+        "Sunstroke",
+        "Heat",
+        "Sand viper"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which lake on the southern edge of the Sahara has shrunk to a fraction of its size since the 1960s?", "answers": [{ "text": "Lake Chad", "aliases": ["Chad"] }] },
         { "prompt": "What is the fog-bound stretch of the Namibian coastline called, named after the wrecks and bones washed up there?", "answers": [{ "text": "The Skeleton Coast", "aliases": ["Skeleton Coast"] }] },
         { "prompt": "What are the giant figures scratched into the desert floor of southern Peru called?", "answers": [{ "text": "The Nazca Lines", "aliases": ["Nazca Lines", "Nasca Lines"] }] },
-        { "prompt": "Which ancient caravan city in the Syrian desert is known as the bride of the desert?", "answers": [{ "text": "Palmyra" }] }
+        { "prompt": "Which ancient caravan city in the Syrian desert is known as the bride of the desert?", "answers": [{ "text": "Palmyra" }] },
+        { "prompt": "Which coastal desert is an African country named after?", "answers": [{ "text": "The Namib", "aliases": ["Namib"] }] },
+        { "prompt": "What is the great sand desert in the south of the Arabian Peninsula called?", "answers": [{ "text": "The Rub al Khali", "aliases": ["Rub al Khali", "Empty Quarter"] }] }
       ]
     }
   ]

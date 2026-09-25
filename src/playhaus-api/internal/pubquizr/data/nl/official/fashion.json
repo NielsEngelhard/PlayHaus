@@ -47,13 +47,13 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In welk jaar werd het merk Levi Strauss opgericht?", "answer": 1853, "unit": "", "explanation": "Levi Strauss begon in 1853 in San Francisco, de klinknagel in de broek volgde in 1873." },
-        { "prompt": "In welk jaar werd het eerste Met Gala gehouden?", "answer": 1948, "unit": "" },
-        { "prompt": "In welk jaar werd het modehuis Chanel opgericht?", "answer": 1910, "unit": "" },
-        { "prompt": "In welk jaar vond de eerste Paris Fashion Week plaats?", "answer": 1973, "unit": "" },
-        { "prompt": "In welk jaar werd het modehuis Dior opgericht?", "answer": 1946, "unit": "" },
-        { "prompt": "In welk jaar opende Louis Vuitton zijn eerste winkel in Parijs?", "answer": 1854, "unit": "" },
-        { "prompt": "In welk jaar verscheen het tijdschrift Vogue voor het eerst?", "answer": 1892, "unit": "" },
+        { "prompt": "In welk jaar werd het merk Levi Strauss opgericht?", "answer": 1853, "explanation": "Levi Strauss begon in 1853 in San Francisco, de klinknagel in de broek volgde in 1873." },
+        { "prompt": "In welk jaar werd het eerste Met Gala gehouden?", "answer": 1948 },
+        { "prompt": "In welk jaar werd het modehuis Chanel opgericht?", "answer": 1910 },
+        { "prompt": "In welk jaar vond de eerste Paris Fashion Week plaats?", "answer": 1973 },
+        { "prompt": "In welk jaar werd het modehuis Dior opgericht?", "answer": 1946 },
+        { "prompt": "In welk jaar opende Louis Vuitton zijn eerste winkel in Parijs?", "answer": 1854 },
+        { "prompt": "In welk jaar verscheen het tijdschrift Vogue voor het eerst?", "answer": 1892 },
         { "prompt": "Uit hoeveel outfits bestaat een haute-coutureshow doorgaans minimaal?", "answer": 25, "unit": "outfits" }
       ]
     },
@@ -89,7 +89,17 @@
         "Kimono",
         "Naaldhak",
         "Trenchcoat",
-        "Tweed"
+        "Tweed",
+        "Modeshow",
+        "Kledingrek",
+        "Paskamer",
+        "Naaipatroon",
+        "Modetijdschrift",
+        "Zonnebril op het hoofd",
+        "Hoedendoos",
+        "Kniekousen",
+        "Minirok",
+        "Stoffenwinkel"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "In welke Italiaanse stad werd het modehuis Gucci opgericht?", "answers": [{ "text": "Florence" }] },
         { "prompt": "Welke Franse ontwerper staat bekend om hoge hakken met een knalrode zool?", "answers": [{ "text": "Christian Louboutin", "aliases": ["Louboutin"] }] },
         { "prompt": "Welk Brits model met jongenskapsel werd het gezicht van de mode van de jaren zestig?", "answers": [{ "text": "Twiggy" }] },
-        { "prompt": "Welke synthetische vezel introduceerde DuPont in 1938, eerst gebruikt voor kousen?", "answers": [{ "text": "Nylon" }] }
+        { "prompt": "Welke synthetische vezel introduceerde DuPont in 1938, eerst gebruikt voor kousen?", "answers": [{ "text": "Nylon" }] },
+        { "prompt": "Welke Franse ontwerper bracht in 1947 de New Look?", "answers": [{ "text": "Christian Dior", "aliases": ["Dior"] }] },
+        { "prompt": "Welke Britse ontwerpster wordt gezien als de uitvinder van de minirok?", "answers": [{ "text": "Mary Quant", "aliases": ["Quant"] }] }
       ]
     }
   ]

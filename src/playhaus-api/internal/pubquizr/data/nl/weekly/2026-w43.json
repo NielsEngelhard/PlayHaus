@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w43",
+  "title": "Weekquiz 43 2026",
+  "description": "De wekelijkse quiz van woensdag 21 oktober 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Aan welke rivier ligt de Belgische havenstad Antwerpen?", "category": "Aardrijkskunde", "answers": [{ "text": "De Schelde", "aliases": ["Schelde"] }] },
+        { "prompt": "Hoe heet een dier dat zowel in het water als op het land leeft, zoals een kikker?", "category": "Wetenschap", "answers": [{ "text": "Een amfibie", "aliases": ["Amfibie", "Amfibieen"] }] },
+        { "prompt": "Welke Engelse koning kreeg de bijnaam Leeuwenhart?", "category": "Geschiedenis", "answers": [{ "text": "Richard I", "aliases": ["Richard Leeuwenhart", "Richard"] }] },
+        { "prompt": "Welke Jamaicaanse sprinter liep in 2009 het wereldrecord op de 100 meter?", "category": "Sport", "answers": [{ "text": "Usain Bolt", "aliases": ["Bolt"] }] },
+        { "prompt": "Hoe heet de vader van Nemo in Finding Nemo?", "category": "Film", "answers": [{ "text": "Marlin" }] },
+        { "prompt": "Welke Nederlandse dj scoorde in 2013 als tiener een wereldhit met Animals?", "category": "Muziek", "answers": [{ "text": "Martin Garrix", "aliases": ["Garrix"] }] },
+        { "prompt": "Welk pretpark ligt in Biddinghuizen in Flevoland?", "category": "Nederland", "answers": [{ "text": "Walibi", "aliases": ["Walibi Holland"] }] },
+        { "prompt": "Welke Franse impressionist schilderde het dansfeest Bal du moulin de la Galette?", "category": "Kunst", "answers": [{ "text": "Pierre-Auguste Renoir", "aliases": ["Renoir"] }] },
+        { "prompt": "Tot welke woordsoort horen lopen, zingen en eten?", "category": "Taal", "answers": [{ "text": "Werkwoorden", "aliases": ["Werkwoord"] }] },
+        { "prompt": "Hoe heet de Japanse schotel van dun gesneden rauwe vis zonder rijst?", "category": "Eten", "answers": [{ "text": "Sashimi" }] },
+        { "prompt": "Welk bedrijf ontwikkelde het besturingssysteem Android?", "category": "Techniek", "answers": [{ "text": "Google" }] },
+        { "prompt": "Wat is de grootste roofvogel die in Nederland broedt?", "category": "Natuur", "answers": [{ "text": "De zeearend", "aliases": ["Zeearend"] }] },
+        { "prompt": "Wat is de hoofdstad van Cuba?", "category": "Aardrijkskunde", "answers": [{ "text": "Havana", "aliases": ["Havanna"] }] },
+        { "prompt": "Welke Russische tsaar stichtte in 1703 Sint-Petersburg?", "category": "Geschiedenis", "answers": [{ "text": "Peter de Grote", "aliases": ["Peter I", "Peter"] }] },
+        { "prompt": "Hoe heet de kracht die een voorwerp in water omhoog duwt, die Archimedes beschreef?", "category": "Wetenschap", "answers": [{ "text": "De opwaartse kracht", "aliases": ["Opwaartse kracht", "Opwaartse druk"] }] },
+        { "prompt": "Welke rapper heet eigenlijk Marshall Mathers?", "category": "Muziek", "answers": [{ "text": "Eminem", "aliases": ["Slim Shady"] }] },
+        { "prompt": "Hoe heet het schoolhoofd van Zweinstein in de eerste zes Harry Potter-films?", "category": "Film", "answers": [{ "text": "Albus Perkamentus", "aliases": ["Perkamentus", "Dumbledore"] }] },
+        { "prompt": "Hoe heet de pastasoort in de vorm van een vlindertje of strikje?", "category": "Eten", "answers": [{ "text": "Farfalle", "aliases": ["Vlinderpasta"] }] },
+        { "prompt": "Welk bedrijf verkoopt de e-reader Kindle?", "category": "Techniek", "answers": [{ "text": "Amazon" }] },
+        { "prompt": "Hoe heet de schuine letter die je gebruikt om een woord te benadrukken?", "category": "Taal", "answers": [{ "text": "Cursief", "aliases": ["Cursieve letter", "Italic"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze planeten heeft geen ringen?", "options": [{ "text": "Mars", "correct": true }, { "text": "Jupiter" }, { "text": "Uranus" }, { "text": "Neptunus" }] },
+        { "prompt": "Met welke Griekse letter wordt de eenheid van elektrische weerstand aangeduid?", "options": [{ "text": "Omega", "correct": true }, { "text": "Alfa" }, { "text": "Delta" }, { "text": "Pi" }] },
+        { "prompt": "Welke Belgische zanger zong Ne me quitte pas?", "options": [{ "text": "Jacques Brel", "correct": true }, { "text": "Salvatore Adamo" }, { "text": "Johnny Hallyday" }, { "text": "Charles Aznavour" }] },
+        { "prompt": "Welk van deze zeedieren heeft geen hersenen?", "options": [{ "text": "De kwal", "correct": true }, { "text": "De octopus" }, { "text": "De dolfijn" }, { "text": "De zeehond" }] },
+        { "prompt": "Welke van deze hoofdsteden ligt niet aan de Donau?", "options": [{ "text": "Praag", "correct": true }, { "text": "Wenen" }, { "text": "Boedapest" }, { "text": "Bratislava" }] },
+        { "prompt": "Welke van deze presidenten staat niet op Mount Rushmore?", "options": [{ "text": "John Adams", "correct": true }, { "text": "George Washington" }, { "text": "Thomas Jefferson" }, { "text": "Abraham Lincoln" }] },
+        { "prompt": "Welke kleur heeft een flamingo als hij net uit het ei komt?", "options": [{ "text": "Grijs", "correct": true }, { "text": "Roze" }, { "text": "Wit" }, { "text": "Oranje" }] },
+        { "prompt": "Welke van deze stoffen is geen edelgas?", "options": [{ "text": "Stikstof", "correct": true }, { "text": "Neon" }, { "text": "Argon" }, { "text": "Helium" }] },
+        { "prompt": "Hoe heet de sneeuwuil van Harry Potter?", "options": [{ "text": "Hedwig", "correct": true }, { "text": "Errol" }, { "text": "Pigwidgeon" }, { "text": "Fawkes" }] },
+        { "prompt": "In welke sport won Anky van Grunsven drie keer olympisch goud?", "options": [{ "text": "Dressuur", "correct": true }, { "text": "Springen" }, { "text": "Polo" }, { "text": "Mennen" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Kilimanjaro?", "answer": 5895, "unit": "meter" },
+        { "prompt": "Hoeveel kilometer is het in vogelvlucht van Amsterdam naar Rome?", "answer": 1300, "unit": "kilometer" },
+        { "prompt": "Hoeveel kilometer per uur is de adviessnelheid op Duitse snelwegen zonder limiet?", "answer": 130, "unit": "kilometer per uur" },
+        { "prompt": "Hoeveel vakjes telt een sudoku?", "answer": 81, "unit": "vakjes" },
+        { "prompt": "Hoeveel graden Celsius is het ongeveer aan de oppervlakte van de zon?", "answer": 5500, "unit": "graden" },
+        { "prompt": "Hoe oud werd koningin Elizabeth II?", "answer": 96, "unit": "jaar" },
+        { "prompt": "Aan hoeveel landen grenst Duitsland?", "answer": 9, "unit": "landen" },
+        { "prompt": "Hoeveel meter diep is het IJsselmeer gemiddeld?", "answer": 4.5, "unit": "meter" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Vogelkooi",
+        "Symfonie",
+        "Kruistocht",
+        "Klei",
+        "Stoomwals",
+        "Orchidee",
+        "Sluier",
+        "Kaasfondue",
+        "Kipnuggets",
+        "Aristoteles",
+        "Pantoffels",
+        "Ligfiets",
+        "Bagageband",
+        "Natuurfilm",
+        "Influencer",
+        "Mamma Mia",
+        "Geboortekaartje",
+        "Dagobert Duck",
+        "Buitenspelval",
+        "Serengeti",
+        "Kamelenkaravaan",
+        "Karaokebar",
+        "Venus van Milo",
+        "Rugzaktoerist",
+        "Speen",
+        "Sint-Pietersplein",
+        "Boerenkool",
+        "Schilder",
+        "Mistbank",
+        "Shakespeare",
+        "Tuinkabouter",
+        "Visser",
+        "Biatlon",
+        "Kookboek",
+        "Limbo",
+        "Handtekeningenjager",
+        "Omhaal",
+        "Tapir",
+        "Operette",
+        "Taco"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over Canada?", "answers": [{ "text": "Esdoornblad", "aliases": ["Esdoorn", "Ahornsiroop", "Vlag met blad"] }, { "text": "IJshockey", "aliases": ["Hockey"] }, { "text": "Beren", "aliases": ["Elanden", "Grizzlybeer"] }, { "text": "Frans en Engels", "aliases": ["Tweetalig", "Quebec"] }] },
+        { "prompt": "Wat weet je over Beyonce?", "answers": [{ "text": "Destiny's Child", "aliases": ["Girlband"] }, { "text": "Jay-Z", "aliases": ["Getrouwd met Jay-Z"] }, { "text": "Single Ladies", "aliases": ["Crazy in Love", "Halo"] }, { "text": "Texas", "aliases": ["Houston"] }] },
+        { "prompt": "Wat weet je over Schotland?", "answers": [{ "text": "Doedelzak", "aliases": ["Doedelzakspeler"] }, { "text": "Kilt", "aliases": ["Rokje", "Tartan", "Ruit"] }, { "text": "Whisky", "aliases": ["Whiskey"] }, { "text": "Loch Ness", "aliases": ["Monster van Loch Ness", "Nessie"] }] },
+        { "prompt": "Wat weet je over vlinders?", "answers": [{ "text": "Rups", "aliases": ["Eerst een rups", "Pop", "Cocon"] }, { "text": "Kleurige vleugels", "aliases": ["Vleugels", "Kleurrijk"] }, { "text": "Bloemen", "aliases": ["Nectar"] }, { "text": "Metamorfose", "aliases": ["Gedaanteverwisseling"] }] },
+        { "prompt": "Wat weet je over Toy Story?", "answers": [{ "text": "Woody", "aliases": ["Cowboy"] }, { "text": "Buzz Lightyear", "aliases": ["Buzz"] }, { "text": "Pixar", "aliases": ["Disney"] }, { "text": "Speelgoed dat leeft", "aliases": ["Speelgoed", "Andy"] }] },
+        { "prompt": "Wat weet je over thee?", "answers": [{ "text": "China", "aliases": ["India", "Sri Lanka"] }, { "text": "Theezakje", "aliases": ["Theepot", "Thee zetten"] }, { "text": "Groene thee", "aliases": ["Zwarte thee", "Kruidenthee"] }, { "text": "Engeland", "aliases": ["Afternoon tea", "Engelsen"] }] },
+        { "prompt": "Wat weet je over Vaticaanstad?", "answers": [{ "text": "De paus", "aliases": ["Paus"] }, { "text": "Sint-Pietersbasiliek", "aliases": ["Sint-Pietersplein", "Sixtijnse Kapel"] }, { "text": "Kleinste land ter wereld", "aliases": ["Klein"] }, { "text": "Rome", "aliases": ["Italie"] }] },
+        { "prompt": "Wat weet je over De Nachtwacht?", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }, { "text": "Rijksmuseum", "aliases": ["Amsterdam"] }, { "text": "Schutters", "aliases": ["Schutterij", "Frans Banning Cocq"] }, { "text": "Zestienhonderdtweeenveertig", "aliases": ["1642", "Gouden Eeuw"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet de vriendin van Mickey Mouse?", "difficulty": "easy", "answers": [{ "text": "Minnie Mouse", "aliases": ["Minnie"] }] },
+        { "prompt": "Welk feest vieren christenen op vijfentwintig december?", "difficulty": "easy", "answers": [{ "text": "Kerstmis", "aliases": ["Kerst", "Eerste Kerstdag"] }] },
+        { "prompt": "Hoe heet de ster in het midden van ons zonnestelsel?", "difficulty": "easy", "answers": [{ "text": "De zon", "aliases": ["Zon"] }] },
+        { "prompt": "Wie woont er in een ananas diep in de zee?", "difficulty": "easy", "answers": [{ "text": "SpongeBob", "aliases": ["SpongeBob SquarePants", "Spons"] }] },
+        { "prompt": "Welk sprookjesfiguur verloor om middernacht haar glazen muiltje?", "difficulty": "easy", "answers": [{ "text": "Assepoester" }] },
+        { "prompt": "Wat is de hoofdstad van Nicaragua?", "difficulty": "hard", "answers": [{ "text": "Managua" }] },
+        { "prompt": "Welke Italiaanse natuurkundige vond in 1643 de barometer uit?", "difficulty": "hard", "answers": [{ "text": "Evangelista Torricelli", "aliases": ["Torricelli"] }] },
+        { "prompt": "Welke Britse schrijfster schreef Mrs Dalloway?", "difficulty": "hard", "answers": [{ "text": "Virginia Woolf", "aliases": ["Woolf"] }] },
+        { "prompt": "Welk Afrikaans land heette tot 1975 Dahomey?", "difficulty": "hard", "answers": [{ "text": "Benin" }] },
+        { "prompt": "Hoe heten de beschermende vliezen rond de hersenen?", "difficulty": "hard", "answers": [{ "text": "De hersenvliezen", "aliases": ["Hersenvliezen", "Hersenvlies", "Meningen"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Hoe heet de stuiterende tijger in Winnie de Poeh?", "answers": [{ "text": "Teigetje", "aliases": ["Tigger"] }] },
+        { "prompt": "Welke Italiaanse stad ligt aan de voet van de Vesuvius?", "answers": [{ "text": "Napels", "aliases": ["Napoli"] }] },
+        { "prompt": "Welke Amerikaanse natuurkundige leidde het wetenschappelijke werk van het Manhattanproject?", "answers": [{ "text": "J. Robert Oppenheimer", "aliases": ["Oppenheimer", "Robert Oppenheimer"] }] },
+        { "prompt": "Wat voor dier is Bambi?", "answers": [{ "text": "Een hert", "aliases": ["Hert", "Reekalf", "Ree"] }] },
+        { "prompt": "In welke Duitse stad staat de Frauenkirche die na de oorlog steen voor steen werd herbouwd?", "answers": [{ "text": "Dresden" }] },
+        { "prompt": "Welke Duitse wiskundige wordt de prins der wiskundigen genoemd?", "answers": [{ "text": "Carl Friedrich Gauss", "aliases": ["Gauss"] }] },
+        { "prompt": "In welk land staan de piramides van Gizeh?", "answers": [{ "text": "Egypte" }] },
+        { "prompt": "Hoe heet de zanger en bassist die de frontman was van The Police?", "answers": [{ "text": "Sting", "aliases": ["Gordon Sumner"] }] },
+        { "prompt": "Welke Duitse schrijver schreef De toverberg?", "answers": [{ "text": "Thomas Mann", "aliases": ["Mann"] }] }
+      ]
+    }
+  ]
+}

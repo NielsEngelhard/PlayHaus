@@ -89,7 +89,17 @@
         "Bosbrand",
         "Billabong",
         "Zuiderkruis",
-        "Crocodile Dundee"
+        "Crocodile Dundee",
+        "Boemerangwerper",
+        "Kangoeroe met jong",
+        "Haai-alarm",
+        "Reddingsvlag",
+        "Outback",
+        "Barbie op het strand",
+        "Flying Doctor",
+        "Koraalduiken",
+        "Kangoeroebord",
+        "Schapenstation"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welk uitgestrekte zoutmeer in Zuid-Australie staat meestal droog en loopt maar zelden vol water?", "answers": [{ "text": "Lake Eyre", "aliases": ["Eyre", "Het Eyremeer", "Kati Thanda"] }] },
         { "prompt": "Welke Australische schrijfster schreef de roman The Thorn Birds, in het Nederlands Dorens in de wind?", "answers": [{ "text": "Colleen McCullough", "aliases": ["McCullough"] }] },
         { "prompt": "Welke Australische zwemmer won drie gouden medailles op de Olympische Spelen van 2000?", "answers": [{ "text": "Ian Thorpe", "aliases": ["Thorpe", "Thorpedo"] }] },
-        { "prompt": "Welke Australische schrijver won in 1973 de Nobelprijs voor Literatuur?", "answers": [{ "text": "Patrick White", "aliases": ["White"] }] }
+        { "prompt": "Welke Australische schrijver won in 1973 de Nobelprijs voor Literatuur?", "answers": [{ "text": "Patrick White", "aliases": ["White"] }] },
+        { "prompt": "Welke stad was de hoofdstad van Australie voordat Canberra het werd?", "answers": [{ "text": "Melbourne" }] },
+        { "prompt": "Hoe heet de Australische premier die in 1967 tijdens het zwemmen verdween?", "answers": [{ "text": "Harold Holt", "aliases": ["Holt"] }] }
       ]
     }
   ]

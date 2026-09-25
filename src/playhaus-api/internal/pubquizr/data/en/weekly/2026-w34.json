@@ -49,9 +49,9 @@
         { "prompt": "How many bones does a human body have at birth?", "answer": 270, "unit": "bones", "explanation": "Bones fuse together as you grow, so an adult is left with 206." },
         { "prompt": "How many kilometres long is the Afsluitdijk?", "answer": 32, "unit": "kilometres" },
         { "prompt": "How many bones does an adult have once the baby bones have fused?", "answer": 206, "unit": "bones" },
-        { "prompt": "In what year was the Zuiderzee Act passed that allowed the Afsluitdijk and the polders?", "answer": 1918, "unit": "" },
+        { "prompt": "In what year was the Zuiderzee Act passed that allowed the Afsluitdijk and the polders?", "answer": 1918 },
         { "prompt": "How many bones are there in a human hand, wrist included?", "answer": 27, "unit": "bones" },
-        { "prompt": "In what year was the Afsluitdijk completed?", "answer": 1932, "unit": "" },
+        { "prompt": "In what year was the Afsluitdijk completed?", "answer": 1932 },
         { "prompt": "How many square kilometres is the Flevopolder, the largest artificial polder in the world?", "answer": 970, "unit": "square kilometres" },
         { "prompt": "How many bones are there in a human foot, ankle included?", "answer": 26, "unit": "bones" }
       ]
@@ -88,7 +88,17 @@
         "Sleepwalking",
         "James Bond",
         "Windsurfing",
-        "The Trojan horse"
+        "The Trojan horse",
+        "Virtual reality",
+        "The Sound of Music",
+        "Tuba",
+        "Lychee",
+        "Black box",
+        "Streamers",
+        "Odysseus",
+        "Hip hop",
+        "Porcupinefish",
+        "Nail technician"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which writer came up with the detective Hercule Poirot?", "answers": [{ "text": "Agatha Christie", "aliases": ["Christie"] }] },
         { "prompt": "Which metal conducts electricity best of all?", "answers": [{ "text": "Silver" }] },
         { "prompt": "Which Dutchman ground his own lenses and was the first to see bacteria through a microscope?", "answers": [{ "text": "Antoni van Leeuwenhoek", "aliases": ["Van Leeuwenhoek", "Leeuwenhoek"] }] },
-        { "prompt": "Which instrument did Miles Davis play?", "answers": [{ "text": "The trumpet", "aliases": ["trumpet"] }] }
+        { "prompt": "Which instrument did Miles Davis play?", "answers": [{ "text": "The trumpet", "aliases": ["trumpet"] }] },
+        { "prompt": "After Sicily, which is the largest island of Italy?", "answers": [{ "text": "Sardinia" }] },
+        { "prompt": "Which German composer wrote the opera cycle The Ring of the Nibelung?", "answers": [{ "text": "Richard Wagner", "aliases": ["Wagner"] }] }
       ]
     }
   ]

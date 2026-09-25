@@ -1,14 +1,11 @@
-package quizgen
+package main
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"os"
-	"path/filepath"
 	"strings"
 
-	"playhaus-api/internal/i18n"
 	"playhaus-api/internal/pubquizr"
 )
 
@@ -138,32 +135,4 @@ func space(compact string) string {
 	}
 
 	return out.String()
-}
-
-// Write puts one week on disk, but only once the bytes it is about to write load back as the quiz they describe.
-func Write(dir string, locale i18n.Locale, quiz pubquizr.QuizFile, force bool) (string, error) {
-	raw, err := Encode(quiz)
-	if err != nil {
-		return "", err
-	}
-	if _, err := pubquizr.ParseQuizFile(raw, locale, pubquizr.CategoryWeekly); err != nil {
-		return "", fmt.Errorf("what was written out does not load back: %w", err)
-	}
-
-	file := filepath.Join(dir, locale.String(), pubquizr.CategoryWeekly.String(), quiz.Slug+".json")
-	if !force {
-		if _, err := os.Stat(file); err == nil {
-			// Reseeding a quiz regenerates every question id, which dangles anybody mid-game.
-			return "", fmt.Errorf("%s already exists; pass -force to replace it", file)
-		}
-	}
-
-	if err := os.MkdirAll(filepath.Dir(file), 0o755); err != nil {
-		return "", fmt.Errorf("make %s: %w", filepath.Dir(file), err)
-	}
-	if err := os.WriteFile(file, raw, 0o644); err != nil {
-		return "", fmt.Errorf("write %s: %w", file, err)
-	}
-
-	return file, nil
 }

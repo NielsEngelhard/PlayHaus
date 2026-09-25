@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w41",
+  "title": "Weekquiz 41 2026",
+  "description": "De wekelijkse quiz van woensdag 7 oktober 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "Welke rivier stroomt door Lissabon?", "category": "Aardrijkskunde", "answers": [{ "text": "De Taag", "aliases": ["Taag", "Tejo"] }] },
+        { "prompt": "Hoe heet de verandering van rups via pop naar vlinder?", "category": "Wetenschap", "answers": [{ "text": "Metamorfose", "aliases": ["Gedaanteverwisseling"] }] },
+        { "prompt": "Welke Franse heldin werd in 1431 in Rouen op de brandstapel gezet?", "category": "Geschiedenis", "answers": [{ "text": "Jeanne d'Arc", "aliases": ["Jeanne", "Jeanne d Arc"] }] },
+        { "prompt": "Welke Nederlandse tennisser won in 1996 Wimbledon?", "category": "Sport", "answers": [{ "text": "Richard Krajicek", "aliases": ["Krajicek"] }] },
+        { "prompt": "In welke film zegt de hoofdpersoon dat het leven is als een doos bonbons?", "category": "Film", "answers": [{ "text": "Forrest Gump" }] },
+        { "prompt": "Welke Britse zangeres bracht de albums 19, 21 en 25 uit?", "category": "Muziek", "answers": [{ "text": "Adele" }] },
+        { "prompt": "Op welk Waddeneiland liggen de dorpen Hollum en Nes?", "category": "Nederland", "answers": [{ "text": "Ameland" }] },
+        { "prompt": "Welke Franse kunstenaar schilderde en boetseerde vooral balletdanseressen?", "category": "Kunst", "answers": [{ "text": "Edgar Degas", "aliases": ["Degas"] }] },
+        { "prompt": "Hoe heet het Japanse schrift dat is opgebouwd uit Chinese karakters?", "category": "Taal", "answers": [{ "text": "Kanji" }] },
+        { "prompt": "Van de eitjes van welke vis wordt echte kaviaar gemaakt?", "category": "Eten", "answers": [{ "text": "De steur", "aliases": ["Steur"] }] },
+        { "prompt": "Welk Japans bedrijf bracht de PlayStation op de markt?", "category": "Techniek", "answers": [{ "text": "Sony" }] },
+        { "prompt": "Hoe heet het vrouwtje van het edelhert?", "category": "Natuur", "answers": [{ "text": "De hinde", "aliases": ["Hinde"] }] },
+        { "prompt": "Welke rivier stroomt door Londen?", "category": "Aardrijkskunde", "answers": [{ "text": "De Theems", "aliases": ["Theems"] }] },
+        { "prompt": "Welke Amerikaanse president werd in 1963 in Dallas doodgeschoten?", "category": "Geschiedenis", "answers": [{ "text": "John F. Kennedy", "aliases": ["Kennedy", "JFK"] }] },
+        { "prompt": "Welke vitamine zit veel in sinaasappels en voorkomt scheurbuik?", "category": "Wetenschap", "answers": [{ "text": "Vitamine C", "aliases": ["C"] }] },
+        { "prompt": "Welke Amerikaanse zanger had de bijnaam Ol' Blue Eyes?", "category": "Muziek", "answers": [{ "text": "Frank Sinatra", "aliases": ["Sinatra"] }] },
+        { "prompt": "Hoe heet de pratende sneeuwpop in Frozen?", "category": "Film", "answers": [{ "text": "Olaf" }] },
+        { "prompt": "Welk ovengerecht bestaat uit laagjes pasta, gehaktsaus en bechamelsaus?", "category": "Eten", "answers": [{ "text": "Lasagne", "aliases": ["Lasagna"] }] },
+        { "prompt": "Welke app heeft een wit spookje op een gele achtergrond als logo?", "category": "Techniek", "answers": [{ "text": "Snapchat" }] },
+        { "prompt": "Hoe heet een zin waarin alle letters van het alfabet voorkomen?", "category": "Taal", "answers": [{ "text": "Een pangram", "aliases": ["Pangram"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Welke van deze hoofdsteden ligt het noordelijkst?", "options": [{ "text": "Helsinki", "correct": true }, { "text": "Oslo" }, { "text": "Stockholm" }, { "text": "Tallinn" }] },
+        { "prompt": "Welk van deze dieren is geen zoogdier?", "options": [{ "text": "De haai", "correct": true }, { "text": "De dolfijn" }, { "text": "De vleermuis" }, { "text": "De walvis" }] },
+        { "prompt": "In welke Spaanse stad staat het Guggenheim Museum met de glimmende titanium gevel?", "options": [{ "text": "Bilbao", "correct": true }, { "text": "Madrid" }, { "text": "Barcelona" }, { "text": "Valencia" }] },
+        { "prompt": "Welke Griekse god was de bode van de goden?", "options": [{ "text": "Hermes", "correct": true }, { "text": "Apollo" }, { "text": "Ares" }, { "text": "Dionysus" }] },
+        { "prompt": "Welke Nederlandse schilder maakte in 1647 het beroemde schilderij De stier?", "options": [{ "text": "Paulus Potter", "correct": true }, { "text": "Jan Steen" }, { "text": "Frans Hals" }, { "text": "Jacob van Ruisdael" }] },
+        { "prompt": "Welke Britse koningin regeerde het langst voor Elizabeth II?", "options": [{ "text": "Victoria", "correct": true }, { "text": "Anne" }, { "text": "Mary I" }, { "text": "Elizabeth I" }] },
+        { "prompt": "In welke Canadese provincie is Frans de enige officiele taal?", "options": [{ "text": "Quebec", "correct": true }, { "text": "Ontario" }, { "text": "Alberta" }, { "text": "Manitoba" }] },
+        { "prompt": "Welke kleur heeft de huid van een ijsbeer onder zijn vacht?", "options": [{ "text": "Zwart", "correct": true }, { "text": "Wit" }, { "text": "Roze" }, { "text": "Grijs" }] },
+        { "prompt": "Uit welk land komt de metalband Rammstein?", "options": [{ "text": "Duitsland", "correct": true }, { "text": "Oostenrijk" }, { "text": "Zwitserland" }, { "text": "Denemarken" }] },
+        { "prompt": "Welk bedrijf maakte in 1994 de Simon, de eerste smartphone met een aanraakscherm?", "options": [{ "text": "IBM", "correct": true }, { "text": "Nokia" }, { "text": "Apple" }, { "text": "Motorola" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "Hoeveel meter hoog is de Elizabeth Tower, de toren van de Big Ben?", "answer": 96, "unit": "meter" },
+        { "prompt": "Hoeveel landen telt het continent Afrika?", "answer": 54, "unit": "landen" },
+        { "prompt": "Hoeveel kilo weegt een volwassen mannetjesgiraf ongeveer?", "answer": 1200, "unit": "kilo" },
+        { "prompt": "Hoeveel verdiepingen telt de Burj Khalifa in Dubai?", "answer": 163, "unit": "verdiepingen" },
+        { "prompt": "Hoeveel kilometer lang is de Nijl ongeveer?", "answer": 6650, "unit": "kilometer" },
+        { "prompt": "Hoeveel dagen is een olifant ongeveer zwanger?", "answer": 660, "unit": "dagen", "explanation": "Bijna twee jaar: de langste draagtijd van alle landdieren." },
+        { "prompt": "In welk jaar werd de Golden Gate Bridge in San Francisco geopend?", "answer": 1937 },
+        { "prompt": "Hoeveel zetels telt de Tweede Kamer?", "answer": 150, "unit": "zetels" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Diepzeeduiker",
+        "Beul",
+        "Schansspringen",
+        "Strandtent",
+        "Vergadering",
+        "Faxapparaat",
+        "Mont Blanc",
+        "Gootsteen",
+        "Knuffelbeer",
+        "Vliegenzwam",
+        "Afstuderen",
+        "Times Square",
+        "Stukadoor",
+        "Brownie",
+        "Rugby",
+        "Stervrucht",
+        "Rups",
+        "Bijgeloof",
+        "Twister",
+        "Encanto",
+        "Tofu",
+        "Toneelstuk",
+        "Vishaak",
+        "Pekingeend",
+        "Gember",
+        "Kleine Zeemeermin van Kopenhagen",
+        "Olympische ringen",
+        "Sylvester Stallone",
+        "Mary Poppins",
+        "Ijscoman",
+        "Kwartet",
+        "Friends",
+        "Cars",
+        "Kaasboer",
+        "Billie Eilish",
+        "Jackpot",
+        "Luchtgitaarwedstrijd",
+        "Rodelen",
+        "Zeepbel",
+        "Kleerhanger"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "Wat weet je over IJsland?", "answers": [{ "text": "Vulkanen", "aliases": ["Vulkaan", "Eyjafjallajokull"] }, { "text": "Geisers", "aliases": ["Geiser", "Warmwaterbronnen", "Blue Lagoon"] }, { "text": "Reykjavik", "aliases": ["De hoofdstad Reykjavik"] }, { "text": "Gletsjers", "aliases": ["Gletsjer", "IJs"] }] },
+        { "prompt": "Wat weet je over Walt Disney?", "answers": [{ "text": "Mickey Mouse", "aliases": ["Mickey", "Donald Duck"] }, { "text": "Disneyland", "aliases": ["Pretparken", "Disney World"] }, { "text": "Tekenfilms", "aliases": ["Animatiefilms", "Tekenfilm"] }, { "text": "Sneeuwwitje", "aliases": ["Sneeuwwitje en de zeven dwergen"] }] },
+        { "prompt": "Wat weet je over pinguins?", "answers": [{ "text": "Ze kunnen niet vliegen", "aliases": ["Niet vliegen", "Kan niet vliegen"] }, { "text": "Zuidpool", "aliases": ["Antarctica", "Zuidelijk halfrond"] }, { "text": "Zwart-wit", "aliases": ["Zwart en wit", "Pak"] }, { "text": "Goede zwemmers", "aliases": ["Zwemmen", "Vis eten", "Vis"] }] },
+        { "prompt": "Wat weet je over Griekenland?", "answers": [{ "text": "Athene", "aliases": ["De hoofdstad Athene", "Akropolis"] }, { "text": "Eilanden", "aliases": ["Kreta", "Santorini", "Eiland"] }, { "text": "Olympische Spelen", "aliases": ["Olympia"] }, { "text": "Griekse goden", "aliases": ["Zeus", "Mythologie"] }] },
+        { "prompt": "Wat weet je over de Efteling?", "answers": [{ "text": "Kaatsheuvel", "aliases": ["Brabant", "Noord-Brabant"] }, { "text": "Sprookjesbos", "aliases": ["Sprookjes"] }, { "text": "Holle Bolle Gijs", "aliases": ["Papier hier"] }, { "text": "Achtbanen", "aliases": ["Baron 1898", "Python", "De Vliegende Hollander"] }] },
+        { "prompt": "Wat weet je over Mexico?", "answers": [{ "text": "Taco's", "aliases": ["Taco", "Burrito", "Nacho's"] }, { "text": "Sombrero", "aliases": ["Hoed"] }, { "text": "Azteken", "aliases": ["Maya's", "Piramides"] }, { "text": "Mexico-Stad", "aliases": ["Mexico City"] }] },
+        { "prompt": "Wat weet je over tennis?", "answers": [{ "text": "Wimbledon", "aliases": ["Roland Garros", "Grand Slam"] }, { "text": "Racket", "aliases": ["Tennisracket"] }, { "text": "Net", "aliases": ["Over het net"] }, { "text": "Roger Federer", "aliases": ["Federer", "Rafael Nadal", "Serena Williams"] }] },
+        { "prompt": "Wat weet je over de Olympische Winterspelen?", "answers": [{ "text": "Schaatsen", "aliases": ["Schaatser"] }, { "text": "Skien", "aliases": ["Skispringen", "Ski"] }, { "text": "Sneeuw en ijs", "aliases": ["Sneeuw", "IJs"] }, { "text": "Om de vier jaar", "aliases": ["Vier jaar"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "Hoe heet het huis van de Amerikaanse president in Washington?", "difficulty": "easy", "answers": [{ "text": "Het Witte Huis", "aliases": ["Witte Huis"] }] },
+        { "prompt": "Welke superheld beschermt Gotham City?", "difficulty": "easy", "answers": [{ "text": "Batman" }] },
+        { "prompt": "Welk seizoen begint rond 21 juni?", "difficulty": "easy", "answers": [{ "text": "De zomer", "aliases": ["Zomer"] }] },
+        { "prompt": "Hoe noem je een schilderij dat een kunstenaar van zichzelf maakt?", "difficulty": "easy", "answers": [{ "text": "Een zelfportret", "aliases": ["Zelfportret"] }] },
+        { "prompt": "Uit welk land komt de pizza oorspronkelijk?", "difficulty": "easy", "answers": [{ "text": "Italie" }] },
+        { "prompt": "Welke Franse stad geldt als de hoofdstad van het parfum?", "difficulty": "hard", "answers": [{ "text": "Grasse" }] },
+        { "prompt": "Wat is de hoofdstad van Oman?", "difficulty": "hard", "answers": [{ "text": "Muscat", "aliases": ["Masqat"] }] },
+        { "prompt": "Welke Engelse wiskundige hielp in de Tweede Wereldoorlog de Enigma-code te kraken?", "difficulty": "hard", "answers": [{ "text": "Alan Turing", "aliases": ["Turing"] }] },
+        { "prompt": "Welke rivier stroomt door Florence?", "difficulty": "hard", "answers": [{ "text": "De Arno", "aliases": ["Arno"] }] },
+        { "prompt": "Welk edelgas heeft het scheikundige symbool Kr?", "difficulty": "hard", "answers": [{ "text": "Krypton" }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "Welke kleur heeft een smaragd?", "answers": [{ "text": "Groen" }] },
+        { "prompt": "Welke Amerikaanse staat heeft Honolulu als hoofdstad?", "answers": [{ "text": "Hawaii" }] },
+        { "prompt": "Wat is de hoofdstad van Senegal?", "answers": [{ "text": "Dakar" }] },
+        { "prompt": "Hoe heet de beer in Het Jungleboek?", "answers": [{ "text": "Baloe", "aliases": ["Baloo"] }] },
+        { "prompt": "Welke Belgische stripheld heeft een wit hondje?", "answers": [{ "text": "Kuifje", "aliases": ["Tintin"] }] },
+        { "prompt": "Welke Griekse geleerde berekende als eerste vrij nauwkeurig de omtrek van de aarde?", "answers": [{ "text": "Eratosthenes" }] },
+        { "prompt": "Welk dier staat in het logo van de Australische luchtvaartmaatschappij Qantas?", "answers": [{ "text": "De kangoeroe", "aliases": ["Kangoeroe"] }] },
+        { "prompt": "Welke Amerikaanse stad heeft de bijnaam de Windy City?", "answers": [{ "text": "Chicago" }] },
+        { "prompt": "Welke Russische componist schreef Schilderijen van een tentoonstelling?", "answers": [{ "text": "Modest Moessorgski", "aliases": ["Moessorgski", "Mussorgsky"] }] }
+      ]
+    }
+  ]
+}

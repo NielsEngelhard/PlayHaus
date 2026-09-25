@@ -89,7 +89,17 @@
         "Pistool",
         "Enterbijl",
         "Scheepsbeschuit",
-        "Zwaardgevecht"
+        "Zwaardgevecht",
+        "Piratenvlag",
+        "Loopplank",
+        "Kaapbrief",
+        "Houten been",
+        "Papegaai op de schouder",
+        "Schatkist vol goud",
+        "Piratenkapitein",
+        "Kanonnendek",
+        "Zeeslag",
+        "Enteren"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Hoe heet de piratenutopie op Madagaskar die in A General History of the Pyrates wordt beschreven?", "answers": [{ "text": "Libertalia", "aliases": ["Libertatia"] }] },
         { "prompt": "Welke luitenant van de Royal Navy leidde de enterploeg die Blackbeard in 1718 doodde?", "answers": [{ "text": "Robert Maynard", "aliases": ["Maynard"] }] },
         { "prompt": "Hoe heet de papegaai van Long John Silver in Schateiland?", "answers": [{ "text": "Kapitein Flint", "aliases": ["Flint", "Captain Flint"] }] },
-        { "prompt": "Welke piratenfilm uit 1935 maakte van Errol Flynn een ster?", "answers": [{ "text": "Captain Blood", "aliases": ["Kapitein Blood"] }] }
+        { "prompt": "Welke piratenfilm uit 1935 maakte van Errol Flynn een ster?", "answers": [{ "text": "Captain Blood", "aliases": ["Kapitein Blood"] }] },
+        { "prompt": "Welke Engelse piraat werd Zwartbaard genoemd?", "answers": [{ "text": "Edward Teach", "aliases": ["Teach", "Edward Thatch", "Thatch"] }] },
+        { "prompt": "Welke Welshe piraat werd later gouverneur van Jamaica?", "answers": [{ "text": "Henry Morgan", "aliases": ["Morgan", "Captain Morgan"] }] }
       ]
     }
   ]

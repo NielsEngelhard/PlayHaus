@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter hoog is de Westertoren in Amsterdam?", "answer": 85, "unit": "meter" },
         { "prompt": "Hoeveel dagen doet de maan over een rondje om de aarde?", "answer": 27, "unit": "dagen" },
-        { "prompt": "In welk jaar was de eerste Nederlandse radio-uitzending?", "answer": 1919, "unit": "" },
+        { "prompt": "In welk jaar was de eerste Nederlandse radio-uitzending?", "answer": 1919 },
         { "prompt": "Hoeveel kilometer per uur draait het aardoppervlak op de evenaar?", "answer": 1670, "unit": "kilometer per uur" },
         { "prompt": "Hoe vaak knippert een mens gemiddeld met zijn ogen per minuut?", "answer": 15, "unit": "keer" },
         { "prompt": "Hoeveel miljoen bakstenen zitten er in het Empire State Building?", "answer": 10, "unit": "miljoen bakstenen" },
@@ -88,7 +88,17 @@
         "Yoga",
         "IJsland",
         "Tijdzone",
-        "Poppenkast"
+        "Poppenkast",
+        "Cobra",
+        "Degenslikker",
+        "Anker",
+        "Hoogtevrees",
+        "Dumbledore",
+        "Onderzetter",
+        "Koorts",
+        "Buffel",
+        "Framboos",
+        "Armband"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "In welk land ligt de oude stad Machu Picchu?", "answers": [{ "text": "Peru" }] },
         { "prompt": "Wat is de kleinste planeet van ons zonnestelsel?", "answers": [{ "text": "Mercurius" }] },
         { "prompt": "Wie was de eerste mens in de ruimte?", "answers": [{ "text": "Joeri Gagarin", "aliases": ["Gagarin", "Yuri Gagarin"] }] },
-        { "prompt": "Welke taal heeft wereldwijd de meeste moedertaalsprekers?", "answers": [{ "text": "Mandarijn", "aliases": ["Chinees", "Mandarijn-Chinees"] }] }
+        { "prompt": "Welke taal heeft wereldwijd de meeste moedertaalsprekers?", "answers": [{ "text": "Mandarijn", "aliases": ["Chinees", "Mandarijn-Chinees"] }] },
+        { "prompt": "Hoe heet de munteenheid van Brazilie?", "answers": [{ "text": "De real", "aliases": ["Real"] }] },
+        { "prompt": "Welke Griekse geschiedschrijver wordt de vader van de geschiedenis genoemd?", "answers": [{ "text": "Herodotus", "aliases": ["Herodotos"] }] }
       ]
     }
   ]

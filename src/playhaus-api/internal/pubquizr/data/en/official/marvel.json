@@ -89,7 +89,17 @@
         "Goatee",
         "Snap of the fingers",
         "Cinema ticket",
-        "Action figure"
+        "Action figure",
+        "Spider bite",
+        "Vibranium",
+        "Green giant",
+        "Mjolnir",
+        "Superhero team",
+        "Stan Lee cameo",
+        "Infinity Stone",
+        "Ant-Man",
+        "Doctor Strange",
+        "Groot"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "What is the name of the Guardians of the Galaxy's ship in the 2014 film?", "answers": [{ "text": "The Milano", "aliases": ["Milano"] }] },
         { "prompt": "Which plant gives the Black Panther his strength?", "answers": [{ "text": "The heart-shaped herb", "aliases": ["Heart-shaped herb", "Heart shaped herb"] }] },
         { "prompt": "Who directed the 2008 film Iron Man?", "answers": [{ "text": "Jon Favreau", "aliases": ["Favreau"] }] },
-        { "prompt": "What is the name of Nick Fury's cat in the film Captain Marvel?", "answers": [{ "text": "Goose" }] }
+        { "prompt": "What is the name of Nick Fury's cat in the film Captain Marvel?", "answers": [{ "text": "Goose" }] },
+        { "prompt": "What is Iron Man's real name?", "answers": [{ "text": "Tony Stark", "aliases": ["Anthony Stark", "Stark"] }] },
+        { "prompt": "What is the name of Black Panther's fictional African country?", "answers": [{ "text": "Wakanda" }] }
       ]
     }
   ]

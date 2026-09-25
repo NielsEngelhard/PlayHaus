@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres tall is the tallest tree in the world?", "answer": 116, "unit": "metres" },
         { "prompt": "How many hours a day does a cat sleep?", "answer": 15, "unit": "hours" },
-        { "prompt": "In what year was the first Pinkpop festival held?", "answer": 1970, "unit": "" },
+        { "prompt": "In what year was the first Pinkpop festival held?", "answer": 1970 },
         { "prompt": "How many kilometres of canal run through Amsterdam?", "answer": 100, "unit": "kilometres" },
         { "prompt": "How many bones does an elephant have?", "answer": 350, "unit": "bones" },
         { "prompt": "How many tiny teeth does a garden snail have on its tongue?", "answer": 14000, "unit": "teeth" },
@@ -88,7 +88,17 @@
         "Auctioneer",
         "Northern Lights",
         "Samurai",
-        "Time zone"
+        "Time zone",
+        "Still life",
+        "Caricature",
+        "Joke",
+        "Pirates of the Caribbean",
+        "Stag party",
+        "Macaroni",
+        "Combine harvester",
+        "Antlers",
+        "Easter egg",
+        "K'nex"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "What is the capital of Panama?", "answers": [{ "text": "Panama City", "aliases": ["Panama-Stad"] }] },
         { "prompt": "In which year did the Netherlands first play at a World Cup?", "answers": [{ "text": "1934" }] },
         { "prompt": "Which German-British astronomer discovered the planet Uranus?", "answers": [{ "text": "William Herschel", "aliases": ["Herschel"] }] },
-        { "prompt": "Which is the longest cave system in the world?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoth"] }] }
+        { "prompt": "Which is the longest cave system in the world?", "answers": [{ "text": "Mammoth Cave", "aliases": ["Mammoth"] }] },
+        { "prompt": "What is the capital of Kenya?", "answers": [{ "text": "Nairobi" }] },
+        { "prompt": "What is the capital of Georgia, the country in the Caucasus?", "answers": [{ "text": "Tbilisi" }] }
       ]
     }
   ]

@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres long is a cricket pitch between the wickets?", "answer": 20, "unit": "metres" },
         { "prompt": "How many kilometres per hour can a sailfish swim?", "answer": 110, "unit": "kilometres per hour" },
-        { "prompt": "In what year were the Olympic Games first held in Asia?", "answer": 1964, "unit": "" },
+        { "prompt": "In what year were the Olympic Games first held in Asia?", "answer": 1964 },
         { "prompt": "How many bones are there in the human middle ear?", "answer": 3, "unit": "bones" },
         { "prompt": "How many seeds does a pomegranate hold, roughly?", "answer": 600, "unit": "seeds" },
         { "prompt": "How many metres does a sloth travel on the ground in a day?", "answer": 40, "unit": "metres" },
@@ -88,7 +88,17 @@
         "Mount Everest",
         "Detective",
         "Harry Potter",
-        "Solar eclipse"
+        "Solar eclipse",
+        "Thumb sucking",
+        "Pair of compasses",
+        "Warthog",
+        "Satay sauce",
+        "Abseiling",
+        "Alhambra",
+        "Bob the Builder",
+        "Kung fu",
+        "Pasta machine",
+        "Pitta bread"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which is the largest volcano on earth by volume?", "answers": [{ "text": "Mauna Loa" }] },
         { "prompt": "Which composer wrote the opera The Magic Flute?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
         { "prompt": "Which Italian physicist invented the electric battery?", "answers": [{ "text": "Alessandro Volta", "aliases": ["Volta"] }] },
-        { "prompt": "Which sea holds the lowest point of dry land on earth?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] }
+        { "prompt": "Which sea holds the lowest point of dry land on earth?", "answers": [{ "text": "The Dead Sea", "aliases": ["Dead Sea"] }] },
+        { "prompt": "Which French painter made a whole series of paintings of the water lilies in his garden?", "answers": [{ "text": "Claude Monet", "aliases": ["Monet"] }] },
+        { "prompt": "What is the capital of Mali?", "answers": [{ "text": "Bamako" }] }
       ]
     }
   ]

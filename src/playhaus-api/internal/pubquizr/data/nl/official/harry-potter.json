@@ -47,14 +47,14 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In welk jaar verscheen het eerste Harry Potterboek?", "answer": 1997, "unit": "", "explanation": "Juni 1997, in een eerste oplage van vijfhonderd exemplaren." },
+        { "prompt": "In welk jaar verscheen het eerste Harry Potterboek?", "answer": 1997, "explanation": "Juni 1997, in een eerste oplage van vijfhonderd exemplaren." },
         { "prompt": "Hoeveel minuten duurt de eerste Harry Potterfilm ongeveer?", "answer": 152, "unit": "minuten" },
         { "prompt": "Uit hoeveel boeken bestaat de originele Harry Potterreeks van J.K. Rowling?", "answer": 7, "unit": "boeken" },
-        { "prompt": "In welk jaar ging de laatste Harry Potterfilm in premiere?", "answer": 2011, "unit": "" },
+        { "prompt": "In welk jaar ging de laatste Harry Potterfilm in premiere?", "answer": 2011 },
         { "prompt": "Hoeveel huispunten had Griffoendor in totaal aan het einde van het eerste boek, na Perkamentus' punten op het laatste moment?", "answer": 482, "unit": "punten", "explanation": "Dat bracht Griffoendor op 482 tegen Zwadderich's 472." },
         { "prompt": "Hoeveel kinderen telt de familie Wemel in totaal?", "answer": 7, "unit": "kinderen" },
-        { "prompt": "In welk jaar wordt Harry Potter geboren, volgens de boeken?", "answer": 1980, "unit": "" },
-        { "prompt": "Het hoeveelste perron gebruikt Harry, naast het driekwart, om bij de Zweinsteinexpres te komen?", "answer": 9, "unit": "" }
+        { "prompt": "In welk jaar wordt Harry Potter geboren, volgens de boeken?", "answer": 1980 },
+        { "prompt": "Het hoeveelste perron gebruikt Harry, naast het driekwart, om bij de Zweinsteinexpres te komen?", "answer": 9 }
       ]
     },
     {
@@ -89,7 +89,17 @@
         "Hippogrief",
         "Wisseldrank",
         "Bellatrix van Detta",
-        "Vuurflits"
+        "Vuurflits",
+        "Zweinstein",
+        "Perron negen drie kwart",
+        "Hagrid",
+        "Dobby",
+        "Hedwig",
+        "Bliksemschichtlitteken",
+        "Toverdrankles",
+        "Uilenpost",
+        "Sluipwegwijzer",
+        "Gouden Snaai"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welk wezen leeft in de Geheime Kamer?", "answers": [{ "text": "Een basilisk", "aliases": ["basilisk"] }] },
         { "prompt": "Wie doodde de slang Nagini?", "answers": [{ "text": "Marcel Lubbermans", "aliases": ["Lubbermans", "Neville Longbottom"] }] },
         { "prompt": "In welke winkel in de Wegisweg koopt Harry zijn eerste toverstok?", "answers": [{ "text": "Olivander", "aliases": ["Olivanders", "Ollivanders"] }] },
-        { "prompt": "Hoe heet de feniks van Perkamentus?", "answers": [{ "text": "Felix", "aliases": ["Fawkes"] }] }
+        { "prompt": "Hoe heet de feniks van Perkamentus?", "answers": [{ "text": "Felix", "aliases": ["Fawkes"] }] },
+        { "prompt": "In welk huis van Zweinstein zit Cedric Kannewasser?", "answers": [{ "text": "Huffelpuf", "aliases": ["Hufflepuff"] }] },
+        { "prompt": "Hoe heet de chagrijnige huiself van de familie Zwarts?", "answers": [{ "text": "Knijster", "aliases": ["Kreacher"] }] }
       ]
     }
   ]

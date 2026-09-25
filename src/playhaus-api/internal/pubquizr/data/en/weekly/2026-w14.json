@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres long is a full size football pitch?", "answer": 105, "unit": "metres" },
         { "prompt": "How many species of penguin are there?", "answer": 18, "unit": "species" },
-        { "prompt": "In what year did the Netherlands issue its first postage stamp?", "answer": 1852, "unit": "" },
+        { "prompt": "In what year did the Netherlands issue its first postage stamp?", "answer": 1852 },
         { "prompt": "How many kilometres of railway track does the Netherlands have?", "answer": 3200, "unit": "kilometres" },
         { "prompt": "How many octaves does a standard piano keyboard cover?", "answer": 7, "unit": "octaves" },
         { "prompt": "How many kilograms of cheese does the average Dutch person eat in a year?", "answer": 21, "unit": "kilograms" },
@@ -88,7 +88,17 @@
         "The Rolling Stones",
         "Hibernation",
         "Origami",
-        "Marathon"
+        "Marathon",
+        "Medusa",
+        "Raising the flag",
+        "The Thinker",
+        "Joystick",
+        "Conga line",
+        "Insurance",
+        "Adele",
+        "Garden hose",
+        "Sashimi",
+        "Samba"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which is the largest island in the world?", "answers": [{ "text": "Greenland" }] },
         { "prompt": "In which country are the Angel Falls, the highest waterfall in the world?", "answers": [{ "text": "Venezuela" }] },
         { "prompt": "Which gas makes up about seventy-eight percent of the air we breathe?", "answers": [{ "text": "Nitrogen" }] },
-        { "prompt": "Which English scientist discovered electromagnetic induction?", "answers": [{ "text": "Michael Faraday", "aliases": ["Faraday"] }] }
+        { "prompt": "Which English scientist discovered electromagnetic induction?", "answers": [{ "text": "Michael Faraday", "aliases": ["Faraday"] }] },
+        { "prompt": "Which American writer wrote The Great Gatsby?", "answers": [{ "text": "F. Scott Fitzgerald", "aliases": ["Scott Fitzgerald", "Fitzgerald"] }] },
+        { "prompt": "Which city has been the capital of Myanmar since the mid-2000s?", "answers": [{ "text": "Naypyidaw", "aliases": ["Naypyitaw"] }] }
       ]
     }
   ]

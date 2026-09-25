@@ -89,7 +89,9 @@ func (s *GormStore) QuizBySlug(ctx context.Context, slug string, locale i18n.Loc
 // ListQuizzes is one page of the shelf, newest first, and whether another page follows it.
 func (s *GormStore) ListQuizzes(ctx context.Context, f QuizFilter) ([]*Quiz, bool, error) {
 	query := s.db.WithContext(ctx).Model(&Quiz{}).
-		Where("locale = ?", f.Locale)
+		Where("locale = ?", f.Locale).
+		// Every week up to next April is already seeded, and each one surfaces on its own Wednesday.
+		Where("COALESCE(published_at, created_at) < ?", f.ReleasedBefore)
 	if f.Category != "" {
 		query = query.Where("category = ?", f.Category)
 	}

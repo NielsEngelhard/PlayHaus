@@ -89,7 +89,17 @@
         "Yeti",
         "Yodelling",
         "Base camp",
-        "Oxygen bottle"
+        "Oxygen bottle",
+        "Summit",
+        "Rope team",
+        "Snow line",
+        "Mountain goat",
+        "Crevasse",
+        "Ice spikes",
+        "Altitude sickness",
+        "Mountain lake",
+        "Cable car station",
+        "Ski slope"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which mountain in Pakistan is nicknamed the Killer Mountain and was first climbed solo by Hermann Buhl?", "answers": [{ "text": "Nanga Parbat", "aliases": ["The Nanga Parbat"] }] },
         { "prompt": "What is the name for the zone above roughly eight thousand metres in which the human body can no longer acclimatise?", "answers": [{ "text": "The death zone", "aliases": ["death zone"] }] },
         { "prompt": "Which Italian mountain pass is famous for the 48 numbered hairpin bends on its northern side?", "answers": [{ "text": "The Stelvio Pass", "aliases": ["Stelvio", "Passo dello Stelvio"] }] },
-        { "prompt": "What is the sharp ridge that forms between two glaciers called, by its French name?", "answers": [{ "text": "An arete", "aliases": ["arete", "arête"] }] }
+        { "prompt": "What is the sharp ridge that forms between two glaciers called, by its French name?", "answers": [{ "text": "An arete", "aliases": ["arete", "arête"] }] },
+        { "prompt": "What is the highest mountain in North America?", "answers": [{ "text": "Denali", "aliases": ["Mount McKinley", "McKinley"] }] },
+        { "prompt": "What is the highest mountain in Antarctica?", "answers": [{ "text": "Mount Vinson", "aliases": ["Vinson", "Vinson Massif"] }] }
       ]
     }
   ]

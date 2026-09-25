@@ -47,14 +47,14 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In welk jaar werd Elizabeth II gekroond?", "answer": 1953, "unit": "", "explanation": "Ze volgde haar vader op in 1952 en werd in juni 1953 gekroond." },
+        { "prompt": "In welk jaar werd Elizabeth II gekroond?", "answer": 1953, "explanation": "Ze volgde haar vader op in 1952 en werd in juni 1953 gekroond." },
         { "prompt": "Hoeveel jaar regeerde de Franse koning Lodewijk XIV?", "answer": 72, "unit": "jaar" },
         { "prompt": "Hoeveel jaar regeerde koningin Elizabeth II in totaal?", "answer": 70, "unit": "jaar", "explanation": "Ze regeerde van 1952 tot 2022, langer dan enige andere Britse vorst." },
-        { "prompt": "In welk jaar besteeg koning Willem-Alexander de Nederlandse troon?", "answer": 2013, "unit": "" },
+        { "prompt": "In welk jaar besteeg koning Willem-Alexander de Nederlandse troon?", "answer": 2013 },
         { "prompt": "Hoeveel jaar regeerde Lodewijk XVI voordat de Franse Revolutie een einde maakte aan zijn heerschappij?", "answer": 15, "unit": "jaar" },
-        { "prompt": "In welk jaar kroonde Napoleon zichzelf tot keizer van Frankrijk?", "answer": 1804, "unit": "" },
+        { "prompt": "In welk jaar kroonde Napoleon zichzelf tot keizer van Frankrijk?", "answer": 1804 },
         { "prompt": "Hoeveel jaar regeerde koningin Beatrix voor haar troonsafstand?", "answer": 33, "unit": "jaar" },
-        { "prompt": "In welk jaar vond de kroning van koning Charles III plaats?", "answer": 2023, "unit": "" }
+        { "prompt": "In welk jaar vond de kroning van koning Charles III plaats?", "answer": 2023 }
       ]
     },
     {
@@ -89,7 +89,17 @@
         "Regent",
         "Dynastie",
         "Staatsbezoek",
-        "Wapenschild"
+        "Wapenschild",
+        "Koninklijk jacht",
+        "Hermelijnen mantel",
+        "Troonopvolger",
+        "Buiging",
+        "Koninklijke familie",
+        "Rijtoer",
+        "Paleiswacht",
+        "Kroonprins",
+        "Koninklijk portret",
+        "Wuiven"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke Engelse koningin regeerde in 1553 negen dagen?", "answers": [{ "text": "Jane Grey", "aliases": ["Lady Jane Grey"] }] },
         { "prompt": "De koninklijke familie van welk land woont in paleis Amalienborg?", "answers": [{ "text": "Denemarken" }] },
         { "prompt": "Welke Russische keizerin, geboren als Duitse prinses, regeerde van 1762 tot 1796?", "answers": [{ "text": "Catharina de Grote", "aliases": ["Catharina II", "Catharina"] }] },
-        { "prompt": "Wie is op dit moment koning van Belgie?", "answers": [{ "text": "Filip", "aliases": ["Philippe", "Koning Filip"] }] }
+        { "prompt": "Wie is op dit moment koning van Belgie?", "answers": [{ "text": "Filip", "aliases": ["Philippe", "Koning Filip"] }] },
+        { "prompt": "Welke Britse koning deed in 1936 afstand van de troon om met Wallis Simpson te trouwen?", "answers": [{ "text": "Edward VIII", "aliases": ["Edward de Achtste", "Edward"] }] },
+        { "prompt": "Hoe heet het koninklijk huis van Spanje?", "answers": [{ "text": "Het Huis Bourbon", "aliases": ["Bourbon", "Borbon"] }] }
       ]
     }
   ]

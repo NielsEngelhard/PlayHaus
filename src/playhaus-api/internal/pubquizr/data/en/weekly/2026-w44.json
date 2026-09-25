@@ -1,0 +1,147 @@
+{
+  "slug": "2026-w44",
+  "title": "Weekly quiz 44 2026",
+  "description": "The weekly quiz of Wednesday 28 October 2026.",
+  "rounds": [
+    {
+      "round": 1,
+      "questions": [
+        { "prompt": "What is the highest mountain in Germany?", "category": "Geography", "answers": [{ "text": "The Zugspitze", "aliases": ["Zugspitze"] }] },
+        { "prompt": "What is a number that can only be divided by one and by itself called?", "category": "Science", "answers": [{ "text": "A prime number", "aliases": ["Prime number", "Prime"] }] },
+        { "prompt": "Which Dutch admiral sailed up the Medway in 1667 and took the English flagship?", "category": "History", "answers": [{ "text": "Michiel de Ruyter", "aliases": ["De Ruyter"] }] },
+        { "prompt": "What is the spring cycling classic over cobbles known as the Hell of the North called?", "category": "Sport", "answers": [{ "text": "Paris-Roubaix", "aliases": ["Paris Roubaix"] }] },
+        { "prompt": "In which film does Macaulay Culkin defend the house against two burglars?", "category": "Film", "answers": [{ "text": "Home Alone" }] },
+        { "prompt": "Which British singer had a hit with Shape of You in 2017?", "category": "Music", "answers": [{ "text": "Ed Sheeran", "aliases": ["Sheeran"] }] },
+        { "prompt": "What is the capital of the province of Gelderland?", "category": "The Netherlands", "answers": [{ "text": "Arnhem" }] },
+        { "prompt": "Which French painter moved to Tahiti and painted the islanders there?", "category": "Art", "answers": [{ "text": "Paul Gauguin", "aliases": ["Gauguin"] }] },
+        { "prompt": "What is a word with the same meaning as another word called?", "category": "Language", "answers": [{ "text": "A synonym", "aliases": ["Synonym"] }] },
+        { "prompt": "Which seeds is tahini made from?", "category": "Food", "answers": [{ "text": "Sesame seeds", "aliases": ["Sesame"] }] },
+        { "prompt": "Who founded Apple together with Steve Jobs in 1976?", "category": "Technology", "answers": [{ "text": "Steve Wozniak", "aliases": ["Wozniak"] }] },
+        { "prompt": "Which big cat with rosettes on its coat is the largest cat in the Americas?", "category": "Nature", "answers": [{ "text": "The jaguar", "aliases": ["Jaguar"] }] },
+        { "prompt": "Which grand duchy lies between Belgium, France and Germany?", "category": "Geography", "answers": [{ "text": "Luxembourg" }] },
+        { "prompt": "What was the name of the boy pharaoh whose tomb was found almost untouched in 1922?", "category": "History", "answers": [{ "text": "Tutankhamun", "aliases": ["Tutankhamen"] }] },
+        { "prompt": "What is the distance light travels in a year called?", "category": "Science", "answers": [{ "text": "A light year", "aliases": ["Light year"] }] },
+        { "prompt": "Which British singer released the album Back to Black in 2006?", "category": "Music", "answers": [{ "text": "Amy Winehouse", "aliases": ["Winehouse"] }] },
+        { "prompt": "Which actor played the Terminator?", "category": "Film", "answers": [{ "text": "Arnold Schwarzenegger", "aliases": ["Schwarzenegger"] }] },
+        { "prompt": "What is the Indonesian dish of fried rice called?", "category": "Food", "answers": [{ "text": "Nasi goreng", "aliases": ["Nasi"] }] },
+        { "prompt": "Which car brand of Elon Musk builds the Model 3?", "category": "Technology", "answers": [{ "text": "Tesla" }] },
+        { "prompt": "What does Julius Caesar's saying veni, vidi, vici mean?", "category": "Language", "answers": [{ "text": "I came, I saw, I conquered", "aliases": ["I came I saw I conquered"] }] }
+      ]
+    },
+    {
+      "round": 2,
+      "questions": [
+        { "prompt": "Which city has the oldest underground railway in the world?", "options": [{ "text": "London", "correct": true }, { "text": "Paris" }, { "text": "New York" }, { "text": "Budapest" }] },
+        { "prompt": "Which animal has the densest fur of all animals?", "options": [{ "text": "The sea otter", "correct": true }, { "text": "The polar bear" }, { "text": "The wolf" }, { "text": "The musk ox" }] },
+        { "prompt": "Which Swedish writer wrote the Millennium trilogy?", "options": [{ "text": "Stieg Larsson", "correct": true }, { "text": "Henning Mankell" }, { "text": "Jo Nesbo" }, { "text": "Camilla Lackberg" }] },
+        { "prompt": "Which of these countries lies in the southern hemisphere?", "options": [{ "text": "Angola", "correct": true }, { "text": "Nigeria" }, { "text": "Ghana" }, { "text": "Ethiopia" }] },
+        { "prompt": "Which of these is not a bone in the human body?", "options": [{ "text": "The Achilles tendon", "correct": true }, { "text": "The collarbone" }, { "text": "The shinbone" }, { "text": "The breastbone" }] },
+        { "prompt": "Which Dutch stadtholder also became king of England?", "options": [{ "text": "William III", "correct": true }, { "text": "William I" }, { "text": "William II" }, { "text": "Maurice" }] },
+        { "prompt": "Which of these cities is in Switzerland?", "options": [{ "text": "Lausanne", "correct": true }, { "text": "Annecy" }, { "text": "Innsbruck" }, { "text": "Grenoble" }] },
+        { "prompt": "Which of these animals is not a reptile?", "options": [{ "text": "The salamander", "correct": true }, { "text": "The gecko" }, { "text": "The tortoise" }, { "text": "The crocodile" }] },
+        { "prompt": "Which actor played the boxer Rocky Balboa?", "options": [{ "text": "Sylvester Stallone", "correct": true }, { "text": "Bruce Willis" }, { "text": "Mel Gibson" }, { "text": "Jean-Claude Van Damme" }] },
+        { "prompt": "Which country won the very first European Championship in 1960?", "options": [{ "text": "The Soviet Union", "correct": true }, { "text": "Yugoslavia" }, { "text": "Spain" }, { "text": "France" }] }
+      ]
+    },
+    {
+      "round": 3,
+      "questions": [
+        { "prompt": "How many kilometres long is the North-South line of the Amsterdam metro?", "answer": 9.7, "unit": "kilometres" },
+        { "prompt": "How many players does an ice hockey team have on the ice at once, including the goalkeeper?", "answer": 6, "unit": "players" },
+        { "prompt": "How many countries border China?", "answer": 14, "unit": "countries" },
+        { "prompt": "About how many kilos does an adult male polar bear weigh?", "answer": 450, "unit": "kilos" },
+        { "prompt": "How many metres long can a blue whale grow?", "answer": 30, "unit": "metres" },
+        { "prompt": "In which year did the Efteling open?", "answer": 1952 },
+        { "prompt": "How many kilometres long is the route of the Elfstedentocht?", "answer": 200, "unit": "kilometres" },
+        { "prompt": "How many litres of beer does the average Dutch person drink a year?", "answer": 70, "unit": "litres" }
+      ]
+    },
+    {
+      "round": 4,
+      "words": [
+        "Chewbacca",
+        "Kiwi",
+        "Seesaw",
+        "Spanish flu",
+        "Gondola lift",
+        "Sideburns",
+        "Heavy metal",
+        "Ali Baba",
+        "Passion fruit",
+        "Baker",
+        "Sit-up",
+        "Crazy golf",
+        "Mulan",
+        "Blackbird",
+        "Magic trick",
+        "Tom and Jerry",
+        "Ice cream cone",
+        "Mustard",
+        "Moana",
+        "School report",
+        "Whitney Houston",
+        "Coffee filter",
+        "Mother Teresa",
+        "Jane Austen",
+        "Belly button",
+        "Cave diving",
+        "Kindergarten",
+        "Hamlet",
+        "Buzz Aldrin",
+        "Sesame Street",
+        "Election debate",
+        "Wrapping paper",
+        "Piranha",
+        "Triangle",
+        "Birch",
+        "Beyonce",
+        "Overtime",
+        "Ant farm",
+        "Cross-country skiing",
+        "Coffee pod"
+      ]
+    },
+    {
+      "round": 5,
+      "questions": [
+        { "prompt": "What do you know about Spider-Man?", "answers": [{ "text": "Peter Parker", "aliases": ["Parker"] }, { "text": "Spider web", "aliases": ["Web-slinging", "Web"] }, { "text": "New York", "aliases": ["Queens"] }, { "text": "Marvel", "aliases": ["Stan Lee"] }] },
+        { "prompt": "What do you know about Ireland?", "answers": [{ "text": "Green", "aliases": ["Emerald Isle", "Shamrock"] }, { "text": "Guinness", "aliases": ["Beer", "Pub"] }, { "text": "Dublin", "aliases": ["The capital Dublin"] }, { "text": "Saint Patrick", "aliases": ["Saint Patrick's Day", "St Patrick"] }] },
+        { "prompt": "What do you know about the Himalayas?", "answers": [{ "text": "Mount Everest", "aliases": ["Everest", "K2"] }, { "text": "Nepal", "aliases": ["Tibet", "India"] }, { "text": "Sherpas", "aliases": ["Sherpa"] }, { "text": "Yeti", "aliases": ["Abominable snowman"] }] },
+        { "prompt": "What do you know about Hawaii?", "answers": [{ "text": "Surfing", "aliases": ["Surfers", "Waves"] }, { "text": "Volcanoes", "aliases": ["Volcano", "Lava"] }, { "text": "Hula", "aliases": ["Hula dancing", "Flower garland"] }, { "text": "Islands", "aliases": ["Pacific", "Honolulu"] }] },
+        { "prompt": "What do you know about Beethoven?", "answers": [{ "text": "Deaf", "aliases": ["He went deaf"] }, { "text": "Germany", "aliases": ["Bonn", "Vienna"] }, { "text": "Fur Elise", "aliases": ["Piano piece"] }, { "text": "Ninth Symphony", "aliases": ["Symphonies", "Ode to Joy"] }] },
+        { "prompt": "What do you know about Maastricht?", "answers": [{ "text": "Limburg", "aliases": ["South Limburg"] }, { "text": "The Meuse", "aliases": ["Meuse", "Maas"] }, { "text": "Maastricht Treaty", "aliases": ["Europe", "Euro"] }, { "text": "Carnival", "aliases": ["Vrijthof", "Andre Rieu"] }] },
+        { "prompt": "What do you know about robots?", "answers": [{ "text": "Machines", "aliases": ["Metal", "Mechanical"] }, { "text": "Factories", "aliases": ["Assembly line", "Building cars"] }, { "text": "Artificial intelligence", "aliases": ["AI", "Computer"] }, { "text": "Films", "aliases": ["R2-D2", "Terminator", "WALL-E"] }] },
+        { "prompt": "What do you know about Sherlock Holmes?", "answers": [{ "text": "Baker Street", "aliases": ["London"] }, { "text": "Doctor Watson", "aliases": ["Watson"] }, { "text": "Pipe", "aliases": ["Deerstalker", "Magnifying glass"] }, { "text": "Arthur Conan Doyle", "aliases": ["Conan Doyle"] }] }
+      ]
+    },
+    {
+      "round": 6,
+      "questions": [
+        { "prompt": "What do you make from cream by churning it for a long time?", "difficulty": "easy", "answers": [{ "text": "Butter" }] },
+        { "prompt": "What kind of animal is Pluto, Mickey Mouse's pet?", "difficulty": "easy", "answers": [{ "text": "A dog", "aliases": ["Dog"] }] },
+        { "prompt": "What is the capital of France?", "difficulty": "easy", "answers": [{ "text": "Paris" }] },
+        { "prompt": "Which fairy tale is about a girl in a red hood and a wolf?", "difficulty": "easy", "answers": [{ "text": "Little Red Riding Hood", "aliases": ["Red Riding Hood"] }] },
+        { "prompt": "What colour are the Smurfs?", "difficulty": "easy", "answers": [{ "text": "Blue" }] },
+        { "prompt": "What is the capital of Yemen?", "difficulty": "hard", "answers": [{ "text": "Sanaa", "aliases": ["Sana'a"] }] },
+        { "prompt": "Which French writer wrote Madame Bovary?", "difficulty": "hard", "answers": [{ "text": "Gustave Flaubert", "aliases": ["Flaubert"] }] },
+        { "prompt": "Which element has the chemical symbol Sb?", "difficulty": "hard", "answers": [{ "text": "Antimony" }] },
+        { "prompt": "Which Dutch navigator was the first to round the cape in 1616 that he named after his home town?", "difficulty": "hard", "answers": [{ "text": "Willem Schouten", "aliases": ["Schouten", "Willem Cornelisz Schouten"] }] },
+        { "prompt": "Which Italian composer wrote Madama Butterfly?", "difficulty": "hard", "answers": [{ "text": "Giacomo Puccini", "aliases": ["Puccini"] }] }
+      ]
+    },
+    {
+      "round": 7,
+      "questions": [
+        { "prompt": "What is the name of Ernie's best friend on Sesame Street?", "answers": [{ "text": "Bert" }] },
+        { "prompt": "In which country is the holy city of Mecca?", "answers": [{ "text": "Saudi Arabia" }] },
+        { "prompt": "Which Spanish king had the monastery of El Escorial built and fought the Dutch Revolt?", "answers": [{ "text": "Philip II", "aliases": ["Philip the Second"] }] },
+        { "prompt": "What kind of animal is Garfield?", "answers": [{ "text": "A cat", "aliases": ["Cat"] }] },
+        { "prompt": "Which British writer created Winnie the Pooh?", "answers": [{ "text": "A.A. Milne", "aliases": ["Milne", "Alan Alexander Milne"] }] },
+        { "prompt": "What is the name of the larger, inner moon of Mars?", "answers": [{ "text": "Phobos" }] },
+        { "prompt": "Which animal is in the logo of the clothing brand Lacoste?", "answers": [{ "text": "A crocodile", "aliases": ["Crocodile"] }] },
+        { "prompt": "Which football club plays in the Philips Stadion in Eindhoven?", "answers": [{ "text": "PSV", "aliases": ["PSV Eindhoven"] }] },
+        { "prompt": "Which British physicist discovered the neutron in 1932?", "answers": [{ "text": "James Chadwick", "aliases": ["Chadwick"] }] }
+      ]
+    }
+  ]
+}

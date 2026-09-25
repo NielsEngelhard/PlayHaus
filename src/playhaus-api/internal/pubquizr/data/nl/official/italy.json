@@ -89,7 +89,17 @@
         "De Dolomieten",
         "De Amalfikust",
         "Terracotta dakpannen",
-        "Marmergroeve"
+        "Marmergroeve",
+        "Pizzeria",
+        "Spaghettivork",
+        "Colosseum-gids",
+        "Italiaanse oma",
+        "Limoncello",
+        "Ijssalon",
+        "Maffiabaas",
+        "Ferrari rood",
+        "Espressobar",
+        "Toscaanse heuvels"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Wie schreef de roman De naam van de roos uit 1980?", "answers": [{ "text": "Umberto Eco", "aliases": ["Eco"] }] },
         { "prompt": "Welke film van Vittorio De Sica uit 1948 volgt een vader en zoon op zoek naar een gestolen fiets?", "answers": [{ "text": "Fietsendieven", "aliases": ["Ladri di biciclette", "Bicycle Thieves"] }] },
         { "prompt": "Welke berg is de hoogste die volledig op Italiaans grondgebied ligt?", "answers": [{ "text": "Gran Paradiso" }] },
-        { "prompt": "Welke Italiaanse dichter schreef zijn leven lang sonnetten aan een vrouw die Laura heette?", "answers": [{ "text": "Petrarca", "aliases": ["Francesco Petrarca"] }] }
+        { "prompt": "Welke Italiaanse dichter schreef zijn leven lang sonnetten aan een vrouw die Laura heette?", "answers": [{ "text": "Petrarca", "aliases": ["Francesco Petrarca"] }] },
+        { "prompt": "In welke Italiaanse stad staat de Scala, het beroemde operahuis?", "answers": [{ "text": "Milaan", "aliases": ["Milano"] }] },
+        { "prompt": "Welke Italiaanse vrijheidsstrijder leidde in 1860 de Expeditie van de Duizend?", "answers": [{ "text": "Giuseppe Garibaldi", "aliases": ["Garibaldi"] }] }
       ]
     }
   ]

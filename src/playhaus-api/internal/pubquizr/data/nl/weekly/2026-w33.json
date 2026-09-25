@@ -47,12 +47,12 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel kilometer lang is het Panamakanaal?", "answer": 82, "unit": "kilometer", "explanation": "Tweeentachtig kilometer van de Atlantische naar de Stille Oceaan." },
-        { "prompt": "In welk jaar werd de Nederlandse Grondwet van Thorbecke ingevoerd?", "answer": 1848, "unit": "" },
-        { "prompt": "In welk jaar ging het Panamakanaal officieel open?", "answer": 1914, "unit": "" },
+        { "prompt": "In welk jaar werd de Nederlandse Grondwet van Thorbecke ingevoerd?", "answer": 1848 },
+        { "prompt": "In welk jaar ging het Panamakanaal officieel open?", "answer": 1914 },
         { "prompt": "Hoeveel sluizen telt het Panamakanaal in zijn oorspronkelijke ontwerp?", "answer": 3, "unit": "sluizen", "explanation": "Miraflores, Pedro Miguel en Gatun laten schepen elk in stappen zakken of stijgen." },
-        { "prompt": "In welk jaar kreeg het Nederlandse parlement onder Thorbeckes Grondwet voor het eerst twee kamers?", "answer": 1848, "unit": "" },
+        { "prompt": "In welk jaar kreeg het Nederlandse parlement onder Thorbeckes Grondwet voor het eerst twee kamers?", "answer": 1848 },
         { "prompt": "Hoeveel uur duurt het gemiddeld voor een schip om het Panamakanaal over te steken?", "answer": 10, "unit": "uur" },
-        { "prompt": "In welk jaar droegen de Verenigde Staten de volledige controle over het Panamakanaal over aan Panama?", "answer": 1999, "unit": "" },
+        { "prompt": "In welk jaar droegen de Verenigde Staten de volledige controle over het Panamakanaal over aan Panama?", "answer": 1999 },
         { "prompt": "Hoeveel duizend schepen varen er ongeveer per jaar door het Panamakanaal?", "answer": 14, "unit": "duizend schepen" }
       ]
     },
@@ -88,7 +88,17 @@
         "Jaloezie",
         "Het Laatste Avondmaal",
         "Recyclen",
-        "Het Wilhelmus"
+        "Het Wilhelmus",
+        "Justin Bieber",
+        "Hoogspringen",
+        "Jaloersheid",
+        "Galapagoseilanden",
+        "Halfstok",
+        "Gehaktbal",
+        "Notre-Dame",
+        "Vingerhoed",
+        "Handschoenen",
+        "Disco"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welk orgaan van het menselijk lichaam maakt insuline aan?", "answers": [{ "text": "De alvleesklier", "aliases": ["alvleesklier", "pancreas"] }] },
         { "prompt": "Welke Nederlandse schilder schilderde Het melkmeisje?", "answers": [{ "text": "Johannes Vermeer", "aliases": ["Vermeer"] }] },
         { "prompt": "In welke stad werden de Olympische Spelen van 1980 gehouden?", "answers": [{ "text": "Moskou", "aliases": ["Moscow"] }] },
-        { "prompt": "Wat is het grootste eiland ter wereld?", "answers": [{ "text": "Groenland" }] }
+        { "prompt": "Wat is het grootste eiland ter wereld?", "answers": [{ "text": "Groenland" }] },
+        { "prompt": "Welke Schotse schrijver schreef Schateiland?", "answers": [{ "text": "Robert Louis Stevenson", "aliases": ["Stevenson"] }] },
+        { "prompt": "Wat is de hoofdstad van Kirgizie?", "answers": [{ "text": "Bisjkek", "aliases": ["Bishkek"] }] }
       ]
     }
   ]

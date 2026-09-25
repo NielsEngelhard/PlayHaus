@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many strings does a concert harp have?", "answer": 47, "unit": "strings" },
         { "prompt": "How many kilometres long is the coastline of Norway, fjords included?", "answer": 25000, "unit": "kilometres" },
-        { "prompt": "In what year was the first Dutch television broadcast?", "answer": 1951, "unit": "" },
+        { "prompt": "In what year was the first Dutch television broadcast?", "answer": 1951 },
         { "prompt": "How many eyes does a honey bee have?", "answer": 5, "unit": "eyes", "explanation": "Two big compound eyes and three simple ones on top of the head." },
         { "prompt": "How many kilograms did the heaviest pumpkin ever grown weigh?", "answer": 1200, "unit": "kilograms" },
         { "prompt": "How many books does the Bible contain in the Protestant canon?", "answer": 66, "unit": "books" },
@@ -88,7 +88,17 @@
         "Casablanca",
         "Marie Curie",
         "Auctioneer",
-        "Democracy"
+        "Democracy",
+        "Air mattress",
+        "Chick",
+        "Arc de Triomphe",
+        "Croissant",
+        "Plastic surgery",
+        "Karl Marx",
+        "Alexander Fleming",
+        "John F. Kennedy",
+        "Falafel",
+        "Cauliflower"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which is the deepest lake in the world?", "answers": [{ "text": "Lake Baikal", "aliases": ["Baikal"] }] },
         { "prompt": "Which metal is liquid at room temperature?", "answers": [{ "text": "Mercury" }] },
         { "prompt": "Which Czech composer wrote the New World Symphony?", "answers": [{ "text": "Antonin Dvorak", "aliases": ["Dvorak"] }] },
-        { "prompt": "Which mountain range is taken as the border between Europe and Asia?", "answers": [{ "text": "The Urals", "aliases": ["Ural Mountains", "Urals"] }] }
+        { "prompt": "Which mountain range is taken as the border between Europe and Asia?", "answers": [{ "text": "The Urals", "aliases": ["Ural Mountains", "Urals"] }] },
+        { "prompt": "In which Spanish city is the Alhambra?", "answers": [{ "text": "Granada" }] },
+        { "prompt": "Which Dutch physicist shared the 1902 Nobel Prize with Pieter Zeeman?", "answers": [{ "text": "Hendrik Lorentz", "aliases": ["Lorentz", "Hendrik Antoon Lorentz"] }] }
       ]
     }
   ]

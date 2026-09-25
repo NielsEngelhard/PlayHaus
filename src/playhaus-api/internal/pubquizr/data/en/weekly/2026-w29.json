@@ -47,13 +47,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How many litres of blood does an adult human body hold?", "answer": 5, "unit": "litres", "explanation": "Around five litres, a little more in a large man and less in a small woman." },
-        { "prompt": "In what year was the Dutch East India Company founded?", "answer": 1602, "unit": "" },
+        { "prompt": "In what year was the Dutch East India Company founded?", "answer": 1602 },
         { "prompt": "How many days does it take red blood cells to fully renew in the human body?", "answer": 120, "unit": "days" },
-        { "prompt": "In what year was the Dutch West India Company, the VOC's rival, founded?", "answer": 1621, "unit": "" },
+        { "prompt": "In what year was the Dutch West India Company, the VOC's rival, founded?", "answer": 1621 },
         { "prompt": "How many litres of blood does the heart pump per day, roughly?", "answer": 7500, "unit": "litres" },
-        { "prompt": "In what year did New Amsterdam get renamed New York?", "answer": 1664, "unit": "" },
+        { "prompt": "In what year did New Amsterdam get renamed New York?", "answer": 1664 },
         { "prompt": "How many chambers does the human heart have?", "answer": 4, "unit": "chambers" },
-        { "prompt": "In what year did the Dutch East India Company go bankrupt and dissolve?", "answer": 1799, "unit": "" }
+        { "prompt": "In what year did the Dutch East India Company go bankrupt and dissolve?", "answer": 1799 }
       ]
     },
     {
@@ -88,7 +88,17 @@
         "Sumo wrestler",
         "Vikings",
         "Carnival",
-        "Grand Canyon"
+        "Grand Canyon",
+        "Siren",
+        "Onesie",
+        "Hearing aid",
+        "Goose",
+        "Matterhorn",
+        "Flea market",
+        "Turkey",
+        "Forest ranger",
+        "Online shop",
+        "Cream cake"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "What is the capital of Kazakhstan?", "answers": [{ "text": "Astana", "aliases": ["Nur-Sultan"] }] },
         { "prompt": "Which is the only sea in the world without a coastline?", "answers": [{ "text": "The Sargasso Sea", "aliases": ["Sargasso Sea", "Sargasso"] }] },
         { "prompt": "Which country has the only national flag that is not a rectangle?", "answers": [{ "text": "Nepal" }] },
-        { "prompt": "Which Dutch painter made the triptych The Garden of Earthly Delights?", "answers": [{ "text": "Hieronymus Bosch", "aliases": ["Jheronimus Bosch", "Bosch"] }] }
+        { "prompt": "Which Dutch painter made the triptych The Garden of Earthly Delights?", "answers": [{ "text": "Hieronymus Bosch", "aliases": ["Jheronimus Bosch", "Bosch"] }] },
+        { "prompt": "What is the capital of Argentina?", "answers": [{ "text": "Buenos Aires" }] },
+        { "prompt": "Which English physicist discovered the electron in 1897?", "answers": [{ "text": "J.J. Thomson", "aliases": ["Thomson", "Joseph John Thomson"] }] }
       ]
     }
   ]

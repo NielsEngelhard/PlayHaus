@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel olympische gouden medailles won Michael Phelps in zijn loopbaan?", "answer": 23, "unit": "gouden medailles" },
         { "prompt": "Hoeveel meter hoog is de hoogste zandduin ter wereld?", "answer": 383, "unit": "meter" },
-        { "prompt": "In welk jaar verloor Nederland zijn eerste WK-finale?", "answer": 1974, "unit": "" },
+        { "prompt": "In welk jaar verloor Nederland zijn eerste WK-finale?", "answer": 1974 },
         { "prompt": "Hoeveel kilometer per uur haalt een Formule 1-auto op volle snelheid?", "answer": 370, "unit": "kilometer per uur" },
         { "prompt": "Hoeveel kiezen gebruikt een olifant tegelijk?", "answer": 4, "unit": "kiezen" },
         { "prompt": "Hoeveel treden zitten er in het Vrijheidsbeeld tot aan de kroon?", "answer": 354, "unit": "treden" },
@@ -88,7 +88,17 @@
         "Veilingmeester",
         "Luchtballon",
         "Camouflage",
-        "Het noorderlicht"
+        "Het noorderlicht",
+        "Kokospalm",
+        "Walkietalkie",
+        "Mitella",
+        "Levend standbeeld",
+        "Haan",
+        "Loch Ness",
+        "Pincet",
+        "Eminem",
+        "Asterix",
+        "Doos van Pandora"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wat is het kleinste land ter wereld?", "answers": [{ "text": "Vaticaanstad", "aliases": ["Het Vaticaan", "Vaticaan"] }] },
         { "prompt": "Welk gebergte vormt meestal de grens tussen Europa en Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Het Oeralgebergte"] }] },
         { "prompt": "Welke zee ligt tussen Italie en de Balkan?", "answers": [{ "text": "De Adriatische Zee", "aliases": ["De Adriatische", "Adriatische Zee"] }] },
-        { "prompt": "Wie schreef de roman 1984?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] }
+        { "prompt": "Wie schreef de roman 1984?", "answers": [{ "text": "George Orwell", "aliases": ["Orwell"] }] },
+        { "prompt": "Wat is de hoofdstad van Vietnam?", "answers": [{ "text": "Hanoi" }] },
+        { "prompt": "Welke Franse filosoof schreef Het maatschappelijk verdrag?", "answers": [{ "text": "Jean-Jacques Rousseau", "aliases": ["Rousseau"] }] }
       ]
     }
   ]

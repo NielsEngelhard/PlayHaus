@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter lang is de Oosterscheldekering?", "answer": 9000, "unit": "meter" },
         { "prompt": "Hoeveel tanden heeft een tuimelaar?", "answer": 100, "unit": "tanden" },
-        { "prompt": "In welk jaar verbood Nederland roken in de horeca?", "answer": 2008, "unit": "" },
+        { "prompt": "In welk jaar verbood Nederland roken in de horeca?", "answer": 2008 },
         { "prompt": "Hoeveel kilometer dijk onderhoudt Nederland?", "answer": 17500, "unit": "kilometer" },
         { "prompt": "Hoeveel spieren heb je nodig voor een enkele stap?", "answer": 200, "unit": "spieren" },
         { "prompt": "Hoeveel jaar duurt het voor een eik zijn eerste eikels draagt?", "answer": 40, "unit": "jaar" },
@@ -88,7 +88,17 @@
         "Het paard van Troje",
         "Doedelzak",
         "Frida Kahlo",
-        "Inflatie"
+        "Inflatie",
+        "Accordeonist",
+        "Paus",
+        "Deodorant",
+        "Pindakaaspot",
+        "Finishlijn",
+        "Zeus",
+        "Heggenschaar",
+        "Maori",
+        "Reddingsboot",
+        "Lelie"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welk land heeft meer tijdzones dan welk ander land ook?", "answers": [{ "text": "Frankrijk" }] },
         { "prompt": "Welke Italiaanse astronoom zag als eerste de manen van Jupiter?", "answers": [{ "text": "Galileo Galilei", "aliases": ["Galilei", "Galileo"] }] },
         { "prompt": "Wat is de langste rivier van Azie?", "answers": [{ "text": "De Jangtsekiang", "aliases": ["Jangtsekiang", "Yangtze"] }] },
-        { "prompt": "Welk land heette vroeger Perzie?", "answers": [{ "text": "Iran" }] }
+        { "prompt": "Welk land heette vroeger Perzie?", "answers": [{ "text": "Iran" }] },
+        { "prompt": "Welke vulkaan begroef in het jaar 79 de stad Pompeii?", "answers": [{ "text": "De Vesuvius", "aliases": ["Vesuvius"] }] },
+        { "prompt": "Hoe heet het parlement van IJsland, een van de oudste ter wereld?", "answers": [{ "text": "De Althing", "aliases": ["Althing", "Althingi"] }] }
       ]
     }
   ]

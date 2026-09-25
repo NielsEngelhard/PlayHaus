@@ -47,13 +47,13 @@
     {
       "round": 3,
       "questions": [
-        { "prompt": "In welk jaar kwam Frozen uit?", "answer": 2013, "unit": "", "explanation": "De film kwam in november 2013 uit en werd de best bekeken tekenfilm van zijn tijd." },
+        { "prompt": "In welk jaar kwam Frozen uit?", "answer": 2013, "explanation": "De film kwam in november 2013 uit en werd de best bekeken tekenfilm van zijn tijd." },
         { "prompt": "Hoeveel minuten duurt Sneeuwwitje en de zeven dwergen?", "answer": 83, "unit": "minuten" },
-        { "prompt": "In welk jaar kwam Sneeuwwitje en de zeven dwergen uit?", "answer": 1937, "unit": "", "explanation": "De eerste avondvullende animatiefilm ooit uitgebracht." },
+        { "prompt": "In welk jaar kwam Sneeuwwitje en de zeven dwergen uit?", "answer": 1937, "explanation": "De eerste avondvullende animatiefilm ooit uitgebracht." },
         { "prompt": "Hoeveel minuten duurt Frozen?", "answer": 102, "unit": "minuten" },
-        { "prompt": "In welk jaar kwam De Kleine Zeemeermin uit?", "answer": 1989, "unit": "" },
+        { "prompt": "In welk jaar kwam De Kleine Zeemeermin uit?", "answer": 1989 },
         { "prompt": "Hoeveel officiele Disneyprinsessen telt de franchise?", "answer": 12, "unit": "prinsessen" },
-        { "prompt": "In welk jaar kwam Vaiana uit?", "answer": 2016, "unit": "" },
+        { "prompt": "In welk jaar kwam Vaiana uit?", "answer": 2016 },
         { "prompt": "Hoeveel minuten duurt Belle en het Beest?", "answer": 84, "unit": "minuten" }
       ]
     },
@@ -89,7 +89,17 @@
         "Onder de zee",
         "Een wereld vol fantasie",
         "Mevrouw Tas",
-        "Kano"
+        "Kano",
+        "Sneeuwwitje met appel",
+        "Ariel",
+        "Jasmine",
+        "Tiana",
+        "Merida",
+        "Mulan met zwaard",
+        "Rapunzels haar",
+        "Toverspiegel",
+        "Kus van ware liefde",
+        "Middernacht"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "In welke Disney-prinsessenfilm komt het lied Colors of the Wind voor?", "answers": [{ "text": "Pocahontas" }] },
         { "prompt": "Op welk sprookje van Hans Christian Andersen is Frozen losjes gebaseerd?", "answers": [{ "text": "De sneeuwkoningin", "aliases": ["sneeuwkoningin"] }] },
         { "prompt": "Hoe heet de prins in De prinses en de kikker?", "answers": [{ "text": "Naveen" }] },
-        { "prompt": "Hoe heet de kat van Assepoester?", "answers": [{ "text": "Lucifer" }] }
+        { "prompt": "Hoe heet de kat van Assepoester?", "answers": [{ "text": "Lucifer" }] },
+        { "prompt": "Hoe heet de krab die Ariel in De kleine zeemeermin beschermt?", "answers": [{ "text": "Sebastian" }] },
+        { "prompt": "Hoe heet de slechte zeeheks in De kleine zeemeermin?", "answers": [{ "text": "Ursula" }] }
       ]
     }
   ]

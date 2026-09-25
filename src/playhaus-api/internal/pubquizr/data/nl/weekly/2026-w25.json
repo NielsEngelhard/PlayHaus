@@ -47,13 +47,13 @@
       "round": 3,
       "questions": [
         { "prompt": "Hoeveel meter hoog is de Mount Everest?", "answer": 8849, "unit": "meter", "explanation": "De hoogte die China en Nepal in 2020 samen vaststelden." },
-        { "prompt": "In welk jaar werd de eerste iPhone gepresenteerd?", "answer": 2007, "unit": "" },
+        { "prompt": "In welk jaar werd de eerste iPhone gepresenteerd?", "answer": 2007 },
         { "prompt": "Aan hoeveel landen grenst de top van de Mount Everest?", "answer": 2, "unit": "landen", "explanation": "De top ligt op de grens tussen Nepal en China (Tibet)." },
-        { "prompt": "In welk jaar werd Facebook gelanceerd?", "answer": 2004, "unit": "" },
+        { "prompt": "In welk jaar werd Facebook gelanceerd?", "answer": 2004 },
         { "prompt": "Hoeveel kilometer lang is het Great Barrier Reef?", "answer": 2300, "unit": "kilometer" },
-        { "prompt": "In welk jaar kwam de eerste iPod in de winkel?", "answer": 2001, "unit": "" },
+        { "prompt": "In welk jaar kwam de eerste iPod in de winkel?", "answer": 2001 },
         { "prompt": "Hoeveel meter diep is het diepste punt van de oceaan, de Marianentrog, ongeveer?", "answer": 10935, "unit": "meter" },
-        { "prompt": "In welk jaar richtte Steve Jobs Apple mede op?", "answer": 1976, "unit": "" }
+        { "prompt": "In welk jaar richtte Steve Jobs Apple mede op?", "answer": 1976 }
       ]
     },
     {
@@ -88,7 +88,17 @@
         "Pablo Picasso",
         "De Sfinx",
         "Luchtverkeersleider",
-        "Camouflage"
+        "Camouflage",
+        "Meccano",
+        "Dj",
+        "Lieveheersbeestje",
+        "Softbal",
+        "Halter",
+        "Rubiks kubus",
+        "Hotelsleutel",
+        "Lenin",
+        "Toekan",
+        "Mozart"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "In welk jaar werd de Berlijnse Muur gebouwd?", "answers": [{ "text": "1961" }] },
         { "prompt": "Welke Griekse wiskundige zou Eureka hebben geroepen in zijn bad?", "answers": [{ "text": "Archimedes" }] },
         { "prompt": "Welke Duitse componist schreef de Brandenburgse Concerten?", "answers": [{ "text": "Johann Sebastian Bach", "aliases": ["Bach"] }] },
-        { "prompt": "Wat is de hoofdstad van Nieuw-Zeeland?", "answers": [{ "text": "Wellington" }] }
+        { "prompt": "Wat is de hoofdstad van Nieuw-Zeeland?", "answers": [{ "text": "Wellington" }] },
+        { "prompt": "Wat is de hoofdstad van Hongarije?", "answers": [{ "text": "Boedapest", "aliases": ["Budapest"] }] },
+        { "prompt": "Welke Amerikaanse schrijfster schreef De hut van oom Tom?", "answers": [{ "text": "Harriet Beecher Stowe", "aliases": ["Beecher Stowe"] }] }
       ]
     }
   ]

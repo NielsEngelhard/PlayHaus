@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter hoog is het Empire State Building tot de top van de mast?", "answer": 443, "unit": "meter" },
         { "prompt": "Hoeveel toetsen heeft een compleet computertoetsenbord?", "answer": 104, "unit": "toetsen" },
-        { "prompt": "In welk jaar reed de Tour de France voor het eerst een etappe in Nederland?", "answer": 1954, "unit": "" },
+        { "prompt": "In welk jaar reed de Tour de France voor het eerst een etappe in Nederland?", "answer": 1954 },
         { "prompt": "Uit hoeveel botten bestaat de menselijke schedel?", "answer": 22, "unit": "botten" },
         { "prompt": "Hoeveel kilometer per uur haalt een slechtvalk in een duikvlucht?", "answer": 320, "unit": "kilometer per uur" },
         { "prompt": "Hoeveel minuten duurt een voetbalwedstrijd inclusief rust?", "answer": 105, "unit": "minuten" },
@@ -88,7 +88,17 @@
         "Sherlock Holmes",
         "Venetie",
         "Zonsverduistering",
-        "Elfstedentocht"
+        "Elfstedentocht",
+        "Zandzak",
+        "Telefoonboek",
+        "Strijkijzer",
+        "Heidi",
+        "Brandweerman Sam",
+        "Voorpagina",
+        "Fruitautomaat",
+        "Ochtendhumeur",
+        "Zelfscan",
+        "Indiana Jones"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Welke zee is de zoutste ter wereld en ligt op het laagste punt op aarde?", "answers": [{ "text": "De Dode Zee", "aliases": ["Dode Zee"] }] },
         { "prompt": "Welke planeet heeft de meeste manen in ons zonnestelsel?", "answers": [{ "text": "Saturnus" }] },
         { "prompt": "Welke schrijfster bedacht de detective Hercule Poirot?", "answers": [{ "text": "Agatha Christie", "aliases": ["Christie"] }] },
-        { "prompt": "Welk gebergte vormt de grens tussen Europa en Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] }
+        { "prompt": "Welk gebergte vormt de grens tussen Europa en Azie?", "answers": [{ "text": "De Oeral", "aliases": ["Oeral", "Oeralgebergte"] }] },
+        { "prompt": "Welke Spaanse veroveraar bracht het Azteekse rijk ten val?", "answers": [{ "text": "Hernan Cortes", "aliases": ["Cortes"] }] },
+        { "prompt": "Wat is de hoofdstad van Bhutan?", "answers": [{ "text": "Thimphu" }] }
       ]
     }
   ]

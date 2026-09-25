@@ -47,13 +47,13 @@
       "round": 3,
       "questions": [
         { "prompt": "How tall was the Eiffel Tower when it opened in 1889, in metres?", "answer": 312, "unit": "metres", "explanation": "Just over three hundred metres, and the tallest structure in the world for forty years." },
-        { "prompt": "In what year was the first human launched into space?", "answer": 1961, "unit": "" },
+        { "prompt": "In what year was the first human launched into space?", "answer": 1961 },
         { "prompt": "How many metres tall is the Statue of Liberty, including its pedestal?", "answer": 93, "unit": "metres" },
-        { "prompt": "In what year did the Berlin Wall fall?", "answer": 1989, "unit": "" },
+        { "prompt": "In what year did the Berlin Wall fall?", "answer": 1989 },
         { "prompt": "How many kilometres long is the Amazon river, roughly?", "answer": 6400, "unit": "kilometres" },
-        { "prompt": "In what year was the telephone patented by Alexander Graham Bell?", "answer": 1876, "unit": "" },
+        { "prompt": "In what year was the telephone patented by Alexander Graham Bell?", "answer": 1876 },
         { "prompt": "How many time zones does Russia span?", "answer": 11, "unit": "time zones" },
-        { "prompt": "In what year did the first Olympic Games of the modern era take place?", "answer": 1896, "unit": "" }
+        { "prompt": "In what year did the first Olympic Games of the modern era take place?", "answer": 1896 }
       ]
     },
     {
@@ -88,7 +88,17 @@
         "Democracy",
         "Lightning conductor",
         "Sign language",
-        "Carnival"
+        "Carnival",
+        "Nordic jumper",
+        "Lewis Hamilton",
+        "Tag",
+        "Treadmill",
+        "Confucius",
+        "Terracotta Army",
+        "Podcast",
+        "Cuba",
+        "Chocolate letter",
+        "Duty free"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "What is the capital of Mongolia?", "answers": [{ "text": "Ulaanbaatar", "aliases": ["Ulan Bator"] }] },
         { "prompt": "On which ship did Charles Darwin make his voyage around the world?", "answers": [{ "text": "The Beagle", "aliases": ["Beagle"] }] },
         { "prompt": "In what year were the United Nations founded?", "answers": [{ "text": "1945" }] },
-        { "prompt": "Which Spanish artist painted the melting clocks of The Persistence of Memory?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] }
+        { "prompt": "Which Spanish artist painted the melting clocks of The Persistence of Memory?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] },
+        { "prompt": "In which constellation is the Pole Star?", "answers": [{ "text": "Ursa Minor", "aliases": ["The Little Bear", "Little Dipper"] }] },
+        { "prompt": "Which Italian inventor first sent radio signals across the Atlantic, in 1901?", "answers": [{ "text": "Guglielmo Marconi", "aliases": ["Marconi"] }] }
       ]
     }
   ]

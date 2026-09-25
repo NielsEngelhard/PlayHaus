@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres tall is the leaning tower of Pisa?", "answer": 56, "unit": "metres" },
         { "prompt": "How many bones does a snake have, roughly?", "answer": 400, "unit": "bones" },
-        { "prompt": "In what year did the Netherlands become European football champions?", "answer": 1988, "unit": "" },
+        { "prompt": "In what year did the Netherlands become European football champions?", "answer": 1988 },
         { "prompt": "How many kilometres of cycle path does the Netherlands have?", "answer": 35000, "unit": "kilometres" },
         { "prompt": "How many legs does a lobster have, claws included?", "answer": 10, "unit": "legs" },
         { "prompt": "How many million colours can the human eye tell apart?", "answer": 10, "unit": "million colours" },
@@ -88,7 +88,17 @@
         "Astronaut",
         "Stonehenge",
         "Niagara Falls",
-        "Charlie Chaplin"
+        "Charlie Chaplin",
+        "Lullaby",
+        "Tow truck",
+        "Bottle deposit",
+        "Paperclip",
+        "Albatross",
+        "Zootopia",
+        "Night train",
+        "Kasbah",
+        "Salami",
+        "Frank Sinatra"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "What is the deepest ocean trench in the world called?", "answers": [{ "text": "The Mariana Trench", "aliases": ["Mariana Trench", "Marianas Trench"] }] },
         { "prompt": "In which city is the Prado museum?", "answers": [{ "text": "Madrid" }] },
         { "prompt": "Who painted The Night Watch?", "answers": [{ "text": "Rembrandt", "aliases": ["Rembrandt van Rijn"] }] },
-        { "prompt": "Which gas makes up about 78 percent of the air we breathe?", "answers": [{ "text": "Nitrogen" }] }
+        { "prompt": "Which gas makes up about 78 percent of the air we breathe?", "answers": [{ "text": "Nitrogen" }] },
+        { "prompt": "What is the capital of Scotland?", "answers": [{ "text": "Edinburgh" }] },
+        { "prompt": "What is the highest mountain in the Caucasus?", "answers": [{ "text": "Mount Elbrus", "aliases": ["Elbrus"] }] }
       ]
     }
   ]

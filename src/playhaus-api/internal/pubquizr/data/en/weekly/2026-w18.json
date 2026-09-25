@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "How many metres tall is the Westertoren in Amsterdam?", "answer": 85, "unit": "metres" },
         { "prompt": "How many days does the moon take to go once round the earth?", "answer": 27, "unit": "days" },
-        { "prompt": "In what year was the first Dutch radio broadcast?", "answer": 1919, "unit": "" },
+        { "prompt": "In what year was the first Dutch radio broadcast?", "answer": 1919 },
         { "prompt": "How many kilometres per hour does the earth's surface turn at the equator?", "answer": 1670, "unit": "kilometres per hour" },
         { "prompt": "How many times does a person blink in a minute, on average?", "answer": 15, "unit": "times" },
         { "prompt": "How many million bricks were used to build the Empire State Building?", "answer": 10, "unit": "million bricks" },
@@ -88,7 +88,17 @@
         "Yoga",
         "Iceland",
         "Time zone",
-        "Puppet show"
+        "Puppet show",
+        "Cobra",
+        "Sword swallower",
+        "Anchor",
+        "Fear of heights",
+        "Dumbledore",
+        "Coaster",
+        "Fever",
+        "Buffalo",
+        "Raspberry",
+        "Bracelet"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "In which country does the ancient city of Machu Picchu lie?", "answers": [{ "text": "Peru" }] },
         { "prompt": "Which is the smallest planet in our solar system?", "answers": [{ "text": "Mercury" }] },
         { "prompt": "Who was the first person in space?", "answers": [{ "text": "Yuri Gagarin", "aliases": ["Gagarin"] }] },
-        { "prompt": "Which language has the most native speakers in the world?", "answers": [{ "text": "Mandarin Chinese", "aliases": ["Mandarin", "Chinese"] }] }
+        { "prompt": "Which language has the most native speakers in the world?", "answers": [{ "text": "Mandarin Chinese", "aliases": ["Mandarin", "Chinese"] }] },
+        { "prompt": "What is the currency of Brazil called?", "answers": [{ "text": "The real", "aliases": ["Real"] }] },
+        { "prompt": "Which Greek historian is called the father of history?", "answers": [{ "text": "Herodotus" }] }
       ]
     }
   ]

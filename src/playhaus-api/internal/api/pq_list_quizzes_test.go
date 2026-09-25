@@ -249,3 +249,44 @@ func TestListQuizzesRequiresAuth(t *testing.T) {
 		t.Errorf("status = %d, want %d (body: %s)", rec.Code, http.StatusUnauthorized, rec.Body)
 	}
 }
+
+func TestListQuizzesHidesAWeekUntilItsWednesday(t *testing.T) {
+	h, db := newQuizServer(t)
+	session := newGuestSession(t, h)
+
+	today := time.Now().UTC().Truncate(24 * time.Hour)
+	insert := func(slug string, published time.Time) string {
+		quiz := &pubquizr.Quiz{
+			ID:          uuid.New(),
+			Slug:        slug,
+			Locale:      i18n.EN,
+			Category:    pubquizr.CategoryWeekly,
+			Title:       slug,
+			PublishedAt: &published,
+			CreatedAt:   today,
+			UpdatedAt:   today,
+		}
+		if err := db.Create(quiz).Error; err != nil {
+			t.Fatalf("insert %s: %v", slug, err)
+		}
+		return quiz.ID.String()
+	}
+	out := insert("released-week", today.AddDate(0, 0, -1))
+	ahead := insert("unreleased-week", today.AddDate(0, 0, 7))
+
+	listed := map[string]bool{}
+	for _, item := range allQuizzes(t, h, session.Token, "locale=en&category=weekly") {
+		listed[item.ID] = true
+	}
+	if !listed[out] {
+		t.Error("a week that is already out is missing from the shelf")
+	}
+	if listed[ahead] {
+		t.Error("next week's quiz is on the shelf before its Wednesday")
+	}
+
+	// A player who guesses the id still cannot play it early.
+	if rec := do(t, h, http.MethodGet, quizPath(ahead), "", session.Token); rec.Code != http.StatusNotFound {
+		t.Errorf("get unreleased quiz: status = %d, want %d", rec.Code, http.StatusNotFound)
+	}
+}

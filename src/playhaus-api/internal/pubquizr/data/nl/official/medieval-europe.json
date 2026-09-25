@@ -89,7 +89,17 @@
         "Strijdros",
         "Aambeeld",
         "Herder",
-        "Heilige Graal"
+        "Heilige Graal",
+        "Ridder op paard",
+        "Zegelring met wapen",
+        "Kasteelmuur",
+        "Kathedraalbouwer",
+        "Lijfeigene",
+        "Handschrift",
+        "Monnikenwerk",
+        "Kaarsenmaker",
+        "Kruidentuin",
+        "Middeleeuwse markt"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Welke aartsbisschop werd in 1170 in zijn eigen kathedraal in Canterbury vermoord?", "answers": [{ "text": "Thomas Becket", "aliases": ["Becket"] }] },
         { "prompt": "Welke Frankische legeraanvoerder versloeg in 732 een Arabisch leger bij Poitiers?", "answers": [{ "text": "Karel Martel", "aliases": ["Martel"] }] },
         { "prompt": "Welke keizer verdronk in 1190 in een rivier in Anatolie op weg naar de Derde Kruistocht?", "answers": [{ "text": "Frederik Barbarossa", "aliases": ["Barbarossa", "Frederik de Eerste"] }] },
-        { "prompt": "Welke theoloog, die in de dertiende eeuw in Parijs doceerde, schreef de Summa Theologica?", "answers": [{ "text": "Thomas van Aquino", "aliases": ["Aquino"] }] }
+        { "prompt": "Welke theoloog, die in de dertiende eeuw in Parijs doceerde, schreef de Summa Theologica?", "answers": [{ "text": "Thomas van Aquino", "aliases": ["Aquino"] }] },
+        { "prompt": "In welk jaar werd Karel de Grote tot keizer gekroond?", "answers": [{ "text": "800", "aliases": ["Het jaar 800"] }] },
+        { "prompt": "Hoe heet de Engelse volkstelling die Willem de Veroveraar in 1086 liet opstellen?", "answers": [{ "text": "Het Domesday Book", "aliases": ["Domesday Book", "Domesday"] }] }
       ]
     }
   ]

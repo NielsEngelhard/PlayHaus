@@ -88,7 +88,17 @@
         "Sack race",
         "Flower stall",
         "Lumberjack",
-        "The Taj Mahal"
+        "The Taj Mahal",
+        "Crossword",
+        "Surfing",
+        "Flare",
+        "White-water rafting",
+        "Climbing frame",
+        "Fit of laughter",
+        "Cockroach",
+        "Tobacconist",
+        "Mohican",
+        "Stratego"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Who wrote the book The Hobbit?", "answers": [{ "text": "Tolkien", "aliases": ["J.R.R. Tolkien"] }] },
         { "prompt": "What is the largest city in Australia by population?", "answers": [{ "text": "Sydney" }] },
         { "prompt": "What is the fluid that carries heat away in a refrigerator called?", "answers": [{ "text": "The refrigerant", "aliases": ["Refrigerant"] }] },
-        { "prompt": "Which muscle in the body is the strongest for its size?", "answers": [{ "text": "The jaw muscle", "aliases": ["Jaw muscle", "Masseter"] }] }
+        { "prompt": "Which muscle in the body is the strongest for its size?", "answers": [{ "text": "The jaw muscle", "aliases": ["Jaw muscle", "Masseter"] }] },
+        { "prompt": "Which Jamaican singer sang No Woman, No Cry?", "answers": [{ "text": "Bob Marley", "aliases": ["Marley"] }] },
+        { "prompt": "Which Scottish economist wrote The Wealth of Nations?", "answers": [{ "text": "Adam Smith", "aliases": ["Smith"] }] }
       ]
     }
   ]

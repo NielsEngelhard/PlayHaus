@@ -88,7 +88,17 @@
         "Snakes and ladders",
         "Waffle",
         "Rain barrel",
-        "The North Pole"
+        "The North Pole",
+        "Resuscitation",
+        "Braces",
+        "Bonsai",
+        "Baobab",
+        "Bouillabaisse",
+        "Wine merchant",
+        "Pruning shears",
+        "Steel drum",
+        "Caddie",
+        "Miffy"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Which noble gas makes advertising signs glow red?", "answers": [{ "text": "Neon" }] },
         { "prompt": "Which gas was named after the sun before it was found on earth?", "answers": [{ "text": "Helium" }] },
         { "prompt": "What are the smallest bones of the human body, found in the ear, called?", "answers": [{ "text": "The ossicles", "aliases": ["Ossicles"] }] },
-        { "prompt": "Which word do sailors use for the left side of a ship?", "answers": [{ "text": "Port", "aliases": ["Portside", "Port side"] }] }
+        { "prompt": "Which word do sailors use for the left side of a ship?", "answers": [{ "text": "Port", "aliases": ["Portside", "Port side"] }] },
+        { "prompt": "Which Spanish painter made The Nude Maja?", "answers": [{ "text": "Francisco Goya", "aliases": ["Goya"] }] },
+        { "prompt": "Which French physicist is the unit of electric current named after?", "answers": [{ "text": "Andre-Marie Ampere", "aliases": ["Ampere"] }] }
       ]
     }
   ]

@@ -89,7 +89,17 @@
         "Voting booth",
         "Ranch",
         "Rocking chair",
-        "Campaign bus"
+        "Campaign bus",
+        "The White House",
+        "Oval Office",
+        "Air Force One",
+        "Presidential library",
+        "Inauguration",
+        "Secret Service",
+        "Nuclear football",
+        "Donkey and elephant",
+        "Presidential debate",
+        "Impeachment"
       ]
     },
     {
@@ -129,7 +139,9 @@
         { "prompt": "Which sitting vice president killed Alexander Hamilton in a duel in 1804?", "answers": [{ "text": "Aaron Burr", "aliases": ["Burr"] }] },
         { "prompt": "Which president was in office when the Titanic sank in 1912?", "answers": [{ "text": "William Howard Taft", "aliases": ["Taft"] }] },
         { "prompt": "Which president was in the White House when the stock market crashed in 1929?", "answers": [{ "text": "Herbert Hoover", "aliases": ["Hoover"] }] },
-        { "prompt": "Which American state is the birthplace of eight presidents, more than any other?", "answers": [{ "text": "Virginia" }] }
+        { "prompt": "Which American state is the birthplace of eight presidents, more than any other?", "answers": [{ "text": "Virginia" }] },
+        { "prompt": "Which president had earlier been a Hollywood film actor?", "answers": [{ "text": "Ronald Reagan", "aliases": ["Reagan"] }] },
+        { "prompt": "Which president served the shortest term, dying 31 days after his inauguration in 1841?", "answers": [{ "text": "William Henry Harrison", "aliases": ["Harrison"] }] }
       ]
     }
   ]

@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter is de hoogste commerciele bungeejump ter wereld?", "answer": 233, "unit": "meter" },
         { "prompt": "Hoeveel dagen hield het Nederlandse leger het in mei 1940 vol?", "answer": 5, "unit": "dagen" },
-        { "prompt": "In welk jaar voerde Nederland de postcode in?", "answer": 1978, "unit": "" },
+        { "prompt": "In welk jaar voerde Nederland de postcode in?", "answer": 1978 },
         { "prompt": "Bij hoeveel kilometer per uur heet een storm officieel een orkaan?", "answer": 119, "unit": "kilometer per uur" },
         { "prompt": "Hoeveel sterren kun je op een heldere nacht met het blote oog zien?", "answer": 2500, "unit": "sterren" },
         { "prompt": "Hoeveel pijpen heeft het grote orgel van de Bavokerk in Haarlem?", "answer": 5000, "unit": "pijpen" },
@@ -88,7 +88,17 @@
         "Nachtwacht",
         "Zwaartekracht",
         "Morsecode",
-        "Elfstedentocht"
+        "Elfstedentocht",
+        "Crème brûlée",
+        "Truffelzwijn",
+        "Narwal",
+        "Muggenbult",
+        "Ballonnenboog",
+        "Tetris",
+        "Squid Game",
+        "Rijstwijn",
+        "D-Day",
+        "Sollicitatiegesprek"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "In welk Nederlands dorp staat het Airborne Museum?", "answers": [{ "text": "Oosterbeek" }] },
         { "prompt": "Welk land heeft meer eilanden dan welk ander land ook?", "answers": [{ "text": "Zweden" }] },
         { "prompt": "Welk element heeft het scheikundig symbool K?", "answers": [{ "text": "Kalium" }] },
-        { "prompt": "Wie schilderde De volharding der herinnering, met de smeltende klokken?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] }
+        { "prompt": "Wie schilderde De volharding der herinnering, met de smeltende klokken?", "answers": [{ "text": "Salvador Dali", "aliases": ["Dali"] }] },
+        { "prompt": "Wat is de hoofdstad van Kroatie?", "answers": [{ "text": "Zagreb" }] },
+        { "prompt": "Welke Franse scheikundige gaf zuurstof zijn naam en stierf onder de guillotine?", "answers": [{ "text": "Antoine Lavoisier", "aliases": ["Lavoisier"] }] }
       ]
     }
   ]

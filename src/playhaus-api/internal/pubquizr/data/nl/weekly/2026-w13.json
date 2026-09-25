@@ -48,7 +48,7 @@
       "questions": [
         { "prompt": "Hoeveel meter hoog is de piramide van Cheops tegenwoordig?", "answer": 139, "unit": "meter" },
         { "prompt": "Hoeveel landen grenzen aan Brazilie?", "answer": 10, "unit": "landen" },
-        { "prompt": "In welk jaar organiseerden Nederland en Belgie samen het EK voetbal?", "answer": 2000, "unit": "" },
+        { "prompt": "In welk jaar organiseerden Nederland en Belgie samen het EK voetbal?", "answer": 2000 },
         { "prompt": "Hoeveel kilometer per uur was de snelste tennisservice ooit gemeten?", "answer": 263, "unit": "kilometer per uur" },
         { "prompt": "Hoeveel haren zitten er ongeveer op een mensenhoofd?", "answer": 100000, "unit": "haren" },
         { "prompt": "Hoeveel jaar kan een reuzenschildpad worden?", "answer": 150, "unit": "jaar" },
@@ -88,7 +88,17 @@
         "De Sixtijnse Kapel",
         "Camouflage",
         "Andre Rieu",
-        "Origami"
+        "Origami",
+        "Furby",
+        "Vetplant",
+        "Ratatouille",
+        "Libelle",
+        "Titicacameer",
+        "Vrije val",
+        "Antenne",
+        "Noodsignaal",
+        "Top Gun",
+        "Cellist"
       ]
     },
     {
@@ -128,7 +138,9 @@
         { "prompt": "Wie componeerde de opera De Toverfluit?", "answers": [{ "text": "Wolfgang Amadeus Mozart", "aliases": ["Mozart"] }] },
         { "prompt": "Wat is de op een na hoogste berg ter wereld?", "answers": [{ "text": "K2" }] },
         { "prompt": "Wat is het grootste eiland van de Middellandse Zee?", "answers": [{ "text": "Sicilie" }] },
-        { "prompt": "Uit welk land komt de tango?", "answers": [{ "text": "Argentinie" }] }
+        { "prompt": "Uit welk land komt de tango?", "answers": [{ "text": "Argentinie" }] },
+        { "prompt": "Welke Franse koningin zou hebben gezegd: laat ze dan cake eten?", "answers": [{ "text": "Marie Antoinette", "aliases": ["Marie-Antoinette"] }] },
+        { "prompt": "Welke Spaanse veroveraar nam de Incaheerser Atahualpa gevangen?", "answers": [{ "text": "Francisco Pizarro", "aliases": ["Pizarro"] }] }
       ]
     }
   ]
