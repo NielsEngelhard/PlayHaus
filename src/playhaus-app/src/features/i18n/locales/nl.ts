@@ -769,6 +769,7 @@ export const nl: Catalog = {
         // Zonder gedeeld scherm: elke telefoon is een heel bord, en dit zijn de woorden die alleen een bord nodig heeft.
         board: {
             choiceAppears: 'Zodra er gekozen is verschijnt de vraag op elke telefoon',
+            streakCapped: '{{name}} heeft de max van {{max}} op rij bereikt. Door naar de volgende speler, zodat de anderen ook een kans krijgen.',
             choosing: '{{name}} kiest een makkelijke of moeilijke vraag',
             clockSoon: 'De klok start zo',
             closestHint: 'Dubbele getallen mogen · het antwoord komt als iedereen binnen is',

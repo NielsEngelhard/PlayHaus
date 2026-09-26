@@ -325,6 +325,9 @@ type Session struct {
 	// HotSeatRun is how many questions in a row whoever is in the hot seat has taken.
 	HotSeatRun int `gorm:"not null;default:0"`
 
+	// StreakEndedSeat is the seat whose run just reached MaxHotSeatRun and was moved on, and nil after any other settle.
+	StreakEndedSeat *int
+
 	// FinalistSeatA and FinalistSeatB are the two players the finale is between, fixed when the finale opens; -1 in both means no pair yet.
 	FinalistSeatA int `gorm:"not null;default:-1"`
 	FinalistSeatB int `gorm:"not null;default:-1"`

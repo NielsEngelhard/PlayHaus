@@ -17,7 +17,7 @@ import TableStandings from "@/features/pubquizr/components/table/TableStandings"
 import TableTieBreak from "@/features/pubquizr/components/table/TableTieBreak";
 import TableTimer from "@/features/pubquizr/components/table/TableTimer";
 import TableWaiting from "@/features/pubquizr/components/table/TableWaiting";
-import { hotSeatTurnOf, isHotSeatRound, ROUND_CHOICE } from "@/features/pubquizr/hot-seat";
+import { hotSeatTurnOf, isHotSeatRound, MAX_HOT_SEAT_RUN, ROUND_CHOICE } from "@/features/pubquizr/hot-seat";
 import {
     awardedIdsOn,
     awardedOn,
@@ -118,10 +118,14 @@ export default function TableStage({ closest, control, quiz, reveal, scale, sess
 
         // Round 6's question carries the weight the player asked for rather than what every question of its round pays.
         const weight = hotSeat.question.difficulty;
-        const note = weight === undefined ? undefined : t('pubquizr.table.weightChip', {
-            weight: weight === 'hard' ? t('pubquizr.board.hard') : t('pubquizr.board.easy'),
-            points: hotSeat.worth
-        });
+        const note = weight !== undefined
+            ? t('pubquizr.table.weightChip', {
+                weight: weight === 'hard' ? t('pubquizr.board.hard') : t('pubquizr.board.easy'),
+                points: hotSeat.worth
+            })
+            : hotSeat.streakEnded !== null
+                ? t('pubquizr.board.streakCapped', { name: hotSeat.streakEnded.name, max: MAX_HOT_SEAT_RUN })
+                : undefined;
 
         return fade(`question:${hotSeat.dealt.id}`, (
             <TableQuestion

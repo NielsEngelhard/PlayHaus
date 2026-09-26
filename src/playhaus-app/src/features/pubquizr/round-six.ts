@@ -82,6 +82,7 @@ export function doubleDownTurnOf(
         answering,
         // A run counts questions taken in a row out of one seat, and this round hands nobody a seat to hold.
         run: 0,
+        streakEnded: null,
         nextUp: remaining[1] ?? null,
         remaining,
         // Round 2's line, and doubling down has nothing to say in it.

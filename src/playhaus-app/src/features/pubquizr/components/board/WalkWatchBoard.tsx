@@ -3,7 +3,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import BoardNote from "@/features/pubquizr/components/board/BoardNote";
 import BoardSpotlight from "@/features/pubquizr/components/board/BoardSpotlight";
 import PreviousQuestion from "@/features/pubquizr/components/board/PreviousQuestion";
-import { placeKeyOf, type HotSeatTurn, type PreviousRuling } from "@/features/pubquizr/hot-seat";
+import { MAX_HOT_SEAT_RUN, placeKeyOf, type HotSeatTurn, type PreviousRuling } from "@/features/pubquizr/hot-seat";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
 
@@ -36,6 +36,14 @@ export default function WalkWatchBoard({ mySeat, previous, turn, walked }: Props
 
     return (
         <View style={styles.board}>
+            {turn.streakEnded !== null && (
+                <BoardNote
+                    seat={turn.streakEnded}
+                    tone="lemon"
+                    text={t('pubquizr.board.streakCapped', { name: turn.streakEnded.name, max: MAX_HOT_SEAT_RUN })}
+                />
+            )}
+
             {beaten !== null && (
                 <BoardNote
                     seat={beaten}

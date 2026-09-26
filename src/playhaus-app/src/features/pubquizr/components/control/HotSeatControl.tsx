@@ -5,7 +5,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import ScriptCard from "@/features/pubquizr/components/play/ScriptCard";
 import SeatRuling from "@/features/pubquizr/components/play/SeatRuling";
 import TurnStrip from "@/features/pubquizr/components/play/TurnStrip";
-import type { HotSeatTurn } from "@/features/pubquizr/hot-seat";
+import { MAX_HOT_SEAT_RUN, type HotSeatTurn } from "@/features/pubquizr/hot-seat";
 import type { PQEmit, PQStage } from "@/features/pubquizr/multi-device/control";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -71,6 +71,13 @@ export default function HotSeatControl({ bare, busy, emit, error, onSettle, roun
                     total={turn.total}
                     worth={turn.worth}
                     stars={turn.stars}
+                />
+            )}
+
+            {turn.streakEnded !== null && (
+                <InlineNotification
+                    icon="award"
+                    message={t('pubquizr.board.streakCapped', { name: turn.streakEnded.name, max: MAX_HOT_SEAT_RUN })}
                 />
             )}
 

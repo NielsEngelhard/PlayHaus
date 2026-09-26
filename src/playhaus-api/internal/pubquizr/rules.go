@@ -117,6 +117,14 @@ func IsHotSeatRound(round int) bool {
 	return round == RoundOpen || round == RoundChoice
 }
 
+// MaxHotSeatRun is how many round 1 questions in a row one seat may take before the seat moves on.
+const MaxHotSeatRun = 3
+
+// RunIsCapped is whether a run has reached the cap and has to hand the seat to the next player.
+func RunIsCapped(round, run int) bool {
+	return round == RoundOpen && run >= MaxHotSeatRun
+}
+
 // RoundKeepsTheSeat is whether taking a question in a hot seat round buys you the next
 func RoundKeepsTheSeat(round int) bool {
 	return IsHotSeatRound(round) && round != RoundChoice

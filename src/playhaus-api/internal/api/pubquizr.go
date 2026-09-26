@@ -194,6 +194,8 @@ type quizSessionResponse struct {
 	FinaleTie *finaleTieResponse `json:"finaleTie"`
 	// HotSeatRun is how many questions in a row the hot seat has taken.
 	HotSeatRun int `json:"hotSeatRun"`
+	// StreakEndedSeat is who just reached the round 1 streak cap and had the seat moved on, and null otherwise.
+	StreakEndedSeat *int `json:"streakEndedSeat"`
 	// TurnsInRound is how many goes this round holds.
 	TurnsInRound int `json:"turnsInRound"`
 	// DescriberSeat is who is describing in round 4, and null in every other round.
@@ -361,6 +363,7 @@ func newQuizSessionResponse(s *pubquizr.Session, answeringSeat int) quizSessionR
 		FinaleBonusSeat:  bonusStar,
 		FinaleTie:        tie,
 		HotSeatRun:       s.HotSeatRun,
+		StreakEndedSeat:  s.StreakEndedSeat,
 		TurnsInRound:     s.TurnsInRound(s.CurrentRound),
 		DescriberSeat:    describing,
 		GuesserSeat:      guesser,

@@ -1,7 +1,8 @@
 import InlineNotification from "@/components/ui/InlineNotification";
+import { Spacing } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
-import type { HotSeatTurn } from "@/features/pubquizr/hot-seat";
+import { MAX_HOT_SEAT_RUN, type HotSeatTurn } from "@/features/pubquizr/hot-seat";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { useState } from "react";
@@ -50,6 +51,15 @@ export default function HotSeatBoard({ turn, busy, error, onSettle }: Props) {
 
     return (
         <View style={styles.turn}>
+            {turn.streakEnded !== null && (
+                <View style={styles.streak}>
+                    <InlineNotification
+                        icon="award"
+                        message={t('pubquizr.board.streakCapped', { name: turn.streakEnded.name, max: MAX_HOT_SEAT_RUN })}
+                    />
+                </View>
+            )}
+
             <QuestionStack
                 prompt={turn.question.prompt}
                 category={turn.question.category}
@@ -91,6 +101,11 @@ const useStyles = createThemedStyles(() => ({
     turn: {
         flex: 1,
         minHeight: 0
+    },
+
+    streak: {
+        flexShrink: 0,
+        marginBottom: Spacing.three
     },
 
     // Below the fanned stack's bottom sheet, which hangs 10 past the card.

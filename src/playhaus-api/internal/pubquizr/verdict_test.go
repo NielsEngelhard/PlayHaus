@@ -306,6 +306,38 @@ func TestHotSeatRunCountsQuestionsTakenInARow(t *testing.T) {
 	}
 }
 
+func TestAThirdQuestionInARowHandsTheSeatOn(t *testing.T) {
+	store := &verdictStore{session: newVerdictSession(0, 1, 0, 6)}
+
+	rule(t, store, true)
+	rule(t, store, true)
+	if store.session.StreakEndedSeat != nil {
+		t.Fatalf("StreakEndedSeat = %d after two in a row, want nil", *store.session.StreakEndedSeat)
+	}
+
+	rule(t, store, true) // seat 1's third in a row
+	if got := store.session.StreakEndedSeat; got == nil || *got != 1 {
+		t.Errorf("StreakEndedSeat = %v, want seat 1", got)
+	}
+	if got, want := store.session.HotSeat, 2; got != want {
+		t.Errorf("HotSeat = %d, want %d -- the next player is asked", got, want)
+	}
+	if got, want := store.session.QuizMasterSeat, 1; got != want {
+		t.Errorf("QuizMasterSeat = %d, want %d -- the capped player reads to them", got, want)
+	}
+	if got, want := store.session.HotSeatRun, 0; got != want {
+		t.Errorf("HotSeatRun = %d, want %d", got, want)
+	}
+
+	rule(t, store, true) // seat 2 takes the next one
+	if store.session.StreakEndedSeat != nil {
+		t.Errorf("StreakEndedSeat = %d, want nil once the next question is settled", *store.session.StreakEndedSeat)
+	}
+	if got, want := store.session.HotSeat, 2; got != want {
+		t.Errorf("HotSeat = %d, want %d", got, want)
+	}
+}
+
 // Round 1 is the only round that opens where it likes. Every round after it starts on
 // whoever is furthest behind -- and that seat's right-hand neighbour reads to them,
 // same as everywhere else.

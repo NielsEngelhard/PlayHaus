@@ -55,6 +55,8 @@ export interface QuizSession {
     finaleTie: FinaleTie | null
     // How many questions in a row the hot seat has taken.
     hotSeatRun: number
+    // Round 1 only: whose run just reached the cap and was handed on, and null after any other ruling.
+    streakEndedSeat: number | null
     // How many goes this round holds.
     turnsInRound: number
     // Who is describing in round 4, and null in every other round.

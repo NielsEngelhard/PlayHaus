@@ -808,6 +808,7 @@ export const en = {
         // Without a shared screen: every phone is a whole board, and these are the words only a board needs.
         board: {
             choiceAppears: 'As soon as they choose, the question is on every phone',
+            streakCapped: '{{name}} reached the {{max}} streak max. Let’s go to the next player to give the others a chance too.',
             choosing: '{{name}} is choosing an easy or a hard question',
             clockSoon: 'The clock starts in a moment',
             closestHint: 'Doubles are fine · the answer shows once everyone is in',

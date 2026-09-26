@@ -694,6 +694,7 @@ func (s *Service) RecordHotSeatTurn(ctx context.Context, in TurnInput) (*Session
 
 	now := time.Now().UTC()
 	out := TurnOutcome{}
+	session.StreakEndedSeat = nil
 
 	// One row per seat that had a go, in the order the question reached them.
 	for _, seat := range in.MissedSeats {
@@ -772,7 +773,14 @@ func (s *Service) RecordHotSeatTurn(ctx context.Context, in TurnInput) (*Session
 				session.HotSeatRun = 1
 			}
 
-			session.OpenOn(seat)
+			if RunIsCapped(session.CurrentRound, session.HotSeatRun) {
+				// The streak is over: the next seat is asked and the capped player reads to them.
+				session.StreakEndedSeat = &seat
+				session.HotSeatRun = 0
+				session.OpenOn(seat + 1)
+			} else {
+				session.OpenOn(seat)
+			}
 		}
 
 		s.advance(session)
@@ -1827,6 +1835,7 @@ func (s *Service) advance(session *Session) {
 
 	// A run is a round 1 thing -- it counts questions asked to one seat in a row -- so nothing carries it over a round boundary.
 	session.HotSeatRun = 0
+	session.StreakEndedSeat = nil
 
 	if session.CurrentRound == RoundFinale {
 		// The finale picks its own two players off the scoreboard rather than opening on whoever is furthest behind at the whole table.

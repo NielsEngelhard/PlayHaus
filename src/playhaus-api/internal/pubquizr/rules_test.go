@@ -42,6 +42,20 @@ func TestRoundKeepsTheSeat(t *testing.T) {
 	}
 }
 
+func TestRunIsCappedOnlyInRoundOne(t *testing.T) {
+	if RunIsCapped(RoundOpen, MaxHotSeatRun-1) {
+		t.Errorf("a run of %d is capped", MaxHotSeatRun-1)
+	}
+	if !RunIsCapped(RoundOpen, MaxHotSeatRun) {
+		t.Errorf("a run of %d is not capped", MaxHotSeatRun)
+	}
+	for _, round := range []int{RoundChoice, RoundDoubleDown, RoundFinale} {
+		if RunIsCapped(round, MaxHotSeatRun) {
+			t.Errorf("round %d caps a run", round)
+		}
+	}
+}
+
 func TestOpensOnTheReader(t *testing.T) {
 	if !OpensOnTheReader(RoundDescribe) {
 		t.Error("round 4 opens on the seat being asked, but nobody is being asked")

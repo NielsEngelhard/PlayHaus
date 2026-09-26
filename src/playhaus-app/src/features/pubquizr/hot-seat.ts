@@ -18,6 +18,9 @@ export function isHotSeatRound(round: number): boolean {
 export const OPEN_QUESTION_POINTS = 1;
 export const CHOICE_POINTS = 2;
 
+// How many round 1 questions in a row one seat may take; `MaxHotSeatRun` in `rules.go`.
+export const MAX_HOT_SEAT_RUN = 3;
+
 // What the question in one slot of a hot seat round is worth.
 export function worthOf(round: number): number {
     if (round === ROUND_CHOICE) return CHOICE_POINTS;
@@ -55,6 +58,8 @@ export interface HotSeatTurn {
     answering: Seat
     // How many questions in a row `answering` has taken, and 0 when they have taken none.
     run: number
+    // Whoever just reached MAX_HOT_SEAT_RUN and had to hand the seat on, and null otherwise.
+    streakEnded: Seat | null
     /** Who gets it if this one is wrong, or null when the question is on its last seat. */
     nextUp: Seat | null
     // Everybody this question has still to be put to, in the order it will reach them.
@@ -120,6 +125,9 @@ export function hotSeatTurnOf(session: QuizSession, quiz: QuizDetail): HotSeatTu
         answering,
         // A run belongs to whoever is *holding* the seat.
         run: session.answeringSeat === session.hotSeat ? session.hotSeatRun : 0,
+        streakEnded: session.currentRound === ROUND_OPEN && session.streakEndedSeat !== null
+            ? seatAt(seats, session.streakEndedSeat)
+            : null,
         // Named off the line rather than worked out again, so the two can never disagree.
         nextUp: remaining[1] ?? null,
         remaining,

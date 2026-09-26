@@ -599,11 +599,12 @@ func (s *GormStore) RecordTurn(ctx context.Context, session *Session, out TurnOu
 		err := tx.Model(&Session{}).
 			Where("id = ?", session.ID).
 			Updates(map[string]any{
-				"current_round":    session.CurrentRound,
-				"current_position": session.CurrentPosition,
-				"quiz_master_seat": session.QuizMasterSeat,
-				"hot_seat":         session.HotSeat,
-				"hot_seat_run":     session.HotSeatRun,
+				"current_round":     session.CurrentRound,
+				"current_position":  session.CurrentPosition,
+				"quiz_master_seat":  session.QuizMasterSeat,
+				"hot_seat":          session.HotSeat,
+				"hot_seat_run":      session.HotSeatRun,
+				"streak_ended_seat": session.StreakEndedSeat,
 				// Written on every turn although only the one that rolls into the finale ever sets them.
 				"finalist_seat_a": session.FinalistSeatA,
 				"finalist_seat_b": session.FinalistSeatB,

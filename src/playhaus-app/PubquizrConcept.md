@@ -41,6 +41,8 @@ Round 1 is a hot seat. If you answer correctly you *stay*: the next question is 
 
 Every question is worth 1 point. Holding the hot seat is the whole game: every question you keep answering is another point, and the seat only moves on when you miss.
 
+A streak is capped at 3: after your third correct answer in a row the next question goes to the player on your left, and you become the quiz master reading it to them.
+
 So the quiz master role rotates, but slowly — it is a reward for beating the table rather than a turn everyone takes.  
 
 ## Multi-device mode:

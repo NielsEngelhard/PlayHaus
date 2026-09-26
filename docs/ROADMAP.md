@@ -11,11 +11,18 @@
 - more music and sounds
 
 # Voor v1
-- League of letters tournament mode testen
 - quizer multi device afronden
 - quizer op tv testen
-- alle NL labels nagaan en dingen als lobby renamen en echte AI teksten moeten beter
 
 # Double checks voordat echt app
-- inzicht in load. Als er veel load is . Waar zie je problemen qua performance als er bijv. 100 mensen tegelijk spelen? Waar zit de load in de app? Valt denk ik wel mee door client
-- prompt met is alles compleet, reconnect per game geen bugs die jij opvalt?
+I made this project with a react native frontend and a GO backend. I host the web version of the frontend on a digital ocean droplet and the backend too. See the /deployment folder for the hosting setup.
+
+It is hosted on a digital ocean droplet that is 6 dollars. So not too heavy, but the app should be lightweight.
+
+I want to publish the apps to the app store and play store soon, but I want you to investigate if it is production ready. Do you see any critical issues that need fixing before I would say it is production ready?
+
+Also, I am wondering, how many users that are playing at the same time can the app handle with the current setup? How should I scale when the load becomes too heavy and where will the bottlenecks be if that happens? Where are the places that receive the most intense load that might lead to issues when I have many users playing the games.
+
+How many concurrent users should I be able to handle with the current setup?
+
+Investigate and tell me please.
