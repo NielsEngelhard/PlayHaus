@@ -20,12 +20,12 @@ var enNouns = []string{
 var nlAdjectives = []string{
 	"Rode", "Blauwe", "Groene", "Oranje", "Roze", "Gele", "Grijze",
 	"Bruine", "Zwarte", "Paarse",
-	"Boze", "Verwarde", "Knappe", "Krokante",
+	"Boze", "Knappe", "Krokante",
 	"Smerige", "Snelle", "Trage", "Natte", "Droge", "Harige", "Kale",
 }
 
 var nlNouns = []string{
-	"Banaan", "Aardappel", "Pannenkoek", "Snotneus", "Drol",
+	"Banaan", "Aardappel", "Pannenkoek", "Snotneus", "Aardbei",
 	"Kaas", "Boterham", "Knakworst", "Kipnugget", "Schoen",
 	"Frikandel", "Stofzuiger", "Badeend", "Tosti", "Kroket",
 	"Fietsbel", "Sok",

@@ -20,6 +20,7 @@ const (
 	OneOfUsSingleDevice        GameType = "oou_single_device"
 	OneOfUsMultiDevice         GameType = "oou_multi_device"
 	FakeFillerMultiplayer      GameType = "ff_multiplayer"
+	WittyWarsMultiplayer       GameType = "ww_multiplayer"
 )
 
 // timeFormat is the one wire format for timestamps.

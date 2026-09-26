@@ -1,5 +1,5 @@
-import type { FFGamePlayer } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
+import type { LobbySeat } from "@/components/ui/lobby-seat";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import { useEntrance } from "@/components/ui/useEntrance";
 import { Brand, Radii, ShadowReach, Spacing, withAlpha } from "@/constants/theme";
@@ -14,7 +14,9 @@ interface Props {
     // When the first tag pops in; the rest follow one by one.
     delayMs?: number,
     voters: string[],
-    players: FFGamePlayer[],
+    players: LobbySeat[],
+    // Said in place of the tags when nobody picked this one.
+    emptyLabel: string,
     userId: string,
     /** What picking this card meant, which is not the same sentence on the truth as on a fake. */
     label?: string,
@@ -31,7 +33,7 @@ const POP_STAGGER_MS = 70;
 const NAME_MAX_WIDTH = 132;
 
 // Everyone who picked one option, named under a label that says what picking it meant.
-export default function VoterBubbles({ delayMs = 0, voters, players, userId, label, onBrand = false }: Props) {
+export default function VoterBubbles({ delayMs = 0, voters, players, userId, label, emptyLabel, onBrand = false }: Props) {
     const t = useT();
     const styles = useStyles();
 
@@ -43,7 +45,7 @@ export default function VoterBubbles({ delayMs = 0, voters, players, userId, lab
 
             {voters.length === 0 ? (
                 <AppText style={[styles.none, onBrand && styles.noneOnBrand]}>
-                    {t('fakeFiller.play.reveal.voters.none')}
+                    {emptyLabel}
                 </AppText>
             ) : (
                 <ScrollView

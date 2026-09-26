@@ -26,21 +26,41 @@ export default function JoinCodeRow() {
     // A whole code that opened nothing, and the line under the row saying so.
     const [rejected, setRejected] = useState(false);
 
+    // Whether this row has already sent someone off with the code it holds.
+    const sent = useRef(false);
+
     const target = resolveJoinCode(code);
 
-    function join() {
-        if (target.kind === 'incomplete') return;
+    function join(value: string) {
+        if (sent.current) return;
 
-        if (target.kind === 'rejected') {
+        const resolved = resolveJoinCode(value);
+        if (resolved.kind === 'incomplete') return;
+
+        if (resolved.kind === 'rejected') {
             setRejected(true);
             return;
         }
 
+        sent.current = true;
         setRejected(false);
         // The room draws its own chrome, and an open keyboard would sit on top of it.
         field.current?.blur();
 
-        router.push(target.href as RelativePathString);
+        router.push(resolved.href as RelativePathString);
+    }
+
+    function change(text: string) {
+        const next = sanitize(text);
+
+        // Editing back down to an incomplete code is the signal that this is a fresh attempt, so the next completion is allowed to travel.
+        if (next.length < JOIN_CODE_LENGTH) {
+            sent.current = false;
+            setRejected(false);
+        }
+
+        setCode(next);
+        join(next);
     }
 
     return (
@@ -49,10 +69,7 @@ export default function JoinCodeRow() {
                 <TextInput
                     ref={field}
                     value={code}
-                    onChangeText={text => {
-                        setCode(sanitize(text));
-                        setRejected(false);
-                    }}
+                    onChangeText={change}
                     maxLength={JOIN_CODE_LENGTH}
                     placeholder={t('home.join.placeholder')}
                     placeholderTextColor={theme.colors.textFaint}
@@ -60,13 +77,13 @@ export default function JoinCodeRow() {
                     autoCorrect={false}
                     // The keyboard's own key does what the button does, because a code typed out in full has already said what it is for.
                     returnKeyType="go"
-                    onSubmitEditing={join}
+                    onSubmitEditing={() => join(code)}
                     accessibilityLabel={t('home.join.label')}
                     style={styles.field}
                 />
 
                 <PopPressable
-                    onPress={join}
+                    onPress={() => join(code)}
                     // Half-strength until there is a whole code to send.
                     disabled={target.kind === 'incomplete'}
                     accessibilityRole="button"

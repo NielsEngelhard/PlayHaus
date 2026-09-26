@@ -116,6 +116,10 @@ export const en = {
             description: 'Invent a wrong answer.',
             mainCategory: 'Deception',
         },
+        wittyWars: {
+            description: 'Out-quip each other.',
+            mainCategory: 'Party'
+        },
         newBadge: 'New',
         wipBadge: 'In the making'
     },
@@ -250,7 +254,9 @@ export const en = {
             expired: 'Your session has expired. Log in again.',
             generic: 'Something went wrong while fetching your games. Please try again.',
             network: 'Could not reach the server. Check your connection and try again.'
-        }
+        },
+        // Shown when a join code just sent someone here instead of into a room.
+        codeNotFound: 'That join code could not be found. Check it and try again.'
     },
     // The waiting room's own words, shared by every game that has one.
     lobby: {
@@ -1668,6 +1674,143 @@ export const en = {
             wrongPhase: 'The table is not doing that yet.',
             badAnswer: 'Fill in every blank before locking it in.',
             answerIsTruth: 'Psst… that is the real answer! Now make up a fake.',
+            gameFinished: 'This game is over.'
+        }
+    },
+    wittyWars: {
+        index: {
+            description: 'Two players answer the same question, the rest of the table votes for the funniest. Everyone plays on their own phone.',
+            multiDevice: {
+                title: 'Multi device',
+                description: 'Everyone writes and votes on their own phone.',
+                action: 'Open a room'
+            },
+            hostScreen: {
+                title: 'Host screen',
+                description: 'Put the duels on a TV while phones do the writing.',
+                action: 'Open a room'
+            }
+        },
+        modes: {
+            family: {
+                title: 'Family friendly',
+                description: 'Silly questions anybody can play, grandma included.'
+            },
+            rude: {
+                title: 'Rude',
+                description: 'Brutal questions for fans of dark humour.'
+            },
+            caliente: {
+                title: 'Caliente',
+                description: 'Spicy and naughty — about the people in the room too.'
+            }
+        },
+        lobby: {
+            loading: 'Looking for your room…',
+            opening: 'Opening the room…',
+            noLobby: 'No room',
+            hostStoppedGame: 'The host stopped the game. Ask for a new code for another round.',
+            hostClosedLobby: 'The host closed the room. Ask for a new code.',
+            running: {
+                gameTitle: 'You are already playing',
+                lobbyTitle: 'You still have a room open',
+                gameMessage: 'You are still playing a game in room {{code}}. Continue, or stop it and open a new room.',
+                lobbyMessage: 'Room {{code}} is still open in your name. Go back to it, or close it and open a new one.',
+                resumeGame: 'Continue playing',
+                resumeLobby: 'Go to open room',
+                stopGame: 'Stop game',
+                closeLobby: 'Stop game and create new'
+            },
+            confirmClose: {
+                title: 'Close the room?',
+                message: 'The room is deleted and the code stops working. Everyone already in it is thrown out.',
+                action: 'Close'
+            },
+            confirmLeave: {
+                title: 'Leave the room?',
+                message: 'You go back to the game menu. You can join again later with the same code.',
+                action: 'Leave'
+            },
+            stay: 'Stay here',
+            start: 'Start the game',
+            startNote: 'Once you start, nobody else can join.',
+            needPlayers: 'You need at least {{min}} players.',
+            hostFallback: 'The host',
+            settingsTitle: 'Settings',
+            mode: 'Questions',
+            answersPerPlayer: 'Answers each',
+            answersPerPlayerHint: 'How many questions every player answers at the start. More answers, longer game.'
+        },
+        play: {
+            loading: 'Dealing the questions…',
+            noGame: 'No game',
+            band: {
+                round: 'Duel',
+                prompt: 'Question'
+            },
+            writing: {
+                title: 'Be funny',
+                intro: 'Somebody else gets the same question. The table votes for the funnier answer.',
+                promptOf: 'Question {{index}} of {{total}}',
+                placeholder: 'Your funniest answer',
+                answerLabel: 'Your answer',
+                empty: 'Write something first.',
+                next: 'Next question',
+                previous: 'Previous question',
+                submit: 'Send my answers',
+                waitingTitle: 'Waiting for the others',
+                waitingMessage: 'Your answers are in. The duels start once everyone has sent theirs.',
+                progress: '{{done}} of {{total}} answers in'
+            },
+            voting: {
+                title: 'Which one is funnier?',
+                hint: 'Tap the answer that made you laugh.',
+                tapToPick: 'Tap to pick',
+                yourPick: 'Your pick',
+                option: 'Answer {{letter}}',
+                or: 'vs',
+                roundOf: 'Duel {{round}} of {{total}}',
+                confirm: 'Lock in my vote',
+                voted: 'Vote counted',
+                yoursTitle: 'This duel is yours',
+                yoursMessage: 'You wrote one of these, so you sit this one out. Fingers crossed.',
+                progress: '{{done}} of {{total}} votes in',
+                waiting: 'Waiting for the others to vote…'
+            },
+            reveal: {
+                title: 'And the winner is…',
+                stampMore: '{{name}} +{{count}}',
+                points: '+{{points}}',
+                sweep: 'Sweep!',
+                noVoters: 'Nobody',
+                next: 'Next duel',
+                toResults: 'See the final scores',
+                waitingForHost: 'Waiting for the host to move on…',
+                waitingForResults: 'Waiting for the host to show the final scores…'
+            }
+        },
+        results: {
+            loading: 'Loading the result…'
+        },
+        errors: {
+            expired: 'Your session has expired. Log in again.',
+            gameGone: 'This game no longer exists.',
+            generic: 'Something went wrong. Please try again.',
+            network: 'Could not reach the server. Check your connection and try again.',
+            lobbyFull: 'This room is full.',
+            lobbyGone: 'This room does not exist any more. Check the code.',
+            alreadyStarted: 'This game has already started.',
+            notEnoughPlayers: 'You need more players to start.',
+            tooManyPlayers: 'That is too many players for one game.',
+            noContent: 'There are not enough questions to play in this language. Try the other one.',
+            incompleteAnswers: 'Answer every question before sending.',
+            answerTooLong: 'One of your answers is too long.',
+            badAnswer: 'An answer cannot be empty.',
+            alreadyAnswered: 'You have already sent your answers.',
+            alreadyVoted: 'You have already voted on this duel.',
+            cannotVoteOwnPrompt: 'You wrote for this one, so you cannot vote on it.',
+            wrongRound: 'The table has moved on to the next duel.',
+            wrongPhase: 'The table is not doing that yet.',
             gameFinished: 'This game is over.'
         }
     },

@@ -1,5 +1,5 @@
 import type { GameType, ReconnectableGame } from '@/api/calls/reconnect';
-import { FAKE_FILLER_NAME, LEAGUE_OF_LETTERS_NAME, ONE_OF_US_NAME, PUBQUIZR_NAME } from '@/constants/games';
+import { FAKE_FILLER_NAME, LEAGUE_OF_LETTERS_NAME, ONE_OF_US_NAME, PUBQUIZR_NAME, WITTY_WARS_NAME } from '@/constants/games';
 import { ROUTES } from '@/constants/routes';
 import type { Phrase, TranslationKey } from '@/features/i18n/keys';
 import type { Href } from 'expo-router';
@@ -70,6 +70,13 @@ export const GAME_KINDS: Partial<Record<GameType, GameKind>> = {
         slug: 'fake-filler',
         code: game => game.id,
         href: game => ROUTES.fakeFillerRoom(game.id) as Href,
+    },
+    ww_multiplayer: {
+        title: WITTY_WARS_NAME,
+        modeKey: 'reconnect.mode.lobby',
+        slug: 'witty-wars',
+        code: game => game.id,
+        href: game => ROUTES.wittyWarsRoom(game.id) as Href,
     }
 };
 

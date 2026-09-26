@@ -16,6 +16,7 @@ import (
 	"playhaus-api/internal/push"
 	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
+	"playhaus-api/internal/wittywars"
 )
 
 type Server struct {
@@ -26,6 +27,7 @@ type Server struct {
 	pubquizr        *pubquizr.Service
 	oneOfUs         *oneofus.Service
 	fakeFiller      *fakefiller.Service
+	wittyWars       *wittywars.Service
 	friends         *friend.Service
 	push            *push.Service
 
@@ -50,6 +52,7 @@ func NewServer(
 	pubquizrSvc *pubquizr.Service,
 	oneOfUsSvc *oneofus.Service,
 	fakeFillerSvc *fakefiller.Service,
+	wittyWarsSvc *wittywars.Service,
 	friendSvc *friend.Service,
 	pushSvc *push.Service,
 	hub *realtime.Hub,
@@ -65,6 +68,7 @@ func NewServer(
 		pubquizr:         pubquizrSvc,
 		oneOfUs:          oneOfUsSvc,
 		fakeFiller:       fakeFillerSvc,
+		wittyWars:        wittyWarsSvc,
 		friends:          friendSvc,
 		push:             pushSvc,
 		rt:               hub,
@@ -78,6 +82,7 @@ func NewServer(
 	// The socket layer knows nothing about any game.
 	hub.Register(joincode.LeagueOfLetters.Namespace(), lolRealtime{server: s})
 	hub.Register(joincode.FakeFiller.Namespace(), ffRealtime{server: s})
+	hub.Register(joincode.WittyWars.Namespace(), wwRealtime{server: s})
 	hub.Register(joincode.PubquizR.Namespace(), pqRealtime{server: s})
 	hub.Register(joincode.OneOfUs.Namespace(), oouRealtime{server: s})
 	// Not a game's namespace: one room per player, for what reaches them between games.
@@ -92,6 +97,7 @@ func NewServer(
 	s.AddPubquizRMultiDeviceHandlers()
 	s.AddOneOfUsHandlers()
 	s.AddFakeFillerHandlers()
+	s.AddWittyWarsHandlers()
 	s.AddReconnectHandlers()
 	s.AddRealtimeHandlers()
 	s.AddStatsHandlers()

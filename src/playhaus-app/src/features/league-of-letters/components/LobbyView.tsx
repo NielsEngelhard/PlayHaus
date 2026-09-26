@@ -47,7 +47,7 @@ export default function LobbyView({ state, onStarted }: Props) {
     useEffect(() => {
         if (state.error !== 'lol.errors.lobbyGone') return;
 
-        router.replace(ROUTES.reconnect);
+        router.replace({ pathname: ROUTES.reconnect, params: { notfound: 'true' } });
     }, [state.error, router]);
 
     // The host shut the lobby while this player was sitting in it.

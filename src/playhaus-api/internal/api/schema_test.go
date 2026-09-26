@@ -6,6 +6,7 @@ import (
 
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/fakefiller"
+	"playhaus-api/internal/wittywars"
 	"playhaus-api/internal/friend"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
@@ -23,6 +24,7 @@ func allModels() []any {
 	models = append(models, pubquizr.Models()...)
 	models = append(models, oneofus.Models()...)
 	models = append(models, fakefiller.Models()...)
+	models = append(models, wittywars.Models()...)
 	models = append(models, friend.Models()...)
 	models = append(models, push.Models()...)
 	return models

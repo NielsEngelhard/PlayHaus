@@ -44,7 +44,7 @@ export default function QuizLobbyView({ state, onStarted }: Props) {
     useEffect(() => {
         if (state.error !== 'pubquizr.errors.lobbyGone') return;
 
-        router.replace(ROUTES.reconnect);
+        router.replace({ pathname: ROUTES.reconnect, params: { notfound: 'true' } });
     }, [state.error, router]);
 
     // The host shut the room while this player was sitting in it.

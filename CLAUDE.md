@@ -80,7 +80,7 @@ same word).
 **Database** (`internal/platform/database`) — Postgres through `gorm.io/driver/postgres` (pgx, pure
 Go, no cgo), with `TranslateError` on. `SetMaxOpenConns(1)`
 
-**Per-package layering**, identical across `lol`, `pubquizr`, `oneofus`, `user`, `auth`:
+**Per-package layering**, identical across `lol`, `pubquizr`, `oneofus`, `fakefiller`, `wittywars`, `user`, `auth`:
 
 - `<pkg>.go` — GORM models, status enums, sentinel errors, `func Models() []any`
 - `rules.go` — pure functions: no ctx, no store, no clock. Easiest thing to test, so most
@@ -116,7 +116,7 @@ generic `decode[T Validator]` with `DisallowUnknownFields`; `Validate() map[stri
 produces the 422 `{"errors": {field: problem}}` shape. `timeFormat = time.RFC3339` is the one
 wire format for timestamps. Handler errors are an `errors.Is` switch ending in log + 500.
 
-**Join codes** (`internal/joincode`) — five characters: the first names the game (`L`/`P`/`O`),
+**Join codes** (`internal/joincode`) — five characters: the first names the game (`L`/`P`/`O`/`F`/`W`),
 four drawn with `crypto/rand` from a 32-character ambiguity-free alphabet (no I/1/O/0).
 `Normalize` folds a leading `0`→`O` and `1`→`L`, **only in position 0**. The code is the lobby's
 primary key, so normalisation is load-bearing under exact (byte-wise) text equality.
@@ -131,9 +131,12 @@ Letters registers a handler today (`internal/api/lol_realtime.go`, which lives i
 lobby on a socket frame and a lobby in a response body are the same lobby). Clients send exactly
 one message type — `typing`; everything else goes over HTTP.
 
-**Content** — three separate `//go:embed data` trees, one per owning package:
+**Content** — separate `//go:embed data` trees, one per owning package:
 `internal/lol/words.go` (`data/{loc}/{loc}-{size}-{all|common}.txt`),
-`internal/oneofus/content.go`, and `internal/pubquizr/seed.go`
+`internal/oneofus/content.go`, `internal/fakefiller/content.go`, `internal/wittywars/content.go`
+(`data/{loc}/{loc}-{family|rude|caliente}.txt`, one prompt per line, `{playerName}` filled in
+server-side with a random player's name; the files are lorem-ipsum placeholders for now), and
+`internal/pubquizr/seed.go`
 (`data/{loc}/{official|weekly}/{slug}.json`, where locale and category come from the directory
 rather than a field, so a file can never disagree with where it is filed). Locales are `nl`
 (**the default**) and `en` via `internal/i18n`; `Locale` implements `driver.Valuer`/`sql.Scanner`
@@ -152,7 +155,7 @@ one-question-to-a-line shape (`encode_test.go` proves it byte for byte against t
 `docs/QUIZZER_QUIZ_PROMPT.md` is the brief for writing one. `en` is a translation of `nl`: the two
 locales are question for question the same quiz, and the app switches between them mid-session.
 
-**Tests** — 78 files, stdlib only: no mocks, no fakes, no assertion library. Everything runs
+**Tests** — 94 files, stdlib only: no mocks, no fakes, no assertion library. Everything runs
 against real Postgres: `databasetest.Open(t)` (`internal/platform/database/databasetest`) gives
 each test its own schema in `TEST_DATABASE_URL`, built by the real migrations and dropped in
 `t.Cleanup`. The helpers wrapping it are `newTestServer(t)` /
@@ -161,7 +164,7 @@ each test its own schema in `TEST_DATABASE_URL`, built by the real migrations an
 `httptest` (`do`, `post`, `decodeBody[T]`, `newGuestSession`). No `t.Parallel()` anywhere.
 Names are sentence-like and behavioural
 (`TestCurrentLobbyIsTheHostsOnly`), not `TestFunc_Case`. Files in `internal/api` are named by
-feature with a game prefix: `mp_lol_*`, `solo_lol_*`, `pq_*`, `oou_*`.
+feature with a game prefix: `mp_lol_*`, `solo_lol_*`, `pq_*`, `oou_*`, `ff_*`, `ww_*`.
 
 ## App architecture
 
@@ -227,7 +230,7 @@ dimension that belongs to one component and no scale (an avatar diameter, a bar 
 named constant at the top of that file. Older files still carry literals; don't copy them.
 
 **End of game.** `components/ui/ScoreBoardScreen.tsx` is the shared podium for every game that
-ranks individual scores (League of Letters multiplayer, PubquizR, Fake Filler): pass the `Game`,
+ranks individual scores (League of Letters multiplayer, PubquizR, Fake Filler, Witty Wars): pass the `Game`,
 players mapped to `ScoreBoardPlayer`, and either an `action` or `waitingForHost`. The caller claims
 `useChromeless()`. One of Us keeps its own `GameOverScreen`, because a team wins there, not a
 player.

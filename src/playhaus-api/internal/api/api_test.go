@@ -11,6 +11,7 @@ import (
 
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/fakefiller"
+	"playhaus-api/internal/wittywars"
 	"playhaus-api/internal/friend"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
@@ -50,6 +51,7 @@ func newTestServerWithStatsToken(t *testing.T, statsToken string) (http.Handler,
 	oneOfUsStore := oneofus.NewGormStore(db)
 	oneOfUs := oneofus.NewService(oneOfUsStore, oneOfUsStore)
 	fakeFiller := fakefiller.NewService(fakefiller.NewGormStore(db))
+	wittyWars := wittywars.NewService(wittywars.NewGormStore(db))
 	friends := friend.NewService(friend.NewGormStore(db))
 
 	log := slog.New(slog.NewTextHandler(io.Discard, nil))
@@ -60,7 +62,7 @@ func newTestServerWithStatsToken(t *testing.T, statsToken string) (http.Handler,
 	hub := realtime.NewHub(log)
 	t.Cleanup(hub.Close)
 
-	handler := NewServer(users, authSvc, lol, quizzes, oneOfUs, fakeFiller, friends, pushes, hub, log, testOrigins, statsToken)
+	handler := NewServer(users, authSvc, lol, quizzes, oneOfUs, fakeFiller, wittyWars, friends, pushes, hub, log, testOrigins, statsToken)
 	return handler, db
 }
 

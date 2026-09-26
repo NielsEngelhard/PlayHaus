@@ -13,6 +13,7 @@ import { useReconnectableGames } from "@/features/reconnect/useReconnectableGame
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useCooldown } from "@/hooks/useCooldown";
+import { useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
 
 const REFRESH_COOLDOWN_MS = 5000;
@@ -22,11 +23,22 @@ export default function ReconnectPage() {
     const styles = useStyles();
     const t = useT();
 
+    const { notfound } = useLocalSearchParams<{ notfound?: string }>();
+
     const { games, loading, refreshing, error, loadedAt, refresh } = useReconnectableGames();
     const [coolingDown, startCooldown] = useCooldown(REFRESH_COOLDOWN_MS);
 
     const updated = loadedAt === null ? null : startedAgo(loadedAt);
     const blocked = loading || refreshing || coolingDown;
+
+    const notFoundNotice = notfound === 'true' && (
+        <InlineNotification
+            icon='alert-triangle'
+            color={theme.colors.blush}
+            prominent
+            message={t('reconnect.codeNotFound')}
+        />
+    );
 
     function reload() {
         refresh();
@@ -40,6 +52,8 @@ export default function ReconnectPage() {
                     title={t('reconnect.hero.resume.title')}
                     accent={t('reconnect.hero.resume.accent')}
                 />
+
+                {notFoundNotice}
 
                 <View style={styles.section}>
                     <StillRunningHeader
@@ -73,6 +87,8 @@ export default function ReconnectPage() {
                 title={t('reconnect.hero.title')}
                 accent={t('reconnect.hero.accent')}
             />
+
+            {notFoundNotice}
 
             <JoinCodeCard />
 

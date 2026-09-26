@@ -1,6 +1,6 @@
 package joincode
 
-// Game is which of the three a join code belongs to, and it is spelled out by the code's first character and nothing else.
+// Game is which game a join code belongs to, and it is spelled out by the code's first character and nothing else.
 type Game string
 
 const (
@@ -8,10 +8,11 @@ const (
 	PubquizR        Game = "pq"
 	OneOfUs         Game = "oou"
 	FakeFiller      Game = "ff"
+	WittyWars       Game = "ww"
 )
 
 // Games is every game this build knows how to hand a code out for.
-var Games = []Game{LeagueOfLetters, PubquizR, OneOfUs, FakeFiller}
+var Games = []Game{LeagueOfLetters, PubquizR, OneOfUs, FakeFiller, WittyWars}
 
 // Valid reports whether this is a game this build has, as opposed to a string that has been cast into the type.
 func (g Game) Valid() bool {
@@ -34,6 +35,8 @@ func (g Game) Prefix() byte {
 		return 'O'
 	case FakeFiller:
 		return 'F'
+	case WittyWars:
+		return 'W'
 	default:
 		return 0
 	}

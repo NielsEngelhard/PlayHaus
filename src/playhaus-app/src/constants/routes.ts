@@ -40,6 +40,11 @@ export const ROUTES = {
     fakeFillerCreateRoom: "/games/fake-filler/room",
     fakeFillerRoom: (code: string) => `/games/fake-filler/room/${code}`,
 
+    // Witty Wars
+    wittyWarsIndex: "/games/witty-wars",
+    wittyWarsCreateRoom: "/games/witty-wars/room",
+    wittyWarsRoom: (code: string) => `/games/witty-wars/room/${code}`,
+
     // User
     reconnect: "/reconnect",
     friends: "/friends",

@@ -2,8 +2,9 @@ import { ffRoundOf } from "@/api/calls/fake-filler";
 import LoadingPage from "@/components/layout/LoadingPage";
 import Confetti from "@/components/ui/Confetti";
 import InlineNotification from "@/components/ui/InlineNotification";
+import { FAKE_FILLER } from "@/constants/games";
 import { Spacing } from "@/constants/theme";
-import PlayBand from "@/features/fake-filler/components/play/PlayBand";
+import PlayBand from "@/components/ui/PlayBand";
 import VotingScreen from "@/features/fake-filler/components/play/VotingScreen";
 import WritingScreen from "@/features/fake-filler/components/play/WritingScreen";
 import { openPrompt } from "@/features/fake-filler/prompt";
@@ -91,7 +92,7 @@ export default function PlayingGame({ table, userId, onClose, onFinish }: Props)
 
     return (
         <View style={styles.page}>
-            <PlayBand onClose={onClose} closeLabel={t('lobby.leave')} {...band} />
+            <PlayBand game={FAKE_FILLER} onClose={onClose} closeLabel={t('lobby.leave')} {...band} />
 
             {actionError !== null && (
                 <View style={styles.notice}>

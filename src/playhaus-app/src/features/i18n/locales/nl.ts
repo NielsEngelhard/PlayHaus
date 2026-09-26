@@ -108,6 +108,10 @@ export const nl: Catalog = {
             description: 'Verzin een fout antwoord.',
             mainCategory: 'Misleiding',
         },
+        wittyWars: {
+            description: 'Wees grappiger dan de rest.',
+            mainCategory: 'Party'
+        },
         newBadge: 'Nieuw',
         wipBadge: 'In de maak'
     },
@@ -242,7 +246,9 @@ export const nl: Catalog = {
             expired: 'Je sessie is verlopen. Log opnieuw in.',
             generic: 'Er ging iets mis bij het ophalen van je spellen. Probeer het opnieuw.',
             network: 'Geen verbinding met de server. Check je verbinding en probeer het opnieuw.'
-        }
+        },
+        // Getoond als een joincode net hierheen stuurde in plaats van naar een kamer.
+        codeNotFound: 'Die joincode kon niet worden gevonden. Check hem en probeer het opnieuw.'
     },
     lobby: {
         yourRoom: 'Jouw kamer',
@@ -1535,6 +1541,143 @@ export const nl: Catalog = {
             wrongPhase: 'Zo ver is de tafel nog niet.',
             badAnswer: 'Vul elk gat in voordat je vastzet.',
             answerIsTruth: 'Ssst… dat is het echte antwoord! Verzin nu een nepantwoord.',
+            gameFinished: 'Dit spel is afgelopen.'
+        }
+    },
+    wittyWars: {
+        index: {
+            description: 'Twee spelers beantwoorden dezelfde vraag, de rest van de tafel stemt op het grappigste antwoord. Iedereen speelt op zijn eigen telefoon.',
+            multiDevice: {
+                title: 'Meerdere apparaten',
+                description: 'Iedereen schrijft en stemt op zijn eigen telefoon.',
+                action: 'Open een kamer'
+            },
+            hostScreen: {
+                title: 'Hostscherm',
+                description: 'Zet de duels op een tv terwijl de telefoons schrijven.',
+                action: 'Open een kamer'
+            }
+        },
+        modes: {
+            family: {
+                title: 'Familievriendelijk',
+                description: 'Gekke vragen die iedereen kan spelen, oma ook.'
+            },
+            rude: {
+                title: 'Grof',
+                description: 'Brute vragen.'
+            },
+            caliente: {
+                title: 'Caliente',
+                description: 'Pittig en ondeugend, not safe for work.'
+            }
+        },
+        lobby: {
+            loading: 'Je kamer zoeken…',
+            opening: 'De kamer openen…',
+            noLobby: 'Geen kamer',
+            hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code voor nog een potje.',
+            hostClosedLobby: 'De host heeft de kamer gesloten. Vraag om een nieuwe code.',
+            running: {
+                gameTitle: 'Je speelt al',
+                lobbyTitle: 'Je hebt nog een kamer open',
+                gameMessage: 'Je speelt nog een spel in kamer {{code}}. Speel verder, of stop het en open een nieuwe kamer.',
+                lobbyMessage: 'Kamer {{code}} staat nog open op jouw naam. Ga ernaar terug, of sluit hem en open een nieuwe.',
+                resumeGame: 'Verder spelen',
+                resumeLobby: 'Naar open kamer',
+                stopGame: 'Spel stoppen',
+                closeLobby: 'Spel stoppen en nieuwe maken'
+            },
+            confirmClose: {
+                title: 'Kamer sluiten?',
+                message: 'De kamer wordt verwijderd en de code werkt niet meer. Iedereen die erin zit, ligt eruit.',
+                action: 'Sluiten'
+            },
+            confirmLeave: {
+                title: 'Kamer verlaten?',
+                message: 'Je gaat terug naar het spelmenu. Je kunt later weer meedoen met dezelfde code.',
+                action: 'Verlaten'
+            },
+            stay: 'Blijf hier',
+            start: 'Start het spel',
+            startNote: 'Zodra je start, kan niemand meer meedoen.',
+            needPlayers: 'Je hebt minstens {{min}} spelers nodig.',
+            hostFallback: 'De host',
+            settingsTitle: 'Instellingen',
+            mode: 'Vragen',
+            answersPerPlayer: 'Antwoorden per speler',
+            answersPerPlayerHint: 'Hoeveel vragen iedere speler aan het begin beantwoordt. Meer antwoorden, langer spel.'
+        },
+        play: {
+            loading: 'De vragen worden gedeeld…',
+            noGame: 'Geen spel',
+            band: {
+                round: 'Duel',
+                prompt: 'Vraag'
+            },
+            writing: {
+                title: 'Wees grappig',
+                intro: 'Verzin het grappigste antwoord op deze zin/vraag.',
+                promptOf: 'Vraag {{index}} van {{total}}',
+                placeholder: 'Je grappigste antwoord',
+                answerLabel: 'Je antwoord',
+                empty: 'Schrijf eerst iets op.',
+                next: 'Volgende vraag',
+                previous: 'Vorige vraag',
+                submit: 'Verstuur mijn antwoorden',
+                waitingTitle: 'Wachten op de anderen',
+                waitingMessage: 'Je antwoorden zijn binnen. De duels beginnen zodra iedereen de zijne heeft verstuurd.',
+                progress: '{{done}} van {{total}} antwoorden binnen'
+            },
+            voting: {
+                title: 'Welke is grappiger?',
+                hint: 'Tik op het antwoord waar je om moest lachen.',
+                tapToPick: 'Tik om te kiezen',
+                yourPick: 'Jouw keuze',
+                option: 'Antwoord {{letter}}',
+                or: 'vs',
+                roundOf: 'Duel {{round}} van {{total}}',
+                confirm: 'Stem vastzetten',
+                voted: 'Stem geteld',
+                yoursTitle: 'Dit duel is van jou',
+                yoursMessage: 'Je schreef een van deze antwoorden, dus je slaat deze over. Duimen maar.',
+                progress: '{{done}} van {{total}} stemmen binnen',
+                waiting: 'Wachten tot de anderen hebben gestemd…'
+            },
+            reveal: {
+                title: 'En de winnaar is…',
+                stampMore: '{{name}} +{{count}}',
+                points: '+{{points}}',
+                sweep: 'Alle stemmen!',
+                noVoters: 'Niemand',
+                next: 'Volgend duel',
+                toResults: 'Bekijk de eindstand',
+                waitingForHost: 'Wachten tot de host verdergaat…',
+                waitingForResults: 'Wachten tot de host de eindstand laat zien…'
+            }
+        },
+        results: {
+            loading: 'De uitslag laden…'
+        },
+        errors: {
+            expired: 'Je sessie is verlopen. Log opnieuw in.',
+            gameGone: 'Dit spel bestaat niet meer.',
+            generic: 'Er ging iets mis. Probeer het opnieuw.',
+            network: 'Kan de server niet bereiken. Controleer je verbinding en probeer het opnieuw.',
+            lobbyFull: 'Deze kamer is vol.',
+            lobbyGone: 'Deze kamer bestaat niet meer. Controleer de code.',
+            alreadyStarted: 'Dit spel is al begonnen.',
+            notEnoughPlayers: 'Je hebt meer spelers nodig om te starten.',
+            tooManyPlayers: 'Dat zijn te veel spelers voor één spel.',
+            noContent: 'Er zijn niet genoeg vragen om in deze taal te spelen. Probeer de andere.',
+            incompleteAnswers: 'Beantwoord elke vraag voordat je verstuurt.',
+            answerTooLong: 'Een van je antwoorden is te lang.',
+            badAnswer: 'Een antwoord mag niet leeg zijn.',
+            alreadyAnswered: 'Je hebt je antwoorden al verstuurd.',
+            alreadyVoted: 'Je hebt al gestemd op dit duel.',
+            cannotVoteOwnPrompt: 'Je schreef voor deze, dus je kunt er niet op stemmen.',
+            wrongRound: 'De tafel is al door naar het volgende duel.',
+            wrongPhase: 'Daar is de tafel nog niet aan toe.',
             gameFinished: 'Dit spel is afgelopen.'
         }
     },

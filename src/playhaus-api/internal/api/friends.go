@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"playhaus-api/internal/fakefiller"
+	"playhaus-api/internal/wittywars"
 	"playhaus-api/internal/friend"
 	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/lol"
@@ -337,6 +338,18 @@ func (s *Server) inviteRoom(ctx context.Context, game joincode.Game, code string
 			has:     lobby.Has,
 			full:    lobby.Full(),
 			started: lobby.Status == fakefiller.LobbyStarted,
+			kind:    inviteKindRoom,
+		}, nil
+
+	case joincode.WittyWars:
+		lobby, err := s.wittyWars.Lobby(ctx, code)
+		if err != nil {
+			return inviteLobby{}, err
+		}
+		return inviteLobby{
+			has:     lobby.Has,
+			full:    lobby.Full(),
+			started: lobby.Status == wittywars.LobbyStarted,
 			kind:    inviteKindRoom,
 		}, nil
 	}

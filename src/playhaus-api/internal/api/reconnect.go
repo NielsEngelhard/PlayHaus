@@ -3,6 +3,7 @@ package api
 import (
 	"net/http"
 	"playhaus-api/internal/fakefiller"
+	"playhaus-api/internal/wittywars"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
 	"playhaus-api/internal/pubquizr"
@@ -62,6 +63,14 @@ func (s *Server) handleGetReconnectableGames(w http.ResponseWriter, r *http.Requ
 		s.log.Error("get fake filler games to reconnect to", "err", err)
 	} else {
 		allGames = append(allGames, mapFFGamesToReconnectableGame(fakeFillerGames)...)
+	}
+
+	// GET witty wars games
+	wittyWarsGames, err := s.wittyWars.GamesByUserID(r.Context(), userID)
+	if err != nil {
+		s.log.Error("get witty wars games to reconnect to", "err", err)
+	} else {
+		allGames = append(allGames, mapWWGamesToReconnectableGame(wittyWarsGames)...)
 	}
 
 	// Get one device one of us games
@@ -157,6 +166,21 @@ func mapFFGamesToReconnectableGame(games []*fakefiller.FFMultiDeviceGame) []Reco
 			// The join code, not the game id -- the same choice League of Letters makes just below, and for the same reason.
 			ID:        game.LobbyID,
 			Type:      FakeFillerMultiplayer,
+			CreatedAt: game.CreatedAt.Format(timeFormat),
+		}
+	}
+
+	return mappedGames
+}
+
+func mapWWGamesToReconnectableGame(games []*wittywars.WWMultiDeviceGame) []ReconnectableGame {
+	mappedGames := make([]ReconnectableGame, len(games))
+
+	for i, game := range games {
+		// The join code, not the game id: a room is reached by its code.
+		mappedGames[i] = ReconnectableGame{
+			ID:        game.LobbyID,
+			Type:      WittyWarsMultiplayer,
 			CreatedAt: game.CreatedAt.Format(timeFormat),
 		}
 	}

@@ -21,6 +21,7 @@ import (
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/config"
 	"playhaus-api/internal/fakefiller"
+	"playhaus-api/internal/wittywars"
 	"playhaus-api/internal/friend"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
@@ -100,6 +101,7 @@ func run() error {
 	oneOfUsStore := oneofus.NewGormStore(db)
 	oneOfUsService := oneofus.NewService(oneOfUsStore, oneOfUsStore)
 	fakeFillerService := fakefiller.NewService(fakefiller.NewGormStore(db))
+	wittyWarsService := wittywars.NewService(wittywars.NewGormStore(db))
 	friendService := friend.NewService(friend.NewGormStore(db))
 	pushService := push.NewService(push.NewGormStore(db), cfg.PushEnabled, logger)
 
@@ -108,7 +110,7 @@ func run() error {
 	hub := realtime.NewHub(logger)
 	defer hub.Close()
 
-	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, fakeFillerService, friendService, pushService, hub, logger, cfg.AllowedOrigins, cfg.StatsToken)
+	handler := api.NewServer(userService, authService, lolService, pubquizrService, oneOfUsService, fakeFillerService, wittyWarsService, friendService, pushService, hub, logger, cfg.AllowedOrigins, cfg.StatsToken)
 	logger.Info("word of the day reset zone", "tz", cfg.DailyResetLocation.String())
 	logger.Info("cors configured", "allowed_origins", cfg.AllowedOrigins)
 
@@ -149,6 +151,10 @@ func run() error {
 	// An invite outlives nothing: the lobby it points at is swept after an hour.
 	go friendService.SweepExpired(ctx, 15*time.Minute, logger)
 	go fakeFillerService.SweepStale(ctx, fakefiller.SweepConfig{
+		LobbyAge: time.Hour,
+		GameAge:  12 * time.Hour,
+	}, 5*time.Minute, logger)
+	go wittyWarsService.SweepStale(ctx, wittywars.SweepConfig{
 		LobbyAge: time.Hour,
 		GameAge:  12 * time.Hour,
 	}, 5*time.Minute, logger)

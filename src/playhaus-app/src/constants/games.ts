@@ -7,6 +7,7 @@ export const LEAGUE_OF_LETTERS_NAME: string = "League of Letters";
 export const PUBQUIZR_NAME: string = "Quizmaster";
 export const ONE_OF_US_NAME: string = "One of Us";
 export const FAKE_FILLER_NAME: string = "Fake Filler";
+export const WITTY_WARS_NAME: string = "Witty Wars";
 
 // How many devices a group needs to play.
 export type DeviceMode = 'perPlayer' | 'oneDevice' | 'perPlayerOrOneDevice';
@@ -16,7 +17,7 @@ export const DEVICE_MODE_KEYS: Record<DeviceMode, TranslationKey> = {
     perPlayerOrOneDevice: 'games.device.perPlayerOrOneDevice',
 };
 
-export type JoinCodePrefix = 'L' | 'P' | 'O' | 'F';
+export type JoinCodePrefix = 'L' | 'P' | 'O' | 'F' | 'W';
 
 export interface Game {
     slug: string,
@@ -116,8 +117,29 @@ export const FAKE_FILLER: Game = {
     minutesAverage: 5
 };
 
+export const WITTY_WARS: Game = {
+    slug: 'witty-wars',
+    name: WITTY_WARS_NAME,
+    color: Brand.pink,
+    gradient: Gradients.pink,
+    accentInk: 'ink',
+    glyphInk: { light: Brand.ink, dark: Brand.ink },
+    icon: require('@/assets/icons/witty-wars.svg'),
+    mainCategoryIndicatorKey: 'games.wittyWars.mainCategory',
+    descriptionKey: 'games.wittyWars.description',
+    deviceMode: 'perPlayer',
+    playable: true,
+    isNew: true,
+    navigationUrl: ROUTES.wittyWarsIndex,
+    joinCodePrefix: 'W',
+    roomRoute: ROUTES.wittyWarsRoom,
+    // The backend's own floor and ceiling.
+    minMaxPlayersIndicator: "3-8",
+    minutesAverage: 10
+};
+
 // Every game the app knows about.
-export const GAMES: Game[] = [PUBQUIZR, LEAGUE_OF_LETTERS, ONE_OF_US, FAKE_FILLER];
+export const GAMES: Game[] = [PUBQUIZR, LEAGUE_OF_LETTERS, ONE_OF_US, FAKE_FILLER, WITTY_WARS];
 
 // A game's colour identity, in the shape the controls take it in.
 export function accentOf(game: Game): Accent {

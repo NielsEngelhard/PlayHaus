@@ -1,16 +1,16 @@
 import type { FFGame, FFRound } from "@/api/calls/fake-filler";
 import AppText from "@/components/text/AppText";
 import BleedScrollView from "@/components/ui/BleedScrollView";
+import PlayButton from "@/components/ui/PlayButton";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
+import TableProgress from "@/components/ui/TableProgress";
 import WaitingStage from "@/components/ui/WaitingStage";
 import { FAKE_FILLER } from "@/constants/games";
 import { Spacing } from "@/constants/theme";
-import PlayButton from "@/features/fake-filler/components/play/PlayButton";
 import PromptLine from "@/features/fake-filler/components/play/PromptLine";
 import { fillsComplete, normaliseFills, openPrompt } from "@/features/fake-filler/prompt";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { avatarColorById } from "@/utils/color-utils";
 import { useState } from "react";
 import { useWindowDimensions, View } from "react-native";
 
@@ -31,6 +31,8 @@ export default function WritingScreen({ game, rounds, busy, onSubmit }: Props) {
 
     return (
         <BleedScrollView
+            // The board is chromeless, so there is no page gutter to bleed into.
+            bleed={0}
             style={styles.scroll}
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
@@ -119,9 +121,10 @@ function PromptStage({ game, round, busy, onSubmit }: StageProps) {
                     </AppText>
                 )}
 
-                <TableProgress game={game} />
+                <FFTableProgress game={game} />
 
                 <PlayButton
+                    game={FAKE_FILLER}
                     text={busy ? t('common.busy') : t('fakeFiller.play.writing.submit')}
                     disabled={busy}
                     onPress={() => void submit()}
@@ -134,39 +137,15 @@ function PromptStage({ game, round, busy, onSubmit }: StageProps) {
 const PROMPT_SLIDE = 56;
 const PROMPT_MS = 380;
 
-/** How far each swatch in the stack sits over the one before it. */
-const STACK_OVERLAP = -7;
-// Past this many the stack stops growing and starts counting.
-const STACK_SHOWN = 4;
-
-// The table, as a huddle of swatches, and how far along it is.
-function TableProgress({ game }: { game: FFGame }) {
+// The table, and how many answers are in.
+function FFTableProgress({ game }: { game: FFGame }) {
     const t = useT();
-    const styles = useStyles();
-
-    const shown = game.players.slice(0, STACK_SHOWN);
-    const rest = game.players.length - shown.length;
-    const label = t('fakeFiller.play.writing.progress', { done: game.answersIn, total: game.answersNeeded });
 
     return (
-        <View style={styles.progress}>
-            <View style={styles.stack}>
-                {shown.map((player, index) => (
-                    <View
-                        key={player.userId}
-                        style={[
-                            styles.swatch,
-                            { backgroundColor: avatarColorById(player.avatarColorId).color },
-                            index > 0 && { marginLeft: STACK_OVERLAP }
-                        ]}
-                    />
-                ))}
-            </View>
-
-            {rest > 0 && <AppText style={styles.progressText}>{'+' + rest}</AppText>}
-
-            <AppText style={styles.progressText}>{label}</AppText>
-        </View>
+        <TableProgress
+            players={game.players}
+            label={t('fakeFiller.play.writing.progress', { done: game.answersIn, total: game.answersNeeded })}
+        />
     )
 }
 
@@ -186,7 +165,7 @@ function WaitingOnTable({ game }: { game: FFGame }) {
                 message={t('fakeFiller.play.writing.waitingMessage')}
             />
 
-            <TableProgress game={game} />
+            <FFTableProgress game={game} />
         </SlideFadeIn>
     )
 }
@@ -224,29 +203,5 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: 12,
         fontWeight: 700,
         color: theme.colors.destructiveText
-    },
-    progress: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: Spacing.two
-    },
-    stack: {
-        flexDirection: 'row'
-    },
-    // Ringed in the page's own colour, so the swatches read as stacked rather than as touching.
-    swatch: {
-        width: 20,
-        height: 20,
-        borderRadius: 999,
-        borderWidth: 2,
-        borderColor: theme.colors.background
-    },
-    // Tabular, so the left-hand digit does not twitch as answers land.
-    progressText: {
-        flexShrink: 1,
-        fontSize: 11.5,
-        fontWeight: 700,
-        fontVariant: ['tabular-nums'],
-        color: theme.colors.textMuted
     }
 }))
