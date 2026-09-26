@@ -11,8 +11,8 @@ import (
 
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/fakefiller"
-	"playhaus-api/internal/wittywars"
 	"playhaus-api/internal/friend"
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
 	"playhaus-api/internal/platform/database/databasetest"
@@ -20,6 +20,7 @@ import (
 	"playhaus-api/internal/push"
 	"playhaus-api/internal/realtime"
 	"playhaus-api/internal/user"
+	"playhaus-api/internal/wittywars"
 
 	"gorm.io/gorm"
 )
@@ -59,10 +60,12 @@ func newTestServerWithStatsToken(t *testing.T, statsToken string) (http.Handler,
 	// Push is off, so it only ever logs the delivery it did not make.
 	pushes := push.NewService(push.NewGormStore(db), false, log)
 
+	gameStats := gamestats.NewService(gamestats.NewGormStore(db))
+
 	hub := realtime.NewHub(log)
 	t.Cleanup(hub.Close)
 
-	handler := NewServer(users, authSvc, lol, quizzes, oneOfUs, fakeFiller, wittyWars, friends, pushes, hub, log, testOrigins, statsToken)
+	handler := NewServer(users, authSvc, lol, quizzes, oneOfUs, fakeFiller, wittyWars, friends, pushes, gameStats, hub, log, testOrigins, statsToken)
 	return handler, db
 }
 

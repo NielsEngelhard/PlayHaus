@@ -8,6 +8,7 @@ import (
 
 	"github.com/google/uuid"
 
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/oneofus"
 )
 
@@ -733,6 +734,7 @@ func (s *Server) handleStartOOULobby(w http.ResponseWriter, r *http.Request) {
 		s.writeOOULobbyError(w, "start one of us lobby", err)
 		return
 	}
+	s.countGame(r.Context(), gamestats.OouMultiDevice)
 
 	body := s.newOOULobbyResponse(r.Context(), lobby)
 	// The id only: every device has to fetch its own board, because no two of them are the same.

@@ -49,5 +49,6 @@ export const ROUTES = {
     reconnect: "/reconnect",
     friends: "/friends",
     profile: "/profile",
-    upgradeAccount: "/profile/upgrade"
+    upgradeAccount: "/profile/upgrade",
+    globalStats: "/global-stats"
 } as const

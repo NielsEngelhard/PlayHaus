@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/oneofus"
 	"strconv"
 	"strings"
@@ -87,6 +88,8 @@ func (s *Server) handleCreateOneOfUsOneDeviceGame(w http.ResponseWriter, r *http
 		writeError(w, http.StatusInternalServerError, "Error creating the single device OOU game")
 		return
 	}
+
+	s.countGame(r.Context(), gamestats.OouSingleDevice)
 
 	// An object rather than the bare id string this used to answer with.
 	writeJSON(w, http.StatusOK, map[string]any{"gameId": game.ID})

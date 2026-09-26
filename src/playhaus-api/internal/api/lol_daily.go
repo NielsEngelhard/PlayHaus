@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"time"
 
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/lol"
 )
 
@@ -177,6 +178,8 @@ func (s *Server) handleStartWordOfTheDay(w http.ResponseWriter, r *http.Request)
 		writeError(w, http.StatusInternalServerError, "something went wrong")
 		return
 	}
+
+	s.countGame(r.Context(), gamestats.LolWod)
 
 	writeJSON(w, http.StatusCreated, newDailyGameResponse(game))
 }

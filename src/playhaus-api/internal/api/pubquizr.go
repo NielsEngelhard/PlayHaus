@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/pubquizr"
 
 	"github.com/google/uuid"
@@ -518,6 +519,8 @@ func (s *Server) handleStartSingleDeviceQuiz(w http.ResponseWriter, r *http.Requ
 		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
 		return
 	}
+
+	s.countGame(r.Context(), gamestats.QuizSingleDevice)
 
 	s.writeSession(w, r, session, http.StatusCreated)
 }

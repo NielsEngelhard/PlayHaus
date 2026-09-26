@@ -9,6 +9,7 @@ import (
 
 	"github.com/google/uuid"
 
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/user"
 	"playhaus-api/internal/wittywars"
@@ -708,6 +709,7 @@ func (s *Server) handleStartWWLobby(w http.ResponseWriter, r *http.Request) {
 		s.writeWWLobbyError(w, "start witty wars lobby", err)
 		return
 	}
+	s.countGame(r.Context(), gamestats.WittyWars)
 
 	body := s.newWWLobbyResponse(r.Context(), lobby)
 	s.publishWWGameStarted(code, game.ID.String(), body)

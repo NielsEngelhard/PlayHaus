@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strings"
 
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/lol"
 
 	"github.com/google/uuid"
@@ -156,6 +157,8 @@ func (s *Server) handleCreateSoloGame(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
 		return
 	}
+
+	s.countGame(r.Context(), gamestats.LolSolo)
 
 	writeJSON(w, http.StatusCreated, newSoloGameResponse(game))
 }

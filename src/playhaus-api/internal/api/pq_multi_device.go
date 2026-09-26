@@ -9,6 +9,7 @@ import (
 
 	"github.com/google/uuid"
 
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/user"
@@ -369,6 +370,11 @@ func (s *Server) handleStartPQLobby(w http.ResponseWriter, r *http.Request) {
 	if len(problems) > 0 {
 		writeJSON(w, http.StatusUnprocessableEntity, map[string]any{"errors": problems})
 		return
+	}
+	if session.HostScreen {
+		s.countGame(r.Context(), gamestats.QuizMultiDeviceWithHostScreen)
+	} else {
+		s.countGame(r.Context(), gamestats.QuizMultiDevice)
 	}
 
 	// Re-read so the response carries the session id the deal just set on the room.

@@ -6,14 +6,15 @@ import (
 
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/fakefiller"
-	"playhaus-api/internal/wittywars"
 	"playhaus-api/internal/friend"
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/oneofus"
 	"playhaus-api/internal/platform/database/databasetest"
 	"playhaus-api/internal/pubquizr"
 	"playhaus-api/internal/push"
 	"playhaus-api/internal/user"
+	"playhaus-api/internal/wittywars"
 
 	"gorm.io/gorm"
 )
@@ -27,6 +28,7 @@ func allModels() []any {
 	models = append(models, wittywars.Models()...)
 	models = append(models, friend.Models()...)
 	models = append(models, push.Models()...)
+	models = append(models, gamestats.Models()...)
 	return models
 }
 

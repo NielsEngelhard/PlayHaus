@@ -170,8 +170,14 @@ export const en = {
             network: 'No connection. Check your internet and try again.'
         }
     },
+    globalStats: {
+        title: 'Games played',
+        loading: 'Counting games…',
+        failed: "Couldn't load the stats."
+    },
     profile: {
         loading: 'Loading profile…',
+        showGlobalStats: 'Show global stats',
         card: { action: 'My profile', caption: 'This is you, gorgeous!' },
         name: {
             label: 'Player name',

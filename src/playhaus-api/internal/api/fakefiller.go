@@ -10,6 +10,7 @@ import (
 	"github.com/google/uuid"
 
 	"playhaus-api/internal/fakefiller"
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/joincode"
 )
 
@@ -757,6 +758,7 @@ func (s *Server) handleStartFFLobby(w http.ResponseWriter, r *http.Request) {
 		s.writeFFLobbyError(w, "start fake filler lobby", err)
 		return
 	}
+	s.countGame(r.Context(), gamestats.FakeFiller)
 
 	body := s.newFFLobbyResponse(r.Context(), lobby)
 	s.publishFFGameStarted(code, game.ID.String(), body)

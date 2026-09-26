@@ -172,8 +172,14 @@ export const nl: Catalog = {
             network: 'Geen verbinding. Check je internet en probeer opnieuw.'
         }
     },
+    globalStats: {
+        title: 'Games gespeeld',
+        loading: 'Games tellen…',
+        failed: 'Stats laden mislukt.'
+    },
     profile: {
         loading: 'Profiel laden…',
+        showGlobalStats: 'Globale stats',
         card: { action: 'Mijn profiel', caption: 'Dit ben jij, knapperd!' },
         name: {
             label: 'Speelnaam',

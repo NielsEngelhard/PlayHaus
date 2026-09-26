@@ -10,6 +10,7 @@ import (
 
 	"playhaus-api/internal/auth"
 	"playhaus-api/internal/friend"
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/pubquizr"
@@ -30,6 +31,7 @@ type Server struct {
 	wittyWars       *wittywars.Service
 	friends         *friend.Service
 	push            *push.Service
+	gameStats       *gamestats.Service
 
 	// rt is every live socket room.
 	rt  *realtime.Hub
@@ -55,6 +57,7 @@ func NewServer(
 	wittyWarsSvc *wittywars.Service,
 	friendSvc *friend.Service,
 	pushSvc *push.Service,
+	gameStatsSvc *gamestats.Service,
 	hub *realtime.Hub,
 	log *slog.Logger,
 	allowedOrigins []string,
@@ -71,6 +74,7 @@ func NewServer(
 		wittyWars:        wittyWarsSvc,
 		friends:          friendSvc,
 		push:             pushSvc,
+		gameStats:        gameStatsSvc,
 		rt:               hub,
 		log:              log,
 		allowedOrigins:   allowedOrigins,
@@ -101,6 +105,7 @@ func NewServer(
 	s.AddReconnectHandlers()
 	s.AddRealtimeHandlers()
 	s.AddStatsHandlers()
+	s.AddGlobalStatsHandlers()
 
 	// cors sits innermost so a preflight.
 	return chain(s.mux, requestID, recoverPanic(log), logRequests(log), cors(allowedOrigins))

@@ -1,6 +1,7 @@
 import LoadingPage from "@/components/layout/LoadingPage";
 import AppText from "@/components/text/AppText";
 import LanguageSelect from "@/components/ui/LanguageSelect";
+import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
 import { FontSizes, Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
@@ -101,6 +102,8 @@ export default function ProfilePage() {
                 {/* Revokes the session and drops the stored token, which brings the auth gate straight back up. */}
                 <LogoutCard onLogout={() => { void logout().then(() => router.replace(ROUTES.home)); }} />
             </View>
+
+            <TextButton text={t('profile.showGlobalStats')} onPress={() => router.push(ROUTES.globalStats)} fullWidth variant='secondary' />
         </View>
     )
 }

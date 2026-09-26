@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"slices"
 
+	"playhaus-api/internal/gamestats"
 	"playhaus-api/internal/joincode"
 	"playhaus-api/internal/lol"
 	"playhaus-api/internal/user"
@@ -556,6 +557,7 @@ func (s *Server) handleStartLobby(w http.ResponseWriter, r *http.Request) {
 		s.writeLobbyError(w, "start lobby", err)
 		return
 	}
+	s.countGame(r.Context(), gamestats.LolMultiplayer)
 
 	body := s.newLobbyResponse(r.Context(), lobby)
 	// Carries the first turn and starts its clock.
