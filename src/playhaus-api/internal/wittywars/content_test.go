@@ -1,6 +1,7 @@
 package wittywars
 
 import (
+	"strings"
 	"testing"
 
 	"playhaus-api/internal/i18n"
@@ -40,6 +41,26 @@ func TestHalfOfEveryFileNamesAPlayer(t *testing.T) {
 			}
 			if named*2 != len(lines) {
 				t.Errorf("%s-%s: %d of %d prompts name a player, want half", locale, mode, named, len(lines))
+			}
+		}
+	}
+}
+
+// A repeated prompt could be dealt twice in one game.
+func TestNoFileRepeatsAPrompt(t *testing.T) {
+	for _, locale := range i18n.Locales {
+		for _, mode := range GameModes {
+			lines, err := contentLines(locale, mode)
+			if err != nil {
+				t.Fatalf("contentLines(%s, %s): %v", locale, mode, err)
+			}
+			seen := make(map[string]bool, len(lines))
+			for _, line := range lines {
+				key := strings.ToLower(line)
+				if seen[key] {
+					t.Errorf("%s-%s: %q appears more than once", locale, mode, line)
+				}
+				seen[key] = true
 			}
 		}
 	}
