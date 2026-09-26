@@ -161,7 +161,9 @@ export const en = {
             random: 'Random name',
             note: 'Min {{min}}, max {{max}} characters.',
             submit: 'Continue',
-            submitting: 'Signing up…'
+            submitting: 'Signing up…',
+            tipTitle: 'Tip',
+            tip: "Use your first name, it doesn't have to be unique. Keep it short: long names get cut off in games."
         },
         errors: {
             invalidCredentials: 'Wrong email or password.',

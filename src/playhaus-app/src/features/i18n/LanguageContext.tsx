@@ -60,10 +60,11 @@ export function useUiLanguage(): LanguageCode {
     return useLanguageState().language;
 }
 
-// The translator.
-export function useT(): TFunction {
-    const language = useUiLanguage();
-    const options = useMemo(() => ({ lng: language }), [language]);
+// The translator, in the interface's language unless a screen asks for another one.
+export function useT(language?: LanguageCode): TFunction {
+    const ui = useUiLanguage();
+    const lng = language ?? ui;
+    const options = useMemo(() => ({ lng }), [lng]);
     const { t } = useTranslation(undefined, options);
 
     return t;

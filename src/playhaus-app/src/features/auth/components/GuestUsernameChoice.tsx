@@ -1,5 +1,6 @@
 import AppText from "@/components/text/AppText";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
+import InlineNotification from "@/components/ui/InlineNotification";
 import TextButton from "@/components/ui/TextButton";
 import { usePressPop } from "@/components/ui/usePressPop";
 import type { LanguageCode } from "@/constants/languages";
@@ -27,7 +28,8 @@ interface Props {
 export default function GuestUsernameChoice({ locale, onBack }: Props) {
     const theme = useTheme();
     const styles = useStyles();
-    const t = useT();
+    // Nobody is signed in yet, so the interface language is still the device's, not the one just picked.
+    const t = useT(locale);
     const pop = usePressPop();
 
     const { continueAsGuest } = useAuth();
@@ -98,7 +100,15 @@ export default function GuestUsernameChoice({ locale, onBack }: Props) {
                 {t('auth.guestUsername.note', { min: NAME_MIN_LENGTH, max: NAME_MAX_LENGTH })}
             </AppText>
 
-            {error && <AuthErrorText message={t(error)} />}
+            <View style={styles.tip}>
+                <InlineNotification
+                    title={t('auth.guestUsername.tipTitle')}
+                    icon='user'
+                    message={t('auth.guestUsername.tip')}
+                />
+            </View>
+
+            {error &&<AuthErrorText message={t(error)} />}
 
             <TextButton
                 text={busy ? t('auth.guestUsername.submitting') : t('auth.guestUsername.submit')}
@@ -160,6 +170,9 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: FontSizes.xs,
         lineHeight: FontSizes.xs * 1.45,
         color: theme.colors.textSecondary
+    },
+    tip: {
+        marginTop: Spacing.four
     },
     submit: {
         marginTop: Spacing.four

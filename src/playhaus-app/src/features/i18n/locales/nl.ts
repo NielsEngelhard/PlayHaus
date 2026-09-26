@@ -163,7 +163,9 @@ export const nl: Catalog = {
             random: 'Willekeurige naam',
             note: 'Min {{min}}, max {{max}} tekens.',
             submit: 'Doorgaan',
-            submitting: 'Aanmelden…'
+            submitting: 'Aanmelden…',
+            tipTitle: 'Tip',
+            tip: 'Gebruik je voornaam, die mag best dubbel. Hou hem kort: lange namen worden in games afgekapt.'
         },
         errors: {
             invalidCredentials: 'E-mail of wachtwoord klopt niet.',
