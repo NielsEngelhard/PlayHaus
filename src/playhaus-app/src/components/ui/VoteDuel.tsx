@@ -443,9 +443,12 @@ const useStyles = createThemedStyles(theme => ({
         gap: 9
     },
     // A basis of zero rather than the content's own height, so the cards split the stack evenly however much is written on either.
+    // `minHeight: 'auto'` overrides the `min-height: 0` React Native Web puts on every flex child — without it, `flexShrink: 0`
+    // (RN's own default) stops protecting a card from being squeezed below its text's height on web, and the text spills out.
     slot: {
         flexGrow: 1,
-        flexBasis: 0
+        flexBasis: 0,
+        minHeight: 'auto'
     },
     slotFill: {
         flexGrow: 1
@@ -453,6 +456,7 @@ const useStyles = createThemedStyles(theme => ({
     option: {
         flexGrow: 1,
         flexBasis: 0,
+        minHeight: 'auto',
         justifyContent: 'center',
         gap: Spacing.two + Spacing.one,
         padding: Spacing.three,
