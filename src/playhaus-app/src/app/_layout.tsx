@@ -15,12 +15,12 @@ import { LanguageProvider } from '@/features/i18n/LanguageContext';
 import { FriendInviteProvider } from '@/features/notifications/FriendInviteContext';
 import InviteBanner from '@/features/notifications/components/InviteBanner';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
+import SystemBars from '@/features/theme/SystemBars';
 import { ThemeProvider, useScheme, useThemeReady } from '@/features/theme/ThemeContext';
 import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, ThemeProvider as NavigationThemeProvider, Slot, usePathname } from 'expo-router';
 import Head from 'expo-router/head';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
@@ -77,8 +77,6 @@ function App() {
 
   return (
     <NavigationThemeProvider value={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
-
       {/* Web only, and only to name the browser tab. */}
       {Platform.OS === 'web' && (
         <Head>
@@ -99,6 +97,9 @@ function App() {
             <FullScreenProvider>
               {/* And the whole window's colour with it — see `PageToneContext`. */}
               <PageToneProvider>
+                {/* Reads the tones, so it has to sit inside their provider. */}
+                <SystemBars />
+
                 {/* Inside the layout modes, which is how the banner knows you are already in a game. */}
                 <FriendInviteProvider>
                   <Chrome />

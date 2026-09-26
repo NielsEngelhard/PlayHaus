@@ -57,7 +57,7 @@ export default function Root({ children }: PropsWithChildren) {
                 {/* `default`, not `black-translucent`. */}
                 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-                {/* The colour the OS paints its own chrome with, straight from `Colors.light.background` in `@/constants/theme`. */}
+                {/* The colour the OS paints its own chrome with until `SystemBars` takes over, straight from `Colors.light.background` in `@/constants/theme`. */}
                 <meta name="theme-color" content="#FBF7F0" />
             </head>
             <body {...bodyAttributes}>

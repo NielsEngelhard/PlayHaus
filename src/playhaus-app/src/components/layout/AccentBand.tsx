@@ -1,3 +1,4 @@
+import { useTopTone } from "@/components/layout/PageToneContext";
 import { ContentWidth, HeaderHeight, linearGradient, Spacing } from "@/constants/theme";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import type { ReactNode } from "react";
@@ -25,6 +26,9 @@ export default function AccentBand({ children, flush = false, gradient, gutter =
     const styles = useStyles();
     const insets = useSafeAreaInsets();
     const { width: windowWidth } = useWindowDimensions();
+
+    // The first stop is the corner of the 160° gradient that meets the status bar.
+    useTopTone(flush ? null : gradient[0]);
 
     // How far past the column the fill has to reach to make the window, and so also whether it is reaching at all.
     // The outer View's own `-gutter` margin already cancels the parent's gutter padding, so `gutter` plays no part here.
