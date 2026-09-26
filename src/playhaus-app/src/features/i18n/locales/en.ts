@@ -526,6 +526,8 @@ export const en = {
             ready: 'I am ready',
             readyCount: '{{ready}} of {{total}} are ready · starts as soon as everyone is',
             readyGate: 'Ready opens once all {{matches}} matches are done',
+            markReady: 'Ready',
+            markNotReady: 'Not ready yet',
             backToBracket: 'Back to the bracket',
             champion: {
                 title: 'Champion',
@@ -1397,10 +1399,7 @@ export const en = {
             loading: 'Dealing out the words…',
             close: 'Leave the game',
             // The header, every round.
-            roundSpeak: 'Round {{round}} · turn',
             roundDiscuss: 'Round {{round}} · discuss',
-            roundVote: 'Round {{round}} · vote',
-            roundResult: 'Round {{round}} · result',
 
             // The note you drew. Both ways of playing share it.
             note: {
@@ -1420,8 +1419,10 @@ export const en = {
                 bodyFirst: 'Only {{name}} may look at the next screen.',
                 note: 'Nobody else may look.',
                 action: "I'm {{name}}",
-                // Who has not been handed the phone yet, under the role card.
-                queue: 'Still to come: {{names}}',
+                bandLabel: 'Viewing words',
+                yourWord: '{{name}}, this is your word',
+                // Who has not been handed the phone yet, under the card.
+                after: 'Up next: {{names}}',
                 secretLabel: 'Tap to see your word',
                 secretHint: 'Hold the phone so nobody else can read it.',
                 warning: 'Only you see this',
@@ -1451,14 +1452,14 @@ export const en = {
                 },
                 /** After the word is open: the way on, phrased as putting it away. */
                 hide: 'Hide',
-                done: 'Pass to {{name}}',
+                remember: 'Got it · pass to {{name}}',
                 lastDone: 'Got it — start round 1'
             },
 
             // One speaker at a time, in an order reshuffled every round.
             speak: {
-                // Loses the round it used to carry.
-                step: 'Speaker {{number}} of {{total}}',
+                bandLabel: 'Round {{round}} · Turns',
+                title: 'Say something about your word',
                 nowSpeaking: 'Now speaking',
                 hint: 'Say one word about your own word. Do not say the word itself.',
                 next: 'Next: {{name}}',
@@ -1466,36 +1467,53 @@ export const en = {
             },
 
             discuss: {
-                /** The middle of the ring, which has room for three words at most. */
-                ring: 'Vote',
-                title: "Who's getting voted out?",
-                description: "Everyone points at someone they don't trust. Whoever gets the most votes is voted out. Abstaining is not allowed.",
-                /** Shown throughout: nobody gets to argue their case, only vote. */
-                tieNote: "You can't defend your choice. Just vote — no discussion allowed!",
-                tieNoteMayor: "You can't defend your choice. Vote without discussion! If it's a tie, {{name}} decides as mayor.",
                 action: 'Vote'
             },
 
             vote: {
-                title: 'Who does not fit?',
-                nobody: 'Nobody chosen yet',
-                confirm: 'Pin {{name}}',
-                confirmHint: 'This cannot be undone.',
-                locked: 'Tap a name first.'
+                bandLabel: 'Round {{round}} · Voting',
+                // The band's chip: how many are still at the table.
+                inCount: '{{count}} in',
+                title: 'Who has to go?',
+                subline: 'Talk it over and tap one name.',
+                // Appended to `subline` when the table has a mayor.
+                sublineMayor: ' On a tie, mayor {{name}} decides.',
+                mayor: 'Mayor',
+                outTile: '{{name}} · out',
+                sendAway: 'Send {{name}} away',
+                pickFirst: 'Pick someone first'
             },
 
             /** What the table is told the moment somebody leaves. */
             elimination: {
-                /** Above their name, on the seat that is about to disappear. */
-                ringLabel: 'Voted out',
+                bandLabel: 'Round {{round}} · Result',
+                title: '{{name}} is out',
+                sticker: 'OUT',
+                was: '{{name}} was…',
+                // The real role, told to the table in the third person.
+                role: {
+                    civilian: {
+                        name: 'a civilian',
+                        why: '{{name}} had the real word. The imposter is still at the table.'
+                    },
+                    imposter: {
+                        name: 'the imposter!',
+                        why: '{{name}} had a different word. Got them!'
+                    },
+                    nitwit: {
+                        name: 'the nitwit!',
+                        why: '{{name}} had no word at all and bluffed along.'
+                    }
+                },
+                // The multi-device round reveal's verdict line.
                 civilian: '{{name}} was one of the civilians',
                 imposter: '{{name}} was an imposter',
                 nitwit: '{{name}} was the nitwit',
                 // Whether the table had the right one.
                 hit: 'hit',
                 miss: 'miss',
-                remaining: '{{players}} still in the game.',
-                next: 'Round {{round}}'
+                left: '{{count}} left at the table',
+                next: 'On to round {{round}}'
             },
 
             // Every role the game can deal, read out to the table before the phone starts going round.
@@ -1524,6 +1542,11 @@ export const en = {
                 civiliansCamp: 'Civilians',
                 impostersCamp: 'Against the civilians',
                 imposterWordLabel: 'Imposters',
+                // Under a player's name, short enough for one avatar's width.
+                role: {
+                    imposter: 'Imposter',
+                    nitwit: 'Nitwit'
+                },
                 winner: 'Winner',
                 again: 'Play again'
             }

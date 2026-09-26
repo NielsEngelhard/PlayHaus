@@ -1,15 +1,17 @@
 import AppText from "@/components/text/AppText";
+import ActionButton from "@/components/ui/ActionButton";
+import FlipOver from "@/components/ui/FlipOver";
 import HandoffScreen from "@/components/ui/HandoffScreen";
-import InGameHeader from "@/components/ui/InGameHeader";
-import SeatAvatar from "@/components/ui/SeatAvatar";
+import PopPressable from "@/components/ui/PopPressable";
 import SlideFadeIn from "@/components/ui/SlideFadeIn";
-import { Spacing } from "@/constants/theme";
+import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
-import PinButton from "@/features/one-of-us/components/PinButton";
-import WordNote from "@/features/one-of-us/components/WordNote";
+import OouBand from "@/features/one-of-us/components/OouBand";
+import TableStrip from "@/features/one-of-us/components/TableStrip";
 import { OneOfUsRole } from "@/features/one-of-us/models";
 import { joinNames, type Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
+import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { View } from "react-native";
 
@@ -21,9 +23,17 @@ interface Props {
     person: Seat
     queue: Seat[]
     role: OneOfUsRole
+    // Everybody at the table, in the order the phone goes round.
+    table: Seat[]
     total: number
     word: string | null
 }
+
+const CARD = 300;
+const EYE = 40;
+// Long words step down a size so they stay on one line of the card.
+const LONG_WORD = 10;
+const VERY_LONG_WORD = 14;
 
 export default function WordRevealScreen({
     from,
@@ -33,6 +43,7 @@ export default function WordRevealScreen({
     person,
     queue,
     role,
+    table,
     total,
     word
 }: Props) {
@@ -61,66 +72,92 @@ export default function WordRevealScreen({
     }
 
     const next = queue.length === 0 ? null : queue[0];
+    const blank = word === null || word === '';
+    const shown = blank ? t('oneOfUs.play.reveal.noWord') : word;
+    const wordSize = shown.length > VERY_LONG_WORD
+        ? FontSizes.xxl
+        : shown.length > LONG_WORD ? FontSizes.xxxl : FontSizes.huge;
 
     return (
         <View style={styles.page}>
-            <InGameHeader
+            <OouBand
                 onClose={onLeave}
                 closeLabel={t('oneOfUs.play.close')}
-                label={t('oneOfUs.play.reveal.step', { number, total })}
-                title={person.name}
-            />
+                label={t('oneOfUs.play.reveal.bandLabel')}
+                count={`${number}/${total}`}
+                title={t('oneOfUs.play.reveal.yourWord', { name: person.name })}
+            >
+                <TableStrip
+                    seats={table}
+                    markOf={seat => seat.seat < person.seat
+                        ? 'done'
+                        : seat.seat === person.seat ? 'focus' : 'pending'}
+                />
+            </OouBand>
 
-            <View style={styles.screen}>
-                <View style={styles.middle}>
-                    <WordNote
-                        key={person.seat}
-                        blurb={t(role === OneOfUsRole.Nitwit
-                            ? 'oneOfUs.play.note.blurbBlank'
-                            : 'oneOfUs.play.note.blurb')}
-                        coverHint={t('oneOfUs.play.note.coverHint')}
-                        coverLabel={t('oneOfUs.play.note.cover')}
-                        label={t('oneOfUs.play.note.label')}
-                        onReveal={() => setSeen(true)}
-                        whenBlank={t('oneOfUs.play.reveal.noWord')}
-                        word={word}
+            <View style={styles.middle}>
+                <View style={styles.stack}>
+                    <View style={[styles.backing, styles.backingViolet]} />
+                    <View style={[styles.backing, styles.backingPaper]} />
+
+                    <FlipOver
+                        turned={seen}
+                        front={(
+                            <PopPressable
+                                onPress={() => setSeen(true)}
+                                accessibilityRole="button"
+                                accessibilityLabel={t('oneOfUs.play.reveal.secretLabel')}
+                                style={styles.card}
+                            >
+                                <View style={styles.eye}>
+                                    <Feather name="eye" size={FontSizes.lg} color={Brand.ink} />
+                                </View>
+
+                                <AppText style={styles.cover}>{t('oneOfUs.play.reveal.secretLabel')}</AppText>
+                            </PopPressable>
+                        )}
+                        back={(
+                            <View style={styles.card}>
+                                <AppText style={styles.label}>{t('oneOfUs.play.note.label')}</AppText>
+
+                                <AppText
+                                    style={[styles.word, { fontSize: wordSize, lineHeight: wordSize }]}
+                                    numberOfLines={2}
+                                >
+                                    {shown}
+                                </AppText>
+
+                                <AppText style={styles.blurb}>
+                                    {t(role === OneOfUsRole.Nitwit
+                                        ? 'oneOfUs.play.note.blurbBlank'
+                                        : 'oneOfUs.play.note.blurb')}
+                                </AppText>
+                            </View>
+                        )}
                     />
                 </View>
+            </View>
 
-                <View style={styles.footer}>
-                    {next !== null && (
-                        <View style={styles.queue}>
-                            <View style={styles.queueFaces}>
-                                {queue.map((seat, index) => (
-                                    <View
-                                        key={seat.seat}
-                                        style={index === 0 ? undefined : styles.overlap}
-                                    >
-                                        <SeatAvatar seat={seat} size={24} />
-                                    </View>
-                                ))}
-                            </View>
+            <View style={styles.footer}>
+                {next !== null && (
+                    <AppText style={styles.after}>
+                        {t('oneOfUs.play.reveal.after', {
+                            names: joinNames(queue.map(seat => seat.name), t('common.and'))
+                        })}
+                    </AppText>
+                )}
 
-                            <AppText style={styles.queueText} numberOfLines={2}>
-                                {t('oneOfUs.play.reveal.queue', {
-                                    names: joinNames(queue.map(seat => seat.name), t('common.and'))
-                                })}
-                            </AppText>
-                        </View>
-                    )}
-
-                    {seen && (
-                        <SlideFadeIn offsetY={BUTTON_RISE} durationMs={BUTTON_MS} delayMs={BUTTON_DELAY_MS}>
-                            <PinButton
-                                icon={next === null ? 'play' : 'arrow-right'}
-                                text={next === null
-                                    ? t('oneOfUs.play.reveal.lastDone')
-                                    : t('oneOfUs.play.reveal.done', { name: next.name })}
-                                onPress={onDone}
-                            />
-                        </SlideFadeIn>
-                    )}
-                </View>
+                {seen && (
+                    <SlideFadeIn offsetY={BUTTON_RISE} durationMs={BUTTON_MS} delayMs={BUTTON_DELAY_MS}>
+                        <ActionButton
+                            icon={next === null ? 'play' : 'arrow-right'}
+                            text={next === null
+                                ? t('oneOfUs.play.reveal.lastDone')
+                                : t('oneOfUs.play.reveal.remember', { name: next.name })}
+                            onPress={onDone}
+                        />
+                    </SlideFadeIn>
+                )}
             </View>
         </View>
     )
@@ -128,57 +165,105 @@ export default function WordRevealScreen({
 
 const BUTTON_RISE = 16;
 const BUTTON_MS = 280;
-// Waits for the card to finish landing.
+// Waits for the card to finish turning.
 const BUTTON_DELAY_MS = 200;
+// Holds the room the button will take, so the card does not jump when it arrives.
+const FOOTER_MIN = 80;
 
 const useStyles = createThemedStyles(theme => ({
     page: {
         flex: 1,
         width: '100%',
-        paddingHorizontal: Spacing.four,
+        paddingHorizontal: Spacing.three,
         paddingBottom: Spacing.four
     },
-    screen: {
-        flex: 1,
-        width: '100%',
-        paddingTop: Spacing.four
-    },
-    // Takes every point the footer leaves behind, and centres the stack in it.
     middle: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingVertical: Spacing.four
+    },
+    stack: {
+        alignSelf: 'center',
+        width: CARD,
+        maxWidth: '100%'
+    },
+    backing: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        borderRadius: Radii.xl,
+        borderWidth: theme.borderWidth
+    },
+    // A pale fill, so its outline stays ink in the dark as well.
+    backingViolet: {
+        borderColor: Brand.ink,
+        backgroundColor: Brand.violet,
+        transform: [{ rotate: '6deg' }]
+    },
+    backingPaper: {
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundSecondary,
+        transform: [{ rotate: '-4deg' }]
+    },
+    card: {
+        alignItems: 'center',
+        gap: Spacing.three,
+        paddingVertical: Spacing.five,
+        paddingHorizontal: Spacing.four,
+        borderRadius: Radii.xl,
+        borderWidth: theme.borderWidth,
+        borderColor: theme.colors.border,
+        backgroundColor: theme.colors.backgroundSecondary,
+        ...theme.shadows.hardLarge
+    },
+    eye: {
+        width: EYE,
+        height: EYE,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: Radii.full,
+        borderWidth: theme.borderWidth,
+        borderColor: Brand.ink,
+        backgroundColor: Brand.lemon
+    },
+    cover: {
+        fontSize: FontSizes.md,
+        fontWeight: 900,
+        textAlign: 'center',
+        color: theme.colors.text
+    },
+    label: {
+        fontSize: FontSizes.xs,
+        fontWeight: 900,
+        letterSpacing: 2,
+        textTransform: 'uppercase',
+        color: theme.colors.textSecondary
+    },
+    word: {
+        fontWeight: 900,
+        letterSpacing: -1.6,
+        textAlign: 'center',
+        color: theme.colors.text
+    },
+    blurb: {
+        fontSize: FontSizes.sm,
+        lineHeight: FontSizes.sm * 1.5,
+        fontWeight: 500,
+        textAlign: 'center',
+        color: theme.colors.textSecondary
     },
     footer: {
         flexShrink: 0,
-        minHeight: 66,
+        minHeight: FOOTER_MIN,
         gap: Spacing.two,
         justifyContent: 'flex-end'
     },
-    queue: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 10,
-        paddingVertical: 9,
-        paddingHorizontal: 12,
-        borderRadius: 16,
-        borderWidth: 2,
-        borderStyle: 'dashed',
-        borderColor: theme.colors.borderMuted
-    },
-    queueFaces: {
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    overlap: {
-        marginLeft: -8
-    },
-
-    queueText: {
-        flex: 1,
-        minWidth: 0,
-        fontSize: 11.5,
+    after: {
+        fontSize: FontSizes.sm,
         fontWeight: 700,
-        lineHeight: 11.5 * 1.4,
-        color: theme.colors.textMuted
+        textAlign: 'center',
+        color: theme.colors.textSecondary
     }
 }))

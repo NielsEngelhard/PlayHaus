@@ -1,9 +1,17 @@
 import AppText from "@/components/text/AppText";
 import StartGameButton from "@/components/ui/StartGameButton";
+import { FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
+import ReadyMark from "@/features/league-of-letters/components/tournament/ReadyMark";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { View } from "react-native";
+
+export interface RosterEntry {
+    userId: string,
+    name: string,
+    ready: boolean
+}
 
 interface Props {
     /** Every match of this round has an answer, which is the whole of the gate. */
@@ -23,7 +31,11 @@ interface Props {
     readying: boolean,
     onReady: () => void,
     /** The ready press was refused. Said under the button, which stays pressable. */
-    error: TranslationKey | null
+    error: TranslationKey | null,
+    /** Everybody the gate is waiting on, and whether each has pressed. */
+    roster: RosterEntry[],
+    /** Whose screen this is, so their own chip says so. */
+    userId: string | undefined
 }
 
 // The gate between one round of the bracket and the next.
@@ -38,7 +50,9 @@ export default function ReadyFooter({
     eliminated,
     readying,
     onReady,
-    error
+    error,
+    roster,
+    userId
 }: Props) {
     const styles = useStyles();
     const t = useT();
@@ -59,6 +73,20 @@ export default function ReadyFooter({
 
     return (
         <View>
+            {stageOver && roster.length > 0 && (
+                <View style={styles.roster}>
+                    {roster.map(entry => (
+                        <View key={entry.userId} style={styles.chip}>
+                            <ReadyMark ready={entry.ready} />
+
+                            <AppText style={styles.chipName} numberOfLines={1}>
+                                {entry.userId === userId ? t('lol.tournament.you') : entry.name}
+                            </AppText>
+                        </View>
+                    ))}
+                </View>
+            )}
+
             <StartGameButton
                 text={label}
                 onPress={onReady}
@@ -79,6 +107,30 @@ export default function ReadyFooter({
 }
 
 const useStyles = createThemedStyles(theme => ({
+    roster: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: Spacing.one,
+        marginBottom: Spacing.two
+    },
+    chip: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.one,
+        maxWidth: '100%',
+        paddingVertical: Spacing.half,
+        paddingLeft: Spacing.half,
+        paddingRight: Spacing.two,
+        borderRadius: Radii.full,
+        backgroundColor: theme.colors.backgroundSecondary
+    },
+    chipName: {
+        flexShrink: 1,
+        fontSize: FontSizes.xs,
+        fontWeight: 800,
+        color: theme.colors.text
+    },
     footnote: {
         marginTop: 10,
         textAlign: 'center',

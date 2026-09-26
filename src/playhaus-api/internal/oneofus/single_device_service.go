@@ -254,6 +254,10 @@ func assignRoles(players []OneOfUsLocalPlayer, enabled []Role) {
 		return
 	}
 
+	if roles := LoneLiarRoles(len(players), enabled); len(roles) > 0 {
+		hand = []Role{roles[rand.IntN(len(roles))]}
+	}
+
 	indices := rand.Perm(len(players))
 
 	for seat, role := range hand {

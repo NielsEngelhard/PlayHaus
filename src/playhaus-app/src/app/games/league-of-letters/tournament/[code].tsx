@@ -1,3 +1,4 @@
+import { readyRoster } from "@/api/calls/league-of-letters-tournament";
 import LoadingPage from "@/components/layout/LoadingPage";
 import BackButton from "@/components/ui/BackButton";
 import InlineNotification from "@/components/ui/InlineNotification";
@@ -94,6 +95,11 @@ export default function LeagueOfLettersTournamentRoomPage() {
     // A drawn round is read by the table until the host opens its rooms, which is what moves everybody on.
     const host = tournament.players.find(player => player.userId === tournament.hostId);
 
+    const readiness = readyRoster(tournament);
+    const roster = tournament.players
+        .filter(player => readiness.has(player.userId))
+        .map(player => ({ userId: player.userId, name: player.name, ready: readiness.get(player.userId) === true }));
+
     return (
         <View style={styles.screen}>
             <BracketView
@@ -123,6 +129,8 @@ export default function LeagueOfLettersTournamentRoomPage() {
                         readying={bracket.readying}
                         onReady={() => void bracket.readyUp()}
                         error={bracket.actionError}
+                        roster={roster}
+                        userId={user?.id}
                     />
                 )}
             />

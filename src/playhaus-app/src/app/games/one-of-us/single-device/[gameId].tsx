@@ -1,13 +1,10 @@
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
-import AppText from "@/components/text/AppText";
 import InlineNotification from "@/components/ui/InlineNotification";
-import InGameHeader from "@/components/ui/InGameHeader";
 import TextButton from "@/components/ui/TextButton";
 import { ROUTES } from "@/constants/routes";
-import { Brand, Spacing, withAlpha } from "@/constants/theme";
-import type { Phrase, TranslationKey } from "@/features/i18n/keys";
-import { usePhrase, useT } from "@/features/i18n/LanguageContext";
+import { Spacing } from "@/constants/theme";
+import { useT } from "@/features/i18n/LanguageContext";
 import DiscussScreen from "@/features/one-of-us/components/DiscussScreen";
 import EliminationScreen from "@/features/one-of-us/components/EliminationScreen";
 import GameOverScreen from "@/features/one-of-us/components/GameOverScreen";
@@ -25,7 +22,6 @@ import {
     wordFor,
     type Phase
 } from "@/features/one-of-us/flow";
-import { singleDeviceSettingsFromParams, singleDeviceSettingsToParams, type SingleDeviceSettingsParams } from "@/features/one-of-us/oou-settings";
 import { useSingleDeviceOneOfUsGame } from "@/features/one-of-us/useSingleDeviceOneOfUsGame";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -35,15 +31,13 @@ import { View } from "react-native";
 
 export default function PlayingSingleDeviceGame() {
     const t = useT();
-    const phrase = usePhrase();
     const theme = useTheme();
     const styles = useStyles();
     const router = useRouter();
 
     useChromeless();
 
-    const { gameId, ...params } = useLocalSearchParams<{ gameId: string } & Partial<SingleDeviceSettingsParams>>();
-    const settings = singleDeviceSettingsFromParams(params);
+    const { gameId } = useLocalSearchParams<{ gameId: string }>();
     const play = useSingleDeviceOneOfUsGame(gameId);
 
     const [phase, setPhase] = useState<Phase | null>(null);
@@ -92,6 +86,11 @@ export default function PlayingSingleDeviceGame() {
 
     const current = phase;
     const alive = alivePlayers(game);
+    const aliveSeats = alive.map(player => seatFor(game, player.playerId)!);
+    // Seating order, with the players already voted out still in their chairs.
+    const table = game.players.map(seatOf);
+    const outSeats = table.filter(seat => game.players[seat.seat].isVotedOut);
+    const out = new Set(outSeats.map(seat => seat.seat));
 
     if (current.kind === 'over') {
         return (
@@ -104,10 +103,7 @@ export default function PlayingSingleDeviceGame() {
                 }))}
                 word={game.actualQuestion}
                 imposterWord={game.imposterQuestion}
-                onAgain={() => router.replace({
-                    pathname: ROUTES.oneOfUsSetupSingleDevice,
-                    params: settings === null ? {} : singleDeviceSettingsToParams(settings)
-                })}
+                onAgain={() => router.replace(ROUTES.oneOfUsSetupSingleDevice)}
                 onLeave={leave}
             />
         )
@@ -132,10 +128,9 @@ export default function PlayingSingleDeviceGame() {
                 role={player.role}
                 number={current.index + 1}
                 total={game.players.length}
+                table={table}
                 // `game.players` is itself the order the phone goes round in.
-                queue={game.players
-                    .slice(current.index + 1)
-                    .map((waiting, offset) => seatOf(waiting, current.index + 1 + offset))}
+                queue={table.slice(current.index + 1)}
                 onLeave={leave}
                 onDone={() => setPhase(current.index + 1 < game.players.length
                     ? { kind: 'reveal', index: current.index + 1 }
@@ -147,24 +142,6 @@ export default function PlayingSingleDeviceGame() {
 
     return (
         <View style={styles.board}>
-            {/* No track under the label. */}
-            <InGameHeader
-                onClose={leave}
-                closeLabel={t('oneOfUs.play.close')}
-                label={phrase(headerLabelFor(current))}
-                title={current.kind === 'discuss'
-                    ? t('oneOfUs.play.discuss.title')
-                    : current.kind === 'vote' ? t('oneOfUs.play.vote.title') : undefined}
-                subtitle={current.kind === 'discuss' ? t('oneOfUs.play.discuss.description') : undefined}
-            >
-                {/* No round total to count against, so the band counts the table instead: it shrinks by one a round. */}
-                <View style={styles.chip}>
-                    <AppText style={styles.chipText}>
-                        {t('oneOfUs.multiDevice.play.stillIn', { count: alive.length })}
-                    </AppText>
-                </View>
-            </InGameHeader>
-
             {current.kind === 'speak' && (() => {
                 const speaker = seatFor(game, current.order[current.index]);
 
@@ -177,13 +154,22 @@ export default function PlayingSingleDeviceGame() {
                     ? seatFor(game, current.order[current.index + 1])
                     : null;
 
+                const spoken = new Set(current.order
+                    .slice(0, current.index)
+                    .map(playerId => seatFor(game, playerId)?.seat)
+                    .filter(seat => seat !== undefined));
+
                 return (
                     <SpeakingTurnScreen
                         speaker={speaker}
-                        seats={alive.map(player => seatFor(game, player.playerId)!)}
+                        table={table}
+                        out={out}
+                        spoken={spoken}
+                        round={current.round}
                         nextUp={following}
                         number={current.index + 1}
                         total={current.order.length}
+                        onLeave={leave}
                         onNext={() => setPhase(current.index + 1 < current.order.length
                             ? { ...current, index: current.index + 1 }
                             : { kind: 'discuss', round: current.round })}
@@ -193,8 +179,15 @@ export default function PlayingSingleDeviceGame() {
 
             {current.kind === 'discuss' && (
                 <DiscussScreen
-                    seats={alive.map(player => seatFor(game, player.playerId)!)}
+                    seats={aliveSeats}
+                    out={outSeats}
                     mayor={mayorSeat(game)}
+                    round={current.round}
+                    onLeave={leave}
+                    onChoose={seat => {
+                        setChosen(seat);
+                        setPhase({ kind: 'vote', round: current.round });
+                    }}
                     onVote={() => {
                         setChosen(null);
                         setPhase({ kind: 'vote', round: current.round });
@@ -204,10 +197,13 @@ export default function PlayingSingleDeviceGame() {
 
             {current.kind === 'vote' && (
                 <VoteScreen
-                    seats={alive.map(player => seatFor(game, player.playerId)!)}
+                    seats={aliveSeats}
+                    out={outSeats}
                     mayor={mayorSeat(game)}
+                    round={current.round}
                     chosen={chosen}
                     onChoose={setChosen}
+                    onLeave={leave}
                     busy={play.voting}
                     error={play.voteError}
                     onConfirm={() => {
@@ -235,20 +231,14 @@ export default function PlayingSingleDeviceGame() {
                 const gone = seatFor(game, current.result.playerId);
                 if (gone === null) return <View />;
 
-                // The ring as it stood for the vote, not as it stands now.
-                const ring = game.players
-                    .filter(player =>
-                        !player.isVotedOut
-                        || player.playerId === current.result.playerId)
-                    .map(player => seatFor(game, player.playerId)!);
-
                 return (
                     <EliminationScreen
                         person={gone}
-                        seats={ring}
                         role={current.result.playerRole}
                         remaining={alive.length}
+                        round={current.round}
                         nextRound={current.round + 1}
+                        onLeave={leave}
                         onNext={() => setPhase(openRound(game, current.round + 1))}
                     />
                 )
@@ -257,44 +247,11 @@ export default function PlayingSingleDeviceGame() {
     )
 }
 
-// Which of the four round labels the header wears.
-function headerLabelFor(phase: Phase): Phrase {
-    return { key: keyOf(phase), values: { round: roundOf(phase) } };
-}
-
-function keyOf(phase: Phase): TranslationKey {
-    switch (phase.kind) {
-        case 'discuss':
-            return 'oneOfUs.play.roundDiscuss';
-        case 'vote':
-            return 'oneOfUs.play.roundVote';
-        case 'elimination':
-            return 'oneOfUs.play.roundResult';
-        default:
-            return 'oneOfUs.play.roundSpeak';
-    }
-}
-
-/** Which round the header should name. The reveal is in front of round 1. */
-function roundOf(phase: Phase): number {
-    switch (phase.kind) {
-        case 'speak':
-        case 'discuss':
-        case 'vote':
-        case 'elimination':
-            return phase.round;
-        default:
-            return 1;
-    }
-}
-
-const useStyles = createThemedStyles(theme => ({
-    // The gap is the header's: its band ends on a hard line rather than in the slack the old 58pt row carried inside itself.
+const useStyles = createThemedStyles(() => ({
     board: {
         flex: 1,
         width: '100%',
-        gap: Spacing.three - 4,
-        paddingHorizontal: Spacing.four,
+        paddingHorizontal: Spacing.three,
         paddingBottom: Spacing.four
     },
 
@@ -304,24 +261,5 @@ const useStyles = createThemedStyles(theme => ({
         justifyContent: 'center',
         paddingHorizontal: Spacing.four,
         paddingBottom: Spacing.six
-    },
-
-    // Paper on every accent and in every scheme, so its digits are ink on every accent and in every scheme.
-    chip: {
-        flexShrink: 0,
-        paddingHorizontal: 9,
-        paddingVertical: 5,
-        borderRadius: 9,
-        borderWidth: theme.borderWidth,
-        borderColor: theme.colors.border,
-        backgroundColor: withAlpha(Brand.textOnAccent, 0.92)
-    },
-
-    chipText: {
-        fontSize: 10.5,
-        fontWeight: 900,
-        letterSpacing: 0.4,
-        fontVariant: ['tabular-nums'],
-        color: Brand.ink
     }
 }))

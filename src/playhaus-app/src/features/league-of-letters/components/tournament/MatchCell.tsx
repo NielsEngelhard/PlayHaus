@@ -3,6 +3,7 @@ import AppText from "@/components/text/AppText";
 import { initialsFor } from "@/components/ui/lobby-seat";
 import { Brand, FontSizes, Radii, Spacing, withAlpha } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
+import ReadyMark from "@/features/league-of-letters/components/tournament/ReadyMark";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { avatarColorById } from "@/utils/color-utils";
 import { View } from "react-native";
@@ -10,7 +11,9 @@ import { View } from "react-native";
 interface Props {
     match: TournamentMatch,
     /** Whose screen this is, so their own match is picked out of the bracket. */
-    userId: string | undefined
+    userId: string | undefined,
+    /** Who the ready gate is waiting on and whether each has pressed. Absent outside the round on the table. */
+    readiness?: Map<string, boolean>
 }
 
 const AVATAR_SIZE = 22;
@@ -20,7 +23,7 @@ const CELL_BORDER = 1.5;
 const LABEL_SIZE = 9;
 
 // One match of the bracket: who is in it, and how it went.
-export default function MatchCell({ match, userId }: Props) {
+export default function MatchCell({ match, userId, readiness }: Props) {
     const styles = useStyles();
     const t = useT();
 
@@ -63,6 +66,7 @@ export default function MatchCell({ match, userId }: Props) {
                     beaten={match.status === 'done' && player.userId !== match.winnerId}
                     // A score means nothing until the match has one.
                     score={match.status === 'done' ? String(player.score) : null}
+                    ready={readiness?.get(player.userId)}
                 />
             ))}
 
@@ -77,10 +81,11 @@ interface PlayerLineProps {
     player: TournamentMatchPlayer,
     you: boolean,
     beaten: boolean,
-    score: string | null
+    score: string | null,
+    ready: boolean | undefined
 }
 
-function PlayerLine({ player, you, beaten, score }: PlayerLineProps) {
+function PlayerLine({ player, you, beaten, score, ready }: PlayerLineProps) {
     const styles = useStyles();
     const t = useT();
 
@@ -101,6 +106,8 @@ function PlayerLine({ player, you, beaten, score }: PlayerLineProps) {
             {score !== null && (
                 <AppText style={[styles.score, !beaten && styles.scoreWon]}>{score}</AppText>
             )}
+
+            {ready !== undefined && <ReadyMark ready={ready} />}
         </View>
     )
 }

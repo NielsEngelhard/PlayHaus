@@ -120,6 +120,19 @@ export function myEntry(tournament: Tournament, userId: string | undefined): Tou
     return tournament.players.find(player => player.userId === userId) ?? null;
 }
 
+// Who the ready gate is waiting on, by user id, and whether each has pressed. Empty while the gate is shut.
+export function readyRoster(tournament: Tournament): Map<string, boolean> {
+    const roster = new Map<string, boolean>();
+    if (!tournament.stageOver || tournament.stagePending) return roster;
+
+    for (const player of tournament.players) {
+        // An API without playsNext gates on elimination alone.
+        if (player.playsNext ?? !player.eliminated) roster.set(player.userId, player.ready);
+    }
+
+    return roster;
+}
+
 // The standings once the bracket is done, the champion first. Anybody still playing sorts last.
 export function finalStandings(tournament: Tournament): TournamentPlayer[] {
     const rank = (player: TournamentPlayer) => player.placement ?? Number.MAX_SAFE_INTEGER;

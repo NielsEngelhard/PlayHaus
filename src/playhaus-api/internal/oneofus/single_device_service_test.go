@@ -168,6 +168,15 @@ func TestAssignRolesDealsAtMostOneNitwit(t *testing.T) {
 
 			_, imposters, nitwits := dealt(players)
 
+			// A lone liar's role is drawn, so either is right there.
+			if ImpostersFor(size) == 1 {
+				if nitwits > MaxNitwits {
+					t.Fatalf("%d players: dealt %d nitwits to one seat", size, nitwits)
+				}
+
+				continue
+			}
+
 			if want := NitwitsFor(size); nitwits != want {
 				t.Fatalf("%d players: dealt %d nitwits, want %d", size, nitwits, want)
 			}
@@ -177,6 +186,28 @@ func TestAssignRolesDealsAtMostOneNitwit(t *testing.T) {
 				t.Fatalf("%d players: the nitwit is the whole imposter side", size)
 			}
 		}
+	}
+}
+
+// With both roles on, a table with one liar deals that seat either role, not always the imposter.
+func TestALoneLiarIsSometimesTheNitwit(t *testing.T) {
+	seen := map[Role]bool{}
+
+	for range 200 {
+		players := table(5, 0)
+		assignRoles(players, ImposterRoles())
+
+		_, imposters, nitwits := dealt(players)
+		if imposters+nitwits != 1 {
+			t.Fatalf("dealt %d imposters and %d nitwits, want one liar", imposters, nitwits)
+		}
+
+		seen[Imposter] = seen[Imposter] || imposters == 1
+		seen[Nitwit] = seen[Nitwit] || nitwits == 1
+	}
+
+	if !seen[Imposter] || !seen[Nitwit] {
+		t.Errorf("200 deals only ever produced %v", seen)
 	}
 }
 
@@ -197,7 +228,7 @@ func TestAssignRolesPicksAnyImposterSeatUniformly(t *testing.T) {
 
 	for range trials {
 		players := table(seats, 0)
-		assignRoles(players, nil)
+		assignRoles(players, []Role{Imposter})
 
 		for seat, player := range players {
 			if player.Role == Imposter {

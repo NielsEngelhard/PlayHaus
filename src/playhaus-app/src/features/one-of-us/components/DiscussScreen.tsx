@@ -1,60 +1,38 @@
-import InlineNotification from "@/components/ui/InlineNotification";
-import { Spacing } from "@/constants/theme";
+import ActionButton from "@/components/ui/ActionButton";
 import { useT } from "@/features/i18n/LanguageContext";
-import PinButton from "@/features/one-of-us/components/PinButton";
-import SeatRing from "@/features/one-of-us/components/SeatRing";
+import VoteBoard from "@/features/one-of-us/components/VoteBoard";
 import type { Seat } from "@/features/table/seats";
-import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { ScrollView, View } from "react-native";
 
 interface Props {
-    // Who settles a tie, or null on a table dealt before the office existed.
     mayor: Seat | null
+    // A name tapped while still talking goes straight into the vote as its pick.
+    onChoose: (seat: number) => void
+    onLeave: () => void
     onVote: () => void
-    /** Everybody still in, so the table can see who it is actually choosing between. */
+    out: Seat[]
+    round: number
     seats: Seat[]
 }
 
-export default function DiscussScreen({ mayor, onVote, seats }: Props) {
+// The table talking it over, on the same board it is about to vote on.
+export default function DiscussScreen({ mayor, onChoose, onLeave, onVote, out, round, seats }: Props) {
     const t = useT();
-    const styles = useStyles();
 
     return (
-        <ScrollView style={styles.screen}>
-            <SeatRing
-                seats={seats}
-                headline={t('oneOfUs.play.discuss.ring')}
-            />
-
-            <View style={styles.footer}>
-                <InlineNotification
-                    icon="users"
-                    message={mayor === null
-                        ? t('oneOfUs.play.discuss.tieNote')
-                        : t('oneOfUs.play.discuss.tieNoteMayor', { name: mayor.name })}
-                />
-
-                <PinButton
-                    icon="arrow-right"
+        <VoteBoard
+            label={t('oneOfUs.play.roundDiscuss', { round })}
+            seats={seats}
+            out={out}
+            mayor={mayor}
+            chosen={null}
+            onChoose={onChoose}
+            onLeave={onLeave}
+            footer={(
+                <ActionButton
                     text={t('oneOfUs.play.discuss.action')}
                     onPress={onVote}
                 />
-            </View>
-        </ScrollView>
+            )}
+        />
     )
 }
-
-const useStyles = createThemedStyles(() => ({
-    screen: {
-        flex: 1,
-        width: '100%',
-        paddingTop: Spacing.three,
-        gap: Spacing.four
-    },
-
-    footer: {
-        marginTop: 'auto',
-        paddingTop: Spacing.four,
-        gap: Spacing.three
-    }
-}))

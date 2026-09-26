@@ -8,10 +8,9 @@
 - marketing? (bierfiltjes, reclames, stickers, promo codes?)
 - one of us meer rollen
 - Alle games zouden een tv/chromecast mode moeten ondersteunen. Maakt het soms wel leuker.
+- more music and sounds
 
 # Voor v1
-- nieuwe game Witty Wars
-- Design revamp one of us game (momenteel nog steeds lelijk in vergelijking met de andere games)
 - League of letters tournament mode testen
 - quizer multi device afronden
 - quizer op tv testen

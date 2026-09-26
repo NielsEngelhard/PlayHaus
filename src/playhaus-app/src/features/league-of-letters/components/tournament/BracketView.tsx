@@ -1,4 +1,4 @@
-import { matchesInStage, stagesOf, type Tournament, type TournamentMatch } from "@/api/calls/league-of-letters-tournament";
+import { matchesInStage, readyRoster, stagesOf, type Tournament, type TournamentMatch } from "@/api/calls/league-of-letters-tournament";
 import LobbyPageBase from "@/components/layout/LobbyPageBase";
 import AppText from "@/components/text/AppText";
 import InlineNotification from "@/components/ui/InlineNotification";
@@ -59,6 +59,8 @@ export default function BracketView({ tournament, userId, live, onBack, footer }
 
     const me = tournament.players.find(player => player.userId === userId);
 
+    const readiness = readyRoster(tournament);
+
     return (
         <LobbyPageBase
             game={LEAGUE_OF_LETTERS}
@@ -106,7 +108,7 @@ export default function BracketView({ tournament, userId, live, onBack, footer }
                                 count={roundSettled(round.matches) ? t('lol.tournament.settled') : String(playersIn(round.matches))}
                             />
 
-                            <MatchGrid matches={round.matches} userId={userId} />
+                            <MatchGrid matches={round.matches} userId={userId} readiness={readiness} stage={tournament.stage} />
 
                             {next !== undefined && (
                                 <Funnel
@@ -147,7 +149,7 @@ export default function BracketView({ tournament, userId, live, onBack, footer }
                             count={roundSettled(round.matches) ? t('lol.tournament.settled') : String(playersIn(round.matches))}
                         />
 
-                        <MatchGrid matches={round.matches} userId={userId} />
+                        <MatchGrid matches={round.matches} userId={userId} readiness={readiness} stage={tournament.stage} />
                     </View>
                 ))}
 
@@ -171,7 +173,7 @@ export default function BracketView({ tournament, userId, live, onBack, footer }
                             count={roundSettled(final) ? t('lol.tournament.settled') : String(playersIn(final))}
                         />
 
-                        <MatchGrid matches={final} userId={userId} />
+                        <MatchGrid matches={final} userId={userId} readiness={readiness} stage={tournament.stage} />
                     </View>
                 )}
             </View>
@@ -213,11 +215,14 @@ const SPINES: Record<Spine, { backgroundColor: string }> = {
 
 interface MatchGridProps {
     matches: TournamentMatch[],
-    userId: string | undefined
+    userId: string | undefined,
+    readiness: Map<string, boolean>,
+    /** The round on the table; only its matches carry the ready marks. */
+    stage: number
 }
 
 // A round three-up, every row keeping the same columns so the funnels land on their centres.
-function MatchGrid({ matches, userId }: MatchGridProps) {
+function MatchGrid({ matches, userId, readiness, stage }: MatchGridProps) {
     const styles = useStyles();
 
     return (
@@ -226,7 +231,7 @@ function MatchGrid({ matches, userId }: MatchGridProps) {
                 <View key={i} style={styles.gridRow}>
                     {row.map((match, j) => (
                         <View key={match?.id ?? `empty-${j}`} style={styles.slot}>
-                            {match !== null && <MatchCell match={match} userId={userId} />}
+                            {match !== null && <MatchCell match={match} userId={userId} readiness={match.stage === stage ? readiness : undefined} />}
                         </View>
                     ))}
                 </View>

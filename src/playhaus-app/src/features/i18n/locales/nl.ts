@@ -503,6 +503,8 @@ export const nl: Catalog = {
             ready: 'Ik ben er klaar voor',
             readyCount: '{{ready}} van de {{total}} staan klaar · start zodra iedereen er is',
             readyGate: 'Ready wordt actief als alle {{matches}} potjes klaar zijn',
+            markReady: 'Klaar',
+            markNotReady: 'Nog niet klaar',
             backToBracket: 'Terug naar het schema',
             champion: {
                 title: 'Kampioen',
@@ -1283,10 +1285,7 @@ export const nl: Catalog = {
         play: {
             loading: 'De woorden worden verdeeld…',
             close: 'Spel verlaten',
-            roundSpeak: 'Ronde {{round}} · beurt',
             roundDiscuss: 'Ronde {{round}} · overleg',
-            roundVote: 'Ronde {{round}} · stemmen',
-            roundResult: 'Ronde {{round}} · uitslag',
 
             // Het briefje dat je trok. Beide speelvormen delen het.
             note: {
@@ -1304,7 +1303,9 @@ export const nl: Catalog = {
                 bodyFirst: 'Alleen {{name}} mag het volgende scherm zien.',
                 note: 'Niemand anders mag meekijken.',
                 action: 'Ik ben {{name}}',
-                queue: 'Nog aan de beurt: {{names}}',
+                bandLabel: 'Woorden bekijken',
+                yourWord: '{{name}}, dit is jouw woord',
+                after: 'Hierna: {{names}}',
                 secretLabel: 'Tik om je woord te zien',
                 secretHint: 'Houd de telefoon zo dat niemand anders meekijkt.',
                 warning: 'Alleen jij ziet dit',
@@ -1330,12 +1331,13 @@ export const nl: Catalog = {
                     }
                 },
                 hide: 'Verbergen',
-                done: 'Geef door aan {{name}}',
+                remember: 'Onthouden · geef aan {{name}}',
                 lastDone: 'Gezien, start ronde 1'
             },
 
             speak: {
-                step: 'Spreker {{number}} van {{total}}',
+                bandLabel: 'Ronde {{round}} · Beurten',
+                title: 'Zeg iets over je woord',
                 nowSpeaking: 'Nu aan het woord',
                 hint: 'Zeg één woord wat met jouw woord te maken heeft. Noem het woord zelf niet.',
                 next: 'Volgende: {{name}}',
@@ -1343,32 +1345,48 @@ export const nl: Catalog = {
             },
 
             discuss: {
-                ring: 'Stemmen',
-                title: 'Wie wordt geëlimineerd?',
-                description: 'Iedereen moet wijzen naar iemand die hij/zij niet vertrouwd. Degene met de meeste stemmen wordt weggestemd. Je mag niet, niet stemmen.',
-                tieNote: 'Je mag jouw antwoord niet verdedigen. Iedereen moet gewoon stemmen zonder overleg. Overleg is verboden!',
-                tieNoteMayor: 'Je mag jouw antwoord niet verdedigen. Stemmen zonder overleg! Gelijk aantal stemmen, dan beslist {{name}} als burgemeester.',
                 action: 'Stemmen'
             },
 
             vote: {
-                title: 'Wie wordt geëlimineerd?',
-                nobody: 'Nog niemand gekozen',
-                confirm: 'Prik {{name}}',
-                confirmHint: 'Dit kan niet ongedaan gemaakt worden.',
-                locked: 'Tik eerst op een naam.'
+                bandLabel: 'Ronde {{round}} · Stemmen',
+                inCount: '{{count}} in',
+                title: 'Wie moet eruit?',
+                subline: 'Wijs allemaal iemand aan waarvaan jij denkt dat het de imposter is. De burgermeester beslists bij een gelijkspel.',
+                sublineMayor: ' Bij gelijkspel beslist burgemeester {{name}}.',
+                mayor: 'Burgemeester',
+                outTile: '{{name}} · eruit',
+                sendAway: 'Stuur {{name}} weg',
+                pickFirst: 'Kies eerst iemand'
             },
 
             elimination: {
-                ringLabel: 'Weggestemd',
+                bandLabel: 'Ronde {{round}} · Uitslag',
+                title: '{{name}} ligt eruit',
+                sticker: 'ERUIT',
+                was: '{{name}} was…',
+                role: {
+                    civilian: {
+                        name: 'een burger',
+                        why: '{{name}} had het echte woord. De imposter zit nog aan tafel.'
+                    },
+                    imposter: {
+                        name: 'de imposter!',
+                        why: '{{name}} had een ander woord. Raak!'
+                    },
+                    nitwit: {
+                        name: 'de onnozele!',
+                        why: '{{name}} had helemaal geen woord en bluft mee.'
+                    }
+                },
                 civilian: '{{name}} was een burger',
                 imposter: '{{name}} was een imposter',
                 nitwit: '{{name}} was de onnozele',
                 // Of de tafel de goede te pakken had.
                 hit: 'raak',
                 miss: 'mis',
-                remaining: 'Nog {{players}} in het spel.',
-                next: 'Ronde {{round}}'
+                left: 'Nog {{count}} aan tafel',
+                next: 'Door naar ronde {{round}}'
             },
 
             briefing: {
@@ -1392,8 +1410,12 @@ export const nl: Catalog = {
                 impostersWhy: 'De imposters zijn niet langer in de minderheid.',
                 rolesTitle: 'Spelers',
                 civiliansCamp: 'Burgers',
-                impostersCamp: 'Tegen de burgers',
+                impostersCamp: 'Imposters',
                 imposterWordLabel: 'Imposters',
+                role: {
+                    imposter: 'Imposter',
+                    nitwit: 'Onnozele'
+                },
                 winner: 'Winnaar',
                 again: 'Opnieuw spelen'
             }

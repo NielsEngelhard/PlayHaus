@@ -185,21 +185,29 @@ function Camp({ title, players, winner, tint }: CampProps) {
 }
 
 function PlayerTile({ player: { seat, role, votedOut } }: { player: FinalPlayer }) {
+    const t = useT();
     const styles = useStyles();
+    const unmasked = !withCivilians(role);
 
     return (
         <View style={styles.tile}>
             <View>
                 <SeatAvatar seat={seat} size={AVATAR} style={votedOut ? styles.votedOut : undefined} />
 
-                {role === OneOfUsRole.Nitwit && (
-                    <View style={styles.nitwitMark}>
-                        <RoleMark role={OneOfUsRole.Nitwit} />
+                {unmasked && (
+                    <View style={styles.roleMark}>
+                        <RoleMark role={role} />
                     </View>
                 )}
             </View>
 
             <AppText style={styles.tileName} numberOfLines={1}>{seat.name}</AppText>
+
+            {unmasked && (
+                <AppText style={styles.tileRole} numberOfLines={1}>
+                    {t(role === OneOfUsRole.Nitwit ? 'oneOfUs.play.over.role.nitwit' : 'oneOfUs.play.over.role.imposter')}
+                </AppText>
+            )}
         </View>
     )
 }
@@ -364,7 +372,7 @@ const useStyles = createThemedStyles(theme => ({
         opacity: VOTED_OUT_OPACITY
     },
 
-    nitwitMark: {
+    roleMark: {
         position: 'absolute',
         right: -Spacing.one,
         bottom: -Spacing.one
@@ -375,6 +383,15 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: FontSizes.xs,
         fontWeight: 800,
         color: theme.colors.text
+    },
+
+    // Pulled up under the name so the pair reads as one caption.
+    tileRole: {
+        maxWidth: TILE_WIDTH,
+        marginTop: -Spacing.one,
+        fontSize: FontSizes.xs,
+        fontWeight: 800,
+        color: theme.colors.textMuted
     },
 
     footer: {

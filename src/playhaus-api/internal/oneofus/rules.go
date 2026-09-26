@@ -106,6 +106,19 @@ func RolesFor(players int, enabled []Role) []Role {
 	return hand
 }
 
+// LoneLiarRoles is what a table's single liar is drawn from; nil when there is more than one seat.
+func LoneLiarRoles(players int, enabled []Role) []Role {
+	if ImpostersFor(players) != 1 {
+		return nil
+	}
+
+	if !ImposterRoleSetOK(enabled) {
+		enabled = imposterRoles
+	}
+
+	return slices.Clone(enabled)
+}
+
 const (
 	// MayorsPerTable is one, always, and that is the whole of the office.
 	MayorsPerTable = 1

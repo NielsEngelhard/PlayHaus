@@ -112,8 +112,8 @@ func TestNitwitsForIsTheNinePlayerRole(t *testing.T) {
 	}
 }
 
-// Whenever a nitwit is dealt there are still imposters left who were given the word.
-// A side made up entirely of people with nothing to go on is not a side.
+// Whenever the fixed hand deals a nitwit there are still imposters left who were given the word.
+// A lone liar is the exception: LoneLiarRoles draws that seat's role instead.
 func TestANitwitNeverEatsTheWholeImposterSide(t *testing.T) {
 	for players := MinPlayers; players <= MaxPlayers; players++ {
 		if knowing := ImpostersFor(players) - NitwitsFor(players); knowing < 1 {
@@ -456,6 +456,34 @@ func TestTheWholeSetDealsTheOriginalHand(t *testing.T) {
 
 		if want := ImpostersFor(players) - NitwitsFor(players); imposters != want {
 			t.Errorf("%d players: dealt %d imposters, want %d", players, imposters, want)
+		}
+	}
+}
+
+func TestLoneLiarRolesIsTheEnabledSetOnlyForOneSeat(t *testing.T) {
+	for _, tc := range []struct {
+		enabled, want []Role
+	}{
+		{[]Role{Imposter}, []Role{Imposter}},
+		{[]Role{Nitwit}, []Role{Nitwit}},
+		{[]Role{Imposter, Nitwit}, []Role{Imposter, Nitwit}},
+		{nil, ImposterRoles()},
+		{[]Role{Civilian}, ImposterRoles()},
+	} {
+		for players := MinPlayers; players <= MaxPlayers; players++ {
+			got := LoneLiarRoles(players, tc.enabled)
+
+			if ImpostersFor(players) != 1 {
+				if got != nil {
+					t.Errorf("%d players, enabled %v: got %v, want nil", players, tc.enabled, got)
+				}
+
+				continue
+			}
+
+			if !slices.Equal(got, tc.want) {
+				t.Errorf("%d players, enabled %v: got %v, want %v", players, tc.enabled, got, tc.want)
+			}
 		}
 	}
 }
