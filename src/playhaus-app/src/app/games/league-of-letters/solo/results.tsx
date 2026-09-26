@@ -9,6 +9,7 @@ import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import FinalScoreboard from "@/components/ui/FinalScoreboard";
+import { soloSettingsFromParams, soloSettingsToParams, type SoloSettingsParams } from "@/features/league-of-letters/solo-settings";
 import { useGame } from "@/features/league-of-letters/useGame";
 import { useHighScores } from "@/features/league-of-letters/useHighScores";
 import AppText from "@/components/text/AppText";
@@ -27,7 +28,8 @@ export default function LeagueOfLettersResultsPage() {
 
     const router = useRouter();
     const { user } = useAuth();
-    const { gameId } = useLocalSearchParams<{ gameId: string }>();
+    const { gameId, ...params } = useLocalSearchParams<{ gameId: string } & Partial<SoloSettingsParams>>();
+    const settings = soloSettingsFromParams(params);
 
     // Fetched rather than handed over from the board.
     const { game, loading, error, reload } = useGame(gameId);
@@ -113,7 +115,10 @@ export default function LeagueOfLettersResultsPage() {
                 <TextButton
                     text={t('lol.results.again')}
                     fullWidth
-                    onPress={() => router.replace(ROUTES.leagueOfLettersSoloSettings)}
+                    onPress={() => router.replace({
+                        pathname: ROUTES.leagueOfLettersSoloSettings,
+                        params: settings === null ? {} : soloSettingsToParams(settings)
+                    })}
                     style={styles.again}
                 />
 

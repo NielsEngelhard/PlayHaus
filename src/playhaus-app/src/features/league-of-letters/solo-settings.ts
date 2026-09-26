@@ -1,6 +1,7 @@
 // The knobs a solo game is set up with.
 
-import { DEFAULT_LANGUAGE, type LanguageCode } from '@/constants/languages';
+import { DEFAULT_LANGUAGE, isLanguageCode, type LanguageCode } from '@/constants/languages';
+import { boolParam, firstParam, toBoolParam } from '@/utils/search-params';
 
 // All five have word lists behind them, in both languages.
 export const WORD_LENGTHS = [4, 5, 6, 7, 8] as const;
@@ -35,3 +36,27 @@ export const DEFAULT_LOL_SETTINGS: SoloSettings = {
     mode: 'zen',
     wordLength: 5,
 };
+
+// The same knobs as query params, which is how "play again" carries them from the finished game back to the setup screen.
+export type SoloSettingsParams = Record<keyof SoloSettings, string>;
+
+export function soloSettingsToParams(settings: SoloSettings): SoloSettingsParams {
+    return {
+        hardMode: toBoolParam(settings.hardMode),
+        locale: settings.locale,
+        mode: settings.mode,
+        wordLength: String(settings.wordLength),
+    };
+}
+
+// All or nothing: null unless every knob is there and valid, so a hand-edited URL falls back to the defaults.
+export function soloSettingsFromParams(params: Partial<Record<keyof SoloSettings, string | string[]>>): SoloSettings | null {
+    const hardMode = boolParam(params.hardMode);
+    const locale = firstParam(params.locale);
+    const mode = SOLO_MODES.find(candidate => candidate === firstParam(params.mode));
+    const wordLength = WORD_LENGTHS.find(candidate => String(candidate) === firstParam(params.wordLength));
+
+    if (hardMode === undefined || !isLanguageCode(locale) || mode === undefined || wordLength === undefined) return null;
+
+    return { hardMode, locale, mode, wordLength };
+}

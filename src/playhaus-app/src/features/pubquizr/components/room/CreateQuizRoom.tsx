@@ -11,9 +11,10 @@ import type { TranslationKey } from "@/features/i18n/keys";
 import QuizLobbyView from "@/features/pubquizr/components/room/QuizLobbyView";
 import { pqLobbyErrorMessage } from "@/features/pubquizr/multi-device/pubquizr-lobby-errors";
 import { useQuizLobby } from "@/features/pubquizr/multi-device/useQuizLobby";
+import { quizModesFromParams, type QuizModes, type QuizModesParams } from "@/features/pubquizr/pubquizr-sessions";
 import { settleGiveBacks } from "@/features/realtime/room-holds";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { RelativePathString, useRouter } from "expo-router";
+import { RelativePathString, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 
@@ -29,6 +30,9 @@ export default function CreateQuizRoom({ wantsScreen }: Props) {
     const t = useT();
 
     const { status } = useAuth();
+
+    // Set when "play again" brought the last evening's modes along.
+    const carried = quizModesFromParams(useLocalSearchParams<Partial<QuizModesParams>>());
 
     /** False until the server has said whether there is already a room. */
     const [checked, setChecked] = useState(false);
@@ -159,15 +163,29 @@ export default function CreateQuizRoom({ wantsScreen }: Props) {
         )
     }
 
-    return <OpenRoom wantsScreen={wantsScreen} />;
+    return <OpenRoom wantsScreen={wantsScreen} carried={carried} />;
 }
 
 // The room itself.
-function OpenRoom({ wantsScreen }: { wantsScreen: boolean }) {
+function OpenRoom({ wantsScreen, carried }: { wantsScreen: boolean, carried: QuizModes | null }) {
     const router = useRouter();
 
     // No code: this player is opening a room rather than joining one, which makes them its host. The mode is part of opening it.
     const state = useQuizLobby(undefined, wantsScreen);
+
+    // The server opens every room on its defaults, so the carried modes are saved onto it once, as soon as it exists.
+    const { lobby, isHost, updateSetup } = state;
+    const carriedZen = carried?.zenMode;
+    const carriedTrivia = carried?.triviaMode;
+    const applied = useRef(false);
+    useEffect(() => {
+        if (applied.current || carriedZen === undefined || carriedTrivia === undefined || lobby === null || !isHost) return;
+
+        applied.current = true;
+        if (lobby.setup.zenMode === carriedZen && lobby.setup.triviaMode === carriedTrivia) return;
+
+        updateSetup({ zenMode: carriedZen, triviaMode: carriedTrivia });
+    }, [lobby, isHost, updateSetup, carriedZen, carriedTrivia]);
 
     return (
         <QuizLobbyView
