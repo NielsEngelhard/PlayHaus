@@ -297,19 +297,13 @@ export const en = {
         eyebrow: 'Final standings',
         // `{{rounds}}` rather than `{{count}}`, which would demand plural variants.
         subtitle: '{{game}} · {{rounds}} rounds',
-        tie: 'A tie at {{score}}',
-        youWin: 'You win with {{score}}',
-        playerWins: '{{name}} wins with {{score}}',
+        winner: 'Winner',
+        draw: 'Draw',
+        points: '{{score}} points',
         // A game whose winner is decided on stars, like the PubquizR finale.
-        tieStars: 'A tie at {{stars}} ★',
-        youWinStars: 'You win with {{stars}} ★',
-        playerWinsStars: '{{name}} wins with {{stars}} ★',
+        pointsStars: '{{stars}} ★ · {{score}}',
         stars: '{{stars}} ★',
-        places: {
-            first: '1ST',
-            second: '2ND',
-            third: '3RD'
-        },
+        standings: 'Full standings',
         playAgain: 'Another game',
         waitingForHost: 'The host can start a new game — ',
         stayHere: 'stay here'

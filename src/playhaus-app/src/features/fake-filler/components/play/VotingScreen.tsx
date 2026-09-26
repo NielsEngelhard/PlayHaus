@@ -105,6 +105,7 @@ export default function VotingScreen({ game, round, userId, busy, onVote, more, 
                 <InlineNotification
                     icon='eye'
                     color={theme.colors.lemon}
+                    prominent
                     title={t('fakeFiller.play.voting.yoursTitle')}
                     message={t('fakeFiller.play.voting.yoursMessage')}
                 />
@@ -448,18 +449,17 @@ const useStyles = createThemedStyles(theme => ({
         flexGrow: 1,
         gap: 9
     },
-    // A basis of zero rather than the content's own height, so the cards split the stack evenly however much is written on either.
-    // Carries the card's share of the stack, so the dealing and the turning can wrap it without changing the split.
+    // Grows into spare height but never below its own content, so a long round scrolls rather than spilling out of the card.
     slot: {
         flexGrow: 1,
-        flexBasis: 0
+        flexBasis: 'auto'
     },
     slotFill: {
         flexGrow: 1
     },
     option: {
         flexGrow: 1,
-        flexBasis: 0,
+        flexBasis: 'auto',
         justifyContent: 'center',
         gap: Spacing.two + Spacing.one,
         padding: Spacing.three,

@@ -284,18 +284,12 @@ export const nl: Catalog = {
     scoreboard: {
         eyebrow: 'Eindstand',
         subtitle: '{{game}} · {{rounds}} rondes',
-        tie: 'Gelijkspel op {{score}}',
-        youWin: 'Jij wint met {{score}}',
-        playerWins: '{{name}} wint met {{score}}',
-        tieStars: 'Gelijkspel op {{stars}} ★',
-        youWinStars: 'Jij wint met {{stars}} ★',
-        playerWinsStars: '{{name}} wint met {{stars}} ★',
+        winner: 'Winnaar',
+        draw: 'Gelijkspel',
+        points: '{{score}} punten',
+        pointsStars: '{{stars}} ★ · {{score}}',
         stars: '{{stars}} ★',
-        places: {
-            first: '1E',
-            second: '2E',
-            third: '3E'
-        },
+        standings: 'Volledige stand',
         playAgain: 'Nog een spel',
         waitingForHost: 'De host kan een nieuw spel starten — ',
         stayHere: 'blijf hier'

@@ -1,6 +1,6 @@
 import AppText from "@/components/text/AppText";
 import Card from "@/components/ui/Card";
-import { FontSizes, Spacing } from "@/constants/theme";
+import { Brand, FontSizes, Spacing } from "@/constants/theme";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
@@ -16,6 +16,8 @@ interface Props {
     color?: string
     // The glyph on that fill.
     iconColor?: string
+    // Black card with white text, for the one notice on a screen that must not be missed.
+    prominent?: boolean
     // Anything to do about it, under the message — usually a single button.
     children?: ReactNode
 }
@@ -27,6 +29,7 @@ export default function InlineNotification({
     icon = 'info',
     color,
     iconColor,
+    prominent = false,
     children
 }: Props) {
     const theme = useTheme();
@@ -36,7 +39,7 @@ export default function InlineNotification({
     const fill = color ?? theme.colors.lemon;
 
     return (
-        <Card>
+        <Card style={prominent && styles.prominentCard}>
             <View style={styles.row}>
                 <View style={[styles.iconTile, { backgroundColor: fill }]}>
                     <Feather name={icon} size={18} color={iconColor ?? theme.colors.text} />
@@ -44,10 +47,10 @@ export default function InlineNotification({
 
                 <View style={styles.body}>
                     {title && (
-                        <AppText style={styles.title}>{title}</AppText>
+                        <AppText style={[styles.title, prominent && styles.prominentText]}>{title}</AppText>
                     )}
 
-                    <AppText style={styles.message}>{message}</AppText>
+                    <AppText style={[styles.message, prominent && styles.prominentText]}>{message}</AppText>
 
                     {children && <View style={styles.actions}>{children}</View>}
                 </View>
@@ -89,6 +92,12 @@ const useStyles = createThemedStyles(theme => ({
         fontSize: FontSizes.sm,
         lineHeight: FontSizes.sm * 1.45,
         color: theme.colors.text
+    },
+    prominentCard: {
+        backgroundColor: Brand.ink
+    },
+    prominentText: {
+        color: Brand.textOnAccent
     },
     // A row, so a button inside hugs its label instead of being stretched across the text column the way a column parent would stretch it.
     actions: {
