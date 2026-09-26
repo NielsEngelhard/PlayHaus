@@ -24,6 +24,7 @@ import RoundStandings from "@/features/pubquizr/components/play/RoundStandings";
 import TableHero from "@/features/pubquizr/components/play/TableHero";
 import TurnStrip from "@/features/pubquizr/components/play/TurnStrip";
 import { hotSeatTurnOf, ROUND_CHOICE, ROUND_OPEN } from "@/features/pubquizr/hot-seat";
+import { quizModesToParams } from "@/features/pubquizr/pubquizr-sessions";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
@@ -175,7 +176,11 @@ export default function OneDeviceQuizPage() {
                 players={scoreBoardPlayersOf(session)}
                 totalRounds={session.totalRounds}
                 onClose={leave}
-                action={{ text: t('scoreboard.playAgain'), icon: 'rotate-ccw', onPress: leave }}
+                action={{
+                    text: t('scoreboard.playAgain'),
+                    icon: 'rotate-ccw',
+                    onPress: () => router.replace({ pathname: ROUTES.quizzerOneDeviceGameSettings, params: quizModesToParams(session) })
+                }}
             />
         ))
     }

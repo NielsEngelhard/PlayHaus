@@ -1,3 +1,4 @@
+import { isHostOfPQ } from "@/api/calls/pubquizr-lobby";
 import { useChromeless } from "@/components/layout/FullScreenContext";
 import LoadingPage from "@/components/layout/LoadingPage";
 import type { SegmentState } from "@/components/ui/InGameHeader";
@@ -7,6 +8,7 @@ import TextButton from "@/components/ui/TextButton";
 import { PUBQUIZR } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
+import { useAuth } from "@/features/auth/useAuth";
 import { useT } from "@/features/i18n/LanguageContext";
 import QuizBoardView from "@/features/pubquizr/components/board/QuizBoardView";
 import QuizmasterNote from "@/features/pubquizr/components/board/QuizmasterNote";
@@ -26,6 +28,7 @@ import { hotSeatTurnOf, isHotSeatRound, placeKeyOf, ROUND_CHOICE } from "@/featu
 import { missedSeatsOf, picksOf, roundOpenOn } from "@/features/pubquizr/multi-device/control";
 import { currentQuizmasterOf } from "@/features/pubquizr/multi-device/quizmaster";
 import { useQuizTable } from "@/features/pubquizr/multi-device/useQuizTable";
+import { quizModesToParams } from "@/features/pubquizr/pubquizr-sessions";
 import { roundKindAndRule } from "@/features/pubquizr/round-copy";
 import { describeTurnOf, ROUND_DESCRIBE } from "@/features/pubquizr/round-four";
 import { listTurnOf, ROUND_LIST } from "@/features/pubquizr/round-five";
@@ -85,6 +88,7 @@ export default function QuizControlView({ code }: Props) {
     const t = useT();
     const theme = useTheme();
     const router = useRouter();
+    const { user } = useAuth();
 
     // Claims the viewport: no bottom bar, no page scroller.
     useChromeless();
@@ -98,6 +102,19 @@ export default function QuizControlView({ code }: Props) {
     function leave() {
         // `replace`, not `back`: the room this was reached from is the room the evening is in.
         router.replace(ROUTES.quizzerIndex);
+    }
+
+    // Only the host opens rooms; everybody else is back at the door.
+    function playAgain() {
+        if (session === null || table.lobby === null || !isHostOfPQ(table.lobby, user?.id)) {
+            leave();
+            return;
+        }
+
+        router.replace({
+            pathname: session.hostScreen ? ROUTES.quizzerScreenRoom : ROUTES.quizzerMultiDeviceGameSettings,
+            params: quizModesToParams(session)
+        });
     }
 
     if (table.error !== null) {
@@ -128,7 +145,7 @@ export default function QuizControlView({ code }: Props) {
                 totalRounds={session.totalRounds}
                 youId={table.mySeat === null ? undefined : String(table.mySeat)}
                 onClose={leave}
-                action={{ text: t('scoreboard.playAgain'), icon: 'rotate-ccw', onPress: leave }}
+                action={{ text: t('scoreboard.playAgain'), icon: 'rotate-ccw', onPress: playAgain }}
             />
         )
     }

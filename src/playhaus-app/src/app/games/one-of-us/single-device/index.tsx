@@ -19,10 +19,10 @@ import { oneOfUsErrorMessage } from "@/features/one-of-us/game-errors";
 import type { OneOfUsRole } from "@/features/one-of-us/models";
 import { cachePrompts, ensurePrompts, startOfflineGame } from "@/features/one-of-us/offline-play";
 import { seatedNames, tableProblem } from "@/features/one-of-us/one-device-table";
-import { DEFAULT_ENABLED_ROLES, MAX_PLAYERS, MIN_PLAYERS, toggleRole } from "@/features/one-of-us/oou-settings";
+import { DEFAULT_ENABLED_ROLES, MAX_PLAYERS, MIN_PLAYERS, singleDeviceSettingsFromParams, singleDeviceSettingsToParams, toggleRole, type SingleDeviceSettingsParams } from "@/features/one-of-us/oou-settings";
 import { readTable, writeTable } from "@/features/one-of-us/table-store";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { router, type RelativePathString } from "expo-router";
+import { router, useLocalSearchParams, type RelativePathString } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 
@@ -31,13 +31,16 @@ export default function OneOfUsSingleDeviceIndexPage() {
     const auth = useAuth()
     const styles = useStyles()
 
+    // Set when "play again" brought the last game's settings along.
+    const carried = singleDeviceSettingsFromParams(useLocalSearchParams<Partial<SingleDeviceSettingsParams>>());
+
     const [names, setNames] = useState<string[]>([]);
     // The language picked on this screen, or null while it is still whatever the account says.
-    const [picked, setPicked] = useState<LanguageCode | null>(null);
+    const [picked, setPicked] = useState<LanguageCode | null>(carried?.locale ?? null);
     const language = picked ?? auth.user?.locale ?? DEFAULT_LANGUAGE;
-    const [wordsOnly, setWordsOnly] = useState<boolean>(true);
+    const [wordsOnly, setWordsOnly] = useState<boolean>(carried?.wordsOnly ?? true);
     // Which imposter roles this table will be dealt from.
-    const [roles, setRoles] = useState<OneOfUsRole[]>(DEFAULT_ENABLED_ROLES);
+    const [roles, setRoles] = useState<OneOfUsRole[]>(carried?.enabledRoles ?? DEFAULT_ENABLED_ROLES);
     const [error, setError] = useState<TranslationKey | null>(null);
     const [starting, setStarting] = useState(false);
 
@@ -63,6 +66,7 @@ export default function OneOfUsSingleDeviceIndexPage() {
         void writeTable(seated);
 
         const mode = promptModeFor(wordsOnly);
+        const settings = singleDeviceSettingsToParams({ enabledRoles: roles, locale: language, wordsOnly });
 
         try {
             const gameId = await createSingleDeviceOneOfUsGame({
@@ -82,7 +86,7 @@ export default function OneOfUsSingleDeviceIndexPage() {
             void cachePrompts(language, mode);
 
             // `push`, so the back gesture returns to this form.
-            router.push(ROUTES.oneOfUsPlaySingleDeviceGame(gameId) as RelativePathString)
+            router.push({ pathname: ROUTES.oneOfUsPlaySingleDeviceGame(gameId) as RelativePathString, params: settings })
         } catch (failure) {
             // Nothing about this game is the server's to decide, so an unreachable one only costs the prompt it would have drawn.
             if (isNetworkError(failure)) {
@@ -95,7 +99,7 @@ export default function OneOfUsSingleDeviceIndexPage() {
                 });
 
                 if (offline !== null) {
-                    router.push(ROUTES.oneOfUsPlaySingleDeviceGame(offline.id) as RelativePathString)
+                    router.push({ pathname: ROUTES.oneOfUsPlaySingleDeviceGame(offline.id) as RelativePathString, params: settings })
                     return;
                 }
 

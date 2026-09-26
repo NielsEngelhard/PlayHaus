@@ -18,9 +18,9 @@ import { useT } from "@/features/i18n/LanguageContext";
 import type { TranslationKey } from "@/features/i18n/keys";
 import BoardPreview from "@/features/league-of-letters/components/BoardPreview";
 import { gameErrorMessage } from "@/features/league-of-letters/game-errors";
-import { BONUS_WINDOW_MINUTES, DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_MODES, SOLO_ROUNDS, WORD_LENGTHS, type SoloMode } from "@/features/league-of-letters/solo-settings";
+import { BONUS_WINDOW_MINUTES, DEFAULT_LOL_SETTINGS, SOLO_MAX_GUESSES, SOLO_MODES, SOLO_ROUNDS, soloSettingsFromParams, soloSettingsToParams, WORD_LENGTHS, type SoloMode, type SoloSettingsParams } from "@/features/league-of-letters/solo-settings";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { useRouter, type RelativePathString } from "expo-router";
+import { useLocalSearchParams, useRouter, type RelativePathString } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 
@@ -39,7 +39,9 @@ export default function LeagueOfLettersSettingsPage() {
 
     const router = useRouter();
     const { status, user } = useAuth();
-    const [settings, setSettings] = useState(DEFAULT_LOL_SETTINGS);
+    // Set when "play again" brought the last game's settings along.
+    const carried = soloSettingsFromParams(useLocalSearchParams<Partial<SoloSettingsParams>>());
+    const [settings, setSettings] = useState(carried ?? DEFAULT_LOL_SETTINGS);
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<TranslationKey | null>(null);
     /** False until the server has said whether a game is already running. */
@@ -57,8 +59,8 @@ export default function LeagueOfLettersSettingsPage() {
         return () => { mounted.current = false; };
     }, []);
 
-    // The account's language is where this form starts, once the session has one.
-    const seeded = useRef(false);
+    // The account's language is where this form starts, once the session has one, unless the last game already picked one.
+    const seeded = useRef(carried !== null);
     useEffect(() => {
         if (seeded.current || user === null) return;
 
@@ -132,7 +134,7 @@ export default function LeagueOfLettersSettingsPage() {
             // Only the id travels.
             router.push({
                 pathname: ROUTES.leagueOfLettersSolo,
-                params: { gameId: game.id }
+                params: { gameId: game.id, ...soloSettingsToParams(settings) }
             });
         } catch (failure) {
             setError(gameErrorMessage(failure));

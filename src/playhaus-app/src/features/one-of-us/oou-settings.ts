@@ -1,4 +1,6 @@
+import { isLanguageCode, type LanguageCode } from "@/constants/languages"
 import { OneOfUsRole } from "@/features/one-of-us/models"
+import { boolParam, firstParam, toBoolParam } from "@/utils/search-params"
 
 // The table One of Us is played at.
 export const MIN_PLAYERS: number = 4
@@ -34,4 +36,34 @@ export function toggleRole(enabled: OneOfUsRole[], role: OneOfUsRole): OneOfUsRo
 /** Whether this role's switch is live, or is the last one holding the game up. */
 export function canDisableRole(enabled: OneOfUsRole[], role: OneOfUsRole): boolean {
     return !enabled.includes(role) || enabled.length > 1
+}
+
+// What a one-device table is set up with, beyond who sits at it.
+export interface SingleDeviceSettings {
+    enabledRoles: OneOfUsRole[]
+    locale: LanguageCode
+    wordsOnly: boolean
+}
+
+// The same settings as query params, which is how "play again" carries them from the finished game back to the setup screen.
+export type SingleDeviceSettingsParams = Record<keyof SingleDeviceSettings, string>
+
+export function singleDeviceSettingsToParams(settings: SingleDeviceSettings): SingleDeviceSettingsParams {
+    return {
+        enabledRoles: settings.enabledRoles.join(','),
+        locale: settings.locale,
+        wordsOnly: toBoolParam(settings.wordsOnly)
+    }
+}
+
+// All or nothing: null unless every setting is there and valid, so a hand-edited URL falls back to the defaults.
+export function singleDeviceSettingsFromParams(params: Partial<Record<keyof SingleDeviceSettings, string | string[]>>): SingleDeviceSettings | null {
+    const listed = firstParam(params.enabledRoles)?.split(',') ?? []
+    const enabledRoles = TOGGLEABLE_ROLES.filter(role => listed.includes(String(role)))
+    const locale = firstParam(params.locale)
+    const wordsOnly = boolParam(params.wordsOnly)
+
+    if (enabledRoles.length === 0 || !isLanguageCode(locale) || wordsOnly === undefined) return null
+
+    return { enabledRoles, locale, wordsOnly }
 }

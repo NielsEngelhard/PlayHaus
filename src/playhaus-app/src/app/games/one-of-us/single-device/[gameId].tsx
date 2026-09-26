@@ -25,6 +25,7 @@ import {
     wordFor,
     type Phase
 } from "@/features/one-of-us/flow";
+import { singleDeviceSettingsFromParams, singleDeviceSettingsToParams, type SingleDeviceSettingsParams } from "@/features/one-of-us/oou-settings";
 import { useSingleDeviceOneOfUsGame } from "@/features/one-of-us/useSingleDeviceOneOfUsGame";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
@@ -41,7 +42,8 @@ export default function PlayingSingleDeviceGame() {
 
     useChromeless();
 
-    const { gameId } = useLocalSearchParams<{ gameId: string }>();
+    const { gameId, ...params } = useLocalSearchParams<{ gameId: string } & Partial<SingleDeviceSettingsParams>>();
+    const settings = singleDeviceSettingsFromParams(params);
     const play = useSingleDeviceOneOfUsGame(gameId);
 
     const [phase, setPhase] = useState<Phase | null>(null);
@@ -102,7 +104,10 @@ export default function PlayingSingleDeviceGame() {
                 }))}
                 word={game.actualQuestion}
                 imposterWord={game.imposterQuestion}
-                onAgain={() => router.replace(ROUTES.oneOfUsSetupSingleDevice)}
+                onAgain={() => router.replace({
+                    pathname: ROUTES.oneOfUsSetupSingleDevice,
+                    params: settings === null ? {} : singleDeviceSettingsToParams(settings)
+                })}
                 onLeave={leave}
             />
         )
