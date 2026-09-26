@@ -649,15 +649,25 @@ export const nl: Catalog = {
                 onePlayerWaiting: '1 speler wacht al met code {{code}}',
                 playersWaiting: '{{count}} spelers wachten al met code {{code}}',
                 blocked: 'Zonder scherm kun je niet verder',
-                auto: 'Je gaat vanzelf verder zodra het scherm verbonden is'
+                auto: 'Je gaat vanzelf verder zodra het scherm verbonden is',
+                orFromHere: 'Of zet het vanaf hier op de tv'
             },
             screenConnected: {
                 title: 'Scherm verbonden',
                 message: 'De quiz staat op het scherm zodra je start.'
             },
             cast: {
-                action: 'Cast naar tv',
+                action: 'Chromecast',
                 connected: 'Aan het casten, tik om te wisselen'
+            },
+            airplay: {
+                action: 'AirPlay',
+                connected: 'AirPlay verbonden',
+                helpTitle: 'AirPlay naar je tv',
+                helpStep1: 'Open het bedieningspaneel',
+                helpStep2: 'Tik op Synchrone weergave',
+                helpStep3: 'Kies je tv',
+                keepOpen: 'Laat PlayHaus open op deze telefoon, anders wordt de tv zwart.'
             },
             running: {
                 quizTitle: 'Je speelt al een quiz',

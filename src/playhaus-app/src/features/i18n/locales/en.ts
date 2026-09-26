@@ -647,15 +647,25 @@ export const en = {
                 onePlayerWaiting: '1 player is already waiting with code {{code}}',
                 playersWaiting: '{{count}} players are already waiting with code {{code}}',
                 blocked: "You can't continue without a screen",
-                auto: 'You move on as soon as the screen connects'
+                auto: 'You move on as soon as the screen connects',
+                orFromHere: 'Or put it on the TV from here'
             },
             screenConnected: {
                 title: 'Screen connected',
                 message: 'The quiz shows up on the screen when you start.'
             },
             cast: {
-                action: 'Cast to TV',
+                action: 'Chromecast',
                 connected: 'Casting, tap to switch'
+            },
+            airplay: {
+                action: 'AirPlay',
+                connected: 'AirPlay connected',
+                helpTitle: 'AirPlay to your TV',
+                helpStep1: 'Open Control Center',
+                helpStep2: 'Tap Screen Mirroring',
+                helpStep3: 'Pick your TV',
+                keepOpen: 'Keep PlayHaus open on this phone, or the TV goes blank.'
             },
             running: {
                 quizTitle: "You're already playing a quiz",

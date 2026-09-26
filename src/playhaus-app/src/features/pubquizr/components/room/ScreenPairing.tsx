@@ -3,13 +3,17 @@ import LobbyPageBase from '@/components/layout/LobbyPageBase';
 import AppText from '@/components/text/AppText';
 import ActionButton from '@/components/ui/ActionButton';
 import InlineNotification from '@/components/ui/InlineNotification';
+import PopupModal from '@/components/ui/PopupModal';
+import TextButton from '@/components/ui/TextButton';
 import { initialsFor } from '@/components/ui/lobby-seat';
 import StartGameButton from '@/components/ui/StartGameButton';
 import { PUBQUIZR } from '@/constants/games';
 import { Brand, FontSizes, Radii, Spacing, withAlpha } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
 import type { PQLobbyState } from '@/features/pubquizr/multi-device/useQuizLobby';
+import { useAirPlayTable } from '@/features/screen/airplay';
 import { useCastTable } from '@/features/screen/cast';
+import { KeepAwake } from '@/features/screen/components/KeepAwakeWhileMirroring';
 import { screenUrl } from '@/features/screen/screen-url';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
@@ -31,6 +35,8 @@ const BOX_HEIGHT = 56;
 const TILE_SIZE = 44;
 const STEP_SIZE = 22;
 const AVATAR_SIZE = 26;
+const INITIALS_SIZE = 9;
+const DOT_SIZE = 7;
 
 // How far the avatars in the waiting strip tuck under each other.
 const AVATAR_OVERLAP = -8;
@@ -51,8 +57,11 @@ export default function ScreenPairing({ lobby, onBack, state }: Props) {
     // What to read out to whoever is holding the television remote, and null on a build that knows no address.
     const screen = screenUrl();
 
-    // Only a Chromecast build has anything to offer here; the browser fork always says no.
+    // Each only offers itself where it can work: Chromecast from the app or Chrome, AirPlay from the iOS app.
     const cast = useCastTable(lobby.code);
+    const airplay = useAirPlayTable(lobby.code);
+
+    const [airplayHelp, setAirplayHelp] = useState(false);
 
     // The host holds a seat of their own, so anybody past them is somebody waiting.
     const waiting = lobby.players.filter(player => player.userId !== lobby.hostId);
@@ -106,13 +115,34 @@ export default function ScreenPairing({ lobby, onBack, state }: Props) {
                 <WaitingPill />
             </View>
 
-            {cast.available && (
-                <ActionButton
-                    icon='cast'
-                    text={cast.connected ? t('pubquizr.lobby.cast.connected') : t('pubquizr.lobby.cast.action')}
-                    onPress={cast.show}
-                />
+            {(cast.available || airplay.available) && (
+                <View style={styles.remote}>
+                    <AppText style={styles.remoteTitle}>{t('pubquizr.lobby.pairing.orFromHere')}</AppText>
+
+                    <View style={styles.remoteButtons}>
+                        {cast.available && (
+                            <ActionButton
+                                icon='cast'
+                                text={cast.connected ? t('pubquizr.lobby.cast.connected') : t('pubquizr.lobby.cast.action')}
+                                onPress={cast.show}
+                                style={styles.remoteButton}
+                            />
+                        )}
+
+                        {airplay.available && (
+                            <ActionButton
+                                icon='airplay'
+                                text={airplay.connected ? t('pubquizr.lobby.airplay.connected') : t('pubquizr.lobby.airplay.action')}
+                                onPress={() => setAirplayHelp(true)}
+                                style={styles.remoteButton}
+                            />
+                        )}
+                    </View>
+                </View>
             )}
+
+            {/* A phone that dozes off drops its cast session or its mirror, and the television goes with it. */}
+            {(cast.connected || airplay.connected) && <KeepAwake />}
 
             {waiting.length > 0 && (
                 <View style={styles.strip}>
@@ -149,6 +179,32 @@ export default function ScreenPairing({ lobby, onBack, state }: Props) {
                     message={t(state.actionError)}
                 />
             )}
+
+            {/* iOS has no way for an app to start mirroring, so the host is shown where the switch is. */}
+            <PopupModal
+                visible={airplayHelp}
+                title={t('pubquizr.lobby.airplay.helpTitle')}
+                message={t('pubquizr.lobby.airplay.keepOpen')}
+                onRequestClose={() => setAirplayHelp(false)}
+                actions={
+                    <TextButton
+                        text={t('common.close')}
+                        variant='primary'
+                        fullWidth
+                        onPress={() => setAirplayHelp(false)}
+                    />
+                }
+            >
+                {(['helpStep1', 'helpStep2', 'helpStep3'] as const).map((step, index) => (
+                    <View key={step} style={styles.helpStep}>
+                        <View style={[styles.stepNumber, styles.stepNumberActive]}>
+                            <AppText style={[styles.stepDigit, styles.stepDigitActive]}>{index + 1}</AppText>
+                        </View>
+
+                        <AppText style={styles.helpWords}>{t(`pubquizr.lobby.airplay.${step}`)}</AppText>
+                    </View>
+                ))}
+            </PopupModal>
         </LobbyPageBase>
     )
 }
@@ -225,9 +281,9 @@ function WaitingPill() {
 
 const useStyles = createThemedStyles(theme => ({
     footnote: {
-        marginTop: 10,
+        marginTop: Spacing.two,
         textAlign: 'center',
-        fontSize: 11.5,
+        fontSize: FontSizes.xs,
         fontWeight: 600,
         color: theme.colors.textMuted
     },
@@ -373,14 +429,47 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     dot: {
-        width: 7,
-        height: 7,
+        width: DOT_SIZE,
+        height: DOT_SIZE,
         borderRadius: Radii.full
     },
 
     pillWord: {
         fontSize: FontSizes.xs,
         fontWeight: 900,
+        color: theme.colors.text
+    },
+
+    remote: {
+        gap: Spacing.two
+    },
+
+    remoteTitle: {
+        textAlign: 'center',
+        fontSize: FontSizes.xs,
+        fontWeight: 900,
+        color: theme.colors.textMuted
+    },
+
+    remoteButtons: {
+        flexDirection: 'row',
+        gap: Spacing.two
+    },
+
+    remoteButton: {
+        flex: 1
+    },
+
+    helpStep: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: Spacing.two
+    },
+
+    helpWords: {
+        flex: 1,
+        fontSize: FontSizes.sm,
+        fontWeight: 700,
         color: theme.colors.text
     },
 
@@ -412,7 +501,7 @@ const useStyles = createThemedStyles(theme => ({
     },
 
     initials: {
-        fontSize: 9,
+        fontSize: INITIALS_SIZE,
         fontWeight: 900
     },
 

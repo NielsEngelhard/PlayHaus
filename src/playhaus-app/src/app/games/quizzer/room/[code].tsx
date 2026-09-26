@@ -4,6 +4,7 @@ import { useT } from "@/features/i18n/LanguageContext";
 import QuizControlView from "@/features/pubquizr/components/control/QuizControlView";
 import QuizLobbyView from "@/features/pubquizr/components/room/QuizLobbyView";
 import { useQuizLobby } from "@/features/pubquizr/multi-device/useQuizLobby";
+import KeepAwakeWhileMirroring from "@/features/screen/components/KeepAwakeWhileMirroring";
 import { useLocalSearchParams } from "expo-router";
 
 // A room, joined by its code. This is the controller: the phone half of multi device.
@@ -28,15 +29,21 @@ export default function QuizzerRoomPage() {
     }
 
     // The lobby hook stays mounted above this, so the room and the evening are two sockets on one room -- the pattern `fake-filler/room/[code].tsx` already uses.
+    // The host's phone may be what draws the television, all evening long.
+    const mirroring = state.isHost && state.lobby?.setup.hostScreen === true && <KeepAwakeWhileMirroring code={code} />;
+
     if (sessionId !== undefined) {
-        return <QuizControlView code={code} />;
+        return <>{mirroring}<QuizControlView code={code} /></>;
     }
 
     return (
-        <QuizLobbyView
-            state={state}
-            // Nothing to do: this screen is already the room the evening was dealt in.
-            onStarted={() => { }}
-        />
+        <>
+            {mirroring}
+            <QuizLobbyView
+                state={state}
+                // Nothing to do: this screen is already the room the evening was dealt in.
+                onStarted={() => { }}
+            />
+        </>
     )
 }

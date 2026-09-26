@@ -1,17 +1,7 @@
+import { CAST_NAMESPACE, type CastTable } from "@/features/screen/cast-config";
 import { useCallback, useEffect, useRef } from "react";
 import CastContext, { CastState, useCastChannel, useCastState } from "react-native-google-cast";
 import type CastChannel from "react-native-google-cast/lib/typescript/api/CastChannel";
-
-// Agreed with `public/cast-receiver.html` and registered nowhere; the App ID is what the console knows about.
-const NAMESPACE = 'urn:x-cast:com.playhaus.quiz';
-
-export interface CastTable {
-    /** A receiver was found on the network, so the button has somewhere to send the code. */
-    available: boolean
-    connected: boolean
-    /** Opens the system picker, which is also where a running session is ended. */
-    show: () => void
-}
 
 // Puts the shared screen on a Chromecast. The phone sends the join code and nothing else -- the television fetches its own state.
 export function useCastTable(code: string): CastTable {
@@ -27,7 +17,7 @@ export function useCastTable(code: string): CastTable {
         void live.current?.sendMessage({ code: asked.current }).catch(() => { });
     }, []);
 
-    const channel = useCastChannel(NAMESPACE, onMessage);
+    const channel = useCastChannel(CAST_NAMESPACE, onMessage);
 
     // Both kept in refs and updated from an effect rather than during render.
     useEffect(() => { live.current = channel; }, [channel]);
