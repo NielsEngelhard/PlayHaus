@@ -37,6 +37,8 @@ export default function Root({ children }: PropsWithChildren) {
                     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"
                 />
                 <ScrollViewStyleReset />
+                {/* Safari 26 colours the status bar from this, so it must not be the default white before `SystemBars` runs. */}
+                <style dangerouslySetInnerHTML={{ __html: 'html, body { background-color: #FBF7F0; }' }} />
                 <script dangerouslySetInnerHTML={{ __html: noZoom }} />
                 {headNodes}
 

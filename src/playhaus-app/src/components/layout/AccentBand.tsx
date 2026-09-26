@@ -5,6 +5,9 @@ import type { ReactNode } from "react";
 import { Platform, useWindowDimensions, View, type StyleProp, type ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+// How far the fill runs up past the page's top, for a pull-down to reveal.
+const OVERSCROLL_REACH = 1000;
+
 interface Props {
     children: ReactNode,
     // Hard against whatever sits above it, such as an `InGameHeader`: no reach up behind a header and no notch padding.
@@ -45,6 +48,14 @@ export default function AccentBand({ children, flush = false, gradient, gutter =
                     : { paddingTop: insets.top })
             ]}
         >
+            {/* Its own view rather than a taller slab, which would stretch the gradient out of sight. */}
+            {!flush && (
+                <View
+                    pointerEvents="none"
+                    style={[styles.overscroll, { left: -bleed, right: -bleed, backgroundColor: gradient[0] }]}
+                />
+            )}
+
             {/* Drawn first so everything after it lands on top. */}
             <View
                 pointerEvents="none"
@@ -75,6 +86,12 @@ const useStyles = createThemedStyles(theme => ({
         // Light cuts the band off with the same hard line every card wears.
         borderBottomWidth: theme.scheme === 'dark' ? 0 : theme.borderWidth,
         borderBottomColor: theme.colors.border
+    },
+
+    overscroll: {
+        position: 'absolute',
+        top: -OVERSCROLL_REACH,
+        height: OVERSCROLL_REACH - Spacing.six + 1
     },
 
     slabFlush: {

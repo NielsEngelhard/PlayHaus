@@ -165,7 +165,7 @@ export const nl: Catalog = {
             submit: 'Doorgaan',
             submitting: 'Aanmelden…',
             tipTitle: 'Tip',
-            tip: 'Gebruik je voornaam, die mag best dubbel. Hou hem kort: lange namen worden in games afgekapt.'
+            tip: 'Gebruik je voornaam. Lange namen worden soms in games afgekapt.'
         },
         errors: {
             invalidCredentials: 'E-mail of wachtwoord klopt niet.',

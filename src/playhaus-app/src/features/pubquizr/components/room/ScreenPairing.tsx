@@ -57,7 +57,7 @@ export default function ScreenPairing({ lobby, onBack, state }: Props) {
     // What to read out to whoever is holding the television remote, and null on a build that knows no address.
     const screen = screenUrl();
 
-    // Each only offers itself where it can work: Chromecast from the app or Chrome, AirPlay from the iOS app.
+    // Both always show, but each only works where it can: Chromecast from the app or Chrome, AirPlay from the iOS app.
     const cast = useCastTable(lobby.code);
     const airplay = useAirPlayTable(lobby.code);
 
@@ -115,31 +115,27 @@ export default function ScreenPairing({ lobby, onBack, state }: Props) {
                 <WaitingPill />
             </View>
 
-            {(cast.available || airplay.available) && (
-                <View style={styles.remote}>
-                    <AppText style={styles.remoteTitle}>{t('pubquizr.lobby.pairing.orFromHere')}</AppText>
+            <View style={styles.remote}>
+                <AppText style={styles.remoteTitle}>{t('pubquizr.lobby.pairing.orFromHere')}</AppText>
 
-                    <View style={styles.remoteButtons}>
-                        {cast.available && (
-                            <ActionButton
-                                icon='cast'
-                                text={cast.connected ? t('pubquizr.lobby.cast.connected') : t('pubquizr.lobby.cast.action')}
-                                onPress={cast.show}
-                                style={styles.remoteButton}
-                            />
-                        )}
+                <View style={styles.remoteButtons}>
+                    <ActionButton
+                        icon='cast'
+                        text={cast.connected ? t('pubquizr.lobby.cast.connected') : t('pubquizr.lobby.cast.action')}
+                        onPress={cast.show}
+                        disabled={!cast.available}
+                        style={styles.remoteButton}
+                    />
 
-                        {airplay.available && (
-                            <ActionButton
-                                icon='airplay'
-                                text={airplay.connected ? t('pubquizr.lobby.airplay.connected') : t('pubquizr.lobby.airplay.action')}
-                                onPress={() => setAirplayHelp(true)}
-                                style={styles.remoteButton}
-                            />
-                        )}
-                    </View>
+                    <ActionButton
+                        icon='airplay'
+                        text={airplay.connected ? t('pubquizr.lobby.airplay.connected') : t('pubquizr.lobby.airplay.action')}
+                        onPress={() => setAirplayHelp(true)}
+                        disabled={!airplay.available}
+                        style={styles.remoteButton}
+                    />
                 </View>
-            )}
+            </View>
 
             {/* A phone that dozes off drops its cast session or its mirror, and the television goes with it. */}
             {(cast.connected || airplay.connected) && <KeepAwake />}

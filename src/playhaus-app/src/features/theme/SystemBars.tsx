@@ -33,8 +33,10 @@ export default function SystemBars() {
             return;
         }
 
-        // Browsers and installed web apps paint their status bar with this, and pick up changes to it live.
+        // Safari 26 tints the status bar from the body's background and ignores the meta, which Chrome still reads.
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', color);
+        document.documentElement.style.backgroundColor = color;
+        document.body.style.backgroundColor = color;
     }, [color]);
 
     return <StatusBar style={light ? 'dark' : 'light'} />;
