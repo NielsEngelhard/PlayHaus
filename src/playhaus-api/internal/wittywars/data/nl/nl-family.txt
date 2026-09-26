@@ -1,20 +1,1000 @@
-[NL FAMILY 1] Lorem ipsum sit sed elit?
-[NL FAMILY 2] Lorem ipsum adipiscing {playerName} magna incididunt?
-[NL FAMILY 3] Lorem ipsum do exercitation enim?
-[NL FAMILY 4] Lorem ipsum incididunt {playerName} lorem exercitation?
-[NL FAMILY 5] Lorem ipsum magna elit commodo?
-[NL FAMILY 6] Lorem ipsum minim {playerName} dolore sit?
-[NL FAMILY 7] Lorem ipsum nostrud nostrud sed?
-[NL FAMILY 8] Lorem ipsum laboris {playerName} consequat labore?
-[NL FAMILY 9] Lorem ipsum commodo adipiscing minim?
-[NL FAMILY 10] Lorem ipsum ipsum {playerName} labore ullamco?
-[NL FAMILY 11] Lorem ipsum amet quis consequat?
-[NL FAMILY 12] Lorem ipsum elit {playerName} commodo amet?
-[NL FAMILY 13] Lorem ipsum eiusmod consectetur do?
-[NL FAMILY 14] Lorem ipsum labore {playerName} incididunt dolore?
-[NL FAMILY 15] Lorem ipsum aliqua veniam veniam?
-[NL FAMILY 16] Lorem ipsum veniam {playerName} aliquip laboris?
-[NL FAMILY 17] Lorem ipsum exercitation amet lorem?
-[NL FAMILY 18] Lorem ipsum nisi {playerName} tempor consectetur?
-[NL FAMILY 19] Lorem ipsum consequat minim eiusmod?
-[NL FAMILY 20] Lorem ipsum dolor {playerName} nisi magna?
+De slechtste naam voor een kat
+Waar denkt {playerName} constant aan?
+Een afgekeurde ijssmaak
+Hoe zou {playerName} een hond noemen?
+Het ergste wat je kunt zeggen tijdens een sollicitatiegesprek
+De titel van de autobiografie van {playerName}
+Een vreselijke naam voor een boot
+Het geheime talent van {playerName}
+Waar een hond echt aan denkt als hij naar je staart
+Het ergste wat {playerName} op een bruiloft zou kunnen zeggen
+De minst populaire attractie in de Efteling
+Wat {playerName} met een miljoen euro zou kopen
+Een slechte slogan voor een tandarts
+De superheldennaam van {playerName}
+Het ergste wat je in je boterham kunt vinden
+Wat {playerName} doet als niemand kijkt
+Een nieuwe feestdag waar niemand om vroeg
+Het eerste wat {playerName} als minister-president zou doen
+Wat Sinterklaas de rest van het jaar doet
+De kenmerkende danspas van {playerName} heet...
+De nutteloosste superkracht
+Wat {playerName} verstopt in de vriezer
+Een slechte naam voor een rockband van oma's
+De naam van de toekomstige boot van {playerName}
+Iets wat je nooit moet roepen in een bibliotheek
+Waar {playerName} elke nacht van droomt
+Het laatste wat je van je piloot wilt horen
+De slechtste gewoonte van {playerName}
+Een vreemd ding om mee te nemen naar een picknick
+Het ene gerecht dat {playerName} meeneemt naar een onbewoond eiland
+Het saaiste bordspel ooit
+Wat de kat van {playerName} over hen zou zeggen
+Wat aliens na één dag van de aarde vinden
+De vaste uitspraak van {playerName}
+Een slechte naam voor een kapsalon
+De echte reden dat {playerName} vandaag te laat was
+De slechtste tekst in een gelukskoekje
+Waar {playerName} over twintig jaar beroemd om is
+Iets wat je niet van je kapper wilt horen
+Het geheime recept van {playerName} bevat...
+Een raar ding om te verzamelen
+Wat {playerName} in een tijdcapsule zou stoppen
+Het slechtste excuus om te laat op school te komen
+De slechtste baan voor {playerName}
+Een vreselijk kraamcadeau
+De ringtone van {playerName}
+De echte reden dat de kip de weg overstak
+Wat {playerName} zou doen als die een dag onzichtbaar was
+Een nieuwe Olympische sport die nooit mag bestaan
+De naam van de goudvis van {playerName}
+Wat je koelkast zou zeggen als hij kon praten
+De titel van de film over het leven van {playerName}
+Een slechte naam voor een bakkerij
+Waar {playerName} stiekem bang voor is
+Het slechtste thema voor een bruiloft
+Het vaste karaokenummer van {playerName}
+Iets wat een piraat nooit zou zeggen
+Welk keukenapparaat {playerName} zou zijn
+Een pizzabeleg dat beter geheim kan blijven
+De worstelaarsnaam van {playerName}
+De slechtste mascotte voor een voetbalclub
+Wat {playerName} tegen de planten fluistert
+Waar een goudvis van droomt
+Het ding dat {playerName} nooit zou delen
+Een afgekeurde titel voor een Disneyfilm
+Het totemdier van {playerName}
+Het ergste om in een verjaardagskaart te schrijven
+Wat {playerName} aan een geest uit de fles zou wensen
+Een vreselijke naam voor een nieuwe smartphone
+De act van {playerName} bij de talentenjacht
+Het laatste wat je bij de tandarts wilt horen
+Wat {playerName} in de slaap zegt
+De slechtste openingszin op een feestje
+De perfecte zondag van {playerName}
+Een slechte naam voor een cruiseschip
+Hoe {playerName} een nieuwe planeet zou noemen
+Wat de maan doet als niemand kijkt
+Het raarste ding in de tas van {playerName}
+Een compleet nutteloze uitvinding
+De nieuwe realityshow van {playerName} heet...
+Het ergste wat een ober kan zeggen
+Wat {playerName} meeneemt naar een potluck
+Een afgekeurde kleur voor kleurpotloden
+De grootste kookramp van {playerName}
+De meest teleurstellende verrassing in een doos cornflakes
+Wat {playerName} het laatst heeft gegoogeld
+Iets wat je nooit op een trampoline moet doen
+De piratennaam van {playerName}
+De slechtste naam voor een renpaard
+Wat {playerName} zou uitvinden
+Een vreselijke nieuwe wet
+De grootste ergernis van {playerName}
+Het slechtste om mee te nemen voor spreekbeurt
+Waarvoor {playerName} in de middeleeuwen gearresteerd zou worden
+Waar koeien over roddelen
+De naam van de rockband van {playerName}
+Een slechte slogan voor een uitvaartcentrum
+Wat {playerName} met een huisdino zou doen
+De irritantste ringtone die er bestaat
+Het motto op het familiewapen van {playerName}
+Een raar ding op de zolder van je oma
+De geheime identiteit van {playerName}
+Een vreemde tosti-combinatie
+Hoe {playerName} zal zijn als opa of oma
+Het slechtste huisdier voor een klein appartement
+De ijssmaak die naar {playerName} is vernoemd
+Waar een sneeuwpop bang voor is
+De slechtste modekeuze van {playerName}
+Een afgekeurde emoji
+Wat de koelkast van {playerName} over hen zegt
+Het ergste wat een navigatiesysteem kan zeggen
+De droomvakantie van {playerName}
+De slechtste naam voor een advocatenkantoor
+Wat {playerName} op de laatste dag op aarde zou doen
+Iets wat je nooit in de magnetron moet stoppen
+De grootste prestatie van {playerName}
+De echte reden dat de dinosaurussen uitstierven
+Het waarschuwingsetiket op {playerName}
+Een vreselijke naam voor een parfum
+Hoe {playerName} een renpaard zou noemen
+Waar een pinguïn over klaagt
+De tovenaarsnaam van {playerName}
+Het slechtste schoolvak ooit
+Het raarste wat {playerName} ooit heeft gegeten
+Een raar ding om tegen een agent te zeggen
+Wat {playerName} als koning of koningin voor een dag zou doen
+De slechtste naam voor een restaurant
+De Olympische sport van {playerName}
+Een slechte baan voor een luiaard
+De verkiezingsslogan van {playerName}
+De slechtste tekst op een motivatieposter
+Waar {playerName} heel goed in is maar nooit over vertelt
+Iets wat een robot niet snapt aan mensen
+Het lievelingswoord van {playerName}
+Een slechte naam voor een pretpark
+Wat {playerName} tegen een alien zou zeggen
+Het engste geluid midden in de nacht
+Het alter ego van {playerName}
+Het geheime talent van je wasmachine
+Wat {playerName} zou doen na het winnen van de Staatsloterij
+Een vreselijk idee voor een realityshow
+De eerste zin in het dagboek van {playerName}
+Het raarste voorwerp in de gevonden voorwerpen
+De verborgen superkracht van {playerName}
+Wat duiven stiekem van plan zijn
+Wat {playerName} in de dierentuin zou zijn
+Een slechte naam voor een sportschool
+Het signatuurbroodje van {playerName}
+Het ergste toetje ooit bedacht
+Het raarste wat {playerName} gelooft
+Iets wat je niet in je schoen wilt vinden
+Wat {playerName} doet tijdens een zombie-apocalyps
+Het slechtste advies van een opa
+De themamuziek van {playerName}
+Een nieuw woord voor natte sokken
+Hoe het huis van {playerName} ruikt
+Het nutteloosste keukenapparaat
+De naam van het restaurant van {playerName}
+De slechtste titel voor een kinderboek
+De grootste angst van {playerName} bij de tandarts
+Waar eenden het over hebben in de vijver
+Wat {playerName} meeneemt naar Mars
+Het ongemakkelijkste om in een lift te zeggen
+De ochtendroutine van {playerName} in drie woorden
+De slechtste superkracht voor een juf
+Welk toetje {playerName} zou zijn
+Een slechte naam voor een hondentrimsalon
+Het favoriete excuus van {playerName}
+Een hele slechte plek voor een eerste date
+Wat {playerName} het vaakst zegt
+Het ergste wat je van een goochelaar kunt horen
+Hoe {playerName} een kasteel zou noemen
+Een vreemde straatnaam
+De geheime hobby van {playerName}
+Het minst enge monster
+De krantenkop over {playerName} van morgen
+Wat je kamerplant echt van je vindt
+Wat {playerName} als spook zou doen
+Een slechte slogan voor een auto
+De perfecte pizza van {playerName}
+De slechtste karaoke-keuze
+Wat {playerName} op een reclamebord zou zetten
+Een vreselijke naam voor een stofzuiger
+De naam van het parfum van {playerName}
+Iets wat nog nooit iemand zei bij een barbecue
+De droombaan van {playerName} als kind
+Een slechte naam voor een nieuwe planeet
+Wat {playerName} zou verzamelen
+Het raarste om in je broekzak te hebben
+Het raarste cadeau dat {playerName} kan krijgen
+Een vreselijke naam voor ontbijtgranen
+De slechtste vakantieherinnering van {playerName}
+Het slechtste zomerkampuitje
+Wat {playerName} in een talkshow zou zeggen
+Wat een kat de hele dag doet als jij werkt
+De nieuwe uitvinding van {playerName} heet...
+Een slechte slogan voor een bank
+Welk bordspel {playerName} zou zijn
+Het slechtste vervolg op een sprookje
+De cheatcode voor het leven van {playerName}
+Iets wat je nooit moet frituren
+Welk tekenfilmfiguur {playerName} zou zijn
+Een vreselijke naam voor een ruimteschip
+De naam van de kookshow van {playerName}
+Wat de Paashaas de rest van het jaar doet
+Wat {playerName} nooit, maar dan ook nooit zou eten
+Het ergste om te horen tijdens het knippen
+De droomauto van {playerName}
+Een chipssmaak die nooit gaat verkopen
+Welk vak {playerName} op school zou geven
+De saaiste superheld
+Het grootste guilty pleasure van {playerName}
+Wat een sok doet nadat hij in de droger verdwijnt
+Wat {playerName} meeneemt voor een spreekbeurt
+Een slechte naam voor een clown
+De favoriete dag van het jaar van {playerName}
+Het ergste wat een gids kan zeggen
+Wat {playerName} met een tijdmachine zou doen
+De slechtste naam voor een hamster
+Het YouTube-kanaal van {playerName} gaat over...
+Iets wat je nooit tegen een giraf moet zeggen
+Welke geur {playerName} zou zijn
+Het slechtste reclamedeuntje voor tandpasta
+Het Zweinsteinvak van {playerName}
+Wat een boom zou zeggen als hij kon praten
+Hoe {playerName} een ruimteschip zou noemen
+Het slechtste om mee te nemen naar een onbewoond eiland
+Het eerste wat {playerName} zou doen als kat
+Een afgekeurde naam voor de kleur blauw
+Het slaapverhaaltje van {playerName}
+Het raarste wat je in de dierentuin kunt zien
+Hoe {playerName} een hamster zou noemen
+Het ergste om te horen in een achtbaan
+De favoriete feestdagtraditie van {playerName}
+Wat de tandenfee met al die tanden doet
+Welk broodje {playerName} zou zijn
+De slechtste baan op de Noordpool
+Het geheime wachtwoord van {playerName}
+Een slechte naam voor een sportauto
+Wat {playerName} zou doen met een gevonden schatkist
+De slechtste schoollunch
+Het slechtste cadeau dat {playerName} ooit gaf
+Iets wat je niet van je dierenarts wilt horen
+De beroemde laatste woorden van {playerName}
+De slechtste naam voor een knuffelbeer
+Wat {playerName} meeneemt naar een logeerpartij
+Wat je schaduw doet als het licht uitgaat
+De legendarische move van {playerName} op de dansvloer
+Een slechte slogan voor een dierenwinkel
+Wat {playerName} in een gelukskoekje zou schrijven
+Het slechtste cadeau van de Kerstman
+Het nieuwe parfum van {playerName} ruikt naar...
+Een hele slechte naam voor een limonadekraampje
+Wat {playerName} nu in gedachten aan het doen is
+Het raarste om allergisch voor te zijn
+De talentenjachtramp van {playerName}
+De slechtste vakantiebestemming
+Wat de hond van {playerName} over hen zou zeggen
+Een geheime hobby van je broodrooster
+De titel van het kookboek van {playerName}
+Een vreselijke naam voor een tovenaar
+Hoe {playerName} een eenhoorn zou noemen
+Waar de vogel voor je raam over zingt
+De grootste spijt van {playerName} bij het buffet
+Het ergste om onder je bed te vinden
+Wat {playerName} als superheld op een vrije dag doet
+Een slechte naam voor een nieuwe dans
+Het favoriete nutteloze weetje van {playerName}
+Het ergste wat een badmeester kan zeggen
+Wat {playerName} op de eigen grafsteen zou zetten
+Een slechte bijnaam voor een koning
+De zomerplannen van {playerName}
+Het raarste wat een eekhoorn kan begraven
+Wat {playerName} in een smoothie zou doen
+De slechtste voorziening in een hotelkamer
+De naam van de bakkerij van {playerName}
+Het ergste om te zeggen op een familiereünie
+De meest gebruikte emoji van {playerName}
+Een onverwacht gebruik voor een banaan
+Wat {playerName} zou doen als draak
+Het slechtste om in een schatkist te vinden
+Het favoriete ontbijt van {playerName}
+Een slechte naam voor een chocoladereep
+Wat {playerName} zou doen als die de juf of meester was
+Iets vreselijks om een papegaai te leren
+Het raarste wat {playerName} meeneemt naar een picknick
+Waar het mannetje in de maan aan denkt
+De dankspeech van {playerName}
+De slechtste glijbaan in een zwemparadijs
+Hoe {playerName} een berg zou noemen
+Een slechte naam voor een spookhuis
+De geheime voorraad van {playerName} bevat...
+Een vreemd ding om mee te nemen naar het strand
+Wat {playerName} als piratenkapitein zou doen
+Het slechtste waarschuwingsetiket
+De topgeheime vaardigheid van {playerName}
+Iets wat een eekhoorn op zijn cv zet
+Welke groente {playerName} zou zijn
+De slechtste naam voor een kasteel
+Het droomhuisdier van {playerName}
+Wat je kussen over je weet
+Wat {playerName} op een onbewoond eiland zou doen
+Een nieuw gebruik voor oude spaghetti
+De rol van {playerName} in een sprookje
+De slechtste naam voor een dorp
+Hoe {playerName} een videogame zou noemen
+Een slechte slogan voor een museum
+Het beste levensadvies van {playerName}
+De slechtste prijs voor het winnen van een dictee
+Hoe de robotbutler van {playerName} zou heten
+Iets wat je niet van een chirurg wilt horen
+De stemming van {playerName} vandaag als weerbericht
+De slechtste naam voor een broodje
+Wat {playerName} aan de wereld zou veranderen
+Een afgekeurd Sinterklaasliedje
+De achtbaan van {playerName} heet...
+Wat je auto 's nachts in de garage doet
+Wat {playerName} zou doen als die kon vliegen
+Een rare manier om de telefoon op te nemen
+De hippe nieuwe modetrend van {playerName}
+Het slechtste gerecht op een kindermenu
+Wat {playerName} meeneemt naar een sollicitatiegesprek
+Een slechte naam voor een bordspel
+De kenmerkende geur van {playerName}
+Iets wat een draak in de supermarkt koopt
+Hoe {playerName} een zeilboot zou noemen
+Een vreselijke reden om de brandweer te bellen
+Het leukste aan maandag volgens {playerName}
+Wat een schaap telt om in slaap te vallen
+Waar {playerName} in het jaar 3000 beroemd om is
+Het slechtste huiswerk ooit
+Het verborgen keukentalent van {playerName}
+De slechtste naam voor een storm
+Wat {playerName} tegen het jongere zelf zou zeggen
+Een slechte vervanger voor wc-papier
+De raarste droom van {playerName}
+Iets wat een ridder raar vindt op Schiphol
+Wat {playerName} met een extra uur per dag zou doen
+Het ergste om te horen op schoolreisje
+De nieuwe hobby van {playerName} is...
+Een slechte naam voor een nieuwe groente
+Hoe {playerName} het eerste album van de band zou noemen
+Het gênantste om over te struikelen
+Het grootste jeugdgeheim van {playerName}
+Wat vissen in het aquarium van bezoekers vinden
+Wat {playerName} als profworstelaar zou doen
+Het slechtste ding om als paraplu te gebruiken
+De favoriete geur van {playerName}
+Een slechte naam voor een talentenjacht-act
+Wat {playerName} op een pizza zou doen
+De vieste smaak tandpasta
+Het ding dat {playerName} uit een brand zou redden
+Iets wat je niet tegen een buschauffeur moet zeggen
+Het perfecte verjaardagsfeest van {playerName}
+Het ergste wat uit een wolk kan regenen
+Hoe {playerName} een broodje zo groot als een planeet zou noemen
+Een slechte naam voor een tuinkabouter
+De favoriete verstopplek van {playerName}
+Wat een zeemeermin in haar schatkistje bewaart
+Wat {playerName} als dierenverzorger zou doen
+Het ergste wat je op een bruiloft kunt doen
+Nummer één op de bucketlist van {playerName}
+Het geheime ingrediënt in oma's soep
+Wat {playerName} als cabaretier zou doen
+De slechtste naam voor een videogame
+Het beroemde gerecht van {playerName}
+Iets wat niet bij een tankstation verkocht zou moeten worden
+Wat {playerName} tegen een pratende hond zou zeggen
+Het onhandigste advies voor een beginnende automobilist
+De favoriete kermisattractie van {playerName}
+Wat een egel in zijn dagboek schrijft
+Welk dier {playerName} zou zijn
+De slechtste verstopplek voor een verjaardagscadeau
+Het onverwachte feesttalent van {playerName}
+Een nieuwe sport om in de sneeuw te spelen
+Hoe {playerName} het eerste kind zou noemen
+De slechtste naam voor een baby
+De raarste verzameling van {playerName}
+Het raarste om in een bibliotheekboek te vinden
+Wat {playerName} als zeemeermin zou doen
+Een slechte naam voor een nieuw land
+De kenmerkende voetbalactie van {playerName}
+Een vreselijke catchphrase voor een quizmaster
+Hoe {playerName} een tropisch eiland zou noemen
+De slechtste geur voor een geurkaars
+De hashtag die {playerName} samenvat
+Iets wat je nooit in een sprookje zult zien
+De baan van {playerName} in een fantasierijk
+Wat een uil eigenlijk bedoelt met "oehoe"
+Welk speelgoed {playerName} zou zijn
+Het ergste om te horen bij de tandarts met je mond open
+De grootste schoolprestatie van {playerName}
+Een slechte naam voor een vuurtoren
+Wat {playerName} op de markt zou verkopen
+Een raar ding om in een tijdcapsule te stoppen
+Het volgende grote idee van {playerName}
+De slechtste nieuwe kersttraditie
+Wat {playerName} zou doen als die zo klein als een mier werd
+Waar paarden om lachen
+Het ideale ontbijt op bed van {playerName}
+Het saaiste museumstuk
+Welk meubelstuk {playerName} zou zijn
+Een slechte slogan voor een schoenenwinkel
+De grootste ergernis van {playerName} in het openbaar vervoer
+Iets wat je niet in een kano moet doen
+Hoe {playerName} een fitnessprogramma zou noemen
+De slechtste prijs op de kermis
+De beste uitvinding van {playerName} waar niemand om vroeg
+Een slechte naam voor een springkussenverhuur
+Wat {playerName} in een spookhuis zou doen
+Het slechtste ingrediënt voor een smoothie
+Het favoriete geluid van {playerName}
+Wat je wekker elke ochtend denkt
+Welke dans {playerName} zou zijn
+Het ergste wat je bij een goochelshow kunt horen
+Het kostbaarste bezit van {playerName}
+Het nutteloosste om mee te nemen op kampeervakantie
+Wat {playerName} in een museum over zichzelf zou zetten
+Een slechte naam voor een spook
+De geheime bijnaam van {playerName}
+Iets wat een peuter zou uitvinden
+Wat {playerName} als goochelaar zou doen
+Het raarste wat een snoepautomaat kan verkopen
+De volgende tatoeage van {playerName}
+De slechtste plek voor een dutje
+Wat {playerName} zou doen bij het ontmoeten van een kloon
+Een slechte reden om een tatoeage te nemen
+De reisbenodigdheden van {playerName}
+Het slechtste advies van een waarzegster
+Hoe {playerName} een nieuwe feestdag zou noemen
+Een afgekeurde naam voor Pluto
+De slechtste aankoop ooit van {playerName}
+De slechtste naam voor een onderzeeër
+Wat {playerName} als reus zou doen
+Wat muizen van kaas vinden
+De droomvilla van {playerName} heeft...
+Het ergste om in een piñata te vinden
+Wat {playerName} tegen de koning zou zeggen
+Een kauwgomsmaak die niemand wil
+De koffiebestelling van {playerName} 's ochtends
+Een slechte naam voor een sokkenmerk
+Welke kleur {playerName} zou zijn
+Een vreselijk thema voor een kinderfeestje
+De favoriete complottheorie van {playerName}
+Iets wat alleen een opa of oma zegt
+Hoe {playerName} een geit zou noemen
+Het ergste om per ongeluk tegen de meester te zeggen
+Het last-minute carnavalspak van {playerName}
+Wat een leeuw op zijn vrije dag doet
+Wat {playerName} als weerman of weervrouw zou doen
+Een slechte naam voor een berg
+De favoriete manier van {playerName} om te ontspannen
+Het slechtste kookprogramma
+Wat {playerName} als detective zou doen
+Een vreselijke nieuwe schoolregel
+De vaste begroeting van {playerName}
+Het ergste om te horen tijdens een brandoefening
+Wat {playerName} meeneemt naar de Olympische Spelen
+Iets wat je niet mee moet nemen naar een logeerpartij
+De verborgen angst van {playerName} voor...
+Waarvoor een schildpad altijd te laat is
+Welke sport {playerName} zou zijn
+Het raarste om in een vogelnest te vinden
+De droomgast van {playerName} voor een etentje
+De slechtste naam voor een luchtvaartmaatschappij
+Wat {playerName} op het kenteken zou zetten
+Een slechte slogan voor een kampeerwinkel
+De stiekeme middernachtsnack van {playerName}
+Het ergste wat een bouwvakker kan roepen
+Wat {playerName} als piloot zou doen
+Een geheim dat de tuinkabouters bewaren
+De perfecte vrije dag van {playerName}
+Het slechtste ding om als boekenlegger te gebruiken
+Hoe {playerName} een eigen eiland zou noemen
+Een slechte naam voor een ijscokar
+Het slechtste date-idee van {playerName}
+De minst spannende schatkaart
+Wat {playerName} als tv-kok zou doen
+Wat het monster van Loch Ness de hele dag doet
+De beste imitatie van {playerName}
+De slechtste vraag om aan een geest uit een fles te stellen
+Wat {playerName} zou doen als die een dag een kat was
+Een vreselijke naam voor een slaapliedje
+Het favoriete dierengeluid van {playerName}
+Iets wat je niet in je soep wilt vinden
+Welke vrucht {playerName} zou zijn
+Een slechte sticker voor op je auto
+De favoriete manier van {playerName} om tijd te verspillen
+Het ergste wat een buikspreekpop kan zeggen
+Hoe {playerName} een planeet zou noemen
+Waar een kikker van droomt
+De grootste ergernis van {playerName} in de supermarkt
+De slechtste plek om een zandkasteel te bouwen
+Wat {playerName} als badmeester zou doen
+Een slechte slogan voor een bibliotheek
+Het thema van het volgende feestje van {playerName}
+De slechtste reden om school af te gelasten
+Wat {playerName} als reisleider zou zeggen
+Een heel ongewoon huisdier
+De nieuwe kledinglijn van {playerName} heet...
+Het slechtste briefje in je broodtrommel
+Wat {playerName} als spion zou doen
+Iets waar een slak over opschept
+Het favoriete schoolpleinspel van {playerName}
+De slechtste naam voor een energiedrankje
+Hoe {playerName} een nieuw snoepje zou noemen
+Waar een vogelverschrikker eigenlijk bang voor is
+Het raarste bijgeloof van {playerName}
+Het ergste wat een oppas kan zeggen
+Wat {playerName} als burgemeester zou doen
+Een slechte naam voor een vulkaan
+Het volgende avontuur van {playerName}
+Het ergste om over je laptop te morsen
+Welke wolk {playerName} zou zijn
+Het slechtste carnavalspak
+De favoriete filmquote van {playerName}
+Iets wat je nooit tegen een kok moet zeggen
+Wat {playerName} op de eerste dag als leraar zou doen
+Wat de sterren over ons zeggen
+Het perfecte broodbeleg van {playerName}
+Een slechte naam voor een wenskaartenbedrijf
+Hoe {playerName} een tuinkabouter zou noemen
+Het ergste om van een hotelreceptionist te horen
+Het geheime wapen van {playerName} bij bordspellen
+Een raar voorwerp voor in een museum
+Wat {playerName} als astronaut zou doen
+Het slechtste excuus om niet af te wassen
+Het kenmerkende kapsel van {playerName} heet...
+Een afgekeurde naam voor de tandenfee
+Wat {playerName} meeneemt naar een sneeuwballengevecht
+Het ergste wat een stewardess kan zeggen
+Het favoriete seizoen van {playerName} en waarom
+Waar een bij over klaagt op het werk
+Welk koekje {playerName} zou zijn
+Een slechte naam voor een broodjeszaak
+De rol van {playerName} in een zombiefilm
+De slechtste plek om te verdwalen
+Hoe {playerName} een lama zou noemen
+Een vreemde manier om hallo te zeggen
+Het ochtendhumeur van {playerName} in één woord
+Iets wat je nooit op een rommelmarkt vindt
+Wat {playerName} als boer of boerin zou doen
+Het slechtste speelgoed voor een peuter
+De achtergrond op de telefoon van {playerName}
+Wat een kameel in zijn bult bewaart
+Wat {playerName} als clown zou doen
+Het ergste wat een monteur kan zeggen
+De alcoholvrije signatuurcocktail van {playerName}
+Een vreselijke naam voor een hotel
+Welke kerstversiering {playerName} zou zijn
+De minst populaire kerstversiering
+Het grootste avontuur van {playerName} tot nu toe
+Iets wat een vampier bestelt in een restaurant
+Hoe {playerName} een boomhut zou noemen
+Het slechtste advies voor kersverse ouders
+De favoriete plek op aarde van {playerName}
+Een slechte naam voor een pastavorm
+Wat {playerName} als ridder zou doen
+Waar een badeendje van droomt
+Waar {playerName} bekend om staat
+Een vreselijk idee voor een nieuwe app
+Welke emoji {playerName} zou zijn
+Het slechtste om te winnen bij een loterij
+De reden dat {playerName} vandaag iets te vieren heeft
+Iets wat een reus als tandenstoker gebruikt
+Wat {playerName} met een wensmachine zou doen
+Een slechte naam voor een nieuwe sport
+De zomerhit van {playerName}
+Het ergste om tegen nieuwe buren te zeggen
+Wat {playerName} tegen een pinguïn zou zeggen
+Wat een mug tegen zijn vrienden vertelt
+De favoriete ontbijtgranenmascotte van {playerName}
+De slechtste naam voor een elfje
+Hoe {playerName} een robot zou noemen
+Een raar ding in de tombe van een farao
+De raarste eetcombinatie van {playerName}
+Het slechtste om in een broodtrommel te stoppen
+Wat {playerName} naast eten meeneemt naar een onbewoond eiland
+Een slechte slogan voor een brillenwinkel
+De geheime handdruk van {playerName}
+Iets wat je niet op een cruise moet doen
+Welke auto {playerName} zou zijn
+De teleurstellendste taartversiering
+Het favoriete klaagonderwerp van {playerName}
+Hoe een hond zijn baasje zou noemen
+Wat {playerName} zou doen als die met dieren kon praten
+Het slechtste schoolreisje ooit
+De vaste fotopose van {playerName}
+Iets vreselijks om op een taart te schrijven
+Hoe {playerName} een taart zou noemen
+Het slechtste deurbelgeluid
+Het grootste mysterie rond {playerName}
+Een geheime kracht van het afwassponsje
+Wat {playerName} als dj zou doen
+Een slechte naam voor een nieuwe theesmaak
+In de broekzak van {playerName} zit altijd...
+Het ergste om te horen in de dierentuin
+Welke superschurk {playerName} zou zijn
+Iets wat een piraat in zijn broekzak heeft
+De droomfeestgast van {playerName}
+Het slechtste ding om als kussen te gebruiken
+Wat {playerName} als goede fee zou doen
+Waar je sokken het over hebben in de la
+De top drie pizzatoppings van {playerName}
+Een slechte naam voor een pony
+Wat {playerName} meeneemt naar een middeleeuws feestmaal
+De slechtste tip van een fitnesscoach
+De favoriete zingplek van {playerName}
+Iets wat je niet in je ontbijtgranen wilt vinden
+Welk sprookjesfiguur {playerName} zou zijn
+Een slechte naam voor een museum van kapotte spullen
+Het recept voor geluk van {playerName}
+De slechtste dans op het schoolfeest
+Hoe {playerName} een dinosaurus zou noemen
+Wat de wind fluistert
+De grootste sportprestatie van {playerName}
+De slechtste naam voor een hete saus
+Wat {playerName} als popster zou doen
+Het raarste om op de bodem van de zee te vinden
+De volgende grote aankoop van {playerName}
+Het slechtste excuus om een verjaardag te missen
+Het favoriete weertype van {playerName}
+Een vreselijke naam voor een eenhoorn
+Welk muziekinstrument {playerName} zou zijn
+De slechtste waarschuwing van een weerman
+De beroemde frons van {playerName} komt door...
+Iets wat je nooit aan een robot moet vragen
+Hoe {playerName} een achtbaan zou noemen
+Wat een octopus met al die armen doet
+De perfecte huisdiernaam volgens {playerName}
+Het slechtste om mee te nemen naar een sollicitatie
+Wat {playerName} in de jungle zou doen
+Een slechte naam voor een speeltuin
+De favoriete ochtendgeur van {playerName}
+Het onhandigste verkeersbord
+Wat {playerName} zou doen als vampier
+Een vreselijk spelletje voor een etentje
+Het signatuurtoetje van {playerName}
+Waarover een lama spuugt
+Wat {playerName} mee terugneemt van Mars
+Het ergste wat een tatoeëerder kan zeggen
+De topgeheime missie van {playerName}
+Een afgekeurde titel voor een superheldenfilm
+Welk soort schoen {playerName} zou zijn
+De slechtste naam voor een wc-merk
+De favoriete snoepverstopplek van {playerName}
+Wat een holbewoner van een smartphone vindt
+Hoe {playerName} een pratende papegaai zou noemen
+De raarste reden om naar de dokter te gaan
+Het nieuwste bijgeloof van {playerName}
+Een slechte naam voor je wifi
+Wat {playerName} zou doen bij het wakker worden als baby
+Het slechtste excuus om vroeg van een feestje te gaan
+De beste tip van {playerName} voor een lange autorit
+Wat een wasbeer zoekt in je vuilnisbak
+Wat {playerName} op een T-shirt zou zetten
+De slechtste naam voor een huiskrokodil
+De perfecte regenachtige dag van {playerName}
+Iets vreselijks in een EHBO-doos
+Wat {playerName} als spook in een kasteel zou doen
+Iets wat je niet wilt horen tijdens een logeerpartij
+De lievelingsdinosaurus van {playerName}
+Een slechte naam voor een krant
+Hoe {playerName} een aardappel zou noemen
+De slechtste regel in een bordspel
+Het verborgen schaatstalent van {playerName}
+Wat een duif van standbeelden vindt
+Wat {playerName} als premier zou doen
+Het ergste om na het wassen in je zak te vinden
+De nies van {playerName} klinkt als...
+Een slechte slogan voor een fietsenwinkel
+Wat {playerName} meeneemt naar een schoolreünie
+Het ergste wat een clown uit zijn mouw kan trekken
+Het beste excuus van {playerName} voor het opeten van het laatste koekje
+Iets wat nooit van gelatine gemaakt mag worden
+Welke sok {playerName} zou zijn
+Het lelijkste sokkenpatroon
+Wat {playerName} het liefst roept
+Wat een vleermuis van overdag vindt
+Wat {playerName} in een sneeuwstorm zou doen
+Een vreselijke naam voor een brandweerhond
+De volgende virale video van {playerName}
+De slechtste schoolmascotte
+Hoe {playerName} een knuffelbeer zou noemen
+Iets wat alleen een tovenaar in de koelkast heeft
+Het gênantste moment van {playerName} op een podium
+Het ongemakkelijkste om tegen de koning te zeggen
+Wat {playerName} als vis zou doen
+Een slechte naam voor een kauwgommerk
+De favoriete bioscoopsnack van {playerName}
+Het ergste om in een boom vast te laten zitten
+Hoe {playerName} een nieuwe sport zou noemen
+Het ergste wat een kapitein kan omroepen
+De grote entree van {playerName} op een feest
+Wat een standbeeld zou doen als het tot leven kwam
+Wat {playerName} als gekke professor zou doen
+Een slechte regel voor het Wilhelmus
+De nuttigste vaardigheid van {playerName}
+Een raar ding om om middernacht te doen
+Welk geluidseffect {playerName} zou zijn
+Een slechte naam voor een boerderij
+Het nieuwe huisdier van {playerName} is een...
+Het slechtste antwoord op "Wat eten we vandaag?"
+Wat {playerName} in een gelukskoekje zou zeggen
+Iets wat je nooit op een ansichtkaart ziet
+De raarste droombaan van {playerName}
+Wat je fiets van jouw fietskunsten vindt
+Wat {playerName} zou doen als het huis een kasteel was
+Het slechtste souvenir in een museumwinkel
+Het wekkergeluid van {playerName}
+Een vreselijke naam voor een loterij
+Hoe {playerName} een kip zou noemen
+Het ergste om in een zwembad te zien drijven
+De beroemde uitspraak van {playerName} aan tafel
+Iets waar een eenhoorn van moet huilen
+Wat {playerName} als ontdekkingsreiziger zou doen
+De slechtste naam voor een kookpan
+Het beste cadeau ooit van {playerName}
+Waarom krabben altijd zo chagrijnig zijn
+Welke feestdag {playerName} zou zijn
+Het slechtste advies over geld
+De verborgen snackvoorraad van {playerName} ligt in...
+Een slechte naam voor een trui
+Wat {playerName} meeneemt naar een speurtocht
+Het slechtste verhaaltje voor het slapengaan
+De lach van {playerName} klinkt als...
+Iets wat je nooit aan een geit moet voeren
+Wat {playerName} zou doen als die onder water kon wonen
+Een nieuwe naam voor maandag
+Het favoriete moment van de dag van {playerName}
+De slechtste omroep op een treinstation
+Hoe {playerName} een kwal zou noemen
+Waar een zonnebloem naar kijkt
+Het best bewaarde familiegeheim van {playerName}
+Een slechte bijnaam voor een leraar
+Wat {playerName} als poppenspeler zou doen
+Het slechtste hulpje van een superheld
+De nieuwe ijssalon van {playerName} verkoopt...
+Waar een mummie over klaagt
+Welke pastavorm {playerName} zou zijn
+De slechtste geur voor shampoo
+Het beste idee van {playerName} om 3 uur 's nachts
+Een vreselijke naam voor een viool
+Wat {playerName} als hoteleigenaar zou doen
+Wat de gezinsauto van vakanties vindt
+Het woord dat {playerName} altijd verkeerd uitspreekt
+Het ergste wat een helpdeskmedewerker kan zeggen
+Wat {playerName} zou doen als eigenaar van een dierentuin
+Een slechte naam voor een papegaai
+Het favoriete douchelied van {playerName}
+Het ergste om tijdens een wandeling tegen te komen
+Hoe {playerName} een zeemonster zou noemen
+Iets wat je niet in je warme chocomelk wilt
+De grootste prestatie van {playerName} deze week
+Het saaiste geheim
+Wat {playerName} als profgamer zou doen
+Wat de vaatwasser echt van je afwas vindt
+De droomboomhut van {playerName} heeft...
+Een slechte naam voor een kaas
+Welke bloem {playerName} zou zijn
+De slechtste bioscoopsnack
+De grootste zwakte van {playerName}
+Een vreselijke naam voor een knuffelwinkel
+Wat {playerName} in een pop-upwinkel zou verkopen
+Iets wat je niet in een museum moet doen
+De volgende verjaardagswens van {playerName}
+De slechtste prijs in een spelshow
+Wat {playerName} tegen een sneeuwpop zou zeggen
+Waar een zeeleeuw om lacht
+Het geheime dierentuintalent van {playerName}
+Een afgekeurde naam voor een rendier van de Kerstman
+Hoe {playerName} een wolk zou noemen
+Het ergste om te zeggen tijdens een goocheltruc
+Wat {playerName} het liefst tekent
+Iets wat je niet in je bad wilt vinden
+Wat {playerName} als tandenfee zou doen
+Een slechte slogan voor een verhuisbedrijf
+De bijnaam van {playerName} op zomerkamp
+De slechtste bedtijd
+Wat {playerName} meeneemt naar een kasteelfeest
+Waar de Sfinx aan denkt
+Het bedritueel van {playerName}
+De slechtste toeristische attractie
+Welke pion {playerName} zou zijn
+Een slechte naam voor een loodgietersbedrijf
+De handtekening van {playerName} ziet eruit als...
+Het raarste om in de bus te zien
+Wat {playerName} als conducteur zou doen
+Het slechtste cadeau voor de juf
+De beste manier van {playerName} om iemand op te vrolijken
+Waar een rups zich zorgen over maakt
+Hoe {playerName} een muis zou noemen
+Een vreselijke nieuwe ijstopping
+De perfecte picknickmand van {playerName} bevat...
+Het ergste om van een dokter te horen
+Wat {playerName} zou doen als het snoep regende
+Iets wat je verrast in de buidel van een kangoeroe
+Wat {playerName} het leukst aan zichzelf vindt
+Een slechte naam voor een lijmmerk
+Welke planeet {playerName} zou zijn
+De slechtste plek om te niezen
+De favoriete vergissing van {playerName}
+Wat een vuurtorenwachter doet voor zijn plezier
+Hoe {playerName} een lekkernij van de bakker zou noemen
+Het slechtste om op een bumpersticker te zetten
+De volgende reis van {playerName} gaat naar...
+Een raar ding om mee te nemen naar een bruiloft
+Wat {playerName} als baas van een chocoladefabriek zou doen
+De slechtste eerste zin van een roman
+De grootste kracht van {playerName} bij verstoppertje
+Iets wat een piraat nooit zou zingen
+Wat {playerName} meeneemt naar een kampvuur
+De slechtste naam voor een strand
+Het favoriete boerderijdier van {playerName}
+Wat de zon van de winter vindt
+Wat {playerName} zou doen als die de tijd kon stilzetten
+Een slechte manier om iemand wakker te maken
+Het radioprogramma van {playerName} heet...
+Het slechtste om beroemd om te worden
+Welk keukengerei {playerName} zou zijn
+Een afgekeurde naam voor een tandenborstel
+De geluksbrenger van {playerName}
+Het ergste om tegen een baby te zeggen
+Hoe {playerName} een huisslak zou noemen
+Wat een spin in het weekend met zijn web doet
+De favoriete dagdroomplek van {playerName}
+Het teleurstellendste in een goodiebag
+Wat {playerName} als filmregisseur zou doen
+Een slechte naam voor een tractor
+De volgende legendarische quote van {playerName}
+Het slechtste vervolg op een kinderliedje
+Welk tekenfilmhulpje {playerName} zou zijn
+Iets wat een ridder in de supermarkt zegt
+Het slechtste sportmoment van {playerName}
+Een vreselijk schoolmotto
+Hoe {playerName} een kasteeldraak zou noemen
+Wat brood denkt als het een tosti wordt
+Het perfecte weekendontbijt van {playerName}
+Het ergste om te horen in een tentje op kamp
+Wat {playerName} als professionele slaper zou doen
+Een slechte slogan voor een snoepwinkel
+De droomsuperkracht van {playerName}
+Het raarste om op zondagmiddag te doen
+Wat {playerName} tegen een eekhoorn zou zeggen
+De slechtste naam voor een koe
+De beroemde taart van {playerName} is gemaakt met...
+Iets wat nooit onzichtbaar mag worden
+Welke hoed {playerName} zou zijn
+Waarover walvissen zingen
+Het beste examenadvies van {playerName}
+Het slechtste huisdier voor een ridder
+Wat {playerName} zou doen als de schaduw wegliep
+Een slechte naam voor een augurkenmerk
+De rol van {playerName} op een piratenschip
+Het ergste om op vakantie kwijt te raken
+Hoe {playerName} een maan zou noemen
+Het vreemdste beroep ter wereld
+Het geluid dat {playerName} maakt als die blij is
+Wat je knuffels 's nachts doen
+Wat {playerName} als circusdirecteur zou doen
+Een slechte naam voor een bioscoop
+De volgende obsessie van {playerName}
+Het ergste om per ongeluk in de soep te laten vallen
+Welk weertype {playerName} zou zijn
+Een raar ding om in een pompoen te vinden
+De perfecte vrijdagavond van {playerName}
+Het slechtste bordje op een camping
+Hoe {playerName} een schildpad zou noemen
+Iets wat je nooit in een kasteel zult vinden
+Het grootste supermarktavontuur van {playerName}
+Waar een ezel van droomt
+Wat {playerName} meeneemt voor nieuwe buren
+Het ergste wat een vreemde in de trein kan zeggen
+De bedtijdsnack van {playerName}
+Een slechte naam voor een glijbaan
+Wat {playerName} als kapitein van een onderzeeër zou doen
+De slechtste outfit voor een wandeltocht
+Het favoriete gekke woord van {playerName}
+Iets wat oma tegen een robot zou zeggen
+Welke dinosaurus {playerName} zou zijn
+Het slechtste speeltje in een kindermenu
+De beste truc van {playerName} om wakker te blijven
+Een vreselijke manier om een brief af te sluiten
+Hoe {playerName} een hommel zou noemen
+Waarom de zee zo zout is
+De manier waarop {playerName} gedag zegt
+Het slechtste excuus van een pizzabezorger
+Wat {playerName} als heerser van de oceaan zou doen
+Een slechte naam voor een koekje
+De ideale verjaardagstaart van {playerName}
+Iets wat je niet wilt vangen tijdens het vissen
+Wat {playerName} meeneemt naar de maan
+De slechtste naam voor een wolk
+De grootste wens van {playerName} voor volgend jaar
+Waarom een koala altijd zo slaperig is
+Welk monster onder het bed {playerName} zou zijn
+Het ergste om te horen op een tokkelbaan
+De beste afstandsbedieningsvaardigheid van {playerName}
+De slechtste manier om gedag te zeggen
+Hoe {playerName} een tuin zou noemen
+Een afgekeurde naam voor een dinosaurus
+Het verborgen dierentalent van {playerName}
+Het ergste om in een luchtballon te doen
+Wat {playerName} als ninja zou doen
+Iets wat je nooit als hoed moet gebruiken
+Het volgende kapsel van {playerName}
+De slechtste naam voor een cavia
+Welke nieuwe wet {playerName} zou maken
+Een slechte slogan voor een parapluwinkel
+Het leukste wat {playerName} in een broekzak kan vinden
+Wat een vulkaan doet om te ontspannen
+Hoe {playerName} een luchtballon zou noemen
+Een vreselijke naam voor een fanfare
+De toptip van {playerName} voor een lange vlucht
+Het ergste wat een dierenverzorger kan zeggen
+Welke snack {playerName} zou zijn
+Iets wat een spook op zijn boodschappenlijst zet
+Het geheime fietstalent van {playerName}
+Het slechtste weer voor een picknick
+Wat {playerName} als stadsduif zou doen
+Een slechte naam voor een huisdierensteen
+Het antwoord van {playerName} op alles
+Wat een meeuw zou stelen als hij alles mocht
+Hoe {playerName} een vuurtoren zou noemen
+De slechtste mededeling in een vliegtuig
+Het beroemde gezicht van {playerName} bij het eten van een citroen
+Een afgekeurde nieuwe kleur van de regenboog
+Wat {playerName} meeneemt naar een koninklijke bruiloft
+Het slechtste beleg voor pannenkoeken
+De favoriete eetplek van {playerName}
+Iets wat een schaap zegt bij een sollicitatie
+Wat {playerName} als cowboy zou doen
+Een vreselijke tekst op een beker
+Het meest gedraaide nummer van {playerName}
+Wat een beer de hele winter echt doet
+Welke soep {playerName} zou zijn
+Een slechte naam voor een jamsmaak
+De perfecte herfstdag van {playerName}
+Het ergste geluid dat een auto kan maken
+Hoe {playerName} een haai zou noemen
+Een slechte naam voor een vissersboot
+Het volgende goede voornemen van {playerName}
+De slechtste bouwhandleiding voor een kast
+Wat {playerName} als eigenaar van een snoepwinkel zou doen
+Waarom een flamingo op één poot staat
+De beste move van {playerName} in een kussengevecht
+Het ergste wat een zwemleraar kan zeggen
+Welke sticker {playerName} zou zijn
+Een raar ding in een sneeuwbol
+De favoriete truc van {playerName}
+Het slechtste in de snoepautomaat op school
+Wat {playerName} zou doen als eigenaar van een spookhotel
+Een vreselijke naam voor een draaimolenpaard
+Het geheime strandtalent van {playerName}
+Iets wat niemand wil op zijn verjaardag
+Hoe {playerName} een zwerfkat zou noemen
+Het ergste om tegen een mime te zeggen
+Wat {playerName} altijd leent en nooit teruggeeft
+Wat een giraf ziet wat wij niet zien
+Welke spelregel {playerName} zou zijn
+De slechtste naam voor een taart
+De prijs die {playerName} zou winnen voor "Grootste kans om..."
+Een slechte reden om naar de maan te verhuizen
+Wat {playerName} als klaar-over zou doen
+Het lelijkste cadeaupapier
+Hoeveel lagen het droombroodje van {playerName} heeft
+Iets wat je niet moet proberen op te zuigen
+Hoe {playerName} een egel zou noemen
+Het ergste wat een astronaut kan zeggen
+De klacht van {playerName} bij de klantenservice van het heelal
+Wat de kat van de buren van jou vindt
+Wat {playerName} op een deurmat zou zetten
+Het slechtste schoollied
+Het antwoord van {playerName} op "Zijn we er al?"
+Een vreselijke naam voor een nieuwe feestdag
+Wat {playerName} zou doen als de sokken konden praten
+Iets waar een wolk zich voor schaamt
+Het grootste gevecht van {playerName} met een snoepautomaat
+De slechtste regel van een boomhutclub
+Hoe {playerName} een nieuwe chipssmaak zou noemen
+Het slechtste om op de fiets te vervoeren
+Het geheime plan van {playerName} voor wereldvrede
+Een afgekeurde naam voor een hagelslagsmaak
+Wat {playerName} met een huispinguïn zou doen
+Wat een reiger de hele dag bij de sloot denkt
+De vaste buffetmove van {playerName}
+De slechtste plek om een frietkraam te openen
+Hoe {playerName} een helikopter zou noemen
+Een slechte naam voor een windmolen
+Wat {playerName} het liefst doet als het regent
+Een slechte naam voor een stroopwafelkraam
+Wat {playerName} als professionele zandkastelenbouwer zou doen
+Het ergste om te horen op de schaatsbaan
+De recensie van {playerName} over vandaag, in sterren
+Wat een fiets in de gracht denkt
+Wat {playerName} meeneemt naar een verkleedfeest
+Een vreselijke naam voor een caravan
+Levensregel nummer één van {playerName}
+Het raarste wat je bij de bakker kunt bestellen
+Wat {playerName} als stem van de navigatie zou zeggen
