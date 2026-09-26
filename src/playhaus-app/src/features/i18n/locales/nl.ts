@@ -1410,16 +1410,16 @@ export const nl: Catalog = {
     fakeFiller: {
         index: {
             description: 'Verzin een nep-antwoord dat echt klinkt. De rest moet raden welke waar is. Iedereen speelt op zijn eigen telefoon.',
-            facts: {
-                title: 'Nepfeiten',
-                description: 'Een echt feit met een gat erin. Vul het gat met iets geloofwaardigs.',
-                action: 'Open een kamer'
-            },
-            definitions: {
-                title: 'Nepbetekenissen',
-                description: 'Een zeldzaam woord dat niemand kent. Verzin wat het betekent en misleid de rest.',
-                action: 'Open een kamer'
-            }
+        facts: {
+            title: 'Feitje',
+            description: 'Vul de ontbrekende woorden in.',
+            action: 'Open een kamer'
+        },
+        definitions: {
+            title: 'Woord',
+            description: 'Bedenk een betekenis voor een woord.',
+            action: 'Open een kamer'
+        }
         },
         lobby: {
             loading: 'Zoeken naar je kamer…',

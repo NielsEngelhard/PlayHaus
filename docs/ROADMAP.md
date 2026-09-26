@@ -11,8 +11,6 @@
 
 
 # Voor v1
-- alle quizes genereren
-- Refactor fake filler
 - nieuwe game Witty Wars
 - Design revamp one of us game (momenteel nog steeds lelijk in vergelijking met de andere games)
 - League of letters tournament mode testen
