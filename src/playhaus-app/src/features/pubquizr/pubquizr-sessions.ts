@@ -1,4 +1,5 @@
 import { request } from "@/api/client"
+import { boolParam, toBoolParam } from "@/utils/search-params"
 
 // A quiz being played, as the API keeps it.
 
@@ -91,6 +92,23 @@ export interface QuizSession {
 export interface QuizModes {
     zenMode: boolean
     triviaMode: boolean
+}
+
+// The same toggles as query params, which is how "play again" carries them from the finished evening back to the setup.
+export type QuizModesParams = Record<keyof QuizModes, string>
+
+export function quizModesToParams(modes: QuizModes): QuizModesParams {
+    return { zenMode: toBoolParam(modes.zenMode), triviaMode: toBoolParam(modes.triviaMode) }
+}
+
+// All or nothing, and trivia wins a clash the way the form's own switches settle it.
+export function quizModesFromParams(params: Partial<Record<keyof QuizModes, string | string[]>>): QuizModes | null {
+    const zenMode = boolParam(params.zenMode)
+    const triviaMode = boolParam(params.triviaMode)
+
+    if (zenMode === undefined || triviaMode === undefined) return null
+
+    return { zenMode: zenMode && !triviaMode, triviaMode }
 }
 
 // Opens a game for one table sharing one phone.

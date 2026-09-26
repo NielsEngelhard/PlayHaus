@@ -25,7 +25,9 @@ import { quizErrorMessage } from "@/features/pubquizr/pubquizr-errors";
 import {
     abandonSingleDeviceSessionRequest,
     getCurrentSingleDeviceSessionRequest,
+    quizModesFromParams,
     startSingleDeviceQuizRequest,
+    type QuizModesParams,
     type QuizSession
 } from "@/features/pubquizr/pubquizr-sessions";
 import { readTable, writeTable } from "@/features/pubquizr/table-store";
@@ -57,7 +59,9 @@ export default function OneDeviceQuizerSetup() {
 
     const router = useRouter();
 
-    const { quizId } = useLocalSearchParams<{ quizId?: string }>();
+    const { quizId, ...params } = useLocalSearchParams<{ quizId?: string } & Partial<QuizModesParams>>();
+    // Set when "play again" brought the last evening's modes along.
+    const carried = quizModesFromParams(params);
     const selected = useSelectedQuiz(quizId);
 
     const { status } = useAuth();
@@ -68,8 +72,8 @@ export default function OneDeviceQuizerSetup() {
     const [names, setNames] = useState<string[]>(EMPTY_TABLE);
     const [starting, setStarting] = useState(false);
     const [error, setError] = useState<TranslationKey | null>(null);
-    const [zenMode, setZenMode] = useState(false);
-    const [triviaMode, setTriviaMode] = useState(false);
+    const [zenMode, setZenMode] = useState(carried?.zenMode ?? false);
+    const [triviaMode, setTriviaMode] = useState(carried?.triviaMode ?? false);
     const [checked, setChecked] = useState(false);
     const [running, setRunning] = useState<QuizSession | null>(null);
     const [abandoning, setAbandoning] = useState(false);

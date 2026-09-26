@@ -7,6 +7,7 @@ import { ROUTES } from "@/constants/routes";
 import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/features/auth/useAuth";
 import PlayingGame from "@/features/league-of-letters/components/PlayingGame";
+import { soloSettingsFromParams, soloSettingsToParams, type SoloSettingsParams } from "@/features/league-of-letters/solo-settings";
 import { useGame } from "@/features/league-of-letters/useGame";
 import { useTheme } from "@/features/theme/ThemeContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
@@ -24,7 +25,8 @@ export default function LeagueOfLettersSoloPage() {
     const router = useRouter();
     const t = useT();
     const { user } = useAuth();
-    const { gameId } = useLocalSearchParams<{ gameId: string }>();
+    const { gameId, ...params } = useLocalSearchParams<{ gameId: string } & Partial<SoloSettingsParams>>();
+    const settings = soloSettingsFromParams(params);
     const { game, round, loading, error, reload, guess, nextRound } = useGame(gameId);
 
     if (loading) {
@@ -63,7 +65,8 @@ export default function LeagueOfLettersSoloPage() {
                 onNextRound={nextRound}
                 onFinish={() => router.replace({
                     pathname: ROUTES.leagueOfLettersSoloResults,
-                    params: { gameId: game.id }
+                    // Passed on so the results' "play again" can reopen the setup on them.
+                    params: { gameId: game.id, ...(settings === null ? {} : soloSettingsToParams(settings)) }
                 })}
             />
         )
