@@ -134,28 +134,29 @@ func run() error {
 	go authService.SweepExpired(ctx, time.Hour, logger)
 	go lolService.SweepStale(ctx, lol.SweepConfig{
 		SoloGameAge: 72 * time.Hour,
-		LobbyAge:    time.Hour,
+		LobbyAge:    15 * time.Minute,
+		GameAge:     time.Hour,
 		// A bracket of twelve outlives the rooms of the matches it has already played.
 		TournamentAge: 12 * time.Hour,
 	}, 5*time.Minute, logger)
 	// Pre-warms today's and tomorrow's word of the day. The read path picks one
 	// lazily too, so a missed tick is never player-visible.
 	go lolService.RunDaily(ctx, cfg.DailyResetLocation, logger)
-	go pubquizrService.SweepStaleSessions(ctx, 72*time.Hour, time.Hour, logger)
-	go pubquizrService.SweepStaleLobbies(ctx, time.Hour, 5*time.Minute, logger)
+	go pubquizrService.SweepStaleSessions(ctx, 24*time.Hour, time.Hour, logger)
+	go pubquizrService.SweepStaleLobbies(ctx, 15*time.Minute, 5*time.Minute, logger)
 	go oneOfUsService.SweepStaleGames(ctx, 12*time.Hour, time.Hour, logger)
 	go oneOfUsService.SweepStaleMultiDevice(ctx, oneofus.SweepConfig{
-		LobbyAge: time.Hour,
+		LobbyAge: 15 * time.Minute,
 		GameAge:  12 * time.Hour,
 	}, 5*time.Minute, logger)
-	// An invite outlives nothing: the lobby it points at is swept after an hour.
+	// An invite outlives nothing: the lobby it points at is swept after 15 minutes.
 	go friendService.SweepExpired(ctx, 15*time.Minute, logger)
 	go fakeFillerService.SweepStale(ctx, fakefiller.SweepConfig{
-		LobbyAge: time.Hour,
+		LobbyAge: 15 * time.Minute,
 		GameAge:  12 * time.Hour,
 	}, 5*time.Minute, logger)
 	go wittyWarsService.SweepStale(ctx, wittywars.SweepConfig{
-		LobbyAge: time.Hour,
+		LobbyAge: 15 * time.Minute,
 		GameAge:  12 * time.Hour,
 	}, 5*time.Minute, logger)
 

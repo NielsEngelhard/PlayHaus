@@ -24,8 +24,8 @@ const (
 	InviteSeen    InviteStatus = "seen"
 )
 
-// InviteTTL is how long an invite is worth showing. A lobby is swept after an hour, so an invite outliving one is an invite into nothing.
-const InviteTTL = time.Hour
+// InviteTTL is how long an invite is worth showing. A lobby is swept after 15 minutes, so an invite outliving one is an invite into nothing.
+const InviteTTL = 15 * time.Minute
 
 // Invite is somebody being asked into a room they can already reach -- it carries no permission, only the code and who sent it.
 type Invite struct {

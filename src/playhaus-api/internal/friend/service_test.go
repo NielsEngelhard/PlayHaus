@@ -168,7 +168,7 @@ func TestAnInviteWaitsForSomebodyWhoWasNotListening(t *testing.T) {
 	}
 }
 
-// An invite outlives nothing: the room it points at is swept after an hour.
+// An invite outlives nothing: the room it points at is swept after 15 minutes.
 func TestAnExpiredInviteIsNotPending(t *testing.T) {
 	svc, db := newTestService(t)
 	ctx := context.Background()
