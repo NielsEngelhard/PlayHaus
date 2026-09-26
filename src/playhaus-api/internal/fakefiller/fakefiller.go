@@ -17,21 +17,22 @@ import (
 type FFGameMode string
 
 const (
-	GameModeFacts    FFGameMode = "facts"
-	GameModeCreative FFGameMode = "creative"
+	GameModeFacts FFGameMode = "facts"
+	// GameModeDefinitions deals a rare word, and the fake is a made-up meaning for it.
+	GameModeDefinitions FFGameMode = "definitions"
 )
 
 func (m FFGameMode) Valid() bool {
 	switch m {
-	case GameModeFacts, GameModeCreative:
+	case GameModeFacts, GameModeDefinitions:
 		return true
 	default:
 		return false
 	}
 }
 
-// HasTruth reports whether a round in this mode carries a real answer among its options.
-func (m FFGameMode) HasTruth() bool { return m == GameModeFacts }
+// HasTruth reports whether a round in this mode carries a real answer among its options; false only for a retired mode still on an old row.
+func (m FFGameMode) HasTruth() bool { return m.Valid() }
 
 // LobbyStatus is the same two-state life a League of Letters room has: open, then spent.
 type LobbyStatus string

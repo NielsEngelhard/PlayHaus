@@ -1,4 +1,4 @@
-import { abandonFFLobby, getCurrentFFLobby, type FFLobby } from "@/api/calls/fake-filler-lobby";
+import { abandonFFLobby, getCurrentFFLobby, isFFGameMode, type FFGameMode, type FFLobby } from "@/api/calls/fake-filler-lobby";
 import LoadingPage from "@/components/layout/LoadingPage";
 import AppText from "@/components/text/AppText";
 import PopupModal from "@/components/ui/PopupModal";
@@ -12,7 +12,7 @@ import { settleFFGiveBacks, useLobby } from "@/features/fake-filler/useLobby";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
-import { RelativePathString, useRouter } from "expo-router";
+import { RelativePathString, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 
@@ -23,6 +23,10 @@ export default function FakeFillerCreateRoomPage() {
     const t = useT();
 
     const { status } = useAuth();
+
+    // The mode card the host came in through; anything else opens on the server's default.
+    const { mode } = useLocalSearchParams<{ mode?: string }>();
+    const gameMode = isFFGameMode(mode) ? mode : undefined;
 
     /** False until the server has said whether there is already a room. */
     const [checked, setChecked] = useState(false);
@@ -153,15 +157,15 @@ export default function FakeFillerCreateRoomPage() {
         )
     }
 
-    return <OpenRoom />;
+    return <OpenRoom gameMode={gameMode} />;
 }
 
 // The room itself.
-function OpenRoom() {
+function OpenRoom({ gameMode }: { gameMode?: FFGameMode }) {
     const router = useRouter();
 
     // No code: this player is opening a room rather than joining one, which makes them its host.
-    const state = useLobby();
+    const state = useLobby(undefined, gameMode);
 
     return (
         <LobbyView

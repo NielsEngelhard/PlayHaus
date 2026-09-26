@@ -28,7 +28,7 @@ type LobbySettings struct {
 func (in LobbySettings) validate() map[string]string {
 	problems := map[string]string{}
 	if !in.GameMode.Valid() {
-		problems["gameMode"] = fmt.Sprintf("must be %q or %q", GameModeFacts, GameModeCreative)
+		problems["gameMode"] = fmt.Sprintf("must be %q or %q", GameModeFacts, GameModeDefinitions)
 	}
 	if !ValidAnswersPerPlayer(in.AnswersPerPlayer) {
 		problems["answersPerPlayer"] = fmt.Sprintf("must be between %d and %d", MinAnswersPerPlayer, MaxAnswersPerPlayer)
@@ -46,7 +46,7 @@ func (in LobbySettings) normalised() LobbySettings {
 	return in
 }
 
-// DefaultGameMode is what a room plays until its host says otherwise. facts rather than creative because it is the mode with a right answer.
+// DefaultGameMode is what a room plays until its host says otherwise.
 const DefaultGameMode = GameModeFacts
 
 // answersPerPlayer falls back to the default, so a row written before the setting existed still deals a game.
@@ -174,9 +174,9 @@ func (s *Service) SweepStale(ctx context.Context, cfg SweepConfig, every time.Du
 	}
 }
 
-// CreateLobby opens a room and puts the caller in it as the host.
-func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.Locale) (*FFLobby, error) {
-	return s.openLobby(ctx, ownerID, locale, DefaultGameMode, DefaultAnswersPerPlayer)
+// CreateLobby opens a room on a mode and puts the caller in it as the host; an empty mode is the default.
+func (s *Service) CreateLobby(ctx context.Context, ownerID string, locale i18n.Locale, mode FFGameMode) (*FFLobby, error) {
+	return s.openLobby(ctx, ownerID, locale, mode, DefaultAnswersPerPlayer)
 }
 
 // openLobby is the room itself: a free code, a host in seat nought, and a mode to sit at until somebody moves it.

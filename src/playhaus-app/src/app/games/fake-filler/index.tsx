@@ -2,7 +2,7 @@ import GameIndexPage from "@/components/layout/GameIndexPage";
 import ModeCard from "@/components/ui/ModeCard";
 import { FAKE_FILLER } from "@/constants/games";
 import { ROUTES } from "@/constants/routes";
-import { Brand, Spacing } from "@/constants/theme";
+import { Brand, Gradients, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import JoinCodeCard from "@/features/join/components/JoinCodeCard";
 import PlayingAsCard from "@/features/league-of-letters/components/PlayingAsCard";
@@ -25,19 +25,30 @@ export default function FakeFillerIndexPage() {
             deviceMode={FAKE_FILLER.deviceMode}
             durationInMinutes={FAKE_FILLER.minutesAverage}
         >
-            {/* The first child is the row the band is cut around, so it has to be the mode cards even when there is only one. */}
+            {/* The first child is the row the band is cut around, so it has to be the mode cards. */}
             <View style={styles.modes}>
                 <ModeCard
                     solid
-                    icon='users'
+                    icon='book-open'
                     gradient={FAKE_FILLER.gradient}
                     iconInk={Brand.ink}
                     highlight={0.5}
-                    title={t('fakeFiller.index.multiplayer.title')}
-                    chip={FAKE_FILLER.minMaxPlayersIndicator}
-                    description={t('fakeFiller.index.multiplayer.description')}
-                    action={t('fakeFiller.index.multiplayer.action')}
-                    navigationUrl={ROUTES.fakeFillerCreateRoom}
+                    title={t('fakeFiller.index.facts.title')}
+                    description={t('fakeFiller.index.facts.description')}
+                    action={t('fakeFiller.index.facts.action')}
+                    navigationUrl={{ pathname: ROUTES.fakeFillerCreateRoom, params: { mode: 'facts' } }}
+                />
+
+                <ModeCard
+                    solid
+                    icon='type'
+                    gradient={Gradients.violet}
+                    iconInk={Brand.ink}
+                    highlight={0.35}
+                    title={t('fakeFiller.index.definitions.title')}
+                    description={t('fakeFiller.index.definitions.description')}
+                    action={t('fakeFiller.index.definitions.action')}
+                    navigationUrl={{ pathname: ROUTES.fakeFillerCreateRoom, params: { mode: 'definitions' } }}
                 />
             </View>
 

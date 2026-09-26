@@ -1,4 +1,4 @@
-import type { FFGameMode, FFLobbySettings } from "@/api/calls/fake-filler-lobby";
+import { FF_GAME_MODES, type FFGameMode, type FFLobbySettings } from "@/api/calls/fake-filler-lobby";
 import LanguageSelect from "@/components/ui/LanguageSelect";
 import SectionCard from "@/components/ui/SectionCard";
 import { SettingSegment } from "@/components/ui/SettingRows";
@@ -11,9 +11,6 @@ interface Props {
     onChange: (settings: FFLobbySettings) => void
 }
 
-/** In the order they are offered. `facts` is the server's default, so it leads. */
-const MODES: readonly FFGameMode[] = ['facts', 'creative'];
-
 // Every count the server will take, which is a handful of buttons rather than a stepper.
 const countsBetween = (min: number, max: number): number[] => (
     Array.from({ length: Math.max(max - min + 1, 1) }, (_, index) => min + index)
@@ -24,19 +21,19 @@ export default function LobbySettingsCard({ maxAnswersPerPlayer, minAnswersPerPl
     const t = useT();
 
     const modeLabel = (mode: FFGameMode) => (
-        mode === 'facts' ? t('fakeFiller.lobby.modeFacts') : t('fakeFiller.lobby.modeCreative')
+        mode === 'facts' ? t('fakeFiller.lobby.modeFacts') : t('fakeFiller.lobby.modeDefinitions')
     );
 
     return (
         <SectionCard title={t('fakeFiller.lobby.settingsTitle')}>
             <SettingSegment
                 label={t('fakeFiller.lobby.mode')}
-                options={MODES}
+                options={FF_GAME_MODES}
                 value={settings.gameMode}
                 getLabel={modeLabel}
                 hint={settings.gameMode === 'facts'
                     ? t('fakeFiller.lobby.modeFactsHint')
-                    : t('fakeFiller.lobby.modeCreativeHint')}
+                    : t('fakeFiller.lobby.modeDefinitionsHint')}
                 onChange={gameMode => onChange({ ...settings, gameMode })}
             />
 

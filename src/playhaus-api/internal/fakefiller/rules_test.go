@@ -3,7 +3,21 @@ package fakefiller
 import "testing"
 
 // allModes is every mode a table can be dealt, so a rule can be asserted over both of them.
-var allModes = []FFGameMode{GameModeFacts, GameModeCreative}
+var allModes = []FFGameMode{GameModeFacts, GameModeDefinitions}
+
+// retiredMode is the old truthless mode, still on rows written before it was dropped, so the truthless rules keep their tests.
+const retiredMode FFGameMode = "creative"
+
+func TestEveryModeATableCanPickHasATruth(t *testing.T) {
+	for _, mode := range allModes {
+		if !mode.HasTruth() {
+			t.Errorf("%s has no truth", mode)
+		}
+	}
+	if retiredMode.Valid() || retiredMode.HasTruth() {
+		t.Error("the retired mode is still offered, or still has a truth")
+	}
+}
 
 // Where a prompt takes two writers, a game has exactly as many rounds as it has players,
 // which falls out of every player writing twice.
@@ -20,15 +34,17 @@ func TestAGameHasAsManyRoundsAsPlayers(t *testing.T) {
 	}
 }
 
-// The mode with a truth is shown one fake beside the real answer at every table size, so every
+// A mode with a truth is shown one fake beside the real answer at every table size, so every
 // prompt takes one writer and the game deals twice as many of them.
-func TestTheModeWithATruthDealsAPromptPerAnswer(t *testing.T) {
-	for players := MinLobbyPlayers; players <= MaxLobbyPlayers; players++ {
-		if got := AuthorsPerRound(GameModeFacts, players); got != 1 {
-			t.Errorf("AuthorsPerRound(facts, %d) = %d, want 1", players, got)
-		}
-		if got := RoundsFor(GameModeFacts, players, DefaultAnswersPerPlayer); got != players*DefaultAnswersPerPlayer {
-			t.Errorf("RoundsFor(facts, %d, DefaultAnswersPerPlayer) = %d, want %d", players, got, players*DefaultAnswersPerPlayer)
+func TestTheModesWithATruthDealAPromptPerAnswer(t *testing.T) {
+	for _, mode := range allModes {
+		for players := MinLobbyPlayers; players <= MaxLobbyPlayers; players++ {
+			if got := AuthorsPerRound(mode, players); got != 1 {
+				t.Errorf("AuthorsPerRound(%s, %d) = %d, want 1", mode, players, got)
+			}
+			if got := RoundsFor(mode, players, DefaultAnswersPerPlayer); got != players*DefaultAnswersPerPlayer {
+				t.Errorf("RoundsFor(%s, %d, DefaultAnswersPerPlayer) = %d, want %d", mode, players, got, players*DefaultAnswersPerPlayer)
+			}
 		}
 	}
 }
@@ -36,7 +52,7 @@ func TestTheModeWithATruthDealsAPromptPerAnswer(t *testing.T) {
 // A mode with no truth to pad the line-up always takes two writers, however small the table.
 func TestTheModeWithoutATruthAlwaysDealsTwoFakes(t *testing.T) {
 	for players := MinPlayersWithoutTruth; players <= MaxLobbyPlayers; players++ {
-		if got := AuthorsPerRound(GameModeCreative, players); got != 2 {
+		if got := AuthorsPerRound(retiredMode, players); got != 2 {
 			t.Errorf("AuthorsPerRound(creative, %d) = %d, want 2", players, got)
 		}
 	}
@@ -161,7 +177,7 @@ func TestOptionsPerRoundCountsTheTruthOnlyWhereThereIsOne(t *testing.T) {
 	if got := OptionsPerRound(GameModeFacts, 5); got != 2 {
 		t.Errorf("OptionsPerRound(facts, 5) = %d, want 2", got)
 	}
-	if got := OptionsPerRound(GameModeCreative, 3); got != 2 {
+	if got := OptionsPerRound(retiredMode, 3); got != 2 {
 		t.Errorf("OptionsPerRound(creative, 3) = %d, want 2", got)
 	}
 }
@@ -179,11 +195,13 @@ func TestAnswersForIsTwoPerPlayer(t *testing.T) {
 
 // A mode with no truth in the line-up cannot be played by two: the one fake written would be
 // the only thing on offer.
-func TestOnlyTheModeWithATruthCanBePlayedByTwo(t *testing.T) {
-	if got := MinPlayersFor(GameModeFacts); got != MinLobbyPlayers {
-		t.Errorf("MinPlayersFor(facts) = %d, want %d", got, MinLobbyPlayers)
+func TestOnlyTheModesWithATruthCanBePlayedByTwo(t *testing.T) {
+	for _, mode := range allModes {
+		if got := MinPlayersFor(mode); got != MinLobbyPlayers {
+			t.Errorf("MinPlayersFor(%s) = %d, want %d", mode, got, MinLobbyPlayers)
+		}
 	}
-	if got := MinPlayersFor(GameModeCreative); got != MinPlayersWithoutTruth {
+	if got := MinPlayersFor(retiredMode); got != MinPlayersWithoutTruth {
 		t.Errorf("MinPlayersFor(creative) = %d, want %d", got, MinPlayersWithoutTruth)
 	}
 }
@@ -213,15 +231,15 @@ func TestFindingTheTruthPaysTheVoterAndBeingPickedPaysTheAuthor(t *testing.T) {
 	}
 }
 
-// creative has no truth, so there is nothing to find and nothing to pay for finding it.
+// The retired mode has no truth, so there is nothing to find and nothing to pay for finding it.
 // The only points in that mode are for being picked.
-func TestCreativeModePaysNothingForTheTruth(t *testing.T) {
-	guesser, author := ScoreVote(GameModeCreative, TruthAuthorID)
+func TestTheRetiredModePaysNothingForTheTruth(t *testing.T) {
+	guesser, author := ScoreVote(retiredMode, TruthAuthorID)
 	if guesser != 0 || author != 0 {
 		t.Errorf("ScoreVote(creative, truth) = (%d, %d), want (0, 0)", guesser, author)
 	}
 
-	guesser, author = ScoreVote(GameModeCreative, "player-1")
+	guesser, author = ScoreVote(retiredMode, "player-1")
 	if guesser != 0 || author != FooledPoints {
 		t.Errorf("ScoreVote(creative, fake) = (%d, %d), want (0, %d)", guesser, author, FooledPoints)
 	}

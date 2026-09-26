@@ -101,10 +101,13 @@ function PromptStage({ game, round, busy, onSubmit }: StageProps) {
                     fills={round.answered ? (round.myFills ?? fills) : fills}
                     editable={!round.answered}
                     onChangeFill={change}
-                    placeholder={t('fakeFiller.play.writing.blankPlaceholder')}
+                    placeholder={game.gameMode === 'definitions'
+                        ? t('fakeFiller.play.writing.definitionPlaceholder')
+                        : t('fakeFiller.play.writing.blankPlaceholder')}
                     blankLabel={position => t('fakeFiller.play.writing.blank', { index: position })}
                     disabled={busy}
                     size={size}
+                    wide={game.gameMode === 'definitions'}
                 />
             </SlideFadeIn>
 

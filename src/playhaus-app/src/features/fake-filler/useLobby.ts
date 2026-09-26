@@ -7,6 +7,7 @@ import {
     rematchFFLobby,
     startFFLobby,
     updateFFLobbySettings,
+    type FFGameMode,
     type FFLobby,
     type FFLobbySettings
 } from '@/api/calls/fake-filler-lobby';
@@ -60,7 +61,7 @@ export interface FFLobbyState {
     updateSettings: (settings: FFLobbySettings) => void
 }
 
-export function useLobby(code?: string): FFLobbyState {
+export function useLobby(code?: string, gameMode?: FFGameMode): FFLobbyState {
     const { user, status } = useAuth();
     const [lobby, setLobby] = useState<FFLobby | null>(null);
     const [error, setError] = useState<TranslationKey | null>(null);
@@ -128,7 +129,7 @@ export function useLobby(code?: string): FFLobbyState {
 
         try {
             const opened = code === undefined
-                ? await createFFLobby(locale.current)
+                ? await createFFLobby(locale.current, gameMode)
                 : await joinFFLobby(code);
 
             if (held.current === null) {
@@ -158,7 +159,7 @@ export function useLobby(code?: string): FFLobbyState {
 
             setError(ffLobbyErrorMessage(failure));
         }
-    }, [signedIn, userId, code, letGo]);
+    }, [signedIn, userId, code, gameMode, letGo]);
 
     useEffect(() => {
         if (!signedIn) return;

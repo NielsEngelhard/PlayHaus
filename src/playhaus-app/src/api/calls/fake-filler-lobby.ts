@@ -3,8 +3,15 @@ import type { LanguageCode } from '@/constants/languages';
 
 // The waiting room a Fake Filler game is set up in.
 
-// Which pile of prompts the room is playing out of, which decides whether there is a truth to find at all.
-export type FFGameMode = 'facts' | 'creative';
+// Which pile of prompts the room is playing out of: a fact with a hole in it, or a rare word to invent a meaning for.
+export type FFGameMode = 'facts' | 'definitions';
+
+// In the order they are offered. `facts` is the server's default, so it leads.
+export const FF_GAME_MODES: readonly FFGameMode[] = ['facts', 'definitions'];
+
+export function isFFGameMode(value: unknown): value is FFGameMode {
+    return FF_GAME_MODES.some(mode => mode === value);
+}
 
 export type FFLobbyStatus = 'waiting' | 'started';
 
@@ -55,10 +62,10 @@ export class FFLobbyFullError extends Error {
 
 const lobbyPath = (code: string) => `/api/v1/fake-filler/lobby/${encodeURIComponent(code)}`;
 
-export async function createFFLobby(locale?: LanguageCode): Promise<FFLobby> {
+export async function createFFLobby(locale?: LanguageCode, gameMode?: FFGameMode): Promise<FFLobby> {
     return request<FFLobby>('/api/v1/fake-filler/lobby', {
         method: 'POST',
-        body: JSON.stringify({ locale })
+        body: JSON.stringify({ gameMode, locale })
     });
 }
 
