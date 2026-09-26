@@ -13,14 +13,13 @@ export const nl: Catalog = {
         host: 'Host',
         yourTurn: 'AAN ZET',
         and: 'en',
-        // De twee woorden waarmee een `Toggle` zichzelf stempelt.
         on: 'AAN',
         off: 'UIT',
-        loading: 'Even geduld…',
+        loading: 'Laden…',
         language: 'Taal',
         selectValue: '{{label}}: {{value}}',
         nothingSelected: 'niets gekozen',
-        change: 'verander',
+        change: 'wijzig',
         minutes: 'min',
         start: 'Start',
         next: 'Verder',
@@ -42,12 +41,12 @@ export const nl: Catalog = {
                 fri: 'vr', sat: 'za', sun: 'zo'
             }
         },
-      player: {
-            players: "Spelers",
-            add: "Toevoegen",
-            remove: "Verwijder",
-            namePlaceholder: "Naam",
-            seated: "{{players}} spelers"
+        player: {
+            players: 'Spelers',
+            add: 'Toevoegen',
+            remove: 'Verwijder',
+            namePlaceholder: 'Naam',
+            seated: '{{players}} spelers'
         }
     },
     nav: {
@@ -57,23 +56,23 @@ export const nl: Catalog = {
         profile: 'Profiel'
     },
     chrome: {
-        toDarkMode: 'Schakel over naar donkere modus',
-        toLightMode: 'Schakel over naar lichte modus',
-        muteSound: 'Zet al het geluid uit',
-        unmuteSound: 'Zet het geluid aan',
-        signedInAs: 'Ingelogd als {{name}}. Ga naar je profiel.'
+        toDarkMode: 'Donkere modus',
+        toLightMode: 'Lichte modus',
+        muteSound: 'Geluid uit',
+        unmuteSound: 'Geluid aan',
+        signedInAs: 'Ingelogd als {{name}}. Naar je profiel.'
     },
     notFound: {
         title: 'Pagina niet gevonden',
-        message: 'Deze pagina bestaat niet, of is verplaatst.',
-        action: 'Terug naar home'
+        message: 'Deze pagina bestaat niet (meer).',
+        action: 'Naar home'
     },
     home: {
         headline: {
             title: 'Kleine spelletjes,',
             accent: 'groot plezier.'
         },
-        subtitle: 'Partygames voor jou en je vrienden. Kies er eentje en spelen maar!',
+        subtitle: 'Partygames voor jou en je vrienden. Kies er een en spelen maar!',
         stillRunning: {
             label: 'Nog bezig',
             line: '{{title}} · {{mode}} {{time}}'
@@ -84,7 +83,7 @@ export const nl: Catalog = {
             label: 'Lobbycode'
         },
         startNew: 'Alle spellen',
-        bottomTeaser: "Meer spellen in de maak...",
+        bottomTeaser: 'Meer spellen in de maak...'
     },
     games: {
         device: {
@@ -93,20 +92,20 @@ export const nl: Catalog = {
             perPlayerOrOneDevice: 'keuze'
         },
         leagueOfLetters: {
-            description: 'Test je woordenschat. Solo, of tegen je vrienden.',
-            mainCategory: 'Woord raden',
+            description: 'Raad het woord. Solo of tegen je vrienden.',
+            mainCategory: 'Woord raden'
         },
         quizzer: {
-            description: 'Stel je algemene kennis op de proef.',
-            mainCategory: 'Trivia',
+            description: 'Test je algemene kennis.',
+            mainCategory: 'Trivia'
         },
         oneOfUs: {
-            description: 'Ontraadsel wie de bedrieger is.',
-            mainCategory: 'Bluf',
+            description: 'Wie is de bedrieger?',
+            mainCategory: 'Bluf'
         },
         fakeFiller: {
             description: 'Verzin een fout antwoord.',
-            mainCategory: 'Misleiding',
+            mainCategory: 'Misleiding'
         },
         wittyWars: {
             description: 'Wees grappiger dan de rest.',
@@ -115,20 +114,17 @@ export const nl: Catalog = {
         newBadge: 'Nieuw',
         wipBadge: 'In de maak'
     },
-    // De joinkaart, die van geen enkel spel in het bijzonder is.
     join: {
         label: 'JOIN EEN GAME',
         paste: 'Plakken',
         pasteLabel: 'Code plakken',
         codeLabel: 'Joincode',
-        // Het chipje naast de vakjes, zodra het eerste teken erin staat.
         gameHint: 'Je joint {{game}}',
-        // Een complete code die niets opent.
-        rejected: 'Dit is geen code die we kunnen openen. Check hem en probeer opnieuw.'
+        rejected: 'Deze code werkt niet. Check hem en probeer opnieuw.'
     },
     languages: {
         nl: { description: 'Spellen in het Nederlands' },
-        en: { description: 'Games in english' }
+        en: { description: 'Games in English' }
     },
     auth: {
         login: {
@@ -138,7 +134,7 @@ export const nl: Catalog = {
             password: 'Wachtwoord',
             passwordPlaceholder: 'Je wachtwoord',
             submit: 'Inloggen',
-            submitting: 'Bezig met inloggen…',
+            submitting: 'Inloggen…',
             signupPrompt: 'Nog geen account? Maak er een aan'
         },
         signup: {
@@ -150,30 +146,30 @@ export const nl: Catalog = {
             password: 'Wachtwoord',
             passwordPlaceholder: 'Kies een wachtwoord',
             submit: 'Account aanmaken',
-            submitting: 'Bezig met aanmaken…',
-            nameNote: 'Dit is de naam die medespelers in een lobby zien. Je kunt hem later aanpassen in je profiel.',
-            invalidEmail: 'Dit lijkt geen e-mailadres te zijn.'
+            submitting: 'Aanmaken…',
+            nameNote: 'Deze naam zien andere spelers in de lobby. Je kunt hem later aanpassen.',
+            invalidEmail: 'Dit is geen geldig e-mailadres.'
         },
         guestLanguage: {
             title: 'Welkom bij Playhaus',
-            description: 'Kies de taal waarin je wilt spelen.',
-            note: 'Hierna kies je een gebruikersnaam, en dat meldt je aan met een gastaccount. Je kan dit account later gratis upgraden naar een normaal account.',
-            login: 'Heb je al een account? Log in'
+            description: 'In welke taal wil je spelen?',
+            note: 'Daarna kies je een naam en speel je als gast. Je kunt later gratis een echt account maken.',
+            login: 'Al een account? Log in'
         },
         guestUsername: {
-            title: 'Kies een gebruikersnaam',
-            description: 'Dit is de naam die medespelers in een lobby zien. Je kunt hem later aanpassen in je profiel.',
-            placeholder: 'Jouw gebruikersnaam',
-            random: 'Willekeurige gebruikersnaam',
+            title: 'Kies een naam',
+            description: 'Deze naam zien andere spelers in de lobby. Je kunt hem later aanpassen.',
+            placeholder: 'Jouw naam',
+            random: 'Willekeurige naam',
             note: 'Min {{min}}, max {{max}} tekens.',
             submit: 'Doorgaan',
-            submitting: 'Bezig met aanmelden…'
+            submitting: 'Aanmelden…'
         },
         errors: {
-            invalidCredentials: 'Dit e-mailadres en wachtwoord horen niet bij een account.',
+            invalidCredentials: 'E-mail of wachtwoord klopt niet.',
             emailInUse: 'Dit e-mailadres is al in gebruik.',
             generic: 'Er ging iets mis. Probeer het opnieuw.',
-            network: 'Geen verbinding met de server. Check je verbinding en probeer het opnieuw.'
+            network: 'Geen verbinding. Check je internet en probeer opnieuw.'
         }
     },
     profile: {
@@ -183,7 +179,7 @@ export const nl: Catalog = {
             label: 'Speelnaam',
             placeholder: 'Jouw naam',
             random: 'Willekeurige naam',
-            note: 'Min {{min}}, max {{max}} tekens. Dit is wat medespelers in een lobby zien.'
+            note: 'Min {{min}}, max {{max}} tekens. Deze naam zien andere spelers in de lobby.'
         },
         avatar: { title: 'Avatarkleur' },
         colors: {
@@ -197,37 +193,37 @@ export const nl: Catalog = {
         settings: {
             title: 'Instellingen',
             sounds: { title: 'Geluid', description: 'Een zacht plopje bij elke tik.' },
-            music: { title: 'Muziek', description: 'Achtergrondmuziek in de lobby en tijdens het spelen.' },
-            vibration: { title: 'Trillen', description: 'Korte haptic feedback op mobiel.' }
+            music: { title: 'Muziek', description: 'Muziek in de lobby en tijdens het spelen.' },
+            vibration: { title: 'Trillen', description: 'Korte trilling bij een tik op je telefoon.' }
         },
         guest: {
             title: 'Gastaccount',
-            message: 'Je speelt als gast. Dit account is tijdelijk: statistieken en progressiegaan verloren wanneer ik ga opruimen. Voeg een e-mailadres en wachtwoord toe om een echt account te maken.',
+            message: 'Je speelt als gast. Gastaccounts worden af en toe opgeruimd, en dan ben je je stats kwijt. Voeg een e-mailadres en wachtwoord toe om je account te houden.',
             action: 'Upgrade (gratis)'
         },
         upgrade: {
             title: 'Houd je account',
-            description: 'Voeg een e-mailadres en een wachtwoord toe en dit account wordt definitief. Je naam, kleur en games blijven precies zoals ze zijn.',
+            description: 'Voeg een e-mailadres en wachtwoord toe. Je naam, kleur en spellen blijven gewoon staan.',
             email: 'E-mail',
             emailPlaceholder: 'jij@voorbeeld.nl',
             password: 'Wachtwoord',
             passwordPlaceholder: 'Kies een wachtwoord',
-            submit: 'Maak het definitief',
-            submitting: 'Bezig met opslaan…',
-            note: 'Vanaf dan log je op elk apparaat in met dit e-mailadres en wachtwoord.',
-            invalidEmail: 'Dit lijkt geen e-mailadres te zijn.',
-            shortPassword: 'Je wachtwoord heeft minstens 8 tekens nodig.'
+            submit: 'Account opslaan',
+            submitting: 'Opslaan…',
+            note: 'Hiermee log je voortaan op elk apparaat in.',
+            invalidEmail: 'Dit is geen geldig e-mailadres.',
+            shortPassword: 'Je wachtwoord moet minstens 8 tekens hebben.'
         },
         logout: 'Uitloggen',
         errors: {
             expired: 'Je sessie is verlopen. Log opnieuw in.',
             generic: 'Er ging iets mis. Probeer het opnieuw.',
-            network: 'Geen verbinding met de server. Check je verbinding en probeer het opnieuw.'
+            network: 'Geen verbinding. Check je internet en probeer opnieuw.'
         }
     },
     reconnect: {
         hero: {
-            title: 'Een spel joinen', accent: 'met een code',
+            title: 'Join een spel', accent: 'met een code',
             resume: { title: 'Ga verder', accent: 'waar je gebleven was' }
         },
         loading: 'Spellen zoeken…',
@@ -235,23 +231,22 @@ export const nl: Catalog = {
         orJoin: 'Of join een spel',
         nothingRunning: 'Niets bezig',
         updated: 'Bijgewerkt {{time}}',
-        resume: 'Verder spelen met {{game}}',
-        refresh: { label: 'Opnieuw naar spellen kijken', action: 'Opnieuw kijken' },
+        resume: 'Verder met {{game}}',
+        refresh: { label: 'Spellen opnieuw ophalen', action: 'Vernieuwen' },
         empty: {
-            title: 'Geen spellen meer bezig',
-            message: 'Alles wat je halverwege laat liggen staat hier weer klaar om verder te spelen.'
+            title: 'Geen spellen bezig',
+            message: 'Spellen die je halverwege laat liggen, vind je hier terug.'
         },
         mode: { solo: 'Solo', lobby: 'Lobby', oneDevice: '1 telefoon', tournament: 'Toernooi' },
         errors: {
             expired: 'Je sessie is verlopen. Log opnieuw in.',
-            generic: 'Er ging iets mis bij het ophalen van je spellen. Probeer het opnieuw.',
-            network: 'Geen verbinding met de server. Check je verbinding en probeer het opnieuw.'
+            generic: 'Je spellen konden niet worden opgehaald. Probeer het opnieuw.',
+            network: 'Geen verbinding. Check je internet en probeer opnieuw.'
         },
-        // Getoond als een joincode net hierheen stuurde in plaats van naar een kamer.
-        codeNotFound: 'Die joincode kon niet worden gevonden. Check hem en probeer het opnieuw.'
+        codeNotFound: 'Die code bestaat niet. Check hem en probeer opnieuw.'
     },
     lobby: {
-        yourRoom: 'Jouw kamer',
+        yourRoom: 'Jouw lobby',
         named: 'Lobby {{code}}',
         live: 'Live',
         offline: 'Offline',
@@ -283,7 +278,7 @@ export const nl: Catalog = {
         needPlayersMany: 'Nog {{count}} spelers nodig',
         tapToInvite: 'Tik om een vriend uit te nodigen',
         waitingForHost: 'Wachten op de host',
-        waitingForHostMessage: '{{name}} zet het spel klaar. Blijf op dit scherm, het start hier meteen mee.',
+        waitingForHostMessage: '{{name}} zet het spel klaar. Blijf op dit scherm, het spel start vanzelf.',
         waitingLabel: 'Wachten',
         closedTitle: 'Lobby gesloten'
     },
@@ -297,34 +292,34 @@ export const nl: Catalog = {
         stars: '{{stars}} ★',
         standings: 'Volledige stand',
         playAgain: 'Nog een spel',
-        waitingForHost: 'De host kan een nieuw spel starten — ',
+        waitingForHost: 'De host kan een nieuw spel starten, ',
         stayHere: 'blijf hier'
     },
     lol: {
         index: {
-            description: 'Test je woordenschat en probeer het geheime woord te raden.',
+            description: 'Raad het geheime woord.',
             playingAs: 'Jij bent {{name}}',
             solo: {
                 title: 'Solo',
-                description: 'Speel alleen, lekker rustig.',
+                description: 'Lekker in je eentje.',
                 action: 'Instellen',
                 best: 'Best {{score}}'
             },
             multiplayer: { title: 'Multiplayer', description: 'Maak een lobby.', action: 'Openen' },
             wordOfTheDay: {
                 title: 'Woord van de dag',
-                resetIn: 'Nog {{time}} tot het nieuwe woord'
+                resetIn: 'Nieuw woord over {{time}}'
             },
             tournament: {
                 badge: 'Nieuw',
                 title: 'Toernooi',
-                description: '4 tot 12 spelers, 1v1 potjes (1v1v1 bij oneven), vier rondes per potje. Twee keer verliezen en je ligt eruit.',
-                action: 'Toernooi opzetten'
+                description: '4 tot 12 spelers, 1v1 (1v1v1 bij oneven), vier rondes per potje. Twee keer verloren en je ligt eruit.',
+                action: 'Toernooi maken'
             }
         },
         settings: {
             loading: 'Spel zoeken…',
-            title: 'Solo opzetten',
+            title: 'Solo',
             wordLength: 'Woordlengte',
             wordLengthOption: '{{letters}} letters',
             summary: {
@@ -339,66 +334,64 @@ export const nl: Catalog = {
                 badge: 'Nieuw',
                 zen: {
                     label: 'Zen',
-                    description: 'Een potje zonder tijd en score. Geen druk!'
+                    description: 'Geen tijd, geen score. Geen druk!'
                 },
                 competitive: {
                     label: 'Competitief',
-                    description: 'Los alle drie de woorden zo snel mogelijk op met zo min mogelijk pogingen. Hoe sneller en korter, hoe hoger je score.'
+                    description: 'Raad alle drie de woorden zo snel mogelijk, in zo min mogelijk pogingen. Sneller is meer punten.'
                 }
             },
             hardMode: {
                 label: 'Moeilijke modus',
-                description: 'Het woord kan elk bestaand woord in de taal zijn. Zet dit uit om met een makkelijkere woordenlijst te spelen.'
+                description: 'Elk bestaand woord kan voorkomen. Zet uit voor alleen bekende woorden.'
             },
             facts: '{{rounds}} rondes · {{guesses}} pogingen per ronde · eerste letter gegeven',
             competitiveFacts: '{{rounds}} rondes · {{guesses}} pogingen per ronde · tijdbonus tot {{minutes}} minuten',
             start: 'Starten',
             running: {
-                title: 'Je speelt al een spel',
-                message: 'Er staat nog een solospel open. Ga verder waar je gebleven was, of gooi het weg en stel een nieuw spel in.',
+                title: 'Je hebt nog een spel open',
+                message: 'Ga verder waar je gebleven was, of gooi het weg en begin opnieuw.',
                 resume: 'Verder spelen',
                 discard: 'Weggooien'
             }
         },
         game: {
             loading: 'Spel laden…',
-            loadFailed: 'Dit spel kon niet worden geladen.',
-            guessUnsupported: 'Raden kan zodra de server dit ondersteunt.',
+            loadFailed: 'Spel kon niet worden geladen.',
+            guessUnsupported: 'Raden werkt nog niet op deze server.',
             alreadyGuessedYou: 'Die had je al.',
             alreadyGuessed: 'Die is al geprobeerd.',
-            mustStartWith: 'Het woord begint met de {{letter}}.',
+            mustStartWith: 'Het woord begint met een {{letter}}.',
             resultLabel: 'Uitslag',
             viewResult: 'Bekijk de uitslag',
             nextRound: 'Volgende ronde',
             guesses: '{{guesses}}/{{max}}',
             roundOf: 'Ronde {{round}} van {{total}}',
             hint: 'Hint',
-            hintLabel: 'Hint: het woord begint met de {{letter}}',
+            hintLabel: 'Hint: het woord begint met een {{letter}}',
             dailyLabel: 'Woord van de dag',
-            solved: 'CORRECT',
+            solved: 'GOED',
             lost: 'HELAAS',
             theWord: 'Het woord',
             attempts: 'Pogingen',
             guess: 'GO',
             clear: 'Wissen',
-            timeLeft: 'Resterende tijd',
-            /** Het woordlengte-label in de bovenste rij van de ronde. */
+            timeLeft: 'Tijd over',
             wordLengthLabel: '{{letters}} letters',
             scoreLabel: '{{name}}, {{score}} punten',
-            /** Voorleestekst voor de scorechip in de bovenste rij, die geen naam toont. */
             scoreCompactLabel: '{{score}} punten',
             playTimeLabel: 'Speeltijd: {{time}}',
             yourTurnNotice: 'JOUW BEURT!'
         },
         results: {
             loading: 'Uitslag laden…',
-            loadFailed: 'De uitslag kon niet worden geladen.',
+            loadFailed: 'Uitslag kon niet worden geladen.',
             title: 'Spel afgelopen',
             summary: 'Rondes: {{rounds}} · Letters: {{length}}',
             baseScore: 'Pogingen',
             timeBonus: 'Tijdbonus',
             total: 'Totaal',
-            newHighScore: 'Nieuw persoonlijk record op {{letters}} letters!',
+            newHighScore: 'Nieuw record op {{letters}} letters!',
             again: 'Nog een keer'
         },
         lobby: {
@@ -406,31 +399,31 @@ export const nl: Catalog = {
             opening: 'Lobby openen…',
             noGame: 'Geen spel',
             noLobby: 'Geen lobby',
-            hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code voor een volgend potje.',
+            hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code.',
             hostClosedLobby: 'De host heeft de lobby gesloten. Vraag om een nieuwe code.',
             running: {
                 gameTitle: 'Je speelt al een spel',
                 lobbyTitle: 'Je hebt nog een lobby open',
-                gameMessage: 'Je bent nog bezig met een multiplayerspel in lobby {{code}}. Ga verder, of stop het spel en open een nieuwe lobby.',
-                lobbyMessage: 'Lobby {{code}} staat nog open op jouw naam. Ga terug naar die lobby, of sluit hem en open een nieuwe.',
+                gameMessage: 'Je speelt nog in lobby {{code}}. Ga verder, of stop en open een nieuwe lobby.',
+                lobbyMessage: 'Lobby {{code}} staat nog open. Ga terug, of sluit hem en open een nieuwe.',
                 resumeGame: 'Verder spelen',
-                resumeLobby: 'Ga naar open lobby',
+                resumeLobby: 'Naar open lobby',
                 stopGame: 'Spel stoppen',
-                closeLobby: 'Stop huidige en maak nieuwe'
+                closeLobby: 'Sluiten en nieuwe maken'
             },
             confirmClose: {
                 title: 'Lobby sluiten?',
-                message: 'De lobby wordt verwijderd en de code werkt niet meer. Iedereen die al binnen is, vliegt eruit.',
+                message: 'De code werkt dan niet meer en iedereen in de lobby ligt eruit.',
                 action: 'Sluiten'
             },
             confirmLeave: {
                 title: 'Lobby verlaten?',
-                message: 'Je gaat terug naar het spelmenu. Je kunt later opnieuw joinen met dezelfde code.',
+                message: 'Je kunt later terugkomen met dezelfde code.',
                 action: 'Verlaten'
             },
             stay: 'Blijf hier',
             start: 'Start het spel',
-            startNote: 'Zodra je start kan er niemand meer bij.',
+            startNote: 'Na de start kan niemand meer joinen.',
             needPlayers: 'Je hebt minstens één medespeler nodig.',
             hostFallback: 'De host',
             settingsTitle: 'Instellingen',
@@ -448,31 +441,29 @@ export const nl: Catalog = {
             playDay: 'Speel {{day}}',
             playHint: '{{letters}} letters · geen klok',
             resume: 'Verder spelen',
-            nextWord: 'Nog {{time}} tot een nieuw woord',
-            bestAndNext: 'Je beste is {{guesses}} · nog {{time}} tot een nieuw woord',
-            solvedInOne: 'Opgelost in {{guesses}} poging',
-            solvedInMany: 'Opgelost in {{guesses}} pogingen',
-            notSolved: 'Vandaag niet gehaald. Het woord was {{word}}.'
+            nextWord: 'Nieuw woord over {{time}}',
+            bestAndNext: 'Je beste is {{guesses}} · nieuw woord over {{time}}',
+            solvedInOne: 'Geraden in {{guesses}} poging',
+            solvedInMany: 'Geraden in {{guesses}} pogingen',
+            notSolved: 'Vandaag niet gelukt. Het woord was {{word}}.'
         },
         tournament: {
-            loading: 'Even het toernooi ophalen…',
+            loading: 'Toernooi laden…',
             noBracket: 'Geen toernooi',
             yourTournament: 'Jouw toernooi',
             start: 'Maak het schema',
-            startNote: 'Zodra je start kan er niemand meer bij.',
+            startNote: 'Na de start kan niemand meer joinen.',
             needPlayers: 'Een toernooi heeft minstens vier spelers nodig.',
             confirmLeave: {
                 title: 'Toernooi verlaten?',
-                message: 'Je potjes lopen zonder jou door en je kunt ze op de klok verliezen. Met dezelfde code kom je terug.',
+                message: 'Je potjes lopen door en je kunt ze op tijd verliezen. Met dezelfde code kom je terug.',
                 action: 'Verlaten'
             },
-            // De balk bovenaan het schema.
             title: 'Toernooi · {{players}} spelers',
             bracketKicker: 'Schema · dubbele eliminatie',
             nextRoundReady: 'Ronde {{stage}} kan starten',
             stageDrawn: 'Ronde {{stage}} is geloot',
-            matchesLeft: '{{done}} van {{total}} potjes klaar · {{left}} nog onbeslist',
-            // De banden waaruit het schema is opgebouwd.
+            matchesLeft: '{{done}} van {{total}} potjes klaar · {{left}} nog bezig',
             winnersRound: 'Winnaars · ronde {{stage}}',
             losersRound: 'Verliezers · ronde {{stage}}',
             final: 'Finale',
@@ -480,54 +471,52 @@ export const nl: Catalog = {
             advancing: '{{players}} door',
             feedsEmpty: 'nog leeg',
             yourSide: 'jouw kant',
-            dropsHere: 'Wie ronde {{stage}} verliest zakt naar de loser-bracket',
+            dropsHere: 'Verliezers van ronde {{stage}} gaan naar de loser bracket',
             playing: 'Bezig',
             upNext: 'Straks',
             bye: 'Vrije doorgang naar de volgende ronde',
             you: 'Jij',
             knockedOut: {
                 title: 'Uitgeschakeld',
-                message: 'Je bent {{place}}e geworden. Blijf kijken hoe de rest van het schema afloopt.'
+                message: 'Je bent {{place}}e geworden. Kijk gerust hoe het afloopt.'
             },
-            // De poort tussen de loting en de potjes.
             startMatches: 'Start de potjes',
             waitingForStart: 'Wachten tot {{name}} start',
-            startGateOne: '1 potje is geloot en begint als de host dat zegt',
-            startGateMany: '{{matches}} potjes zijn geloot en beginnen tegelijk',
-            // De poort tussen de ene ronde en de volgende.
+            startGateOne: '1 potje is geloot en start als de host dat doet',
+            startGateMany: '{{matches}} potjes zijn geloot en starten tegelijk',
             waitingOnOne: 'Wachten op 1 potje',
             waitingOnMany: 'Wachten op {{matches}} potjes',
-            readyWaiting: 'Wachten op de anderen',
-            readyNotNeededOut: 'Je ligt eruit · klaarmelden hoeft niet',
+            readyWaiting: 'Wachten op de rest',
+            readyNotNeededOut: 'Je ligt eruit, je hoeft niet klaar te melden',
             readyNotNeededBye: 'Je slaat de volgende ronde over',
-            ready: 'Ik ben er klaar voor',
-            readyCount: '{{ready}} van de {{total}} staan klaar · start zodra iedereen er is',
-            readyGate: 'Ready wordt actief als alle {{matches}} potjes klaar zijn',
+            ready: 'Ik ben klaar',
+            readyCount: '{{ready}} van {{total}} klaar · start als iedereen er is',
+            readyGate: 'Ready kan zodra alle {{matches}} potjes klaar zijn',
             markReady: 'Klaar',
             markNotReady: 'Nog niet klaar',
             backToBracket: 'Terug naar het schema',
             champion: {
                 title: 'Kampioen',
-                you: 'Je hebt het toernooi gewonnen.',
+                you: 'Jij hebt het toernooi gewonnen!',
                 player: '{{name}} wint het toernooi.'
             },
             lossOne: '1 verlies',
             lossMany: '{{losses}} verliezen'
         },
         errors: {
-            staleServer: 'De server draait een oudere versie van dit spel. Herstart de API en probeer het opnieuw.',
+            staleServer: 'De server draait een oude versie van dit spel. Herstart de API en probeer opnieuw.',
             expired: 'Je sessie is verlopen. Log opnieuw in.',
             gameGone: 'Dit spel bestaat niet meer.',
             badSettings: 'Deze instellingen kloppen niet. Kies een andere woordlengte.',
             generic: 'Er ging iets mis. Probeer het opnieuw.',
-            network: 'Geen verbinding met de server. Check je verbinding en probeer het opnieuw.',
+            network: 'Geen verbinding. Check je internet en probeer opnieuw.',
             invalidWord: 'Ongeldig woord.',
-            roundClosed: 'Deze ronde neemt geen gokken meer aan.',
-            lobbyFull: 'Deze lobby zit vol.',
+            roundClosed: 'Deze ronde is al voorbij.',
+            lobbyFull: 'Deze lobby is vol.',
             lobbyGone: 'Deze lobby bestaat niet (meer). Check de code.',
             alreadyStarted: 'Dit spel is al begonnen.',
             alreadyPlayedToday: 'Je hebt vandaag al gespeeld. Kom morgen terug.',
-            notEnoughForTournament: 'Een toernooi heeft vier tot twaalf spelers nodig.',
+            notEnoughForTournament: 'Een toernooi heeft 4 tot 12 spelers nodig.',
             stageNotOver: 'Deze ronde is nog niet klaar.',
             stageStarted: 'Deze ronde is al begonnen.',
             tournamentOver: 'Dit toernooi is al afgelopen.'
@@ -535,32 +524,32 @@ export const nl: Catalog = {
     },
     pubquizr: {
         index: {
-            description: 'Een klassiek potje trivia in een speels jasje.',
+            description: 'Een klassieke pubquiz, maar dan leuker.',
             oneDevice: { title: '1 telefoon', description: 'Geef de telefoon door.', action: 'Instellen' },
-            multiDevice: { title: 'Per speler', description: '1 telefoon per speler', action: 'Kamer openen' },
-            centralScreen: { title: 'Centraal scherm', description: 'Stream de quiz naar je tv. Iedereen gebruikt een telefoon als controller.', action: 'Opzetten'},
+            multiDevice: { title: 'Per speler', description: 'Iedereen een eigen telefoon', action: 'Lobby openen' },
+            centralScreen: { title: 'Centraal scherm', description: 'Quiz op de tv, telefoons als controller.', action: 'Instellen' },
             playMode: {
                 title: 'Hoe spelen jullie?',
-                message: 'Iedereen speelt op zijn eigen telefoon. Kies of er ook een groot scherm meedoet.',
+                message: 'Iedereen speelt op een eigen telefoon. Doet er ook een groot scherm mee?',
                 phonesOnly: {
                     title: 'Alleen telefoons',
-                    description: 'De vraag staat op ieders telefoon.',
+                    description: 'De vraag staat op elke telefoon.',
                     need: 'Nodig: een telefoon per speler'
                 },
                 withScreen: {
                     title: 'Met centraal scherm',
-                    description: 'De vraag staat groot op de tv, telefoons zijn de knoppen.',
+                    description: 'De vraag staat op de tv, telefoons zijn de knoppen.',
                     need: 'Nodig: een tv of laptop met browser'
                 },
-                locked: 'Je keuze staat vast zodra de kamer open is'
+                locked: 'Dit ligt vast zodra de lobby open is'
             },
             tableScreen: { title: 'Tafelscherm', subtitle: 'Op de tv' },
             allQuizzes: { title: 'Alle quizzen', subtitle: 'Bekijk de lijst' },
             library: {
                 title: 'Alle quizzen',
-                subtitle: 'Muziek, film, geschiedenis en meer',
+                subtitle: 'Muziek, film, geschiedenis en meer'
             },
-            pickOne: 'Pak er een',
+            pickOne: 'Kies er een',
             playThis: 'Speel deze',
             newBadge: 'Nieuw',
             weekly: {
@@ -577,27 +566,27 @@ export const nl: Catalog = {
                 published: '{{day}} {{month}} {{year}}',
                 played: 'Gespeeld',
                 loadOlder: 'Ouder laden',
-                browse: 'Blader door alle quizzen',
-                empty: 'Hier staat nog niks om te laten zien.',
+                browse: 'Bekijk alle quizzen',
+                empty: 'Hier staat nog niks.',
                 filterEmpty: 'Nog niks.',
-                failed: 'De quizzen konden niet geladen worden. Check je verbinding.',
+                failed: 'Quizzen konden niet worden geladen. Check je internet.',
                 comingSoon: 'Coming soon...',
                 search: 'Zoek een quiz…',
-                searchLabel: 'Zoek in de quizzen op deze lijst',
-                noMatches: 'Hier staat niks dat daarop lijkt.',
-                noMatchesMore: 'Nog niks gevonden — oudere quizzen worden erbij geladen.',
+                searchLabel: 'Zoek in deze quizzen',
+                noMatches: 'Niks gevonden.',
+                noMatchesMore: 'Nog niks gevonden, oudere quizzen worden geladen.',
                 sortNewest: 'Nieuwste',
-                sortAlpha: 'A–Z'
+                sortAlpha: 'A-Z'
             }
         },
         oneDevice: {
             title: '1 telefoon',
-            description: 'Eén telefoon om het spel te spelen. De telefoon wordt doorgegeven.',
+            description: 'Speel met één telefoon die rondgaat.',
             players: {
                 seat: 'Speler {{seat}}',
-                tooFew: 'Een quiz heeft minstens twee spelers nodig.',
-                tooMany: 'Acht spelers is het maximum rond één telefoon.',
-                duplicate: 'Twee spelers kunnen niet dezelfde naam hebben.',
+                tooFew: 'Je hebt minstens twee spelers nodig.',
+                tooMany: 'Maximaal acht spelers.',
+                duplicate: 'Twee spelers hebben dezelfde naam.'
             },
             seat: {
                 first: 'Jij, met de telefoon',
@@ -610,20 +599,20 @@ export const nl: Catalog = {
                 selected: 'Jullie spelen',
                 empty: {
                     title: 'Nog geen quiz gekozen',
-                    message: 'Kies er hieronder een om ze hier te zien.'
+                    message: 'Kies er hieronder een.'
                 },
                 pick: 'Kies een quiz',
-                pickAnother: 'Of kies een andere quiz'
+                pickAnother: 'Of kies een andere'
             },
             steps: {
-                seatsTitle: 'Vul alle spelers in',
-                quizTitle: 'Selecteer quiz',
+                seatsTitle: 'Wie spelen er mee?',
+                quizTitle: 'Kies een quiz',
                 settingsTitle: 'Instellingen',
-                table: 'Spelers',
+                table: 'Spelers'
             },
             zenMode: {
                 label: 'Zen-modus',
-                description: 'Geen tijdsdruk. Rondes met een timer worden vervangen of anders gespeeld.',
+                description: 'Geen tijdsdruk. Rondes met een timer worden aangepast.',
                 caption: 'Zen · geen timers'
             },
             triviaMode: {
@@ -632,169 +621,160 @@ export const nl: Catalog = {
                 caption: 'Alleen trivia · 4 rondes'
             },
             start: 'Start de quiz',
-            loading: 'Kijken of er nog een quiz openstaat…',
+            loading: 'Laden…',
             running: {
                 title: 'Er staat nog een quiz open',
-                message: 'Je hebt al een quiz lopen. Ga verder waar de tafel gebleven was, of gooi hem weg en stel een nieuwe in.',
+                message: 'Ga verder waar jullie gebleven waren, of gooi hem weg en begin opnieuw.',
                 resume: 'Verder spelen',
                 discard: 'Weggooien'
             }
         },
-        // De multi device kamer: één scherm waar de tafel naar kijkt, en ieder een telefoon.
         lobby: {
             settingsTitle: 'Instellingen',
-            loading: 'Even kijken of je al een kamer hebt…',
-            opening: 'De kamer wordt geopend…',
-            noLobby: 'Geen kamer',
-            hostClosedLobby: 'De host heeft de kamer gesloten. Vraag om een nieuwe code.',
-            hostStoppedQuiz: 'De host heeft de quiz gestopt. Vraag om een nieuwe code voor een volgende.',
+            loading: 'Lobby zoeken…',
+            opening: 'Lobby openen…',
+            noLobby: 'Geen lobby',
+            hostClosedLobby: 'De host heeft de lobby gesloten. Vraag om een nieuwe code.',
+            hostStoppedQuiz: 'De host heeft de quiz gestopt. Vraag om een nieuwe code.',
             dealt: 'De quiz begint…',
-            // De verplichte stap voor de kamer in een centraal-scherm kamer: er moet eerst een tv meekijken.
             pairing: {
                 title: 'Scherm koppelen',
                 stepScreen: 'Scherm',
-                stepRoom: 'Kamer',
+                stepRoom: 'Lobby',
                 cardTitle: 'Koppel eerst het scherm',
                 openOn: 'Open op de tv of laptop',
-                openOnNoUrl: 'Open de kamer op de tv of laptop en vul de code in',
+                openOnNoUrl: 'Open de lobby op de tv of laptop en vul de code in',
                 fillIn: 'EN VUL IN',
                 waiting: 'Wachten op het scherm…',
                 onePlayerWaiting: '1 speler wacht al met code {{code}}',
                 playersWaiting: '{{count}} spelers wachten al met code {{code}}',
-                blocked: 'Doorgaan zonder scherm kan niet',
-                auto: 'Zodra het scherm verbindt ga je vanzelf verder'
+                blocked: 'Zonder scherm kun je niet verder',
+                auto: 'Je gaat vanzelf verder zodra het scherm verbonden is'
             },
             screenConnected: {
-                title: 'Centraal scherm verbonden',
-                message: 'De quiz verschijnt op het scherm zodra je start.'
+                title: 'Scherm verbonden',
+                message: 'De quiz staat op het scherm zodra je start.'
             },
             cast: {
                 action: 'Cast naar tv',
-                connected: 'Aan het casten — tik om te wisselen'
+                connected: 'Aan het casten, tik om te wisselen'
             },
             running: {
-                quizTitle: 'Je bent al aan het spelen',
-                lobbyTitle: 'Er staat nog een kamer open',
-                quizMessage: 'In kamer {{code}} loopt nog een quiz. Ga verder, of stop hem en open een nieuwe kamer.',
-                lobbyMessage: 'Kamer {{code}} staat nog open op jouw naam. Ga erheen, of sluit hem en open een nieuwe.',
+                quizTitle: 'Je speelt al een quiz',
+                lobbyTitle: 'Je hebt nog een lobby open',
+                quizMessage: 'In lobby {{code}} loopt nog een quiz. Ga verder, of stop en open een nieuwe lobby.',
+                lobbyMessage: 'Lobby {{code}} staat nog open. Ga terug, of sluit hem en open een nieuwe.',
                 resumeQuiz: 'Verder spelen',
-                resumeLobby: 'Naar de open kamer',
+                resumeLobby: 'Naar open lobby',
                 stopQuiz: 'Quiz stoppen',
-                closeLobby: 'Sluiten en een nieuwe openen'
+                closeLobby: 'Sluiten en nieuwe maken'
             },
             confirmClose: {
-                title: 'Kamer sluiten?',
-                message: 'De kamer wordt verwijderd en de code werkt niet meer. Iedereen die er al in zit vliegt eruit.',
+                title: 'Lobby sluiten?',
+                message: 'De code werkt dan niet meer en iedereen in de lobby ligt eruit.',
                 action: 'Sluiten'
             },
             confirmLeave: {
-                title: 'Kamer verlaten?',
-                message: 'Je gaat terug naar het spelmenu. Je kunt later met dezelfde code weer meedoen.',
+                title: 'Lobby verlaten?',
+                message: 'Je kunt later terugkomen met dezelfde code.',
                 action: 'Verlaten'
             },
-            stay: 'Hier blijven',
-            start: 'Quiz starten',
+            stay: 'Blijf hier',
+            start: 'Start de quiz',
             startNoteScreen: 'Iedereen kijkt naar het scherm',
-            startNotePhones: 'De vraag verschijnt op ieders telefoon',
-            needPlayers: 'Je hebt minstens {{min}} telefoons aan tafel nodig.',
+            startNotePhones: 'De vraag staat op elke telefoon',
+            needPlayers: 'Je hebt minstens {{min}} telefoons nodig.',
             needQuiz: 'Kies eerst een quiz.',
             hostFallback: 'De host'
         },
-        // Het gedeelde scherm waar de hele tafel naar kijkt. Het kijkt alleen mee, dus er valt niets op te tikken.
         table: {
-            // De weg naar binnen voor de laptop: de code staat op de telefoon van de host, niet op dit scherm.
             door: {
-                title: 'Zet de quiz op een scherm',
-                message: 'Typ de code die de host op zijn telefoon heeft. Dit scherm kijkt alleen mee — iedereen speelt nog steeds op zijn eigen telefoon.',
-                codeLabel: 'Kamercode',
+                title: 'Quiz op een scherm',
+                message: 'Typ de code van de telefoon van de host. Dit scherm kijkt alleen mee, iedereen speelt op zijn eigen telefoon.',
+                codeLabel: 'Lobbycode',
                 placeholder: 'PXK7Q',
                 open: 'Scherm openen',
-                rejected: 'Dat is geen quizcode. Check hem op de telefoon van de host.'
+                rejected: 'Dat is geen quizcode. Check de telefoon van de host.'
             },
-            // De vier manieren waarop een tafel een scherm krijgt: twee browsers die een pagina openen, en twee manieren om diezelfde pagina te spiegelen.
             setup: {
-                title: 'Zo zet je dit op een tv',
+                title: 'Zo zet je de quiz op tv',
                 wayBrowser: 'Open {{url}} in de browser van de tv en typ de code',
                 wayBrowserPlain: 'Open deze pagina in de browser van de tv en typ de code',
-                wayHdmi: 'Of hang een laptop met een HDMI-kabel aan de tv',
-                wayCast: 'Of cast dit tabblad vanuit Chrome, en laat het tabblad vooraan staan',
-                wayMirror: 'Of spiegel dit toestel met AirPlay of schermcasten',
+                wayHdmi: 'Of sluit een laptop met HDMI aan op de tv',
+                wayCast: 'Of cast dit tabblad vanuit Chrome en laat het open',
+                wayMirror: 'Of spiegel dit toestel met AirPlay of screencast',
                 fullScreen: 'Volledig scherm',
                 exitFullScreen: 'Volledig scherm sluiten',
                 alreadyPlayingTitle: 'Dit toestel speelt mee',
-                alreadyPlaying: 'Het heeft een stoel aan tafel en zou de helft van de avond missen. Open het scherm op de tv zelf, in een eigen browser.',
-                signingIn: 'Het scherm klaarzetten…',
-                signInFailed: 'Dit scherm kon het spel niet bereiken.'
+                alreadyPlaying: 'Open het scherm in een eigen browser op de tv, anders mis je de helft.',
+                signingIn: 'Scherm klaarzetten…',
+                signInFailed: 'Dit scherm kan het spel niet bereiken.'
             },
             roundOf: 'Ronde {{round}} van {{total}}',
             playAlong: 'Meespelen',
             numbersInLabel: 'getallen binnen',
             recapTitle: 'De woorden',
-            recapPoints: '{{name}} pakt {{points}} voor de woorden die geraden zijn',
+            recapPoints: '{{name}} pakt {{points}} voor de geraden woorden',
             weightChip: '{{weight}} · {{points}} punten',
-            wordsSecret: 'De woorden staan alleen op de telefoon van {{name}} — de anderen krijgen straks nog een bonusgok',
-            // Eén woord per kaart op de spelersbalk: wat die speler nu doet.
+            wordsSecret: 'Alleen {{name}} ziet de woorden. De rest krijgt straks nog een bonusgok',
             status: {
                 quizmaster: 'Quizmaster',
                 turn: 'Aan de beurt',
-                missed: 'Zat ernaast',
+                missed: 'Fout',
                 sent: 'Ingestuurd',
                 typing: 'Typt nog',
                 describing: 'Omschrijft',
                 guessing: 'Raadt',
                 choosing: 'Kiest'
             },
-            connecting: 'De kamer zoeken…',
-            closed: 'De host heeft de kamer gesloten, dus dit scherm is klaar.',
+            connecting: 'Lobby zoeken…',
+            closed: 'De host heeft de lobby gesloten.',
             dealt: 'De quiz is begonnen.',
-            joinAt: 'Doe mee met',
+            joinAt: 'Join via',
             typeHint: 'Typ deze code op je telefoon om mee te doen.',
-            waitingForHost: 'Wachten tot de host de quiz start…',
-            needPlayers: 'Nog {{needed}} te gaan voordat de quiz kan starten.',
+            waitingForHost: 'Wachten tot de host start…',
+            needPlayers: 'Nog {{needed}} nodig om te starten.',
             scores: 'Scores',
             quizmaster: 'Quizmaster',
             guesser: 'Gokker',
             standings: 'Tussenstand',
             answer: 'Het antwoord',
             numbersIn: '{{done}} van {{total}} getallen binnen',
-            typeYours: 'Typ je getal op je eigen telefoon.',
-            // Een ronde waarvan het scherm nog niet gebouwd is, dus de telefoons zijn alles.
+            typeYours: 'Typ je getal op je telefoon.',
             followPhones: 'Speel deze ronde op je telefoon.',
             missed: 'Mis',
             gotSoFar: '{{awarded}} van {{total}} tot nu toe',
             choosing: '{{name}} kiest makkelijk of moeilijk',
-            over: 'Dat was de quiz.'
+            over: 'Dat was de quiz!'
         },
-        // De telefoon, die in deze modus vooral een controller is.
-        // Zonder gedeeld scherm: elke telefoon is een heel bord, en dit zijn de woorden die alleen een bord nodig heeft.
         board: {
-            choiceAppears: 'Zodra er gekozen is verschijnt de vraag op elke telefoon',
+            choiceAppears: 'Na de keuze staat de vraag op elke telefoon',
             streakCapped: '{{name}} heeft de max van {{max}} op rij bereikt. Door naar de volgende speler, zodat de anderen ook een kans krijgen.',
-            choosing: '{{name}} kiest een makkelijke of moeilijke vraag',
+            choosing: '{{name}} kiest makkelijk of moeilijk',
             clockSoon: 'De klok start zo',
-            closestHint: 'Dubbele getallen mogen · het antwoord komt als iedereen binnen is',
-            currentQuizmaster: '{{name}} is nu de quizmaster',
+            closestHint: 'Dubbele getallen mogen · het antwoord komt als iedereen klaar is',
+            currentQuizmaster: '{{name}} is quizmaster',
             describes: 'Omschrijft',
             describing: '{{describer}} omschrijft, {{guesser}} raadt',
             easy: 'Makkelijk',
             everyoneAtOnce: 'Iedereen tegelijk',
-            gotIt: 'Ik snap het',
+            gotIt: 'Snap ik',
             guesses: 'Raadt',
             hard: 'Moeilijk',
-            imReady: 'Ik ben er klaar voor',
-            isUp: '{{name}} is aan zet',
+            imReady: 'Ik ben klaar',
+            isUp: '{{name}} is aan de beurt',
             listFooter: '{{guesser}} noemt op · {{master}} vinkt af',
-            listRules: 'Eén speler krijgt een vraag met vier antwoorden en {{seconds}} seconden. De quizmaster vinkt af wat goed is. Daarna krijgt elke andere speler één bonusgok op wat er over is.',
-            missed: '{{name}} zat ernaast · de vraag is nu van {{next}}',
-            missedToYou: '{{name}} zat ernaast · de vraag is nu van jou',
-            mustGuess: 'Jij moet raden',
-            mustGuessRules: '{{describer}} omschrijft {{words}} woorden. Je hebt samen {{seconds}} seconden. Elk goed woord is 1 punt voor jullie allebei.',
+            listRules: 'Eén speler krijgt een vraag met vier antwoorden en {{seconds}} seconden. De quizmaster vinkt af wat goed is. Daarna krijgt de rest één bonusgok op wat er over is.',
+            missed: '{{name}} zat ernaast · nu is {{next}}',
+            missedToYou: '{{name}} zat ernaast · nu ben jij',
+            mustGuess: 'Jij raadt',
+            mustGuessRules: '{{describer}} omschrijft {{words}} woorden in {{seconds}} seconden. Elk goed woord is 1 punt voor jullie allebei.',
             namesFour: '{{name}} noemt er vier',
-            neverSeeWords: 'De woorden zie jij nooit, ook niet achteraf',
+            neverSeeWords: 'Jij ziet de woorden nooit, ook niet achteraf',
             noQuizmaster: 'Geen quizmaster',
             notReadyYet: '{{name}} is nog niet klaar',
             numbersIn: '{{done}} / {{total}} binnen',
-            onlyMasterMovesOn: 'Alleen {{name}} gaat verder',
+            onlyMasterMovesOn: 'Alleen {{name}} kan verder',
             picking: '{{name}} kiest',
             picksOnOwnPhone: '{{name}} kiest op de eigen telefoon',
             onePoint: '1 punt',
@@ -802,16 +782,16 @@ export const nl: Catalog = {
             questionOf: 'Vraag {{number}} / {{total}}',
             quizmaster: 'Quizmaster',
             readsAloud: '{{name}} leest de vraag voor',
-            queuePlace: 'Jij bent {{place}} in de rij om te antwoorden',
-            queuePlaceNow: 'Jij bent {{place}} in de rij · jij mag nu antwoorden',
+            queuePlace: 'Jij bent {{place}} in de rij',
+            queuePlaceNow: 'Jij bent {{place}} in de rij · jij mag nu',
             previous: {
                 label: 'Vorige vraag',
                 gotIt: '{{name}} had het goed',
                 youGotIt: 'Jij had het goed',
                 nobody: 'Niemand had het goed'
             },
-            readAhead: 'Lees de vraag alvast: {{seconds}} seconden zodra de klok loopt',
-            readyCount: '{{done}} van de {{total}} spelers is klaar',
+            readAhead: 'Lees alvast mee: {{seconds}} seconden zodra de klok loopt',
+            readyCount: '{{done}} van {{total}} klaar',
             readyToStart: 'Klaar om te beginnen',
             readyWaiting: 'Klaar. {{name}} start de klok',
             turnOf: 'Beurt {{number}} / {{total}}',
@@ -821,23 +801,22 @@ export const nl: Catalog = {
                 isUp: '{{name}} is aan de beurt',
                 position: '{{number}} / {{total}}',
                 then: 'daarna {{names}}',
-                title: 'Beurtvolgorde',
+                title: 'Volgorde',
                 youAreQuizmaster: '{{name}} bent quizmaster',
                 youAreUp: 'Jij bent aan de beurt'
             },
-            wordsGuessed: '{{done}} van de {{total}} geraden',
-            wordsSecret: 'De woorden staan alleen op de telefoon van {{name}}',
+            wordsGuessed: '{{done}} van {{total}} geraden',
+            wordsSecret: 'Alleen {{name}} ziet de woorden',
             you: 'Jij',
-            yourChoiceCue: 'Kies, en je vraag staat op elke telefoon',
+            yourChoiceCue: 'Kies, dan staat je vraag op elke telefoon'
         },
         control: {
-            allGuessesIn: 'Iedereen is binnen',
-            alsoOnScreen: 'Staat ook op het scherm — jij hoeft alleen te beoordelen',
+            allGuessesIn: 'Iedereen is klaar',
+            alsoOnScreen: 'Staat ook op het scherm, jij hoeft alleen te beoordelen',
             everyoneGuesses: 'Iedereen gokt',
-            isUpNow: '{{name}} is nu aan de beurt',
+            isUpNow: '{{name}} is aan de beurt',
             lettersCue: 'De opties staan op het scherm',
             onScreen: 'TV',
-            // Als woord en niet als getal, want {{count}} zet i18next in meervoudsmodus.
             ordinal: {
                 first: '1e',
                 second: '2e',
@@ -849,44 +828,44 @@ export const nl: Catalog = {
                 eighth: '8e'
             },
             watchScreen: 'Kijk naar het scherm',
-            yourPlace: 'Jij bent de {{place}} deze beurt',
+            yourPlace: 'Jij bent {{place}} deze beurt',
             changeGuess: 'Aanpassen',
             guessSent: 'Je getal is binnen',
             onTheScreen: 'Op het scherm',
             pickAnswer: 'Kies je antwoord',
             roundStarting: 'Wacht tot {{name}} de ronde start',
-            theScreenHasIt: 'Alles staat op het grote scherm.',
-            submitGuess: 'Dit is mijn getal',
-            theyTapItThemselves: '{{name}} tikt het antwoord op de eigen telefoon aan.',
+            theScreenHasIt: 'Kijk naar het grote scherm.',
+            submitGuess: 'Insturen',
+            theyTapItThemselves: '{{name}} kiest het antwoord op de eigen telefoon.',
             waitingFor: 'Wachten op {{name}}',
             waitingForGuesses: 'Wachten op {{names}}',
             yourChoice: 'Makkelijk of moeilijk?',
-            yourChoiceCue: 'Kies er een en je vraag komt op het scherm',
+            yourChoiceCue: 'Kies, dan komt je vraag op het scherm',
             yourGuess: 'Jouw getal',
-            yourTurn: 'Jij bent'
+            yourTurn: 'Jij bent aan de beurt'
         },
         play: {
-            loading: 'De tafel klaarzetten…',
+            loading: 'Laden…',
             close: 'Quiz verlaten',
             roundLabel: 'Ronde {{round}} · {{kind}}',
             roundTitle: 'Ronde {{round}}: {{kind}}',
             rules: {
-                open: 'De quizmaster leest voor en bepaalt op de telefoon wie het goed had. Fout? De vraag schuift door naar de volgende speler.',
-                choice: 'Geen quizmaster deze ronde. Wie aan de beurt is tikt zelf een letter op de telefoon. Fout? De vraag schuift door, de vergooide optie blijft weg.',
-                closest: 'Iedereen tikt één getal in. Dubbele getallen mogen. Wie er het dichtst bij zit pakt 2 punten — bij gelijke afstand krijgen ze het allebei.',
-                describe: 'De omschrijver heeft 30 seconden. Elk goed woord is 1 punt voor allebei. Daarna één bonusgok per overige speler.',
-                list: 'Eén onderwerp. Vier trefwoorden.',
-                doubleDown: 'Wie aan de beurt is kiest een makkelijk (1p) vraag of een moeilijke (3p) vraag.',
-                finale: 'Open vragen, man tegen man. Fout? De vraag gaat naar de ander. Elk goed antwoord is een ster, en wie na ronde 6 voorstond begint met een bonusster. De meeste sterren wint; bij gelijke sterren wint de meeste punten.',
-                finaleTwo: 'Open vragen, om en om, voor 2 punten per vraag. Wie na de laatste vraag voorstaat wint de avond.'
+                open: 'De quizmaster leest voor en tikt aan wie het goed had. Fout? Dan mag de volgende.',
+                choice: 'Geen quizmaster deze ronde. Wie aan de beurt is kiest zelf een letter. Fout? Dan mag de volgende, zonder die optie.',
+                closest: 'Iedereen kiest één getal, dubbel mag. Wie het dichtst bij zit krijgt 2 punten. Gelijk? Dan allebei.',
+                describe: 'De omschrijver heeft 30 seconden. Elk goed woord is 1 punt voor jullie allebei. Daarna krijgt de rest één bonusgok.',
+                list: 'Eén onderwerp. Vier antwoorden.',
+                doubleDown: 'Wie aan de beurt is kiest een makkelijke (1p) of moeilijke (3p) vraag.',
+                finale: 'Open vragen, één tegen één. Fout? Dan mag de ander. Elk goed antwoord is een ster, en wie na ronde 6 voorstond begint met een bonusster. De meeste sterren wint. Gelijk? Dan wint wie de meeste punten heeft.',
+                finaleTwo: 'Open vragen, om de beurt, 2 punten per vraag. Wie na de laatste vraag voorstaat wint.'
             },
             rounds: {
                 open: 'Open',
                 choice: 'Meerkeuze',
-                closest: 'Wie zit er het dichtst bij',
+                closest: 'Wie zit het dichtst bij?',
                 describe: 'Omschrijven',
-                list: 'Wat weet je over ... ?',
-                doubleDown: 'Makkelijk of Moeilijk?',
+                list: 'Wat weet je over...?',
+                doubleDown: 'Makkelijk of moeilijk?',
                 finale: 'De finale'
             },
             questionNumber: 'Vraag {{number}}',
@@ -895,11 +874,9 @@ export const nl: Catalog = {
             turn: {
                 spoken: '{{master}} vraagt het aan {{player}}',
                 spokenRun: '{{master}} vraagt het aan {{player}}, die er {{run}} op rij goed heeft',
-                /** De koptekst boven de spotlight: wie deze beurt leidt. */
-                quizmasterLabel: '{{name}} is quiz master',
-                /** Het label boven de uitgelichte naam van wie nu antwoord moet geven. */
-                answeringNow: 'Antwoordt nu',
-                roleQuizmaster: 'Quiz master',
+                quizmasterLabel: '{{name}} is quizmaster',
+                answeringNow: 'Nu aan de beurt',
+                roleQuizmaster: 'Quizmaster',
                 roleGuesser: 'Raadt',
                 bonusOf: 'Bonus · {{number}} van {{total}}',
                 bonusMissed: '{{name}} had niks',
@@ -910,40 +887,40 @@ export const nl: Catalog = {
             leadChoice: '{{name}} leest voor · vier opties',
             leadClosest: '{{name}} leest voor · de rest gokt',
             leadDescribe: '{{name}} is aan de beurt',
-            leadList: '{{name}} vraagt · één speler noemt wat die weet',
-            leadDoubleDown: '{{name}} vraagt makkelijk of moeilijk',
-            leadFinale: '{{name}} leest voor aan beide finalisten',
+            leadList: '{{name}} vraagt · één speler noemt op',
+            leadDoubleDown: '{{name}} vraagt: makkelijk of moeilijk?',
+            leadFinale: '{{name}} leest voor aan de finalisten',
             readAloud: 'Lees dit hardop voor',
             onlyYouSeeThis: 'Het antwoord',
             alsoAccept: 'Ook goed: {{answers}}',
             answer: {
                 reveal: 'Tik om het antwoord te zien',
-                hide: 'Tik om het antwoord te verbergen',
-                revealHint: 'Houd het scherm voor jezelf'
+                hide: 'Tik om te verbergen',
+                revealHint: 'Laat niemand meekijken'
             },
             validate: 'Beoordelen',
-            validateLocked: 'Laat eerst het antwoord zien',
+            validateLocked: 'Bekijk eerst het antwoord',
             wrong: 'Fout',
             correct: 'Goed',
-            markWrong: 'Reken {{name}} fout',
-            markCorrect: 'Reken {{name}} goed',
+            markWrong: '{{name}} fout rekenen',
+            markCorrect: '{{name}} goed rekenen',
             wrongPassesTo: 'Fout? Dan mag {{name}}',
-            wrongEndsQuestion: 'Niemand meer over, fout beëindigt deze vraag',
-            tableRound: 'Ga de tafel rond',
+            wrongEndsQuestion: 'Niemand meer over, bij fout is de vraag klaar',
+            tableRound: 'De tafel rond',
             whoGotIt: 'Vraag eerst aan {{name}}',
             answerLabel: 'Antwoord',
-            pickHint: 'Tik op wie het goed had',
-            pickUndoHint: '{{name}} is al af — tik hem aan om dat terug te draaien',
+            pickHint: 'Tik aan wie het goed had',
+            pickUndoHint: '{{name}} is al af, tik om terug te draaien',
             pickLockHint: 'Tik nog eens op {{name}} om te wissen',
             pickSpoken: '{{name}} had het goed',
             ruleOutSpoken: '{{name}} fout rekenen',
             ruleInSpoken: '{{name}} weer mee laten doen',
             nobodyGotIt: 'Niemand had het',
-            nobodyConfirm: 'Ga naar de volgende vraag',
-            nobodyConfirmHint: 'Tik nogmaals om verder te gaan',
+            nobodyConfirm: 'Volgende vraag',
+            nobodyConfirmHint: 'Tik nog eens om verder te gaan',
             lockIn: 'Bevestigen',
-            choiceAlwaysPasses: 'Volgende ronde mag {{name}} raden',
-            correctKeepsTurn: 'Goed, en de volgende vraag is weer voor {{name}}',
+            choiceAlwaysPasses: 'Volgende vraag is voor {{name}}',
+            correctKeepsTurn: 'Goed! De volgende vraag is weer voor {{name}}',
             worthPoints: '{{worth}}p',
             worthStars: '{{worth}} ★',
             noPoint: 'Geen punt',
@@ -951,20 +928,20 @@ export const nl: Catalog = {
             choice: {
                 options: 'De vier opties',
                 spoken: '{{letter}}. {{text}}',
-                spokenCorrect: '{{letter}}. {{text}}, dit is de goede'
+                spokenCorrect: '{{letter}}. {{text}}, dit is het goede antwoord'
             },
             closest: {
                 answer: '{{answer}} {{unit}}',
                 placeholder: 'Gok',
-                entry: 'De gok van {{name}}',
+                entry: 'Gok van {{name}}',
                 duplicate: 'Twee spelers hebben hetzelfde getal. Vraag er een om een ander.',
-                unreadable: 'Daar staat geen getal.',
-                typeInstead: 'Vul de gokken toch in',
-                award: 'Geef ze de punten',
-                nearestTakes: 'Dichtstbij pakt {{worth}}p',
-                guessingOrder: 'Wie gokt, op tafelvolgorde',
+                unreadable: 'Dat is geen getal.',
+                typeInstead: 'Gokken toch invullen',
+                award: 'Punten geven',
+                nearestTakes: 'Dichtstbij krijgt {{worth}}p',
+                guessingOrder: 'Wie gokt, op volgorde',
                 collect: 'Schrijf de gokken op',
-                collectHint: 'Laat ze eerst allemaal een getal noemen, geen twee dezelfde',
+                collectHint: 'Laat iedereen een getal noemen, geen twee dezelfde',
                 backToQuestion: 'Terug naar de vraag',
                 answerLabel: 'Antwoord · alleen jij',
                 hide: 'Verberg',
@@ -976,20 +953,20 @@ export const nl: Catalog = {
                 now: 'nu',
                 position: '{{number}} van {{total}}',
                 missingTitle: 'Niet iedereen heeft een getal',
-                missingOne: 'Bij {{names}} staat niets ingevuld, dus die kan deze niet winnen.',
-                missingMany: 'Bij {{names}} staat niets ingevuld, dus die kunnen deze niet winnen.',
-                missingBack: 'Terug om ze in te vullen',
+                missingOne: '{{names}} heeft niks ingevuld en kan deze niet winnen.',
+                missingMany: '{{names}} hebben niks ingevuld en kunnen deze niet winnen.',
+                missingBack: 'Terug om in te vullen',
                 missingAnyway: 'Toch afronden',
                 result: {
-                    nearestOne: '{{names}} zat er het dichtstbij',
-                    nearestMany: '{{names}} zaten er het dichtstbij',
-                    nobody: 'Niemand zat er het dichtstbij',
+                    nearestOne: '{{names}} zat het dichtst bij',
+                    nearestMany: '{{names}} zaten het dichtst bij',
+                    nobody: 'Niemand zat het dichtst bij',
                     paidOne: '{{worth}} punten',
                     paidMany: '{{worth}} punten elk',
-                    paidNobody: 'Deze levert niemand iets op',
+                    paidNobody: 'Geen punten deze keer',
                     answerLabel: 'Het antwoord',
-                    guessesLabel: 'Wat iedereen zei',
-                    continue: 'Ga verder'
+                    guessesLabel: 'Alle gokken',
+                    continue: 'Verder'
                 }
             },
             pad: {
@@ -999,43 +976,43 @@ export const nl: Catalog = {
             describe: {
                 readyRuleOnlyGuesser: 'Je omschrijft aan {{guesser}}. Zolang de klok loopt telt alleen wat {{guesser}} zegt',
                 readyRuleTime: '{{seconds}} seconden om zoveel mogelijk van je {{words}} woorden te omschrijven',
-                readyRuleNoSaying: 'Zeg het woord zelf nooit. Anders telt het niet.',
-                readyRuleBothScore: 'Elk woord dat {{guesser}} raadt is een punt voor hen én een punt voor jou',
-                readyRuleBonus: 'Als de tijd om is krijgen de andere {{others}} spelers ieder één gok op een woord dat nog niet geraden is',
+                readyRuleNoSaying: 'Zeg het woord zelf nooit, anders telt het niet.',
+                readyRuleBothScore: 'Elk woord dat {{guesser}} raadt is een punt voor jullie allebei',
+                readyRuleBonus: 'Als de tijd om is krijgen de andere {{others}} spelers elk één gok op een woord dat nog niet geraden is',
                 start: 'Start',
                 dontSayIt: 'Zeg het woord zelf nooit',
-                runningReminder: 'Tik een woord af zodra {{guesser}} het heeft. De rest van de tafel is straks aan de beurt.',
+                runningReminder: 'Tik een woord aan zodra {{guesser}} het heeft. De rest is straks aan de beurt.',
                 inTimeTitle: 'Wat had {{guesser}}?',
                 inTimeHint: 'Tik elk woord aan dat {{guesser}} op tijd zei',
                 toBonus: 'Bonusronde · nog {{left}} over',
-                toSettle: 'Door naar de punten',
-                bonusHint: 'De quiz master mag niks meer zeggen, maar elke andere speler mag nog wel 1x een woord raden op basis van wat er net genoemd is om zo bonuspunten te scoren.',
-                scoringTitle: 'Hoe de beurt ging',
-                standing: '{{name}} pakt {{points}}p uit deze beurt',
-                scoreAgain: 'Deze beurt opnieuw scoren',
-                settle: 'Verder gaan'
+                toSettle: 'Naar de punten',
+                bonusHint: 'De quizmaster zegt niks meer. De rest mag elk nog één woord raden voor een bonuspunt.',
+                scoringTitle: 'Hoe ging het?',
+                standing: '{{name}} pakt {{points}}p deze beurt',
+                scoreAgain: 'Opnieuw scoren',
+                settle: 'Verder'
             },
             list: {
                 readyRuleOnlyGuesser: 'Je vraagt het aan {{guesser}}. Tot hun beurt voorbij is telt alleen wat zij zeggen',
                 readyRuleTime: '{{seconds}} seconden om zoveel mogelijk van de {{answers}} antwoorden te noemen',
                 readyRuleGuesses: '{{guesses}} gokken om zoveel mogelijk van de {{answers}} antwoorden te noemen',
-                readyRuleHidden: 'Alleen jij als quizmaster ziet deze antwoorden',
-                readyRuleScore: 'Elk antwoord dat ze noemen is {{worth}} punten voor de gokker',
-                readyRuleBonus: 'Daarna krijgen de andere {{others}} spelers ieder één gok voor een antwoord dat nog niet genoemd is om zo bonuspunten te scoren',
+                readyRuleHidden: 'Alleen jij als quizmaster ziet de antwoorden',
+                readyRuleScore: 'Elk goed antwoord is {{worth}} punten voor de gokker',
+                readyRuleBonus: 'Daarna krijgen de andere {{others}} spelers elk één bonusgok op wat er nog over is',
                 start: 'Start',
-                preTimerHint: 'Lees eerst de vraag hardop voor, start dan de klok en {{guesser}} kan gaan gokken',
+                preTimerHint: 'Lees de vraag voor en start de klok, dan kan {{guesser}} gokken',
                 startTimer: 'Start de klok',
                 runningReminder: 'Vink elk antwoord af dat {{guesser}} noemt. De rest telt nog niet mee.',
-                zenNotice: 'Geen tijdsdruk hier. {{guesser}} mag {{nGuesses}} keer gokken, en daarna krijgt elke andere speler één bonusgok op een antwoord dat niemand had.',
+                zenNotice: 'Geen tijdsdruk. {{guesser}} mag {{nGuesses}} keer gokken, daarna krijgt de rest één bonusgok op wat er over is.',
                 inTimeTitle: 'Wat had {{guesser}}?',
                 inTimeHint: 'Tik elk antwoord aan dat {{guesser}} goed had',
                 toBonus: 'Bonusronde · nog {{left}} over',
-                toSettle: 'Door naar de punten',
-                bonusHint: 'Eén gok op een van deze. Goed geraden en het punt is van jou.',
+                toSettle: 'Naar de punten',
+                bonusHint: 'Eén gok op een van deze. Goed is een punt voor jou.',
                 scoringTitle: 'Resultaat',
-                standing: '{{name}} pakt {{points}}p uit deze vraag',
-                scoreAgain: 'Deze vraag opnieuw scoren',
-                settle: 'Verder gaan'
+                standing: '{{name}} pakt {{points}}p deze vraag',
+                scoreAgain: 'Opnieuw scoren',
+                settle: 'Verder'
             },
             doubleDown: {
                 ask: 'Wil {{name}} een makkelijke of moeilijke vraag?',
@@ -1045,8 +1022,8 @@ export const nl: Catalog = {
             tieBreak: {
                 kicker: 'Voor de finale',
                 title: 'Gelijkspel!',
-                bodyOne: '{{names}} hebben evenveel punten. Speel in het echt steen-papier-schaar: de winnaar gaat door naar de finale.',
-                bodyTwo: '{{names}} hebben evenveel punten. Speel in het echt steen-papier-schaar: de twee winnaars gaan door naar de finale.',
+                bodyOne: '{{names}} staan gelijk. Speel steen-papier-schaar: de winnaar gaat naar de finale.',
+                bodyTwo: '{{names}} staan gelijk. Speel steen-papier-schaar: de twee winnaars gaan naar de finale.',
                 through: '{{name}} staat al in de finale.',
                 pickOne: 'Winnaar naar de finale',
                 pickTwo: 'Winnaars naar de finale',
@@ -1055,228 +1032,223 @@ export const nl: Catalog = {
             intro: {
                 of: 'van {{total}}',
                 round: 'Ronde {{round}}',
-                briefOpen: 'Twintig open vragen. De quiz master vraagt het aan de speler links van zich; goed antwoord en de volgende is ook voor jou, fout de volgende speler mag raden. Elke vraag levert een punt op.',
-                briefChoice: 'Pittigere vragen, multiple choice. Iedereen start 1x en is 1x quiz master. Elke vraag is twee punten waard.',
-                briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quiz master noemt één gok, en niemand mag hetzelfde getal zeggen. Wie er het dichtst bij zit pakt twee punten.',
-                briefClosestEveryone: 'Een vraag met een getal als antwoord. Iedereen typt één gok op de eigen telefoon, en het antwoord verschijnt zodra het laatste getal binnen is. Wie er het dichtst bij zit pakt twee punten, en bij gelijkspel krijgen ze die allebei.',
-                briefDescribe: '30 seconden om je eigen woorden te omschrijven zonder het woord te zeggen (of een vertaling).',
-                briefList: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die twintig seconden krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is 2 punten voor wie het noemde.',
-                briefListZen: 'Eén vraag met vier antwoorden erin verstopt. De quiz master vraagt het aan de speler links van zich, die geen klok heeft en acht gokken krijgt om er zoveel mogelijk te noemen. Wat overblijft gaat daarna de tafel rond, ieder één gok. Elk antwoord dat valt is 2 punten voor wie het noemde.',
-                briefDoubleDown: 'Makkelijk of moeilijk? Elke speler krijgt de keuze: een makkelijke vraag is 1 punt waard, een moeilijke 3. Er zijn er vijf van elk, dus als een soort op is neem je wat er over is. Fout? Dan gaat de vraag de tafel rond — en wie hem pakt krijgt de volle waarde.',
-                briefFinale: 'De 2 spelers met de meeste punten strijden tegen elkaar in de finale. Elk goed antwoord is een ster waard, en wie na ronde 6 voorstond begint met 1 bonusster. Wie achter staat begint steeds. De meeste sterren wint de avond, en bij gelijke sterren wint de meeste punten.',
-                briefFinaleTwo: 'Jullie strijden met z’n tweeën tegen elkaar en lezen elkaar voor. Wie achter staat krijgt de vraag, en fout is fout. Elk goed antwoord is 2 punten waard, en de meeste punten wint de avond.',
-                bonusStar: '{{name}} stond na ronde 6 voor en begint met 1 bonusster',
-                noBonusStar: 'Gelijk op punten: niemand begint met een bonusster',
+                briefOpen: 'Twintig open vragen. De quizmaster vraagt het aan de speler links. Goed? Dan is de volgende ook voor jou. Fout? Dan mag de volgende. Elke vraag is een punt.',
+                briefChoice: 'Lastigere vragen, meerkeuze. Iedereen begint een keer en is een keer quizmaster. Elke vraag is 2 punten.',
+                briefClosest: 'Een vraag met een getal als antwoord. Iedereen behalve de quizmaster gokt één keer, geen twee dezelfde. Dichtstbij krijgt 2 punten.',
+                briefClosestEveryone: 'Een vraag met een getal als antwoord. Iedereen typt één gok op de eigen telefoon. Dichtstbij krijgt 2 punten, bij gelijkspel allebei.',
+                briefDescribe: '30 seconden om je woorden te omschrijven zonder het woord (of een vertaling) te zeggen.',
+                briefList: 'Eén vraag, vier antwoorden. De speler links van de quizmaster heeft twintig seconden om er zoveel mogelijk te noemen. Daarna krijgt de rest één gok op wat er over is. Elk goed antwoord is 2 punten.',
+                briefListZen: 'Eén vraag, vier antwoorden. De speler links van de quizmaster krijgt acht gokken, zonder klok. Daarna krijgt de rest één gok op wat er over is. Elk goed antwoord is 2 punten.',
+                briefDoubleDown: 'Makkelijk (1 punt) of moeilijk (3 punten)? Er zijn er vijf van elk, dus op is op. Fout? Dan gaat de vraag de tafel rond voor de volle punten.',
+                briefFinale: 'De twee beste spelers spelen de finale. Elk goed antwoord is een ster, en wie na ronde 6 voorstond begint met een bonusster. Wie achter staat begint. De meeste sterren wint. Gelijk? Dan wint wie de meeste punten heeft.',
+                briefFinaleTwo: 'Jullie spelen met z’n tweeën en lezen elkaar voor. Wie achter staat krijgt de vraag, fout is fout. Elk goed antwoord is 2 punten. De meeste punten wint.',
+                bonusStar: '{{name}} stond na ronde 6 voor en begint met een bonusster',
+                noBonusStar: 'Gelijk op punten, dus geen bonusster',
                 versus: 'vs',
-                quizmaster: '{{name}} is quiz master',
+                quizmaster: '{{name}} is quizmaster',
                 action: 'Start ronde {{round}}'
             },
             handoff: {
                 step: 'Ronde {{round}} · {{number}} van {{total}}',
                 title: 'Geef de telefoon aan {{name}}',
-                jobOpen: '{{name}} leest voor aan de speler links van zich',
-                jobChoice: '{{name}} leest de vraag en alle vier de opties voor',
-                jobClosest: '{{name}} leest de vraag voor en verzamelt de getallen van de rest',
+                jobOpen: '{{name}} leest voor aan de speler links',
+                jobChoice: '{{name}} leest de vraag en de vier opties voor',
+                jobClosest: '{{name}} leest de vraag voor en verzamelt de getallen',
                 jobDescribe: '{{name}} omschrijft de woorden aan de speler links. Alleen {{name}} mag dit scherm zien.',
-                jobList: '{{name}} leest de vraag voor en vinkt elk antwoord af dat de speler links van hen noemt.',
-                jobDoubleDown: '{{name}} vraagt de volgende speler makkelijk of moeilijk en leest daarna de vraag voor die eruit komt.',
-                jobFinale: '{{name}} leest voor aan beide finalisten en speelt deze ronde zelf niet mee.',
-                ruleOpen: 'Goed antwoord? Dan is de volgende vraag ook voor jou. Fout en hij schuift door. Elke vraag levert een punt op.',
-                ruleChoice: 'Net als hiervoor: goed antwoord en de volgende is ook voor jou. Elke vraag is hier 2 punten waard.',
-                ruleClosest: 'Iedereen behalve de quiz master gokt één keer, en niemand mag hetzelfde getal zeggen. Dichtstbij pakt 2.',
-                ruleDescribe: 'Dertig seconden, gespeeld met de speler links van je. Elk woord dat die raadt is een punt voor hen én een punt voor jou.',
-                ruleList: 'Twintig seconden, en alleen de speler links van je antwoordt. Wat zij missen gaat daarna de tafel rond, ieder één gok.',
-                ruleDoubleDown: 'Makkelijk levert 1 punt op, moeilijk 3, en er zijn er vijf van elk — dus een soort kan opraken. Fout? Dan gaat de vraag voor de volle waarde de tafel rond.',
-                ruleFinale: 'Elke vraag gaat eerst naar wie achter staat. Fout? Dan mag de ander hem alsnog pakken. Een ster per goed antwoord, en de meeste sterren wint de avond.',
-                action: 'Laat de vraag zien'
+                jobList: '{{name}} leest de vraag voor en vinkt af wat de speler links noemt.',
+                jobDoubleDown: '{{name}} vraagt de volgende speler: makkelijk of moeilijk? En leest dan de vraag voor.',
+                jobFinale: '{{name}} leest voor aan de finalisten en speelt zelf niet mee.',
+                ruleOpen: 'Goed? Dan is de volgende vraag ook voor jou. Fout? Dan mag de volgende. Elke vraag is een punt.',
+                ruleChoice: 'Net als net: goed en de volgende is ook voor jou. Elke vraag is 2 punten.',
+                ruleClosest: 'Iedereen behalve de quizmaster gokt één keer, geen twee dezelfde. Dichtstbij krijgt 2.',
+                ruleDescribe: 'Dertig seconden, samen met de speler links van je. Elk geraden woord is een punt voor jullie allebei.',
+                ruleList: 'Twintig seconden, alleen de speler links van je antwoordt. Wat er over is gaat daarna de tafel rond.',
+                ruleDoubleDown: 'Makkelijk is 1 punt, moeilijk 3. Er zijn er vijf van elk, dus op is op. Fout? Dan gaat de vraag de tafel rond.',
+                ruleFinale: 'Wie achter staat krijgt de vraag eerst. Fout? Dan mag de ander. Een ster per goed antwoord, de meeste sterren wint.',
+                action: 'Toon de vraag'
             },
             standings: {
                 label: 'Ronde {{round}} van {{total}} klaar',
                 title: 'Ronde {{round}} klaar',
                 description: 'De tussenstand.',
                 startNext: 'Start ronde {{round}}',
-                nextRoundWip: 'Ronde {{round}} is er nog niet. Jullie punten zijn bewaard. De quiz wacht waar jullie gebleven waren.'
+                nextRoundWip: 'Ronde {{round}} bestaat nog niet. Jullie punten zijn bewaard.'
             },
             final: {
-                title: 'De quiz is afgelopen',
-                description: 'Zo eindigde de avond.',
+                title: 'De quiz is voorbij',
+                description: 'De eindstand.',
                 finalist: 'Finalist',
                 winnerLabel: 'Winnaar',
                 points: '{{score}} punten',
                 stars: '{{stars}} ★',
                 tally: '{{stars}} ★ · {{score}} punten',
-                tieLabel: 'Gedeelde eerste plaats',
-                tieTitle: 'Niemand liep uit',
-                tieDescription: 'Niemand eindigde bovenaan. De avond is gedeeld.'
+                tieLabel: 'Gedeelde eerste plek',
+                tieTitle: 'Gelijkspel!',
+                tieDescription: 'Er is geen winnaar. Jullie delen de eerste plek.'
             }
         },
         errors: {
-            // De multi device kamer, geweigerd.
-            lobbyFull: 'Die kamer is vol. Acht telefoons is het maximum aan één tafel.',
-            alreadyStarted: 'Die kamer is al begonnen. Vraag om een nieuwe code.',
-            lobbyGone: 'Die kamer bestaat niet meer. Check de code.',
-            notHost: 'Alleen wie de kamer geopend heeft kan dat veranderen.',
-            notAtThisTable: 'Je zit niet aan deze tafel.',
-            notYourSeat: 'Het is niet jouw beurt om die te beantwoorden.',
-            expired: 'Je bent uitgelogd. Log opnieuw in om een quiz te starten.',
-            quizGone: 'Die quiz bestaat niet meer. Kies een andere.',
-            badTable: 'De tafel werd geweigerd. Check de namen en probeer het opnieuw.',
-            tooFewPlayers: 'Een quiz heeft minstens twee spelers nodig.',
-            tooManyPlayers: 'Acht spelers is het maximum aan één tafel.',
-            duplicateName: 'Twee spelers kunnen niet dezelfde naam hebben.',
-            quizTooSmall: 'Deze quiz heeft niet genoeg vragen voor zoveel spelers. Kies een andere quiz, of speel met minder mensen.',
-            generic: 'De quiz kon niet gestart worden. Probeer het opnieuw.',
-            network: 'Geen verbinding met de server. Check je internet.',
-            staleTurn: 'De tafel is al verder. Het bord hieronder is waar de quiz echt staat.',
-            duplicateGuess: 'Twee spelers kunnen niet hetzelfde getal gokken. Vraag er een om een ander.',
-            quizmasterCannotGuess: 'Wie de vraag voorleest, mag er zelf niet naar gokken.',
-            describerCannotGuess: 'Je kunt geen punt krijgen voor een woord dat je zelf omschreef.',
-            oneGuessEach: 'Iedereen behalve de speler die raadt krijgt één gok.',
-            twoOnOne: 'Dit kan maar aan één speler worden toegekend.',
-            /** Ronde 2 beoordeelt zichzelf op de telefoon van wie antwoordt, en de vraag van ronde 6 kiest de speler zelf. */
-            verdictDisagrees: 'Dat is niet wat de quiz over dat antwoord zegt. Check welke optie er aangetikt is.',
-            noChoiceYet: 'Er is nog niet gekozen tussen makkelijk en moeilijk, dus er is nog geen vraag om te beoordelen.'
+            lobbyFull: 'Deze lobby is vol. Maximaal acht telefoons.',
+            alreadyStarted: 'Deze quiz is al begonnen. Vraag om een nieuwe code.',
+            lobbyGone: 'Deze lobby bestaat niet meer. Check de code.',
+            notHost: 'Alleen de host kan dat.',
+            notAtThisTable: 'Je speelt niet mee in deze quiz.',
+            notYourSeat: 'Je bent niet aan de beurt.',
+            expired: 'Je sessie is verlopen. Log opnieuw in.',
+            quizGone: 'Deze quiz bestaat niet meer. Kies een andere.',
+            badTable: 'Er klopt iets niet. Check de namen en probeer opnieuw.',
+            tooFewPlayers: 'Je hebt minstens twee spelers nodig.',
+            tooManyPlayers: 'Maximaal acht spelers.',
+            duplicateName: 'Twee spelers hebben dezelfde naam.',
+            quizTooSmall: 'Deze quiz heeft te weinig vragen voor zoveel spelers. Kies een andere, of speel met minder.',
+            generic: 'De quiz kon niet starten. Probeer het opnieuw.',
+            network: 'Geen verbinding. Check je internet.',
+            staleTurn: 'De quiz is al verder. Hieronder zie je waar jullie zijn.',
+            duplicateGuess: 'Twee spelers hebben hetzelfde getal. Vraag er een om een ander.',
+            quizmasterCannotGuess: 'De quizmaster mag niet meegokken.',
+            describerCannotGuess: 'Je kunt geen punt krijgen voor je eigen woord.',
+            oneGuessEach: 'Iedereen behalve de rader krijgt één gok.',
+            twoOnOne: 'Dit kan maar naar één speler.',
+            verdictDisagrees: 'Dat klopt niet met het antwoord. Check welke optie is aangetikt.',
+            noChoiceYet: 'Er is nog niet gekozen tussen makkelijk en moeilijk.'
         }
     },
-    oneOfUs: { 
-        index: { 
-            description: "Kun jij de burgers van de bedrieger(s) onderscheiden?", 
-            oneDevice: { 
-                title: "1 telefoon", 
-                description: "Speel met 1 telefoon die wordt doorgegeven", 
-                action: "Spelen" 
-            }, 
-            multiDevice: { 
-                title: "Multi device", 
-                description: "Maak een lobby en nodig andere spelers uit", 
-                action: "Lobby maken" 
-            } 
+    oneOfUs: {
+        index: {
+            description: 'Wie van jullie is de bedrieger?',
+            oneDevice: {
+                title: '1 telefoon',
+                description: 'Geef de telefoon door.',
+                action: 'Spelen'
+            },
+            multiDevice: {
+                title: 'Per speler',
+                description: 'Maak een lobby en nodig vrienden uit.',
+                action: 'Lobby maken'
+            }
         },
         singleDevice: {
-            title: "Speel met 1 device",
-            description: "Vul alle namen in van de spelers waar je mee speelt. Druk dan op start.",
+            title: '1 telefoon',
+            description: 'Vul de namen van alle spelers in en druk op start.',
             players: {
-                tooFew: 'One of Us heeft minstens drie spelers nodig.',
-                tooMany: 'Negen spelers is het maximum voor één telefoon.',
-                duplicate: 'Twee spelers kunnen niet dezelfde naam hebben.'
+                tooFew: 'Je hebt minstens drie spelers nodig.',
+                tooMany: 'Maximaal negen spelers.',
+                duplicate: 'Twee spelers hebben dezelfde naam.'
             }
         },
         multiDevice: {
             lobby: {
-                opening: 'De kamer wordt geopend…',
-                noLobby: 'Geen kamer',
-                hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code voor nog een ronde.',
-                hostClosedLobby: 'De host heeft de kamer gesloten. Vraag om een nieuwe code.',
+                opening: 'Lobby openen…',
+                noLobby: 'Geen lobby',
+                hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code.',
+                hostClosedLobby: 'De host heeft de lobby gesloten. Vraag om een nieuwe code.',
                 running: {
-                    gameTitle: 'Je bent al aan het spelen',
-                    lobbyTitle: 'Je hebt nog een kamer open',
-                    gameMessage: 'Je speelt nog een spel in kamer {{code}}. Ga verder, of stop het en open een nieuwe kamer.',
-                    lobbyMessage: 'Kamer {{code}} staat nog op jouw naam open. Ga terug, of sluit hem en open een nieuwe.',
-                    resumeGame: 'Doorspelen',
-                    resumeLobby: 'Naar de open kamer',
+                    gameTitle: 'Je speelt al een spel',
+                    lobbyTitle: 'Je hebt nog een lobby open',
+                    gameMessage: 'Je speelt nog in lobby {{code}}. Ga verder, of stop en open een nieuwe lobby.',
+                    lobbyMessage: 'Lobby {{code}} staat nog open. Ga terug, of sluit hem en open een nieuwe.',
+                    resumeGame: 'Verder spelen',
+                    resumeLobby: 'Naar open lobby',
                     stopGame: 'Spel stoppen',
-                    closeLobby: 'Stoppen en nieuwe maken'
+                    closeLobby: 'Sluiten en nieuwe maken'
                 },
                 confirmClose: {
-                    title: 'Kamer sluiten?',
-                    message: 'De kamer wordt verwijderd en de code werkt niet meer. Iedereen die er al in zit wordt eruit gezet.',
+                    title: 'Lobby sluiten?',
+                    message: 'De code werkt dan niet meer en iedereen in de lobby ligt eruit.',
                     action: 'Sluiten'
                 },
                 confirmLeave: {
-                    title: 'Kamer verlaten?',
-                    message: 'Je gaat terug naar het spelmenu. Je kunt later met dezelfde code weer meedoen.',
+                    title: 'Lobby verlaten?',
+                    message: 'Je kunt later terugkomen met dezelfde code.',
                     action: 'Verlaten'
                 },
-                stay: 'Hier blijven',
+                stay: 'Blijf hier',
                 start: 'Start het spel',
-                startNote: 'Zodra je start kan er niemand meer bij.',
+                startNote: 'Na de start kan niemand meer joinen.',
                 needPlayers: 'Je hebt minstens {{min}} spelers nodig.',
                 hostFallback: 'De host',
                 settingsTitle: 'Instellingen'
             },
             play: {
-                loading: 'De rollen worden verdeeld…',
+                loading: 'Rollen verdelen…',
                 noGame: 'Geen spel',
-                waiting: 'Wachten op de tafel…',
-                // Er is geen rondetotaal om tegen af te tellen, dus de band zegt wat de tafel aan het doen is.
+                waiting: 'Wachten op de rest…',
                 phase: {
                     deal: 'Ronde {{round}} · het woord',
-                    answer: 'Ronde {{round}} · aanwijzing',
+                    answer: 'Ronde {{round}} · hint',
                     vote: 'Ronde {{round}} · stemmen',
                     reveal: 'Ronde {{round}} · uitslag',
                     waiting: 'Ronde {{round}}'
                 },
-                stillIn: '{{count}} in spel',
+                stillIn: '{{count}} over',
                 progress: '{{done}} / {{total}}',
                 out: {
                     title: 'Je ligt eruit',
-                    message: 'De tafel heeft je eruit gestemd. Blijf kijken hoe het eindigt — antwoorden en stemmen kan niet meer.'
+                    message: 'Je bent eruit gestemd. Je kunt nog meekijken, maar niet meer antwoorden of stemmen.'
                 },
                 deal: {
-                    title: 'Trek je briefje',
+                    title: 'Je briefje',
                     action: 'Onthouden'
                 },
                 answer: {
                     title: 'Schrijf je briefje',
-                    // De kop van het briefje zelf, dus kort en klein: het staat er als geheugensteun, niet als aankondiging.
                     about: 'Over: {{prompt}}',
-                    aboutBlank: 'Je kreeg een leeg briefje',
+                    aboutBlank: 'Je briefje is leeg',
                     field: 'Jouw briefje',
-                    placeholder: 'Iets wat alleen iemand met jouw opdracht zou schrijven',
-                    counter: '{{typed}} / {{max}} · anoniem op het bord',
-                    submit: 'Indienen',
-                    hung: 'Hangt op het bord · anoniem',
-                    pinned: 'Al opgehangen',
-                    waitingMessage: 'Wachten op de rest van de tafel. Het stemmen begint zodra het laatste briefje hangt.'
+                    placeholder: 'Iets wat alleen past bij jouw woord',
+                    counter: '{{typed}} / {{max}} · anoniem',
+                    submit: 'Insturen',
+                    hung: 'Ingestuurd · anoniem',
+                    pinned: 'Al ingestuurd',
+                    waitingMessage: 'Wachten op de rest. Het stemmen begint als iedereen klaar is.'
                 },
                 vote: {
                     title: 'Welk antwoord is sus?',
                     mine: 'JIJ',
-                    // In twee stukken, want de naam ertussen staat vet.
                     tie: 'Gelijkspel?',
-                    tieTail: 'hakt de knoop door.',
-                    confirm: 'Prik dit briefje',
-                    waiting: 'Je stem staat. Wachten op de rest van de tafel.'
+                    tieTail: 'beslist.',
+                    confirm: 'Stem hierop',
+                    waiting: 'Je hebt gestemd. Wachten op de rest.'
                 },
                 reveal: {
-                    title: 'De briefjes omgedraaid',
+                    title: 'De uitslag',
                     votedOut: '{{name}} · eruit gestemd',
-                    tieBroken: 'De stemmen stonden gelijk, dus de burgemeester besliste.',
+                    tieBroken: 'Gelijkspel, dus de burgemeester besliste.',
                     next: 'Ronde {{round}}',
-                    toResult: 'Kijk hoe het eindigde'
+                    toResult: 'Bekijk de uitslag'
                 }
             },
             errors: {
-                lobbyFull: 'Die kamer is vol.',
-                alreadyStarted: 'Dat spel is al begonnen.',
+                lobbyFull: 'Deze lobby is vol.',
+                alreadyStarted: 'Dit spel is al begonnen.',
                 notHost: 'Alleen de host kan dat.',
-                notEnoughPlayers: 'Je hebt meer spelers nodig voordat je kunt starten.',
-                tooManyPlayers: 'Dat zijn meer spelers dan One of Us aan één tafel kwijt kan.',
+                notEnoughPlayers: 'Je hebt meer spelers nodig om te starten.',
+                tooManyPlayers: 'Te veel spelers voor One of Us.',
                 gameNotOver: 'Het spel is nog niet voorbij.',
-                noContent: 'Er zijn nog geen opdrachten voor die taal.',
-                lobbyGone: 'Die kamer bestaat niet meer.',
-                alreadyAnswered: 'Je antwoord voor deze ronde staat al.',
-                alreadyVoted: 'Je hebt deze ronde al gestemd.',
-                cannotVoteSelf: 'Je kunt niet op je eigen antwoord stemmen.',
-                votedOut: 'Je bent eruit gestemd, dus je antwoordt en stemt niet meer.',
-                wrongRound: 'Die ronde is voorbij. Momentje.',
-                wrongPhase: 'De tafel is ergens anders. Momentje.',
-                badAnswer: 'Dat antwoord kan niet. Schrijf iets, en hou het kort.',
-                gameFinished: 'Dat spel is voorbij.'
+                noContent: 'Er zijn nog geen woorden in deze taal.',
+                lobbyGone: 'Deze lobby bestaat niet meer.',
+                alreadyAnswered: 'Je hebt al geantwoord deze ronde.',
+                alreadyVoted: 'Je hebt al gestemd deze ronde.',
+                cannotVoteSelf: 'Je kunt niet op jezelf stemmen.',
+                votedOut: 'Je bent eruit gestemd en kunt niet meer meedoen.',
+                wrongRound: 'Die ronde is al voorbij.',
+                wrongPhase: 'Dat kan nu niet.',
+                badAnswer: 'Dat antwoord kan niet. Schrijf iets, maar hou het kort.',
+                gameFinished: 'Dit spel is voorbij.'
             }
         },
         settings: {
             wordsOnly: {
-                title: "Alleen woorden",
-                description: "Gebruik alleen woorden. Anders een zin."
+                title: 'Alleen woorden',
+                description: 'Alleen losse woorden, geen zinnen.'
             },
             roles: {
                 title: 'Rollen',
-                description: 'Welke rollen uitgedeeld kunnen worden.',
+                description: 'Welke rollen kunnen meedoen.',
                 count: '{{enabled}} van {{total}}',
-                locked: 'Er moet één soort bedrieger aan blijven — zonder kan niemand winnen.',
+                locked: 'Er moet minstens één soort bedrieger aan staan.',
                 imposter: {
-                    description: 'Krijgt een ander woord en moet meepraten zonder door de mand te vallen.'
+                    description: 'Krijgt een ander woord en moet meepraten zonder op te vallen.'
                 },
                 nitwit: {
                     description: 'Krijgt helemaal geen woord.'
@@ -1284,71 +1256,64 @@ export const nl: Catalog = {
             }
         },
         play: {
-            loading: 'De woorden worden verdeeld…',
+            loading: 'Woorden verdelen…',
             close: 'Spel verlaten',
             roundDiscuss: 'Ronde {{round}} · overleg',
-
-            // Het briefje dat je trok. Beide speelvormen delen het.
             note: {
                 label: 'Jouw woord',
-                blurb: 'Laat deze aan niemand zien.',
-                blurbBlank: 'Jij bent die iemand. Bouw voort op wat je anderen hoort zeggen.',
-                cover: 'Tik om je briefje te lezen',
-                coverHint: 'Zorg dat niemand meekijkt.'
+                blurb: 'Laat dit aan niemand zien.',
+                blurbBlank: 'Jij hebt geen woord. Luister goed naar de rest.',
+                cover: 'Tik om je woord te zien',
+                coverHint: 'Laat niemand meekijken.'
             },
-
             reveal: {
                 step: 'Woord {{number}} van {{total}}',
                 title: '{{name}} is aan de beurt',
-                body: 'Pak de telefoon aan van {{from}} en houd hem voor jezelf.',
+                body: 'Pak de telefoon van {{from}} en laat niemand meekijken.',
                 bodyFirst: 'Alleen {{name}} mag het volgende scherm zien.',
-                note: 'Niemand anders mag meekijken.',
+                note: 'Niemand mag meekijken.',
                 action: 'Ik ben {{name}}',
                 bandLabel: 'Woorden bekijken',
                 yourWord: '{{name}}, dit is jouw woord',
                 after: 'Hierna: {{names}}',
                 secretLabel: 'Tik om je woord te zien',
-                secretHint: 'Houd de telefoon zo dat niemand anders meekijkt.',
+                secretHint: 'Laat niemand meekijken.',
                 warning: 'Alleen jij ziet dit',
-                noWord: 'Helemaal geen woord',
-
+                noWord: 'Geen woord',
                 role: {
                     label: 'Jouw rol',
                     civilian: {
                         name: 'Burger',
-                        explanation: 'Iedereen met jouw woord hoort erbij. Zoek degene die het niet heeft.'
+                        explanation: 'Iedereen met jouw woord hoort bij jou. Vind wie het niet heeft.'
                     },
                     imposter: {
                         name: 'Imposter',
-                        explanation: 'Jouw woord is niet dat van de rest van de tafel. Bluf mee en overleef.'
+                        explanation: 'Jij hebt een ander woord dan de rest. Bluf mee en overleef.'
                     },
                     unknown: {
-                        name: 'Burger of Imposter',
-                        explanation: 'Je weet niet wat je bent. Let op de tafel, luister naar het woord en kom erachter.'
+                        name: 'Burger of imposter',
+                        explanation: 'Je weet niet wat je bent. Luister goed en kom erachter.'
                     },
                     nitwit: {
                         name: 'De onnozele',
-                        explanation: 'Jij hebt helemaal geen woord. Bouw elke beurt op wat je anderen hoort zeggen.'
+                        explanation: 'Jij hebt geen woord. Luister goed naar de rest en praat mee.'
                     }
                 },
                 hide: 'Verbergen',
                 remember: 'Onthouden · geef aan {{name}}',
-                lastDone: 'Gezien, start ronde 1'
+                lastDone: 'Klaar, start ronde 1'
             },
-
             speak: {
                 bandLabel: 'Ronde {{round}} · Beurten',
                 title: 'Zeg iets over je woord',
-                nowSpeaking: 'Nu aan het woord',
-                hint: 'Zeg één woord wat met jouw woord te maken heeft. Noem het woord zelf niet.',
+                nowSpeaking: 'Nu aan de beurt',
+                hint: 'Zeg één woord dat bij jouw woord past. Niet het woord zelf.',
                 next: 'Volgende: {{name}}',
                 lastNext: 'Iedereen is geweest'
             },
-
             discuss: {
                 action: 'Stemmen'
             },
-
             vote: {
                 bandLabel: 'Ronde {{round}} · Stemmen',
                 inCount: '{{count}} in',
@@ -1360,7 +1325,6 @@ export const nl: Catalog = {
                 sendAway: 'Stuur {{name}} weg',
                 pickFirst: 'Kies eerst iemand'
             },
-
             elimination: {
                 bandLabel: 'Ronde {{round}} · Uitslag',
                 title: '{{name}} ligt eruit',
@@ -1383,35 +1347,31 @@ export const nl: Catalog = {
                 civilian: '{{name}} was een burger',
                 imposter: '{{name}} was een imposter',
                 nitwit: '{{name}} was de onnozele',
-                // Of de tafel de goede te pakken had.
                 hit: 'raak',
                 miss: 'mis',
                 left: 'Nog {{count}} aan tafel',
-                next: 'Door naar ronde {{round}}'
+                next: 'Ronde {{round}}'
             },
-
             briefing: {
-                title: 'Wie spelen er mee',
-                intro: 'Iedereen krijgt een van deze rollen. Lees ze voor voordat je begint.',
+                title: 'De rollen',
+                intro: 'Iedereen krijgt een van deze rollen. Lees ze voor de start voor.',
                 roleLabel: 'Rol',
                 role: {
-                    civilian: 'De meesten aan tafel zijn burgers. Zij hebben allemaal hetzelfde woord en moeten uitzoeken wie dat niet heeft.',
-                    imposter: 'De imposters kregen een ander woord en kennen het echte niet. Zij bluffen mee en winnen door te overleven.',
-                    nitwit: 'De onnozele kreeg helemaal geen woord en speelt mee met de imposters, die geen idee hebben wie het is.'
+                    civilian: 'De meeste spelers zijn burgers. Ze hebben allemaal hetzelfde woord en zoeken wie dat niet heeft.',
+                    imposter: 'Imposters hebben een ander woord en kennen het echte niet. Ze bluffen mee en winnen door te overleven.',
+                    nitwit: 'De onnozele heeft geen woord en speelt mee met de imposters. Die weten niet wie het is.'
                 },
                 action: 'Woorden verdelen'
             },
-
             over: {
-                /** The band along the top. The headline under it says who won. */
                 label: 'Spel afgelopen',
                 civilians: 'De burgers winnen',
                 imposters: 'De imposters winnen',
-                civiliansWhy: 'Alle imposters zijn weggestemd.',
-                impostersWhy: 'De imposters zijn niet langer in de minderheid.',
+                civiliansWhy: 'Alle imposters zijn eruit gestemd.',
+                impostersWhy: 'De imposters zijn niet meer in de minderheid.',
                 rolesTitle: 'Spelers',
                 civiliansCamp: 'Burgers',
-                impostersCamp: 'Imposters',
+                impostersCamp: 'Tegen de burgers',
                 imposterWordLabel: 'Imposters',
                 role: {
                     imposter: 'Imposter',
@@ -1422,71 +1382,71 @@ export const nl: Catalog = {
             }
         },
         errors: {
-            expired: 'Je bent uitgelogd. Log opnieuw in om verder te spelen.',
-            gameGone: 'Dat spel bestaat niet meer.',
-            badTable: 'Die tafel kan niet gedeeld worden. Check de namen en probeer opnieuw.',
+            expired: 'Je sessie is verlopen. Log opnieuw in.',
+            gameGone: 'Dit spel bestaat niet meer.',
+            badTable: 'Er klopt iets niet. Check de namen en probeer opnieuw.',
             generic: 'Er ging iets mis. Probeer het opnieuw.',
-            network: 'Geen verbinding met de server. Check je internet.',
-            offlineUnavailable: 'Geen verbinding, en deze telefoon heeft geen opdrachten bewaard voor die taal. Speel één spel online, dan werkt het daarna overal.'
+            network: 'Geen verbinding. Check je internet.',
+            offlineUnavailable: 'Geen verbinding, en er zijn geen woorden opgeslagen voor deze taal. Speel één keer online, daarna werkt het ook offline.'
         }
     },
     fakeFiller: {
         index: {
-            description: 'Verzin een nep-antwoord dat echt klinkt. De rest moet raden welke waar is. Iedereen speelt op zijn eigen telefoon.',
-        facts: {
-            title: 'Feitje',
-            description: 'Vul de ontbrekende woorden in.',
-            action: 'Open een kamer'
-        },
-        definitions: {
-            title: 'Woord',
-            description: 'Bedenk een betekenis voor een woord.',
-            action: 'Open een kamer'
-        }
+            description: 'Verzin een nep-antwoord dat echt klinkt. De rest raadt welke waar is.',
+            facts: {
+                title: 'Feitje',
+                description: 'Vul de ontbrekende woorden in.',
+                action: 'Lobby openen'
+            },
+            definitions: {
+                title: 'Woord',
+                description: 'Verzin een betekenis voor een woord.',
+                action: 'Lobby openen'
+            }
         },
         lobby: {
-            loading: 'Zoeken naar je kamer…',
-            opening: 'Kamer openen…',
-            noLobby: 'Geen kamer',
-            hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code voor nog een ronde.',
-            hostClosedLobby: 'De host heeft de kamer gesloten. Vraag om een nieuwe code.',
+            loading: 'Lobby zoeken…',
+            opening: 'Lobby openen…',
+            noLobby: 'Geen lobby',
+            hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code.',
+            hostClosedLobby: 'De host heeft de lobby gesloten. Vraag om een nieuwe code.',
             running: {
-                gameTitle: 'Je bent al aan het spelen',
-                lobbyTitle: 'Je hebt nog een kamer open staan',
-                gameMessage: 'Je speelt nog een spel in kamer {{code}}. Ga verder, of stop het en open een nieuwe kamer.',
-                lobbyMessage: 'Kamer {{code}} staat nog op jouw naam open. Ga terug, of sluit hem en open een nieuwe.',
+                gameTitle: 'Je speelt al een spel',
+                lobbyTitle: 'Je hebt nog een lobby open',
+                gameMessage: 'Je speelt nog in lobby {{code}}. Ga verder, of stop en open een nieuwe lobby.',
+                lobbyMessage: 'Lobby {{code}} staat nog open. Ga terug, of sluit hem en open een nieuwe.',
                 resumeGame: 'Verder spelen',
-                resumeLobby: 'Naar open kamer',
+                resumeLobby: 'Naar open lobby',
                 stopGame: 'Spel stoppen',
-                closeLobby: 'Spel stoppen en nieuwe maken'
+                closeLobby: 'Sluiten en nieuwe maken'
             },
             confirmClose: {
-                title: 'Kamer sluiten?',
-                message: 'De kamer wordt verwijderd en de code werkt niet meer. Iedereen die er al in zit vliegt eruit.',
+                title: 'Lobby sluiten?',
+                message: 'De code werkt dan niet meer en iedereen in de lobby ligt eruit.',
                 action: 'Sluiten'
             },
             confirmLeave: {
-                title: 'Kamer verlaten?',
-                message: 'Je gaat terug naar het spelmenu. Je kunt later met dezelfde code weer meedoen.',
+                title: 'Lobby verlaten?',
+                message: 'Je kunt later terugkomen met dezelfde code.',
                 action: 'Verlaten'
             },
             stay: 'Blijf hier',
             start: 'Start het spel',
-            startNote: 'Zodra je start kan niemand er meer bij.',
+            startNote: 'Na de start kan niemand meer joinen.',
             needPlayers: 'Je hebt minstens {{min}} spelers nodig.',
             hostFallback: 'De host',
             settingsTitle: 'Instellingen',
             mode: 'Vragen',
             modeFacts: 'Echte feiten',
             modeDefinitions: 'Woordbetekenissen',
-            modeFactsHint: 'Elke vraag heeft een echt antwoord tussen de verzinsels. Vind hem en je scoort.',
-            modeDefinitionsHint: 'Elke vraag is een zeldzaam woord. De echte betekenis zit tussen de verzinsels. Vind hem en je scoort.',
+            modeFactsHint: 'Het echte antwoord zit tussen de verzinsels. Vind het en je scoort.',
+            modeDefinitionsHint: 'Een zeldzaam woord. De echte betekenis zit tussen de verzinsels. Vind hem en je scoort.',
             answersPerPlayer: 'Vragen per speler',
-            answersPerPlayerHint: 'Hoeveel zinnen iedere speler aan het begin invult. Meer vragen, langer spel.',
+            answersPerPlayerHint: 'Hoeveel vragen iedereen invult. Meer vragen, langer spel.',
             answersSummary: '{{amount}} vragen p.p.'
         },
         play: {
-            loading: 'Vragen uitdelen…',
+            loading: 'Vragen verdelen…',
             noGame: 'Geen spel',
             band: {
                 round: 'Ronde',
@@ -1494,7 +1454,7 @@ export const nl: Catalog = {
             },
             writing: {
                 title: 'Vul de gaten in',
-                intro: 'Verzin iets wat onwaar is. Andere spelers moeten denken dat het waar is en zo misleid worden.',
+                intro: 'Verzin iets wat niet klopt, maar wel echt klinkt.',
                 promptOf: 'Vraag {{index}} van {{total}}',
                 blank: 'Gat {{index}}',
                 blankPlaceholder: 'Jouw antwoord',
@@ -1502,28 +1462,28 @@ export const nl: Catalog = {
                 submit: 'Vastzetten',
                 locked: 'Vastgezet',
                 edit: 'Aanpassen',
-                incomplete: 'Vul eerst elk gat in.',
+                incomplete: 'Vul eerst alle gaten in.',
                 titleDefinitions: 'Wat betekent het?',
-                introDefinitions: 'Verzin een geloofwaardige betekenis voor het woord. Je scoort elke keer dat iemand hem kiest.',
+                introDefinitions: 'Verzin een geloofwaardige betekenis. Elke keer dat iemand hem kiest, scoor je.',
                 waitingTitle: 'Wachten op de rest',
-                waitingMessage: 'Jouw antwoorden staan erin. Het stemmen begint zodra iedereen de zijne heeft ingeleverd.',
+                waitingMessage: 'Je antwoorden zijn binnen. Het stemmen begint als iedereen klaar is.',
                 progress: '{{done}} van {{total}} antwoorden binnen'
             },
             voting: {
                 title: 'Welke is echt?',
-                hint: 'Tik de zin die volgens jou echt is.',
+                hint: 'Tik op het antwoord dat volgens jou klopt.',
                 tapToPick: 'Tik om te kiezen',
                 yourPick: 'Jouw keuze',
                 option: 'Optie {{letter}}',
                 or: 'of',
                 roundOf: 'Ronde {{round}} van {{total}}',
                 pick: 'Kies deze',
-                confirm: 'Zet mijn stem vast',
-                voted: 'Stem geteld',
-                yoursTitle: 'Jij moet wachten',
-                yoursMessage: 'Hopelijk raden anderen jouw fake filler! Dan scoor je punten.',
+                confirm: 'Stem vastzetten',
+                voted: 'Gestemd',
+                yoursTitle: 'Even wachten',
+                yoursMessage: 'Hopelijk trapt iemand in jouw antwoord! Dan scoor je.',
                 progress: '{{done}} van {{total}} stemmen binnen',
-                waiting: 'Wachten tot de rest gestemd heeft…'
+                waiting: 'Wachten op de rest…'
             },
             reveal: {
                 title: 'De uitslag',
@@ -1533,13 +1493,13 @@ export const nl: Catalog = {
                     more: '{{name}} +{{count}}'
                 },
                 voters: {
-                    chose: 'Wie dit koos',
+                    chose: 'Gekozen door',
                     none: 'Niemand'
                 },
                 next: 'Volgende ronde',
                 toResults: 'Naar de eindstand',
-                waitingForHost: 'Wachten tot de host verdergaat…',
-                waitingForResults: 'Wachten tot de host de eindstand laat zien…'
+                waitingForHost: 'Wachten op de host…',
+                waitingForResults: 'Wachten op de host…'
             }
         },
         results: {
@@ -1549,42 +1509,42 @@ export const nl: Catalog = {
             expired: 'Je sessie is verlopen. Log opnieuw in.',
             gameGone: 'Dit spel bestaat niet meer.',
             generic: 'Er ging iets mis. Probeer het opnieuw.',
-            network: 'Geen verbinding met de server. Controleer je internet.',
-            lobbyFull: 'Deze kamer is vol.',
-            lobbyGone: 'Deze kamer bestaat niet meer. Controleer de code.',
+            network: 'Geen verbinding. Check je internet.',
+            lobbyFull: 'Deze lobby is vol.',
+            lobbyGone: 'Deze lobby bestaat niet meer. Check de code.',
             alreadyStarted: 'Dit spel is al begonnen.',
             notEnoughPlayers: 'Je hebt meer spelers nodig om te starten.',
-            tooManyPlayers: 'Dat zijn te veel spelers voor één spel.',
-            noContent: 'Er zijn niet genoeg vragen in deze taal. Probeer de andere.',
-            notYourPrompt: 'Die vraag is niet aan jou uitgedeeld.',
+            tooManyPlayers: 'Te veel spelers voor één spel.',
+            noContent: 'Te weinig vragen in deze taal. Probeer de andere.',
+            notYourPrompt: 'Deze vraag is niet voor jou.',
             alreadyAnswered: 'Die heb je al ingevuld.',
-            alreadyVoted: 'Je hebt al gestemd in deze ronde.',
-            cannotVoteOwnPrompt: 'Jij hebt voor deze geschreven, dus je kunt er niet op stemmen.',
-            wrongRound: 'De tafel is al naar de volgende ronde.',
-            wrongPhase: 'Zo ver is de tafel nog niet.',
-            badAnswer: 'Vul elk gat in voordat je vastzet.',
-            answerIsTruth: 'Ssst… dat is het echte antwoord! Verzin nu een nepantwoord.',
+            alreadyVoted: 'Je hebt al gestemd deze ronde.',
+            cannotVoteOwnPrompt: 'Je kunt niet stemmen op je eigen vraag.',
+            wrongRound: 'Deze ronde is al voorbij.',
+            wrongPhase: 'Dat kan nu nog niet.',
+            badAnswer: 'Vul alle gaten in voordat je vastzet.',
+            answerIsTruth: 'Ssst… dat is het echte antwoord! Verzin iets anders.',
             gameFinished: 'Dit spel is afgelopen.'
         }
     },
     wittyWars: {
         index: {
-            description: 'Twee spelers beantwoorden dezelfde vraag, de rest van de tafel stemt op het grappigste antwoord. Iedereen speelt op zijn eigen telefoon.',
+            description: 'Twee spelers, één vraag. De rest stemt op het grappigste antwoord.',
             multiDevice: {
-                title: 'Meerdere apparaten',
-                description: 'Iedereen schrijft en stemt op zijn eigen telefoon.',
-                action: 'Open een kamer'
+                title: 'Per speler',
+                description: 'Iedereen schrijft en stemt op een eigen telefoon.',
+                action: 'Lobby openen'
             },
             hostScreen: {
                 title: 'Hostscherm',
-                description: 'Zet de duels op een tv terwijl de telefoons schrijven.',
-                action: 'Open een kamer'
+                description: 'De duels op de tv, schrijven op je telefoon.',
+                action: 'Lobby openen'
             }
         },
         modes: {
             family: {
-                title: 'Familievriendelijk',
-                description: 'Gekke vragen die iedereen kan spelen, oma ook.'
+                title: 'Familie',
+                description: 'Gekke vragen voor iedereen, ook voor oma.'
             },
             rude: {
                 title: 'Grof',
@@ -1592,47 +1552,47 @@ export const nl: Catalog = {
             },
             caliente: {
                 title: 'Caliente',
-                description: 'Pittig en ondeugend, not safe for work.'
+                description: 'Pittig en ondeugend. Not safe for work.'
             }
         },
         lobby: {
-            loading: 'Je kamer zoeken…',
-            opening: 'De kamer openen…',
-            noLobby: 'Geen kamer',
-            hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code voor nog een potje.',
-            hostClosedLobby: 'De host heeft de kamer gesloten. Vraag om een nieuwe code.',
+            loading: 'Lobby zoeken…',
+            opening: 'Lobby openen…',
+            noLobby: 'Geen lobby',
+            hostStoppedGame: 'De host heeft het spel gestopt. Vraag om een nieuwe code.',
+            hostClosedLobby: 'De host heeft de lobby gesloten. Vraag om een nieuwe code.',
             running: {
-                gameTitle: 'Je speelt al',
-                lobbyTitle: 'Je hebt nog een kamer open',
-                gameMessage: 'Je speelt nog een spel in kamer {{code}}. Speel verder, of stop het en open een nieuwe kamer.',
-                lobbyMessage: 'Kamer {{code}} staat nog open op jouw naam. Ga ernaar terug, of sluit hem en open een nieuwe.',
+                gameTitle: 'Je speelt al een spel',
+                lobbyTitle: 'Je hebt nog een lobby open',
+                gameMessage: 'Je speelt nog in lobby {{code}}. Ga verder, of stop en open een nieuwe lobby.',
+                lobbyMessage: 'Lobby {{code}} staat nog open. Ga terug, of sluit hem en open een nieuwe.',
                 resumeGame: 'Verder spelen',
-                resumeLobby: 'Naar open kamer',
+                resumeLobby: 'Naar open lobby',
                 stopGame: 'Spel stoppen',
-                closeLobby: 'Spel stoppen en nieuwe maken'
+                closeLobby: 'Sluiten en nieuwe maken'
             },
             confirmClose: {
-                title: 'Kamer sluiten?',
-                message: 'De kamer wordt verwijderd en de code werkt niet meer. Iedereen die erin zit, ligt eruit.',
+                title: 'Lobby sluiten?',
+                message: 'De code werkt dan niet meer en iedereen in de lobby ligt eruit.',
                 action: 'Sluiten'
             },
             confirmLeave: {
-                title: 'Kamer verlaten?',
-                message: 'Je gaat terug naar het spelmenu. Je kunt later weer meedoen met dezelfde code.',
+                title: 'Lobby verlaten?',
+                message: 'Je kunt later terugkomen met dezelfde code.',
                 action: 'Verlaten'
             },
             stay: 'Blijf hier',
             start: 'Start het spel',
-            startNote: 'Zodra je start, kan niemand meer meedoen.',
+            startNote: 'Na de start kan niemand meer joinen.',
             needPlayers: 'Je hebt minstens {{min}} spelers nodig.',
             hostFallback: 'De host',
             settingsTitle: 'Instellingen',
             mode: 'Vragen',
             answersPerPlayer: 'Antwoorden per speler',
-            answersPerPlayerHint: 'Hoeveel vragen iedere speler aan het begin beantwoordt. Meer antwoorden, langer spel.'
+            answersPerPlayerHint: 'Hoeveel vragen iedereen beantwoordt. Meer antwoorden, langer spel.'
         },
         play: {
-            loading: 'De vragen worden gedeeld…',
+            loading: 'Vragen verdelen…',
             noGame: 'Geen spel',
             band: {
                 round: 'Duel',
@@ -1640,32 +1600,32 @@ export const nl: Catalog = {
             },
             writing: {
                 title: 'Wees grappig',
-                intro: 'Verzin het grappigste antwoord op deze zin/vraag.',
+                intro: 'Verzin het grappigste antwoord.',
                 promptOf: 'Vraag {{index}} van {{total}}',
                 placeholder: 'Je grappigste antwoord',
                 answerLabel: 'Je antwoord',
                 empty: 'Schrijf eerst iets op.',
                 next: 'Volgende vraag',
                 previous: 'Vorige vraag',
-                submit: 'Verstuur mijn antwoorden',
-                waitingTitle: 'Wachten op de anderen',
-                waitingMessage: 'Je antwoorden zijn binnen. De duels beginnen zodra iedereen de zijne heeft verstuurd.',
+                submit: 'Insturen',
+                waitingTitle: 'Wachten op de rest',
+                waitingMessage: 'Je antwoorden zijn binnen. De duels beginnen als iedereen klaar is.',
                 progress: '{{done}} van {{total}} antwoorden binnen'
             },
             voting: {
                 title: 'Welke is grappiger?',
-                hint: 'Tik op het antwoord waar je om moest lachen.',
+                hint: 'Tik op het antwoord waar je het hardst om lachte.',
                 tapToPick: 'Tik om te kiezen',
                 yourPick: 'Jouw keuze',
                 option: 'Antwoord {{letter}}',
                 or: 'vs',
                 roundOf: 'Duel {{round}} van {{total}}',
                 confirm: 'Stem vastzetten',
-                voted: 'Stem geteld',
-                yoursTitle: 'Dit duel is van jou',
-                yoursMessage: 'Je schreef een van deze antwoorden, dus je slaat deze over. Duimen maar.',
+                voted: 'Gestemd',
+                yoursTitle: 'Dit is jouw duel',
+                yoursMessage: 'Je schreef een van deze antwoorden, dus je stemt niet mee. Duimen maar!',
                 progress: '{{done}} van {{total}} stemmen binnen',
-                waiting: 'Wachten tot de anderen hebben gestemd…'
+                waiting: 'Wachten op de rest…'
             },
             reveal: {
                 title: 'En de winnaar is…',
@@ -1674,72 +1634,72 @@ export const nl: Catalog = {
                 sweep: 'Alle stemmen!',
                 noVoters: 'Niemand',
                 next: 'Volgend duel',
-                toResults: 'Bekijk de eindstand',
-                waitingForHost: 'Wachten tot de host verdergaat…',
-                waitingForResults: 'Wachten tot de host de eindstand laat zien…'
+                toResults: 'Naar de eindstand',
+                waitingForHost: 'Wachten op de host…',
+                waitingForResults: 'Wachten op de host…'
             }
         },
         results: {
-            loading: 'De uitslag laden…'
+            loading: 'Uitslag laden…'
         },
         errors: {
             expired: 'Je sessie is verlopen. Log opnieuw in.',
             gameGone: 'Dit spel bestaat niet meer.',
             generic: 'Er ging iets mis. Probeer het opnieuw.',
-            network: 'Kan de server niet bereiken. Controleer je verbinding en probeer het opnieuw.',
-            lobbyFull: 'Deze kamer is vol.',
-            lobbyGone: 'Deze kamer bestaat niet meer. Controleer de code.',
+            network: 'Geen verbinding. Check je internet en probeer opnieuw.',
+            lobbyFull: 'Deze lobby is vol.',
+            lobbyGone: 'Deze lobby bestaat niet meer. Check de code.',
             alreadyStarted: 'Dit spel is al begonnen.',
             notEnoughPlayers: 'Je hebt meer spelers nodig om te starten.',
-            tooManyPlayers: 'Dat zijn te veel spelers voor één spel.',
-            noContent: 'Er zijn niet genoeg vragen om in deze taal te spelen. Probeer de andere.',
-            incompleteAnswers: 'Beantwoord elke vraag voordat je verstuurt.',
+            tooManyPlayers: 'Te veel spelers voor één spel.',
+            noContent: 'Te weinig vragen in deze taal. Probeer de andere.',
+            incompleteAnswers: 'Beantwoord eerst alle vragen.',
             answerTooLong: 'Een van je antwoorden is te lang.',
             badAnswer: 'Een antwoord mag niet leeg zijn.',
-            alreadyAnswered: 'Je hebt je antwoorden al verstuurd.',
+            alreadyAnswered: 'Je hebt je antwoorden al ingestuurd.',
             alreadyVoted: 'Je hebt al gestemd op dit duel.',
-            cannotVoteOwnPrompt: 'Je schreef voor deze, dus je kunt er niet op stemmen.',
-            wrongRound: 'De tafel is al door naar het volgende duel.',
-            wrongPhase: 'Daar is de tafel nog niet aan toe.',
+            cannotVoteOwnPrompt: 'Je kunt niet stemmen op je eigen duel.',
+            wrongRound: 'Dit duel is al voorbij.',
+            wrongPhase: 'Dat kan nu nog niet.',
             gameFinished: 'Dit spel is afgelopen.'
         }
     },
     friends: {
         title: 'Vrienden',
-        description: 'Want alleen is zo saai.',
+        description: 'Want alleen is maar saai.',
         how: {
             title: 'Vrienden toevoegen',
-            message: 'Vrienden worden automatisch toegevoegd wanneer je voor het eerst met een andere speler speelt.'
+            message: 'Iedereen met wie je een keer speelt, wordt vanzelf je vriend.'
         },
         listLabel: 'Jouw vrienden',
         since: 'Sinds {{date}}',
         empty: {
             title: 'Nog niemand',
-            message: 'Start een spel en deel de code, of doe mee met die van iemand anders. Iedereen in de lobby komt hier terecht.'
+            message: 'Start een spel en deel de code, of join iemand anders. Iedereen uit je lobby komt hier te staan.'
         },
         errors: {
-            signedOut: 'Je sessie is verlopen. Log opnieuw in om je vrienden te zien.',
+            signedOut: 'Je sessie is verlopen. Log opnieuw in.',
             generic: 'Je vrienden konden niet worden geladen.',
-            network: 'Geen verbinding. Controleer je internet en probeer het opnieuw.'
+            network: 'Geen verbinding. Check je internet en probeer opnieuw.'
         }
     },
     invite: {
         title: 'Nodig een vriend uit',
-        message: 'Ze krijgen een seintje in de app, of een melding op hun telefoon als die dicht is.',
+        message: 'Ze krijgen een melding in de app of op hun telefoon.',
         send: 'Uitnodigen',
         sent: 'Uitgenodigd',
         failed: 'Niet verstuurd',
         alreadyHere: 'In de lobby',
-        noFriends: 'Je hebt nog met niemand gespeeld. Deel de code — iedereen die meedoet komt op je vriendenlijst.',
+        noFriends: 'Je hebt nog met niemand gespeeld. Deel de code, iedereen die meedoet wordt je vriend.',
         loadFailed: 'Je vrienden konden niet worden geladen.'
     },
     notifications: {
         inviteEyebrow: 'Uitnodiging',
         inviteHeadline: '{{name}} wil met je spelen',
-        inviteRoom: '{{game}} · kamer van {{name}}',
+        inviteRoom: '{{game}} · lobby van {{name}}',
         inviteTournament: '{{game}} · toernooi van {{name}}',
         inviteGeneric: '{{name}} nodigt je uit voor een spel',
-        join: 'Meedoen',
+        join: 'Join',
         ignore: 'Negeren'
     }
 };

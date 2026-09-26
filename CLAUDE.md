@@ -236,6 +236,19 @@ players mapped to `ScoreBoardPlayer`, and either an `action` or `waitingForHost`
 player.
 
 **i18n** — `react-i18next`, catalogs in `src/features/i18n/locales/{en,nl}.ts`, typed keys.
+Every new key goes into both catalogs. Copy rules for every label:
+
+- Write it the way a person would say it at the table, not the way an AI would. Casual, direct,
+  `je`/`jij` in Dutch.
+- As short as possible. A button is one to three words, a title a handful. Only a rules text or
+  an explanation gets full sentences, and then as few as it needs.
+- Never an em dash (`—`). Use a comma, a full stop, a colon or `·` instead.
+- Gaming words Dutch players already use stay English in `nl`: `lobby` (never `kamer`), `host`,
+  `join`, `quizmaster`, `imposter`, `ready`, `live`, `solo`, `multiplayer`. Don't translate a
+  word into Dutch nobody would say out loud.
+- One word for one thing across the whole catalog: if the same idea already has a label
+  elsewhere (`Lobby sluiten?`, `Geen verbinding. Check je internet.`), reuse that wording.
+- The locale files hold no comments at all, not even one-liners.
 
 **Aliases** — `@/*` → `./src/*`, `@/assets/*` → `./assets/*`.
 
