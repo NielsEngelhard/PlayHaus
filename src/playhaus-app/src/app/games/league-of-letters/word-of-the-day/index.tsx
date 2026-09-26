@@ -1,7 +1,6 @@
 import { useChromeless } from '@/components/layout/FullScreenContext';
 import LoadingPage from '@/components/layout/LoadingPage';
 import BackButton from '@/components/ui/BackButton';
-import BleedScrollView from '@/components/ui/BleedScrollView';
 import InlineNotification from '@/components/ui/InlineNotification';
 import TextButton from '@/components/ui/TextButton';
 import { accentOf, LEAGUE_OF_LETTERS } from '@/constants/games';
@@ -20,7 +19,7 @@ import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
 import { useNow } from '@/hooks/useNow';
 import { useRouter } from 'expo-router';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 // How often the countdown to the next word is re-read, which is fine at half a minute for a clock drawn to the minute.
 const TICK_MS = 30_000;
@@ -88,7 +87,7 @@ export default function LeagueOfLettersWordOfTheDayPage() {
                     streakLabel={t('lol.wordOfTheDay.streakDays', { days: today.streak })}
                 />
 
-                <BleedScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
+                <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
                     <View style={styles.body}>
                         <DailyCalendarCard month={today.month} today={today.day} maxGuesses={today.maxGuesses} />
 
@@ -120,7 +119,7 @@ export default function LeagueOfLettersWordOfTheDayPage() {
 
                         <DailyStatsRow stats={today.stats} />
                     </View>
-                </BleedScrollView>
+                </ScrollView>
             </View>
         </AccentProvider>
     )

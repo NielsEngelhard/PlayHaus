@@ -1,6 +1,5 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
-import BleedScrollView from "@/components/ui/BleedScrollView";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Brand, FontSizes, Radii, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
@@ -13,7 +12,7 @@ import { LIST_SECONDS, type ListTurn } from "@/features/pubquizr/round-five";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import Feather from "@expo/vector-icons/Feather";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 const ROSTER_AVATAR = 44;
 const TICK = 18;
@@ -119,7 +118,7 @@ export default function ListWatchBoard({ awardedIds, endsAt, kind, mySeat, onRea
 
             {left !== null && <BoardClock left={left} seconds={LIST_SECONDS} />}
 
-            <BleedScrollView style={styles.slots} contentContainerStyle={styles.slotsInner}>
+            <ScrollView style={styles.slots} contentContainerStyle={styles.slotsInner}>
                 {turn.answers.map(answer => {
                     const got = credited.has(answer.id);
 
@@ -131,7 +130,7 @@ export default function ListWatchBoard({ awardedIds, endsAt, kind, mySeat, onRea
                         </View>
                     )
                 })}
-            </BleedScrollView>
+            </ScrollView>
 
             <BoardNote
                 seat={turn.guesser}

@@ -1,12 +1,11 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
-import BleedScrollView from "@/components/ui/BleedScrollView";
 import { Brand, Spacing } from "@/constants/theme";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { Seat } from "@/features/pubquizr/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import type { ReactNode } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import PickRow from "@/components/ui/PickRow";
 
 /** One of the things still going spare: a round 4 word, a round 5 answer. */
@@ -65,7 +64,7 @@ export default function BonusRoundScreen({
             <AppText style={styles.hint}>{hint}</AppText>
 
             {/* A picker rather than a list of commands, and only one of them can be marked. */}
-            <BleedScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+            <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                 {options.map(option => (
                     <PickRow
                         key={option.id}
@@ -76,7 +75,7 @@ export default function BonusRoundScreen({
                         onPress={() => onPick(picked === option.id ? null : option.id)}
                     />
                 ))}
-            </BleedScrollView>
+            </ScrollView>
 
             {/* One button, which is the only way off this screen either way. */}
             <ActionButton

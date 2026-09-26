@@ -1,6 +1,5 @@
 import type { OOURound } from '@/api/calls/one-of-us-multi-device';
 import AppText from '@/components/text/AppText';
-import BleedScrollView from '@/components/ui/BleedScrollView';
 import { fontFamilyForWeight, Spacing } from '@/constants/theme';
 import { useT } from '@/features/i18n/LanguageContext';
 import PinButton from '@/features/one-of-us/components/PinButton';
@@ -9,7 +8,7 @@ import PinnedTrack from '@/features/one-of-us/components/PinnedTrack';
 import { createThemedStyles } from '@/features/theme/createThemedStyles';
 import { useTheme } from '@/features/theme/ThemeContext';
 import { useState } from 'react';
-import { TextInput, View } from 'react-native';
+import { ScrollView, TextInput, View } from 'react-native';
 
 interface Props {
     busy: boolean
@@ -45,7 +44,7 @@ export default function AnswerScreen({ busy, myAnswer, onSubmit, prompt, round }
         : t('oneOfUs.multiDevice.play.answer.about', { prompt });
 
     return (
-        <BleedScrollView
+        <ScrollView
             style={styles.scroll}
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
@@ -110,7 +109,7 @@ export default function AnswerScreen({ busy, myAnswer, onSubmit, prompt, round }
                     total={round.answersNeeded}
                 />
             </View>
-        </BleedScrollView>
+        </ScrollView>
     )
 }
 

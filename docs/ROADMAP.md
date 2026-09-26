@@ -7,8 +7,7 @@
 - push notifications? (word of the day & when new quiz is live?)
 - marketing? (bierfiltjes, reclames, stickers, promo codes?)
 - one of us meer rollen
-- fake filler game mode. Verzin een definitie van een woord en dan de fun mode moet miss een ander spel worden
-
+- Alle games zouden een tv/chromecast mode moeten ondersteunen. Maakt het soms wel leuker.
 
 # Voor v1
 - nieuwe game Witty Wars

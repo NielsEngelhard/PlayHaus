@@ -1,11 +1,10 @@
 import AppText from "@/components/text/AppText";
 import ActionButton from "@/components/ui/ActionButton";
 import AnimatedPressable from "@/components/ui/AnimatedPressable";
-import BleedScrollView from "@/components/ui/BleedScrollView";
 import InlineNotification from "@/components/ui/InlineNotification";
 import PickRow, { AwardRow } from "@/components/ui/PickRow";
 import { usePressPop } from "@/components/ui/usePressPop";
-import { Brand, FontSizes } from "@/constants/theme";
+import { Brand, FontSizes, ShadowReach } from "@/constants/theme";
 import type { TranslationKey } from "@/features/i18n/keys";
 import { useT } from "@/features/i18n/LanguageContext";
 import type { PQEmit } from "@/features/pubquizr/multi-device/control";
@@ -23,7 +22,7 @@ import { useTheme } from "@/features/theme/ThemeContext";
 import { playTimeUp } from "@/utils/time-up-sound";
 import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import BonusRoundScreen from "../play/BonusRoundScreen";
 import TurnRulesScreen, { type TurnRule } from "../play/TurnRulesScreen";
 import TurnStrip from "../play/TurnStrip";
@@ -225,7 +224,7 @@ export default function DescribeControl({ bare, busy, holdBack = null, emit, err
 
                 <TurnTimerSlot onDone={endTimer} />
 
-                <BleedScrollView contentContainerStyle={styles.words}>
+                <ScrollView contentContainerStyle={styles.words}>
                     {turn.words.map(word => {
                         const guessed = (awards[word.dealt.id] ?? null) !== null;
 
@@ -240,7 +239,7 @@ export default function DescribeControl({ bare, busy, holdBack = null, emit, err
                             />
                         )
                     })}
-                </BleedScrollView>
+                </ScrollView>
 
                 <AppText style={styles.hint}>
                     {t('pubquizr.play.describe.dontSayIt')}
@@ -267,7 +266,7 @@ export default function DescribeControl({ bare, busy, holdBack = null, emit, err
                     {t('pubquizr.play.describe.inTimeHint', { guesser: turn.guesser.name })}
                 </AppText>
 
-                <BleedScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+                <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                     {turn.words.map(word => (
                         <PickRow
                             key={word.dealt.id}
@@ -277,7 +276,7 @@ export default function DescribeControl({ bare, busy, holdBack = null, emit, err
                             onPress={() => toggleInTime(word.dealt.id)}
                         />
                     ))}
-                </BleedScrollView>
+                </ScrollView>
 
                 <ActionButton
                     size="large"
@@ -325,7 +324,7 @@ export default function DescribeControl({ bare, busy, holdBack = null, emit, err
                 {t('pubquizr.play.describe.scoringTitle')}
             </AppText>
 
-            <BleedScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
+            <ScrollView style={styles.rows} contentContainerStyle={styles.rowsInner}>
                 {turn.words.map(word => {
                     const credited = awards[word.dealt.id] ?? null;
                     const winner = credited === null
@@ -342,7 +341,7 @@ export default function DescribeControl({ bare, busy, holdBack = null, emit, err
                         />
                     )
                 })}
-            </BleedScrollView>
+            </ScrollView>
 
             {/* What the turn is about to be worth, while it can still be changed. */}
             {standing.size > 0 && (
@@ -480,6 +479,7 @@ const useStyles = createThemedStyles(theme => ({
 
     words: {
         gap: 10,
+        paddingRight: ShadowReach.hardSmall,
         paddingVertical: 4
     },
 
@@ -527,6 +527,7 @@ const useStyles = createThemedStyles(theme => ({
 
     rowsInner: {
         gap: 10,
+        paddingRight: ShadowReach.hardSmall,
         paddingBottom: 2
     },
 

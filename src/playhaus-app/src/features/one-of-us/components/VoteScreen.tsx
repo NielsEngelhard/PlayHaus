@@ -1,5 +1,4 @@
 import AppText from "@/components/text/AppText";
-import BleedScrollView from "@/components/ui/BleedScrollView";
 import InlineNotification from "@/components/ui/InlineNotification";
 import SeatAvatar from "@/components/ui/SeatAvatar";
 import { Brand, Spacing } from "@/constants/theme";
@@ -12,7 +11,7 @@ import type { Seat } from "@/features/table/seats";
 import { createThemedStyles } from "@/features/theme/createThemedStyles";
 import { useTheme } from "@/features/theme/ThemeContext";
 import Feather from "@expo/vector-icons/Feather";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 interface Props {
     busy: boolean
@@ -42,7 +41,7 @@ export default function VoteScreen({
     const picked = seats.find(seat => seat.seat === chosen) ?? null;
 
     return (
-        <BleedScrollView
+        <ScrollView
             style={styles.scroll}
             contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
@@ -117,7 +116,7 @@ export default function VoteScreen({
                         : t('oneOfUs.play.vote.confirmHint')}
                 </AppText>
             </View>
-        </BleedScrollView>
+        </ScrollView>
     )
 }
 
