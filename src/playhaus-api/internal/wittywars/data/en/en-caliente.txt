@@ -241,7 +241,7 @@ What {playerName}'s last one-night stand remembers most
 The worst place to have a first kiss
 {playerName}'s signature flirt
 The worst sex advice from a magazine
-What {playerName} would do if they were the sexy pizza delivery person
+{playerName} is on a first date at a cheese market. Their smoothest line?
 Something you'd never want to find in a sex shop
 {playerName}'s spicy pet name for their partner
 The least sexy superhero
@@ -297,7 +297,7 @@ What {playerName} would do at a lingerie fashion show
 The worst thing to say on a hot date at a restaurant
 {playerName}'s bedroom soundtrack
 A bad name for a sex therapist's practice
-What {playerName} would do with a sexy costume
+{playerName} gets a sexy text from an unknown number. What's the first line?
 The unsexiest thing to say during a slow dance
 {playerName}'s favourite place to be kissed
 What your underwear drawer reveals about you
@@ -365,7 +365,7 @@ What {playerName} would do with a whip
 A bad name for an adult website
 {playerName}'s naughty nickname in school
 What the ceiling fan has seen
-What {playerName} would do if they were a sexy vampire
+{playerName} tries to seduce their partner with interpretive dance. What's the dance called?
 The worst thing to say at a speed-dating event
 {playerName}'s secret sexy snack
 A terrible sexy pirate line
@@ -389,7 +389,7 @@ What {playerName}'s crush doesn't know yet
 The most awkward sex toy to explain to airport security
 {playerName}'s kinkiest outfit
 A bad name for a sexy firefighter
-What {playerName} would do with a sexy robot
+{playerName} wakes up next to someone from this room. Who, and what do they say?
 The worst thing to ask your partner in bed
 {playerName}'s signature kiss is called...
 What the sexiest sandwich is called
@@ -405,7 +405,7 @@ What {playerName} would do with body paint
 The least sexy food to feed each other
 {playerName}'s favourite spicy movie
 The worst thing to say after a first kiss
-What {playerName} would do with a sexy stranger on a train
+{playerName} gets caught making out in a changing room. What do they tell the shop assistant?
 A bad name for a love potion
 {playerName}'s hottest moment on holiday
 What the tan lines say about your holiday
@@ -421,7 +421,7 @@ What {playerName} would do if they could spend a night with anyone
 The most awkward sex toy to lose in your luggage
 {playerName}'s steamiest secret spot
 A bad name for a romantic comedy
-What {playerName} would do in a sexy role-play
+{playerName} goes on a steamy holiday with their grandma. How do they explain the hot tub?
 What a waterbed has survived
 {playerName}'s biggest bedroom fail
 The worst role-play costume
@@ -457,7 +457,7 @@ What {playerName} would do if they were a gigolo for a day
 A terrible thing to hear from your partner in the dark
 {playerName}'s most flirtatious emoji
 The kinkiest thing a vegetarian can do with vegetables
-What {playerName} would do in a sexy dungeon
+{playerName} got banned from a nudist beach. What for?
 The worst place to wear a thong
 {playerName}'s steamy bathroom routine
 Something you should never do on a waterbed
@@ -477,7 +477,7 @@ What {playerName} would say to seduce a vampire
 The worst thing to say while doing the deed in a tent
 {playerName}'s hottest celebrity fantasy
 Something you'd never want to find in a love nest
-What {playerName} would do on a sexy yacht trip
+{playerName} tries to flirt using only song titles. Which one do they start with?
 The most awkward way to meet a partner's parents
 {playerName}'s spicy bedtime story
 A bad name for a sexy superhero
@@ -493,7 +493,7 @@ What {playerName} would do with a mistletoe
 Something you should never do during a video call with your boss after a night together
 {playerName}'s best flirt at the bar
 The least sexy thing to say in French
-What {playerName} would do if they were a sexy mechanic
+{playerName} is a stripper whose music is a nursery rhyme. Which one?
 A rejected name for a sexy lingerie line
 {playerName}'s hottest thing to wear
 What a dildo thinks of human hands
@@ -501,7 +501,7 @@ What {playerName} would do on a nude cruise
 The worst thing to spank
 {playerName}'s steamiest regret
 A terrible sexy haiku
-What {playerName} would do with a sexy maid costume
+{playerName} fell asleep during sex. Where were they?
 The worst thing to hear in a sex dungeon
 {playerName}'s biggest seduction fail
 Something you'd never want to catch at a swingers' party
@@ -513,7 +513,7 @@ What {playerName} would do with oysters
 What people really do in the bushes at festivals
 {playerName}'s spiciest story from a festival
 The worst way to ruin a romantic moment
-What {playerName} would do if their sexy neighbour knocked
+{playerName}'s date turns out to be their old teacher. First words?
 A terrible wedding night tradition
 {playerName}'s best move on a dance floor to get lucky
 The least sexy hobby to mention on a date
@@ -521,7 +521,7 @@ What {playerName} would do in a sleeping bag for two
 Something that should never be heated up
 {playerName}'s sexy stage name
 The worst sexy Instagram caption
-What {playerName} would do on a sexy scavenger hunt
+{playerName} left their dating profile open on the work computer. What did the boss read?
 A bad name for a threesome
 {playerName}'s best line in a sexy text
 What the massage oil is secretly used for
@@ -529,11 +529,11 @@ What {playerName}'s partner loves most about them in bed
 The worst possible sexy costume for a man
 {playerName}'s steamy daydream
 A terrible thing to say to someone in lingerie
-What {playerName} would do in a sexy cooking class
+{playerName} gets a love letter written in cheese. What does it say?
 The worst place to take a nude photo
 {playerName}'s kinkiest compliment
 Something you shouldn't try with a whipped-cream can
-What {playerName} would do with a sexy police officer
+{playerName} is caught with a stranger's phone number written on their thigh. The excuse?
 The most awkward text to send after a hookup
 {playerName}'s best kiss ever
 A rejected title for a sexy movie
@@ -545,7 +545,7 @@ What {playerName} would do on a steamy date at the beach
 A terrible sex toy for beginners
 {playerName}'s hottest body part
 The least romantic place to spend a honeymoon
-What {playerName} would do on a sexy camping weekend
+{playerName} opened an escape room for couples. How do you escape?
 The worst sound during sex
 {playerName}'s signature seduction line
 Something you'd never want your partner to call out
@@ -553,11 +553,11 @@ What {playerName} would do at an adult sleepover
 A bad name for a sexy lingerie model
 {playerName}'s spiciest secret crush
 What the washing machine does when it's on spin
-What {playerName} would do if they were a sexy cowboy
+{playerName}'s sexy video got 2 views. Who watched it?
 The worst thing to do on a sexy weekend away
 {playerName}'s kinkiest morning routine
 A terrible thing to say during dirty talk in the kitchen
-What {playerName} would do if they were a sexy doctor
+{playerName} invented a new holiday for lovers. How is it celebrated?
 The kinkiest place in IKEA
 {playerName}'s perfect sexy soundtrack song
 The worst reason to be banned from a hotel
@@ -569,7 +569,7 @@ What {playerName} would do if they could read their crush's mind
 A bad name for a spicy cocktail
 {playerName}'s naughtiest online purchase
 What the second date is really about
-What {playerName} would do in a sexy music video
+{playerName} tries to be sexy at the dentist. What do they say with the mouth guard in?
 The worst thing to hear while wearing a blindfold
 {playerName}'s hottest ex story
 A terrible thing to do with a candle
@@ -581,7 +581,7 @@ What {playerName} would do in a romantic bubble bath
 The worst name for a bedroom move
 {playerName}'s spiciest pet name
 A rejected line from a romantic movie
-What {playerName} would do at a secret sexy party
+{playerName} tries to go on a date with a mermaid. Where do they meet?
 What the peach emoji really means
 {playerName}'s steamy morning after
 The worst time to get a romantic phone call
@@ -593,7 +593,7 @@ What {playerName} would do if their crush sent a nude
 Something you'd hate to hear from your one-night stand's mother
 {playerName}'s sexy dance name
 The kinkiest thing about a firefighter's uniform
-What {playerName} would do on a sexy spa day
+{playerName}'s steamy romance novel is set at a bus station. The title?
 A bad name for a sexy pizza
 {playerName}'s naughty wish list
 What lovers do on a Ferris wheel
@@ -601,7 +601,7 @@ What {playerName} would do in a steamy tent
 The worst place to hide a vibrator
 {playerName}'s hottest look after midnight
 A terrible idea for sexy lighting
-What {playerName} would do in a sexy Netflix series
+{playerName} discovers their partner's secret sexy alter ego. What's the name?
 The least sexy item of clothing
 {playerName}'s spicy memory from school
 Something you should never do in a fitting room
@@ -609,7 +609,7 @@ What {playerName} would do with a chocolate fountain
 The most awkward sex toy to get as a gift from your mum
 {playerName}'s kinkiest dream location
 A bad name for a romantic song
-What {playerName} would do if they were a sexy astronaut
+{playerName}'s hookup climbed out of the window. Why?
 What the wine glass has seen on date night
 {playerName}'s best spicy advice
 The worst possible sexy text from your dentist
@@ -629,7 +629,7 @@ What {playerName} would do with a crush in a library
 The worst excuse for being naked in the garden
 {playerName}'s naughty drinking game
 A terrible thing to hear in a hotel sauna
-What {playerName} would do if they were in a sexy ad
+{playerName} got a text meant for someone else: "Last night was ___"
 The least sexy food to lick off someone
 {playerName}'s hottest accent impression
 Something you'd never say in a sex tape
@@ -637,11 +637,11 @@ What {playerName} would do on a steamy train ride
 The worst thing to do with a sexy nurse outfit
 {playerName}'s most surprising kink
 A rejected name for an erotic art exhibition
-What {playerName} would do in a sexy escape room
+{playerName} took their date to a funeral by mistake. How did it go?
 What the fire alarm interrupted
 {playerName}'s sexy workout routine
 The worst place to accidentally sext
-What {playerName} would do with a sexy secretary
+{playerName} tried to seduce someone with bagpipes. What song?
 A terrible romantic surprise
 {playerName}'s steamy wedding story
 The kinkiest thing a chef can do with a whisk
@@ -653,11 +653,11 @@ What {playerName} would do with a lover in a haunted house
 A bad name for a honeymoon suite
 {playerName}'s naughtiest dream last night
 What the camping tent hid
-What {playerName} would do on a sexy road trip
+{playerName} gets a lap dance from a Viking. What's the Viking's name?
 The worst possible thing to moan
 {playerName}'s best technique, in their own words
 A terrible reason to get a Brazilian
-What {playerName} would do in a sexy fitting room
+{playerName} tries dirty talk in an Irish accent. What do they say?
 The least sexy fetish
 {playerName}'s kinkiest travel item
 Something you should never do with edible underwear
@@ -665,27 +665,27 @@ What {playerName} would do at a romantic sunset
 The worst possible thing to hear at a strip club
 {playerName}'s steamy favourite song lyric
 A bad name for a sexy snack
-What {playerName} would do if they got a sexy voicemail
+{playerName} tried tantric yoga. What happened on hour six?
 What the plant on the windowsill has witnessed
 {playerName}'s spiciest dare ever done
 The worst sexy nickname for a husband
-What {playerName} would do in a sexy art class
+{playerName} flirts with an AI chatbot. What's its reply?
 A terrible thing to find in a lover's pocket
 {playerName}'s best move with their tongue
 The worst pick-up line in a hospital
-What {playerName} would do with a sexy lifeguard
+{playerName} crashes a honeymoon. Why?
 Something you'd hate to find in your partner's closet
 {playerName}'s hottest wardrobe item
 The most awkward thing to hear at a sex shop checkout
-What {playerName} would do if they were a sexy ghost
+{playerName}'s sex dungeon is an IKEA room. What's the item called?
 A bad name for a sexy firefighter calendar
 {playerName}'s naughty secret about last weekend
 What the "do not disturb" sign is protecting
-What {playerName} would do in a sexy hot air balloon
+{playerName} ends up on a sexy dating show against their grandma. Who wins?
 The worst thing to do right before sex
 {playerName}'s best bedroom sound effect
 A terrible thing to say in the heat of the moment
-What {playerName} would do with a sexy personal trainer
+{playerName} hid something naughty in the Christmas tree. What?
 The least sexy compliment
 {playerName}'s steamy memory from a wedding
 Something you should never whisper at a wedding
@@ -705,7 +705,7 @@ What {playerName} would do on a night in Ibiza
 Something you shouldn't do with baby oil
 {playerName}'s most spicy selfie
 The most awkward thing to find on a nude beach
-What {playerName} would do with a sexy waiter
+{playerName} made a sexy gingerbread house. What's special about it?
 A bad name for a hot dog stand at a nudist beach
 {playerName}'s naughty pet peeve
 What the handcuffs said to the whip
@@ -713,39 +713,39 @@ What {playerName} would do with a lover in a swimming pool at night
 The worst possible foreplay
 {playerName}'s hottest secret skill
 A terrible thing to call out in the dark
-What {playerName} would do on a sexy wine tasting
+{playerName}'s crush sits next to them on a 12-hour flight. Their opening line?
 The least sexy thing to wear on a first date
 {playerName}'s steamy love language
 Something you'd never want to find in a couples' photo album
-What {playerName} would do if they were a sexy wizard
+{playerName} broke up with someone because of their kissing. What was wrong?
 The worst name for a love nest
 {playerName}'s kinkiest favourite food
 A rejected name for a love song
-What {playerName} would do in a sexy treehouse
+{playerName} got a steamy horoscope. What does it predict?
 What the "romantic" candles really smell like
 {playerName}'s best move after a first date
 The worst reason to be naked at a party
-What {playerName} would do with a sexy sailor
+{playerName} sneaks out of a one-night stand. What do they trip over?
 A terrible time for an erection
 {playerName}'s wildest bedroom accessory
 The kinkiest thing a teacher could say
-What {playerName} would do on a sexy ski trip
+{playerName} gets a sexy haircut from a barber who's also their ex. What happens?
 Something you'd never want to do in a sleeper train
 {playerName}'s steamy words of wisdom
 The worst way to end a steamy night
-What {playerName} would do with a sexy librarian
+{playerName} put a spicy ad in the newspaper. What does it say?
 A bad name for a naughty weekend
 {playerName}'s naughtiest confession to a priest
 What the magic wand is really for
-What {playerName} would do if they were in a sexy commercial for perfume
+{playerName} flirted their way out of a parking ticket. How?
 The worst thing to hear at a sex party
 {playerName}'s hottest guilty pleasure
 A terrible gift for a lover
-What {playerName} would do if they were a sexy lumberjack
+{playerName} flirted their way into a VIP room. What did they say?
 The worst possible safe word at a family dinner
 {playerName}'s kinkiest weekend activity
 A terrible name for a couples' yoga pose
-What {playerName} would do at a sexy murder mystery party
+{playerName} became a nude butler. What's their first job?
 What the sex ed teacher does on the weekend
 {playerName}'s best spicy habit
 The least sexy way to unhook a bra
@@ -753,19 +753,19 @@ What {playerName} would do with a lover in a canoe
 Something you should never say to a sexy police officer
 {playerName}'s steamy fantasy job
 The worst thing to use as a blindfold
-What {playerName} would do on a sexy bus trip
+{playerName} tried to have a romantic moment at IKEA. Where exactly?
 A bad name for a romantic candle scent
 {playerName}'s naughtiest birthday wish
 What your dating app would say about you if it could talk
-What {playerName} would do with a sexy dentist
+{playerName} tried to be sexy in a onesie. Which animal was it?
 The worst place for a tan line
 {playerName}'s spiciest trait
 A terrible idea for sexy wall art
-What {playerName} would do in a sexy karaoke booth
+{playerName} has a steamy secret with the postman. What is it?
 The kinkiest thing to do with a tie
 {playerName}'s steamy excuse to leave the party early
 Something you'd hate to hear on a sexy hotline
-What {playerName} would do with a sexy barista
+{playerName}'s bed has a guestbook. What did the last guest write?
 The worst reason to take your clothes off in public
 {playerName}'s hottest thing in their closet
 A rejected name for a nudist resort
@@ -773,19 +773,19 @@ What {playerName} would do if their crush undressed right now
 What the bedroom closet is hiding
 {playerName}'s naughtiest online username
 The worst sexy thing to do with spaghetti
-What {playerName} would do on a sexy staycation
+{playerName} found a love potion. Who do they give it to?
 A terrible thing to do on a romantic picnic
 {playerName}'s kinkiest compliment for a stranger
 The least sexy way to say "come here"
-What {playerName} would do with a sexy astronaut suit
+{playerName}'s kinkiest dream starred which cartoon character?
 Something you'd never want to find in a sexy gift basket
 {playerName}'s wildest bedroom rule
 The worst thing to be called in bed
-What {playerName} would do in a sexy boat cabin
+{playerName} ended up in a stripper's car by accident. What happened?
 A bad name for a hot new dance craze
 {playerName}'s steamy playlist closer
 What the lipstick mark on the collar means
-What {playerName} would do if they found a sexy genie
+{playerName} got a sexy compliment from their doctor. What was it?
 The worst place to have a wardrobe malfunction
 {playerName}'s hottest thought about someone in this room
 A terrible way to celebrate a sexy anniversary
@@ -793,15 +793,15 @@ What {playerName} would do with a pole in their living room
 The kinkiest item at a garden centre
 {playerName}'s naughtiest daydream at work
 Something you should never do with honey in bed
-What {playerName} would do on a sexy trip to Paris
+{playerName}'s spicy secret is written in their diary. On which page?
 The worst excuse for fogged-up car windows
 {playerName}'s spiciest wardrobe malfunction
 A rejected name for a sexy energy drink
-What {playerName} would do with a sexy postman
+{playerName} did a sexy dance on a table at a wedding. Whose table?
 What happens at a secret masquerade ball
 {playerName}'s kinkiest memory from a holiday
 The worst thing to hear in a steamy shower
-What {playerName} would do in a sexy haunted castle
+{playerName} sleeps with a stuffed animal. What's its name and role?
 A terrible sexy postcard from holiday
 {playerName}'s steamiest wish for tonight
 The least sexy way to propose a threesome
@@ -809,23 +809,23 @@ What {playerName} would do with a lover in a greenhouse
 Something you'd never want to hear during a romantic slow dance
 {playerName}'s naughtiest weekend so far
 The worst name for a sexy hot sauce
-What {playerName} would do at a sexy rooftop party
+{playerName} gave a lover a mixtape. What's the last song?
 A bad name for a lingerie-only restaurant
 {playerName}'s hottest line to end a date
 What your bed frame has survived
-What {playerName} would do with a sexy pilot
+{playerName} tried roleplay as a tax inspector. What was the scenario?
 The worst possible sexy costume for a couple
 {playerName}'s kinkiest sock choice
 A terrible thing to say during a candlelit dinner
-What {playerName} would do in a sexy barn
+{playerName}'s partner bought a sexy costume two sizes too small. Which one?
 The kinkiest thing to do on a rowing machine
 {playerName}'s spiciest breakfast in bed
 Something you shouldn't do with a sex swing
-What {playerName} would do if they were a sexy knight
+{playerName} went to a sex shop with their mum. What did Mum buy?
 The worst possible romantic weekend destination
 {playerName}'s steamy late-night snack
 A rejected name for a sexy dating show
-What {playerName} would do with a sexy mermaid
+{playerName}'s date ordered for them. What did they order?
 What the love bite is trying to say
 {playerName}'s naughtiest wish for their next birthday
 The worst thing to say while getting a lap dance
@@ -833,19 +833,19 @@ What {playerName} would do with a lover in a sauna
 A terrible idea for a sexy video call
 {playerName}'s most daring text ever sent
 The least sexy item in a sex shop
-What {playerName} would do at a sexy pool party
+{playerName} started a sexy cooking channel. Their famous recipe?
 Something you'd never want to find in your hotel minibar
 {playerName}'s hottest date ever
 The worst place to try tantric sex
-What {playerName} would do on a sexy trip to the jungle
+{playerName} is the face of a new underwear brand. The name of the brand?
 A bad name for a spicy book club
 {playerName}'s kinkiest favourite colour
 What the jacuzzi bubbles are hiding
-What {playerName} would do in a sexy dance-off
+{playerName}'s one-night stand wants a second date. Their excuse to say no?
 The worst way to say you've never done it before
 {playerName}'s steamy secret admirer
 A terrible thing to do with lipstick
-What {playerName} would do with a sexy chef
+{playerName} is in a love triangle with a cat. Who's winning?
 The kinkiest board game
 {playerName}'s naughtiest habit on holiday
 Something nobody wants to find in their partner's sock drawer
@@ -853,15 +853,15 @@ What {playerName} would do if they could date a superhero
 The worst possible romantic poem
 {playerName}'s spiciest thing on their wishlist
 A rejected name for a sexy yoga class
-What {playerName} would do in a sexy silent disco
+{playerName} attends a masquerade ball. What's their mask?
 What the "spare room" is really for
 {playerName}'s hottest reason to stay home tonight
 The worst thing to ask during a quickie
-What {playerName} would do with a sexy cowboy hat
+{playerName} was spotted kissing someone in a museum. Behind which painting?
 A terrible reason to become a stripper
 {playerName}'s kinkiest morning-after text
 The least sexy superhero costume
-What {playerName} would do in a sexy castle bedroom
+{playerName} gets flirted with by a ghost. What does the ghost say?
 Something you should never do on a trampoline naked
 {playerName}'s steamiest memory with a stranger
 The worst possible erotic fan fiction
@@ -869,19 +869,19 @@ What {playerName} would do with a lover on a desert island
 A bad name for a bedroom playlist
 {playerName}'s spiciest confession about someone in this room
 What the balcony has seen
-What {playerName} would do with a sexy bartender
+{playerName} set the mood with candles and set off the sprinklers. What did they say?
 The worst thing to do on a nude beach volleyball court
 {playerName}'s best bedroom secret
 A terrible thing to put on a sexy birthday cake
-What {playerName} would do if they found a sexy note in their pocket
+{playerName} was caught in a compromising position by a squirrel. Where?
 The kinkiest thing in a hardware store
 {playerName}'s naughtiest place to leave a love bite
 Something you'd never want to hear right before a kiss
-What {playerName} would do with a sexy yoga instructor
+{playerName} tried to be sexy on a Zoom call. What went wrong?
 The worst possible sexy text from your grandmother
 {playerName}'s kinkiest dream partner
 A rejected slogan for a romantic hotel
-What {playerName} would do on a sexy Valentine's Day
+{playerName}'s best move in bed has a name. What is it?
 What happens in the back of a limousine
 {playerName}'s steamy sweat-inducing activity
 The worst place to lose your bikini top
@@ -998,3 +998,1003 @@ What the whipped cream saw
 {playerName}'s ideal lover in five words
 The worst thing to do on a romantic gondola ride
 The hotel room number {playerName} will never forget
+Rename a famous movie so it sounds like a porn title
+{playerName} wrote an erotic novel. What's the first line?
+A fortune cookie that's clearly flirting with you
+{playerName} is a condom. What's their slogan?
+The worst thing to hear from IKEA furniture instructions during foreplay
+{playerName}'s one-night stand left a review. What did it say?
+A sex position named after a Dutch city
+{playerName}'s sex tape just leaked. What's the plot twist?
+The worst thing to whisper in someone's ear at a funeral
+{playerName} opened a strip club. What's the house rule?
+An honest name for your dating life right now
+The text {playerName} sends at 2 a.m. after four cocktails
+A pickup line that only works on accountants
+{playerName} is a sex toy. What do the batteries say?
+The sexiest thing you can say about a spreadsheet
+{playerName} got caught in the act. Where?
+A romantic dinner menu that ends in food poisoning
+{playerName}'s bedroom has a secret button. What does it do?
+The least sexy thing to say while taking off your socks
+{playerName}'s ex describes them in bed in three words
+Invent a cocktail for a first date that goes too well
+{playerName} is on a steamy dating show. Their introduction line?
+The worst name for an adult toy shop in a small village
+{playerName}'s sexy calendar has only one month. Which one and why?
+A rejected Valentine's card message
+{playerName} got a tattoo in a very private place. Of what?
+Something that's sexy in a movie but disgusting in real life
+The last thing {playerName} would want to find in their partner's nightstand
+A new safe word inspired by Dutch food
+{playerName} is teaching a sex education class. First lesson?
+What the stripper's mum thinks she does for a living
+{playerName}'s love life as a weather forecast
+A sex tip from a medieval knight
+{playerName}'s lingerie line has a slogan. What is it?
+The sexiest vegetable to bring to a party
+{playerName} is a porn director. Their first film title?
+The name of a steamy novel about accountants
+{playerName} got banned from a love hotel. Why?
+A love letter written by a pirate
+The pickup line {playerName} would use on the Pope
+What your bed would post on social media
+{playerName} is a new sex position. How do you do it?
+A terrible thing to say during a slow dance
+The steamy dream {playerName} had last night involved...
+A kinky new Olympic event
+{playerName} wrote a love letter to their crush. What's the P.S.?
+The worst thing to overhear at a couples' massage
+{playerName}'s bed can talk. What's its biggest complaint?
+A romantic gesture that would get you arrested
+{playerName}'s dating profile photo is them holding...
+The worst possible theme night at a strip club
+{playerName} became a stripper. What's their signature prop?
+A new use for a garden hose after dark
+{playerName}'s secret kink involves a kitchen appliance. Which one?
+A breakup text written in the style of a weather forecast
+{playerName}'s honeymoon destination is...
+A title for a steamy novel set in a supermarket
+The safe word {playerName} forgets every single time
+The worst possible porn parody of a children's show
+{playerName} is a dirty joke. What's the punchline?
+A sexy text from a ghost
+{playerName}'s favourite flirting technique at the supermarket
+Something that's only sexy in the dark
+{playerName} got stuck in a sex swing. Who had to come save them?
+The least romantic way to lose your virginity
+{playerName}'s sexiest voice note starts with...
+A kinky thing to do with a pizza box
+{playerName}'s steamy romance novel pen name
+What the bartender remembers about your last night out
+{playerName} is the host of a sexy cooking show. Signature dish?
+The worst thing to hear during a romantic bath for two
+{playerName} tried tantric sex. How did it go?
+A sexy job title that sounds boring
+{playerName}'s wildest fantasy takes place at...
+The most embarrassing thing in a sex shop's bargain bin
+{playerName} just started an OnlyFans. What's the niche?
+The dirtiest word in the Dutch language
+{playerName}'s review of their own kissing
+A rejected emoji: the aubergine's cousin
+{playerName}'s hot tub has a rule. What is it?
+An honest description of a stag do
+{playerName}'s dirty talk is mostly about...
+What your massage therapist whispers to their colleagues
+{playerName} is a love potion. What are the side effects?
+A dating show for people who only date robots
+{playerName}'s lap dance song of choice
+A love song written by a toaster
+{playerName}'s partner found their search history. The worst search?
+The worst thing to put on a dating profile photo
+{playerName}'s sexiest body part is on the insurance. Which one?
+What happens in Vegas and should stay there
+{playerName} is a flavour of lube. What does it taste like?
+A rejected position in yoga for couples
+{playerName}'s walk of shame was on the news. Why?
+The worst thing to find in your date's handbag
+{playerName}'s most scandalous tan line is from...
+Something you should never say in the bedroom to your partner's parents
+{playerName} ran a speed-dating night. Their ice-breaker question?
+A sexy nickname for a farmer
+{playerName}'s bedroom playlist has one embarrassing song. Which?
+A pickup line from a knight in shining armour
+{playerName}'s romantic weekend ended in the emergency room. Why?
+The kinkiest thing a dentist could say
+{playerName}'s ex still has something of theirs. What?
+A sensual activity that should be an Olympic sport
+{playerName} is a Kama Sutra position. What's it called?
+An X-rated fairy tale title
+{playerName} tried role-play. What was their character?
+What the neighbours' cat has seen through the window
+The thing {playerName} secretly wants whispered in their ear
+The least sexy way to ask for a massage
+{playerName} is the star of a steamy perfume ad. What happens?
+A spicy new sauce named after your ex
+{playerName} bought something naughty online. It arrived at their mum's. What was it?
+The worst thing to hear during a romantic picnic
+{playerName}'s favourite place to be kissed that nobody expects
+Something that becomes sexy after three glasses of wine
+{playerName}'s first kiss was a disaster. What happened?
+The last thing you'd want to hear in a honeymoon suite
+{playerName}'s hottest outfit includes one weird item. What?
+A romantic comedy about two people who hate each other in bed
+The one word {playerName} moans in their sleep
+A kinky thing to do with a stapler
+{playerName}'s secret admirer in this room is...
+A pickup line for a nude beach
+{playerName}'s turn-on that sounds like a joke
+The name of a naughty children's book for adults
+{playerName} wrote a sexy poem. Last line?
+A thing you should never whisper during a massage
+{playerName}'s condom has a warning label. What does it say?
+The worst possible theme for an adult toy party
+{playerName} is a strip-tease. What's the big reveal?
+An honest review of a love hotel
+{playerName}'s pet caught them doing what?
+A rejected name for a lingerie line for grandmas
+{playerName}'s hookup story involves a canoe. What happened?
+A sexy thing to do with a banana that isn't eating it
+{playerName}'s review of their last Tinder date
+The most romantic place to get a parking ticket
+{playerName}'s naughtiest secret from a school trip
+A dirty joke that could be told at a family dinner
+{playerName}'s partner calls them "Tiger". Why?
+A sexy voice note that goes wrong
+{playerName}'s seductive dance move is called...
+The worst thing to say at a nude yoga class
+{playerName}'s most daring outfit was worn where?
+The least sexy snack to eat in bed
+{playerName}'s steamy holiday romance happened in...
+Something your date should never find in your fridge
+{playerName} is the love interest in a romcom. What's the twist?
+A romantic Dutch tradition that doesn't exist yet
+{playerName}'s honeymoon went wrong. How?
+A sex tip from a farmer
+{playerName}'s wildest night out ended in...
+The worst thing to hear from a nudist neighbour
+{playerName} got caught skinny dipping. By whom?
+A sexy superhero whose power is very specific
+{playerName} is a sexy superhero. What's their super-move?
+What happens on the top floor of a love hotel
+{playerName}'s ideal night in bed involves how many pillows?
+A pickup line for a librarian
+{playerName}'s most memorable sex position name
+What a condom would say on its dating profile
+{playerName}'s kinkiest travel story takes place on a...
+The worst thing to accidentally like on your crush's Instagram
+{playerName}'s ex sends them a text. What does it say?
+A kinky thing to do in a hot air balloon
+{playerName}'s dirty secret about their gym
+The least sexy thing to say at the peak of passion
+{playerName} is a scented candle for the bedroom. What's the scent?
+A rejected slogan for a dating app: "Swipe right for ___"
+{playerName}'s perfect lover has one strange quality. What?
+The worst possible name for an erotic dance
+{playerName}'s review of their first time
+The worst thing to find in the pocket of a second-hand bathrobe
+{playerName} got a sexy nickname at the office. What is it?
+A romantic thing to write in the steam on a mirror
+{playerName}'s love bite is in a strange place. Where?
+A kinky activity for a rainy Sunday
+{playerName}'s favourite sexy snack in bed
+The worst thing to say while undoing a zip
+{playerName} is a sexy fireman calendar model. What's their pose?
+A spicy new game for couples' night
+{playerName}'s steamy video call went wrong. How?
+The least romantic sound a partner can make
+The sexiest thing {playerName} has ever done with a cucumber
+A new aphrodisiac made from Dutch cheese
+{playerName} is a dating app. What's their tagline?
+The sexiest way to eat a stroopwafel
+{playerName}'s most regretted sext
+A sexy text that autocorrect ruined
+{playerName}'s hook-up playlist opener
+The worst place to get caught skinny dipping
+{playerName}'s bedroom has a mirror on the ceiling. What does it reflect most?
+A sensual thing to do with a feather duster
+{playerName}'s most romantic gesture ever
+The most romantic way to say "I'm hungry"
+{playerName}'s sexy costume for Halloween this year
+A kinky gift for a partner who has everything
+{playerName} is a porn star. Their catchphrase?
+The worst possible name for a love potion
+{playerName}'s hottest dream celebrity date
+Something you should never do in a sleeping bag
+{playerName}'s secret kinky collection is kept in...
+A romantic poem about a potato
+{playerName}'s steamiest memory from a camping trip
+The worst possible lingerie colour
+{playerName}'s cheesiest pickup line
+A dirty thing to do in a library that won't get you banned
+{playerName}'s sexiest word in another language
+The least sexy text to receive at midnight
+{playerName} is a sexy robot. What's their programming error?
+A sexy fireman calendar theme
+{playerName}'s review of their partner's moves
+The sexiest thing you can do in a car wash
+{playerName}'s first date ends with...
+A rejected verse from a romantic ballad
+{playerName}'s perfect kiss happens where?
+A pickup line that uses a Dutch word
+{playerName}'s sexiest item in their wardrobe
+The worst thing to hear in the next tent at a festival
+{playerName}'s wildest dare at a party
+The most scandalous thing a nun could whisper
+{playerName}'s bedroom soundtrack artist
+A new kind of strip poker
+{playerName} opened a love hotel. What's the theme?
+A sexy thing to do with a whisk
+{playerName}'s review of a nude beach
+A romantic gesture that sets off the smoke alarm
+{playerName}'s most awkward sexy moment
+The worst time to get a sexy text
+{playerName}'s best move on the dance floor to get a kiss
+A kinky use for a shower curtain
+{playerName}'s secret fetish involves which fruit?
+The worst thing to say after your partner says "I love you" for the first time
+{playerName}'s sexiest flirt text
+A romantic trip that ends in the emergency room
+{playerName}'s steamiest story from a hotel
+The least sexy thing about a hot tub
+{playerName}'s kinkiest holiday destination
+A new sexy dance invented by penguins
+{playerName} is a lingerie model for a day. What's the product?
+A naughty thing to do at a wedding
+{playerName}'s review of a sex shop
+Something your partner should never say during a massage
+{playerName}'s sexy selfie was accidentally sent to...
+A spicy compliment for someone's elbows
+{playerName}'s craziest fantasy location
+A romantic message in a bottle
+{playerName}'s hottest look involves a...
+An honest name for a "romantic" camping trip
+{playerName}'s favourite spicy food in bed
+The worst possible thing to whisper during a kiss
+{playerName}'s naughtiest secret at work
+A kinky thing to find in a toolbox
+{playerName}'s biggest turn-on at the supermarket
+A rejected love potion ingredient
+{playerName}'s kinky hobby at weekends
+The worst possible sexy surprise
+{playerName}'s review of their best night ever
+A naughty thing to do on a plane that won't get you arrested
+The name {playerName} would give to their private parts
+What your pillow knows about your love life
+{playerName}'s sexiest dance at a wedding
+A pickup line from a fisherman
+{playerName}'s perfect sexy weekend itinerary
+The sexiest thing about a tractor
+{playerName}'s steamy text to their partner at work
+The least romantic Valentine's Day activity
+{playerName}'s review of their partner's lingerie
+A kinky use for a cheese slicer
+{playerName}'s spiciest secret from last summer
+The worst thing to see in your date's bedroom
+{playerName}'s favourite place to get naughty at home
+A sexy text from your boss that's actually about work
+{playerName}'s turn-off that ended a relationship
+A romantic thing to do on a Tuesday
+{playerName}'s review of a strip club
+The spiciest thing that can happen at a garden centre
+{playerName}'s sexiest accent impression
+A naughty weekend activity in the Dutch countryside
+{playerName}'s hottest compliment to a stranger
+The worst name for a sexy chocolate
+{playerName}'s kinkiest gift for their partner
+A romantic gift that's accidentally creepy
+The worst place {playerName} has ever had a quickie
+The worst place for a first kiss in the Netherlands
+The weirdest thing {playerName} finds sexy
+A kinky use for a clothes peg
+The thing {playerName} keeps under the mattress
+The worst possible lap dance song
+The last thing {playerName} would say before a first kiss
+A spicy thing to do with body lotion
+The first thing {playerName} does after a steamy night
+The worst possible sexy nickname for a cheating partner
+The flirty emoji {playerName} overuses
+Something sexy about a woolly jumper
+The pet name {playerName} secretly wants to be called
+A dirty thing to say about a bicycle
+The most daring thing {playerName} has done in a lift
+The least romantic way to end a date
+The cheesiest move {playerName} has used to get a kiss
+A rejected Kama Sutra title
+The sexy thing {playerName} does that nobody expects
+The worst possible thing to hear from the next hotel room on your honeymoon
+The smell that instantly turns {playerName} on
+A romantic proposal involving a herring
+The film scene {playerName} wants to recreate in bed
+The kinkiest thing a baker could say
+The steamiest thing {playerName} has done in a car
+The most romantic thing a sat-nav could say
+The piece of clothing {playerName} would take off first
+A new naughty Christmas tradition
+The best-kept secret in {playerName}'s bedside drawer
+An honest review of your last kiss
+The most embarrassing thing {playerName} has said during sex
+A naughty thing to do with a snow globe
+The lie {playerName} told to get a second date
+Something only sexy in a French accent
+The place {playerName} would take a date to get lucky
+The worst thing to hear during a steamy phone call
+The excuse {playerName} gives for a love bite
+A romantic song that sounds dirty when you think about it
+The worst thing {playerName} has said while flirting
+A kinky use for a cucumber that isn't what you think
+The fantasy {playerName} would only reveal on their deathbed
+The worst sexy thing to say about a sheep
+The thing {playerName} does to seduce someone at a party
+A spicy thing to put in a love letter
+The song {playerName} plays when the lights go down
+The worst possible romantic dinner reservation
+The weirdest place {playerName} has kissed someone
+Something your crush should never see on your phone
+The item {playerName} brings to a romantic picnic
+A pickup line from an astronaut
+The celebrity {playerName} would cheat with, given the chance
+A romantic activity involving a bicycle
+The body part {playerName} is most proud of
+The sexiest thing about a lighthouse
+The reason {playerName}'s neighbours bought earplugs
+The worst possible name for a romantic weekend package
+The scandalous thing {playerName} did on a school trip
+A kinky thing to do in a greenhouse
+The first line of {playerName}'s dating profile
+A naughty thing to shout at a football match
+The move {playerName} uses to end a date with a kiss
+A romantic gesture that costs one euro
+The hottest thing {playerName} has ever seen at a gym
+The worst possible way to flirt at a funeral
+The kinky item {playerName} would pack for a honeymoon
+A kinky use for a tape measure
+The way {playerName} would propose in a sex shop
+The worst thing to say when you run out of condoms
+The steamy thing {playerName} would do in a hot air balloon
+A spicy thing to do with a hammock
+The worst place {playerName} has lost their underwear
+A romantic dinner on a budget
+The rudest word {playerName} knows in another language
+The sexiest thing about a tulip
+The way {playerName} says "let's go to bed"
+The worst thing to find in a honeymoon suite's minibar
+The flirty thing {playerName} says to waiters
+A kinky new board game for couples
+The dirtiest joke {playerName} knows
+The least romantic sound a bed can make
+The outfit {playerName} wears to seduce someone
+A naughty thing to do in a lift
+The romantic gesture {playerName} would never do
+A love letter from a vampire
+The strangest thing {playerName} has done to impress a crush
+The worst thing to say during a romantic slow motion run
+The most romantic message {playerName} has ever sent
+A sexy thing to do with a garden hose
+The steamy rumour about {playerName} at work
+The worst possible thing to hear in the bedroom from the wardrobe
+The saucy thing {playerName} does on holiday
+A romantic dinner that ends in a food fight
+The steamiest moment of {playerName}'s last relationship
+The spiciest thing about a clog
+The flirty question {playerName} asks strangers at bars
+A new aphrodisiac made from something in your fridge
+The thing {playerName} would do on a nudist beach for a dare
+The worst possible nickname for your lover's private parts
+The last person {playerName} texted "I miss you"
+Something naughty to do at a Dutch birthday party
+The naughtiest thing {playerName} has done at a festival
+A kinky use for a rubber duck
+The spiciest thing {playerName} has done at a wedding
+A romantic thing to do in the rain
+The sexiest compliment {playerName} ever received
+The sexiest thing about a windmill
+The kinky toy {playerName} would take to a desert island
+A naughty thing to bring on a picnic
+The word {playerName} would moan in a foreign language
+A pickup line for a dentist
+The body lotion {playerName} uses for a massage
+The worst thing to say during a romantic firework show
+The fantasy role {playerName} would play in bed
+A spicy thing to do on a ferris wheel
+The worst date {playerName} ever went on
+The kinkiest thing to find in a supermarket freezer
+The way {playerName} would describe their ideal lover to a police sketch artist
+A romantic gesture that goes very wrong on a boat
+The steamy place {playerName} would propose
+A sexy text from your future self
+The thing {playerName} says after a great kiss
+The worst thing to say during a candle-lit bath
+The sexy habit {playerName} has in the shower
+A kinky thing to do with a picnic blanket
+The kinkiest place {playerName} wants to visit
+The least romantic thing to say on a honeymoon
+The hottest thing about {playerName}, according to their ex
+A naughty game to play at a camping site
+The wildest thing {playerName} would do for love
+A sexy thing to say at a wine tasting
+The sexiest meal {playerName} would cook for a date
+Something only sexy in slow motion
+The daring outfit {playerName} wore on a first date
+The worst thing to find in a lover's sock drawer
+The nickname {playerName} gives their bed
+A romantic dinner at a chip shop
+The toy {playerName} secretly wants for their birthday
+A pickup line from a bus driver
+The kinkiest thing {playerName} has done with an ice cube
+The sexiest thing about a traffic jam
+The spiciest photo on {playerName}'s phone
+A spicy new app for couples
+The flirty line {playerName} uses at weddings
+The worst sexy costume for a Dutch holiday
+The romantic thing {playerName} does on Valentine's Day
+A romantic thing to do with a bike bell
+The steamy story {playerName} tells after three drinks
+A spicy thing to do at the beach at night
+The best seduction trick {playerName} knows
+A romantic song from a sheep
+The hottest place {playerName} has made out
+The sexiest thing you can do on a tandem bicycle
+The weirdest request {playerName} has had in bed
+The worst place to leave a love bite
+The excuse {playerName} gave for being late after a hookup
+A romantic gift for a partner who loves cheese
+The item of clothing {playerName} steals from lovers
+A pickup line from a plumber
+The sexy playlist song {playerName} is ashamed of
+The sexiest thing about a tax return
+The worst thing {playerName} ever said on a date
+The worst thing to say during a romantic sunrise
+The most scandalous thing {playerName} did in a hotel
+A romantic evening that ends in a game of Monopoly
+The spiciest text {playerName} has ever received
+The spiciest thing to do at a sauna
+The flirty thing {playerName} would say to a firefighter
+A sexy dance that looks like cleaning
+The kinkiest thing {playerName} has seen at a party
+A romantic dinner cooked by a teenager
+The most romantic present {playerName} ever got
+The worst thing to accidentally say at a sex shop checkout
+The steamiest thing {playerName} would do in a jacuzzi
+A spicy thing to say about a sausage
+The seductive thing {playerName} does with their eyebrows
+A romantic gift for someone who hates romance
+The secret signal {playerName} uses to say "let's go home"
+A romantic evening that turns into a horror movie
+The perfume {playerName} wears when they want to get lucky
+A romantic gesture at a gas station
+The naughtiest thing {playerName} has said to a partner in public
+The worst thing to say during a strip tease
+The steamy thing {playerName} would do in a cinema
+A pickup line from a gardener
+The moment {playerName} realised they had a crush
+A romantic trip to IKEA
+The wildest thing {playerName} has done on a dare
+A romantic dinner that ends in a bar fight
+The sexiest thing {playerName} has ever eaten
+A romantic gesture from a hedgehog
+The worst thing {playerName} has done to impress someone in bed
+The worst possible way to say "let's go to bed"
+The dirty dancing move {playerName} would use at a party
+The worst sexy thing to say about vegetables
+The item {playerName} uses as a blindfold
+A romantic activity involving a canoe
+The kinkiest item in {playerName}'s kitchen
+A romantic trip that ends in a divorce
+The spicy thing {playerName} would do on a train
+The worst thing to say during a romantic dance lesson
+The romantic city {playerName} would choose for a dirty weekend
+A romantic thing to say in Dutch
+The flirty emoji combination {playerName} uses the most
+A romantic evening that ends in karaoke
+The strangest thing {playerName} has found sexy on holiday
+The worst possible thing to hear during a sexy photoshoot
+The steamiest thing {playerName} has done in the rain
+The worst possible sexy video call background
+The worst-timed sext {playerName} ever sent
+A romantic thing to do with a pizza
+The body part {playerName} notices first
+The worst thing to say while being carried to bed
+The place in the house {playerName} would never have sex
+A romantic trip that ends in a fight about directions
+The celebrity {playerName} fantasises about while doing the dishes
+The worst possible sexy thing to say about your ex
+The spicy thing {playerName} does in the kitchen
+The worst possible thing to say during a slow kiss
+The romantic fantasy {playerName} has about a stranger on a train
+A romantic trip to Paris that goes wrong
+The naughtiest thing {playerName} would do if nobody found out
+The title of the steamy novel your grandma secretly wrote
+The secret thing {playerName} does before a date
+A condom brand slogan written by a very honest salesman
+The weirdest dream {playerName} had about someone in this room
+What the Kama Sutra's 65th position is called
+The most memorable kiss {playerName} ever had
+The one thing you should never say while being spanked
+The tackiest lingerie {playerName} has owned
+The sexiest possible job title on a business card
+The saucy thing {playerName} would write in a Christmas card
+A dating app for vampires: what's their bio?
+The steamy thing {playerName} would do in a treehouse
+The real reason the hotel charges extra for the honeymoon suite
+The naughtiest place {playerName} has left a note
+A romantic thing to carve into a tree that's actually terrifying
+The smoothest thing {playerName} has said to a crush
+A text that should never be sent after "u up?"
+The spiciest confession {playerName} would make at a sleepover
+The worst thing to discover halfway through a lap dance
+The fantasy {playerName} has involving a uniform
+A sexy calendar theme nobody asked for
+The romantic thing {playerName} would do on a boat
+A love language that doesn't exist yet
+The dirty secret {playerName} hides from their friends
+The name of your future sex tape's sequel
+The steamiest thing {playerName} would do in a library
+What the mirror on your wardrobe would say if it snitched
+The thing {playerName} would do if they woke up next to a celebrity
+The worst product to advertise with a sexy commercial
+The most outrageous thing {playerName} has done for a kiss
+A strip club for pensioners: what's the house song?
+The sexy superpower {playerName} wishes they had
+A sensual haiku about a sausage roll
+The hottest person {playerName} ever dated
+What the pizza delivery guy wishes would happen for once
+The flirtiest thing {playerName} has done on public transport
+The worst possible erotic audiobook narrator
+The kinky thing {playerName} would bring to a sleepover
+The kinkiest thing a GPS could say
+The most romantic place {playerName} has ever kissed
+The most romantic thing a drunk person has ever said to a taxi driver
+The spicy nickname {playerName} has for their partner
+A thing only a Scorpio would do in bed
+The naughtiest online search {playerName} has done
+Rename a Christmas song to make it filthy
+The wildest thing {playerName} has done in a hot tub
+The worst thing to say during a couples' dance lesson
+The seductive thing {playerName} does with food
+A sexy superpower that would be useless in a crisis
+The thing {playerName} would never do in bed, even for money
+The flirtiest thing your auntie ever said at a wedding
+The most romantic thing {playerName} has said while drunk
+A title for a romance novel set at a petrol station
+The celebrity crush {playerName} would never admit to
+The worst porn plot ever
+The worst position {playerName} has tried
+What your ex whispers to their therapist about you
+The hottest date {playerName} could plan for under ten euros
+A kinky new yoga pose called "The ___"
+The fantasy {playerName} has about their dentist
+A sex toy invented by a very bored engineer
+The steamiest place {playerName} has ever stayed
+The dirtiest thing a weatherman could say on live TV
+The romantic gesture {playerName} would make in a supermarket
+A romantic surprise that would get you dumped
+The sexiest thing {playerName} has ever worn to bed
+The worst thing to discover in your partner's Amazon wishlist
+The hottest look {playerName} has pulled off
+The name of a strip club for robots
+The naughtiest note {playerName} has left for a partner
+A rejected slogan for an adult cruise: "All aboard the ___"
+The kinkiest game {playerName} would play on a date night
+The steamiest thing that has ever happened at a family reunion
+The thing {playerName} would do in the back row of a cinema
+The spiciest fruit, and why
+The best excuse {playerName} has for a messy bedroom
+A rejected Tinder feature
+The most romantic song {playerName} knows by heart
+The most suspicious item on your hotel bill
+The kinkiest thing {playerName} has done with chocolate
+The sexiest thing you can say while doing your taxes
+The wildest thing {playerName} has done on a train
+A romantic comedy set in a hospital's STD clinic
+The steamiest scene {playerName} would direct in a movie
+The honeymoon destination for people who can't stand each other
+The secret thing {playerName} wants for Valentine's Day
+A kinky secret of the Monopoly man
+The funniest thing {playerName} has done to seduce someone
+A romantic poem written on a toilet wall
+The most daring place {playerName} has taken a selfie
+A pickup line that sounds like a threat
+The thing {playerName} would do if their crush said yes
+A sexy ringtone that goes off at the worst moment
+The excuse {playerName} gives for a squeaky bed
+The most awkward sex-ed question from a pensioner
+The sexiest vegetable, according to {playerName}
+The worst tattoo for a lower back
+The way {playerName} would describe their last kiss to a toddler
+Something you'd hear at a nudist bingo night
+The kinkiest thing {playerName} has found in a hotel room
+A title for an erotic thriller set in a bakery
+The flirtiest thing {playerName} has said at work
+The sexiest noise a car can make
+The steamy secret {playerName} has about their holiday in Spain
+The dress code for the wildest party you've ever been to
+The naughtiest thing {playerName} has done on a beach
+The one question you should never ask on a first date at the zoo
+The spicy fantasy {playerName} has about a pirate
+What Cupid does on his day off
+The thing {playerName} would do if they were invisible in a sauna for couples
+The name of a sexy fragrance for dads
+The moment {playerName} would choose to propose a threesome
+A spicy truth or dare question for your grandparents
+The flirty line {playerName} would use on a sexy doctor
+The worst possible safeword for a stammerer
+The hottest thing {playerName} has done in the snow
+A secret handshake for swingers
+The sexy item {playerName} would buy in a charity shop
+What the wedding DJ plays for the honeymoon send-off
+The naughtiest thing {playerName} has said to a stranger
+The sexiest word in German
+The thing {playerName} does to get in the mood on a Tuesday
+What your fitness watch recorded last night
+The best sexy prank {playerName} could play on their partner
+A love story between a sock and a shoe, in one sentence
+The sexy song {playerName} would sing to their crush
+The worst-ever strip poker hand
+The flirty compliment {playerName} gives to strangers
+The best excuse for arriving at work with messy hair
+The hottest fantasy {playerName} has about a teacher
+A kinky fantasy involving a vacuum cleaner
+The flirtiest dance move {playerName} knows
+Something that shouldn't be said during a sensual massage
+{playerName} woke up in a stranger's bed. First thing they said?
+A romantic place to propose that smells terrible
+{playerName} got a love letter from a secret admirer. Who signed it?
+What a mermaid's Tinder bio says
+{playerName}'s grandma found their sex toy. What did she think it was?
+The worst-ever wedding night confession
+{playerName}'s hookup left something behind. What?
+A title for the sequel to "Fifty Shades"
+{playerName} is starring in a steamy Netflix series. The title?
+The naughtiest thing to engrave on a bracelet
+{playerName} started a sexy podcast. Episode one?
+The raciest thing ever found in a church
+{playerName} flirted with a police officer to avoid a ticket. Their line?
+Something steamy that could happen in a sauna in Finland
+{playerName} went on a blind date with their ex. First words?
+A sexy song for a very unsexy occasion
+{playerName} got locked out naked. What's their plan?
+The worst thing to hear from a hotel receptionist the morning after
+{playerName} was caught with lipstick on their collar. The excuse?
+A new flavour of edible underwear
+{playerName} is a love hotel receptionist. Weirdest request?
+The worst thing to overhear at an Ann Summers party
+{playerName} got a very sexy wrong-number text. Their reply?
+What the Easter Bunny gets up to after dark
+{playerName} is a lingerie shop assistant. Their sales pitch?
+A romantic proposal hidden in a cheese
+{playerName} became a nude model for an art class. What pose?
+A pickup line for a nuclear physicist
+{playerName} ordered a sexy costume online. What arrived instead?
+The most scandalous thing to find in a vicar's garden shed
+{playerName} did a strip-tease for their partner. What went wrong?
+A sensual way to eat spaghetti that goes wrong
+{playerName} wrote a dirty limerick. Its first line?
+The kinkiest thing to find at a car-boot sale
+{playerName}'s date took them to a swingers' party by mistake. Their reaction?
+A secret code word for "let's leave the party now"
+{playerName} is a relationship coach. Their worst advice?
+A romantic playlist song that kills the mood instantly
+{playerName} is a sex therapist. The most common thing they hear?
+The steamiest thing that can happen in a phone box
+{playerName}'s partner bought a sex swing. Where did they install it?
+The raunchiest name for a racing horse
+{playerName} invented a new aphrodisiac. What's in it?
+A new game show: "Who Wants To Be A ___"
+{playerName} is a fortune teller for love. Their prediction for you?
+The worst possible gift from a secret admirer at work
+{playerName}'s phone autocorrected a sexy text. To what?
+The raciest thing ever said on a cooking show
+{playerName} made a sexy video. The neighbours watched. How?
+A cheeky text to send your partner during a work meeting
+{playerName} got a hickey from a vacuum cleaner. The explanation?
+The most daring thing to do in a glass lift
+{playerName} hosted a lingerie party for their friends. The highlight?
+The worst thing to find in a honeymoon suitcase
+{playerName} tried to seduce someone at a funeral. How did it go?
+An erotic novel about garden gnomes: the title
+{playerName} ended up in the wrong hotel room. What did they find?
+What's written on the back of the love hotel's "do not disturb" sign
+{playerName} opened a sex shop. What's in the shop window?
+The sexiest fruit to peel
+{playerName}'s partner found a note in their pocket. It said...
+A flirty compliment for someone's knees
+{playerName}'s dating profile got 1000 matches. Why?
+The worst sexy nickname for a moustache
+{playerName}'s dating profile got zero matches. Why?
+A romantic thing to say that sounds like a hostage demand
+{playerName}'s mum walked in. What was {playerName} doing?
+The best way to get kicked out of a sauna
+{playerName}'s first sexy text ever said...
+The cheesiest thing to write in a Valentine's card for your cat
+{playerName} is a porn parody of a Dutch TV show. The title?
+A love bite in an unusual place, and the excuse for it
+{playerName} tried to flirt in French. What did they actually say?
+The naughtiest ice-cream flavour
+{playerName} went to a nude spa. What did they cover up first?
+The sexiest dance for a wedding with your grandparents watching
+{playerName} got a Brazilian wax. Their review?
+The raunchiest thing a sat-nav voice could whisper
+{playerName}'s steamy weekend got interrupted by...
+A romantic comedy set in a sex shop
+{playerName} proposed during sex. What was the answer?
+The rudest name for a chocolate bar
+{playerName}'s one-night stand turned into a ten-year marriage. How?
+What your date's "gym bag" actually contains
+{playerName} slept with someone famous. Who, and what did they get as a souvenir?
+A pickup line only a vampire would use
+{playerName} found their parents' sex toy. What did they do with it?
+A flirty way to ask someone to do the dishes
+{playerName}'s partner has a weird request. What is it?
+The sexiest item in a toolbox
+{playerName} got caught skinny dipping in a canal. Their excuse?
+A cheeky rule for a naughty board game
+{playerName} is a stripper at a hen party. Their stage name?
+Something that should never be said on a nudist beach to a stranger
+{playerName}'s kinky roleplay went wrong. What character?
+The worst thing to realise halfway through a steamy shower
+{playerName} tried to sext in emojis. What did they send?
+A seductive way to say "Let's split the bill"
+{playerName} got a Valentine from someone in this room. Who?
+The most unsexy thing about a gondola ride
+{playerName} wrote their partner a sexy poem. The rhyme for "breasts"?
+A romantic song for doing laundry together
+{playerName} went on a sex holiday. Where?
+The worst way to start a threesome conversation
+{playerName} hooked up at a wedding. Where exactly?
+The steamiest thing that has ever happened in a garden shed
+{playerName}'s partner discovered their fetish. What was it?
+The best excuse for fogged-up windows in a parked car
+{playerName}'s steamy novel got banned. What chapter did it?
+A dirty-sounding Dutch word that's actually innocent
+{playerName}'s honeymoon suite had a surprise. What?
+The kinkiest thing a librarian could stamp in a book
+{playerName}'s lover left a note on the pillow. What did it say?
+What the stars say about your sex life this week
+{playerName} tried to be sexy at the gym. What happened?
+A secret in the honeymoon suite's guestbook
+{playerName} flirted with a mannequin. Why?
+The best way to ruin a romantic bubble bath
+{playerName} was the "other woman/man" in a soap opera. Their scene?
+The worst sexy text typo ever
+{playerName} got a love bite from their dentist. How?
+A love story between two people who met in a lift
+{playerName} got their own sexy fragrance. The advert slogan?
+The most daring thing to do at a masquerade
+{playerName} found a love note in a library book. What did it say?
+The naughtiest thing a parrot could learn in a bedroom
+{playerName}'s ex wrote a song about them. What's it called?
+The worst thing to hear from your date's roommate at breakfast
+{playerName}'s crush gave them a nickname. What is it?
+A flirty question to ask at a funeral reception
+{playerName} crashed a nudist wedding. What did they wear?
+The sexiest possible supermarket announcement
+{playerName}'s partner joined their yoga class. What went wrong?
+Something you shouldn't try on a waterbed during an earthquake
+{playerName} went on a date with a vampire. How did it end?
+The worst sexy nurse costume accessory
+{playerName} hooked up on a sleeper train. What went wrong?
+The raciest thing to say at a pub quiz
+{playerName}'s bra/boxers were found somewhere strange. Where?
+The worst sex tip from a fortune cookie
+{playerName} made a sex playlist. Name the first song
+The best way to wake up your partner on their birthday
+{playerName} is a love doctor. What do they prescribe?
+A cheeky reason to leave a family dinner early
+{playerName}'s steamy text to their ex accidentally went to...
+The raciest thing that could happen at a Christmas market
+{playerName} bought a waterbed. What happened the first night?
+The sexiest thing about someone who knows how to fold fitted sheets
+{playerName} dated a chef. What's the sexiest thing they cooked?
+A romantic dinner menu for vampires
+{playerName} was caught in the act by a drone. Where?
+The most scandalous thing in the lost-and-found at a hotel
+{playerName}'s lover is a ghost. How do they flirt?
+A flirty text to send your partner's mum by accident
+{playerName} got a sexy massage. What did the masseuse say?
+The worst sex position for someone who's ticklish
+{playerName} was dared to kiss a stranger. Who did they pick?
+A spicy thing to say during a pub crawl
+{playerName} started a dating agency. Their motto?
+The naughtiest thing ever written on a steamed-up mirror
+{playerName} was rated 10 out of 10 in bed. By whom?
+The sexiest job at a circus
+{playerName} spent a night in a love motel. The theme room was...
+The dirtiest-sounding innocent sentence
+{playerName} joined a nudist club. First rule they broke?
+A romantic surprise hidden in a pizza
+{playerName} tried to be seductive at a barbecue. What did they do with the sausage?
+What happens on a nudist cruise when it rains
+{playerName} gave their partner a sexy gift. What did they unwrap?
+The best thing about sleeping with a chef
+{playerName} fell in love with a robot vacuum. Why?
+The worst thing about sleeping with a dentist
+{playerName}'s kinky secret was revealed at Christmas dinner. What was it?
+A romantic excuse for being late for work
+{playerName}'s lover snores. What's their revenge?
+A flirty compliment for a partner's cooking
+{playerName}'s partner ranked their kisses. What's number one?
+The worst place to get a massage
+{playerName} was spotted leaving a sex shop. With what?
+A cheeky dare for a wedding reception
+{playerName} got a love letter from a pigeon. What did it say?
+The most unexpected thing that turns people on
+{playerName} was the first person to have sex on the moon. What did they say?
+The sexiest thing about a knitted jumper
+{playerName} flirted with a statue. What did they whisper?
+A steamy scene in a film about accountants
+{playerName} flirted with a bouncer. Did it work?
+The kinkiest thing to find in a vintage wardrobe
+{playerName}'s partner is jealous of their pillow. Why?
+The best pick-up line to use at a funeral (if you must)
+{playerName}'s bedroom got a one-star review. Why?
+Something nobody wants to hear during a sensual dance
+{playerName}'s bedroom got a five-star review. Why?
+The most romantic thing a builder could say
+{playerName} was dumped for being too kinky. What did they suggest?
+The best excuse for having whipped cream in the bedroom
+{playerName}'s crush turns out to be their cousin. Their first words?
+A flirty way to end a business email
+{playerName} tried to have a romantic bath. What went wrong?
+The worst place to leave your underwear at a party
+{playerName} got caught flirting with their partner's sibling. Their excuse?
+A spicy compliment for someone's accent
+{playerName}'s one-night stand wrote them a poem. What's the title?
+A sexy cooking show title
+{playerName} was voted sexiest person in the office. Why?
+The worst thing to overhear at a lingerie fitting
+{playerName}'s partner found a secret dating app. What's the name?
+A romantic scene in a zombie movie
+{playerName} wrote an erotic fan fiction. About which cartoon?
+The best way to seduce someone at a garden centre
+{playerName}'s steamiest moment happened in which Dutch city?
+The dirtiest thing ever said in a cooking class
+{playerName} got a lap dance from someone they know. Who?
+The sexiest way to say "I did the dishes"
+{playerName} is a love song. What's the chorus?
+A cheeky thing to write on a steamy window
+{playerName} is a bottle of massage oil. What's the scent?
+The worst thing a stripper could pull out of their pocket
+{playerName} invented a sex toy. What's it called?
+A sexy tradition for Friday nights
+{playerName} broke a bed. How?
+The raciest reason for a noise complaint
+{playerName} broke a hot tub. How?
+The steamiest thing to do after a long hike
+{playerName} tried speed-dating. What did they say to everyone?
+A flirty thing to say to a barista
+{playerName} got caught in the act on Google Street View. Where?
+The most scandalous thing to find in a church confession box
+{playerName} joined the Mile High Club. Which airline?
+A seductive way to hand someone a towel
+{playerName} hired a gigolo. What was the service?
+The worst thing to say while playing footsie
+{playerName}'s date showed up in a costume. What costume?
+A romantic dinner menu for pirates
+{playerName} was dared to go commando to church. What happened?
+The most daring thing to do on a first date at a museum
+{playerName} hosted a naked dinner party. What was on the menu?
+The best way to flirt with a lifeguard
+{playerName} met the love of their life at a supermarket. Which aisle?
+The sexiest thing you can do with an umbrella in the rain
+{playerName} dated a clown. What's the worst part?
+The worst thing to hear through a thin hotel wall on your birthday
+{playerName} dated a magician. What disappeared?
+A spicy challenge for a couples' game night
+{playerName} dated a farmer. What was the first date?
+A cheeky way to say goodnight
+{playerName}'s kinky alter ego has a name. What is it?
+The steamiest thing that could happen in a sleeper train
+{playerName}'s bedroom has a secret door. Where does it lead?
+The naughtiest wish to make on a shooting star
+{playerName} gave a TED talk on sex. The title?
+The best way to tell someone you fancy them in a library
+{playerName} started a sexy book club. First book?
+The sexiest thing that could happen at a bus stop
+{playerName} ordered room service at a love hotel. What did they get?
+The best excuse for a love bite at a job interview
+{playerName} wrote a sexy review of a cheese. What's the best line?
+A romantic dinner menu for zombies
+{playerName} made a sexy snowman. What's special about it?
+The worst time for a text from your ex
+{playerName} got a sexy haircut. What does it look like?
+The raciest thing a tour guide ever said
+{playerName} tried pole dancing. What happened to the pole?
+A cheeky move to steal a kiss
+{playerName}'s steamy Tinder chat was read out at a wedding. Best line?
+A flirty thing to say at the gym
+{playerName} made their partner blush in public. How?
+The sexiest thing about a bookshop
+{playerName} made a waiter blush. What did they order?
+A spicy truth for couples who have been together 30 years
+{playerName} flirted with a sat-nav. What did the sat-nav say back?
+The most shameless flirt at a wedding does what?
+{playerName} tried to seduce someone with a magic trick. What was it?
+The best way to seduce someone with a sandwich
+{playerName}'s sex life is a board game. What's it called?
+A seductive thing to do with a pair of oven gloves
+{playerName}'s sex life is a movie genre. Which one?
+The dirtiest innocent thing your grandma said
+{playerName}'s love life is a TV show. What channel is it on?
+The worst place for your trousers to fall down
+{playerName}'s love life is a dish. What's on the plate?
+A romantic song for two snails
+{playerName}'s love life is a car. What kind?
+The naughtiest thing to do in a stairwell
+{playerName}'s love life is a holiday destination. Where?
+The sexiest thing to say to someone who's fixing your bike
+{playerName}'s love life is a Christmas present. What's in the box?
+The raunchiest cheese name
+{playerName}'s love life is a song. Who sings it?
+A romantic proposal that goes viral for the wrong reasons
+{playerName}'s love life is a pizza. What topping?
+The sexiest sound a zipper can make
+{playerName}'s love life is a zoo animal. Which one?
+What happens at a speed-dating night for ghosts
+{playerName}'s first kiss is a movie. What's the title?
+The best way to tell your partner you've bought a sex swing
+{playerName}'s last date is a newspaper headline. What's it say?
+A spicy nickname for a weekend away without the kids
+{playerName}'s bedroom is a theme park. What's the main ride?
+The worst thing to do while wearing edible underwear
+{playerName}'s perfect partner is a cocktail. What's in it?
+What the neighbours' parrot keeps repeating after your party
+{playerName}'s flirting style is a sport. Which one?
+A seductive way to peel a potato
+{playerName}'s kiss is a flavour of ice cream. Which flavour?
+A love note written in the fog on a bus window
+{playerName}'s sex appeal is a weather forecast. What's the forecast?
+The most suspicious purchase on a joint bank account
+{playerName}'s bed is a country. What's the national anthem?
+The hottest thing that can happen at a car wash
+{playerName}'s underwear drawer is a museum. What's the main exhibit?
+The kinkiest thing a bus driver has ever seen
+{playerName}'s crush is a snack. Which one?
+What's really in the "romantic basket" at a love hotel
+{playerName}'s seduction technique is a cooking recipe. Step one?
+A flirty thing to shout from a balcony
+{playerName}'s ideal date is a video game. What's the final boss?
+The sexiest profession in the Middle Ages
+{playerName}'s bedroom playlist is a radio station. What's it called?
+The steamiest thing that could happen in a cable car
+{playerName}'s sexiest feature is a superpower. What does it do?
+A sexy text to send while stuck in traffic
+{playerName}'s love bite is a tattoo. What does it say?
+The worst thing to say when your partner's parents walk in
+{playerName}'s honeymoon is a disaster movie. What happens?
+A love story that begins at the self-checkout
+{playerName}'s dirty talk is a TV advert. What product?
+A cheeky thing to hide in your partner's lunchbox
+{playerName}'s bedroom door has a sign. What does it say?
+The raunchiest thing a cheese maker could say
+{playerName}'s night of passion is a news report. The headline?
+The worst lingerie for a snowy day
+{playerName}'s lingerie is a work of art. What's it called?
+What happens at the after-party of a wedding in Ibiza
+{playerName}'s kinkiest secret is a children's book. What's the title?
+The best way to seduce someone at a barbecue
+{playerName}'s seductive whisper is a sound effect. What is it?
+A sexy thing to say with a mouthful of cake
+{playerName} is caught sneaking out at dawn. What are they carrying?
+The naughtiest thing to do at a fancy-dress party
+{playerName} gets a sexy fortune cookie. What does it say?
+The best excuse for walking out of a hotel in a bathrobe
+{playerName} fell for a tour guide. Where did the tour end?
+The sexiest way to hand someone their coat
+{playerName} wrote their number on a stranger's arm. What else did they write?
+The worst thing to find on a romantic beach walk
+{playerName} used a pickup line on a nun. Which one?
+The most unexpected place to find a love letter
+{playerName}'s partner renamed them in their phone. To what?
+A rejected Durex slogan
+{playerName} received a mysterious package with a note: "For tonight". What's inside?
+A flirty way to tell someone they have spinach in their teeth
+{playerName} gave their lover a nickname based on a vegetable. Which one?
+The raciest thing that could happen at a quiz night
+{playerName} hid in a wardrobe during a date. Why?
+The worst time to try something new in bed
+{playerName} tried to be sexy while eating soup. What happened?
+A sexy thing to do on a Sunday afternoon when the kids are out
+{playerName} went viral for a kiss. Where did it happen?
+The naughtiest thing to do with a pair of fluffy dice
+{playerName}'s crush finally texts back. What does it say?

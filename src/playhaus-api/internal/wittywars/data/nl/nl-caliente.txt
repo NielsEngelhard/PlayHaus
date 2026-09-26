@@ -239,7 +239,7 @@ Wat de laatste scharrel van {playerName} het best onthouden heeft
 De slechtste plek voor een eerste zoen
 De kenmerkende flirt van {playerName}
 Het slechtste seksadvies uit een tijdschrift
-Wat {playerName} als sexy pizzabezorger zou doen
+{playerName} heeft een geheime relatie met iemand van het werk. Wie?
 Iets wat je niet in een seksshop wilt tegenkomen
 De pittige koosnaam van {playerName} voor de partner
 De minst sexy superheld
@@ -295,7 +295,7 @@ Wat {playerName} op een lingerie-modeshow zou doen
 Het ergste om op een hete date in een restaurant te zeggen
 De slaapkamersoundtrack van {playerName}
 Een slechte naam voor een praktijk van een seksuoloog
-Wat {playerName} met een sexy kostuum zou doen
+{playerName} vindt een bh in de auto. Van wie?
 Het minst sexy om te zeggen tijdens een schuifeldans
 De favoriete plek van {playerName} om gezoend te worden
 Wat je ondergoedla over je verraadt
@@ -363,7 +363,7 @@ Wat {playerName} met een zweep zou doen
 Een slechte naam voor een website voor volwassenen
 De stoute bijnaam van {playerName} op school
 Wat de plafondventilator heeft gezien
-Wat {playerName} als sexy vampier zou doen
+{playerName} vindt een onderbroek in de wasmachine die niet van hen is. De reactie?
 Het ergste om te zeggen tijdens speeddaten
 De geheime sexy snack van {playerName}
 Een vreselijke sexy piratentekst
@@ -387,7 +387,7 @@ Wat de crush van {playerName} nog niet weet
 Het ongemakkelijkste seksspeeltje om aan de douane uit te leggen
 De kinkyste outfit van {playerName}
 Een slechte naam voor een sexy brandweerman
-Wat {playerName} met een sexy robot zou doen
+{playerName} heeft een kinky nieuwjaarsvoornemen. Welk?
 Het ergste om je partner in bed te vragen
 De kenmerkende zoen van {playerName} heet...
 Hoe het meest sexy broodje heet
@@ -403,7 +403,7 @@ Wat {playerName} met bodypaint zou doen
 Het minst sexy eten om elkaar te voeren
 De favoriete pikante film van {playerName}
 Het ergste om na een eerste zoen te zeggen
-Wat {playerName} met een sexy vreemde in de trein zou doen
+{playerName} geeft de minnaar een sexy bijnaam uit de dierentuin. Welke?
 Een slechte naam voor een liefdesdrankje
 Het heetste vakantiemoment van {playerName}
 Wat de bruine strepen over je vakantie zeggen
@@ -419,7 +419,7 @@ Met wie {playerName} een nacht zou doorbrengen als het kon
 Het ongemakkelijkste seksspeeltje om in je bagage kwijt te raken
 Het zwoelste geheime plekje van {playerName}
 Een slechte naam voor een romcom
-Wat {playerName} in een sexy rollenspel zou doen
+{playerName} gaat op een blind date in het donker. Wat is het eerste wat ze voelen?
 Wat een waterbed heeft overleefd
 De grootste slaapkamerblunder van {playerName}
 Het slechtste rollenspelkostuum
@@ -455,7 +455,7 @@ Wat {playerName} als gigolo voor een dag zou doen
 Iets vreselijks om in het donker van je partner te horen
 De flirterigste emoji van {playerName}
 Het kinkyste wat een vegetariër met groente kan doen
-Wat {playerName} in een sexy kerker zou doen
+{playerName} gaat met de date kamperen. Wat gaat er mis in de tent?
 De slechtste plek om een string te dragen
 De zwoele badkamerroutine van {playerName}
 Iets wat je nooit op een waterbed moet doen
@@ -475,7 +475,7 @@ Wat {playerName} zou zeggen om een vampier te verleiden
 Het ergste om te zeggen terwijl je het in een tentje doet
 De heetste celebrityfantasie van {playerName}
 Iets wat je niet in een liefdesnestje wilt vinden
-Wat {playerName} op een sexy jachttrip zou doen
+{playerName} schrijft een zwoel verhaal voor de schoolkrant. Wat gebeurt er?
 De ongemakkelijkste manier om de ouders van je partner te ontmoeten
 Het pikante slaapverhaaltje van {playerName}
 Een slechte naam voor een sexy superheld
@@ -491,7 +491,7 @@ Wat {playerName} onder de mistletoe zou doen
 Het minst sexy om in het Frans te zeggen
 De beste flirt van {playerName} aan de bar
 Een afgekeurde naam voor een lingerielijn
-Wat {playerName} als sexy monteur zou doen
+{playerName} flirt tijdens een begrafenis met de weduwe. Wat zeggen ze?
 Wat een dildo van mensenhanden vindt
 Het heetste kledingstuk van {playerName}
 Het slechtste om een tik op te geven
@@ -499,7 +499,7 @@ Wat {playerName} op een naaktcruise zou doen
 Een vreselijke sexy haiku
 De zwoelste spijt van {playerName}
 Het ergste om te horen in een seksdungeon
-Wat {playerName} met een sexy dienstmeisjespakje zou doen
+{playerName} gaat op date in een escaperoom. Wie heeft de sleutel?
 Iets wat je niet wilt oplopen in een parenclub
 De grootste verleidingsflop van {playerName}
 Het kinkyste om te doen in een bibliotheek
@@ -511,7 +511,7 @@ Wat {playerName} met oesters zou doen
 De slechtste manier om een romantisch moment te verpesten
 Het pikantste festivalverhaal van {playerName}
 Een vreselijke traditie voor de huwelijksnacht
-Wat {playerName} zou doen als de sexy buurman of buurvrouw aanklopte
+{playerName} probeert romantisch te zijn met een kaarsje op een bitterbal. Hoe reageert de date?
 De minst sexy hobby om op een date te noemen
 De beste dansmove van {playerName} om te scoren
 Iets wat nooit opgewarmd zou moeten worden
@@ -519,7 +519,7 @@ Wat {playerName} in een slaapzak voor twee zou doen
 Het slechtste sexy Instagram-onderschrift
 De sexy artiestennaam van {playerName}
 Een slechte naam voor een trio
-Wat {playerName} op een sexy speurtocht zou doen
+{playerName} gaat viraal met een zwoele TikTok. Welk geluid gebruiken ze?
 Waar de massageolie stiekem voor gebruikt wordt
 De beste zin van {playerName} in een sexy berichtje
 Het slechtste sexy kostuum voor een man
@@ -527,11 +527,11 @@ Wat de partner van {playerName} het leukst aan hen vindt in bed
 Iets vreselijks om te zeggen tegen iemand in lingerie
 De zwoele dagdroom van {playerName}
 De slechtste plek om een naaktfoto te maken
-Wat {playerName} op een sexy kookworkshop zou doen
+{playerName} doet mee aan een wedstrijd in wie het langst kan zoenen. Hoe lang?
 Iets wat je niet met een spuitbus slagroom moet proberen
 Het kinkyste compliment van {playerName}
 Het ongemakkelijkste appje na een scharrel
-Wat {playerName} met een sexy agent zou doen
+{playerName} krijgt een sexy cadeau van de oma. Wat is het?
 Een afgekeurde titel voor een sexy film
 De beste zoen ooit van {playerName}
 Waar de bubbels in een jacuzzi echt voor zijn
@@ -543,7 +543,7 @@ Wat {playerName} op een zwoele strandavond zou doen
 De minst romantische plek voor een huwelijksreis
 Het heetste lichaamsdeel van {playerName}
 Het ergste geluid tijdens de seks
-Wat {playerName} op een sexy kampeerweekend zou doen
+{playerName} gaat naar de sauna met de schoonvader. Wat zeggen ze?
 Iets wat je nooit wilt dat je partner uitroept
 De vaste verleidingszin van {playerName}
 Een slechte naam voor een lingeriemodel
@@ -551,11 +551,11 @@ Wat {playerName} op een logeerpartij voor volwassenen zou doen
 Wat de wasmachine doet als die op centrifugeren staat
 De pikantste geheime crush van {playerName}
 Het slechtste om te doen tijdens een sexy weekendje weg
-Wat {playerName} als sexy cowboy zou doen
+{playerName} stuurt per ongeluk een sexy appje naar de juf van het kind. Wat stond er?
 Iets vreselijks om te zeggen tijdens dirty talk in de keuken
 De kinkyste ochtendroutine van {playerName}
 De kinkyste plek in de IKEA
-Wat {playerName} als sexy dokter zou doen
+{playerName} krijgt een kinky cadeaubon. Voor welke winkel?
 De slechtste reden om uit een hotel gezet te worden
 Het perfecte sexy nummer van {playerName}
 Iets wat je niet met een veer moet doen
@@ -567,7 +567,7 @@ Wat {playerName} zou doen als die de gedachten van de crush kon lezen
 Waar de tweede date echt om draait
 De stoutste online aankoop van {playerName}
 Het ergste om te horen terwijl je geblinddoekt bent
-Wat {playerName} in een sexy videoclip zou doen
+{playerName} heeft een geheime liefde voor een tv-kok. Welke?
 Iets vreselijks om met een kaars te doen
 Het heetste ex-verhaal van {playerName}
 De minst sexy parfumgeur
@@ -577,7 +577,7 @@ Wat {playerName} in een romantisch schuimbad zou doen
 De slechtste naam voor een slaapkamermove
 De pikantste koosnaam van {playerName}
 Een afgekeurde zin uit een romantische film
-Wat {playerName} op een geheim sexy feest zou doen
+{playerName} droomt over een zwoele vakantie op de Veluwe. Wat gebeurt er in het bos?
 Wat de perzik-emoji echt betekent
 De zwoele ochtend erna van {playerName}
 Het slechtste moment voor een romantisch telefoontje
@@ -589,7 +589,7 @@ Wat {playerName} zou doen als de crush een naaktfoto stuurde
 Het kinkyste aan een brandweeruniform
 De sexy dansnaam van {playerName}
 Een slechte naam voor een sexy pizza
-Wat {playerName} op een sexy wellnessdag zou doen
+{playerName} wordt versierd in een snackbar. Met welke snack?
 Wat geliefden doen in een reuzenrad
 Het stoute verlanglijstje van {playerName}
 De slechtste plek om een vibrator te verstoppen
@@ -597,7 +597,7 @@ Wat {playerName} in een zwoel tentje zou doen
 Een vreselijk idee voor sexy verlichting
 De heetste look van {playerName} na middernacht
 Het minst sexy kledingstuk
-Wat {playerName} in een sexy Netflixserie zou doen
+{playerName} krijgt een liefdesbrief in een fles op het strand. Wat staat erin?
 Iets wat je nooit in een paskamer moet doen
 De pikante herinnering van {playerName} aan de middelbare school
 Het ongemakkelijkste seksspeeltje om van je moeder te krijgen
@@ -605,7 +605,7 @@ Wat {playerName} met een chocoladefontein zou doen
 Een slechte naam voor een romantisch liedje
 De kinkyste droomlocatie van {playerName}
 Wat het wijnglas op date night heeft gezien
-Wat {playerName} als sexy astronaut zou doen
+{playerName} gaat met de date schaatsen en valt. Wat is de romantische redding?
 Het slechtste sexy berichtje van je tandarts
 Het beste pikante advies van {playerName}
 Een vreselijke manier om iemand wakker te maken voor seks
@@ -625,7 +625,7 @@ Wat {playerName} met de crush in een bibliotheek zou doen
 Iets vreselijks om in een hotelsauna te horen
 Het stoute drankspel van {playerName}
 Het minst sexy eten om van iemand af te likken
-Wat {playerName} in een sexy reclame zou doen
+{playerName} probeert te sexten tijdens een verjaardag in de kring. Wie leest mee?
 Iets wat je nooit in een sekstape zou zeggen
 De heetste accentimitatie van {playerName}
 Het slechtste om te doen met een sexy verpleegsterspakje
@@ -633,11 +633,11 @@ Wat {playerName} in een zwoele treinreis zou doen
 Een afgekeurde naam voor een erotische kunsttentoonstelling
 De meest verrassende kink van {playerName}
 Wat het brandalarm onderbrak
-Wat {playerName} in een sexy escaperoom zou doen
+{playerName} krijgt van de partner een zwoele verrassing op de verjaardag. Wat?
 De slechtste plek om per ongeluk te sexten
 De sexy workout van {playerName}
 Een vreselijke romantische verrassing
-Wat {playerName} met een sexy secretaresse zou doen
+{playerName} gaat op vrijgezellenweekend. Wat is het meest schandalige wat er gebeurt?
 Het kinkyste wat een kok met een garde kan doen
 Het zwoele bruiloftsverhaal van {playerName}
 Het slechtste verhaal over de eerste keer
@@ -649,11 +649,11 @@ Wat {playerName} met een minnaar in een spookhuis zou doen
 Het slechtste om te kreunen
 De stoutste droom van {playerName} van afgelopen nacht
 Een vreselijke reden om je helemaal te laten harsen
-Wat {playerName} op een sexy roadtrip zou doen
+{playerName} probeert te verleiden met een appeltaart. Wat is het geheime ingrediënt?
 De minst sexy fetisj
 De beste techniek van {playerName}, in hun eigen woorden
 Iets wat je nooit met eetbaar ondergoed moet doen
-Wat {playerName} in een sexy pashokje zou doen
+{playerName} gaat naar een zwoel kostuumfeest als een Hollandse snack. Welke?
 Het ergste om in een stripclub te horen
 Het kinkyste reisartikel van {playerName}
 Een slechte naam voor een sexy snack
@@ -661,25 +661,25 @@ Wat {playerName} bij een romantische zonsondergang zou doen
 Wat de plant op de vensterbank heeft gezien
 De zwoelste songtekst van {playerName}
 De slechtste sexy koosnaam voor een echtgenoot
-Wat {playerName} met een sexy voicemail zou doen
+{playerName} flirt met de caissière. Wat zeggen ze bij het scannen?
 Iets vreselijks om in de broekzak van je minnaar te vinden
 De pikantste uitdaging die {playerName} ooit deed
 De slechtste versiertruc in een ziekenhuis
-Wat {playerName} op een sexy tekenles zou doen
+{playerName} vindt het nachtkastje van de ouders. Wat ligt erin?
 Iets wat je niet in de kast van je partner wilt vinden
 De beste tongmove van {playerName}
 Het ongemakkelijkste om bij de kassa van een seksshop te horen
-Wat {playerName} met een sexy strandwacht zou doen
+{playerName} gaat viraal met een zoen op het grote scherm van het voetbalstadion. Met wie?
 Een slechte naam voor een sexy brandweerkalender
 Het heetste kledingstuk in de kast van {playerName}
 Wat het "niet storen"-bordje beschermt
-Wat {playerName} als sexy spook zou doen
+{playerName} doet mee aan een zoenmarathon. Wat is de strategie?
 Het slechtste om vlak voor de seks te doen
 Het stoute geheim van {playerName} over afgelopen weekend
 Iets vreselijks om in het heetst van de strijd te zeggen
 Het beste slaapkamergeluidseffect van {playerName}
 Het minst sexy compliment
-Wat {playerName} met een sexy personal trainer zou doen
+{playerName} krijgt een zwoel sms'je van de vorige eeuw. Van wie?
 Iets wat je nooit op een bruiloft moet fluisteren
 De zwoele herinnering van {playerName} aan een bruiloft
 Het slechtste om mee te knuffelen
@@ -699,7 +699,7 @@ Wat {playerName} op een nacht in Ibiza zou doen
 Het ongemakkelijkste om op een naaktstrand te vinden
 De pikantste selfie van {playerName}
 Een slechte naam voor een hotdogkraam op een naaktstrand
-Wat {playerName} met een sexy ober zou doen
+{playerName} krijgt een flirt van een pratende papegaai. Wat zegt die?
 Wat de handboeien tegen de zweep zeiden
 De stoute ergernis van {playerName}
 Het slechtste voorspel
@@ -707,39 +707,39 @@ Wat {playerName} 's nachts met een minnaar in een zwembad zou doen
 Iets vreselijks om in het donker te roepen
 Het heetste geheime talent van {playerName}
 Het minst sexy om aan te trekken op een eerste date
-Wat {playerName} op een sexy wijnproeverij zou doen
+{playerName} stuurt een zoen-emoji naar de baas. Wat nu?
 Iets wat je niet in het fotoalbum van een stel wilt vinden
 De zwoele liefdestaal van {playerName}
 De slechtste naam voor een liefdesnestje
-Wat {playerName} als sexy tovenaar zou doen
+{playerName} gaat zwoel eten in een donker restaurant. Wat gebeurt er onder tafel?
 Een afgekeurde naam voor een liefdeslied
 Het kinkyste lievelingseten van {playerName}
 Hoe die "romantische" kaarsen echt ruiken
-Wat {playerName} in een sexy boomhut zou doen
+{playerName} kust iemand tijdens het oudejaarsaftellen. Wie?
 De slechtste reden om naakt te zijn op een feestje
 De beste move van {playerName} na een eerste date
 Een vreselijk moment voor een erectie
-Wat {playerName} met een sexy matroos zou doen
+{playerName} wordt versierd door een hele knappe dokter. Wat is de diagnose?
 Het kinkyste wat een leraar kan zeggen
 Het wildste slaapkameraccessoire van {playerName}
 Iets wat je niet in een slaaptrein wilt doen
-Wat {playerName} op een sexy skitrip zou doen
+{playerName} ziet de crush in badkleding. Wat roepen ze?
 De slechtste manier om een hete nacht af te sluiten
 De zwoele levenswijsheid van {playerName}
 Een slechte naam voor een stout weekendje
-Wat {playerName} met een sexy bibliothecaris zou doen
+{playerName} gaat samen met de partner op een tandem. Wat gebeurt er?
 Waar de magic wand echt voor is
 De stoutste biecht van {playerName} bij een priester
 Het ergste om op een seksfeest te horen
-Wat {playerName} in een sexy parfumreclame zou doen
+{playerName} doet een aanzoek met een haring. Wat is het antwoord?
 Een vreselijk cadeau voor een minnaar
 Het heetste guilty pleasure van {playerName}
 Het slechtste safeword tijdens een familiediner
-Wat {playerName} als sexy houthakker zou doen
+{playerName} wordt versierd in de trein door een conducteur. Wat is het excuus?
 Een vreselijke naam voor een yogahouding voor stellen
 De kinkyste weekendactiviteit van {playerName}
 Wat de docent seksuele voorlichting in het weekend doet
-Wat {playerName} op een sexy moordmysteriefeest zou doen
+{playerName} ziet de crush op een naaktstrand. Wat zeggen ze?
 De minst sexy manier om een bh los te maken
 De beste pikante gewoonte van {playerName}
 Iets wat je nooit tegen een sexy agent moet zeggen
@@ -747,37 +747,37 @@ Wat {playerName} met een minnaar in een kano zou doen
 Het slechtste om als blinddoek te gebruiken
 De zwoele droombaan van {playerName}
 Een slechte naam voor een romantische geurkaars
-Wat {playerName} op een sexy busreis zou doen
+{playerName} krijgt een zwoele serenade onder het raam. Welk nummer?
 Wat je datingapp over je zou zeggen als die kon praten
 De stoutste verjaardagswens van {playerName}
 De slechtste plek voor een bruine streep
-Wat {playerName} met een sexy tandarts zou doen
+{playerName} zoent iemand in een photobooth. Wat staat er op de foto?
 Een vreselijk idee voor sexy wanddecoratie
 De pikantste eigenschap van {playerName}
 Het kinkyste wat je met een stropdas kunt doen
-Wat {playerName} in een sexy karaokebox zou doen
+{playerName} flirt met een BN'er op een festival. Met wie?
 Iets wat je niet op een sekslijn wilt horen
 Het zwoele excuus van {playerName} om vroeg van het feest te gaan
 De slechtste reden om je in het openbaar uit te kleden
-Wat {playerName} met een sexy barista zou doen
+{playerName} krijgt een sexy briefje van de buurvrouw. Wat staat erop?
 Een afgekeurde naam voor een naturistenresort
 Wat {playerName} zou doen als de crush zich nu uitkleedde
 Wat de slaapkamerkast verbergt
 De stoutste online gebruikersnaam van {playerName}
 Het slechtste sexy wat je met spaghetti kunt doen
-Wat {playerName} op een sexy staycation zou doen
+{playerName} gaat op date met een schaatser. Waar eindigt het?
 Iets vreselijks om op een romantische picknick te doen
 Het kinkyste compliment van {playerName} voor een vreemde
 De minst sexy manier om "Kom eens hier" te zeggen
-Wat {playerName} met een sexy ruimtepak zou doen
+{playerName} heeft een zwoele avond in een grachtenpand. Wat gebeurt er op de trap?
 Iets wat je niet in een sexy cadeaumand wilt vinden
 De wildste slaapkamerregel van {playerName}
 Het ergste om in bed genoemd te worden
-Wat {playerName} in een sexy scheepshut zou doen
+{playerName} droomt van een zwoele nacht in een windmolen. Wat gebeurt er als de wieken draaien?
 Een slechte naam voor een nieuwe hete dansrage
 De afsluiter van de zwoele playlist van {playerName}
 Wat de lippenstiftvlek op de kraag betekent
-Wat {playerName} met een sexy geest uit de fles zou doen
+{playerName} flirt met de dj op een bruiloft. Welk nummer vragen ze aan?
 De slechtste plek voor een kledingstoring
 De heetste gedachte van {playerName} over iemand in deze kamer
 Een vreselijke manier om een sexy jubileum te vieren
@@ -785,15 +785,15 @@ Wat {playerName} met een paal in de woonkamer zou doen
 Het kinkyste in een tuincentrum
 De stoutste dagdroom van {playerName} op het werk
 Iets wat je nooit met honing in bed moet doen
-Wat {playerName} op een sexy tripje naar Parijs zou doen
+{playerName} doet een sexy dans in de Efteling. Bij welke attractie?
 Het slechtste excuus voor beslagen autoruiten
 De pikantste kledingstoring van {playerName}
 Een afgekeurde naam voor een sexy energiedrankje
-Wat {playerName} met een sexy postbode zou doen
+{playerName} probeert te versieren met een kaasplankje. Welke kaas is de verleider?
 Wat er gebeurt op een geheim gemaskerd bal
 De kinkyste vakantieherinnering van {playerName}
 Het ergste om onder een hete douche te horen
-Wat {playerName} in een sexy spookkasteel zou doen
+{playerName} gaat met de date naar een musical. Welk liedje zet de toon?
 Een vreselijke sexy ansichtkaart van vakantie
 De zwoelste wens van {playerName} voor vanavond
 De minst sexy manier om een trio voor te stellen
@@ -801,23 +801,23 @@ Wat {playerName} met een minnaar in een kas zou doen
 Iets wat je niet tijdens een romantische schuifeldans wilt horen
 Het stoutste weekend van {playerName} tot nu toe
 De slechtste naam voor een sexy hete saus
-Wat {playerName} op een sexy dakterrasfeest zou doen
+{playerName} zoent iemand in de regen. Wat zeggen ze daarna?
 Een slechte naam voor een restaurant waar je alleen in lingerie mag komen
 De heetste afsluitzin van {playerName} op een date
 Wat je bedframe heeft overleefd
-Wat {playerName} met een sexy piloot zou doen
+{playerName} heeft een zwoele avond met een pizza en een film. Welke film?
 Het slechtste sexy stellenkostuum
 De kinkyste sokkenkeuze van {playerName}
 Iets vreselijks om tijdens een diner bij kaarslicht te zeggen
-Wat {playerName} in een sexy schuur zou doen
+{playerName} probeert te versieren met de kennis van de Elfstedentocht. Wat vertellen ze?
 Het kinkyste om te doen op een roeiapparaat
 Het pikantste ontbijt op bed van {playerName}
 Iets wat je niet met een seksschommel moet doen
-Wat {playerName} als sexy ridder zou doen
+{playerName} krijgt een zwoele massage van een robot. Wat zegt de robot?
 De slechtste romantische weekendbestemming
 De zwoele late-night snack van {playerName}
 Een afgekeurde naam voor een sexy datingshow
-Wat {playerName} met een sexy zeemeermin zou doen
+{playerName} gaat op date in een caravan. Wat is het probleem?
 Wat die zuigzoen probeert te zeggen
 De stoutste wens van {playerName} voor de volgende verjaardag
 Het ergste om te zeggen tijdens een lapdance
@@ -825,19 +825,19 @@ Wat {playerName} met een minnaar in een sauna zou doen
 Een vreselijk idee voor een sexy videogesprek
 Het gewaagdste berichtje dat {playerName} ooit stuurde
 Het minst sexy product in een seksshop
-Wat {playerName} op een sexy zwembadfeest zou doen
+{playerName} droomt over een zwoele ontmoeting in de Albert Heijn. In welk gangpad?
 Iets wat je niet in je minibar in het hotel wilt vinden
 De heetste date ooit van {playerName}
 De slechtste plek om tantra te proberen
-Wat {playerName} op een sexy jungletrip zou doen
+{playerName} schrijft een erotisch gedicht over drop. De eerste regel?
 Een slechte naam voor een pikante leesclub
 De kinkyste lievelingskleur van {playerName}
 Wat de bubbels in de jacuzzi verbergen
-Wat {playerName} in een sexy dance-off zou doen
+{playerName} krijgt een zwoele serenade van een blaaskapel. Welk nummer?
 De slechtste manier om te zeggen dat je het nog nooit hebt gedaan
 De zwoele geheime aanbidder van {playerName}
 Iets vreselijks om met lippenstift te doen
-Wat {playerName} met een sexy chef-kok zou doen
+{playerName} probeert een romantische kanotocht. Wat valt er in het water?
 Het kinkyste bordspel
 De stoutste vakantiegewoonte van {playerName}
 Iets wat niemand in de sokkenla van de partner wil vinden
@@ -845,15 +845,15 @@ Wat {playerName} zou doen als die met een superheld kon daten
 Het slechtste romantische gedicht
 Het pikantste op het verlanglijstje van {playerName}
 Een afgekeurde naam voor een sexy yogales
-Wat {playerName} in een sexy silent disco zou doen
+{playerName} gaat naar een zwoel feest verkleed als een kaaskop. Wat gebeurt er?
 Waar de "logeerkamer" echt voor is
 De heetste reden van {playerName} om vanavond thuis te blijven
 Het ergste om tijdens een vluggertje te vragen
-Wat {playerName} met een sexy cowboyhoed zou doen
+{playerName} probeert te verleiden met een Hollandse klederdracht. Hoe reageert de date?
 Een vreselijke reden om stripper te worden
 Het kinkyste ochtend-na-appje van {playerName}
 Het minst sexy superheldenkostuum
-Wat {playerName} in een sexy kasteelslaapkamer zou doen
+{playerName} flirt met iemand in de wachtkamer van de tandarts. Wat is de openingszin?
 Iets wat je nooit naakt op een trampoline moet doen
 De zwoelste herinnering van {playerName} met een vreemde
 De slechtste erotische fanfictie
@@ -861,19 +861,19 @@ Wat {playerName} met een minnaar op een onbewoond eiland zou doen
 Een slechte naam voor een slaapkamerplaylist
 De pikantste bekentenis van {playerName} over iemand in deze kamer
 Wat het balkon heeft gezien
-Wat {playerName} met een sexy barman zou doen
+{playerName} gaat viraal omdat die op de Dam iemand zoende. Met wie?
 Het slechtste om te doen op een naaktstrand-volleybalveld
 Het beste slaapkamergeheim van {playerName}
 Iets vreselijks om op een sexy verjaardagstaart te zetten
-Wat {playerName} zou doen bij een sexy briefje in de broekzak
+{playerName} stuurt de crush een zwoele ansichtkaart vanaf Texel. Wat staat erop?
 Het kinkyste in een bouwmarkt
 De stoutste plek van {playerName} voor een zuigzoen
 Iets wat je niet vlak voor een zoen wilt horen
-Wat {playerName} met een sexy yogadocent zou doen
+{playerName} kreeg een zuigzoen op de schaatsbaan. Hoe leggen ze het uit?
 Het slechtste sexy berichtje van je oma
 De kinkyste droompartner van {playerName}
 Een afgekeurde slogan voor een romantisch hotel
-Wat {playerName} op een sexy Valentijnsdag zou doen
+{playerName} flirt met een beveiliger van het Rijksmuseum. Wat stelen ze samen?
 Wat er gebeurt achterin een limousine
 De zwoele zweetactiviteit van {playerName}
 De slechtste plek om je bikinitopje kwijt te raken
@@ -998,3 +998,1003 @@ Het kinkyste wat je met een stroopwafel kunt doen
 De stoute bijnaam die {playerName} de ex gaf
 Een afgekeurde naam voor een sexy carnavalspak
 Wat {playerName} zou doen met een nacht in een love hotel in Amsterdam
+Hernoem een bekende film zodat hij als pornotitel klinkt
+{playerName} schrijft een erotische roman. Wat is de eerste zin?
+Een gelukskoekje dat duidelijk met je flirt
+{playerName} is een condoom. Wat is de slogan?
+Het ergste om uit een IKEA-handleiding voor te lezen tijdens het voorspel
+De onenightstand van {playerName} laat een recensie achter. Wat staat erin?
+Een standje vernoemd naar een Nederlandse stad
+De sekstape van {playerName} is gelekt. Wat is de plotwending?
+Een eerlijke naam voor je liefdesleven op dit moment
+{playerName} opent een stripclub. Wat is de huisregel?
+Een versierzin die alleen werkt op accountants
+Het appje dat {playerName} om twee uur 's nachts na vier cocktails stuurt
+Het meest sexy wat je over een spreadsheet kunt zeggen
+{playerName} is een seksspeeltje. Wat zeggen de batterijen?
+Een romantisch diner dat eindigt in voedselvergiftiging
+{playerName} is op heterdaad betrapt. Waar?
+Het minst sexy om te zeggen als je je sokken uittrekt
+De slaapkamer van {playerName} heeft een geheime knop. Wat doet die?
+Verzin een cocktail voor een eerste date die te goed gaat
+De ex van {playerName} beschrijft hen in bed in drie woorden
+De slechtste naam voor een seksshop in een klein dorp
+{playerName} zit in een zwoel datingprogramma. Wat is de openingszin?
+Een afgekeurde Valentijnskaarttekst
+De sexy kalender van {playerName} heeft maar één maand. Welke en waarom?
+Iets wat in films sexy is maar in het echt vies
+{playerName} liet een tatoeage zetten op een heel intieme plek. Van wat?
+Een nieuw safeword geïnspireerd op Hollands eten
+Het laatste wat {playerName} in het nachtkastje van de partner wil vinden
+Wat de moeder van de stripper denkt dat die voor werk doet
+{playerName} geeft seksuele voorlichting. Wat is de eerste les?
+Een seks-tip van een middeleeuwse ridder
+Het liefdesleven van {playerName} als weerbericht
+De titel van een zwoele roman over belastingadviseurs
+De lingerielijn van {playerName} heeft een slogan. Welke?
+Een liefdesbrief geschreven door een piraat
+{playerName} is pornoregisseur. Wat is de eerste film?
+Wat je bed op social media zou zetten
+{playerName} mag niet meer in een love hotel komen. Waarom?
+Een kinky nieuwe Olympische sport
+De versierzin die {playerName} op de paus zou gebruiken
+Het ergste om op te vangen tijdens een duomassage
+{playerName} is een nieuw standje. Hoe doe je het?
+Een romantisch gebaar waarvoor je gearresteerd wordt
+De zwoele droom van {playerName} van vannacht ging over...
+Het slechtste thema-avondje in een stripclub
+{playerName} schrijft een liefdesbrief aan de crush. Wat staat er in het PS?
+Een uitmaak-appje in de stijl van een weerbericht
+Het bed van {playerName} kan praten. Wat is de grootste klacht?
+De titel van een zwoele roman die zich afspeelt in de Albert Heijn
+Op de profielfoto van {playerName} houden ze een ... vast
+De slechtste pornoparodie op een kinderprogramma
+{playerName} wordt stripper. Wat is het vaste attribuut?
+Een sexy appje van een spook
+De geheime kink van {playerName} heeft te maken met een keukenapparaat. Welk?
+Iets wat alleen sexy is in het donker
+De huwelijksreisbestemming van {playerName} is...
+De minst romantische manier om je maagdelijkheid te verliezen
+Het safeword dat {playerName} elke keer vergeet
+Wat de barman zich van je laatste stapavond herinnert
+{playerName} is een vieze mop. Wat is de clou?
+Een sexy functietitel die saai klinkt
+De favoriete flirttechniek van {playerName} in de supermarkt
+Het gênantste in de uitverkoopbak van een seksshop
+{playerName} zit vast in een seksschommel. Wie moet hen komen redden?
+Het vieste woord in de Nederlandse taal
+Het meest sexy spraakbericht van {playerName} begint met...
+Een eerlijke beschrijving van een vrijgezellenfeest
+Het pseudoniem van {playerName} als schrijver van zwoele romans
+Wat je masseur tegen collega's fluistert
+{playerName} presenteert een sexy kookprogramma. Signatuurgerecht?
+Een datingprogramma voor mensen die alleen met robots daten
+{playerName} probeert tantraseks. Hoe ging het?
+Een liefdeslied geschreven door een broodrooster
+De wildste fantasie van {playerName} speelt zich af in...
+Een afgekeurde yogahouding voor stellen
+{playerName} is net begonnen met OnlyFans. Wat is de niche?
+Het ergste om in de handtas van je date te vinden
+Het bubbelbad van {playerName} heeft een regel. Welke?
+Een sexy bijnaam voor een boer
+De dirty talk van {playerName} gaat vooral over...
+Het kinkyste wat een tandarts kan zeggen
+{playerName} is een liefdesdrankje. Wat zijn de bijwerkingen?
+Een 18+-sprookjestitel
+Het lapdancenummer van {playerName}
+Wat de kat van de buren door het raam heeft gezien
+De partner van {playerName} vond de zoekgeschiedenis. Wat was de ergste zoekopdracht?
+De minst sexy manier om om een massage te vragen
+Het meest sexy lichaamsdeel van {playerName} is verzekerd. Welk?
+Een pittige nieuwe saus vernoemd naar je ex
+{playerName} is een smaak glijmiddel. Hoe smaakt het?
+Iets wat sexy wordt na drie glazen wijn
+De walk of shame van {playerName} kwam op het nieuws. Waarom?
+Een romcom over twee mensen die elkaar in bed haten
+Het meest schandalige bruine streepje van {playerName} komt van...
+De slechtste dirty talk ooit met een Brabants accent
+{playerName} organiseert een speeddate-avond. Wat is de openingsvraag?
+Een versierzin voor op een naaktstrand
+De slaapkamerplaylist van {playerName} heeft één gênant nummer. Welk?
+De naam van een stout kinderboek voor volwassenen
+Het romantische weekend van {playerName} eindigde op de spoedeisende hulp. Waarom?
+Het slechtste thema voor een seksspeeltjesparty
+De ex van {playerName} heeft nog iets van hen. Wat?
+Een eerlijke recensie van een love hotel
+{playerName} is een Kamasutra-standje. Hoe heet het?
+Een afgekeurde naam voor een lingerielijn voor oma's
+{playerName} probeerde rollenspel. Welk personage?
+Iets sexy met een banaan wat niet eten is
+Wat {playerName} stiekem in het oor gefluisterd wil krijgen
+De romantischste plek om een parkeerbon te krijgen
+{playerName} speelt in een zwoele parfumreclame. Wat gebeurt er?
+Een vieze mop die je toch aan tafel kunt vertellen
+{playerName} kocht iets stouts online. Het werd bij de moeder bezorgd. Wat was het?
+Een sexy spraakbericht dat misgaat
+De favoriete plek van {playerName} om gezoend te worden die niemand verwacht
+Het ergste om te zeggen tijdens naaktyoga
+De eerste zoen van {playerName} was een ramp. Wat gebeurde er?
+De minst sexy snack om in bed te eten
+De heetste outfit van {playerName} heeft één raar onderdeel. Welk?
+Iets wat je date nooit in je koelkast mag vinden
+Het ene woord dat {playerName} in de slaap kreunt
+Een romantische Hollandse traditie die nog niet bestaat
+De turn-on van {playerName} die als een grap klinkt
+Een seks-tip van een boer
+{playerName} schrijft een sexy gedicht. Laatste regel?
+Het ergste om van een nudistische buurman te horen
+Het condoom van {playerName} heeft een waarschuwing. Wat staat erop?
+Een sexy superheld met een heel specifieke kracht
+{playerName} is een striptease. Wat is de grote onthulling?
+Wat er op de bovenste verdieping van een love hotel gebeurt
+Het huisdier van {playerName} betrapte hen. Waarop?
+Een versierzin voor een bibliothecaris
+Het scharrelverhaal van {playerName} gaat over een kano. Wat gebeurde er?
+Wat een condoom op zijn datingprofiel zou zetten
+Het stoutste geheim van {playerName} van een schoolreis
+Het ergste om per ongeluk te liken op de Instagram van je crush
+De partner van {playerName} noemt hen "Tijger". Waarom?
+Een afgekeurde slogan voor een datingapp: "Swipe naar rechts voor ___"
+De verleidelijke danspas van {playerName} heet...
+De slechtste naam voor een erotische dans
+Waar {playerName} de gewaagdste outfit ooit droeg
+Het ergste om in de zak van een tweedehands badjas te vinden
+Waar de zwoele vakantieliefde van {playerName} gebeurde
+Iets romantisch om op een beslagen spiegel te schrijven
+{playerName} is de love interest in een romcom. Wat is de twist?
+Een pikant nieuw spel voor een avondje met z'n tweeën
+De huwelijksreis van {playerName} ging mis. Hoe?
+Het minst romantische geluid dat een partner kan maken
+De wildste stapavond van {playerName} eindigde in...
+Een nieuw afrodisiacum van Hollandse kaas
+{playerName} werd betrapt bij het naaktzwemmen. Door wie?
+De meest sexy manier om een stroopwafel te eten
+{playerName} is een sexy superheld. Wat is de supermove?
+Een sexy appje dat door autocorrectie is verpest
+Hoeveel kussens de ideale nacht in bed van {playerName} heeft
+De slechtste plek om betrapt te worden op naaktzwemmen
+Het kinkyste reisverhaal van {playerName} speelt zich af in een...
+De meest romantische manier om te zeggen dat je honger hebt
+De ex van {playerName} stuurt een appje. Wat staat erin?
+Een kinky cadeau voor een partner die alles al heeft
+Het vieze geheim van {playerName} over de sportschool
+Een romantisch gedicht over een aardappel
+{playerName} is een geurkaars voor de slaapkamer. Welke geur?
+De slechtste kleur lingerie
+De perfecte minnaar van {playerName} heeft één rare eigenschap. Welke?
+Iets stouts in een bibliotheek waarvoor je niet geschorst wordt
+{playerName} krijgt een sexy bijnaam op kantoor. Welke?
+Het minst sexy appje om om middernacht te krijgen
+De zuigzoen van {playerName} zit op een rare plek. Waar?
+Het meest sexy wat je in een wasstraat kunt doen
+De favoriete sexy snack van {playerName} in bed
+Een afgekeurd couplet uit een romantische ballad
+{playerName} poseert voor de brandweerkalender. Welke pose?
+Een versierzin met een typisch Nederlands woord
+Het zwoele videogesprek van {playerName} ging mis. Hoe?
+Het ergste om in de tent naast je op een festival te horen
+{playerName} is een datingapp. Wat is de slogan?
+Het meest schandalige wat een non kan fluisteren
+Het meest betreurde sexappje van {playerName}
+Een nieuwe variant op strippoker
+Het openingsnummer van de scharrelplaylist van {playerName}
+Een romantisch gebaar dat het rookalarm laat afgaan
+Wat de spiegel boven het bed van {playerName} het vaakst ziet
+Het slechtste moment voor een sexy appje
+{playerName} is pornoster. Wat is de catchphrase?
+Het ergste om te zeggen nadat je partner voor het eerst "ik hou van je" zegt
+De geheime kinky verzameling van {playerName} ligt in...
+Een romantisch uitje dat eindigt op de spoedeisende hulp
+De zwoelste kampeerherinnering van {playerName}
+Het minst sexy aan een jacuzzi
+De foutste versierzin van {playerName}
+Een nieuwe sexy dans bedacht door pinguïns
+Het meest sexy woord van {playerName} in een andere taal
+Iets stouts om op een bruiloft te doen
+{playerName} is een sexy robot. Wat is de programmeerfout?
+Een pittig compliment voor iemands ellebogen
+De eerste date van {playerName} eindigt met...
+Een romantisch briefje in een fles
+{playerName} opent een love hotel. Wat is het thema?
+Een eerlijke naam voor een "romantisch" kampeertripje
+Het ongemakkelijkste sexy moment van {playerName}
+Het ergste om tijdens een zoen te fluisteren
+De geheime fetisj van {playerName} heeft te maken met welk fruit?
+Een afgekeurd ingrediënt voor een liefdesdrankje
+{playerName} is een dag lingeriemodel. Wat is het product?
+Iets stouts in het vliegtuig waarvoor je niet wordt opgepakt
+De sexy selfie van {playerName} is per ongeluk gestuurd naar...
+Wat je kussen over je liefdesleven weet
+De gekste fantasielocatie van {playerName}
+Een versierzin van een visser
+De heetste look van {playerName} bevat een...
+Het meest sexy aan een tractor
+De raarste plek waar {playerName} ooit een vluggertje had
+Het kinkyste wat je met een kaasschaaf kunt doen
+Het raarste waar {playerName} opgewonden van raakt
+Een sexy appje van je baas dat eigenlijk over werk gaat
+Wat {playerName} onder de matras bewaart
+Het pikantste wat er in een tuincentrum kan gebeuren
+Het laatste wat {playerName} zegt voor een eerste zoen
+Een stout weekendje op het Hollandse platteland
+Het eerste wat {playerName} doet na een zwoele nacht
+De slechtste naam voor een sexy bonbon
+De flirterige emoji die {playerName} te vaak gebruikt
+Een romantisch cadeau dat per ongeluk eng is
+De koosnaam waarmee {playerName} stiekem genoemd wil worden
+De slechtste plek in Nederland voor een eerste zoen
+Het gewaagdste wat {playerName} ooit in een lift deed
+Het slechtste nummer voor een lapdance
+De foutste move die {playerName} gebruikte voor een zoen
+Iets sexy aan een wollen trui
+Het sexy wat {playerName} doet dat niemand verwacht
+Iets stouts om over een fiets te zeggen
+De geur waar {playerName} meteen opgewonden van raakt
+Een afgekeurde titel voor de Kamasutra
+De filmscène die {playerName} in bed wil naspelen
+Een romantisch aanzoek met een haring
+Het zwoelste wat {playerName} ooit in een auto deed
+Het kinkyste wat een bakker kan zeggen
+Het kledingstuk dat {playerName} als eerste uittrekt
+Het meest romantische wat een navigatiesysteem kan zeggen
+Het best bewaarde geheim in de nachtkastla van {playerName}
+Een nieuwe stoute kersttraditie
+Het gênantste wat {playerName} ooit tijdens de seks zei
+Een eerlijke recensie van je laatste zoen
+De leugen die {playerName} vertelde voor een tweede date
+Iets wat alleen sexy is met een Frans accent
+De plek waar {playerName} een date mee naartoe neemt om te scoren
+Een romantisch liedje dat vies klinkt als je erover nadenkt
+Het excuus van {playerName} voor een zuigzoen
+Iets pikants om in een liefdesbrief te zetten
+De fantasie die {playerName} pas op het sterfbed zou opbiechten
+Iets wat je crush nooit op je telefoon mag zien
+Het liedje dat {playerName} draait als het licht uitgaat
+Een versierzin van een astronaut
+Het voorwerp dat {playerName} meeneemt naar een romantische picknick
+Het meest sexy aan een vuurtoren
+De bekende Nederlander met wie {playerName} vreemd zou gaan
+Een kinky nieuw bordspel voor stellen
+Het lichaamsdeel waar {playerName} het meest trots op is
+Het minst romantische geluid dat een bed kan maken
+De reden dat de buren van {playerName} oordopjes hebben gekocht
+Iets stouts om in een lift te doen
+De eerste zin van het datingprofiel van {playerName}
+Een liefdesbrief van een vampier
+Het heetste wat {playerName} ooit in de sportschool zag
+Iets sexy wat je met een tuinslang kunt doen
+Hoe {playerName} een aanzoek zou doen in een seksshop
+Het ergste om vanuit de kledingkast in de slaapkamer te horen
+De raarste plek waar {playerName} ooit ondergoed is kwijtgeraakt
+Een romantisch diner dat eindigt in een voedselgevecht
+Het schunnigste woord dat {playerName} in een andere taal kent
+Het pikantste aan een klomp
+Hoe {playerName} zegt "zullen we naar bed gaan?"
+Een nieuw afrodisiacum van iets uit je koelkast
+Het flirterige wat {playerName} tegen obers zegt
+De slechtste koosnaam voor de edele delen van je geliefde
+De vieste mop die {playerName} kent
+Iets stouts om op een Hollandse verjaardag te doen
+De outfit die {playerName} draagt om iemand te verleiden
+Het kinkyste wat je met een badeendje kunt doen
+Het raarste wat {playerName} ooit deed om een crush te imponeren
+Het meest sexy aan een molen
+Het meest romantische bericht dat {playerName} ooit stuurde
+Het minst sexy parfumingrediënt
+Het zwoele gerucht over {playerName} op het werk
+Een versierzin voor een tandarts
+Het zwoelste moment uit de vorige relatie van {playerName}
+Het ergste om te zeggen tijdens een romantische vuurwerkshow
+De flirterige vraag die {playerName} aan vreemden in de kroeg stelt
+Het kinkyste in het vriesvak van de supermarkt
+De laatste persoon aan wie {playerName} "ik mis je" appte
+Een sexy appje van je toekomstige zelf
+Het stoutste wat {playerName} ooit op een festival deed
+Het ergste om te zeggen in een bad bij kaarslicht
+Het pikantste wat {playerName} ooit op een bruiloft deed
+Het minst romantische om te zeggen op huwelijksreis
+Het meest sexy compliment dat {playerName} ooit kreeg
+Het pikantste in de HEMA
+Het kinky speeltje dat {playerName} naar een onbewoond eiland meeneemt
+Een sexy tekst om te zeggen bij een wijnproeverij
+De massageolie die {playerName} gebruikt
+Iets wat alleen sexy is in slow motion
+De slechtste date van {playerName} ooit
+Een romantisch diner in een snackbar
+Hoe {playerName} de ideale minnaar aan een politietekenaar zou beschrijven
+Het kinkyste wat je met een eierwekker kunt doen
+Wat {playerName} zegt na een geweldige zoen
+De minst romantische plek om "ik hou van je" te zeggen
+De sexy gewoonte van {playerName} onder de douche
+Een versierzin van een buschauffeur
+De kinkyste plek waar {playerName} heen wil
+Het meest sexy aan een file
+Het heetste aan {playerName}, volgens de ex
+Een pikante nieuwe app voor stellen
+Het wildste wat {playerName} voor de liefde zou doen
+Het slechtste sexy kostuum voor Koningsdag
+De koosnaam die {playerName} het bed geeft
+Iets romantisch met een fietsbel
+Het speeltje dat {playerName} stiekem voor de verjaardag wil
+Het ergste om te horen vlak voor het licht uitgaat
+De pikantste foto op de telefoon van {playerName}
+Iets kinky op een kerstmarkt
+De flirterige zin die {playerName} op bruiloften gebruikt
+De minst romantische snack om te delen
+Het zwoele verhaal dat {playerName} na drie drankjes vertelt
+Iets stouts in een museum
+De beste verleidingstruc van {playerName}
+Een romantisch lied van een schaap
+Het raarste verzoek dat {playerName} ooit in bed kreeg
+Het meest sexy wat je op een tandem kunt doen
+Het excuus van {playerName} om te laat te komen na een scharrel
+Het kinkyste wat je met een deegroller kunt doen
+Het kledingstuk dat {playerName} van minnaars steelt
+De slechtste plek om een zuigzoen achter te laten
+Het sexy nummer op de playlist waar {playerName} zich voor schaamt
+Het minst sexy in een huwelijksreiskoffer
+Het meest schandalige wat {playerName} in een hotel deed
+Een romantisch cadeau voor iemand die van kaas houdt
+Het pikantste appje dat {playerName} ooit ontving
+Een versierzin van een loodgieter
+Het kinkyste wat {playerName} ooit op een feestje zag
+Het meest sexy aan een belastingaangifte
+Het meest romantische cadeau dat {playerName} ooit kreeg
+Iets stouts om in een gastenboek te schrijven
+Het geheime signaal van {playerName} voor "we gaan naar huis"
+Een romantische avond die eindigt met een potje Monopoly
+Het parfum dat {playerName} draagt om te scoren
+Een sexy dans die op schoonmaken lijkt
+Het stoutste wat {playerName} ooit in het openbaar tegen een partner zei
+Het ergste om uit de telefoon van je date te horen in een restaurant
+Het moment waarop {playerName} doorhad dat ze verliefd waren
+De minst romantische plek voor een eerste date in jouw woonplaats
+Het wildste wat {playerName} ooit voor een uitdaging deed
+Een romantisch diner gekookt door een puber
+Het ergste wat {playerName} deed om indruk te maken in bed
+Het ergste om per ongeluk bij de kassa van een seksshop te zeggen
+Wat {playerName} als blinddoek gebruikt
+Iets pikants om over een worst te zeggen
+Het kinkyste in de keuken van {playerName}
+Het meest sexy aan een bril
+De romantische stad die {playerName} kiest voor een stout weekend
+Een romantisch cadeau voor iemand die romantiek haat
+Het raarste wat {playerName} op vakantie sexy vond
+Het minst sexy om in de schoenen van je date te vinden
+Het zwoelste wat {playerName} ooit in de regen deed
+Een romantische avond die een horrorfilm wordt
+Het slechtst getimede sexappje dat {playerName} ooit stuurde
+Het ergste om te horen tijdens een romantische voetmassage
+Het lichaamsdeel dat {playerName} als eerste opvalt
+Het meest sexy aan een klamboe
+De plek in huis waar {playerName} nooit seks zou hebben
+Een romantisch gebaar bij een tankstation
+De bekende Nederlander over wie {playerName} fantaseert tijdens de afwas
+Het ergste om tijdens een striptease te zeggen
+De romantische fantasie van {playerName} over een vreemde in de trein
+Het minst romantische toetje
+Het stoutste wat {playerName} zou doen als niemand het ooit zou weten
+Een versierzin van een hovenier
+Het geheime wat {playerName} voor een date doet
+Het meest sexy aan een paar pantoffels
+De raarste droom van {playerName} over iemand in deze kamer
+Een romantisch uitje naar de IKEA
+De meest onvergetelijke zoen van {playerName}
+Het ergste om te horen in een erotische kunstgalerie
+De foutste lingerie die {playerName} ooit bezat
+Een romantisch diner dat eindigt in een kroeggevecht
+Het meest onverwachte wat {playerName} ooit voor een zoen deed
+Een romantisch gebaar van een egel
+De sexy superkracht die {playerName} graag zou hebben
+De slechtste manier om te zeggen "Zullen we naar bed gaan?"
+De heetste persoon met wie {playerName} ooit uitging
+Het kinkyste wat je met een ananas kunt doen
+Het flirterigste wat {playerName} ooit in het ov deed
+Een romantisch diner voor iemand op dieet
+De meest romantische plek waar {playerName} ooit zoende
+Een versierzin van een barista
+De pikante koosnaam van {playerName} voor de partner
+Het ergste om vlak na een eerste zoen te horen
+Het stoutste wat {playerName} ooit heeft opgezocht
+Iets pikants met chocopasta
+Het ene wat {playerName} nooit in bed zou doen, zelfs niet voor geld
+Het minst romantische aan een waterbed
+Het meest romantische wat {playerName} dronken heeft gezegd
+Een romantisch uitje dat eindigt in een scheiding
+De bekende Nederlander op wie {playerName} stiekem valt
+Iets pikants met een kruik
+Het slechtste standje dat {playerName} ooit probeerde
+Iets romantisch om in het Nederlands te zeggen
+Het heetste date-idee van {playerName} onder de tien euro
+De minst sexy manier om je partner wakker te maken
+De fantasie van {playerName} over de tandarts
+Een versierzin van een kok
+Het zwoelste verblijf van {playerName} ooit
+Een romantische avond die eindigt met karaoke
+Het meest sexy wat {playerName} ooit in bed droeg
+Het ergste om te horen tijdens een sexy fotoshoot
+Het stoutste briefje dat {playerName} ooit voor een partner achterliet
+Het minst romantische aan een hotelkamer
+Het beste excuus van {playerName} voor een rommelige slaapkamer
+Een romantisch diner dat eindigt met de brandweer
+Het meest romantische liedje dat {playerName} uit het hoofd kent
+De slechtste achtergrond voor een sexy videogesprek
+Het wildste wat {playerName} ooit in de trein deed
+Het minst romantische cadeau voor een eerste jubileum
+De grappigste manier waarop {playerName} ooit iemand probeerde te verleiden
+Een versierzin van een elektricien
+Het ene wat {playerName} aan het eigen liefdesleven zou veranderen
+Iets romantisch om te fluisteren tijdens onweer
+Het gewaagdste plekje waar {playerName} een selfie maakte
+Het ergste om te horen tijdens een zwoele zoen
+Het excuus van {playerName} voor een piepend bed
+Het minst sexy aan een bubbelbad
+De meest sexy groente volgens {playerName}
+Een romantisch gebaar met een fietsmand
+Hoe {playerName} de laatste zoen aan een peuter zou uitleggen
+Het ergste om te zeggen terwijl je naar bed wordt gedragen
+Het kinkyste wat {playerName} in een hotelkamer vond
+Een romantisch uitje dat eindigt in ruzie over de route
+Het flirterigste wat {playerName} ooit op het werk zei
+Het minst sexy lingerie-accessoire
+Het zwoele geheim van {playerName} over de vakantie in Spanje
+Het ergste om over je ex te zeggen in een sexy moment
+Het stoutste wat {playerName} ooit op het strand deed
+Het minst romantische om te eten op een date
+{playerName} wordt wakker in een vreemd bed. Wat zeggen ze als eerste?
+Een romantisch diner dat eindigt met een dansbattle
+{playerName} krijgt een liefdesbrief van een geheime aanbidder. Wie tekende?
+Het ergste om te horen tijdens een romantische paardrijtocht
+De oma van {playerName} vond het seksspeeltje. Wat dacht zij dat het was?
+Een romantisch gebaar met een vuurtoren
+De scharrel van {playerName} liet iets achter. Wat?
+Het ergste om van je date te horen bij een buffet
+{playerName} speelt in een zwoele Netflixserie. De titel?
+Het ergste om te horen tijdens een romantische cruise
+{playerName} begint een sexy podcast. Aflevering één?
+De minst romantische manier om een bed te delen
+{playerName} flirt met een agent om een boete te ontlopen. De zin?
+Een romantisch diner in een boomhut
+{playerName} gaat op een blind date met de ex. Eerste woorden?
+Het ergste om te horen als je zin hebt
+{playerName} staat naakt buitengesloten. Wat is het plan?
+Een romantisch tripje naar Parijs dat misgaat
+{playerName} wordt betrapt met lippenstift op de kraag. Het excuus?
+Het ergste om te horen tijdens een romantisch weekendje weg
+{playerName} is receptionist in een love hotel. Raarste verzoek?
+De minst romantische zin om in bed te zeggen
+{playerName} krijgt een heel sexy appje van een verkeerd nummer. De reactie?
+Het ergste om vlak voor de seks te horen
+{playerName} is verkoper in een lingeriewinkel. Het verkooppraatje?
+Een romantisch diner op een dakterras
+{playerName} wordt naaktmodel bij een tekenles. In welke pose?
+Het ergste om te horen tijdens een romantisch diner thuis
+{playerName} bestelde online een sexy kostuum. Wat werd er bezorgd?
+De titel van de zwoele roman die je oma stiekem schreef
+{playerName} doet een striptease voor de partner. Wat ging er mis?
+Een slogan voor een condoommerk, geschreven door een heel eerlijke verkoper
+{playerName} schrijft een schunnig limerick. De eerste regel?
+Hoe het 65e standje uit de Kamasutra heet
+{playerName} belandt per ongeluk op een parenfeest. De reactie?
+Het ene wat je nooit moet zeggen terwijl je billenkoek krijgt
+{playerName} is relatiecoach. Het slechtste advies?
+De meest sexy functietitel op een visitekaartje
+{playerName} is seksuoloog. Wat horen ze het vaakst?
+Een datingapp voor vampiers: wat is hun bio?
+De partner van {playerName} kocht een seksschommel. Waar hangt die?
+De echte reden dat het hotel extra rekent voor de bruidssuite
+{playerName} vindt een nieuw afrodisiacum uit. Wat zit erin?
+Iets romantisch om in een boom te kerven dat eigenlijk doodeng is
+{playerName} is waarzegger in de liefde. Wat voorspellen ze voor jou?
+Een appje dat je nooit moet sturen na "wakker?"
+De telefoon van {playerName} autocorrigeerde een sexy appje. Tot wat?
+Het ergste om halverwege een lapdance te ontdekken
+{playerName} maakt een sexy filmpje. De buren keken mee. Hoe?
+Een sexy kalenderthema waar niemand om vroeg
+{playerName} heeft een zuigzoen van een stofzuiger. De uitleg?
+Een liefdestaal die nog niet bestaat
+{playerName} geeft een lingerieparty voor vriendinnen of vrienden. Het hoogtepunt?
+De naam van het vervolg op je toekomstige sekstape
+{playerName} probeert iemand te versieren op een begrafenis. Hoe ging het?
+Wat de spiegel op je kledingkast zou verraden
+{playerName} belandt in de verkeerde hotelkamer. Wat vinden ze daar?
+Het slechtste product om met een sexy reclame te verkopen
+{playerName} opent een seksshop. Wat staat er in de etalage?
+Een stripclub voor gepensioneerden: wat is het vaste nummer?
+De partner van {playerName} vond een briefje in de broekzak. Er stond...
+Een sensuele haiku over een saucijzenbroodje
+Het datingprofiel van {playerName} kreeg duizend matches. Waarom?
+Wat de pizzabezorger hoopt dat er één keer echt gebeurt
+Het datingprofiel van {playerName} kreeg nul matches. Waarom?
+De slechtste stem voor een erotisch luisterboek
+De moeder van {playerName} liep binnen. Wat deed {playerName}?
+Het kinkyste wat een navigatiesysteem kan zeggen
+Het eerste sexy appje ooit van {playerName} luidde...
+Het meest romantische wat een dronken persoon ooit tegen een taxichauffeur zei
+{playerName} is een pornoparodie op een Nederlands tv-programma. De titel?
+Iets wat alleen een Schorpioen in bed zou doen
+{playerName} probeert te flirten in het Frans. Wat zeiden ze eigenlijk?
+Hernoem een kerstlied zodat het vies wordt
+{playerName} gaat naar een naakt-spa. Wat bedekken ze als eerste?
+Een sexy superkracht die in een crisis nutteloos is
+{playerName} liet zich helemaal harsen. De recensie?
+Het flirterigste wat je tante ooit op een bruiloft zei
+Het zwoele weekend van {playerName} werd onderbroken door...
+Een titel voor een liefdesroman in een tankstation
+{playerName} deed een aanzoek tijdens de seks. Wat was het antwoord?
+Het slechtste pornoplot ooit
+De onenightstand van {playerName} werd een huwelijk van tien jaar. Hoe?
+Wat je ex over je bij de therapeut fluistert
+{playerName} ging met een bekende Nederlander naar bed. Wie, en wat was het souvenir?
+Een nieuwe kinky yogahouding genaamd "De ___"
+{playerName} vond het seksspeeltje van de ouders. Wat deden ze ermee?
+Een seksspeeltje uitgevonden door een hele verveelde ingenieur
+De partner van {playerName} heeft een raar verzoek. Welk?
+Het vieste wat een weerman live op tv kan zeggen
+{playerName} wordt betrapt bij het naaktzwemmen in een gracht. Het excuus?
+Een romantische verrassing waarmee je gedumpt wordt
+{playerName} is stripper op een vrijgezellenfeest. De artiestennaam?
+Het ergste om op de verlanglijst van je partner te vinden
+Het kinky rollenspel van {playerName} ging mis. Welk personage?
+De naam van een stripclub voor robots
+{playerName} probeert te sexten in emoji's. Wat sturen ze?
+Een afgekeurde slogan voor een erotische cruise: "Allemaal aan boord van de ___"
+{playerName} krijgt een Valentijnskaart van iemand in deze kamer. Van wie?
+Het zwoelste wat ooit op een familiereünie is gebeurd
+{playerName} schrijft een sexy gedicht voor de partner. Wat rijmt er op "borsten"?
+De pikantste vrucht, en waarom
+{playerName} ging op seksvakantie. Waarheen?
+Een afgekeurde Tinder-functie
+{playerName} had een scharrel op een bruiloft. Waar precies?
+Het meest verdachte op je hotelrekening
+De partner van {playerName} ontdekte de fetisj. Welke?
+Het meest sexy wat je kunt zeggen tijdens je belastingaangifte
+De zwoele roman van {playerName} werd verboden. Welk hoofdstuk deed het?
+Een romcom in een soa-poli
+De bruidssuite van {playerName} had een verrassing. Wat?
+De huwelijksreisbestemming voor mensen die elkaar niet kunnen uitstaan
+De minnaar van {playerName} liet een briefje op het kussen. Wat stond er?
+Een kinky geheim van het Monopoly-mannetje
+{playerName} probeert sexy te zijn in de sportschool. Wat gebeurt er?
+Een romantisch gedicht op een wc-muur
+{playerName} flirt met een etalagepop. Waarom?
+Een versierzin die als een dreigement klinkt
+{playerName} kreeg een zuigzoen van de tandarts. Hoe?
+Een sexy ringtone die op het slechtste moment afgaat
+{playerName} krijgt een eigen sexy geurtje. De reclameslogan?
+De ongemakkelijkste vraag van een gepensioneerde bij seksuele voorlichting
+{playerName} vindt een liefdesbriefje in een bibliotheekboek. Wat staat erin?
+De slechtste tatoeage voor op je onderrug
+De ex van {playerName} schreef een liedje over hen. Hoe heet het?
+Iets wat je hoort op een bingoavond voor naturisten
+De crush van {playerName} gaf hen een bijnaam. Welke?
+Een titel voor een erotische thriller in een bakkerij
+{playerName} crasht een naturistenbruiloft. Wat dragen ze?
+Het meest sexy geluid dat een auto kan maken
+{playerName} gaat op date met een vampier. Hoe eindigt het?
+De dresscode voor het wildste feest waar je ooit was
+{playerName} had een scharrel in een slaaptrein. Wat ging er mis?
+De ene vraag die je nooit moet stellen op een eerste date in de dierentuin
+De bh of boxer van {playerName} werd op een rare plek gevonden. Waar?
+Wat Cupido doet op zijn vrije dag
+{playerName} maakt een seksplaylist. Noem het eerste nummer
+De naam van een sexy geurtje voor vaders
+{playerName} is liefdesdokter. Wat schrijven ze voor?
+Een pittige waarheid-of-durf-vraag voor je grootouders
+Het zwoele appje van {playerName} aan de ex ging per ongeluk naar...
+Een geheime handdruk voor swingers
+{playerName} koopt een waterbed. Wat gebeurt er de eerste nacht?
+Wat de bruiloft-dj draait als het bruidspaar vertrekt
+{playerName} datete een kok. Wat was het meest sexy gerecht?
+Het meest sexy woord in het Duits
+{playerName} werd betrapt door een drone. Waar?
+Wat je smartwatch vannacht heeft geregistreerd
+De minnaar van {playerName} is een spook. Hoe flirten ze?
+Een liefdesverhaal tussen een sok en een schoen, in één zin
+{playerName} krijgt een sexy massage. Wat zei de masseur?
+De slechtste hand ooit bij strippoker
+{playerName} moet een vreemde zoenen voor een uitdaging. Wie kiezen ze?
+Het beste excuus om met verwarde haren op je werk te komen
+{playerName} begint een datingbureau. Wat is het motto?
+Een kinky fantasie met een stofzuiger
+{playerName} kreeg een tien voor de prestaties in bed. Van wie?
+Een romantische plek om een aanzoek te doen die vreselijk stinkt
+{playerName} slaapt een nacht in een love motel. De themakamer was...
+Wat er op de Tinder-bio van een zeemeermin staat
+{playerName} wordt lid van een naturistenclub. Welke regel breken ze als eerste?
+De ergste bekentenis in de huwelijksnacht
+{playerName} probeert verleidelijk te zijn op een barbecue. Wat doen ze met de worst?
+Een titel voor het vervolg op Vijftig tinten
+{playerName} geeft de partner een sexy cadeau. Wat pakken ze uit?
+Het stoutste om in een armband te laten graveren
+{playerName} wordt verliefd op een robotstofzuiger. Waarom?
+Het meest pikante wat ooit in een kerk is gevonden
+Het kinky geheim van {playerName} kwam uit tijdens het kerstdiner. Wat was het?
+Iets zwoels wat in een Finse sauna kan gebeuren
+De minnaar van {playerName} snurkt. Wat is de wraak?
+Een sexy liedje voor een heel onsexy gelegenheid
+De partner van {playerName} rangschikte de zoenen. Wat staat op één?
+Het ergste om de ochtend erna van een hotelreceptionist te horen
+{playerName} werd gezien bij het verlaten van een seksshop. Met wat?
+Een nieuwe smaak eetbaar ondergoed
+{playerName} krijgt een liefdesbrief van een duif. Wat staat erin?
+Wat de Paashaas uitspookt als het donker is
+{playerName} had als eerste mens seks op de maan. Wat zeiden ze?
+Een romantisch aanzoek verstopt in een kaas
+{playerName} flirt met een standbeeld. Wat fluisteren ze?
+Een versierzin voor een kernfysicus
+{playerName} flirt met een uitsmijter. Werkte het?
+Het meest schandalige in het tuinhuisje van de dominee
+De partner van {playerName} is jaloers op het kussen. Waarom?
+Een sensuele manier om spaghetti te eten die misgaat
+De slaapkamer van {playerName} kreeg een één-ster-recensie. Waarom?
+Het kinkyste op een kofferbakmarkt
+De slaapkamer van {playerName} kreeg vijf sterren. Waarom?
+Een geheim codewoord voor "Laten we het feest verlaten"
+{playerName} werd gedumpt omdat ze te kinky waren. Wat stelden ze voor?
+Een nummer op de romantische playlist dat de stemming direct verpest
+De crush van {playerName} blijkt een neef of nicht. De eerste woorden?
+Het zwoelste wat er in een telefooncel kan gebeuren
+{playerName} probeert een romantisch bad. Wat ging er mis?
+De meest schunnige naam voor een renpaard
+{playerName} wordt betrapt op flirten met de broer of zus van de partner. Het excuus?
+Het slechtste cadeau van een geheime aanbidder op het werk
+De onenightstand van {playerName} schreef een gedicht. Wat is de titel?
+Het meest pikante wat ooit in een kookprogramma is gezegd
+{playerName} is verkozen tot meest sexy collega. Waarom?
+Een ondeugend appje voor je partner tijdens een werkoverleg
+De partner van {playerName} vond een geheime datingapp. Hoe heet die?
+Het gewaagdste in een glazen lift
+{playerName} schrijft erotische fanfictie. Over welk tekenfilmfiguur?
+Een erotische roman over tuinkabouters: de titel
+Het zwoelste moment van {playerName} gebeurde in welke Nederlandse stad?
+Wat er op de achterkant van het "niet storen"-bordje in een love hotel staat
+{playerName} krijgt een lapdance van een bekende. Van wie?
+De meest sexy vrucht om te pellen
+{playerName} is een liefdeslied. Wat is het refrein?
+Een flirterig compliment voor iemands knieën
+{playerName} is een flesje massageolie. Welke geur?
+De slechtste sexy bijnaam voor een snor
+{playerName} vindt een seksspeeltje uit. Hoe heet het?
+Iets romantisch wat klinkt als een losgeldeis
+{playerName} heeft een bed gebroken. Hoe?
+De beste manier om uit een sauna gezet te worden
+{playerName} heeft een bubbelbad gebroken. Hoe?
+De foutste tekst in een Valentijnskaart voor je kat
+{playerName} gaat speeddaten. Wat zeggen ze tegen iedereen?
+Een zuigzoen op een rare plek, en het excuus
+{playerName} is betrapt op Google Street View. Waar?
+De stoutste ijssmaak
+{playerName} werd lid van de Mile High Club. Bij welke maatschappij?
+De meest sexy dans voor een bruiloft waar je grootouders bij zijn
+De date van {playerName} kwam in kostuum. Welk kostuum?
+Een romcom in een seksshop
+{playerName} moest zonder ondergoed naar de kerk. Wat gebeurde er?
+De meest schunnige naam voor een chocoladereep
+{playerName} geeft een naakt-etentje. Wat staat er op het menu?
+Wat er echt in de "sporttas" van je date zit
+{playerName} ontmoette de liefde van het leven in de supermarkt. In welk gangpad?
+Een versierzin die alleen een vampier gebruikt
+{playerName} datete een clown. Wat is het ergste?
+Een flirterige manier om iemand te vragen de afwas te doen
+{playerName} datete een goochelaar. Wat verdween er?
+Het meest sexy in een gereedschapskist
+{playerName} datete een boer. Wat was de eerste date?
+Een ondeugende regel voor een stout bordspel
+Het kinky alter ego van {playerName} heeft een naam. Welke?
+Het ergste om halverwege een zwoele douche te beseffen
+{playerName} geeft een TED-talk over seks. De titel?
+Een verleidelijke manier om te zeggen "Zullen we de rekening delen?"
+{playerName} begint een pikante leesclub. Het eerste boek?
+Een romantisch lied om samen de was te doen
+{playerName} bestelt roomservice in een love hotel. Wat kregen ze?
+De slechtste manier om over een trio te beginnen
+{playerName} schrijft een sexy recensie over een kaas. De beste zin?
+Het zwoelste wat ooit in een tuinschuur is gebeurd
+{playerName} maakt een sexy sneeuwpop. Wat is er bijzonder aan?
+Het beste excuus voor beslagen ramen in een geparkeerde auto
+{playerName} probeert paaldansen. Wat gebeurde er met de paal?
+Een vies klinkend Nederlands woord dat eigenlijk onschuldig is
+Het zwoele Tindergesprek van {playerName} werd voorgelezen op een bruiloft. Beste zin?
+Het kinkyste wat een bibliothecaris in een boek kan stempelen
+{playerName} liet de partner in het openbaar blozen. Hoe?
+Wat de sterren deze week over je seksleven zeggen
+{playerName} liet een ober blozen. Wat bestelden ze?
+Een geheim in het gastenboek van de bruidssuite
+{playerName} flirt met de navigatie. Wat zegt die terug?
+De beste manier om een romantisch schuimbad te verpesten
+{playerName} probeert iemand te versieren met een goocheltruc. Welke?
+De ergste sexy typefout ooit
+Het seksleven van {playerName} is een bordspel. Hoe heet het?
+Een liefdesverhaal tussen twee mensen die elkaar in een lift ontmoetten
+Het seksleven van {playerName} is een filmgenre. Welk?
+Het ondeugendste wat een papegaai in een slaapkamer kan leren
+Het liefdesleven van {playerName} is een tv-programma. Op welke zender?
+Het ergste om bij het ontbijt van de huisgenoot van je date te horen
+Het liefdesleven van {playerName} is een gerecht. Wat ligt er op het bord?
+Een flirterige vraag voor op een condoleance
+Het liefdesleven van {playerName} is een auto. Welke?
+De meest sexy omroep in de supermarkt
+Het liefdesleven van {playerName} is een vakantiebestemming. Waar?
+Het slechtste seks-advies uit een gelukskoekje
+Het liefdesleven van {playerName} is een kerstcadeau. Wat zit er in de doos?
+De beste manier om je partner op de verjaardag wakker te maken
+Het liefdesleven van {playerName} is een liedje. Wie zingt het?
+Een ondeugende reden om een familiediner vroeg te verlaten
+Het liefdesleven van {playerName} is een pizza. Welke topping?
+Een romantisch menu voor vampiers
+Het liefdesleven van {playerName} is een dierentuindier. Welk?
+Het meest schandalige in de gevonden voorwerpen van een hotel
+De eerste zoen van {playerName} is een film. Wat is de titel?
+Een flirterig appje dat per ongeluk naar de moeder van je partner gaat
+De laatste date van {playerName} is een krantenkop. Wat staat er?
+Het slechtste standje voor iemand die kietelig is
+De slaapkamer van {playerName} is een pretpark. Wat is de hoofdattractie?
+De meest sexy baan in het circus
+De perfecte partner van {playerName} is een cocktail. Wat zit erin?
+De meest onschuldige zin die toch vies klinkt
+De flirtstijl van {playerName} is een sport. Welke?
+Een romantische verrassing verstopt in een pizza
+De zoen van {playerName} is een ijssmaak. Welke?
+Wat er gebeurt op een naaktcruise als het regent
+De sexappeal van {playerName} is een weerbericht. Wat is de voorspelling?
+Het leukste aan met een kok naar bed gaan
+Het bed van {playerName} is een land. Wat is het volkslied?
+Het minst leuke aan met een tandarts naar bed gaan
+De ondergoedla van {playerName} is een museum. Wat is het topstuk?
+Een romantisch excuus om te laat op je werk te komen
+De crush van {playerName} is een snack. Welke?
+Een flirterig compliment over de kookkunst van je partner
+De verleidingstechniek van {playerName} is een recept. Stap één?
+De slechtste plek voor een massage
+De ideale date van {playerName} is een videogame. Wie is de eindbaas?
+Een ondeugende uitdaging voor een bruiloftsfeest
+De slaapkamerplaylist van {playerName} is een radiozender. Hoe heet die?
+Het meest onverwachte waar mensen opgewonden van raken
+De huwelijksreis van {playerName} is een rampenfilm. Wat gebeurt er?
+Een zwoele scène in een film over accountants
+De dirty talk van {playerName} is een tv-reclame. Voor welk product?
+Het kinkyste om in een vintage kledingkast te vinden
+Op de slaapkamerdeur van {playerName} hangt een bordje. Wat staat erop?
+Het meest romantische wat een bouwvakker kan zeggen
+De hartstochtelijke nacht van {playerName} is een nieuwsbericht. De kop?
+Het beste excuus voor slagroom in de slaapkamer
+Het kinkyste geheim van {playerName} is een kinderboek. De titel?
+Een flirterige manier om een zakelijke mail af te sluiten
+{playerName} wordt bij zonsopgang betrapt bij het wegsluipen. Wat dragen ze?
+De slechtste plek om je ondergoed op een feestje achter te laten
+{playerName} krijgt een sexy gelukskoekje. Wat staat erin?
+Een pikant compliment over iemands accent
+{playerName} valt voor een reisleider. Waar eindigde de rondleiding?
+Een sexy titel voor een kookprogramma
+{playerName} gebruikt een versierzin op een non. Welke?
+Het ergste om op te vangen bij het passen van lingerie
+De partner van {playerName} heeft hen hernoemd in de telefoon. Tot wat?
+Een romantische scène in een zombiefilm
+{playerName} krijgt een mysterieus pakketje met een briefje: "Voor vanavond". Wat zit erin?
+De beste manier om iemand te versieren in een tuincentrum
+{playerName} verstopt zich tijdens een date in een kast. Waarom?
+Het meest sexy om te zeggen "Ik heb de afwas gedaan"
+{playerName} probeert sexy soep te eten. Wat gebeurt er?
+Het ergste wat een stripper uit een zak kan halen
+{playerName} gaat viraal door een zoen. Waar gebeurde het?
+Een sexy traditie voor vrijdagavond
+De crush van {playerName} appt eindelijk terug. Wat staat erin?
+De pikantste reden voor een geluidsklacht
+De ex van {playerName} belt tijdens de seks. Wat is de ringtone?
+Het zwoelste na een lange wandeling
+{playerName} is op een eerste date op de kaasmarkt in Alkmaar. De gladste zin?
+Iets flirterigs om tegen een barista te zeggen
+{playerName} probeert de partner te verleiden met een vrije dans. Hoe heet die?
+Een verleidelijke manier om iemand een handdoek te geven
+{playerName} wordt wakker naast iemand uit deze kamer. Wie, en wat zeggen ze?
+Het ergste om te zeggen tijdens voetjevrijen
+{playerName} wordt betrapt op zoenen in een pashokje. Wat zeggen ze tegen de verkoper?
+Een romantisch menu voor piraten
+{playerName} gaat op een zwoele vakantie met oma. Hoe leggen ze de jacuzzi uit?
+De beste manier om te flirten met een strandwacht
+{playerName} mag niet meer op het naaktstrand komen. Waarvoor?
+Het ergste om door een dunne hotelmuur te horen op je verjaardag
+{playerName} probeert te flirten met alleen liedjestitels. Met welke beginnen ze?
+Een ondeugende manier om welterusten te zeggen
+{playerName} is stripper met een kinderliedje als muziek. Welk?
+Het zwoelste wat in een slaaptrein kan gebeuren
+{playerName} viel in slaap tijdens de seks. Waar waren ze?
+De stoutste wens bij een vallende ster
+De date van {playerName} blijkt de oude leraar te zijn. Eerste woorden?
+De beste manier om in een bibliotheek te zeggen dat je iemand leuk vindt
+{playerName} liet het datingprofiel openstaan op de werkcomputer. Wat las de baas?
+Het meest sexy wat bij een bushalte kan gebeuren
+{playerName} krijgt een liefdesbrief geschreven in kaas. Wat staat er?
+Het beste excuus voor een zuigzoen bij een sollicitatie
+{playerName} opent een escaperoom voor stellen. Hoe kom je eruit?
+Het slechtste moment voor een appje van je ex
+Het sexy filmpje van {playerName} kreeg twee views. Wie keken er?
+Het meest pikante wat een gids ooit heeft gezegd
+{playerName} bedenkt een feestdag voor geliefden. Hoe wordt die gevierd?
+Een ondeugende move om een zoen te stelen
+{playerName} probeert sexy te zijn bij de tandarts. Wat zeggen ze met die spullen in de mond?
+Iets flirterigs om in de sportschool te zeggen
+{playerName} ontdekt het geheime sexy alter ego van de partner. Hoe heet het?
+Een pikante waarheid voor stellen die al dertig jaar samen zijn
+De scharrel van {playerName} klom het raam uit. Waarom?
+De meest schunnige kaasnaam
+{playerName} krijgt een appje bedoeld voor iemand anders: "Gisteravond was ___"
+Een romantisch aanzoek dat om de verkeerde reden viraal gaat
+{playerName} nam de date per ongeluk mee naar een begrafenis. Hoe ging het?
+Het meest sexy geluid dat een rits kan maken
+{playerName} probeert iemand te versieren met een doedelzak. Welk nummer?
+Wat er gebeurt op een speeddate-avond voor spoken
+{playerName} krijgt een lapdance van een Viking. Hoe heet de Viking?
+De beste manier om je partner te vertellen dat je een seksschommel hebt gekocht
+{playerName} probeert dirty talk met een Limburgs accent. Wat zeggen ze?
+Een pikante naam voor een weekendje weg zonder de kinderen
+{playerName} flirt met een AI-chatbot. Wat is het antwoord?
+Wat de papegaai van de buren blijft herhalen na jullie feestje
+{playerName} crasht een huwelijksreis. Waarom?
+Een verleidelijke manier om een aardappel te schillen
+De seksdungeon van {playerName} is een IKEA-kamer. Hoe heet het meubel?
+Een liefdesbriefje in de condens op een busraam
+{playerName} belandt in een datingprogramma tegen oma. Wie wint?
+De meest verdachte aankoop op een gezamenlijke rekening
+{playerName} verstopte iets stouts in de kerstboom. Wat?
+Het heetste wat er in een autowasstraat kan gebeuren
+{playerName} maakt een sexy peperkoekhuisje. Wat is er bijzonder aan?
+Het kinkyste wat een buschauffeur ooit heeft gezien
+De crush van {playerName} zit naast hen op een vlucht van twaalf uur. De openingszin?
+Wat er echt in het "romantische mandje" van een love hotel zit
+{playerName} maakte het uit vanwege het zoenen. Wat was er mis?
+Iets flirterigs om vanaf een balkon te roepen
+{playerName} krijgt een zwoele horoscoop. Wat voorspelt die?
+Het meest sexy beroep in de middeleeuwen
+{playerName} sluipt weg bij een onenightstand. Waar struikelen ze over?
+Het zwoelste wat er in een kabelbaan kan gebeuren
+{playerName} zet een pikante advertentie in de krant. Wat staat erin?
+Een sexy appje om te sturen terwijl je in de file staat
+{playerName} flirtte zich onder een parkeerboete uit. Hoe?
+Het ergste om te zeggen als de ouders van je partner binnenlopen
+{playerName} flirtte zich een VIP-ruimte in. Wat zeiden ze?
+Een liefdesverhaal dat begint bij de zelfscankassa
+{playerName} wordt naakte butler. Wat is de eerste klus?
+Iets ondeugends om in de broodtrommel van je partner te verstoppen
+{playerName} probeert een romantisch moment in de IKEA. Waar precies?
+Het meest schunnige wat een kaasboer kan zeggen
+{playerName} probeert sexy te zijn in een onesie. Welk dier?
+De slechtste lingerie voor een sneeuwdag
+{playerName} heeft een zwoel geheim met de postbode. Wat?
+Wat er gebeurt op de afterparty van een bruiloft op Ibiza
+Het bed van {playerName} heeft een gastenboek. Wat schreef de laatste gast?
+De beste manier om iemand te versieren op een barbecue
+{playerName} vindt een liefdesdrankje. Aan wie geven ze het?
+Iets sexy om te zeggen met je mond vol taart
+In de kinkyste droom van {playerName} speelde welk tekenfilmfiguur?
+Het stoutste wat je op een verkleedfeest kunt doen
+{playerName} kreeg een sexy compliment van de huisarts. Welk?
+Het beste excuus om in een badjas een hotel uit te lopen
+{playerName} danst sexy op tafel op een bruiloft. Van wie was de tafel?
+De meest sexy manier om iemand de jas aan te geven
+{playerName} geeft een minnaar een mixtape. Wat is het laatste nummer?
+Het ergste om te vinden tijdens een romantische strandwandeling
+{playerName} deed een rollenspel als belastinginspecteur. Wat was het scenario?
+De meest onverwachte plek om een liefdesbrief te vinden
+{playerName} gaat met de moeder naar een seksshop. Wat kocht mama?
+Een afgekeurde slogan voor Durex
+De date van {playerName} bestelde voor hen. Wat bestelden ze?
+Een flirterige manier om te zeggen dat iemand spinazie tussen de tanden heeft
+{playerName} is het gezicht van een nieuw ondergoedmerk. Hoe heet het merk?
+Het meest pikante wat er op een pubquiz kan gebeuren
+De onenightstand van {playerName} wil een tweede date. Het excuus om nee te zeggen?
+Het slechtste moment om iets nieuws in bed te proberen
+{playerName} zit in een liefdesdriehoek met een kat. Wie wint?
+Het stoutste wat je met een paar pluchen dobbelstenen kunt doen
+{playerName} gaat naar een gemaskerd bal. Welk masker?
+Een ondeugende manier om iemands hoodie te stelen
+{playerName} werd gezien terwijl die iemand zoende in het Rijksmuseum. Achter welk schilderij?
+De meest romantische manier om een pizza te delen
+{playerName} steekt kaarsen aan voor de sfeer en zet de sprinklers aan. Wat zeggen ze?
+De slechtste dirty talk van een sportcommentator
+{playerName} probeert sexy te zijn in een Teams-meeting. Wat ging er mis?
+Iets flirterigs om te zeggen tegen iemand die aan het fileparkeren is
+De beste move van {playerName} in bed heeft een naam. Welke?
+Het zwoelste wat je in een boomhut kunt doen
+Het kleinkind van {playerName} vindt ooit een doos liefdesbrieven. De pikantste zin?
+Het meest sexy wat je op Koningsdag kunt dragen
+{playerName} wordt een dag relatietherapeut van de ouders. Wat is het advies?
+De naam van een erotische roman die zich afspeelt op een Waddeneiland
+{playerName} krijgt een rol in een erotische film. Hoe heet het personage?
+Een stoute nieuwe smaak voor een Bossche bol
+{playerName} doet mee aan Temptation Island. Wie is de verleider?
+Wat er echt gebeurt in de sauna in Bad Hoevedorp om middernacht
+{playerName} doet mee aan Married at First Sight. Wat is het eerste wat ze zeggen?
+Een flirterige zin in plat Rotterdams
+{playerName} gaat op date in de Efteling. In welke attractie gaat het mis?
+Het meest sexy wat een weerman in De Bilt kan zeggen
+{playerName} kust iemand in het Spookslot. Wie?
+Een schunnige titel voor een André Hazes-parodie
+{playerName} flirt met een conducteur. Wat is de beloning?
+Het meest pikante wat je op een Hollandse camping hebt gezien
+{playerName} schrijft een zwoel Sinterklaasgedicht. Eerste regel?
+Een romantisch aanzoek op de Afsluitdijk
+{playerName} zit met de crush in een reuzenrad dat vastloopt. Wat gebeurt er?
+Het zwoelste wat er ooit in een grachtenpand is gebeurd
+{playerName} flirt op Koningsdag. Wat hebben ze aan?
+Een sexy slogan voor een Hollandse kaasboerderij
+{playerName} kust iemand onder de mistletoe op de kerstborrel. Wie?
+Het stoutste wat je op carnaval kunt dragen
+{playerName} gaat speeddaten op een boerderij. Wie wint het hart?
+Een zwoel liedje voor tijdens het fietsen tegen de wind in
+{playerName} maakt een romantisch diner met alleen snacks uit de muur. Wat is het menu?
+Het meest schandalige wat ooit in een Efteling-attractie gebeurde
+{playerName} probeert te verleiden met een stroopwafel. Hoe?
+Een versierzin met de woorden "gezellig" en "lekker"
+{playerName} heeft een zwoele ontmoeting in de sauna. Wat is de eerste zin?
+Wat er echt gebeurt achter de duinen in Zandvoort
+{playerName} is gezien op een naturistencamping in Drenthe. Het excuus?
+Een ondeugende naam voor een tompouce
+{playerName} flirt in de rij bij de snackbar. Wat bestellen ze samen?
+Het flirterigste wat je bij de bakker kunt bestellen
+{playerName} geeft een zwoele rondleiding door de eigen slaapkamer. Het hoogtepunt?
+De meest sexy manier om een haring te eten
+{playerName} ontvangt een naaktfoto per ongeluk. Van wie?
+Een schunnige titel voor een Nederlandse soap
+{playerName} schrijft een erotisch verhaal over een windmolen. De titel?
+Het zwoelste wat een schaatser op de Elfstedentocht kan zeggen
+{playerName} krijgt een pikante voicemail van een onbekende. Wat hoor je?
+Een stoute smaak voor een oliebol
+{playerName} flirt met de pizzabezorger. Welke pizza bestellen ze?
+Wat er gebeurt in de laatste nachtbus van Amsterdam
+{playerName} is het nieuwe gezicht van een condoommerk. Wat is de reclame?
+Een flirterige zin voor iemand in een klederdracht
+{playerName} wint een weekend in een love hotel met de schoonmoeder. Wat nu?
+Een romantisch uitje naar Giethoorn dat misgaat
+{playerName} probeert een striptease op een schlager. Welke?
+Het meest pikante op een verjaardag in de kring
+{playerName} gaat op date met iemand die alleen maar Fries praat. Hoe flirten ze?
+Een sexy spreuk op een Delfts blauw tegeltje
+{playerName} doet een zwoele fotoshoot in een tulpenveld. Welke pose?
+Wat de molenaar echt doet als de wieken stilstaan
+{playerName} flirt met een boswachter. Waar eindigt de wandeling?
+Een zwoele tekst voor een reclame van hagelslag
+{playerName} ontvangt een erotisch pakketje bij de buren. Wat zeggen ze?
+Het ondeugendste wat je op een woonboot kunt doen
+{playerName} wordt betrapt in de kledingkast van de date. Waarom zaten ze daar?
+Wat de koeien in de wei allemaal hebben gezien
+{playerName} krijgt een zwoele massage op vakantie. Wat ging er mis?
+Een flirterige manier om te vragen of iemand mee naar de snackbar gaat
+{playerName} probeert te verleiden tijdens het fietsen. Wat gaat er mis?
+Een schunnige naam voor een Brabants worstenbroodje
+{playerName} heeft een zwoele date op de schaatsbaan. Hoe eindigt het?
+Een romantisch diner met alleen bitterballen
+{playerName} flirt met de weerman. Wat is de voorspelling voor vannacht?
+Een stoute smaak voor een stroopwafel
+{playerName} gaat met de crush naar een wijnproeverij. Hoeveel glazen tot de eerste zoen?
+Het meest pikante wat je in een Hollandse badkamer kunt vinden
+{playerName} wordt versierd door een Viking op carnaval. Wat zegt die?
+Een romantische wandeling langs een Hollandse sloot die misgaat
+{playerName} probeert een romantisch picknickje in de regen. Wat is het plan B?
+Een verleidelijke manier om "doei" te zeggen
+{playerName} gaat naar een sexy kookcursus. Wat maken ze?
+Het zwoelste wat een tuinkabouter heeft gezien
+{playerName} stuurt een zwoel appje naar de verkeerde groepsapp. Welke?
+Het meest sexy aan een Hollandse regenjas
+{playerName} doet mee aan een verleidingswedstrijd. Wat is de winnende move?
+Een schunnige naam voor een windmolenpark
+{playerName} gaat naar een parenclub met de verkeerde partner. Wie?
+Het meest pikante wat er gebeurde op het schoolkamp van je ouders
+{playerName} flirt in een lift vol collega's. Wat zeggen ze?
+Het gewaagdste wat je in een reuzenrad kunt doen
+{playerName} verstopt een liefdesbriefje in de broodtrommel van de crush. Wat staat erop?
+Een pikante naam voor een fietstandem
+{playerName} droomt over iemand in deze kamer. Wat gebeurde er in de droom?
+Iets stouts om te zeggen tegen de navigatie
+{playerName} doet een zwoele dans op de bruiloft van de ex. Welke dans?
+Een zwoele tekst op een verjaardagstaart voor je partner
+{playerName} opent een datingcafé. Hoe heet het?
+Het meest schandalige wat je bij de wasserette kunt doen
+{playerName} probeert te versieren met een goed boek. Welk boek?
+Een flirterige manier om iemand een lift aan te bieden
+{playerName} wordt de nieuwe ster van een zwoele hoorspelserie. Titel?
+Wat er echt gebeurt achter het gordijn van een pashokje
+{playerName} krijgt een liefdesverklaring van de buurman. Wat staat er op het spandoek?
+Een schunnige naam voor een nieuwe smaak drop
+{playerName} stuurt een foto van de voeten naar de crush. Waarom?
